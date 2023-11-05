@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfp4ni22x3w6u"]
+
+[ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
+[ext_resource type="PackedScene" uid="uid://cnpyoe2yoj0a3" path="res://cards/Card.tscn" id="2_5s4ox"]
+[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="3_sa2h8"]
+
+[node name="Hand" type="Node2D"]
+scale = Vector2(0.895, 0.895)
+script = ExtResource("1_erkbb")
+cardTemplate = ExtResource("2_5s4ox")
+
+[node name="Node2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 1)
+texture = ExtResource("3_sa2h8")

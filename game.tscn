@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://brvirf84hjie1"]
+
+[ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="2_d5eo8"]
+[ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="2_lrtfy"]
+[ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="3_iovmj"]
+[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/Card1.tres" id="4_qgvii"]
+
+[node name="game" type="Node2D"]
+position = Vector2(5, 0)
+
+[node name="MatchBoard" parent="." instance=ExtResource("2_d5eo8")]
+position = Vector2(147, -1)
+
+[node name="Hand" parent="." instance=ExtResource("2_lrtfy")]
+position = Vector2(697, 1043)
+scale = Vector2(1.5, 1.5)
+
+[node name="Deck" parent="." node_paths=PackedStringArray("hand") instance=ExtResource("3_iovmj")]
+position = Vector2(1522, 1038)
+scale = Vector2(0.5, 0.5)
+hand = NodePath("../Hand")
+allCards = Array[Resource]([ExtResource("4_qgvii")])
