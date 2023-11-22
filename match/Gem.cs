@@ -4,7 +4,10 @@ using System;
 public partial class Gem : lerp
 {
 	[Export] public Sprite2D sprite2D;
-	[Export]
+	[Export] AnimationPlayer animationPlayer;
+
+	[Signal]
+	public delegate void doneDyingSignalEventHandler(Gem gem);
 	public GemType Type
 	{
 		get;
@@ -21,5 +24,14 @@ public partial class Gem : lerp
 	{
 		Type = type;
 		sprite2D.Modulate = type.GetColor();
+	}
+
+	public void startDying() {
+		animationPlayer.Play("PopAnimation");
+	}
+
+	public void doneDying() {
+		QueueFree();
+		EmitSignal(SignalName.doneDyingSignal, this);
 	}
 }

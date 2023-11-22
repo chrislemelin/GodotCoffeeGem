@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtt0h7sooi356"]
-
-[ext_resource type="Script" path="res://cards/cardResources/CardResource.cs" id="1_73jxe"]
-
-[resource]
-script = ExtResource("1_73jxe")
-Title = "I am just ken"
-Description = "anywhere else Id be a "
-Cost = 10

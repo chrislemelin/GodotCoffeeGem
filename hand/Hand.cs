@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public partial class Hand : Node
@@ -7,18 +8,30 @@ public partial class Hand : Node
 
 	[Export] PackedScene cardTemplate;
 	[Export] Node cardContainer;
-
+	[Export] Discard discard;
+	[Export] MatchBoard matchBoard;
+	[Export] Deck deck;
+	[Export] Sprite2D sprite2D;
+	[Export] HandLine handLine;
+	[Export] Mana mana;
 
 	List<Card> cards = new List<Card>();
+
 	Optional<Card> cardSelected = Optional.None<Card>();
 
 	int handSize = 5;
 
 	int width = 400;
 
-	// Called when the node enters the scene tree for the first time.
+	public Optional<Card> getCardSelected() {
+		return cardSelected;
+	}
+
+	// Called when the node enters the scene tree for the first time
 	public override void _Ready()
 	{
+		handLine.turnOff();
+		newTurn();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,16 +39,32 @@ public partial class Hand : Node
 	{
 	}
 
+
+	private void playCard(MatchBoard board, Card card, List<Vector2> positions) {
+		card.playCard(board, mana, positions);
+		mana.modifyMana(card.getCardResource().Cost * -1);
+		clearSelectedCard();
+		discardCard(card);
+	}
+
+	
+	public void tilesSelectedForCard(MatchBoard board, List<Vector2> positions) {
+		if(cardSelected.HasValue) {
+			Card card = cardSelected.GetValue();
+			playCard(board, card, positions);
+		}
+	}
+
 	public bool hasRoomForMoreCards()
 	{
 		return cards.Count < handSize;
 	}
 
-	public void addNewCardToHand(CardResource cardResource)
+	public bool addNewCardToHand(CardResource cardResource)
 	{
 		if (cards.Count == handSize)
 		{
-			return;
+			return false;
 		}
 		Card newcard = cardTemplate.Instantiate() as Card;
 		newcard.setUpCard(cardResource);
@@ -48,30 +77,65 @@ public partial class Hand : Node
 		newcard.Position = startingPosition + new Vector2(0, 200);
 
 		repositionCards();
+		return true;
 	}
 
 	private void cardClicked(InputEvent inputEvent, Card card)
 	{
 		if (inputEvent.IsActionPressed("click"))
 		{
-			if (cardSelected.HasValue)
-			{
-				cardSelected.GetValue().highlightOnHover.setForceHighlight(false);
+			switch(card.getCardResource().getSelectionType()) {
+				case SelectionType.Single:
+				case SelectionType.Double:
+					setSelectedCard(card);
+					break;
+				case SelectionType.None:
+					clearSelectedCard();
+					break;
 			}
-			cardSelected = Optional.Some<Card>(card);
-			card.highlightOnHover.setForceHighlight(true);
 		};
 	}
-	public void deleteCard()
-	{
-		if (cards.Count == 0)
-		{
-			return;
+
+	private void setSelectedCard(Card card) {
+		if (mana.manaValue >= card.getCardResource().Cost) {
+			clearSelectedCard();
+			handLine.turnOn(card.Position);
+			cardSelected = Optional.Some<Card>(card);
+			card.highlightOnHover.setForceHighlight(true);
 		}
-		Card card = cards[cards.Count - 1];
+	}
+
+	private void clearSelectedCard() {
+		handLine.turnOff();
+		matchBoard.clearTilesSelected();
+		if (cardSelected.HasValue)
+		{
+			cardSelected.GetValue().highlightOnHover.setForceHighlight(false);
+			cardSelected = Optional.None<Card>();
+		}
+	}
+
+	public void newTurn () {
+		discardHand();
+		clearSelectedCard();
+		mana.resetManaValue();
+		deck.drawCards(5);
+	}
+
+	public void discardCard(Card card)
+	{
 		cards.Remove(card);
+		discard.addCard(card.getCardResource());
 		card.QueueFree();
 		repositionCards();
+	}
+
+	public void discardHand() {
+		foreach(Card card in cards) {
+			discard.addCard(card.getCardResource());
+			card.QueueFree();
+		}
+		cards.Clear();
 	}
 
 	public void repositionCards()
@@ -93,13 +157,20 @@ public partial class Hand : Node
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("click"))
-		{
-			//addNewCardToHand();
+		if (@event.IsActionPressed("right click")){
+			if (@event is InputEventMouseButton eventMouseButton)
+			{
+				Vector2 posToCheck = sprite2D.ToLocal( eventMouseButton.Position);
+				if (!sprite2D.GetRect().HasPoint(posToCheck)) {
+					if (cardSelected.HasValue) {
+						clearSelectedCard();
+					}
+				}
+
+			}
 		}
-		if (@event.IsActionPressed("right click"))
-		{
-			deleteCard();
+		if (@event.IsActionPressed("space")){
+			newTurn();
 		}
 	}
 }

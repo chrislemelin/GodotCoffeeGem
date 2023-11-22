@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Card : lerp
 {
@@ -11,7 +12,6 @@ public partial class Card : lerp
 	[Export]
 	public HighlightOnHover highlightOnHover;
 	[Export] CardResource cardResource;
-
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -36,4 +36,13 @@ public partial class Card : lerp
 		costLabel.Text = TextHelper.centered(cardResource.Cost.ToString());
 	}
 
+	public void playCard(MatchBoard matchboard, Mana mana, List<Vector2> tiles)
+	{
+		cardResource.cardEffect.doEffect(matchboard, mana, tiles);
+	}
+
+	public CardResource getCardResource()
+	{
+		return cardResource;
+	}
 }

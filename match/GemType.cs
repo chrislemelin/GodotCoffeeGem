@@ -33,6 +33,6 @@ static class GemTypeHelper
 	}
 	public static GemType getRandomColor()
 	{
-		return (GemType)random.Next(3);
+		return (GemType)random.Next(5);
 	}
 }

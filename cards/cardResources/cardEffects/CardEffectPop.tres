@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=2 format=3 uid="uid://bv6tfpwejtjcn"]
+
+[ext_resource type="Script" path="res://cards/cardResources/CardResource.cs" id="1_3puoo"]
+
+[resource]
+script = ExtResource("1_3puoo")
+Title = ""
+Description = ""
+Cost = 0

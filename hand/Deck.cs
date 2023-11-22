@@ -8,13 +8,20 @@ public partial class Deck : Node
 	[Export] RichTextLabel countLabel;
 	[Export] Hand hand;
 	[Export] CardResource[] allCards;
+	[Export] Discard discard;
 	List<CardResource> cards = new List<CardResource>();
 
 	public override void _Ready()
 	{
-		cards.AddRange(allCards);
+		addCardsToDeck();
 		RandomHelper.Shuffle(cards);
 		updateCount();
+	}
+
+	private void addCardsToDeck() {
+		while(cards.Count < 10) {
+			cards.AddRange(allCards);
+		}
 	}
 
 	public void drawCards(int count)
@@ -34,25 +41,23 @@ public partial class Deck : Node
 	{
 		if (cards.Count == 0)
 		{
-			//shuffle from discard
-			return;
+			cards.AddRange(discard.getAllCardsAndReset());
+			updateCount();
+			if (cards.Count == 0) {
+				return;
+			}
+
 		}
 		CardResource nextCard = cards[0];
-		cards.RemoveAt(0);
-		hand.addNewCardToHand(nextCard);
-		updateCount();
+		bool cardAddedToHand = hand.addNewCardToHand(nextCard);
+		if (cardAddedToHand) {
+			cards.RemoveAt(0);
+			updateCount();
+		}
+
 	}
 	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("click"))
-		{
-			drawCard();
-		}
-		if (@event.IsActionPressed("right click"))
-		{
-			//deleteCard();
-		}
-	}
+	{}
 
 
 }

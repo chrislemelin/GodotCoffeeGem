@@ -1,22 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=12 format=3 uid="uid://brvirf84hjie1"]
 
+[ext_resource type="Script" path="res://hand/Discard.cs" id="1_8b3fp"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="2_d5eo8"]
 [ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="2_lrtfy"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="3_iovmj"]
-[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/Card1.tres" id="4_qgvii"]
+[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/PopCard.tres" id="5_4e0jd"]
+[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/SwitchCard.tres" id="5_tecsp"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/PopRandomCard.tres" id="6_dubo4"]
+[ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="6_fxqvd"]
+[ext_resource type="Resource" uid="uid://b7wroy2v1oil" path="res://cards/cardResources/PopAllCard.tres" id="7_dumq7"]
+[ext_resource type="Resource" uid="uid://d1nggr211uac1" path="res://cards/cardResources/PopRowCard.tres" id="8_icbb4"]
+[ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="8_kks67"]
 
 [node name="game" type="Node2D"]
 position = Vector2(5, 0)
+script = ExtResource("1_8b3fp")
 
-[node name="MatchBoard" parent="." instance=ExtResource("2_d5eo8")]
-position = Vector2(147, -1)
+[node name="MatchBoard" parent="." node_paths=PackedStringArray("hand") instance=ExtResource("2_d5eo8")]
+position = Vector2(322, 61)
+hand = NodePath("../Hand")
 
-[node name="Hand" parent="." instance=ExtResource("2_lrtfy")]
-position = Vector2(697, 1043)
-scale = Vector2(1.5, 1.5)
-
-[node name="Deck" parent="." node_paths=PackedStringArray("hand") instance=ExtResource("3_iovmj")]
-position = Vector2(1522, 1038)
+[node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard") instance=ExtResource("3_iovmj")]
+position = Vector2(1685, 1047)
 scale = Vector2(0.5, 0.5)
 hand = NodePath("../Hand")
-allCards = Array[Resource]([ExtResource("4_qgvii")])
+allCards = Array[Resource]([ExtResource("5_tecsp"), ExtResource("5_4e0jd"), ExtResource("6_dubo4"), ExtResource("7_dumq7"), ExtResource("8_icbb4")])
+discard = NodePath("../Discard")
+
+[node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana") instance=ExtResource("2_lrtfy")]
+position = Vector2(893, 1040)
+scale = Vector2(1.5, 1.5)
+discard = NodePath("../Discard")
+matchBoard = NodePath("../MatchBoard")
+deck = NodePath("../Deck")
+mana = NodePath("../Mana")
+
+[node name="Discard" parent="." instance=ExtResource("6_fxqvd")]
+position = Vector2(101, 1039)
+scale = Vector2(0.5, 0.5)
+
+[node name="Mana" parent="." instance=ExtResource("8_kks67")]
+position = Vector2(304, 832)

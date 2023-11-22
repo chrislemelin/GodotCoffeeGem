@@ -1,15 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://n47nvuio53df"]
+[gd_scene load_steps=4 format=3 uid="uid://n47nvuio53df"]
 
 [ext_resource type="Script" path="res://match/Tile.cs" id="1_3ldum"]
 [ext_resource type="Texture2D" uid="uid://4uonrsb12akj" path="res://match/tile.png" id="1_ugp55"]
 
-[node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]
+size = Vector2(227.5, 227.5)
+
+[node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "area2D")]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_3ldum")
 sprite2D = NodePath("Sprite2D")
+area2D = NodePath("Area2D")
+highlightColor = Color(1, 0, 0, 0.505882)
+hoverColor = Color(1, 1, 0, 0.666667)
+selectColor = Color(0.183333, 0, 1, 0.505882)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.6, 0.6, 0.6, 0.254902)
+modulate = Color(0.901961, 0.901961, 0.901961, 0.341176)
+self_modulate = Color(1, 1, 1, 0.827451)
 texture = ExtResource("1_ugp55")
 centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(126.25, 126.25)
+shape = SubResource("RectangleShape2D_v70ys")
