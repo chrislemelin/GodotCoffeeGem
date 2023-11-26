@@ -10,9 +10,9 @@ const vec2 OFFSETS[8] = {
 
 void fragment() {
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness / 2.0;
-	vec4 color = texture(TEXTURE, UV);
+	vec4 color = COLOR * texture(TEXTURE, UV);
 	
-	float inline = 1.0;
+	float inline = 1.0;   
 	float outline = 0.0;
 	for (int i = 0; i < OFFSETS.length(); i++) {
 		float sample = texture(TEXTURE, UV + size * OFFSETS[i]).a;

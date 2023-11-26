@@ -1,141 +1,144 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxshhmv8s75ky"]
+[gd_scene load_steps=12 format=3 uid="uid://bxshhmv8s75ky"]
 
-[ext_resource type="Script" path="res://cards/Card.cs" id="1_qwo4a"]
-[ext_resource type="Texture2D" uid="uid://b6s3b155jtgru" path="res://placeholders/cards/card_front_background.png" id="2_e0gwr"]
+[ext_resource type="Script" path="res://cards/CardUI.cs" id="1_tb7xr"]
+[ext_resource type="Resource" uid="uid://b7wroy2v1oil" path="res://cards/cardResources/deletingCards/PopAllCard.tres" id="2_fwhny"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_a0ard"]
+[ext_resource type="Texture2D" uid="uid://cvmhfywxbwcvo" path="res://placeholders/cards/cardback.png" id="3_hibfg"]
+[ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_m7gwv"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="4_we8e7"]
-[ext_resource type="Texture2D" uid="uid://ca0mcy3xcejpu" path="res://placeholders/cards/card_picture_placeholder.png" id="5_acqdq"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="6_w0vkw"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_8y700"]
 [ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="7_oo2ju"]
 
-[sub_resource type="Shader" id="Shader_mg2id"]
-code = "shader_type canvas_item;
-
-uniform vec4 line_color : source_color = vec4(1);
-uniform float line_thickness : hint_range(0, 10) = 1.0;
-
-const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
-	vec2(1, -1), vec2(1, 0), vec2(1, 1)
-};
-
-void fragment() {
-	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness / 2.0;
-	vec4 color = texture(TEXTURE, UV);
-	
-	float inline = 1.0;
-	float outline = 0.0;
-	for (int i = 0; i < OFFSETS.length(); i++) {
-		float sample = texture(TEXTURE, UV + size * OFFSETS[i]).a;
-		outline += sample;
-		inline *= sample;
-	}
-	outline = min(1.0, outline) - color.a;
-	inline = (1.0 - inline) * color.a;
-	
-	vec4 outlined_result = mix(color, line_color, outline + inline);
-	COLOR = mix(color, outlined_result, outlined_result.a);
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
-shader = SubResource("Shader_mg2id")
-shader_parameter/line_color = Color(0, 0.0509804, 0.905882, 0)
+shader = ExtResource("3_m7gwv")
+shader_parameter/line_color = Color(1, 1, 0, 0)
 shader_parameter/line_thickness = 5.009
 
-[node name="card2" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4w66s"]
+size = Vector2(420, 603.333)
+
+[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover")]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_tb7xr")
+control = NodePath("UI")
+titleLabel = NodePath("UI/Title/RichTextLabel")
+descriptionLabel = NodePath("UI/Description/RichTextLabel")
+costLabel = NodePath("UI/Cost/RichTextLabel")
+picture = NodePath("UI/Picture/Sprite2D")
+highlightOnHover = NodePath("UI/Background")
+cardResource = ExtResource("2_fwhny")
+speed = 500.0
+
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = -4.0
-scale = Vector2(0.3, 0.3)
-script = ExtResource("1_qwo4a")
-titleLabel = NodePath("Center/Title/RichTextLabel")
-descriptionLabel = NodePath("Center/Text/RichTextLabel")
-costLabel = NodePath("Center/Cost/RichTextLabel")
-
-[node name="Center" type="Control" parent="."]
-anchors_preset = 0
-offset_left = -219.317
+offset_left = -220.0
 offset_top = -313.333
-offset_right = -219.317
+offset_right = -220.0
 offset_bottom = -313.333
 
-[node name="Background" type="TextureRect" parent="Center"]
+[node name="Background" type="TextureRect" parent="UI" node_paths=PackedStringArray("area2D")]
+modulate = Color(0.239216, 0, 0.00392157, 1)
 material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 0
-texture = ExtResource("2_e0gwr")
+offset_left = -20.0
+offset_top = -30.0003
+offset_right = 400.0
+offset_bottom = 570.0
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("3_hibfg")
 script = ExtResource("3_a0ard")
+area2D = NodePath("../../Area2D")
 
-[node name="Text" type="Control" parent="Center"]
+[node name="Description" type="Control" parent="UI"]
 anchors_preset = 0
 offset_left = 29.0
 offset_top = 331.0
 offset_right = 29.0
 offset_bottom = 331.0
 scale = Vector2(1.2, 1.2)
+mouse_filter = 2
 
-[node name="Sprite2D" type="TextureRect" parent="Center/Text"]
+[node name="Sprite2D" type="TextureRect" parent="UI/Description"]
 layout_mode = 0
+mouse_filter = 2
 texture = ExtResource("4_we8e7")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Center/Text"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Description"]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 11.0
 offset_right = 289.0
 offset_bottom = 190.0
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "asdfasefasef"
 
-[node name="Picture" type="Control" parent="Center"]
+[node name="Picture" type="Control" parent="UI"]
 anchors_preset = 0
 offset_left = 63.0
 offset_top = 97.0
 offset_right = 63.0
 offset_bottom = 97.0
+mouse_filter = 2
 
-[node name="Sprite2D" type="TextureRect" parent="Center/Picture"]
+[node name="Sprite2D" type="TextureRect" parent="UI/Picture"]
+modulate = Color(0.196078, 0.196078, 0.196078, 1)
 layout_mode = 0
-texture = ExtResource("5_acqdq")
+offset_left = -13.0
+offset_top = -10.3336
+offset_right = 387.0
+offset_bottom = 389.666
+scale = Vector2(0.8, 0.55)
+mouse_filter = 2
+texture = ExtResource("7_8y700")
 
-[node name="Title" type="Control" parent="Center"]
+[node name="Title" type="Control" parent="UI"]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 39.0
-offset_top = 19.0
-offset_right = 39.0
-offset_bottom = 19.0
+offset_left = 36.6667
+offset_top = -0.000305176
+offset_right = 36.6667
+offset_bottom = -0.000305176
+mouse_filter = 2
 
-[node name="Sprite2D" type="TextureRect" parent="Center/Title"]
+[node name="Sprite2D" type="TextureRect" parent="UI/Title"]
 layout_mode = 0
+mouse_filter = 2
 texture = ExtResource("6_w0vkw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Title"]
 layout_mode = 0
-offset_left = 35.0
+offset_left = 28.0
 offset_top = 25.0
-offset_right = 313.0
-offset_bottom = 65.0
+offset_right = 324.0
+offset_bottom = 67.0
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]CARD TITLE[/center]"
-fit_content = true
 scroll_active = false
 
-[node name="Cost" type="Control" parent="Center"]
+[node name="Cost" type="Control" parent="UI"]
 anchors_preset = 0
 offset_left = 62.65
 offset_top = 63.3333
 offset_right = 62.65
 offset_bottom = 63.3333
+mouse_filter = 2
 
-[node name="Sprite2D" type="TextureRect" parent="Center/Cost"]
+[node name="Sprite2D" type="TextureRect" parent="UI/Cost"]
 layout_mode = 0
+offset_left = -75.9833
+offset_top = -90.0003
+offset_right = 20.0167
+offset_bottom = 5.99976
+mouse_filter = 2
 texture = ExtResource("7_oo2ju")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Center/Cost"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Cost"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -143,13 +146,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -36.6667
-offset_right = 8.0
-offset_bottom = 46.3333
+offset_left = -49.3167
+offset_top = -80.0003
+offset_right = -21.3167
+offset_bottom = 2.99976
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
 text = "1"
 fit_content = true
 scroll_active = false
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(-9.99999, -15)
+shape = SubResource("RectangleShape2D_4w66s")

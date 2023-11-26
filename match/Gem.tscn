@@ -1,30 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=8 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="1_o3kd2"]
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
+[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="2_iw26x"]
+[ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_835wl"]
 
 [sub_resource type="Animation" id="Animation_m0ivt"]
 resource_name = "PopAnimation"
 length = 0.5
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -32,24 +22,62 @@ tracks/1/keys = {
 "method": &"doneDying"
 }]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_fa63w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1lm7b"]
 _data = {
-"PopAnimation": SubResource("Animation_m0ivt")
+"PopAnimation": SubResource("Animation_m0ivt"),
+"RESET": SubResource("Animation_fa63w")
 }
 
-[node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "animationPlayer")]
+[node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "animationPlayer")]
 script = ExtResource("2_5yd20")
-sprite2D = NodePath("Sprite2D")
+sprite2D = NodePath("CanvasGroup/GemSprite")
+addonSprite = NodePath("CanvasGroup/GemAddon")
+manaAddonTexture = ExtResource("2_iw26x")
+cardAddonTexture = ExtResource("3_835wl")
 animationPlayer = NodePath("AnimationPlayer")
 speed = 1500.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-texture = ExtResource("1_o3kd2")
-centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1lm7b")
 }
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="GemSprite" type="Sprite2D" parent="CanvasGroup"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+texture = ExtResource("1_o3kd2")
+centered = false
+
+[node name="GemAddon" type="Sprite2D" parent="CanvasGroup"]
+modulate = Color(0.184314, 0.184314, 0.184314, 1)
+position = Vector2(125, 125)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_835wl")

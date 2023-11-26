@@ -2,9 +2,11 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 
 public partial class MatchBoard : Node
@@ -14,17 +16,24 @@ public partial class MatchBoard : Node
 	[Export] PackedScene tileTemplate;
 	[Export] public PackedScene gemScene;
 	[Export] public Hand hand;
+	[Export] public Mana mana;
+	[Export] public Score score;
+	[Export] public AudioStreamPlayer2D audioStreamPlayer2D;
+
+	[Export]
+	public AudioStream matchAudioStream;
+	[Export]
+	public AudioStream popAudioStream;
+	[Export]
+	public AudioStream switchAudioStream;
 
 	private Timer timer;
 	private bool thingsAreMoving = true;
-
 
 	HashSet<Tile> tileSet = new HashSet<Tile>();
 	List<Tile> tilesSelected = new List<Tile>();
 	HashSet<Tile> tilesAvailibleToBeSelected = new HashSet<Tile>();
 	HashSet<Gem> gemsToBeDeleted = new HashSet<Gem>();
-
-
 	Dictionary<Vector2, Tile> tileMap = new Dictionary<Vector2, Tile>();
 
 	private Vector2 tileSize;
@@ -32,9 +41,9 @@ public partial class MatchBoard : Node
 
 	private void tileClicked(Tile tile, InputEvent inputEvent) {
 		if(inputEvent.IsActionPressed("click")) {
-			Optional<Card> cardSelectedInHand = hand.getCardSelected();
+			Optional<CardIF> cardSelectedInHand = hand.getCardSelected();
 			if (cardSelectedInHand.HasValue) {
-				Card card = cardSelectedInHand.GetValue();
+				CardIF card = cardSelectedInHand.GetValue();
 				SelectionType selectionType = cardSelectedInHand.GetValue().getCardResource().getSelectionType();
 				if (selectionType == SelectionType.Single) 
 				{
@@ -55,7 +64,6 @@ public partial class MatchBoard : Node
 						clearTilesSelected();
 					}
 				}
-
 			}
 		}
 	}
@@ -79,29 +87,39 @@ public partial class MatchBoard : Node
 		tilesAvailibleToBeSelected.Add(tile);
 	}
 
-	private void setTilesAvailibleToBeSelectedFromCard(Card card, Tile center) {
-		if (card.getCardResource().getSelectionType() == SelectionType.Double && tilesAvailibleToBeSelected.Count == 0){
-			foreach (Tile currentTile in tileSet) {
-				if( currentTile.getPosition().DistanceTo(center.getPosition()) <= card.getCardResource().cardEffect.Range){
-					if (currentTile != center) {
-						addTileToAvailibleToSelectList(currentTile);
+	private void setTilesAvailibleToBeSelectedFromCard(CardIF card, Tile center) {
+		if (card.getCardResource().getSelectionType() == SelectionType.Double && tilesAvailibleToBeSelected.Count == 0) {
+			List<Vector2> customSelectableListOfTiles = card.getCardResource().cardEffect.getAllTilesSelectableAfterFirstSelection(this, center);
+			if (customSelectableListOfTiles.Count == 0) {
+				foreach (Tile currentTile in tileSet) {
+					if( currentTile.getPosition().DistanceTo(center.getPosition()) <= card.getCardResource().cardEffect.Range) {
+						if (currentTile != center) {
+							addTileToAvailibleToSelectList(currentTile);
+						}
+					}
+				}
+			} else {
+				foreach(Vector2 position in customSelectableListOfTiles){
+					Optional<Tile> tileMaybe = getTileOptional(position);
+					if (tileMaybe.HasValue && tileMaybe.GetValue() != center) {
+						addTileToAvailibleToSelectList(tileMaybe.GetValue());
 					}
 				}
 			}
-
+	
 		}
 	}
 
 	private void checkForDrops() {
 		if (thingsAreMoving && gemsToBeDeleted.Count == 0) {
-			bool dropsAreDone = checkIfDropsAreDone();
-			if (dropsAreDone) {
+			bool thingsAreDoneMoving = checkIfThingsAreDoneMoving();
+			if (thingsAreDoneMoving) {
 				thingsAreMoving = checkForMatches();
 			}
 		}
 	}
 
-	private bool checkIfDropsAreDone () {
+	private bool checkIfThingsAreDoneMoving () {
 		for (int x = 0; x < sizeX; x++)
 		{
 			for (int y = 0; y < sizeY; y++)
@@ -122,7 +140,7 @@ public partial class MatchBoard : Node
 
 	private void checkForExtraHighlightsOnTileHover(Tile tile) {
 		if (hand.getCardSelected().HasValue) {
-			Card card = hand.getCardSelected().GetValue();
+			CardIF card = hand.getCardSelected().GetValue();
 			List<Vector2> tilesToHover = card.getCardResource().cardEffect.getAllTilesToHighlightOnHover(this, tile);
 			if (tilesToHover.Count > 0 ){
 				clearTilesSelected();
@@ -168,9 +186,7 @@ public partial class MatchBoard : Node
 		timer.Start();
 	}
 
-	private bool checkForMatches()
-	{
-		
+	private HashSet<HashSet<Tile>> getMatches() {
 		HashSet<HashSet<Tile>> matches = new HashSet<HashSet<Tile>>(HashSet<Tile>.CreateSetComparer());
 		for (int x = 0; x < sizeX; x++)
 		{
@@ -178,53 +194,66 @@ public partial class MatchBoard : Node
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				HashSet<Tile> tileMatches = new HashSet<Tile>();
-				HashSet<Vector2> vectorMatches = new HashSet<Vector2>();
 
 				Optional<Tile> maybeTile = getTileOptional(currentPosition);
 				Optional<Gem> maybeGem = Optional.FromNullable(maybeTile.GetValue().Gem);
 				GemType gemType = maybeGem.GetValue().Type;
+				if (!gemType.matchable()) {
+					continue;
+				}
 				tileMatches.Add(maybeTile.GetValue());
-				vectorMatches.Add(maybeTile.GetValue().getPosition());
 
 				HashSet<Tile> leftMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Left, Vector2.Left, gemType);
 				HashSet<Tile> rightMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Right, Vector2.Right, gemType);
 				HashSet<Tile> horizontalMatches = new HashSet<Tile>(leftMatches.Union(rightMatches));
+				horizontalMatches.Add(maybeTile.GetValue());
 
-				if (horizontalMatches.Count >= 2)
+				if (horizontalMatches.Count >= 3)
 				{
-					tileMatches.UnionWith(horizontalMatches);
-					vectorMatches.UnionWith(horizontalMatches.Select(x => x.getPosition()));
-				}
+					matches.Add(horizontalMatches);
+				} 
 
 				HashSet<Tile> upMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Up, Vector2.Up, gemType);
 				HashSet<Tile> downMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Down, Vector2.Down, gemType);
 				HashSet<Tile> verticalMatches = new HashSet<Tile>(upMatches.Union(downMatches));
+				verticalMatches.Add(maybeTile.GetValue());
 
-				if (verticalMatches.Count >= 2)
+				if (verticalMatches.Count >= 3)
 				{
-					tileMatches.UnionWith(verticalMatches);
-					vectorMatches.UnionWith(verticalMatches.Select(x => x.getPosition()));
-				}
-
-				if (tileMatches.Count >= 3)
-				{
-					matches.Add(tileMatches);
+					matches.Add(verticalMatches);
 				}
 			}
 		}
+		return matches;
+	}
+
+	private bool checkForMatches()
+	{
+		HashSet<HashSet<Tile>> matches = getMatches();
+
 		HashSet<Vector2> tilesToDeleteGem = new HashSet<Vector2>();
 		foreach (HashSet<Tile> currentMatches in matches)
 		{
 			foreach (Tile currentTile in currentMatches)
 			{
 				tilesToDeleteGem.Add(currentTile.getPosition());
+				switch(currentTile.Gem.AddonType) {
+					case GemAddonType.Mana:
+						mana.modifyMana(1);
+						break;
+					case GemAddonType.Card:
+						hand.drawCards(1);
+						break;
+				}
 			}
 		}
-		deleteGemAtPositions(tilesToDeleteGem);
+		if (tilesToDeleteGem.Count > 0) {
+			audioStreamPlayer2D.Stream = matchAudioStream;
+			audioStreamPlayer2D.Play();
+		}
+		score.scoreMatches(matches);
+		deleteGemAtPositions(tilesToDeleteGem, false);
 		return matches.Count > 0;
-	}
-	public void deleteGemAtPosition(Vector2 position) {
-		deleteGemAtPositions(new List<Vector2>{position});
 	}
 
 	private void gemDoneDying(Gem gem) {
@@ -235,8 +264,16 @@ public partial class MatchBoard : Node
 		}
  	}
 
-	public void deleteGemAtPositions(IEnumerable<Vector2> positions) {
+
+	private void deleteGemAtPosition(Vector2 position, bool playSound) {
+		deleteGemAtPositions(new List<Vector2>{position}, playSound);
+	}
+	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool playSound) {
 		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).ToList();
+		if(playSound) {
+			audioStreamPlayer2D.Stream = popAudioStream;
+			audioStreamPlayer2D.Play();
+		}
 		gemsToBeDeleted.UnionWith(gemsToDelete);
 		foreach(Gem gem in gemsToDelete) {
 			gem.doneDyingSignal += gemDoneDying;
@@ -276,11 +313,6 @@ public partial class MatchBoard : Node
 			}
 		}
 		return gemMatches;
-	}
-
-	public HashSet<Tile> getTilesInDirection(Vector2 startingPosition, Vector2 direction)
-	{
-		return getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>());
 	}
 
 	public HashSet<Tile> getGemsInDirectionOfSameType(Vector2 startingPosition, Vector2 direction, GemType gemType)
@@ -351,58 +383,31 @@ public partial class MatchBoard : Node
 	{
 		return tileMap[position];
 	}
-	public override void _Input(InputEvent @event)
-	{
 
-	}
-
-	public List<Tile> getTilesWithColorOfGem(GemType gemType) {
-		List<Tile> tilesToReturn = new List<Tile>();
-		foreach(Tile tile in tileSet) {
-			Optional<Gem> gemMaybe = Optional.FromNullable(tile.Gem);
-			if (gemMaybe.HasValue && gemMaybe.GetValue().Type == gemType) {
-				tilesToReturn.Add(tile);
-			}
-		}
-		
-		return tilesToReturn;
-	}
-	private void sendGemToTile (Gem gem, Tile tileTo, Tile removeFromTile){
+	private void sendGemToTile (Gem gem, Tile tileTo, Tile removeFromTile, bool teleport = false){
 		tileTo.Gem = gem;
 		Vector2 location = gem.GlobalPosition;
 		clearTilesGem(removeFromTile, gem);
-		
 		tileTo.AddChild(gem);
-		gem.GlobalPosition = location;
-		gem.moveToPostion(Vector2.Zero);
+		if (teleport) {
+			gem.Position = Vector2.Zero;
+		} else {
+			gem.GlobalPosition = location;
+			gem.moveToPostion(Vector2.Zero);
+		}
+
 	}
 
 	private void clearTilesGem (Tile tile){ 
 		clearTilesGem(tile, tile.Gem);
 	}
 
-	
 	private void clearTilesGem (Tile tile, Gem gemToRemove){ 
 		tile.RemoveChild(gemToRemove);
 		if (gemToRemove == tile.Gem) {
 			tile.Gem = null;
 		}
 	}
-
-	public void switchGemsInPositions(Vector2 position1, Vector2 position2) {
-		Tile tile1 = tileMap[position1];
-		Tile tile2 = tileMap[position2];
-		Optional<Gem> gem1 = Optional.FromNullable(tile1.Gem);
-		Optional<Gem> gem2 = Optional.FromNullable(tile2.Gem);
-		if (gem1.HasValue) {
-			sendGemToTile(gem1.GetValue(), tile2, tile1);
-		}
-		 if (gem2.HasValue) {
-		 	sendGemToTile(gem2.GetValue(), tile1, tile2);
-		}
-		thingsAreMoving = true;
-	}
-
 
 	private void populateBoard()
 	{
@@ -413,6 +418,13 @@ public partial class MatchBoard : Node
 				Vector2 currentPosition = new Vector2(x, y);
 				generateRandomGemForTile(currentPosition);
 			}
+		}
+		HashSet<HashSet<Tile>> matches = getMatches();
+		while(matches.Count != 0) {
+			foreach(HashSet<Tile> match in matches) {
+				changeGemsColorAtPosition(match.First().getPosition(), GemTypeHelper.getRandomColor());
+			}
+			matches = getMatches();
 		}
 	}
 	private Gem generateRandomGemForTile  (Vector2 position)
@@ -426,4 +438,111 @@ public partial class MatchBoard : Node
 		tile.Gem = gem;
 		return gem;
 	}
+
+	public List<Tile> getRandomTilesWithCondition(int count, Func<Tile,bool> condition) {
+		List<Tile> tileList = new List<Tile>();
+		foreach(Tile tile in tileSet) {
+			if (condition.Invoke(tile)){
+				tileList.Add(tile);
+			}
+		}
+		RandomHelper.Shuffle(tileList);
+		return tileList.GetRange(0, Math.Min(count,tileList.Count));
+	}
+
+	//functions that could be called by external sources (cards)
+
+	public List<Tile> getTilesWithColorOfGem(GemType gemType) {
+		List<Tile> tilesToReturn = new List<Tile>();
+		foreach(Tile tile in tileSet) {
+			Optional<Gem> gemMaybe = Optional.FromNullable(tile.Gem);
+			if (gemMaybe.HasValue && gemMaybe.GetValue().Type == gemType) {
+				tilesToReturn.Add(tile);
+			}
+		}
+		
+		return tilesToReturn;
+	}
+
+	public void deleteGemAtPositions(IEnumerable<Vector2> positions) {
+		deleteGemAtPositions(positions, true);
+	}
+
+	public void deleteGemAtPosition(Vector2 position) {
+		deleteGemAtPositions(new List<Vector2>{position}, true);
+	}
+
+	public HashSet<Tile> getTilesInDirection(Vector2 startingPosition, Vector2 direction)
+	{
+		return getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>());
+	}
+
+	public void changeGemsColorAtPosition(Vector2 position, GemType gemType) {
+		changeGemsColorAtPosition(new HashSet<Vector2>{position} , gemType);
+	}
+
+	public List<Tile> getRandomNonBlackTile(int count) {
+		return getRandomTilesWithCondition(count, tile => {
+			if (tile.Gem == null) {
+				return false;
+			}
+			return tile.Gem.Type != GemType.Black;
+		});
+	}
+
+	public List<Tile> getRandomNonBlackNonAddonTiles(int count) {
+		return getRandomTilesWithCondition(count, tile => {
+			if (tile.Gem == null) {
+				return false;
+			}
+			return tile.Gem.Type != GemType.Black && tile.Gem.AddonType == GemAddonType.None;
+		});
+	}
+
+	public List<Tile> getRandomTiles(int count) {
+		return getRandomTilesWithCondition(count, tile => true);
+	}
+
+	public List<Tile> getRandomTilesWithAddon(int count, GemAddonType gemAddonType) {
+		return getRandomTilesWithCondition(count, tile => {
+			if (tile.Gem == null) {
+				return false;
+			}
+			return tile.Gem.AddonType == gemAddonType;
+		});
+	}
+
+	public void addGemAddons(List<Vector2> positions, GemAddonType gemAddonType) {
+		foreach(Vector2 position in positions) {
+			Tile tile = getTile(position);
+			if (tile.Gem != null) {
+				tile.Gem.setAddonType(gemAddonType);
+			}
+		}
+	} 
+
+	public void changeGemsColorAtPosition(IEnumerable<Vector2> positions, GemType gemType) {
+		foreach(Vector2 position in positions) {
+			Tile tile = getTile(position);
+			tile.Gem.setType(gemType);
+		}
+		thingsAreMoving = true;
+	}
+
+	public void switchGemsInPositions(Vector2 position1, Vector2 position2, bool teleport = false) {
+		Tile tile1 = tileMap[position1];
+		Tile tile2 = tileMap[position2];
+		Optional<Gem> gem1 = Optional.FromNullable(tile1.Gem);
+		Optional<Gem> gem2 = Optional.FromNullable(tile2.Gem);
+		audioStreamPlayer2D.Stream = switchAudioStream;
+		audioStreamPlayer2D.Play();
+		if (gem1.HasValue) {
+			sendGemToTile(gem1.GetValue(), tile2, tile1, teleport);
+		}
+		 if (gem2.HasValue) {
+		 	sendGemToTile(gem2.GetValue(), tile1, tile2, teleport);
+		}
+		thingsAreMoving = true;
+	}
+
 }

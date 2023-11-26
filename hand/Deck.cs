@@ -7,12 +7,26 @@ public partial class Deck : Node
 {
 	[Export] RichTextLabel countLabel;
 	[Export] Hand hand;
-	[Export] CardResource[] allCards;
+	[Export] Godot.Collections.Array<CardResource> allCards;
+	[Export] CardList cardList;
 	[Export] Discard discard;
+	[Export] Boolean loadDeckFromGlobal;
+	[Export] GameManager gameManager;
 	List<CardResource> cards = new List<CardResource>();
 
 	public override void _Ready()
 	{
+		if (loadDeckFromGlobal) {
+			List<CardResource> deckCardList = gameManager.getDeckList();
+			new CardList();
+			if (deckCardList.Count != 0) {
+				allCards = new Godot.Collections.Array<CardResource> (deckCardList);
+			}
+		}
+
+		// if (cardList != null) {
+		// 	allCards = cardList.allCards;
+		// }
 		addCardsToDeck();
 		RandomHelper.Shuffle(cards);
 		updateCount();

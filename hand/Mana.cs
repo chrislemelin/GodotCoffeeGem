@@ -5,6 +5,8 @@ public partial class Mana : Node2D
 {
 	[Export] 
 	public RichTextLabel costText;
+	[Export] 
+	public AudioStreamPlayer2D audioStreamPlayer2D;
 
 
 	public int manaValue {get; protected set;} = 0;
@@ -14,6 +16,9 @@ public partial class Mana : Node2D
 
 
 	public void modifyMana(int value){
+		if (value >= 1) {
+			audioStreamPlayer2D.Play();
+		}
 		int newManaValue  = manaValue + value;
 		setManaValue(Math.Clamp(newManaValue, 0, manaMax));
 	}

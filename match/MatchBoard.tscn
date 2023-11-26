@@ -1,12 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=7 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
 [ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/Gem.tscn" id="3_xdias"]
+[ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/MatchBoard/Rise01.mp3" id="4_dwyhn"]
+[ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
+[ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
 
-[node name="MatchBoard" type="Node2D"]
+[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D")]
 script = ExtResource("1_4r3i0")
-sizeX = 5
-sizeY = 5
+sizeX = 6
+sizeY = 6
 tileTemplate = ExtResource("2_hppa1")
 gemScene = ExtResource("3_xdias")
+audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+matchAudioStream = ExtResource("4_dwyhn")
+popAudioStream = ExtResource("5_wfbn1")
+switchAudioStream = ExtResource("6_iim20")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dwyhn")

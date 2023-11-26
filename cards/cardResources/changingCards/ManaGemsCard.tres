@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://cdhhpfh27s7pj"]
+
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/CardEffectAddAddonGems.cs" id="1_jfsnc"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_ybbs8"]
+
+[sub_resource type="Resource" id="Resource_m0v28"]
+script = ExtResource("1_jfsnc")
+gemAddonType = 1
+Range = 1.0
+Value = 2
+BlackGems = 1
+effectGemType = 0
+
+[resource]
+script = ExtResource("1_ybbs8")
+Title = "Mana Gems"
+Description = "Create 2 random mana gems and 1 black gem"
+Cost = 0
+cardEffect = SubResource("Resource_m0v28")

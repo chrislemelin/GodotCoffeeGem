@@ -6,17 +6,16 @@ public partial class Discard : Node
 {	
 	[Export] RichTextLabel countLabel;
 
-	List<CardResource> cards = new List<CardResource>();
-
+	List<CardResource> cards;
 	public override void _Ready()
 	{
+		cards = new List<CardResource>();
 		updateCount();
 	}
 
 	public void addCard(CardResource cardResource) {
 		cards.Add(cardResource);
 		updateCount();
-
 	}
 
 	public List<CardResource> getAllCardsAndReset() {

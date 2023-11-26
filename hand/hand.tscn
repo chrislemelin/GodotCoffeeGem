@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=9 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
-[ext_resource type="PackedScene" uid="uid://cnpyoe2yoj0a3" path="res://cards/Card.tscn" id="2_5s4ox"]
+[ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="2_3nowl"]
+[ext_resource type="AudioStream" uid="uid://bs2ejr086nvnc" path="res://sound/Hand/cardFan1.wav" id="3_7bv56"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="3_sa2h8"]
+[ext_resource type="AudioStream" uid="uid://ns746kwxu5v7" path="res://sound/Hand/cardPlace1.wav" id="4_hbmsc"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="4_jlt7i"]
 [ext_resource type="Script" path="res://hand/HandLine.cs" id="4_lebxv"]
 
@@ -10,12 +12,17 @@
 offsets = PackedFloat32Array(0, 0.98503)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
-[node name="Hand" type="Node2D" node_paths=PackedStringArray("sprite2D", "handLine")]
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "sprite2D", "handLine", "audioStreamPlayer2D")]
 scale = Vector2(0.895, 0.895)
 script = ExtResource("1_erkbb")
-cardTemplate = ExtResource("2_5s4ox")
+cardTemplate = ExtResource("2_3nowl")
+cardContainer = NodePath("CardContainer")
 sprite2D = NodePath("Node2D")
 handLine = NodePath("Line2D")
+audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+newHandSoundEffect = ExtResource("3_7bv56")
+cardPlayedSoundEffect = ExtResource("4_hbmsc")
+width = 800
 
 [node name="Node2D" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -30,3 +37,8 @@ gradient = SubResource("Gradient_s4lcq")
 texture = ExtResource("4_jlt7i")
 texture_mode = 1
 script = ExtResource("4_lebxv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7bv56")
+
+[node name="CardContainer" type="Node2D" parent="."]

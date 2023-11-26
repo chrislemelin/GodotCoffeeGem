@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://e3lvfo3yth8a"]
+
+[ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectCardBurst.cs" id="1_i8t76"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_1fttl"]
+
+[sub_resource type="Resource" id="Resource_dmeqn"]
+script = ExtResource("1_i8t76")
+Range = 1.0
+Value = 3
+BlackGems = 0
+effectGemType = 0
+
+[resource]
+script = ExtResource("2_1fttl")
+Title = "Draw Burst"
+Description = "Draw 3 cards"
+Cost = 1
+cardEffect = SubResource("Resource_dmeqn")

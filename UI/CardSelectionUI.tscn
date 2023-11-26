@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxavdfi52bnxv"]
+
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_aegw7"]
+[ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="1_pv1p8"]
+[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_twjff"]
+
+[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_pv1p8")
+cardUIPackagedScene = ExtResource("2_twjff")
+cardContainer = NodePath("HBoxContainer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.39, 0.39, 0.39, 1)
+layout_mode = 2
+offset_right = 1800.0
+offset_bottom = 1208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_aegw7")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 426.0
+offset_right = 2278.0
+offset_bottom = 1028.0
+scale = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 286.0
+offset_right = 1432.0
+offset_bottom = 440.0
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Level Passed!
+Pick a new card to add to your deck to continue"

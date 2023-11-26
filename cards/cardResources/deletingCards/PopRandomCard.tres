@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ck7bf50t0c1t7"]
+
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRandom.cs" id="1_latni"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_sbuvw"]
+
+[sub_resource type="Resource" id="Resource_i6k8f"]
+script = ExtResource("1_latni")
+Range = 1.0
+Value = 3
+BlackGems = 0
+effectGemType = 0
+
+[resource]
+script = ExtResource("1_sbuvw")
+Title = "Pop Random"
+Description = "Pop 3 random gems of a selected type. If there are exactly 3 gems of that type draw a card and gain a mana."
+Cost = 1
+cardEffect = SubResource("Resource_i6k8f")

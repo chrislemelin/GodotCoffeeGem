@@ -24,8 +24,4 @@ public partial class HandLine : Line2D
 			AddPoint(GetLocalMousePosition());
 		}
 	}
-
-	
-	
-
 }

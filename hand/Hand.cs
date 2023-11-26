@@ -7,23 +7,35 @@ public partial class Hand : Node
 {
 
 	[Export] PackedScene cardTemplate;
-	[Export] Node cardContainer;
+	[Export] Node2D cardContainer;
 	[Export] Discard discard;
 	[Export] MatchBoard matchBoard;
 	[Export] Deck deck;
 	[Export] Sprite2D sprite2D;
 	[Export] HandLine handLine;
 	[Export] Mana mana;
+	[Export] AudioStreamPlayer2D audioStreamPlayer2D;
+	[Export] AudioStream newHandSoundEffect;
+	[Export] AudioStream cardPlayedSoundEffect;
 
-	List<Card> cards = new List<Card>();
 
-	Optional<Card> cardSelected = Optional.None<Card>();
+	List<CardIF> cards = new List<CardIF>();
+	List<CardResource> cardsPlayedThisTurn = new List<CardResource>();
 
-	int handSize = 5;
+	Optional<CardIF> cardSelected = Optional.None<CardIF>();
+	Optional<CardIF> cardHovered = Optional.None<CardIF>();
 
+	int handSize = 10;
+	int cardsDrawnOnNewTurn = 5;
+
+	[Export]
 	int width = 400;
 
-	public Optional<Card> getCardSelected() {
+	public Optional<CardIF> getCardSelected() {
+		return cardSelected;
+	}
+
+	public Optional<CardIF> getCardHovered() {
 		return cardSelected;
 	}
 
@@ -32,6 +44,8 @@ public partial class Hand : Node
 	{
 		handLine.turnOff();
 		newTurn();
+		GetNode<Button>("%NewTurnButton").Pressed += () => newTurn();
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,8 +54,11 @@ public partial class Hand : Node
 	}
 
 
-	private void playCard(MatchBoard board, Card card, List<Vector2> positions) {
-		card.playCard(board, mana, positions);
+	private void playCard(CardIF card, List<Vector2> positions) {
+		card.playCard(matchBoard, this, mana, positions);
+		cardsPlayedThisTurn.Add(card.getCardResource());
+		audioStreamPlayer2D.Stream = cardPlayedSoundEffect;  
+		audioStreamPlayer2D.Play();
 		mana.modifyMana(card.getCardResource().Cost * -1);
 		clearSelectedCard();
 		discardCard(card);
@@ -50,8 +67,8 @@ public partial class Hand : Node
 	
 	public void tilesSelectedForCard(MatchBoard board, List<Vector2> positions) {
 		if(cardSelected.HasValue) {
-			Card card = cardSelected.GetValue();
-			playCard(board, card, positions);
+			CardIF card = cardSelected.GetValue();
+			playCard(card, positions);
 		}
 	}
 
@@ -66,11 +83,14 @@ public partial class Hand : Node
 		{
 			return false;
 		}
-		Card newcard = cardTemplate.Instantiate() as Card;
+		CardIF newcard = cardTemplate.Instantiate() as CardIF;
 		newcard.setUpCard(cardResource);
-		newcard.area2D.InputEvent += (viewPort, inputEvent, temp) => cardClicked(inputEvent, newcard);
+		newcard.clickedSignal += (inputEvent) => cardClicked(inputEvent, newcard);
+		newcard.listenToMouseEnter(() => setCardHovered(newcard));
+		newcard.listenToMouseExit(() => clearCardHovered(newcard));
 
-		AddChild(newcard);
+
+		cardContainer.AddChild(newcard);
 		cards.Add(newcard);
 
 		Vector2 startingPosition = getPositionForCard(cards.Count - 1);
@@ -80,7 +100,7 @@ public partial class Hand : Node
 		return true;
 	}
 
-	private void cardClicked(InputEvent inputEvent, Card card)
+	private void cardClicked(InputEvent inputEvent, CardIF card)
 	{
 		if (inputEvent.IsActionPressed("click"))
 		{
@@ -90,17 +110,18 @@ public partial class Hand : Node
 					setSelectedCard(card);
 					break;
 				case SelectionType.None:
+					playCard(card, new List<Vector2>());
 					clearSelectedCard();
 					break;
 			}
 		};
 	}
 
-	private void setSelectedCard(Card card) {
+	private void setSelectedCard(CardIF card) {
 		if (mana.manaValue >= card.getCardResource().Cost) {
 			clearSelectedCard();
 			handLine.turnOn(card.Position);
-			cardSelected = Optional.Some<Card>(card);
+			cardSelected = Optional.Some<CardIF>(card);
 			card.highlightOnHover.setForceHighlight(true);
 		}
 	}
@@ -111,18 +132,44 @@ public partial class Hand : Node
 		if (cardSelected.HasValue)
 		{
 			cardSelected.GetValue().highlightOnHover.setForceHighlight(false);
-			cardSelected = Optional.None<Card>();
+			cardSelected = Optional.None<CardIF>();
 		}
 	}
 
-	public void newTurn () {
-		discardHand();
-		clearSelectedCard();
-		mana.resetManaValue();
-		deck.drawCards(5);
+	private void setCardHovered(CardIF card) {
+		setCardHovered(Optional.Some<CardIF>(card));
 	}
 
-	public void discardCard(Card card)
+	private void clearCardHovered(CardIF card) {
+		setCardHovered(Optional.None<CardIF>());
+	}
+	
+
+	private void setCardHovered(Optional<CardIF> card) {
+		cardHovered = card;
+		if (cardHovered.HasValue) {
+			cardContainer.MoveChild(cardHovered.GetValue(), cards.Count);
+		} else {
+			int count = 0;
+			foreach(CardIF currentCard in cards) {
+				cardContainer.MoveChild(currentCard, count);
+				count++;
+			}
+		}
+	}
+
+
+	public void newTurn () {
+		discardHand();
+		cardsPlayedThisTurn.Clear();
+		clearSelectedCard();
+		mana.resetManaValue();
+		deck.drawCards(cardsDrawnOnNewTurn);
+		audioStreamPlayer2D.Stream = newHandSoundEffect;  
+		audioStreamPlayer2D.Play();
+	}
+
+	public void discardCard(CardIF card)
 	{
 		cards.Remove(card);
 		discard.addCard(card.getCardResource());
@@ -131,7 +178,7 @@ public partial class Hand : Node
 	}
 
 	public void discardHand() {
-		foreach(Card card in cards) {
+		foreach(CardIF card in cards) {
 			discard.addCard(card.getCardResource());
 			card.QueueFree();
 		}
@@ -144,7 +191,7 @@ public partial class Hand : Node
 		{
 			Node card = cards[index];
 			lerp lerpScript = card as lerp;
-			Vector2 sendingCardToVector = getPositionForCard(index);
+			Vector2 sendingCardToVector = getPositionForCardV2(index);
 			lerpScript.moveToPostion(sendingCardToVector);
 		}
 	}
@@ -153,6 +200,18 @@ public partial class Hand : Node
 	{
 		float newX = Mathf.Round((float)index * width / handSize * 2.0f - (width * (cards.Count - 1) / handSize));
 		return new Vector2(newX, 0);
+	}
+
+	private Vector2 getPositionForCardV2(int index)
+	{
+		float newX = width * -0.5f + width / (cards.Count+1) * (index + 1);
+		return new Vector2(newX, 0);
+	}
+
+	public void drawCards (int count) {
+		deck.drawCards(count);
+		audioStreamPlayer2D.Stream = newHandSoundEffect;  
+		audioStreamPlayer2D.Play();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -170,7 +229,7 @@ public partial class Hand : Node
 			}
 		}
 		if (@event.IsActionPressed("space")){
-			newTurn();
+			deck.drawCards(1);
 		}
 	}
 }
