@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxavdfi52bnxv"]
+[gd_scene load_steps=5 format=3 uid="uid://cxavdfi52bnxv"]
 
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_aegw7"]
 [ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="1_pv1p8"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_twjff"]
+[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="4_uxkls"]
 
-[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer")]
+[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,9 @@ mouse_filter = 1
 script = ExtResource("1_pv1p8")
 cardUIPackagedScene = ExtResource("2_twjff")
 cardContainer = NodePath("HBoxContainer")
+skipButton = NodePath("MarginContainer/Button")
+coinsGainedLabel = NodePath("VBoxContainer/HBoxContainer2/RichTextLabel")
+levelPassedText = [NodePath("VBoxContainer/RichTextLabel"), NodePath("VBoxContainer/HBoxContainer2")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.39, 0.39, 0.39, 1)
@@ -29,21 +33,68 @@ flip_h = true
 flip_v = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 478.0
-offset_top = 426.0
-offset_right = 2278.0
-offset_bottom = 1028.0
-scale = Vector2(0.5, 0.5)
+custom_minimum_size = Vector2(900, 400)
+layout_mode = 2
+offset_left = 502.0
+offset_top = 471.0
+offset_right = 2940.0
+offset_bottom = 1082.0
+scale = Vector2(0.4, 0.4)
+size_flags_vertical = 3
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 484.0
+offset_top = 748.0
+offset_right = 1384.0
+offset_bottom = 779.0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+text = "Skip selection
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 525.0
-offset_top = 286.0
-offset_right = 1432.0
-offset_bottom = 440.0
+offset_left = 500.0
+offset_top = 304.0
+offset_right = 1400.0
+offset_bottom = 451.0
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
-text = "Level Passed!
-Pick a new card to add to your deck to continue"
+text = "Level Passed!"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "You gained"
+fit_content = true
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uxkls")
+expand_mode = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Pick a new card to add to your deck to continue"
+fit_content = true

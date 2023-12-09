@@ -9,6 +9,7 @@ public partial class Gem : lerp
 
 	[Export] public Texture2D manaAddonTexture;
 	[Export] public Texture2D cardAddonTexture;
+	[Export] public ShaderMaterial rainbowMaterial;
 
 	[Export] AnimationPlayer animationPlayer;
 
@@ -29,14 +30,19 @@ public partial class Gem : lerp
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		sprite2D.Modulate = Type.GetColor();
+		//Modulate = Type.GetColor();
 		setAddonType(GemAddonType.None);
 	}
 
 	public void setType(GemType type)
 	{
 		Type = type;
-		sprite2D.Modulate = type.GetColor();
+		Modulate = type.GetColor();
+		if (type == GemType.Rainbow) {
+			this.sprite2D.Material = rainbowMaterial;
+		} else {
+			sprite2D.Material = null;
+		}
 	}
 
 	public void startDying() {
@@ -56,7 +62,7 @@ public partial class Gem : lerp
 				break;
 			case GemAddonType.Mana:
 				addonSprite.Texture = manaAddonTexture;
-				addonSprite.Scale = new Vector2(1,1);
+				addonSprite.Scale = new Vector2(.4f,.4f);
 				break;
 			case GemAddonType.Card:
 				addonSprite.Texture = cardAddonTexture;

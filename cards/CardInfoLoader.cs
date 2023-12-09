@@ -25,8 +25,8 @@ public partial class CardInfoLoader : Control
 		}
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
-		descriptionLabel.Text = cardResource.Description;
-		costLabel.Text = TextHelper.centered(cardResource.Cost.ToString());
+		descriptionLabel.Text = cardResource.getDescription();
+		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
 	}
 
 }

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GiveCardPassive" load_steps=2 format=3 uid="uid://c2adqxgbi4a8y"]
+
+[ext_resource type="Script" path="res://relics/passives/ExecutablePassives/GiveCardPassive.cs" id="1_lneuf"]
+
+[resource]
+script = ExtResource("1_lneuf")
+value = 2

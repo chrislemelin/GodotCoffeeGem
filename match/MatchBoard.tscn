@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=8 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/MatchBoard/Rise01.mp3" id="4_dwyhn"]
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
+[ext_resource type="Texture2D" uid="uid://mj83hsskri5g" path="res://placeholders/Coffee-board.png" id="7_i3m7x"]
 
 [node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D")]
 script = ExtResource("1_4r3i0")
@@ -20,3 +21,8 @@ switchAudioStream = ExtResource("6_iim20")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_dwyhn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(186, 154)
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("7_i3m7x")

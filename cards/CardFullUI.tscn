@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_4xx5d"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_jrfr0"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
-[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="9_lxxw7"]
+[ext_resource type="Texture2D" uid="uid://bptpi2ayhrul8" path="res://placeholders/GEAR.png" id="8_egq24"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
 shader = ExtResource("3_u3ora")
@@ -16,11 +16,12 @@ shader_parameter/line_thickness = 5.009
 
 [node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture")]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(420, 600)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 420.0
 offset_bottom = 600.0
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.05, 0.05)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
@@ -36,20 +37,20 @@ layout_mode = 2
 anchors_preset = 0
 offset_left = -8.0
 offset_top = 12.0
-offset_right = 412.0
-offset_bottom = 612.0
+offset_right = -8.0
+offset_bottom = 12.0
 mouse_filter = 1
 
 [node name="Background" type="TextureRect" parent="Center"]
 modulate = Color(0.239216, 0, 0.00392157, 1)
 material = SubResource("ShaderMaterial_pyxp0")
-layout_mode = 0
+layout_mode = 2
 offset_left = -20.0
-offset_top = -30.0003
-offset_right = 400.0
-offset_bottom = 570.0
-scale = Vector2(1.1, 1.1)
+offset_top = -30.0
+offset_right = 448.0
+offset_bottom = 648.0
 texture = ExtResource("4_1yqfg")
+expand_mode = 1
 script = ExtResource("5_qjawy")
 
 [node name="Description" type="Control" parent="Center"]
@@ -123,6 +124,7 @@ text = "[center]CARD TITLE[/center]"
 scroll_active = false
 
 [node name="Cost" type="Control" parent="Center"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 62.65
 offset_top = 63.3333
@@ -132,12 +134,13 @@ mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Cost"]
 layout_mode = 0
-offset_left = -75.9833
+offset_left = -82.65
 offset_top = -90.0003
-offset_right = 20.0167
-offset_bottom = 5.99976
+offset_right = 24.35
+offset_bottom = 16.9997
 mouse_filter = 2
-texture = ExtResource("9_lxxw7")
+texture = ExtResource("8_egq24")
+expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Cost"]
 modulate = Color(0, 0, 0, 1)
@@ -147,15 +150,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.3167
+offset_left = -52.65
 offset_top = -80.0003
-offset_right = -21.3167
-offset_bottom = 2.99976
+offset_right = -5.65001
+offset_bottom = 2.99973
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "1"
+text = "[center]1"
 fit_content = true
 scroll_active = false

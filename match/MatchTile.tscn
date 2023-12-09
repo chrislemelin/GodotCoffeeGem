@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://n47nvuio53df"]
+[gd_scene load_steps=5 format=3 uid="uid://n47nvuio53df"]
 
 [ext_resource type="Script" path="res://match/Tile.cs" id="1_3ldum"]
-[ext_resource type="Texture2D" uid="uid://4uonrsb12akj" path="res://match/tile.png" id="1_ugp55"]
+[ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://placeholders/bg-square-round-49.png" id="2_vmm6u"]
+[ext_resource type="Texture2D" uid="uid://dpud1f3hee7ou" path="res://placeholders/x.png" id="3_crh8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]
 size = Vector2(227.5, 227.5)
 
-[node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "area2D")]
+[node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "disableSprite2D", "area2D", "gemParent")]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_3ldum")
 sprite2D = NodePath("Sprite2D")
+disableSprite2D = NodePath("DisableSprite")
 area2D = NodePath("Area2D")
+gemParent = NodePath("GemParent")
 highlightColor = Color(1, 0, 0, 0.505882)
 hoverColor = Color(1, 1, 0, 0.666667)
 selectColor = Color(0.183333, 0, 1, 0.505882)
@@ -19,7 +22,7 @@ metadata/_edit_group_ = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.901961, 0.901961, 0.901961, 0.341176)
 self_modulate = Color(1, 1, 1, 0.827451)
-texture = ExtResource("1_ugp55")
+texture = ExtResource("2_vmm6u")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -28,3 +31,11 @@ centered = false
 visible = false
 position = Vector2(126.25, 126.25)
 shape = SubResource("RectangleShape2D_v70ys")
+
+[node name="GemParent" type="Node2D" parent="."]
+
+[node name="DisableSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(127.5, 127.5)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_crh8v")

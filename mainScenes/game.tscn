@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://brvirf84hjie1"]
+
+[ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
+[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_tlo67"]
+[ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
+[ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
+[ext_resource type="Resource" uid="uid://dbq6lsiphqhd2" path="res://cards/cardResources/cardLists/CardListTest.tres" id="7_vdncp"]
+[ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="8_m8idd"]
+[ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
+[ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
+[ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
+[ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
+[ext_resource type="AudioStream" uid="uid://chm1wbxd0tacb" path="res://sound/music/ChillLofiR.mp3" id="13_oa770"]
+[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/CardSelectionUI.tscn" id="14_31k88"]
+[ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
+[ext_resource type="PackedScene" uid="uid://cmj3k4irtmxwc" path="res://relics/RelicHolder.tscn" id="16_qkjnw"]
+
+[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "gameOverScreen", "score", "relicHolderUI")]
+position = Vector2(7, 0)
+script = ExtResource("1_5jnm2")
+newCardSelection = NodePath("UIOverLays/CardSelectionUI")
+gameOverScreen = NodePath("UIOverLays/GameOverScreen")
+score = NodePath("Score")
+relicHolderUI = NodePath("RelicHolder")
+relicResources = Array[Resource]([])
+cardPool = ExtResource("2_uqcxx")
+defaultCardList = ExtResource("3_tlo67")
+
+[node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score") instance=ExtResource("5_4m14m")]
+position = Vector2(678, 279)
+sizeY = 5
+hand = NodePath("../Hand")
+mana = NodePath("../Mana")
+score = NodePath("../Score")
+
+[node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager") instance=ExtResource("6_tl444")]
+position = Vector2(1685, 1047)
+scale = Vector2(0.5, 0.5)
+hand = NodePath("../Hand")
+allCards = Array[Resource]([])
+cardList = ExtResource("7_vdncp")
+discard = NodePath("../Discard")
+loadDeckFromGlobal = true
+gameManager = NodePath("..")
+
+[node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager") instance=ExtResource("8_m8idd")]
+unique_name_in_owner = true
+position = Vector2(893, 1040)
+scale = Vector2(1.5, 1.5)
+discard = NodePath("../Discard")
+matchBoard = NodePath("../MatchBoard")
+deck = NodePath("../Deck")
+mana = NodePath("../Mana")
+gameManager = NodePath("..")
+
+[node name="Discard" parent="." instance=ExtResource("9_o6m7d")]
+position = Vector2(98, 1047)
+scale = Vector2(0.5, 0.5)
+
+[node name="Mana" parent="." instance=ExtResource("10_4f0tc")]
+unique_name_in_owner = true
+position = Vector2(1477, 826)
+
+[node name="Score" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("11_nsha1")]
+position = Vector2(1644, 203)
+gameManager = NodePath("..")
+
+[node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
+unique_name_in_owner = true
+
+[node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
+offset_left = -6.0
+offset_top = 1.0
+offset_right = -6.0
+offset_bottom = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_oa770")
+volume_db = -80.0
+autoplay = true
+
+[node name="UIOverLays" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager") instance=ExtResource("14_31k88")]
+visible = false
+layout_mode = 1
+gameManager = NodePath("../..")
+
+[node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
+visible = false
+layout_mode = 1

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://xu107et0pc2y"]
+
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="1_nuajr"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardEffectIF.cs" id="2_k4tn2"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_7b4nd"]
+
+[sub_resource type="Resource" id="Resource_qv0ad"]
+script = ExtResource("1_nuajr")
+expireAfterTurnEnd = true
+rangeModification = 0.0
+costModification = 0
+valueModification = 1
+
+[sub_resource type="Resource" id="Resource_vyyx8"]
+resource_local_to_scene = true
+script = ExtResource("2_k4tn2")
+Range = 0.0
+Value = 0
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cardPassiveToApplyToHand = SubResource("Resource_qv0ad")
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("3_7b4nd")
+Title = "Reduce Cost"
+Description = "Reduce the effect of each card in hand by 1 for the turn"
+Cost = 2
+cardEffect = SubResource("Resource_vyyx8")

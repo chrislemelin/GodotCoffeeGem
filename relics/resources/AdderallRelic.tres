@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dyu7r35wo3yq4"]
+
+[ext_resource type="Resource" uid="uid://chdia3fhsn1x1" path="res://relics/passives/ExecutablePassives/GiveManaPassive.tres" id="1_nyolb"]
+[ext_resource type="Texture2D" uid="uid://ckvqton23p13y" path="res://relics/sprites/Icon.2_60.png" id="2_tidda"]
+[ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_ppymx"]
+
+[resource]
+script = ExtResource("3_ppymx")
+title = "Adderall"
+description = "+1 mana on first hand"
+image = ExtResource("2_tidda")
+gameStartPassives = []
+gameStartExePassives = [ExtResource("1_nyolb")]
+turnStartPassives = []
+turnStartExePassives = []
+counterMax = 0

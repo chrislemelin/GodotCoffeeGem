@@ -4,7 +4,7 @@ using System.Drawing;
 
 public partial class lerp : Node2D
 {
-	Vector2 startPosition;
+	Vector2 startPosition; 
 	Vector2 endPosition;
 	[Export] float speed;
 	float timeStartedMovement;

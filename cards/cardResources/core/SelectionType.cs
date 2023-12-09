@@ -1,7 +1,8 @@
 public enum SelectionType
 {
 	None,
-	Single, 
-	Double
-	
+	Single,
+	Double,
+	Card
+
 }

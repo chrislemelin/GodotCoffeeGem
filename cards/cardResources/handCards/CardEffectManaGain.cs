@@ -17,6 +17,6 @@ public partial class CardEffectManaGain : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		mana.modifyMana(1);
+		mana.modifyMana(getValue());
 	}
 }

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bvbobrurdd40q"]
+
+[ext_resource type="Texture2D" uid="uid://y3ivqvrg7cxs" path="res://relics/sprites/Icon.6_93.png" id="1_yqcqd"]
+[ext_resource type="Script" path="res://relics/RelicResource.cs" id="2_iysfe"]
+[ext_resource type="Resource" uid="uid://chdia3fhsn1x1" path="res://relics/passives/ExecutablePassives/GiveManaPassive.tres" id="3_1brqi"]
+
+[resource]
+script = ExtResource("2_iysfe")
+title = "Tea"
+description = "+1 mana on every 3 hands"
+image = ExtResource("1_yqcqd")
+gameStartPassives = []
+gameStartExePassives = []
+turnStartPassives = []
+turnStartExePassives = [ExtResource("3_1brqi")]
+counterMax = 3

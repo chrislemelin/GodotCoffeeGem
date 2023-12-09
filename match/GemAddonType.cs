@@ -5,7 +5,8 @@ public enum GemAddonType
 {
 	None,
 	Mana,
-	Card
+	Card,
+	Rainbow
 }
 
 static class GemAddonTypeHelper

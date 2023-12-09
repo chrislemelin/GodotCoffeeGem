@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=11 format=3 uid="uid://d27f164r8xqth"]
 
-[ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="1_o3kd2"]
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
-[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="2_iw26x"]
+[ext_resource type="Texture2D" uid="uid://bptpi2ayhrul8" path="res://placeholders/GEAR.png" id="2_k6fag"]
 [ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_835wl"]
+[ext_resource type="Shader" path="res://cards/rainbowSmooth.gdshader" id="5_2oikk"]
+[ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="5_qlodo"]
+[ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://placeholders/gem-gradient-painted.png" id="6_7pibk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
+shader = ExtResource("5_2oikk")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="Animation" id="Animation_m0ivt"]
 resource_name = "PopAnimation"
@@ -57,10 +64,11 @@ _data = {
 
 [node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "animationPlayer")]
 script = ExtResource("2_5yd20")
-sprite2D = NodePath("CanvasGroup/GemSprite")
+sprite2D = NodePath("CanvasGroup/GemSprite2")
 addonSprite = NodePath("CanvasGroup/GemAddon")
-manaAddonTexture = ExtResource("2_iw26x")
+manaAddonTexture = ExtResource("2_k6fag")
 cardAddonTexture = ExtResource("3_835wl")
+rainbowMaterial = SubResource("ShaderMaterial_jmian")
 animationPlayer = NodePath("AnimationPlayer")
 speed = 1500.0
 
@@ -72,12 +80,17 @@ libraries = {
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
 [node name="GemSprite" type="Sprite2D" parent="CanvasGroup"]
-modulate = Color(0.2, 0.2, 0.2, 1)
-texture = ExtResource("1_o3kd2")
+visible = false
+position = Vector2(0, 1)
+texture = ExtResource("5_qlodo")
+centered = false
+
+[node name="GemSprite2" type="Sprite2D" parent="CanvasGroup"]
+scale = Vector2(2.31193, 2.31193)
+texture = ExtResource("6_7pibk")
 centered = false
 
 [node name="GemAddon" type="Sprite2D" parent="CanvasGroup"]
-modulate = Color(0.184314, 0.184314, 0.184314, 1)
+modulate = Color(0, 0, 0, 0.745098)
 position = Vector2(125, 125)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_835wl")
+scale = Vector2(0.4, 0.4)

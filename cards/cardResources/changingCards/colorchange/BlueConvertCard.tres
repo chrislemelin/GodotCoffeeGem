@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dem6i4eb31m22"]
+
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/CardEffectColorChange.cs" id="1_fo6fs"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_bf3qq"]
+
+[sub_resource type="Resource" id="Resource_mklkk"]
+script = ExtResource("1_fo6fs")
+Range = 1.0
+Value = 1
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 1
+
+[resource]
+script = ExtResource("2_bf3qq")
+Title = "Blue Convert"
+Description = "Changes $value gem(s) with 1 spaces to blue"
+Cost = 1
+cardEffect = SubResource("Resource_mklkk")

@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System;
-using Godot;
 
 public enum CardEffectGemType
 {
@@ -33,7 +31,6 @@ static class CardEffectGemTypeHelper
 			case CardEffectGemType.Black:
 			default:
 				return GemType.Black;
-
 		}
 	}
 }

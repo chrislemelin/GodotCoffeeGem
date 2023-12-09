@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmj3k4irtmxwc"]
+
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_muhxp"]
+[ext_resource type="Script" path="res://relics/RelicHolderUI.cs" id="1_xfp3o"]
+[ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_2scfp"]
+[ext_resource type="Script" path="res://relics/RelicUI.cs" id="4_jhhel"]
+
+[node name="RelicHolder" type="Control" node_paths=PackedStringArray("relicControlHolder")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xfp3o")
+relicUIPackedScene = ExtResource("2_2scfp")
+relicControlHolder = NodePath("HBoxContainer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.333333, 0.333333, 0.333333, 0.678431)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1799.0
+offset_bottom = 57.0
+texture = ExtResource("1_muhxp")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 1799.0
+offset_bottom = 54.0
+script = ExtResource("4_jhhel")

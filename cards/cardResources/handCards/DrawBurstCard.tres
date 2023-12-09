@@ -8,11 +8,13 @@ script = ExtResource("1_i8t76")
 Range = 1.0
 Value = 3
 BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
 effectGemType = 0
 
 [resource]
 script = ExtResource("2_1fttl")
 Title = "Draw Burst"
-Description = "Draw 3 cards"
+Description = "Draw $value cards"
 Cost = 1
 cardEffect = SubResource("Resource_dmeqn")

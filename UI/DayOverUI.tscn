@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://2av55t0yxy4e"]
+
+[ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ym8if"]
+[ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
+[ext_resource type="Script" path="res://UI/ButtonWithCoinCost.cs" id="2_x4g5w"]
+
+[sub_resource type="Resource" id="Resource_ioiih"]
+script = ExtResource("2_ahm5c")
+baseIncrease = 50
+multIncrease = 0.25
+gemType = 0
+
+[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "advanceLevelButton", "confirmationText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(900, 600)
+script = ExtResource("1_ibp0t")
+sideHustleButton = NodePath("VBoxContainer/GridContainer/Side hustle")
+shoppingTherapyButton = NodePath("VBoxContainer/GridContainer/Shopping Therapy")
+gemUpgradeButton = NodePath("VBoxContainer/GridContainer/Gem upgrade")
+moreCardsButton = NodePath("VBoxContainer/GridContainer/Moare cards")
+relicButton = NodePath("VBoxContainer/GridContainer/Relic")
+advanceLevelButton = NodePath("VBoxContainer/MarginContainer2/Button")
+confirmationText = NodePath("VBoxContainer/RichTextLabel")
+colorUpgrade = SubResource("Resource_ioiih")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.137255)
+layout_mode = 0
+offset_right = 1849.0
+offset_bottom = 1241.0
+texture = ExtResource("1_ym8if")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 639.0
+offset_top = 481.0
+offset_right = 1297.0
+offset_bottom = 674.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "What do you decide to do after work?"
+fit_content = true
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="Side hustle" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Work on your side hustle (gain 10 coins)"
+script = ExtResource("2_x4g5w")
+cost = -10
+
+[node name="Moare cards" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Gain an extra card (20 coins)"
+script = ExtResource("2_x4g5w")
+cost = 20
+
+[node name="Shopping Therapy" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Online shopping therapy (gain a heart for 30 coins)"
+script = ExtResource("2_x4g5w")
+cost = 30
+
+[node name="Gem upgrade" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Gain a random Gem upgrade (40 coins)"
+script = ExtResource("2_x4g5w")
+cost = 40
+
+[node name="Relic" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Gain a random relic, provides a passive bonus(100 coins)"
+script = ExtResource("2_x4g5w")
+cost = 100
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+disabled = true
+text = "Advance "
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+fit_content = true

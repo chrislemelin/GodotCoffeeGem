@@ -29,8 +29,8 @@ public partial class CardEffectPop : CardEffectIF
 		matchBoard.deleteGemAtPosition(selectedTile);
 		
 		if(gemAddonType != GemAddonType.None) {
-			List<Tile> addonTiles = matchBoard.getRandomTilesWithAddon(2, GemAddonType.None);
-			matchBoard.addGemAddons(addonTiles.Select(x => x.getPosition()).ToList(), GemAddonTypeHelper.getRandomAddon());
+			List<Tile> addonTiles = matchBoard.getRandomNonBlackNonAddonTiles(2);
+			matchBoard.addGemAddons(addonTiles.Select(x => x.getPosition()).ToList(), gemAddonType);
 		}
 	}
 

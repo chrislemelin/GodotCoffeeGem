@@ -7,6 +7,9 @@ public partial class Mana : Node2D
 	public RichTextLabel costText;
 	[Export] 
 	public AudioStreamPlayer2D audioStreamPlayer2D;
+	[Signal]
+	public delegate void ManaChangedEventHandler();
+
 
 
 	public int manaValue {get; protected set;} = 0;
@@ -20,7 +23,7 @@ public partial class Mana : Node2D
 			audioStreamPlayer2D.Play();
 		}
 		int newManaValue  = manaValue + value;
-		setManaValue(Math.Clamp(newManaValue, 0, manaMax));
+		setManaValue(Math.Clamp(newManaValue, 0, 99));
 	}
 
 	public void resetManaValue() {
@@ -29,6 +32,7 @@ public partial class Mana : Node2D
 
 	private void setManaValue(int value) {
 		manaValue = value;
+		EmitSignal(SignalName.ManaChanged);
 		costText.Text = TextHelper.centered(manaValue.ToString());
 	}
 

@@ -4,13 +4,17 @@
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_n14o3"]
 
 [sub_resource type="Resource" id="Resource_n6fnt"]
+resource_local_to_scene = true
 script = ExtResource("1_gyo21")
 Range = 1.0
 Value = 0
 BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = false
 effectGemType = 0
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_n14o3")
 Title = "Switch"
 Description = "Switch positions of two directly adjacent orbs"

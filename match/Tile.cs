@@ -7,8 +7,10 @@ public partial class Tile : Node2D
 	[Export] public int x;
 	[Export] public int y;
 	[Export] public Sprite2D sprite2D;
-	[Export] public Area2D area2D;
+	[Export] public Sprite2D disableSprite2D;
 
+	[Export] public Area2D area2D;
+	[Export] public Node2D gemParent;
 	[Export] Color highlightColor;
 	[Export] Color hoverColor;
 	[Export] Color selectColor;
@@ -18,13 +20,19 @@ public partial class Tile : Node2D
 	bool isHighlighted = false;
 	bool isSelected = false;
 	bool isHovered = false;
+	bool isDisabled = false;
 
 	public Gem Gem
 	{
 		get; set;
 	}
 
-		// Called when the node enters the scene tree for the first time.
+	// public void addGem(Gem Gem) {
+	// 	this.Gem = Gem;
+	// 	gemParent.AddChild(Gem);
+	// }
+
+	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		normalColor = sprite2D.SelfModulate;
@@ -34,6 +42,15 @@ public partial class Tile : Node2D
 
 	public Vector2 getPosition() {
 		return new Vector2(x,y);
+	}
+
+	public void setDisabled(bool disabled) {
+		isDisabled = disabled;
+		if (isDisabled) {
+			disableSprite2D.Visible = true;
+		} else {
+			disableSprite2D.Visible = false;
+		}
 	}
 
 	public void turnHighlightOn() {

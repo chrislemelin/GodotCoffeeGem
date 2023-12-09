@@ -13,6 +13,10 @@ public partial class CardEffectPopRow : CardEffectIF
 		matchBoard.deleteGemAtPositions(getAllTilesToEffect(matchBoard, tile));
 	}
 
+	public override SelectionType getSelectionType(){
+		return SelectionType.Single;
+	}
+
 	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile) {
 		List<Tile> tilesToClear = new List<Tile>();
 		tilesToClear.Add(tile);

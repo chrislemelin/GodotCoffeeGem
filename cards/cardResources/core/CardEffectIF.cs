@@ -6,18 +6,61 @@ using System.Linq;
 [GlobalClass, Tool]
 public partial class CardEffectIF: Resource
 {
-	[Export] public float Range {get; protected set;} = 1.0f;
-	[Export] public int Value { get; set; }
-	[Export] public int BlackGems { get; set; }
+	[Export] private float Range = 1.0f;
+	[Export] private int Value = -1;
+	[Export] private int BlackGems = 0;
+	[Export] private int CardsToDiscard = 0;
+	[Export] public bool canTargetBlackGems = true;
+
 	[Export] public CardEffectGemType effectGemType {get;set;}
+	[Export] public CardPassive cardPassiveToApplyToHand;
+	[Signal] public delegate void CardPassivesChangedEventHandler();
+
+	private List<CardPassive> cardPassives = new List<CardPassive>();
+
 
 	public CardEffectIF() {
 
 	}
 
-	public void doEffect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles){
-		effect(matchBoard, hand, mana, selectedTiles);
+	public void turnOver() {
+		cardPassives.RemoveAll(passive =>  passive.expireAfterTurnEnd);
+	}
+
+	public void doEffect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles, Optional<CardIF> cardMaybe){
 		createBlackGems(matchBoard);
+		effect(matchBoard, hand, mana, selectedTiles);
+		if (cardMaybe.HasValue) {
+			doEffectOnTargetedCard(cardMaybe.GetValue());
+		}
+
+		applyPassiveToHand(hand);
+	}
+
+	protected virtual void doEffectOnTargetedCard(CardIF card) {
+
+	}
+
+	public void addPassive(CardPassive cardPassive) {
+		cardPassives.Add(cardPassive);
+		EmitSignal(SignalName.CardPassivesChanged);
+	}
+	
+	public List<CardPassive> getPassives() {
+		return cardPassives;
+	}
+
+
+	private void applyPassiveToHand(Hand hand) {
+		if (cardPassiveToApplyToHand!= null) {
+			List<CardIF> cardsInHand = hand.getAllCards();
+			foreach(CardIF cardIF in cardsInHand) {
+				CardEffectIF cardEffectIF = cardIF.getCardResource().cardEffect;
+				if (cardEffectIF != this) {
+					cardEffectIF.addPassive(cardPassiveToApplyToHand);
+				}
+			}
+		}
 	}
 
 	private void createBlackGems(MatchBoard matchBoard) {
@@ -33,7 +76,23 @@ public partial class CardEffectIF: Resource
 	}
 
 	public virtual SelectionType getSelectionType(){
-		return SelectionType.Single;
+		return SelectionType.None;
+	}
+
+	public float getRange() {
+		float range = Range;
+		foreach (CardPassive cardPassive in cardPassives) {
+			range += cardPassive.rangeModification;
+		}
+		return range;
+	}
+
+	public int getValue() {
+		int value = Value;
+		foreach (CardPassive cardPassive in cardPassives) {
+			value += cardPassive.valueModification;
+		}
+		return value;
 	}
 
 	/// <summary>

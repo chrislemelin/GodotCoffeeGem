@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1yewgtk7q7eh"]
+
+[ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="1_5vx4v"]
+
+[node name="ColorUpgradePreviewUI" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+tooltip_text = "this is a test tool tip"
+texture = ExtResource("1_5vx4v")
+expand_mode = 1
+stretch_mode = 4

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dq6qep46elc4e"]
+[gd_scene format=3 uid="uid://di8dv5r3bmvon"]
 
 [node name="NewTurnButton" type="Button"]
 offset_right = 8.0

@@ -21,12 +21,12 @@ public partial class CardEffectPopRandom : CardEffectIF
 		Tile tile = matchBoard.getTile(selectedTiles[0]);
 		List<Vector2> positions = getAllTilesToEffect(matchBoard, tile);
 		RandomHelper.Shuffle(positions);
-		if(positions.Count == Value) {
+		if(positions.Count == getValue()) {
 			hand.drawCards(1);
 			mana.modifyMana(1);
 		}
-		if(positions.Count > Value) {
-			positions = positions.GetRange(0, Value);
+		if(positions.Count > getValue()) {
+			positions = positions.GetRange(0, getValue());
 		}
 		matchBoard.deleteGemAtPositions(positions);
 	}

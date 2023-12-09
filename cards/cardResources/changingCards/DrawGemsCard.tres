@@ -9,11 +9,13 @@ gemAddonType = 2
 Range = 1.0
 Value = 2
 BlackGems = 1
+CardsToDiscard = 0
+canTargetBlackGems = true
 effectGemType = 0
 
 [resource]
 script = ExtResource("2_7gcs6")
 Title = "Draw Gems"
-Description = "Create 2 random draw gems and 1 black gem"
+Description = "Randomly create $value draw gem(s) and 1 black gem"
 Cost = 0
 cardEffect = SubResource("Resource_m0v28")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://day2feovup55o"]
+
+[ext_resource type="Script" path="res://relics/RelicUI.cs" id="1_481rc"]
+[ext_resource type="Texture2D" uid="uid://yq4rsx1u50b4" path="res://relics/sprites/glove.png" id="3_31nq3"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("picture", "counterLabel")]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_481rc")
+picture = NodePath("RelicUI/TextureRect")
+counterLabel = NodePath("TextEdit")
+
+[node name="RelicUI" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(60, 50)
+offset_right = 60.0
+offset_bottom = 50.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="TextureRect" type="TextureRect" parent="RelicUI"]
+layout_mode = 2
+texture = ExtResource("3_31nq3")
+expand_mode = 1
+
+[node name="TextEdit" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 42.0
+offset_top = 27.0
+offset_right = 55.0
+offset_bottom = 50.0
+text = "1"
+fit_content = true

@@ -8,7 +8,8 @@ public enum GemType
 	Green,
 	Yellow,
 	Purple,
-	Black
+	Black,
+	Rainbow
 }
 static class GemTypeHelper
 {
@@ -19,18 +20,20 @@ static class GemTypeHelper
 		switch (gemType)
 		{
 			case GemType.Red:
-				return newColor(196, 26, 0);
+				return new Color("#ff6e8b");
 			case GemType.Blue:
-				return newColor(0, 5, 145);
+				return new Color("#72fafc");
 			case GemType.Green:
-				return newColor(4, 184, 25);
+				return new Color("#94ff9d");
 			case GemType.Yellow:
-				return newColor(209, 154, 0);
+				return new Color("#ffda91");
 			case GemType.Purple:
-				return newColor(132, 15, 145);
+				return new Color("#fc9dec");
+			case GemType.Rainbow:
+				return newColor(255, 255, 255);
 			case GemType.Black:
 			default:
-				return new Color(.25f, .25f, .25f);
+				return new Color("#727272");
 
 		}
 	}
@@ -41,6 +44,10 @@ static class GemTypeHelper
 			return true;
 		}
 	}
+	public static bool falls(this GemType gemType) {
+		return true;
+	}
+
 	public static bool getsPointsFromMatching(this GemType gemType) {
 		if (gemType == GemType.Black) {
 			return false;
@@ -48,6 +55,7 @@ static class GemTypeHelper
 			return true;
 		}
 	}
+
 	//gets random gem (excluding black)
 	public static GemType getRandomColor()
 	{

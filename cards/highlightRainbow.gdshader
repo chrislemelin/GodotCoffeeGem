@@ -46,6 +46,7 @@ vec4 smoothRainbow (float x)
 }
 
 void fragment() {
+	
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness / 2.0;
 	vec4 color = texture(TEXTURE, UV);
 	

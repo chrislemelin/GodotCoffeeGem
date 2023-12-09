@@ -18,23 +18,28 @@ public partial class Deck : Node
 	{
 		if (loadDeckFromGlobal) {
 			List<CardResource> deckCardList = gameManager.getDeckList();
-			new CardList();
 			if (deckCardList.Count != 0) {
-				allCards = new Godot.Collections.Array<CardResource> (deckCardList);
+				//allCards = new Godot.Collections.Array<CardResource> (deckCardList);
+				foreach (CardResource cardResource in deckCardList) {
+ 					allCards.Add((CardResource)cardResource.Duplicate());
+				}
+				
 			}
 		}
 
-		// if (cardList != null) {
-		// 	allCards = cardList.allCards;
-		// }
 		addCardsToDeck();
 		RandomHelper.Shuffle(cards);
 		updateCount();
+		GetNode<Button>(FindObjectHelper.NEW_BUTTON_NAME).Pressed += () => turnOver();
 	}
 
 	private void addCardsToDeck() {
-		while(cards.Count < 10) {
-			cards.AddRange(allCards);
+		cards.AddRange(allCards);
+	}
+
+	private void turnOver() {
+		foreach(CardResource cardResource in allCards) {
+			cardResource.cardEffect.turnOver();
 		}
 	}
 

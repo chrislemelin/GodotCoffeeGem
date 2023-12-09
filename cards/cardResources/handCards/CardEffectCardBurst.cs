@@ -17,6 +17,6 @@ public partial class CardEffectCardBurst : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		hand.drawCards(Value);
+		hand.drawCards(getValue());
 	}
 }

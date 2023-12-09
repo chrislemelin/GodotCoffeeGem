@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm6smnkgl28wr"]
 
 [ext_resource type="Script" path="res://hand/Mana.cs" id="1_x7nhu"]
-[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="2_u0t54"]
+[ext_resource type="Texture2D" uid="uid://bptpi2ayhrul8" path="res://placeholders/GEAR.png" id="2_o1qpa"]
 [ext_resource type="AudioStream" uid="uid://2v0ksk6rso4g" path="res://sound/mana/magical_1.ogg" id="3_xufqt"]
 
 [node name="Mana" type="Node2D" node_paths=PackedStringArray("costText", "audioStreamPlayer2D")]
@@ -10,7 +10,9 @@ costText = NodePath("RichTextLabel")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_u0t54")
+position = Vector2(-0.562497, -0.478137)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o1qpa")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -19,13 +21,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -38.0
+offset_left = -50.0
+offset_top = -42.0
 offset_right = 44.0
-offset_bottom = 45.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]10[/center]"

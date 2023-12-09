@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="4_we8e7"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="6_w0vkw"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_8y700"]
-[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="7_oo2ju"]
+[ext_resource type="Texture2D" uid="uid://bptpi2ayhrul8" path="res://placeholders/GEAR.png" id="9_6na1a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
 shader = ExtResource("3_m7gwv")
@@ -28,6 +28,7 @@ costLabel = NodePath("UI/Cost/RichTextLabel")
 picture = NodePath("UI/Picture/Sprite2D")
 highlightOnHover = NodePath("UI/Background")
 cardResource = ExtResource("2_fwhny")
+disabledColor = Color(0.560784, 0.560784, 0.560784, 1)
 speed = 500.0
 
 [node name="UI" type="Control" parent="."]
@@ -59,6 +60,7 @@ offset_right = 29.0
 offset_bottom = 331.0
 scale = Vector2(1.2, 1.2)
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Description"]
 layout_mode = 0
@@ -131,12 +133,13 @@ mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Cost"]
 layout_mode = 0
-offset_left = -75.9833
+offset_left = -82.65
 offset_top = -90.0003
-offset_right = 20.0167
-offset_bottom = 5.99976
+offset_right = 24.35
+offset_bottom = 16.9997
 mouse_filter = 2
-texture = ExtResource("7_oo2ju")
+texture = ExtResource("9_6na1a")
+expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Cost"]
 modulate = Color(0, 0, 0, 1)
@@ -146,16 +149,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.3167
+offset_left = -52.65
 offset_top = -80.0003
-offset_right = -21.3167
-offset_bottom = 2.99976
+offset_right = -5.65001
+offset_bottom = 2.99973
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "1"
+text = "[center]1"
 fit_content = true
 scroll_active = false
 

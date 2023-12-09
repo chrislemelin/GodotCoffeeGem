@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=10 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="2_3nowl"]
@@ -7,22 +7,69 @@
 [ext_resource type="AudioStream" uid="uid://ns746kwxu5v7" path="res://sound/Hand/cardPlace1.wav" id="4_hbmsc"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="4_jlt7i"]
 [ext_resource type="Script" path="res://hand/HandLine.cs" id="4_lebxv"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="5_lbql7"]
 
 [sub_resource type="Gradient" id="Gradient_s4lcq"]
 offsets = PackedFloat32Array(0, 0.98503)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
-[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "sprite2D", "handLine", "audioStreamPlayer2D")]
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "cardSelectionUI", "sprite2D", "handLine", "audioStreamPlayer2D")]
+position = Vector2(881, 1096)
 scale = Vector2(0.895, 0.895)
 script = ExtResource("1_erkbb")
 cardTemplate = ExtResource("2_3nowl")
 cardContainer = NodePath("CardContainer")
+cardSelectionUI = NodePath("CardSelectionUI")
 sprite2D = NodePath("Node2D")
 handLine = NodePath("Line2D")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 newHandSoundEffect = ExtResource("3_7bv56")
 cardPlayedSoundEffect = ExtResource("4_hbmsc")
 width = 800
+
+[node name="CardSelectionUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.46927
+offset_bottom = -4.46927
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CardSelectionUI"]
+modulate = Color(1, 1, 1, 0.34902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1006.7
+offset_top = -1263.69
+offset_right = 1093.3
+offset_bottom = 136.313
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_lbql7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardSelectionUI"]
+layout_mode = 0
+offset_left = -280.447
+offset_top = -882.682
+offset_right = 281.553
+offset_bottom = -608.682
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CardSelectionUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Select a card to discard[/center]"
+fit_content = true
+
+[node name="Button" type="Button" parent="CardSelectionUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Confirm "
 
 [node name="Node2D" type="Sprite2D" parent="."]
 texture_repeat = 2

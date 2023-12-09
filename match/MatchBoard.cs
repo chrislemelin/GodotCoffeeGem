@@ -44,6 +44,9 @@ public partial class MatchBoard : Node
 			Optional<CardIF> cardSelectedInHand = hand.getCardSelected();
 			if (cardSelectedInHand.HasValue) {
 				CardIF card = cardSelectedInHand.GetValue();
+				if (!canSelectTile(tile, card)) {
+					return;
+				}
 				SelectionType selectionType = cardSelectedInHand.GetValue().getCardResource().getSelectionType();
 				if (selectionType == SelectionType.Single) 
 				{
@@ -92,7 +95,7 @@ public partial class MatchBoard : Node
 			List<Vector2> customSelectableListOfTiles = card.getCardResource().cardEffect.getAllTilesSelectableAfterFirstSelection(this, center);
 			if (customSelectableListOfTiles.Count == 0) {
 				foreach (Tile currentTile in tileSet) {
-					if( currentTile.getPosition().DistanceTo(center.getPosition()) <= card.getCardResource().cardEffect.Range) {
+					if( currentTile.getPosition().DistanceTo(center.getPosition()) <= card.getCardResource().cardEffect.getRange()) {
 						if (currentTile != center) {
 							addTileToAvailibleToSelectList(currentTile);
 						}
@@ -155,6 +158,7 @@ public partial class MatchBoard : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//GetNode<Button>("%NewTurnButton").Pressed += () => checkForMatches();
 		Tile sizeTile = tileTemplate.Instantiate() as Tile;
 		tileSize = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.Scale.Y);
 		tileSizeUnScaled = new Vector2(sizeTile.sprite2D.Texture.GetWidth(), sizeTile.sprite2D.Texture.GetHeight());
@@ -174,7 +178,8 @@ public partial class MatchBoard : Node
 				newTile.y = newY;
 
 				newTile.Position = new Vector2(newX * tileSize.X, newY * tileSize.Y);
-				newTile.area2D.MouseEntered += () => checkForExtraHighlightsOnTileHover(newTile);
+				newTile.area2D.MouseEntered += () => tileHovered(newTile);
+				newTile.area2D.MouseExited += () => clearHover(newTile);
 			}
 		}
 		populateBoard();
@@ -184,6 +189,37 @@ public partial class MatchBoard : Node
 		timer.Timeout += () => checkForDrops();
 		timer.OneShot = false;
 		timer.Start();
+	}
+	private void tileHovered (Tile tile) {
+		bool tileIsDisabled = checkForTilesToDisable(tile);
+		if (!tileIsDisabled) {
+			checkForExtraHighlightsOnTileHover(tile);
+		}
+	}
+
+	private void clearHover (Tile tile) {
+		tile.setDisabled(false);
+	}
+
+	private bool checkForTilesToDisable(Tile tile) {
+		foreach(Tile currentTile in tileSet) {
+			currentTile.setDisabled(false);
+		}
+		if (hand.getCardSelected().HasValue) {
+			CardIF card = hand.getCardSelected().GetValue();
+			if (!canSelectTile(tile, card)) {
+				tile.setDisabled(true);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private bool canSelectTile(Tile tile, CardIF card) {
+		if (tile.Gem != null && !card.getCardResource().cardEffect.canTargetBlackGems && tile.Gem.Type == GemType.Black) {
+			return false;
+		}
+		return true;
 	}
 
 	private HashSet<HashSet<Tile>> getMatches() {
@@ -302,7 +338,7 @@ public partial class MatchBoard : Node
 		if (maybeTile.HasValue && maybeTile.GetValue().Gem != null)
 		{
 			if (type.HasValue){
-				if (maybeTile.GetValue().Gem.Type == type.GetValue())
+				if (maybeTile.GetValue().Gem.Type == type.GetValue() || maybeTile.GetValue().Gem.Type == GemType.Rainbow)
 				{
 					gemMatches.Add(maybeTile.GetValue());
 					gemMatches.UnionWith(getTilesInDirectionOfSameGemType(startingPosition + direction, direction, type));
@@ -325,7 +361,7 @@ public partial class MatchBoard : Node
 		Optional<Tile> maybeTile = getTileOptional(startingPosition);
 		if (maybeTile.HasValue)
 		{
-			if (maybeTile.GetValue().Gem != null)
+			if (maybeTile.GetValue().Gem != null && maybeTile.GetValue().Gem.Type.falls())
 			{
 				return Optional.Some(maybeTile.GetValue());
 			}
@@ -357,7 +393,6 @@ public partial class MatchBoard : Node
 					{
 						upperGem = upperTileWithGem.GetValue().Gem;
 						sendGemToTile(upperGem, tile, upperTileWithGem.GetValue());
-
 					}
 					else
 					{
@@ -388,7 +423,7 @@ public partial class MatchBoard : Node
 		tileTo.Gem = gem;
 		Vector2 location = gem.GlobalPosition;
 		clearTilesGem(removeFromTile, gem);
-		tileTo.AddChild(gem);
+		tileTo.gemParent.AddChild(gem);
 		if (teleport) {
 			gem.Position = Vector2.Zero;
 		} else {
@@ -403,7 +438,7 @@ public partial class MatchBoard : Node
 	}
 
 	private void clearTilesGem (Tile tile, Gem gemToRemove){ 
-		tile.RemoveChild(gemToRemove);
+		tile.gemParent.RemoveChild(gemToRemove);
 		if (gemToRemove == tile.Gem) {
 			tile.Gem = null;
 		}
@@ -434,7 +469,7 @@ public partial class MatchBoard : Node
 
 		GemType gemType = GemTypeHelper.getRandomColor();
 		gem.setType(gemType);
-		tile.AddChild(gem);
+		tile.gemParent.AddChild(gem);
 		tile.Gem = gem;
 		return gem;
 	}
@@ -464,6 +499,10 @@ public partial class MatchBoard : Node
 		return tilesToReturn;
 	}
 
+	public HashSet<Tile> getAllTiles(){
+		return tileSet;
+	}
+
 	public void deleteGemAtPositions(IEnumerable<Vector2> positions) {
 		deleteGemAtPositions(positions, true);
 	}
@@ -475,6 +514,11 @@ public partial class MatchBoard : Node
 	public HashSet<Tile> getTilesInDirection(Vector2 startingPosition, Vector2 direction)
 	{
 		return getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>());
+	}
+
+	public HashSet<Tile> getTilesInDirections(Vector2 startingPosition, HashSet<Vector2> directions)
+	{
+		return directions.SelectMany(direction => getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>())).ToHashSet();
 	}
 
 	public void changeGemsColorAtPosition(Vector2 position, GemType gemType) {
@@ -495,7 +539,14 @@ public partial class MatchBoard : Node
 			if (tile.Gem == null) {
 				return false;
 			}
-			return tile.Gem.Type != GemType.Black && tile.Gem.AddonType == GemAddonType.None;
+			if ( tile.Gem.Type == GemType.Black ) {
+				return false;
+			} if (
+				tile.Gem.AddonType != GemAddonType.None
+			) {
+				return false;
+			}
+			return true;
 		});
 	}
 
