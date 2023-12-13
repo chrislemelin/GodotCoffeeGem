@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AddNewColPassive" load_steps=2 format=3 uid="uid://cywpt7fyqr026"]
+
+[ext_resource type="Script" path="res://relics/effects/AddNewColPassive.cs" id="1_nsl65"]
+
+[resource]
+script = ExtResource("1_nsl65")

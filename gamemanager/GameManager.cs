@@ -49,7 +49,7 @@ public partial class GameManager : GameManagerIF
 	public void nextLevel() {
 		int coinsGained = 20 + Math.Max(0,score.getTurnsRemaining()) * 10;
 		addCoins(coinsGained);
-		int cardsToChoose = 3;
+		int cardsToChoose = getNumberOfCardToChoose();
 		List<CardResource> cardPoolList = new List<CardResource>(cardPool.allCards);
 		RandomHelper.Shuffle(cardPoolList);
 		newCardSelection.setCardsToSelectFrom(cardPoolList.GetRange(0,cardsToChoose));

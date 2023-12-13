@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GiveManaPassive" load_steps=2 format=3 uid="uid://chdia3fhsn1x1"]
 
-[ext_resource type="Script" path="res://relics/passives/ExecutablePassives/GiveManaPassive.cs" id="1_klr27"]
+[ext_resource type="Script" path="res://relics/effects/GiveManaPassive.cs" id="1_klr27"]
 
 [resource]
 script = ExtResource("1_klr27")

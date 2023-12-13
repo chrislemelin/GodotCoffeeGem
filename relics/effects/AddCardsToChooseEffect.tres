@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AddCardsToChooseEffect" load_steps=2 format=3 uid="uid://dkjsflcnyg0d7"]
+
+[ext_resource type="Script" path="res://relics/effects/AddCardsToChooseEffect.cs" id="1_r0poj"]
+
+[resource]
+script = ExtResource("1_r0poj")
+value = 1

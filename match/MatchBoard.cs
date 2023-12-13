@@ -159,9 +159,13 @@ public partial class MatchBoard : Node
 	public override void _Ready()
 	{
 		//GetNode<Button>("%NewTurnButton").Pressed += () => checkForMatches();
+		Vector2 gridSize = FindObjectHelper.getGameManager(this).getGridSize();
+		sizeX = (int)gridSize.X;
+		sizeY = (int)gridSize.Y;
+
 		Tile sizeTile = tileTemplate.Instantiate() as Tile;
-		tileSize = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.Scale.Y);
-		tileSizeUnScaled = new Vector2(sizeTile.sprite2D.Texture.GetWidth(), sizeTile.sprite2D.Texture.GetHeight());
+		tileSize = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.Scale.X * sizeTile.sprite2D.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.Scale.Y * sizeTile.sprite2D.Scale.Y);
+		tileSizeUnScaled = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.sprite2D.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.sprite2D.Scale.Y);
 
 		sizeTile.QueueFree();
 
@@ -171,15 +175,15 @@ public partial class MatchBoard : Node
 			{
 				Tile newTile = tileTemplate.Instantiate() as Tile;
 				AddChild(newTile);
-				newTile.area2D.InputEvent += (viewport, inputEvent, a) => tileClicked(newTile, inputEvent);
+				newTile.control.GuiInput += (inputEvent) => tileClicked(newTile, inputEvent);
 				tileSet.Add(newTile);
 				tileMap.Add(new Vector2(newX, newY), newTile);
 				newTile.x = newX;
 				newTile.y = newY;
 
 				newTile.Position = new Vector2(newX * tileSize.X, newY * tileSize.Y);
-				newTile.area2D.MouseEntered += () => tileHovered(newTile);
-				newTile.area2D.MouseExited += () => clearHover(newTile);
+				newTile.control.MouseEntered += () => tileHovered(newTile);
+				newTile.control.MouseExited += () => clearHover(newTile);
 			}
 		}
 		populateBoard();

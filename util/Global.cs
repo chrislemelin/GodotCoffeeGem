@@ -8,12 +8,16 @@ public partial class Global : Node
 {
 	public const String LOAD_STRING = "/root/Globals/";
 	public CardList deckCardList = null;
-	[Export]
 	public Array<ColorUpgrade> colorUpgrades = new Array<ColorUpgrade>();
 	public List<RelicResource> relics = new List<RelicResource>();
 
 	public int currentLevel = 1;
 	public int currentHealth = 2;
+	public int maxHealth = 2;
 	public int currentCoins = 0;
+	public int numberOfCardsToChoose = 3;
+
+	public Vector2 gridSize = new Vector2(6,5);
+
 
 }

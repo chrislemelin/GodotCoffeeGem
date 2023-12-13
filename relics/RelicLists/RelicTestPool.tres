@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="RelicList" load_steps=3 format=3 uid="uid://dvafs8mkpm6dl"]
 
-[ext_resource type="Resource" uid="uid://bvbobrurdd40q" path="res://relics/resources/TeaRelic.tres" id="1_1oadk"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_8hggk"]
+[ext_resource type="Resource" uid="uid://dhtqi0mvscf8u" path="res://relics/resources/CardChoiceRelic.tres" id="1_g24c8"]
 
 [resource]
 script = ExtResource("1_8hggk")
-allRelics = [ExtResource("1_1oadk")]
+allRelics = [ExtResource("1_g24c8")]

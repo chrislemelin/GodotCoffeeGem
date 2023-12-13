@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://jq6lw7a54umt"]
 
-[ext_resource type="Resource" uid="uid://c2adqxgbi4a8y" path="res://relics/passives/ExecutablePassives/GiveCardPassive.tres" id="1_l0cya"]
+[ext_resource type="Resource" uid="uid://c2adqxgbi4a8y" path="res://relics/effects/GiveCardPassive.tres" id="1_l0cya"]
 [ext_resource type="Texture2D" uid="uid://dsmqgki58m7dn" path="res://relics/sprites/Icon.6_45.png" id="2_yv50k"]
 [ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_vr56u"]
 

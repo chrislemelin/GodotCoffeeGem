@@ -32,12 +32,18 @@ public partial class Score : Node
 	[Export] PackedScene colorUpgradeUI;
 	[Export] public ColorUpgrade colorUpgrade;
 
+	[Export]
+	PackedScene heartUI;
+
+
 	
 	private float muiltResetValue = 1.0f;
 	private int score;
 	private float mult = 1;
 	private int turnsRemaining = 3;
 	private int heartsRemaining = 2;
+	private int maxHearts = 2;
+
 	private int level = 1;
 	private int moneyNeeded = 500;
 	private int coins;
@@ -49,6 +55,7 @@ public partial class Score : Node
 		if(colorUpgrade != null) {
 			addColorUpgrade(colorUpgrade);
 		}
+		GameManagerIF gameManagerIF =  FindObjectHelper.getGameManager(this);
 
 		FindObjectHelper.getNewTurnButton(this).SetUpNewTurn += () => newturn();
 		setMult(mult);
@@ -56,8 +63,13 @@ public partial class Score : Node
 		setMoneyNeeded(moneyNeeded);
 		setLevel(level);
 		setTurnsRemaining(turnsRemaining);
-		setHeartsRemaining(heartsRemaining);
 		setCoins(coins);
+
+		maxHearts = gameManager.getMaxHealth();
+		initHeartsContainer();
+		setHeartsRemaining(2);
+
+
 	}
 
 	public void newturn() {		
@@ -106,6 +118,19 @@ public partial class Score : Node
 			} else {
 				((TextureRect)nodes[count]).Modulate = new Color(1,1,1);
 			}
+		}
+	}
+
+	public void initHeartsContainer() {;
+		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
+		foreach(Node node in nodes) {
+			heartsContainer.RemoveChild(node);
+			node.QueueFree();
+			
+		}
+
+		for(int a = 0; a < maxHearts; a++) {
+			heartsContainer.AddChild(heartUI.Instantiate());
 		}
 	}
 

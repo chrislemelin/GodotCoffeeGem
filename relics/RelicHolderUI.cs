@@ -33,11 +33,11 @@ public partial class RelicHolderUI : Control
 	public void startUpRelics() {
 		foreach(RelicResource relicResource in relicResources) {
 			relicResource.resetCounter();
-			foreach (ExecutablePassive executablePassive in relicResource.getGameStartExePassives())
+			foreach (EffectResource executablePassive in relicResource.getGameStartExePassives())
 			{
 				executablePassive.execute(this);
 			}
-			foreach (ExecutablePassive executablePassive in relicResource.getTurnStartExePassives())
+			foreach (EffectResource executablePassive in relicResource.getTurnStartEffects())
 			{
 				executablePassive.execute(this);
 			}
@@ -47,7 +47,7 @@ public partial class RelicHolderUI : Control
 	public void startNewTurn() {
 		foreach(RelicResource relicResource in relicResources) {
 			relicResource.incrementTurnCounter();
-			foreach (ExecutablePassive executablePassive in relicResource.getTurnStartExePassives())
+			foreach (EffectResource executablePassive in relicResource.getTurnStartEffects())
 			{
 				executablePassive.execute(this);
 			}

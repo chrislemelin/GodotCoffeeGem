@@ -15,6 +15,7 @@ counterLabel = NodePath("TextEdit")
 
 [node name="RelicUI" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(60, 50)
+layout_mode = 0
 offset_right = 60.0
 offset_bottom = 50.0
 theme_override_constants/margin_left = 5

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MaxHealthUpgradeEffect" load_steps=2 format=3 uid="uid://b73mt2xa6yki8"]
+
+[ext_resource type="Script" path="res://relics/effects/MaxHealthUpgradeEffect.cs" id="1_xn6pf"]
+
+[resource]
+script = ExtResource("1_xn6pf")
+value = 1

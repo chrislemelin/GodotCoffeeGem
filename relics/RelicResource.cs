@@ -12,14 +12,13 @@ using System.Linq;
 	[Export] public Texture2D image;
 
 	[Export] private Array<Passive> gameStartPassives = new Array<Passive>();
-	[Export] private Array<ExecutablePassive> gameStartExePassives = new Array<ExecutablePassive>();
+	[Export] private Array<EffectResource> gameStartExePassives = new Array<EffectResource>();
 
 
 	[Export] private Array<Passive> turnStartPassives = new Array<Passive>();
-	[Export] private Array<ExecutablePassive> turnStartExePassives = new Array<ExecutablePassive>() ;
+	[Export] private Array<EffectResource> turnStartExePassives = new Array<EffectResource>() ;
 
-	//[Export] public Array<Passive> customActivationPassives;
-	// todo Enum PassiveActivationType
+	[Export] private Array<EffectResource> addToInvEffects = new Array<EffectResource>() ;
 
 	[Signal] public delegate void CounterChangedEventHandler(int newCount);
 	[Export] public int counterMax;
@@ -44,15 +43,26 @@ using System.Linq;
 		EmitSignal(SignalName.CounterChanged, counter);
 	}
 
-	public List<ExecutablePassive> getGameStartExePassives() {
+	public List<EffectResource> getGameStartExePassives() {
 		return gameStartExePassives.ToList();
 	}
 
-	public List<ExecutablePassive> getTurnStartExePassives() {
+	public List<EffectResource> getAddToInventoryExePassives() {
+		return addToInvEffects.ToList();
+	}
+
+	public void executeAddedToInvEffects(Node node) {
+		foreach(EffectResource executablePassive in addToInvEffects){
+			executablePassive.execute(node);
+		}
+	}
+
+
+	public List<EffectResource> getTurnStartEffects() {
 		if (counterMax == 0 || counter == counterMax) {
 			return turnStartExePassives.ToList();
 		}
-		return new List<ExecutablePassive>();
+		return new List<EffectResource>();
 	}
 
 }

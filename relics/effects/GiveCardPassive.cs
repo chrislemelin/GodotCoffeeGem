@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass, Tool]
-public partial class GiveCardPassive : ExecutablePassive
+public partial class GiveCardPassive : EffectResource
 {
 	[Export] public int value;
 	

@@ -9,7 +9,7 @@ public partial class Tile : Node2D
 	[Export] public Sprite2D sprite2D;
 	[Export] public Sprite2D disableSprite2D;
 
-	[Export] public Area2D area2D;
+	[Export] public Control control;
 	[Export] public Node2D gemParent;
 	[Export] Color highlightColor;
 	[Export] Color hoverColor;
@@ -35,9 +35,9 @@ public partial class Tile : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		normalColor = sprite2D.SelfModulate;
-		area2D.MouseEntered += () => mouseEnter();
-		area2D.MouseExited += () => mouseExit();
+		normalColor = sprite2D.Modulate;
+		control.MouseEntered += () => mouseEnter();
+		control.MouseExited += () => mouseExit();
 	}
 
 	public Vector2 getPosition() {
@@ -55,29 +55,29 @@ public partial class Tile : Node2D
 
 	public void turnHighlightOn() {
 		isHighlighted = true;
-		sprite2D.SelfModulate = getCurrentColor();
+		sprite2D.Modulate = getCurrentColor();
 	}
 	public void turnHighlightOff() {
 		isHighlighted = false;
-		sprite2D.SelfModulate = getCurrentColor();
+		sprite2D.Modulate = getCurrentColor();
 	}
 	public void turnSelectedOn() {
 		isSelected = true;
-		sprite2D.SelfModulate = getCurrentColor();
+		sprite2D.Modulate = getCurrentColor();
 	}
 	public void turnSelectedOff() {
 		isSelected = false;
-		sprite2D.SelfModulate = getCurrentColor();
+		sprite2D.Modulate = getCurrentColor();
 	}
 
 	public void mouseEnter() {
 		isHovered = true;
-		sprite2D.SelfModulate = getCurrentColor();
+		sprite2D.Modulate = getCurrentColor();
 
 	}
 	public void mouseExit() {
 		isHovered = false;
-		sprite2D.SelfModulate = getCurrentColor();
+		sprite2D.Modulate = getCurrentColor();
 	}
 
 	private Color getCurrentColor() {

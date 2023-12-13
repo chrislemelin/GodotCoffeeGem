@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cb56mr55sbqyi"]
+
+[ext_resource type="StyleBox" uid="uid://bkqr0iynl6gtr" path="res://UI/Themes/TutorialStyleBox.tres" id="1_wm6a7"]
+
+[resource]
+/styles/TutorialStyleBox = ExtResource("1_wm6a7")
+RichTextLabel/styles/normal = ExtResource("1_wm6a7")

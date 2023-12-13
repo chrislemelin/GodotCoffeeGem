@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bmssb1h1wvad5"]
+
+[ext_resource type="Resource" uid="uid://cywpt7fyqr026" path="res://relics/effects/AddNewColPassive.tres" id="1_67pql"]
+[ext_resource type="Texture2D" uid="uid://dhlhgbvdm0uns" path="res://relics/sprites/Icon.1_08.png" id="1_nsrsv"]
+[ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_qemva"]
+
+[resource]
+script = ExtResource("3_qemva")
+title = "Wrench"
+description = "Add 1 column to the match grid"
+image = ExtResource("1_nsrsv")
+gameStartPassives = []
+gameStartExePassives = []
+turnStartPassives = []
+turnStartExePassives = []
+addToInventoryExePassives = [ExtResource("1_67pql")]
+counterMax = 0

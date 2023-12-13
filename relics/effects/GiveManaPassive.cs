@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass, Tool]
-public partial class GiveManaPassive : ExecutablePassive
+public partial class GiveManaPassive : EffectResource
 {
 	[Export] public int value;
 	
@@ -11,7 +11,6 @@ public partial class GiveManaPassive : ExecutablePassive
 	}
 	
 	public override void execute(Node node) {
-		GD.Print("gave mana");
 		node.GetNode<Mana>(FindObjectHelper.MANA_NAME).modifyMana(value);
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=16 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
 [ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="2_noj62"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="5_lvyy0"]
 [ext_resource type="PackedScene" uid="uid://d1yewgtk7q7eh" path="res://UI/ColorUpgradePreviewUI.tscn" id="5_rxpiq"]
 [ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="6_ax4rp"]
+[ext_resource type="PackedScene" uid="uid://60wadmikervm" path="res://match/score/HeartUI.tscn" id="7_7t6v1"]
 [ext_resource type="Texture2D" uid="uid://6lj3j2gff55" path="res://placeholders/heart2.png" id="8_txey6"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="9_a0nhy"]
 [ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://placeholders/inner3.png" id="9_xhewp"]
@@ -40,6 +41,7 @@ turnsContainer = NodePath("VBoxContainer/TurnsContainer/TurnsContainer")
 heartsContainer = NodePath("VBoxContainer/TurnsContainer/HeartsContainer")
 colorUpgradeUI = ExtResource("5_rxpiq")
 colorUpgrade = SubResource("Resource_jmwbm")
+heartUI = ExtResource("7_7t6v1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 107)
@@ -163,15 +165,11 @@ size_flags_stretch_ratio = 7.9
 layout_mode = 2
 size_flags_stretch_ratio = 7.9
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer" instance=ExtResource("7_7t6v1")]
 layout_mode = 2
-texture = ExtResource("8_txey6")
-expand_mode = 1
-stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("8_txey6")
 expand_mode = 1
@@ -182,21 +180,21 @@ layout_mode = 2
 size_flags_stretch_ratio = 7.9
 
 [node name="TextureRect3" type="TextureRect" parent="VBoxContainer/TurnsContainer/TurnsContainer"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("9_a0nhy")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/TurnsContainer/TurnsContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/TurnsContainer/TurnsContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("9_a0nhy")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/TurnsContainer/TurnsContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="TextureRect7" type="TextureRect" parent="VBoxContainer/TurnsContainer/TurnsContainer"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("9_a0nhy")
 expand_mode = 1
@@ -223,7 +221,7 @@ scroll_active = false
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 30
+theme_override_constants/margin_top = 40
 
 [node name="UpgradeContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2

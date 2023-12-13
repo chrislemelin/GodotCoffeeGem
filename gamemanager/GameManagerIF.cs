@@ -71,7 +71,7 @@ public partial class GameManagerIF : Node
 
 	public void setHealth(int newHealth)
 	{
-		getGlobal().currentHealth = Math.Clamp(newHealth, 0, 2);
+		getGlobal().currentHealth = Math.Clamp(newHealth, 0, getGlobal().maxHealth);
 		EmitSignal(SignalName.healthChanged, getGlobal().currentHealth);
 	}
 
@@ -80,15 +80,42 @@ public partial class GameManagerIF : Node
 		return getGlobal().currentHealth;
 	}
 
+	public int getNumberOfCardToChoose()
+	{
+		return getGlobal().numberOfCardsToChoose;
+	}
+
+	public void setNumberOfCardToChoose(int value)
+	{
+		getGlobal().numberOfCardsToChoose = value;
+	}
+
+	public void setMaxHealth(int newHealth)
+	{
+		getGlobal().maxHealth = newHealth;
+	}
+
 	public int getMaxHealth()
 	{
-		return 2;
+		return getGlobal().maxHealth;
 	}
+
 
 	public int getCoins()
 	{
 		return getGlobal().currentCoins;
 	}
+
+	public Vector2 getGridSize()
+	{
+		return getGlobal().gridSize;
+	}
+
+	public void changeGridSize(Vector2 newSize)
+	{
+		getGlobal().gridSize = newSize;
+	}
+
 
 	public List<RelicResource> getRelics()
 	{
@@ -97,6 +124,7 @@ public partial class GameManagerIF : Node
 
 	public void addRelic(RelicResource relicResource)
 	{
+		relicResource.executeAddedToInvEffects(this);
 		getGlobal().relics.Add((RelicResource)relicResource.Duplicate());
 	}
 
