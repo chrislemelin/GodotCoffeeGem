@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=5 format=3 uid="uid://bkqo6c37ee7t7"]
 
-[ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_5lild"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_p6qqt"]
-[ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_0xd82"]
+[ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
+[ext_resource type="PackedScene" uid="uid://cnfw3144lcbcg" path="res://mainScenes/StartingCardChoice.tscn" id="2_8y66p"]
+[ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_qt6ch"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("newGameButton")]
-custom_minimum_size = Vector2(1800, 1200)
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("newGameButton", "beanHolder")]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_5lild")
+script = ExtResource("1_ro6go")
 newGameButton = NodePath("VBoxContainer/MarginContainer/VBoxContainer2/NewGameButton")
-gameScene = ExtResource("2_0xd82")
+gameScene = ExtResource("2_8y66p")
+beanScene = ExtResource("3_3tqas")
+numberOfBeans = 50
+beanHolder = NodePath("BeanHolder")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.270588, 0.368627, 0.521569, 1)
@@ -20,7 +24,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_p6qqt")
+texture = ExtResource("3_qt6ch")
+
+[node name="BeanHolder" type="Node2D" parent="."]
+
+[node name="CoffeeBean" parent="BeanHolder" instance=ExtResource("3_3tqas")]
+visible = false
+rotation = -0.575959
+rotateSpeed = 20.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

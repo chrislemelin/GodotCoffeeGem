@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=26 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
+[ext_resource type="Resource" uid="uid://dvafs8mkpm6dl" path="res://relics/RelicLists/RelicTestPool.tres" id="3_niyuq"]
 [ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_tlo67"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
@@ -21,12 +22,12 @@
 [ext_resource type="StyleBox" uid="uid://bkqr0iynl6gtr" path="res://UI/Themes/TutorialStyleBox.tres" id="18_uicyl"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="18_vk04q"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="18_y5ido"]
-[ext_resource type="Texture2D" uid="uid://dc7q1uopvg1bg" path="res://UI/Themes/ManaGem.png" id="19_bj3uy"]
-[ext_resource type="Texture2D" uid="uid://ba6tkx7s6b4e8" path="res://UI/Themes/CardGem.png" id="20_qkqac"]
-[ext_resource type="Texture2D" uid="uid://cja74nrffthkl" path="res://UI/Themes/BlackGem.png" id="21_8lrn6"]
+[ext_resource type="Texture2D" uid="uid://c4bqm3aiirl78" path="res://placeholders/tutorial/Screenshot 2023-12-19 090925.png" id="20_cw8l2"]
+[ext_resource type="Texture2D" uid="uid://lp4raqd5t3v5" path="res://placeholders/tutorial/Screenshot 2023-12-15 082252.png" id="21_1sem2"]
+[ext_resource type="Texture2D" uid="uid://cja74nrffthkl" path="res://placeholders/tutorial/BlackGem.png" id="22_hisef"]
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "gameOverScreen", "score", "relicHolderUI")]
-position = Vector2(7, 0)
+position = Vector2(-1, 0)
 script = ExtResource("1_5jnm2")
 newCardSelection = NodePath("UIOverLays/CardSelectionUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
@@ -34,17 +35,19 @@ score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
 relicResources = Array[Resource]([])
 cardPool = ExtResource("2_uqcxx")
+relicList = ExtResource("3_niyuq")
 defaultCardList = ExtResource("3_tlo67")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score") instance=ExtResource("5_4m14m")]
-position = Vector2(678, 279)
+unique_name_in_owner = true
+position = Vector2(695, 144)
 sizeY = 5
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
 
 [node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager") instance=ExtResource("6_tl444")]
-position = Vector2(1685, 1047)
+position = Vector2(1774, 889)
 scale = Vector2(0.5, 0.5)
 hand = NodePath("../Hand")
 allCards = Array[Resource]([])
@@ -53,36 +56,38 @@ discard = NodePath("../Discard")
 loadDeckFromGlobal = true
 gameManager = NodePath("..")
 
+[node name="Discard" parent="." instance=ExtResource("9_o6m7d")]
+position = Vector2(137, 910)
+scale = Vector2(0.5, 0.5)
+
+[node name="Mana" parent="." instance=ExtResource("10_4f0tc")]
+unique_name_in_owner = true
+position = Vector2(1595, 637)
+
+[node name="Score" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("11_nsha1")]
+unique_name_in_owner = true
+position = Vector2(1757, 124)
+gameManager = NodePath("..")
+
 [node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager") instance=ExtResource("8_m8idd")]
 unique_name_in_owner = true
-position = Vector2(893, 1040)
+position = Vector2(951, 895)
 scale = Vector2(1.5, 1.5)
 discard = NodePath("../Discard")
 matchBoard = NodePath("../MatchBoard")
 deck = NodePath("../Deck")
 mana = NodePath("../Mana")
 gameManager = NodePath("..")
-
-[node name="Discard" parent="." instance=ExtResource("9_o6m7d")]
-position = Vector2(98, 1047)
-scale = Vector2(0.5, 0.5)
-
-[node name="Mana" parent="." instance=ExtResource("10_4f0tc")]
-unique_name_in_owner = true
-position = Vector2(1477, 826)
-
-[node name="Score" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("11_nsha1")]
-position = Vector2(1644, 203)
-gameManager = NodePath("..")
+width = 900
 
 [node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
+offset_left = 1684.0
+offset_top = 623.0
+offset_right = 1869.0
+offset_bottom = 680.0
 
 [node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
-offset_left = -6.0
-offset_top = 1.0
-offset_right = -6.0
-offset_bottom = 1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_oa770")
@@ -92,15 +97,6 @@ autoplay = true
 [node name="UIOverLays" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-
-[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager") instance=ExtResource("14_31k88")]
-visible = false
-layout_mode = 1
-gameManager = NodePath("../..")
-
-[node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
-visible = false
-layout_mode = 1
 
 [node name="TutorialScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("textureButton")]
 visible = false
@@ -112,14 +108,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("17_nfscp")
-textureButton = NodePath("../../TutorialButton")
+textureButton = NodePath("../TutorialButton")
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen"]
 modulate = Color(0, 0, 0, 0.301961)
 layout_mode = 2
 offset_left = -10.0
-offset_right = 1790.0
-offset_bottom = 1200.0
+offset_right = 1922.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
@@ -150,9 +146,9 @@ layout_mode = 2
 layout_mode = 0
 offset_top = 4.0
 offset_right = 171.0
-offset_bottom = 113.0
+offset_bottom = 119.0
 theme = ExtResource("18_y5ido")
-text = "Mana gems will give you a mana if you match them
+text = "Mana infused ingredients will give you a mana if you match them
 "
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ManaGemTutorial"]
@@ -161,19 +157,20 @@ offset_left = 180.0
 offset_top = 10.0
 offset_right = 283.0
 offset_bottom = 108.0
-texture = ExtResource("19_bj3uy")
+texture = ExtResource("20_cw8l2")
 
 [node name="CardGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
-custom_minimum_size = Vector2(300, 125)
+custom_minimum_size = Vector2(300, 160)
 layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/CardGemTutorial"]
 layout_mode = 0
+offset_left = 3.0
 offset_top = 4.0
-offset_right = 171.0
-offset_bottom = 113.0
+offset_right = 174.0
+offset_bottom = 151.0
 theme = ExtResource("18_y5ido")
-text = "Card gems will draw a card into your hand if you match them
+text = "Card infused ingredients will draw a card into your hand if you match them
 "
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/CardGemTutorial"]
@@ -182,7 +179,7 @@ offset_left = 180.0
 offset_top = 10.0
 offset_right = 283.0
 offset_bottom = 108.0
-texture = ExtResource("20_qkqac")
+texture = ExtResource("21_1sem2")
 
 [node name="BlackGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
 custom_minimum_size = Vector2(300, 125)
@@ -191,10 +188,10 @@ layout_mode = 2
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/BlackGemTutorial"]
 layout_mode = 0
 offset_top = 4.0
-offset_right = 171.0
-offset_bottom = 175.0
+offset_right = 175.0
+offset_bottom = 181.0
 theme = ExtResource("18_y5ido")
-text = "Black gems are bad, they are unmatchable and unmovable, altho they can be destroyed
+text = "Black (burnt) ingredients are bad, they are unmatchable and unmovable, altho they can be destroyed
 "
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/BlackGemTutorial"]
@@ -203,14 +200,14 @@ offset_left = 180.0
 offset_top = 10.0
 offset_right = 283.0
 offset_bottom = 108.0
-texture = ExtResource("21_8lrn6")
+texture = ExtResource("22_hisef")
 
 [node name="TurnsTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 anchors_preset = 0
-offset_left = 1356.0
-offset_top = 351.0
-offset_right = 1356.0
-offset_bottom = 351.0
+offset_left = 1468.0
+offset_top = 288.0
+offset_right = 1468.0
+offset_bottom = 288.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/TurnsTutorial"]
 layout_mode = 0
@@ -233,10 +230,10 @@ text = "This is the number of turns you have to complete the level, if you run o
 
 [node name="MoneyTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 anchors_preset = 0
-offset_left = 1359.0
-offset_top = 477.0
-offset_right = 1359.0
-offset_bottom = 477.0
+offset_left = 1498.0
+offset_top = 430.0
+offset_right = 1498.0
+offset_bottom = 430.0
 rotation = -0.333073
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/MoneyTutorial"]
@@ -251,15 +248,16 @@ text = "This is your money, if you complete the level early you get a small bonu
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/MoneyTutorial"]
 layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
+offset_left = 93.8188
+offset_top = 65.2606
+offset_right = 493.819
+offset_bottom = 438.261
+rotation = -2.6869
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
 [node name="ScoreTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 anchors_preset = 0
 offset_left = 1360.0
 offset_top = 223.0
@@ -290,10 +288,10 @@ text = "This is your progress for the level"
 [node name="MultTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1575.0
-offset_top = 139.0
-offset_right = 1575.0
-offset_bottom = 139.0
+offset_left = 1494.0
+offset_top = 187.0
+offset_right = 1494.0
+offset_bottom = 187.0
 rotation = 0.40695
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/MultTurorial"]
@@ -308,15 +306,16 @@ text = "This is your score mulitplier, you gain mult with each match but resets 
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/MultTurorial"]
 layout_mode = 0
-offset_left = 59.6274
-offset_top = 6.96826
-offset_right = 459.627
-offset_bottom = 379.968
-rotation = -1.65305
+offset_left = 144.621
+offset_top = -38.3765
+offset_right = 544.621
+offset_bottom = 334.624
+rotation = -2.71035
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
 [node name="GridTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 520.0
@@ -347,10 +346,10 @@ text = "This is the match 3 grid, make matches to advance your score to clear th
 [node name="ManaTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1239.0
-offset_top = 812.0
-offset_right = 1239.0
-offset_bottom = 812.0
+offset_left = 1383.0
+offset_top = 621.0
+offset_right = 1383.0
+offset_bottom = 621.0
 rotation = -0.0267641
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/ManaTurorial"]
@@ -365,20 +364,21 @@ texture = ExtResource("17_so8o5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/ManaTurorial"]
 layout_mode = 0
-offset_left = -211.0
-offset_top = -29.0
-offset_right = 13.0
-offset_bottom = 71.0
+offset_left = -217.798
+offset_top = -47.8457
+offset_right = 18.2024
+offset_bottom = 71.1543
+rotation = 0.0259918
 theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This is your mana, most card you play will require mana to play"
+text = "This is your mana it represents your will to live and can be used to play cards"
 
 [node name="HandTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 352.0
-offset_top = 1010.0
-offset_right = 352.0
-offset_bottom = 1010.0
+offset_left = 541.0
+offset_top = 877.0
+offset_right = 541.0
+offset_bottom = 877.0
 rotation = -0.0267641
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/HandTurorial"]
@@ -398,17 +398,15 @@ offset_top = -29.0
 offset_right = 13.0
 offset_bottom = 71.0
 theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This is your hand of cards, you will play them to make matches
-"
+text = "Play cards to make matches and earn points"
 
 [node name="EndTurnTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1548.0
-offset_top = 679.0
-offset_right = 1548.0
-offset_bottom = 679.0
-rotation = -0.0259485
+offset_left = 1885.0
+offset_top = 501.0
+offset_right = 1885.0
+offset_bottom = 501.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/EndTurnTutorial"]
 layout_mode = 0
@@ -421,18 +419,28 @@ text = "This will end the current turn, this will give you a new hand of cards a
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/EndTurnTutorial"]
 layout_mode = 0
-offset_left = -46.1252
-offset_top = 119.844
-offset_right = 353.875
-offset_bottom = 492.844
-rotation = -1.52901
+offset_left = -114.0
+offset_top = 87.0
+offset_right = 286.0
+offset_bottom = 460.0
+rotation = -0.860762
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
-[node name="TutorialButton" type="TextureButton" parent="."]
+[node name="TutorialButton" type="TextureButton" parent="UIOverLays"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 69.0
 offset_right = 404.0
 offset_bottom = 469.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
+
+[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager") instance=ExtResource("14_31k88")]
+visible = false
+layout_mode = 1
+gameManager = NodePath("../..")
+
+[node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
+visible = false
+layout_mode = 1

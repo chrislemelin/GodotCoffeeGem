@@ -7,15 +7,17 @@
 [sub_resource type="Resource" id="Resource_74bpt"]
 script = ExtResource("3_i8evw")
 value = 1
+value = 1
 
 [resource]
 script = ExtResource("3_slabr")
 title = "Gloves"
-description = "+1 card on each hand"
+description = "+1 card on each turn"
 image = ExtResource("2_bejpu")
+cost = 50
 gameStartPassives = []
 gameStartExePassives = []
 turnStartPassives = []
 turnStartExePassives = [SubResource("Resource_74bpt")]
-addToInventoryExePassives = []
+addToInvEffects = []
 counterMax = 0

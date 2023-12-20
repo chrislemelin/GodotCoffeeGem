@@ -13,7 +13,7 @@ public partial class CardInfoLoader : Control
 	public override void _Ready()
 	{
 		base._Ready();
-		setUpCard(cardResource);
+		//setUpCard(cardResource);
 	}
 
 	public void setUpCard(CardResource cardResource)

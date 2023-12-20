@@ -9,6 +9,7 @@ script = ExtResource("2_hcbao")
 title = "Wrench"
 description = "Adds 1 extra card choice when picking a new card"
 image = ExtResource("2_i7mny")
+cost = 50
 gameStartPassives = []
 gameStartExePassives = []
 turnStartPassives = []

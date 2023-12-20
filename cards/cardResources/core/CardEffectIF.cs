@@ -68,7 +68,7 @@ public partial class CardEffectIF: Resource
 		if (tiles.Count != BlackGems) {
 			tiles = matchBoard.getRandomNonBlackTile(BlackGems);
 		}
-		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getPosition()).ToList(), GemType.Black);
+		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
 	}
 
 	public virtual void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles){

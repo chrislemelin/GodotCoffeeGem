@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BeansOfProduction"
-run/main_scene="res://UI/MainMenu.tscn"
+run/main_scene="res://mainScenes/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,8 @@ Globals="*res://util/Global.cs"
 
 [display]
 
-window/size/viewport_width=1800
-window/size/viewport_height=1200
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 
 [dotnet]

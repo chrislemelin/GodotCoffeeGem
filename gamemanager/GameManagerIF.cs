@@ -23,6 +23,14 @@ public partial class GameManagerIF : Node
 		return new List<CardResource>(global.deckCardList.allCards);
 	}
 
+	public void addCardToDeckList(CardResource cardResource) {
+		global.deckCardList.allCards.Add(cardResource);
+	}
+
+	public void removeCardFromDeckList(CardResource cardResource) {
+		global.deckCardList.allCards.Remove(cardResource);
+	}
+
 	public override void _Ready()
 	{
 		loadGlobalAndSetDeckToDefault();

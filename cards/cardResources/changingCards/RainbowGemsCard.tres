@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_rb5l6"]
 script = ExtResource("1_v1c2h")
 Range = 1.0
-Value = 2
+Value = 1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -14,7 +14,7 @@ effectGemType = 0
 
 [resource]
 script = ExtResource("2_yglwu")
-Title = "Rainbow Gems"
-Description = "Randomly create $value rainbow gem(s)"
-Cost = 0
+Title = "Rainbow Splash"
+Description = "Randomly create $value rainbow ingredient(s) that can match with anything"
+Cost = 1
 cardEffect = SubResource("Resource_rb5l6")

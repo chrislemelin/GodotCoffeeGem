@@ -14,7 +14,7 @@ effectGemType = 3
 
 [resource]
 script = ExtResource("2_1klox")
-Title = "Green Convert"
-Description = "Changes $value gem(s) with 1 spaces to green"
+Title = "Tea blend"
+Description = "Change $value ingredient to tea"
 Cost = 1
 cardEffect = SubResource("Resource_mklkk")

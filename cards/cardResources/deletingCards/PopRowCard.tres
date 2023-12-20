@@ -15,6 +15,6 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_v1prq")
 Title = "Pop Row"
-Description = "Pop all orbs of a selected row"
+Description = "Destroy all ingredients of a selected row"
 Cost = 2
 cardEffect = SubResource("Resource_nsl5v")

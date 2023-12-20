@@ -33,6 +33,6 @@ public partial class CardEffectPopRandom : CardEffectIF
 
 	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile) {
 		List<Tile> tiles = matchBoard.getTilesWithColorOfGem(tile.Gem.Type);
-		return tiles.Select(x => x.getPosition()).ToList();
+		return tiles.Select(x => x.getTilePosition()).ToList();
 	}
 }

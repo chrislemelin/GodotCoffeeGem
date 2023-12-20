@@ -17,7 +17,7 @@ effectGemType = 0
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_yasco")
-Title = "Mana Gems +"
-Description = "Randomly create $value mana gem(s) and 1 black gem"
+Title = "Mana Ingredient +"
+Description = "Randomly create $value mana ingredient(s) and burn 1 ingredient"
 Cost = 0
 cardEffect = SubResource("Resource_m0v28")

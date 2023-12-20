@@ -14,7 +14,7 @@ effectGemType = 1
 
 [resource]
 script = ExtResource("2_bf3qq")
-Title = "Blue Convert"
-Description = "Changes $value gem(s) with 1 spaces to blue"
+Title = "Milky Splash"
+Description = "Change $value ingredient to milk"
 Cost = 1
 cardEffect = SubResource("Resource_mklkk")

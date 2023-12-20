@@ -11,6 +11,9 @@ using System.Linq;
 	[Export(PropertyHint.MultilineText)] public String description;
 	[Export] public Texture2D image;
 
+	[Export(PropertyHint.MultilineText)] public int cost = 0;
+
+
 	[Export] private Array<Passive> gameStartPassives = new Array<Passive>();
 	[Export] private Array<EffectResource> gameStartExePassives = new Array<EffectResource>();
 

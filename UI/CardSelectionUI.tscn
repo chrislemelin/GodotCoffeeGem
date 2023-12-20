@@ -10,21 +10,23 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_pv1p8")
 cardUIPackagedScene = ExtResource("2_twjff")
-cardContainer = NodePath("HBoxContainer")
-skipButton = NodePath("MarginContainer/Button")
-coinsGainedLabel = NodePath("VBoxContainer/HBoxContainer2/RichTextLabel")
-levelPassedText = [NodePath("VBoxContainer/RichTextLabel"), NodePath("VBoxContainer/HBoxContainer2")]
+cardContainer = NodePath("Control/HBoxContainer")
+skipButton = NodePath("Control/MarginContainer/Button")
+coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")
+levelPassedText = [NodePath("Control/VBoxContainer/RichTextLabel"), NodePath("Control/VBoxContainer/HBoxContainer2")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.39, 0.39, 0.39, 1)
 layout_mode = 2
-offset_right = 1800.0
-offset_bottom = 1208.0
+offset_right = 1919.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_aegw7")
@@ -32,40 +34,67 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 42.0
+offset_top = -69.0
+offset_right = 42.0
+offset_bottom = -69.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 custom_minimum_size = Vector2(900, 400)
 layout_mode = 2
 offset_left = 502.0
-offset_top = 471.0
-offset_right = 2940.0
-offset_bottom = 1082.0
+offset_top = 472.0
+offset_right = 2708.0
+offset_bottom = 1083.0
 scale = Vector2(0.4, 0.4)
 size_flags_vertical = 3
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="UI" parent="Control/HBoxContainer" instance=ExtResource("2_twjff")]
+visible = false
 layout_mode = 2
-offset_left = 484.0
-offset_top = 748.0
-offset_right = 1384.0
-offset_bottom = 779.0
+
+[node name="UI2" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("2_twjff")]
+visible = false
+layout_mode = 2
+titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
+costLabel = NodePath("../UI/Center/Cost/RichTextLabel")
+picture = NodePath("../UI/Center/Picture/Sprite2D")
+
+[node name="UI3" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("2_twjff")]
+visible = false
+layout_mode = 2
+titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
+costLabel = NodePath("../UI/Center/Cost/RichTextLabel")
+picture = NodePath("../UI/Center/Picture/Sprite2D")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+offset_left = 489.0
+offset_top = 809.0
+offset_right = 1389.0
+offset_bottom = 840.0
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_right = 300
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="Button" type="Button" parent="Control/MarginContainer"]
 layout_mode = 2
 text = "Skip selection
 "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
 offset_left = 500.0
 offset_top = 304.0
 offset_right = 1400.0
-offset_bottom = 451.0
+offset_bottom = 462.0
 alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(845, 50)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 35
@@ -73,11 +102,11 @@ bbcode_enabled = true
 text = "Level Passed!"
 fit_content = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 7.9
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 35
@@ -85,13 +114,13 @@ text = "You gained"
 fit_content = true
 scroll_active = false
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("4_uxkls")
 expand_mode = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(845, 50)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 35

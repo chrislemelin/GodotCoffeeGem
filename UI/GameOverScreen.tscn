@@ -17,8 +17,8 @@ restartButton = NodePath("VBoxContainer/Button")
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
 layout_mode = 2
-offset_right = 1800.0
-offset_bottom = 1200.0
+offset_right = 1925.0
+offset_bottom = 1077.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("3_32t71")

@@ -9,6 +9,7 @@ script = ExtResource("3_1drbo")
 title = "Apple"
 description = "+1 Max health"
 image = ExtResource("1_3kawx")
+cost = 50
 gameStartPassives = []
 gameStartExePassives = []
 turnStartPassives = []

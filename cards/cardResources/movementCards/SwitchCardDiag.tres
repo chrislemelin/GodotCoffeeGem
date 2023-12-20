@@ -15,6 +15,6 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_ljjbh")
 Title = "Switch +"
-Description = "Switch positions of diagonaly adjacent two orbs"
+Description = "Switch positions of diagonaly adjacent two ingredients"
 Cost = 1
 cardEffect = SubResource("Resource_n6fnt")

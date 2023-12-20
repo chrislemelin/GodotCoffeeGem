@@ -7,6 +7,8 @@ public partial class ColorUpgrade : Resource
 	[Export] public int baseIncrease;
 	[Export] public float multIncrease;
 	[Export] public GemType gemType;
+	[Export] public float finalMult = 1;
+
 	public ColorUpgrade() {
 
 	}
@@ -16,6 +18,7 @@ public partial class ColorUpgrade : Resource
 		results.gemType = gemType;
 		results.multIncrease = multIncrease + colorUpgrade.multIncrease;
 		results.baseIncrease = baseIncrease + colorUpgrade.baseIncrease;
+		results.finalMult = finalMult * colorUpgrade.finalMult;
 		return results;
 	}
 }

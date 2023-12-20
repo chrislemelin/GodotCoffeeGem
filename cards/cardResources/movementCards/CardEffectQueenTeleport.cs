@@ -28,7 +28,7 @@ public partial class CardEffectQueenTeleport : CardEffectIF
 		HashSet<Vector2> allDirections = new HashSet<Vector2>(){Vector2.Up, Vector2.Down, Vector2.Right, Vector2.Left,
 		 new Vector2(1,1), new Vector2(-1,1), new Vector2(1,-1), new Vector2(-1,-1)};
 	
-		return matchBoard.getTilesInDirections(tile.getPosition(), allDirections).Select(currentTile => currentTile.getPosition()).ToList();
+		return matchBoard.getTilesInDirections(tile.getTilePosition(), allDirections).Select(currentTile => currentTile.getTilePosition()).ToList();
 	}
 
 

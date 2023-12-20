@@ -1,17 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://2av55t0yxy4e"]
+[gd_scene load_steps=10 format=3 uid="uid://2av55t0yxy4e"]
 
 [ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ym8if"]
 [ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
 [ext_resource type="Script" path="res://UI/ButtonWithCoinCost.cs" id="2_x4g5w"]
+[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_yvkph"]
+[ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="5_6xr0x"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="5_by2ub"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_fr8b3"]
 
 [sub_resource type="Resource" id="Resource_ioiih"]
 script = ExtResource("2_ahm5c")
 baseIncrease = 50
 multIncrease = 0.25
 gemType = 0
+finalMult = 1.0
 
-[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "advanceLevelButton", "confirmationText")]
+[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "upgradeCardButton", "relicShop", "advanceLevelButton", "confirmationText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,15 +34,23 @@ shoppingTherapyButton = NodePath("VBoxContainer/GridContainer/Shopping Therapy")
 gemUpgradeButton = NodePath("VBoxContainer/GridContainer/Gem upgrade")
 moreCardsButton = NodePath("VBoxContainer/GridContainer/Moare cards")
 relicButton = NodePath("VBoxContainer/GridContainer/Relic")
-advanceLevelButton = NodePath("VBoxContainer/MarginContainer2/Button")
+upgradeCardButton = NodePath("VBoxContainer/GridContainer/CardUpgrade")
+relicShop = NodePath("VBoxContainer/GridContainer/HBoxContainer")
+relicUIPackedScene = ExtResource("5_6xr0x")
+advanceLevelButton = NodePath("VBoxContainer/MarginContainer2/AdvanceButton")
 confirmationText = NodePath("VBoxContainer/RichTextLabel")
 colorUpgrade = SubResource("Resource_ioiih")
+upgradedSwitchCard = ExtResource("4_yvkph")
+vertSwitchCard = ExtResource("5_by2ub")
+horizSwitchCard = ExtResource("6_fr8b3")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.137255)
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
 layout_mode = 0
-offset_right = 1849.0
-offset_bottom = 1241.0
+offset_left = 608.0
+offset_top = 462.0
+offset_right = 1337.0
+offset_bottom = 1010.0
 texture = ExtResource("1_ym8if")
 expand_mode = 3
 
@@ -67,33 +80,72 @@ theme_override_constants/v_separation = 10
 [node name="Side hustle" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Work on your side hustle (gain 10 coins)"
+text = "Work on your side hustle (Gain 10 coins)"
 script = ExtResource("2_x4g5w")
 cost = -10
 
 [node name="Moare cards" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Gain an extra card (20 coins)"
+text = "Gain an extra card (Costs 20 coins)"
 script = ExtResource("2_x4g5w")
 cost = 20
 
 [node name="Shopping Therapy" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Online shopping therapy (gain a heart for 30 coins)"
+text = "Online shopping therapy (Recover a heart for 30 coins)"
 script = ExtResource("2_x4g5w")
 cost = 30
 
 [node name="Gem upgrade" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Gain a random Gem upgrade (40 coins)"
+text = "Purchase better ingredients (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
 
+[node name="CardUpgrade" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Turn one of your switch vert or switch horiz into a switch that can go in either direction"
+text = "Upgrade one of your switch cards (Costs 30 coins)"
+script = ExtResource("2_x4g5w")
+cost = 30
+
 [node name="Relic" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "Gain a random relic, provides a passive bonus(100 coins)"
 script = ExtResource("2_x4g5w")
 cost = 100
+
+[node name="Passives To Purchase" type="RichTextLabel" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center] Passives available to purchase [center]"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Control" parent="VBoxContainer/GridContainer/HBoxContainer" instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+
+[node name="Control2" parent="VBoxContainer/GridContainer/HBoxContainer" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+counterLabel = NodePath("../Control/TextEdit")
+costLabel = NodePath("../Control/Control/Label")
+
+[node name="Control3" parent="VBoxContainer/GridContainer/HBoxContainer" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+counterLabel = NodePath("../Control/TextEdit")
+costLabel = NodePath("../Control/Control/Label")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -101,7 +153,7 @@ size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer2"]
+[node name="AdvanceButton" type="Button" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 disabled = true
 text = "Advance "

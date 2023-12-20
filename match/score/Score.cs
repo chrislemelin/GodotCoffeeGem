@@ -68,8 +68,6 @@ public partial class Score : Node
 		maxHearts = gameManager.getMaxHealth();
 		initHeartsContainer();
 		setHeartsRemaining(2);
-
-
 	}
 
 	public void newturn() {		
@@ -179,6 +177,11 @@ public partial class Score : Node
 		mult = newMult;
 		multLabel.Text = "Score Multiplier: " + newMult.ToString("0.##") + "x";
 	}
+
+	public void addMult(float value) {
+		setMult(mult + value);
+	}
+
 	public void setColorUpgrades(List<ColorUpgrade> colorUpgrades) {
 		this.colorUpgrades = colorUpgrades;
 		compressCurrentColorUpgrades();
@@ -199,10 +202,22 @@ public partial class Score : Node
 		foreach(ColorUpgrade colorUpgrade in colorUpgradesCompressed.Values) {
 			TextureRect texture2D = (TextureRect)colorUpgradeUI.Instantiate();
 			texture2D.Modulate = colorUpgrade.gemType.GetColor();
-			texture2D.TooltipText = "bonus score: " + colorUpgrade.baseIncrease + "\nbonus mult: " + colorUpgrade.multIncrease;
+
+			texture2D.TooltipText = colorUpgrade.gemType.ToString() + "\nbonus score: " + colorUpgrade.baseIncrease + "\nbonus mult: " + colorUpgrade.multIncrease;
+			if(colorUpgrade.finalMult != 1) {
+				texture2D.TooltipText = texture2D.TooltipText + "\nfinal mult : " + colorUpgrade.multIncrease;
+			}
+			if(colorUpgrade.finalMult == 0) {
+				texture2D.TooltipText = colorUpgrade.gemType.ToString() + "\nno points given";
+			}
 			GD.Print("making color upgrade preview " + colorUpgrade);
 			colorUpgradePreviewBox.AddChild(texture2D);
 		}
+	}
+
+	public void addScore(int scoreValue) {
+		int pointValue = (int)(scoreValue * mult);
+		setScore(score + pointValue);
 	}
 
 	public void scoreMatches(HashSet<HashSet<Tile>> matches) {  

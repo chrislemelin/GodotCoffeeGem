@@ -17,6 +17,6 @@ effectGemType = 0
 resource_local_to_scene = true
 script = ExtResource("1_n14o3")
 Title = "Switch"
-Description = "Switch positions of two directly adjacent orbs"
+Description = "Switch positions of two directly adjacent ingredients"
 Cost = 1
 cardEffect = SubResource("Resource_n6fnt")

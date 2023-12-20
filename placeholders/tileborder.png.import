@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc7q1uopvg1bg"
-path="res://.godot/imported/ManaGem.png-efaa12e775a9b8c1660945fb121e5183.ctex"
+uid="uid://dkwc52qkv7pr6"
+path="res://.godot/imported/tileborder.png-b1560e9686cb43ff73f9f0b8ffc4d0e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Themes/ManaGem.png"
-dest_files=["res://.godot/imported/ManaGem.png-efaa12e775a9b8c1660945fb121e5183.ctex"]
+source_file="res://placeholders/tileborder.png"
+dest_files=["res://.godot/imported/tileborder.png-b1560e9686cb43ff73f9f0b8ffc4d0e7.ctex"]
 
 [params]
 

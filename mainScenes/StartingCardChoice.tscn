@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnfw3144lcbcg"]
+
+[ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_i5u2u"]
+[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_d36ka"]
+[ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5gnnn"]
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="4_y4qoe"]
+[ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="10_yqm4d"]
+[ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="12_dlut0"]
+[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="13_oo2ug"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="13_wdrgu"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="14_caag0"]
+[ext_resource type="Resource" uid="uid://e3lvfo3yth8a" path="res://cards/cardResources/handCards/DrawBurstCard.tres" id="15_yauk2"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="17_a2nvl"]
+[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="18_ij5lf"]
+
+[node name="StartingCardChoice" type="Node2D" node_paths=PackedStringArray("newCardSelection")]
+script = ExtResource("1_i5u2u")
+newCardSelection = NodePath("CardSelectionUI")
+cardPool = ExtResource("2_d36ka")
+relicList = ExtResource("3_5gnnn")
+defaultCardList = ExtResource("4_y4qoe")
+
+[node name="CardSelectionUI" type="Control" parent="." node_paths=PackedStringArray("cardContainer", "gameManager", "skipButton", "coinsGainedLabel", "levelPassedText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("12_dlut0")
+cardUIPackagedScene = ExtResource("13_oo2ug")
+cardContainer = NodePath("Control/HBoxContainer")
+gameManager = NodePath("..")
+skipButton = NodePath("Control/MarginContainer/Button")
+coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")
+levelPassedText = [NodePath("Control/VBoxContainer/RichTextLabel"), NodePath("Control/VBoxContainer/HBoxContainer2")]
+cards = Array[Object]([ExtResource("13_wdrgu"), ExtResource("14_caag0"), ExtResource("15_yauk2"), ExtResource("10_yqm4d")])
+
+[node name="TextureRect" type="TextureRect" parent="CardSelectionUI"]
+modulate = Color(0.39, 0.39, 0.39, 1)
+layout_mode = 2
+offset_right = 1919.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("17_a2nvl")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Control" type="Control" parent="CardSelectionUI"]
+anchors_preset = 0
+offset_left = 42.0
+offset_top = -69.0
+offset_right = 42.0
+offset_bottom = -69.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardSelectionUI/Control"]
+custom_minimum_size = Vector2(900, 400)
+layout_mode = 2
+offset_left = 502.0
+offset_top = 472.0
+offset_right = 2708.0
+offset_bottom = 1083.0
+scale = Vector2(0.4, 0.4)
+size_flags_vertical = 3
+alignment = 1
+
+[node name="UI" parent="CardSelectionUI/Control/HBoxContainer" instance=ExtResource("13_oo2ug")]
+visible = false
+layout_mode = 2
+
+[node name="UI2" parent="CardSelectionUI/Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("13_oo2ug")]
+visible = false
+layout_mode = 2
+titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
+costLabel = NodePath("../UI/Center/Cost/RichTextLabel")
+picture = NodePath("../UI/Center/Picture/Sprite2D")
+
+[node name="UI3" parent="CardSelectionUI/Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("13_oo2ug")]
+visible = false
+layout_mode = 2
+titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
+costLabel = NodePath("../UI/Center/Cost/RichTextLabel")
+picture = NodePath("../UI/Center/Picture/Sprite2D")
+
+[node name="MarginContainer" type="MarginContainer" parent="CardSelectionUI/Control"]
+layout_mode = 2
+offset_left = 489.0
+offset_top = 809.0
+offset_right = 1389.0
+offset_bottom = 840.0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="Button" type="Button" parent="CardSelectionUI/Control/MarginContainer"]
+layout_mode = 2
+text = "Skip selection
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardSelectionUI/Control"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 304.0
+offset_right = 1400.0
+offset_bottom = 462.0
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CardSelectionUI/Control/VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Level Passed!"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CardSelectionUI/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CardSelectionUI/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "You gained"
+fit_content = true
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="CardSelectionUI/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("18_ij5lf")
+expand_mode = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CardSelectionUI/Control/VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Add one starter card for your deck"
+fit_content = true

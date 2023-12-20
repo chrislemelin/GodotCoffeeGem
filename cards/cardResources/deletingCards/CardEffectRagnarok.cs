@@ -18,7 +18,9 @@ public partial class CardEffectRagnarok : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		matchBoard.deleteGemAtPositions(matchBoard.getAllTiles().Select(tile => tile.getPosition()).ToList());
+		List<Tile> tiles = matchBoard.getTilesWithColorOfGem(GemType.Black);
+		FindObjectHelper.getScore(matchBoard).addScore(50*tiles.Count);
+		matchBoard.deleteGemAtPositions(matchBoard.getAllTiles().Select(tile => tile.getTilePosition()).ToList());
 	}
 	
 }

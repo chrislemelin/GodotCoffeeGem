@@ -15,6 +15,6 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_sbuvw")
 Title = "Pop Random"
-Description = "Pop $value random gems of a selected type. If there are exactly $value gems of that type draw a card and gain a mana."
+Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type draw a card and gain a mana."
 Cost = 1
 cardEffect = SubResource("Resource_i6k8f")

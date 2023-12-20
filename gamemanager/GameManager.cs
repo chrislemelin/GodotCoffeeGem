@@ -14,13 +14,18 @@ public partial class GameManager : GameManagerIF
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
 	[Export] public Array<RelicResource> relicResources;
-
+	[Export] private bool debugMode;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		int currentLevel = global.currentLevel;
+	
 		moneyNeededToPass = 500 + 500 * (currentLevel - 1);
+		if (debugMode) {
+			moneyNeededToPass = 50;
+			addCoins(100);
+		}
 		score.setMoneyNeeded(moneyNeededToPass);
 		score.setLevel(currentLevel);
 		score.setHeartsRemaining(global.currentHealth);

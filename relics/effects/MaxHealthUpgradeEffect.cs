@@ -11,6 +11,6 @@ public partial class MaxHealthUpgradeEffect : EffectResource
 	
 	public override void execute(Node node) {
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(node);
-		gameManagerIF.setNumberOfCardToChoose(gameManagerIF.getNumberOfCardToChoose() + value);
+		gameManagerIF.setMaxHealth(gameManagerIF.getMaxHealth() + value);
 	}
 }

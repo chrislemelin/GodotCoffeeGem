@@ -3,11 +3,11 @@ using Godot;
 
 public enum GemType
 {
-	Blue,
-	Red,
-	Green,
-	Yellow,
-	Purple,
+	Coffee,
+	Vanilla,
+	Milk,
+	Sugar,
+	Leaf,
 	Black,
 	Rainbow
 }
@@ -19,15 +19,15 @@ static class GemTypeHelper
 	{
 		switch (gemType)
 		{
-			case GemType.Red:
+			case GemType.Coffee:
 				return new Color("#ff6e8b");
-			case GemType.Blue:
+			case GemType.Sugar:
 				return new Color("#72fafc");
-			case GemType.Green:
+			case GemType.Leaf:
 				return new Color("#94ff9d");
-			case GemType.Yellow:
+			case GemType.Vanilla:
 				return new Color("#ffda91");
-			case GemType.Purple:
+			case GemType.Milk:
 				return new Color("#fc9dec");
 			case GemType.Rainbow:
 				return newColor(255, 255, 255);

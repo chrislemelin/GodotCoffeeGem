@@ -15,6 +15,6 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_0wj0x")
 Title = "Ragnarok"
-Description = "Destroy every gem"
+Description = "Destroy every ingredient, give a little bit of points for each black gem destroyed."
 Cost = 3
 cardEffect = SubResource("Resource_0mlvv")

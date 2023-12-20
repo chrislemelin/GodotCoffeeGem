@@ -34,5 +34,9 @@ public partial class CardResource : Resource
 		return newDescription;
 	}
 
+    public bool equalToCard(CardResource cardResource) {
+		return Title.Equals(cardResource.Title);
+	}
+
 }
 

@@ -30,7 +30,7 @@ public partial class CardEffectPop : CardEffectIF
 		
 		if(gemAddonType != GemAddonType.None) {
 			List<Tile> addonTiles = matchBoard.getRandomNonBlackNonAddonTiles(2);
-			matchBoard.addGemAddons(addonTiles.Select(x => x.getPosition()).ToList(), gemAddonType);
+			matchBoard.addGemAddons(addonTiles.Select(x => x.getTilePosition()).ToList(), gemAddonType);
 		}
 	}
 

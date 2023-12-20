@@ -20,6 +20,7 @@ script = ExtResource("5_5twdy")
 baseIncrease = 50
 multIncrease = 0.25
 gemType = 0
+finalMult = 1.0
 
 [node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")

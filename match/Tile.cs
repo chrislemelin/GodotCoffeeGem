@@ -40,7 +40,7 @@ public partial class Tile : Node2D
 		control.MouseExited += () => mouseExit();
 	}
 
-	public Vector2 getPosition() {
+	public Vector2 getTilePosition() {
 		return new Vector2(x,y);
 	}
 

@@ -4,11 +4,11 @@ using System;
 public enum CardEffectGemType
 {
 	None,
-	Blue,
-	Red,
-	Green,
-	Yellow,
-	Purple,
+	Milk,
+	Vanilla,
+	Leaf,
+	Coffee,
+	Sugar,
 	Black,
 	Rainbow  
 }
@@ -18,16 +18,16 @@ static class CardEffectGemTypeHelper
 	{
 		switch (cardEffectGemType)
 		{
-			case CardEffectGemType.Red:
-				return GemType.Red;
-			case CardEffectGemType.Blue:
-				return GemType.Blue;
-			case CardEffectGemType.Green:
-				return GemType.Green;
-			case CardEffectGemType.Yellow:
-				return GemType.Yellow;
-			case CardEffectGemType.Purple:
-				return GemType.Purple;
+			case CardEffectGemType.Milk:
+				return GemType.Milk;
+			case CardEffectGemType.Vanilla:
+				return GemType.Vanilla;
+			case CardEffectGemType.Leaf:
+				return GemType.Leaf;
+			case CardEffectGemType.Coffee:
+				return GemType.Coffee;
+			case CardEffectGemType.Sugar:
+				return GemType.Sugar;
 			case CardEffectGemType.Black:
 			default:
 				return GemType.Black;

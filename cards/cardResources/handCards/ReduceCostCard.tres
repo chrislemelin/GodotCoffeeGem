@@ -27,6 +27,6 @@ cardPassiveToApplyToHand = SubResource("Resource_qv0ad")
 resource_local_to_scene = true
 script = ExtResource("1_34r48")
 Title = "Reduce Cost"
-Description = "Reduce the cost of each card in hand by 1 for the turn"
+Description = "Reduce the cost of each card in hand by 1 for this turn"
 Cost = 3
 cardEffect = SubResource("Resource_vyyx8")

@@ -12,12 +12,22 @@ public partial class NewCardSelection : Control
 	[Export] RichTextLabel coinsGainedLabel;
 	[Export] Array<Control> levelPassedText = new Array<Control>(); 
 
+	[Export] Array<CardResource> cards;
+	[Export] int coinsGained = 0;
+
 	public override void _Ready()
 	{
 		skipButton.Pressed += () => gameManager.advanceLevel();
+		renderCards();
+		renderCoins();
 	}
 
 	public void setCoins(int coinsGained) {
+		this.coinsGained = coinsGained;
+		renderCoins();
+	}
+
+	private void renderCoins() {
 		if(coinsGained == 0) {
 			foreach(Control control in levelPassedText) {
 				control.Visible = false;
@@ -28,12 +38,18 @@ public partial class NewCardSelection : Control
 	}
 
 	public void setCardsToSelectFrom(List<CardResource> cardResources) {
-		Visible = true;
-		foreach(CardResource cardResource in cardResources) {
-			CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
-			cardInfoLoader.setUpCard(cardResource);
-			cardContainer.AddChild(cardInfoLoader);
-			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource);
+		cards = new Array<CardResource>(cardResources);
+		renderCards();
+	}
+	private void renderCards() {
+		if (cards.Count > 0) {
+			Visible = true;
+			foreach(CardResource cardResource in cards) {
+				CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
+				cardInfoLoader.setUpCard(cardResource);
+				cardContainer.AddChild(cardInfoLoader);
+				cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource);
+			}
 		}
 	}
 

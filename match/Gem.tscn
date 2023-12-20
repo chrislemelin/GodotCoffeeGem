@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=17 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
-[ext_resource type="Texture2D" uid="uid://bptpi2ayhrul8" path="res://placeholders/GEAR.png" id="2_k6fag"]
+[ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_qwsb4"]
 [ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_835wl"]
+[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="5_0i62a"]
 [ext_resource type="Shader" path="res://cards/rainbowSmooth.gdshader" id="5_2oikk"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="5_qlodo"]
 [ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://placeholders/gem-gradient-painted.png" id="6_7pibk"]
+[ext_resource type="Texture2D" uid="uid://bakam23wfjxr0" path="res://placeholders/ingredients/leaf.png" id="6_afxu6"]
+[ext_resource type="Texture2D" uid="uid://dgerlpp12jt4v" path="res://placeholders/ingredients/milk.png" id="7_qx62n"]
+[ext_resource type="Texture2D" uid="uid://db2m26vyear4v" path="res://placeholders/ingredients/sugar-cube.png" id="8_3wlvj"]
+[ext_resource type="Texture2D" uid="uid://dtbl78i34wf3c" path="res://placeholders/ingredients/Vanilla1.png" id="9_xglmh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
 shader = ExtResource("5_2oikk")
@@ -62,13 +67,23 @@ _data = {
 "RESET": SubResource("Animation_fa63w")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crmls"]
+size = Vector2(251, 247)
+
 [node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "animationPlayer")]
 script = ExtResource("2_5yd20")
-sprite2D = NodePath("CanvasGroup/GemSprite2")
-addonSprite = NodePath("CanvasGroup/GemAddon")
-manaAddonTexture = ExtResource("2_k6fag")
+sprite2D = NodePath("CanvasGroup/GemSprite")
+addonSprite = NodePath("CanvasGroup/Node2D/GemAddon")
+manaAddonTexture = ExtResource("2_qwsb4")
 cardAddonTexture = ExtResource("3_835wl")
 rainbowMaterial = SubResource("ShaderMaterial_jmian")
+beanTexture = ExtResource("5_0i62a")
+leafTexture = ExtResource("6_afxu6")
+milkTexture = ExtResource("7_qx62n")
+sugarTexture = ExtResource("8_3wlvj")
+vanillaTexture = ExtResource("9_xglmh")
+orbTexture = ExtResource("5_qlodo")
+useSprites = true
 animationPlayer = NodePath("AnimationPlayer")
 speed = 1500.0
 
@@ -80,17 +95,34 @@ libraries = {
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
 [node name="GemSprite" type="Sprite2D" parent="CanvasGroup"]
-visible = false
-position = Vector2(0, 1)
+position = Vector2(27, 27)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_qlodo")
 centered = false
 
+[node name="GemSprite3" type="Sprite2D" parent="CanvasGroup"]
+visible = false
+position = Vector2(35, 27)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_0i62a")
+centered = false
+
 [node name="GemSprite2" type="Sprite2D" parent="CanvasGroup"]
+visible = false
 scale = Vector2(2.31193, 2.31193)
 texture = ExtResource("6_7pibk")
 centered = false
 
-[node name="GemAddon" type="Sprite2D" parent="CanvasGroup"]
-modulate = Color(0, 0, 0, 0.745098)
-position = Vector2(125, 125)
-scale = Vector2(0.4, 0.4)
+[node name="Node2D" type="Node2D" parent="CanvasGroup"]
+position = Vector2(200, 199)
+scale = Vector2(0.3, 0.3)
+
+[node name="GemAddon" type="Sprite2D" parent="CanvasGroup/Node2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_qwsb4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(127, 126)
+shape = SubResource("RectangleShape2D_crmls")

@@ -20,8 +20,8 @@ public partial class CardEffectPopRow : CardEffectIF
 	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile) {
 		List<Tile> tilesToClear = new List<Tile>();
 		tilesToClear.Add(tile);
-		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getPosition(),Vector2.Right));
-		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getPosition(),Vector2.Left));
-		return tilesToClear.Select(x => x.getPosition()).ToList();
+		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(),Vector2.Right));
+		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(),Vector2.Left));
+		return tilesToClear.Select(x => x.getTilePosition()).ToList();
 	}
 }

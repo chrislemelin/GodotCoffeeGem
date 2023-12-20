@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgfos0wevjgpv"]
+[gd_scene load_steps=19 format=3 uid="uid://dgfos0wevjgpv"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_8wsnh"]
 [ext_resource type="PackedScene" uid="uid://2av55t0yxy4e" path="res://UI/DayOverUI.tscn" id="1_xjb1y"]
@@ -7,6 +7,63 @@
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5vuys"]
 [ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_31lnn"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/CardSelectionUI.tscn" id="4_v1i61"]
+[ext_resource type="Texture2D" uid="uid://cc8kht2epbt2g" path="res://placeholders/Honme.png" id="5_i4llw"]
+[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="7_e5l0a"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="8_n1ouh"]
+[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="9_hebao"]
+[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="10_k3anh"]
+
+[sub_resource type="Resource" id="Resource_pbwlf"]
+resource_local_to_scene = true
+script = ExtResource("7_e5l0a")
+Range = 1.0
+Value = 0
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = false
+effectGemType = 0
+
+[sub_resource type="Resource" id="Resource_kbj7i"]
+resource_local_to_scene = true
+script = ExtResource("8_n1ouh")
+Title = "Switch"
+Description = "Switch positions of two directly adjacent orbs"
+Cost = 1
+cardEffect = SubResource("Resource_pbwlf")
+
+[sub_resource type="Resource" id="Resource_lv7q0"]
+script = ExtResource("9_hebao")
+Range = 1.0
+Value = -1
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+
+[sub_resource type="Resource" id="Resource_w86go"]
+resource_local_to_scene = true
+script = ExtResource("8_n1ouh")
+Title = "Switch Vertical"
+Description = "Switch positions of two vertically adjacent ingredients"
+Cost = 1
+cardEffect = SubResource("Resource_lv7q0")
+
+[sub_resource type="Resource" id="Resource_ym5bx"]
+script = ExtResource("10_k3anh")
+Range = 1.0
+Value = -1
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+
+[sub_resource type="Resource" id="Resource_4t47e"]
+resource_local_to_scene = true
+script = ExtResource("8_n1ouh")
+Title = "Switch Horiz"
+Description = "Switch positions of two horizontally adjacent ingredients"
+Cost = 1
+cardEffect = SubResource("Resource_ym5bx")
 
 [node name="Home" type="Node2D" node_paths=PackedStringArray("status", "dayOver", "newCardSelection")]
 script = ExtResource("1_8wsnh")
@@ -17,26 +74,38 @@ cardPool = ExtResource("2_hntlq")
 relicList = ExtResource("3_5vuys")
 defaultCardList = ExtResource("3_31lnn")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 1.0
+offset_top = -103.0
+offset_right = 3849.0
+offset_bottom = 2481.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_i4llw")
+
 [node name="DayOverUI" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("1_xjb1y")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -31.0
-offset_right = -6.0
-offset_bottom = -31.0
+offset_left = -3.05176e-05
+offset_top = -218.0
+offset_right = -3.05176e-05
+offset_bottom = -218.0
+scale = Vector2(1.5, 1.5)
 gameManager = NodePath("..")
+upgradedSwitchCard = SubResource("Resource_kbj7i")
+vertSwitchCard = SubResource("Resource_w86go")
+horizSwitchCard = SubResource("Resource_4t47e")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1649.0
-offset_top = 70.0
-offset_right = 1649.0
-offset_bottom = 70.0
+offset_left = 1771.0
+offset_top = 66.0
+offset_right = 1771.0
+offset_bottom = 66.0
 grow_horizontal = 0
 gameManager = NodePath("..")
 

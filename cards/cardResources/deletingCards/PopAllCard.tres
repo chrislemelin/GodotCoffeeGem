@@ -14,7 +14,7 @@ effectGemType = 0
 
 [resource]
 script = ExtResource("2_tikbk")
-Title = "Pop ALL"
-Description = "Pop ALL orbs of a selected type"
+Title = "Pop All"
+Description = "Destroy all ingredients of a selected type"
 Cost = 2
 cardEffect = SubResource("Resource_i6k8f")

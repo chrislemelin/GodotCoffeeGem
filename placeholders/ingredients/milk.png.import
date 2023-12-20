@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cja74nrffthkl"
-path="res://.godot/imported/BlackGem.png-02d3f91d60d86a42a12ef50ec011a49e.ctex"
+uid="uid://dgerlpp12jt4v"
+path="res://.godot/imported/milk.png-b0c62252db52c80c8d52f0dee6cbeaf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Themes/BlackGem.png"
-dest_files=["res://.godot/imported/BlackGem.png-02d3f91d60d86a42a12ef50ec011a49e.ctex"]
+source_file="res://placeholders/ingredients/milk.png"
+dest_files=["res://.godot/imported/milk.png-b0c62252db52c80c8d52f0dee6cbeaf1.ctex"]
 
 [params]
 

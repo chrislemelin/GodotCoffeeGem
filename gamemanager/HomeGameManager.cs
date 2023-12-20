@@ -11,7 +11,9 @@ public partial class HomeGameManager : GameManagerIF
 	public override void _Ready()
 	{
 		base._Ready();
-		status.setLevel(global.currentLevel);
+		if (status != null) {
+			status.setLevel(global.currentLevel);
+		}
 	}
 	public override void advanceLevel() {
 		GetTree().ChangeSceneToFile("res://mainScenes/game.tscn");

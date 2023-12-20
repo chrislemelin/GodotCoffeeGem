@@ -15,6 +15,6 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_pll2h")
 Title = "Queen Teleport"
-Description = "Swap the positions of 2 gems in any direction that a queen could move"
+Description = "Swap the positions of 2 ingredients in any direction that a queen could move"
 Cost = 2
 cardEffect = SubResource("Resource_f7rht")

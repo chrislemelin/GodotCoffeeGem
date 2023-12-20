@@ -15,7 +15,7 @@ effectGemType = 0
 
 [resource]
 script = ExtResource("2_7gcs6")
-Title = "Draw Gems"
-Description = "Randomly create $value draw gem(s) and 1 black gem"
+Title = "Draw Infusion"
+Description = "Randomly create $value draw ingredients(s) and burn 1 ingredient"
 Cost = 0
 cardEffect = SubResource("Resource_m0v28")
