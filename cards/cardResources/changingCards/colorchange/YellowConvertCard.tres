@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://c0t40mre00w4j"]
+
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/CardEffectColorChange.cs" id="1_kicfu"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_f6brt"]
+
+[sub_resource type="Resource" id="Resource_mklkk"]
+script = ExtResource("1_kicfu")
+Range = 1.0
+Value = 1
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 4
+
+[resource]
+script = ExtResource("2_f6brt")
+Title = "Espresso Shot"
+Description = "Changes $value gem(s) with 1 spaces to Coffee"
+Cost = 1
+cardEffect = SubResource("Resource_mklkk")

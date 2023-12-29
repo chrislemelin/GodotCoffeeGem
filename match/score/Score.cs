@@ -203,14 +203,20 @@ public partial class Score : Node
 			TextureRect texture2D = (TextureRect)colorUpgradeUI.Instantiate();
 			texture2D.Modulate = colorUpgrade.gemType.GetColor();
 
-			texture2D.TooltipText = colorUpgrade.gemType.ToString() + "\nbonus score: " + colorUpgrade.baseIncrease + "\nbonus mult: " + colorUpgrade.multIncrease;
-			if(colorUpgrade.finalMult != 1) {
-				texture2D.TooltipText = texture2D.TooltipText + "\nfinal mult : " + colorUpgrade.multIncrease;
+			texture2D.TooltipText = colorUpgrade.gemType.ToString();
+			if (!colorUpgrade.baseIncrease.Equals(0) && !colorUpgrade.finalMult.Equals(0.0f)) {
+				texture2D.TooltipText += "\nbonus score: " + colorUpgrade.baseIncrease;
 			}
-			if(colorUpgrade.finalMult == 0) {
-				texture2D.TooltipText = colorUpgrade.gemType.ToString() + "\nno points given";
+			if (!colorUpgrade.multIncrease.Equals(0.0f)) {
+				texture2D.TooltipText += "\nbonus mult increase per match: " + colorUpgrade.multIncrease;
 			}
-			GD.Print("making color upgrade preview " + colorUpgrade);
+			if(colorUpgrade.finalMult.Equals(0.0f)) {
+				texture2D.TooltipText += "\nno points given";
+			}
+			else if(!colorUpgrade.finalMult.Equals(1.0f)) {
+				texture2D.TooltipText = texture2D.TooltipText + "\nfinal mult: " + colorUpgrade.finalMult;
+			}
+			
 			colorUpgradePreviewBox.AddChild(texture2D);
 		}
 	}
@@ -252,17 +258,39 @@ public partial class Score : Node
 	}
 
 	private int evaluatePoints(HashSet<Tile> match, GemType gemType) {
-		List<ColorUpgrade> upgradesForCurrentColor = colorUpgrades.Where(colorUpgrade => colorUpgrade.gemType == gemType).ToList();
-		int pointUpgrade = upgradesForCurrentColor.Sum(colorUpgrade => colorUpgrade.baseIncrease);
+		// List<ColorUpgrade> upgradesForCurrentColor = colorUpgrades.Where(colorUpgrade => colorUpgrade.gemType == gemType).ToList();
+		// int pointUpgrade = upgradesForCurrentColor.Sum(colorUpgrade => colorUpgrade.baseIncrease);
+		// float finalMult = upgradesForCurrentColor.Sum (colorUpgrade => colorUpgrade.baseIncrease);
+		Optional<ColorUpgrade> colorUpgrade = getColorUpgrade(gemType);
+		int pointUpgrade = 0;
+		float finalMult = 1.0f;
+		if (colorUpgrade.HasValue){
+			pointUpgrade = colorUpgrade.GetValue().baseIncrease;
+			finalMult = colorUpgrade.GetValue().finalMult;
+		}
+
 		if (match.Count == 3) {
-			return 100 + pointUpgrade;
+			return (int)((100 + pointUpgrade)*finalMult);
 		} else {
-			return 100 + (match.Count - 3) * 50 + pointUpgrade;
+			return (int)((100 + (match.Count - 3) * 50 + pointUpgrade) * finalMult);
 		}
 	}
 
 	private float evaluateMultIncrease(GemType gemType) {
-		List<ColorUpgrade> upgradesForCurrentColor = colorUpgrades.Where(colorUpgrade => colorUpgrade.gemType == gemType).ToList();
-		return upgradesForCurrentColor.Sum(colorUpgrade => colorUpgrade.multIncrease) + multIncrement;
+		Optional<ColorUpgrade> colorUpgrade = getColorUpgrade(gemType);
+		if (colorUpgrade.HasValue) {
+			return colorUpgrade.GetValue().multIncrease + multIncrement;
+		} else {
+			return multIncrement;
+		}
+	}
+
+	public Optional<ColorUpgrade> getColorUpgrade(GemType gemType)
+	{
+		if (!colorUpgradesCompressed.ContainsKey(gemType))
+		{
+			return Optional.None<ColorUpgrade>();
+		}
+		return Optional.Some<ColorUpgrade>(colorUpgradesCompressed[gemType]);
 	}
 }

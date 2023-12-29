@@ -61,6 +61,8 @@ public partial class GameManagerIF : Node
 		getGlobal().deckCardList.allCards = cardList;
 		getGlobal().currentLevel = 1;
 		getGlobal().currentHealth = 2;
+		getGlobal().relics = new List<RelicResource>();
+
 	}
 
 	public void addCardToGlobalDeckAndAdvanceLevel(CardResource cardResource)

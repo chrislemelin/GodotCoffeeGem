@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public enum GemType
@@ -61,6 +63,13 @@ static class GemTypeHelper
 	{
 		return (GemType)random.Next(5);
 	}
+	public static List<GemType> getRandomColors(int count)
+	{
+		List<int> ids = new List<int>{0,1,2,3,4};
+		RandomHelper.Shuffle(ids);
+		return ids.GetRange(0,Math.Min(count, ids.Count)).Select(id => (GemType)id).ToList();
+	}
+
 	private static Color newColor(int r, int g, int b) {
 		return new Color(r/255.0f, g/255.0f, b/255.0f);
 	}

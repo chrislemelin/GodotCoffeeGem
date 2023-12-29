@@ -25,7 +25,9 @@ public partial class DayOver : Control
 	[Export] ColorUpgrade colorUpgrade;
 	[Export] NewCardSelection newCardSelection;
 	[Export] CardResource upgradedSwitchCard;
+
 	[Export] CardResource vertSwitchCard;
+	// test dock 
 	[Export] CardResource horizSwitchCard;
 
 
@@ -40,6 +42,7 @@ public partial class DayOver : Control
 		base._Ready();
 		buttonWithCoinCost.Add(sideHustleButton);
 		buttonWithCoinCost.Add(shoppingTherapyButton);
+		
 		buttonWithCoinCost.Add(gemUpgradeButton);
 		buttonWithCoinCost.Add(moreCardsButton);
 		buttonWithCoinCost.Add(relicButton);
@@ -110,7 +113,7 @@ public partial class DayOver : Control
 		GemType gemType = GemTypeHelper.getRandomColor();
 		newColorUpgrade.gemType = gemType;
 		gameManager.addColorUpgrade(newColorUpgrade);
-		confirmationText.Text = "Upgraded the points and mult you gain from " + gemType.ToString() + " gems";
+		confirmationText.Text = "Upgraded the points and mult you gain from " + gemType.ToString();
 	}
 
 	private void addRelic() {

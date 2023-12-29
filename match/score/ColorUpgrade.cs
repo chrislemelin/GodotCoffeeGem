@@ -4,8 +4,8 @@ using System.ComponentModel;
 [GlobalClass, Tool]
 public partial class ColorUpgrade : Resource
 {
-	[Export] public int baseIncrease;
-	[Export] public float multIncrease;
+	[Export] public int baseIncrease = 0;
+	[Export] public float multIncrease = 0;
 	[Export] public GemType gemType;
 	[Export] public float finalMult = 1;
 

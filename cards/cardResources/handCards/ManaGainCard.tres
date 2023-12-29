@@ -7,7 +7,7 @@
 script = ExtResource("1_uvr6t")
 Range = 1.0
 Value = 1
-BlackGems = 3
+BlackGems = 2
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
@@ -15,6 +15,6 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_cdmb4")
 Title = "Mana Gain"
-Description = "Gain $value mana and burns 3 ingredients"
+Description = "Gain $value mana and burns 2 ingredients"
 Cost = 0
 cardEffect = SubResource("Resource_ihb2g")

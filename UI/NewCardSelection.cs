@@ -12,7 +12,7 @@ public partial class NewCardSelection : Control
 	[Export] RichTextLabel coinsGainedLabel;
 	[Export] Array<Control> levelPassedText = new Array<Control>(); 
 
-	[Export] Array<CardResource> cards;
+	[Export] Array<CardResource> cards = new Array<CardResource>();
 	[Export] int coinsGained = 0;
 
 	public override void _Ready()
@@ -33,6 +33,9 @@ public partial class NewCardSelection : Control
 				control.Visible = false;
 			}
 		} else {
+			foreach(Control control in levelPassedText) {
+				control.Visible = true;
+			}
 			coinsGainedLabel.Text = coinsGainedLabel.Text + " " + coinsGained;
 		}
 	}

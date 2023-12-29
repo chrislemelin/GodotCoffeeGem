@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=10 format=3 uid="uid://bcelpenpmwhtr"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=11 format=3 uid="uid://bcelpenpmwhtr"]
 
 [ext_resource type="Resource" uid="uid://dyu7r35wo3yq4" path="res://relics/resources/AdderallRelic.tres" id="1_fjo1h"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_scp5n"]
@@ -9,7 +9,8 @@
 [ext_resource type="Resource" uid="uid://wa8x0n1ft1f6" path="res://relics/resources/AppleRelic.tres" id="6_sxrbg"]
 [ext_resource type="Resource" uid="uid://c4p0e6bhtw00t" path="res://relics/resources/ManaGemsRelic.tres" id="7_gffpy"]
 [ext_resource type="Resource" uid="uid://dhtqi0mvscf8u" path="res://relics/resources/CardChoiceRelic.tres" id="8_lgbbd"]
+[ext_resource type="Resource" uid="uid://c1m7oxay81yih" path="res://relics/resources/GambleRelic.tres" id="9_ea36q"]
 
 [resource]
 script = ExtResource("1_scp5n")
-allRelics = [ExtResource("1_fjo1h"), ExtResource("2_m8m6o"), ExtResource("3_d7cmc"), ExtResource("4_3w1f8"), ExtResource("5_iuyq7"), ExtResource("6_sxrbg"), ExtResource("7_gffpy"), ExtResource("8_lgbbd")]
+allRelics = [ExtResource("1_fjo1h"), ExtResource("2_m8m6o"), ExtResource("3_d7cmc"), ExtResource("4_3w1f8"), ExtResource("5_iuyq7"), ExtResource("6_sxrbg"), ExtResource("7_gffpy"), ExtResource("8_lgbbd"), ExtResource("9_ea36q")]
