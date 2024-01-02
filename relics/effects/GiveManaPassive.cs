@@ -5,12 +5,14 @@ using System;
 public partial class GiveManaPassive : EffectResource
 {
 	[Export] public int value;
-	
-	public GiveManaPassive() {
-		 
+
+	public GiveManaPassive()
+	{
+
 	}
-	
-	public override void execute(Node node) {
-		node.GetNode<Mana>(FindObjectHelper.MANA_NAME).modifyMana(value);
+
+	public override void execute(Node node)
+	{
+		FindObjectHelper.getMana(node).modifyMana(value);
 	}
 }

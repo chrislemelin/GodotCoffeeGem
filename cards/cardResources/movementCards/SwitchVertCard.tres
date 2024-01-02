@@ -9,7 +9,7 @@ Range = 1.0
 Value = -1
 BlackGems = 0
 CardsToDiscard = 0
-canTargetBlackGems = true
+canTargetBlackGems = false
 effectGemType = 0
 
 [resource]

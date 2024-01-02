@@ -322,15 +322,7 @@ public partial class MatchBoard : Node
 			foreach (Tile currentTile in currentMatches)
 			{
 				tilesToDeleteGem.Add(currentTile.getTilePosition());
-				switch (currentTile.Gem.AddonType)
-				{
-					case GemAddonType.Mana:
-						mana.modifyMana(1);
-						break;
-					case GemAddonType.Card:
-						hand.drawCards(1);
-						break;
-				}
+				currentTile.Gem.doAddonEffect();
 			}
 		}
 		if (tilesToDeleteGem.Count > 0)
@@ -339,7 +331,7 @@ public partial class MatchBoard : Node
 			audioStreamPlayer2D.Play();
 		}
 		score.scoreMatches(matches);
-		deleteGemAtPositions(tilesToDeleteGem, false);
+		deleteGemAtPositionsFromMatches(matches);
 		return matches.Count > 0;
 	}
 
@@ -358,6 +350,39 @@ public partial class MatchBoard : Node
 	{
 		deleteGemAtPositions(new List<Vector2> { position }, playSound);
 	}
+
+	private void deleteGemAtPositionsFromMatches(HashSet<HashSet<Tile>> matches)
+	{
+		foreach (HashSet<Tile> match in matches)
+		{
+			List<Tile> tilesToDelete = match.Where(tile => tile.Gem != null).ToList();
+			List<Tile> gemsWithCombo = tilesToDelete.Where(tile => tile.Gem.getCombo() != 0).ToList();
+			if (gemsWithCombo.Count > 0)
+			{
+				Tile survivingGem = gemsWithCombo[0];
+				survivingGem.Gem.addCombo(1);
+				gemsWithCombo.Remove(survivingGem);
+				tilesToDelete.Remove(survivingGem);
+				foreach (Tile gemWithCombo in gemsWithCombo)
+				{
+					survivingGem.Gem.addCombo(gemWithCombo.Gem.getCombo());
+				}
+			}
+			List<Gem> gemsToDelete = tilesToDelete.Select(tile => tile.Gem).ToList();
+			gemsToBeDeleted.UnionWith(gemsToDelete);
+			foreach (Gem gem in gemsToDelete)
+			{
+				gem.doneDyingSignal += gemDoneDying;
+			}
+
+			foreach (Tile tile in tilesToDelete)
+			{
+				deleteGemAtPositionInternal(tile.getTilePosition());
+			}
+		}
+
+	}
+
 	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool playSound)
 	{
 		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).ToList();
@@ -549,6 +574,13 @@ public partial class MatchBoard : Node
 
 	public List<Tile> getRandomTilesWithCondition(int count, Func<Tile, bool> condition)
 	{
+		List<Tile> tileList = getTilesWithCondition(condition);
+		RandomHelper.Shuffle(tileList);
+		return tileList.GetRange(0, Math.Min(count, tileList.Count));
+	}
+
+	public List<Tile> getTilesWithCondition(Func<Tile, bool> condition)
+	{
 		List<Tile> tileList = new List<Tile>();
 		foreach (Tile tile in tileSet)
 		{
@@ -557,8 +589,7 @@ public partial class MatchBoard : Node
 				tileList.Add(tile);
 			}
 		}
-		RandomHelper.Shuffle(tileList);
-		return tileList.GetRange(0, Math.Min(count, tileList.Count));
+		return tileList;
 	}
 
 	//functions that could be called by external sources (cards)
@@ -574,9 +605,24 @@ public partial class MatchBoard : Node
 				tilesToReturn.Add(tile);
 			}
 		}
-
 		return tilesToReturn;
 	}
+
+	public List<Tile> getTilesWithAddon(GemAddonType addonType)
+	{
+		return getTilesWithCondition((tile) =>
+		{
+			if (tile.Gem != null)
+			{
+				return tile.Gem.AddonType == addonType;
+			}
+			else
+			{
+				return false;
+			}
+		});
+	}
+
 
 	public HashSet<Tile> getAllTiles()
 	{

@@ -38,11 +38,13 @@ public partial class Hand : Node
 	[Export]
 	int width = 400;
 
-	public Optional<CardIF> getCardSelected() {
+	public Optional<CardIF> getCardSelected()
+	{
 		return cardSelected;
 	}
 
-	public Optional<CardIF> getCardHovered() {
+	public Optional<CardIF> getCardHovered()
+	{
 		return cardHovered;
 	}
 
@@ -64,19 +66,23 @@ public partial class Hand : Node
 	{
 	}
 
-	private int getCardsDrawnOnTurnStart() {
+	private int getCardsDrawnOnTurnStart()
+	{
 		int value = cardsDrawnOnNewTurn;
-		foreach(HandPassive handPassive in handPassives) {
+		foreach (HandPassive handPassive in handPassives)
+		{
 			value += handPassive.cardsOnTurnStart;
 		}
 		return value;
 	}
 
-	private void playCard(CardIF card, List<Vector2> positions) {
-		if (mana.manaValue >= card.getCardResource().getCost()) {
+	private void playCard(CardIF card, List<Vector2> positions)
+	{
+		if (mana.manaValue >= card.getCardResource().getCost())
+		{
 			card.playCard(matchBoard, this, mana, positions);
 			cardsPlayedThisTurn.Add(card.getCardResource());
-			audioStreamPlayer2D.Stream = cardPlayedSoundEffect;  
+			audioStreamPlayer2D.Stream = cardPlayedSoundEffect;
 			audioStreamPlayer2D.Play();
 			mana.modifyMana(card.getCardResource().getCost() * -1);
 			clearSelectedCard();
@@ -86,9 +92,11 @@ public partial class Hand : Node
 		}
 	}
 
-	
-	public void tilesSelectedForCard(MatchBoard board, List<Vector2> positions) {
-		if(cardSelected.HasValue) {
+
+	public void tilesSelectedForCard(MatchBoard board, List<Vector2> positions)
+	{
+		if (cardSelected.HasValue)
+		{
 			CardIF card = cardSelected.GetValue();
 			playCard(card, positions);
 		}
@@ -123,7 +131,8 @@ public partial class Hand : Node
 		return true;
 	}
 
-	public void cardsToSelect(int numberOfCards, bool required, CardEffectIF cardEffect) {
+	public void cardsToSelect(int numberOfCards, bool required, CardEffectIF cardEffect)
+	{
 
 	}
 
@@ -131,7 +140,8 @@ public partial class Hand : Node
 	{
 		if (inputEvent.IsActionPressed("click"))
 		{
-			switch(card.getCardResource().getSelectionType()) {
+			switch (card.getCardResource().getSelectionType())
+			{
 				case SelectionType.Single:
 				case SelectionType.Double:
 					setSelectedCard(card);
@@ -144,8 +154,10 @@ public partial class Hand : Node
 		};
 	}
 
-	private void setSelectedCard(CardIF card) {
-		if (mana.manaValue >= card.getCardResource().getCost()) {
+	private void setSelectedCard(CardIF card)
+	{
+		if (mana.manaValue >= card.getCardResource().getCost())
+		{
 			clearSelectedCard();
 			handLine.turnOn(card.Position);
 			cardSelected = Optional.Some<CardIF>(card);
@@ -153,11 +165,13 @@ public partial class Hand : Node
 		}
 	}
 
-	public List<CardIF> getAllCards( ) {
+	public List<CardIF> getAllCards()
+	{
 		return cards;
 	}
 
-	private void clearSelectedCard() {
+	private void clearSelectedCard()
+	{
 		handLine.turnOff();
 		matchBoard.clearTilesSelected();
 		if (cardSelected.HasValue)
@@ -167,52 +181,67 @@ public partial class Hand : Node
 		}
 	}
 
-	public void checkCardsForDisabeling() {
-		foreach(CardIF card in cards) {
-			if (card.getCardResource().getCost() > mana.manaValue) {
+	public void checkCardsForDisabeling()
+	{
+		foreach (CardIF card in cards)
+		{
+			if (card.getCardResource().getCost() > mana.manaValue)
+			{
 				card.setDisabled();
-			} else {
+			}
+			else
+			{
 				card.setEnabled();
 			}
 		}
 	}
 
-	private void setCardHovered(CardIF card) {
+	private void setCardHovered(CardIF card)
+	{
 		setCardHovered(Optional.Some<CardIF>(card));
 	}
 
-	private void clearCardHovered() {
+	private void clearCardHovered()
+	{
 		setCardHovered(Optional.None<CardIF>());
 	}
-	
 
-	private void setCardHovered(Optional<CardIF> card) {
-		if (cardHovered.HasValue && IsInstanceValid(cardHovered.GetValue())) {
+
+	private void setCardHovered(Optional<CardIF> card)
+	{
+		if (cardHovered.HasValue && IsInstanceValid(cardHovered.GetValue()))
+		{
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()));
 		}
 		cardHovered = card;
-		if (cardHovered.HasValue) {
+		if (cardHovered.HasValue)
+		{
 			cardContainer.MoveChild(cardHovered.GetValue(), cards.Count);
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * 25);
-		} else {
+		}
+		else
+		{
 			int count = 0;
-			foreach(CardIF currentCard in cards) {
+			foreach (CardIF currentCard in cards)
+			{
 				cardContainer.MoveChild(currentCard, count);
 				count++;
 			}
 		}
 	}
 
-	public void setUpNewTurn(){
+	public void setUpNewTurn()
+	{
 		discardHand();
 		cardsPlayedThisTurn.Clear();
 		clearSelectedCard();
 		mana.resetManaValue();
 	}
 
-	public void startNewTurn () {
+	public void startNewTurn()
+	{
 		deck.drawCards(getCardsDrawnOnTurnStart());
-		audioStreamPlayer2D.Stream = newHandSoundEffect;  
+		audioStreamPlayer2D.Stream = newHandSoundEffect;
 		audioStreamPlayer2D.Play();
 	}
 
@@ -224,8 +253,10 @@ public partial class Hand : Node
 		repositionCards();
 	}
 
-	public void discardHand() {
-		foreach(CardIF card in cards) {
+	public void discardHand()
+	{
+		foreach (CardIF card in cards)
+		{
 			discard.addCard(card.getCardResource());
 			card.delete();
 		}
@@ -243,16 +274,18 @@ public partial class Hand : Node
 		}
 	}
 
-	private Vector2 getPositionForCard(CardIF card) {
+	private Vector2 getPositionForCard(CardIF card)
+	{
 		for (int index = 0; index < cards.Count; index++)
 		{
 			CardIF currentCard = cards[index];
 			lerp lerpScript = card as lerp;
-			if (currentCard == card) {
+			if (currentCard == card)
+			{
 				return getPositionForCardV2(index);
-			} 
+			}
 		}
-		return new Vector2(0,0);
+		return new Vector2(0, 0);
 	}
 
 	private Vector2 getPositionForCard(int index)
@@ -263,31 +296,31 @@ public partial class Hand : Node
 
 	private Vector2 getPositionForCardV2(int index)
 	{
-		float newX = width * -0.5f + width / (cards.Count+1) * (index + 1);
+		float newX = width * -0.5f + width / (cards.Count + 1) * (index + 1);
 		return new Vector2(newX, 0);
 	}
 
-	public void drawCards (int count) {
+	public void drawCards(int count)
+	{
 		deck.drawCards(count);
-		audioStreamPlayer2D.Stream = newHandSoundEffect;  
+		audioStreamPlayer2D.Stream = newHandSoundEffect;
 		audioStreamPlayer2D.Play();
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("right click")){
+		if (@event.IsActionPressed("right click"))
+		{
 			if (@event is InputEventMouseButton eventMouseButton)
 			{
-				Vector2 posToCheck = sprite2D.ToLocal( eventMouseButton.Position);
-				if (!sprite2D.GetRect().HasPoint(posToCheck)) {
-					if (cardSelected.HasValue) {
-						clearSelectedCard();
-					}
+				if (cardSelected.HasValue)
+				{
+					clearSelectedCard();
 				}
-
 			}
 		}
-		if (@event.IsActionPressed("space")){
+		if (@event.IsActionPressed("space"))
+		{
 			deck.drawCards(1);
 		}
 	}

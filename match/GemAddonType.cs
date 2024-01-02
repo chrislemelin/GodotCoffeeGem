@@ -6,7 +6,7 @@ public enum GemAddonType
 	None,
 	Mana,
 	Card,
-	Rainbow
+	Combo
 }
 
 static class GemAddonTypeHelper
@@ -16,6 +16,6 @@ static class GemAddonTypeHelper
 	//gets Random addon (ignoring none)
 	public static GemAddonType getRandomAddon()
 	{
-		return (GemAddonType)(random.Next(Enum.GetNames(typeof(GemAddonType)).Length-1)+1);
+		return (GemAddonType)(random.Next(Enum.GetNames(typeof(GemAddonType)).Length - 1) + 1);
 	}
 }

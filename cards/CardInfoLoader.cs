@@ -20,8 +20,14 @@ public partial class CardInfoLoader : Control
 	{
 		this.cardResource = cardResource;
 
-		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None) {
+		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None)
+		{
 			picture.Modulate = cardResource.cardEffect.effectGemType.GetGemType().GetColor();
+		}
+		if (cardResource.Picture != null)
+		{
+			picture.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+			picture.Texture = cardResource.Picture;
 		}
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);

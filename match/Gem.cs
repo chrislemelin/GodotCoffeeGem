@@ -7,6 +7,7 @@ public partial class Gem : lerp
 	[Export] public Sprite2D sprite2D;
 
 	[Export] public Sprite2D addonSprite;
+	[Export] public RichTextLabel comboTextLabel;
 
 	[Export] public Texture2D manaAddonTexture;
 	[Export] public Texture2D cardAddonTexture;
@@ -18,17 +19,17 @@ public partial class Gem : lerp
 	[Export] public Texture2D sugarTexture;
 	[Export] public Texture2D vanillaTexture;
 	[Export] public Texture2D orbTexture;
-
-
 	[Export] public bool useSprites;
-
 	[Export] AnimationPlayer animationPlayer;
+
+	private int comboValue = 1;
 
 	private Color? startingModulate = null;
 
 	[Signal]
 	public delegate void doneDyingSignalEventHandler(Gem gem);
-	[Export]public GemType Type
+	[Export]
+	public GemType Type
 	{
 		get;
 		private set;
@@ -49,25 +50,33 @@ public partial class Gem : lerp
 
 	public void setType(GemType type)
 	{
-		if (startingModulate == null) {
+		if (startingModulate == null)
+		{
 			startingModulate = Modulate;
 		}
 		Type = type;
-		if (useSprites && !(type == GemType.Black || type == GemType.Rainbow)) {
+		if (useSprites && !(type == GemType.Black || type == GemType.Rainbow))
+		{
 			Modulate = startingModulate.Value;
 			sprite2D.Texture = getTexture(type);
-		} else {
+		}
+		else
+		{
 			sprite2D.Texture = orbTexture;
 			Modulate = type.GetColor();
 		}
-		if (type == GemType.Rainbow) {
-			this.sprite2D.Material = rainbowMaterial;
-		} else {
+		if (type == GemType.Rainbow)
+		{
+			sprite2D.Material = rainbowMaterial;
+		}
+		else
+		{
 			sprite2D.Material = null;
 		}
 
 	}
-	private Texture2D getTexture(GemType type) {
+	private Texture2D getTexture(GemType type)
+	{
 		switch (type)
 		{
 			case GemType.Coffee:
@@ -85,30 +94,70 @@ public partial class Gem : lerp
 		}
 	}
 
-	public void startDying() {
+	public void doAddonEffect()
+	{
+		switch (AddonType)
+		{
+			case GemAddonType.Mana:
+				FindObjectHelper.getMana(this).modifyMana(1);
+				break;
+			case GemAddonType.Card:
+				FindObjectHelper.getHand(this).drawCards(1);
+				break;
+		}
+	}
+
+	public void startDying()
+	{
 		animationPlayer.Play("PopAnimation");
 	}
 
-	public void doneDying() {
+	public void doneDying()
+	{
 		QueueFree();
 		EmitSignal(SignalName.doneDyingSignal, this);
 	}
 
-	public void setAddonType(GemAddonType gemAddonType) {
+	public void addCombo(int value)
+	{
+		if (AddonType == GemAddonType.Combo)
+		{
+			comboValue += value;
+			comboTextLabel.Text = "+" + comboValue;
+		}
+	}
+
+	public int getCombo()
+	{
+		if (AddonType == GemAddonType.Combo)
+		{
+			return comboValue;
+		}
+		return 0;
+	}
+
+	public void setAddonType(GemAddonType gemAddonType)
+	{
 		AddonType = gemAddonType;
-		switch(gemAddonType) {
+		switch (gemAddonType)
+		{
 			case GemAddonType.None:
 				addonSprite.Texture = null;
 				break;
 			case GemAddonType.Mana:
 				addonSprite.Visible = true;
 				addonSprite.Texture = manaAddonTexture;
-				addonSprite.Scale = new Vector2(.3f,.3f);
+				addonSprite.Scale = new Vector2(.3f, .3f);
 				break;
 			case GemAddonType.Card:
 				addonSprite.Visible = true;
 				addonSprite.Texture = cardAddonTexture;
-				addonSprite.Scale = new Vector2(.5f,.5f);
+				addonSprite.Scale = new Vector2(.5f, .5f);
+				break;
+			case GemAddonType.Combo:
+				comboTextLabel.Visible = true;
+				comboValue = 1;
+				comboTextLabel.Text = "+" + comboValue;
 				break;
 		}
 	}

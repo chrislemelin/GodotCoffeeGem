@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=19 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_qwsb4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dgerlpp12jt4v" path="res://placeholders/ingredients/milk.png" id="7_qx62n"]
 [ext_resource type="Texture2D" uid="uid://db2m26vyear4v" path="res://placeholders/ingredients/sugar-cube.png" id="8_3wlvj"]
 [ext_resource type="Texture2D" uid="uid://dtbl78i34wf3c" path="res://placeholders/ingredients/Vanilla1.png" id="9_xglmh"]
+[ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/ComboStyleBox.tres" id="12_bexrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
 shader = ExtResource("5_2oikk")
@@ -67,13 +68,17 @@ _data = {
 "RESET": SubResource("Animation_fa63w")
 }
 
+[sub_resource type="Theme" id="Theme_t1sr2"]
+RichTextLabel/styles/normal = ExtResource("12_bexrd")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crmls"]
 size = Vector2(251, 247)
 
-[node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "animationPlayer")]
+[node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "comboTextLabel", "animationPlayer")]
 script = ExtResource("2_5yd20")
 sprite2D = NodePath("CanvasGroup/GemSprite")
-addonSprite = NodePath("CanvasGroup/Node2D/GemAddon")
+addonSprite = NodePath("CanvasGroup/AddonParent/GemAddon")
+comboTextLabel = NodePath("CanvasGroup/AddonParent/ComboLabel")
 manaAddonTexture = ExtResource("2_qwsb4")
 cardAddonTexture = ExtResource("3_835wl")
 rainbowMaterial = SubResource("ShaderMaterial_jmian")
@@ -113,13 +118,25 @@ scale = Vector2(2.31193, 2.31193)
 texture = ExtResource("6_7pibk")
 centered = false
 
-[node name="Node2D" type="Node2D" parent="CanvasGroup"]
+[node name="AddonParent" type="Node2D" parent="CanvasGroup"]
 position = Vector2(200, 199)
 scale = Vector2(0.3, 0.3)
 
-[node name="GemAddon" type="Sprite2D" parent="CanvasGroup/Node2D"]
+[node name="GemAddon" type="Sprite2D" parent="CanvasGroup/AddonParent"]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_qwsb4")
+
+[node name="ComboLabel" type="RichTextLabel" parent="CanvasGroup/AddonParent"]
+visible = false
+offset_left = -106.667
+offset_top = -136.667
+offset_right = 163.333
+offset_bottom = 147.333
+theme = SubResource("Theme_t1sr2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "+1"
 
 [node name="Area2D" type="Area2D" parent="."]
 

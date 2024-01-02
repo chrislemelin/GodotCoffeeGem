@@ -13,7 +13,6 @@ public partial class Status : Node
 	[Export] Color heartColor;
 
 
-
 	private int coins = 0;
 	private int heartsRemaining = 2;
 	private int level = 1;

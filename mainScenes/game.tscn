@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=27 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
@@ -22,6 +22,7 @@
 [ext_resource type="StyleBox" uid="uid://bkqr0iynl6gtr" path="res://UI/Themes/TutorialStyleBox.tres" id="18_uicyl"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="18_vk04q"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="18_y5ido"]
+[ext_resource type="Texture2D" uid="uid://br4ldam3vc7v3" path="res://placeholders/tutorial/Screenshot 2024-01-02 153911.png" id="20_2g6nx"]
 [ext_resource type="Texture2D" uid="uid://c4bqm3aiirl78" path="res://placeholders/tutorial/Screenshot 2023-12-19 090925.png" id="20_cw8l2"]
 [ext_resource type="Texture2D" uid="uid://lp4raqd5t3v5" path="res://placeholders/tutorial/Screenshot 2023-12-15 082252.png" id="21_1sem2"]
 [ext_resource type="Texture2D" uid="uid://cja74nrffthkl" path="res://placeholders/tutorial/BlackGem.png" id="22_hisef"]
@@ -60,16 +61,16 @@ gameManager = NodePath("..")
 position = Vector2(137, 910)
 scale = Vector2(0.5, 0.5)
 
-[node name="Mana" parent="." instance=ExtResource("10_4f0tc")]
+[node name="Mana" parent="." groups=["Mana"] instance=ExtResource("10_4f0tc")]
 unique_name_in_owner = true
 position = Vector2(1595, 637)
 
-[node name="Score" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("11_nsha1")]
+[node name="Score" parent="." node_paths=PackedStringArray("gameManager") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
 position = Vector2(1757, 124)
 gameManager = NodePath("..")
 
-[node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager") instance=ExtResource("8_m8idd")]
+[node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager") groups=["Hand"] instance=ExtResource("8_m8idd")]
 unique_name_in_owner = true
 position = Vector2(951, 895)
 scale = Vector2(1.5, 1.5)
@@ -126,17 +127,23 @@ flip_v = true
 
 [node name="GemsTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 anchors_preset = 0
-offset_left = -1.0
-offset_top = 19.0
-offset_right = -1.0
-offset_bottom = 19.0
+offset_left = 29.0
+offset_top = 115.0
+offset_right = 29.0
+offset_bottom = 115.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/TutorialScreen/GemsTutorial"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 157.0
-offset_right = 206.0
-offset_bottom = 197.0
+offset_left = -9.0
+offset_top = 68.0
+offset_right = 291.0
+offset_bottom = 667.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Types of ingredients"
+fit_content = true
 
 [node name="ManaGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
 custom_minimum_size = Vector2(300, 125)
@@ -160,7 +167,7 @@ offset_bottom = 108.0
 texture = ExtResource("20_cw8l2")
 
 [node name="CardGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
-custom_minimum_size = Vector2(300, 160)
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/CardGemTutorial"]
@@ -168,7 +175,7 @@ layout_mode = 0
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 174.0
-offset_bottom = 151.0
+offset_bottom = 139.0
 theme = ExtResource("18_y5ido")
 text = "Card infused ingredients will draw a card into your hand if you match them
 "
@@ -180,6 +187,27 @@ offset_top = 10.0
 offset_right = 283.0
 offset_bottom = 108.0
 texture = ExtResource("21_1sem2")
+
+[node name="ComboGemTutorial2" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
+custom_minimum_size = Vector2(300, 140)
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 171.0
+offset_bottom = 132.695
+theme = ExtResource("18_y5ido")
+text = "Combo infused ingredients will give increasing points with each match
+"
+
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 10.0
+offset_right = 283.0
+offset_bottom = 108.0
+texture = ExtResource("20_2g6nx")
 
 [node name="BlackGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
 custom_minimum_size = Vector2(300, 125)
@@ -224,9 +252,9 @@ layout_mode = 0
 offset_left = -236.0
 offset_top = -64.0
 offset_right = 19.0
-offset_bottom = 85.0
+offset_bottom = 91.0
 theme = ExtResource("18_y5ido")
-text = "This is the number of turns you have to complete the level, if you run our of turns you will start losing hears, you lose when you run out of hearts"
+text = "This is the number of turns you have to complete the level, if you run out of turns you will start losing hearts, you lose when you run out of hearts"
 
 [node name="MoneyTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 anchors_preset = 0
@@ -364,13 +392,13 @@ texture = ExtResource("17_so8o5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/ManaTurorial"]
 layout_mode = 0
-offset_left = -217.798
-offset_top = -47.8457
-offset_right = 18.2024
-offset_bottom = 71.1543
+offset_left = -218.0
+offset_top = -48.0
+offset_right = 18.0
+offset_bottom = 26.0
 rotation = 0.0259918
 theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This is your mana it represents your will to live and can be used to play cards"
+text = "This is your mana it can be used to play cards"
 
 [node name="HandTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
 layout_mode = 3
@@ -379,7 +407,6 @@ offset_left = 541.0
 offset_top = 877.0
 offset_right = 541.0
 offset_bottom = 877.0
-rotation = -0.0267641
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/HandTurorial"]
 layout_mode = 0
@@ -396,9 +423,9 @@ layout_mode = 0
 offset_left = -211.0
 offset_top = -29.0
 offset_right = 13.0
-offset_bottom = 71.0
+offset_bottom = 90.0
 theme_override_styles/normal = ExtResource("18_uicyl")
-text = "Play cards to make matches and earn points"
+text = "Play cards to make matches and earn points. Cards have a mana cost in the top left"
 
 [node name="EndTurnTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 layout_mode = 3

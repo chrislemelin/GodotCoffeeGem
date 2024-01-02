@@ -23,11 +23,13 @@ public partial class GameManagerIF : Node
 		return new List<CardResource>(global.deckCardList.allCards);
 	}
 
-	public void addCardToDeckList(CardResource cardResource) {
+	public void addCardToDeckList(CardResource cardResource)
+	{
 		global.deckCardList.allCards.Add(cardResource);
 	}
 
-	public void removeCardFromDeckList(CardResource cardResource) {
+	public void removeCardFromDeckList(CardResource cardResource)
+	{
 		global.deckCardList.allCards.Remove(cardResource);
 	}
 
@@ -36,7 +38,8 @@ public partial class GameManagerIF : Node
 		loadGlobalAndSetDeckToDefault();
 	}
 
-	private void loadGLobal() {
+	private void loadGLobal()
+	{
 		if (global == null)
 		{
 			global = GetNode<Global>(Global.LOAD_STRING);
@@ -71,7 +74,8 @@ public partial class GameManagerIF : Node
 		advanceLevel();
 	}
 
-	public List<RelicResource> getRelicPool() {
+	public List<RelicResource> getRelicPool()
+	{
 		return relicList.allRelics.Duplicate().ToList();
 	}
 
@@ -138,6 +142,11 @@ public partial class GameManagerIF : Node
 		getGlobal().relics.Add((RelicResource)relicResource.Duplicate());
 	}
 
+	public void syncRelics(List<RelicResource> relicResources)
+	{
+		getGlobal().relics = relicResources;
+	}
+
 	public void addCoins(int coinValue)
 	{
 		getGlobal().currentCoins += coinValue;
@@ -149,7 +158,8 @@ public partial class GameManagerIF : Node
 		getGlobal().colorUpgrades.Add(colorUpgrade);
 	}
 
-	protected Global getGlobal() {
+	protected Global getGlobal()
+	{
 		loadGLobal();
 		return global;
 	}

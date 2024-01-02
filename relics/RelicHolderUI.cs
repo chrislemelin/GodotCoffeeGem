@@ -10,29 +10,41 @@ public partial class RelicHolderUI : Control
 	[Export] Control relicControlHolder;
 	List<RelicResource> relicResources;
 
-	public void setRelicList(List<RelicResource> relicResources) {
+	public void setRelicList(List<RelicResource> relicResources)
+	{
 		this.relicResources = relicResources;
 		deleteRelics();
 		setUpRelics();
 	}
 
-	private void deleteRelics() {
-		foreach (Node node in relicControlHolder.GetChildren()) {
+	public List<RelicResource> getRelics()
+	{
+		return relicResources;
+	}
+
+	private void deleteRelics()
+	{
+		foreach (Node node in relicControlHolder.GetChildren())
+		{
 			node.QueueFree();
 		}
 	}
 
-	private void setUpRelics() {
-		foreach(RelicResource relicResource in relicResources) {
+	private void setUpRelics()
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
 			relicUI.setRelic(relicResource);
 			relicControlHolder.AddChild(relicUI);
 		}
 	}
 
-	public void startUpRelics() {
-		foreach(RelicResource relicResource in relicResources) {
-			relicResource.resetCounter();
+	public void startUpRelics()
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			//relicResource.resetCounter();
 			foreach (EffectResource executablePassive in relicResource.getGameStartExePassives())
 			{
 				executablePassive.execute(this);
@@ -44,8 +56,10 @@ public partial class RelicHolderUI : Control
 		}
 	}
 
-	public void startNewTurn() {
-		foreach(RelicResource relicResource in relicResources) {
+	public void startNewTurn()
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
 			relicResource.incrementTurnCounter();
 			foreach (EffectResource executablePassive in relicResource.getTurnStartEffects())
 			{

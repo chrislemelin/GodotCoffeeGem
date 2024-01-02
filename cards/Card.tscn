@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnpyoe2yoj0a3"]
+[gd_scene load_steps=13 format=3 uid="uid://dxglilg0fi5wj"]
 
 [ext_resource type="Script" path="res://cards/Card.cs" id="1_egnkj"]
 [ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="2_5dnl5"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bs6s20l3sbdia"]
+
+[ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectDealWithDevil.cs" id="1_ro7xl"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ts768"]
+
+[sub_resource type="Resource" id="Resource_fm1w4"]
+script = ExtResource("1_ro7xl")
+Range = 1.0
+Value = -1
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+
+[resource]
+script = ExtResource("2_ts768")
+Title = "Deal with the Devil"
+Description = "Lose a turn (this can kill you) and then gain 3 cards and 2 mana"
+Cost = 0
+cardEffect = SubResource("Resource_fm1w4")

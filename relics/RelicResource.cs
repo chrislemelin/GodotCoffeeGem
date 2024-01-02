@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
- public partial class RelicResource : Resource
+public partial class RelicResource : Resource
 {
 	[Export] public String title;
 	[Export(PropertyHint.MultilineText)] public String description;
@@ -19,50 +19,58 @@ using System.Linq;
 
 
 	[Export] private Array<Passive> turnStartPassives = new Array<Passive>();
-	[Export] private Array<EffectResource> turnStartExePassives = new Array<EffectResource>() ;
+	[Export] private Array<EffectResource> turnStartExePassives = new Array<EffectResource>();
 
-	[Export] private Array<EffectResource> addToInvEffects = new Array<EffectResource>() ;
+	[Export] private Array<EffectResource> addToInvEffects = new Array<EffectResource>();
 
 	[Signal] public delegate void CounterChangedEventHandler(int newCount);
 	[Export] public int counterMax;
-	public int counter;
+	public int counter = 1;
 
-	public List<T> getStartPassives<T>() where T: Passive{
-		return gameStartPassives.Where(passive => passive is T).Select(passive =>(T)passive).ToList();
+	public List<T> getStartPassives<T>() where T : Passive
+	{
+		return gameStartPassives.Where(passive => passive is T).Select(passive => (T)passive).ToList();
 	}
 
-	public void incrementTurnCounter() {
+	public void incrementTurnCounter()
+	{
 		counter++;
-		if (counter > counterMax) {
+		if (counter > counterMax)
+		{
 			counter = 1;
 		}
 		EmitSignal(SignalName.CounterChanged, counter);
 	}
 
-	public void resetCounter() {
+	public void resetCounter()
+	{
 		counter = 1;
-		GetSignalConnectionList(SignalName.CounterChanged);
-		
 		EmitSignal(SignalName.CounterChanged, counter);
 	}
 
-	public List<EffectResource> getGameStartExePassives() {
+	public List<EffectResource> getGameStartExePassives()
+	{
 		return gameStartExePassives.ToList();
 	}
 
-	public List<EffectResource> getAddToInventoryExePassives() {
+	public List<EffectResource> getAddToInventoryExePassives()
+	{
 		return addToInvEffects.ToList();
 	}
 
-	public void executeAddedToInvEffects(Node node) {
-		foreach(EffectResource executablePassive in addToInvEffects){
+	public void executeAddedToInvEffects(Node node)
+	{
+		foreach (EffectResource executablePassive in addToInvEffects)
+		{
 			executablePassive.execute(node);
 		}
 	}
 
 
-	public List<EffectResource> getTurnStartEffects() {
-		if (counterMax == 0 || counter == counterMax) {
+	public List<EffectResource> getTurnStartEffects()
+	{
+		if (counterMax == 0 || counter == counterMax)
+		{
 			return turnStartExePassives.ToList();
 		}
 		return new List<EffectResource>();

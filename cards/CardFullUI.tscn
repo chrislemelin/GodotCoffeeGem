@@ -90,13 +90,14 @@ mouse_filter = 2
 [node name="Sprite2D" type="TextureRect" parent="Center/Picture"]
 modulate = Color(0.196078, 0.196078, 0.196078, 1)
 layout_mode = 0
-offset_left = -13.0
-offset_top = -10.3336
-offset_right = 387.0
-offset_bottom = 389.666
+offset_left = -8.59999
+offset_top = -10.6
+offset_right = 391.4
+offset_bottom = 389.4
 scale = Vector2(0.8, 0.55)
 mouse_filter = 2
 texture = ExtResource("7_jrfr0")
+expand_mode = 1
 
 [node name="Title" type="Control" parent="Center"]
 layout_mode = 3

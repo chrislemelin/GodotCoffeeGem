@@ -2,9 +2,10 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class CardIF : lerp{
+public partial class CardIF : lerp
+{
 
-	
+
 	[Export] protected RichTextLabel titleLabel;
 	[Export] protected RichTextLabel descriptionLabel;
 	[Export] protected RichTextLabel costLabel;
@@ -26,11 +27,13 @@ public partial class CardIF : lerp{
 		base._Ready();
 	}
 
-	public void setDisabled() {
+	public void setDisabled()
+	{
 		Modulate = disabledColor;
 	}
-	public void setEnabled(){
-		Modulate = new Color(1,1,1);
+	public void setEnabled()
+	{
+		Modulate = new Color(1, 1, 1);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,8 +43,10 @@ public partial class CardIF : lerp{
 
 	}
 
-	public void setCardResource(CardResource cardResource) {
-		if (this.cardResource != null) {
+	public void setCardResource(CardResource cardResource)
+	{
+		if (this.cardResource != null)
+		{
 			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 		}
 		this.cardResource = cardResource;
@@ -51,11 +56,15 @@ public partial class CardIF : lerp{
 
 	private void setUpCard()
 	{
-//		if (GetTree().)
-		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None) {
+		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None)
+		{
 			picture.Modulate = cardResource.cardEffect.effectGemType.GetGemType().GetColor();
 		}
-
+		if (cardResource.Picture != null)
+		{
+			picture.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+			picture.Texture = cardResource.Picture;
+		}
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
 		descriptionLabel.Text = cardResource.getDescription();
@@ -75,7 +84,8 @@ public partial class CardIF : lerp{
 	{
 	}
 
-	public void delete() {
+	public void delete()
+	{
 		//cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 		QueueFree();
 	}
@@ -83,7 +93,8 @@ public partial class CardIF : lerp{
 	{
 		return cardResource;
 	}
-	protected override void Dispose(bool disposing) {
+	protected override void Dispose(bool disposing)
+	{
 		//if (cardResource )
 		cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 		base.Dispose(disposing);

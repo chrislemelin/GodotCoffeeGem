@@ -24,10 +24,10 @@ finalMult = 1.0
 
 [node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")
-scoreLabel = NodePath("VBoxContainer/ScoreLabelText")
+scoreLabel = NodePath("VBoxContainer/Level Progress")
 multLabel = NodePath("VBoxContainer/MultLabelText")
 turnsRemainingLabel = NodePath("VBoxContainer/Turns Remaining")
-moneyNeededLabel = NodePath("VBoxContainer/Money Needed")
+moneyNeededLabel = NodePath("VBoxContainer/Level Progress")
 levelLabel = NodePath("VBoxContainer/Level Label")
 coinsLabel = NodePath("VBoxContainer/CoinsContainer/RichTextLabel")
 colorUpgradePreviewBox = NodePath("VBoxContainer/MarginContainer/UpgradeContainer")
@@ -108,6 +108,35 @@ text = "MONEY NEEDED:"
 fit_content = true
 scroll_active = false
 
+[node name="Level Progress" type="RichTextLabel" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(210, 30)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Score:"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 20)
+layout_direction = 2
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100.03, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "100/200"
+fit_content = true
+scroll_active = false
+
 [node name="Turns Remaining" type="RichTextLabel" parent="VBoxContainer"]
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -116,17 +145,6 @@ layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
 text = "TURNS REMAINING:"
-fit_content = true
-scroll_active = false
-
-[node name="Level Progress" type="RichTextLabel" parent="VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 25
-bbcode_enabled = true
-text = "LEVEL PROGRESS"
 fit_content = true
 scroll_active = false
 
@@ -144,7 +162,7 @@ texture_over = ExtResource("10_i5bib")
 texture_progress = ExtResource("9_xhewp")
 tint_under = Color(0.286275, 0.286275, 0.286275, 1)
 tint_over = Color(0, 0, 0, 1)
-tint_progress = Color(0, 0.0313726, 1, 1)
+tint_progress = Color(0, 0.968627, 0, 1)
 
 [node name="Turns" type="RichTextLabel" parent="VBoxContainer"]
 modulate = Color(0, 0, 0, 1)
