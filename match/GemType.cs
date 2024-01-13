@@ -39,6 +39,27 @@ static class GemTypeHelper
 
 		}
 	}
+	public static Texture2D getTexture2D(this GemType gemType) {
+		switch (gemType)
+		{
+			case GemType.Coffee:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/bean.png");
+			case GemType.Sugar:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/sugar-cube.png");
+			case GemType.Leaf:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/leaf.png");
+			case GemType.Vanilla:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/Vanilla1.png");
+			case GemType.Milk:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/milk.png");
+			default:
+				return null;
+		}
+	}
+	// public static Texture2D getTexture2D(this GemType gemType) {
+	// 	return ImageTexture.CreateFromImage(gemType.getImage());
+	// }
+
 	public static bool matchable(this GemType gemType) {
 		if (gemType == GemType.Black) {
 			return false;

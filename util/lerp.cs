@@ -10,6 +10,10 @@ public partial class lerp : Node2D
 	float timeStartedMovement;
 	float timeAfterMovement;
 
+	protected virtual void doneMoving() {
+
+	}
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -25,6 +29,13 @@ public partial class lerp : Node2D
 		timeAfterMovement = timeStartedMovement;
 	}
 
+	public void moveToGlobalPostion(Vector2 newPosition)
+	{
+		moveToPostion(GlobalPosition - newPosition);
+		//this.localpo = ToLocal(newPosition);
+	}
+
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -38,7 +49,7 @@ public partial class lerp : Node2D
 			{
 				finalPosition = endPosition;
 				timeStartedMovement = -1;
-
+				doneMoving();
 			}
 			Position = finalPosition;
 		}

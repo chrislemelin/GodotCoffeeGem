@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=3 format=3 uid="uid://dvafs8mkpm6dl"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dvafs8mkpm6dl"]
 
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_8hggk"]
 [ext_resource type="Resource" uid="uid://bmssb1h1wvad5" path="res://relics/resources/WrenchRelic.tres" id="1_ym052"]

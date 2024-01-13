@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtgdglkofxjtt"]
+
+[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="1_5gya4"]
+
+[node name="Example" type="GridContainer"]
+visible = false
+clip_contents = true
+offset_right = 1508.0
+offset_bottom = 1364.0
+scale = Vector2(0.25, 0.25)
+columns = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UI" parent="MarginContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("1_5gya4")]
+layout_mode = 2
+size_flags_stretch_ratio = 7.92
+titleLabel = NodePath("")
+descriptionLabel = NodePath("")
+costLabel = NodePath("")
+picture = NodePath("")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UI" parent="MarginContainer2" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("1_5gya4")]
+layout_mode = 2
+size_flags_stretch_ratio = 7.92
+titleLabel = NodePath("")
+descriptionLabel = NodePath("")
+costLabel = NodePath("")
+picture = NodePath("")
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UI" parent="MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("1_5gya4")]
+layout_mode = 2
+size_flags_stretch_ratio = 7.92
+titleLabel = NodePath("")
+descriptionLabel = NodePath("")
+costLabel = NodePath("")
+picture = NodePath("")
+
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UI" parent="MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("1_5gya4")]
+layout_mode = 2
+size_flags_stretch_ratio = 7.92
+titleLabel = NodePath("")
+descriptionLabel = NodePath("")
+costLabel = NodePath("")
+picture = NodePath("")
+
+[node name="MarginContainer5" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UI" parent="MarginContainer5" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("1_5gya4")]
+layout_mode = 2
+size_flags_stretch_ratio = 7.92
+titleLabel = NodePath("")
+descriptionLabel = NodePath("")
+costLabel = NodePath("")
+picture = NodePath("")
+
+[node name="MarginContainer6" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UI" parent="MarginContainer6" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("1_5gya4")]
+layout_mode = 2
+size_flags_stretch_ratio = 7.92
+titleLabel = NodePath("")
+descriptionLabel = NodePath("")
+costLabel = NodePath("")
+picture = NodePath("")

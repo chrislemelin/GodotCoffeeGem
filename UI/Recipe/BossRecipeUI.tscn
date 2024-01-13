@@ -1,0 +1,315 @@
+[gd_scene load_steps=18 format=3 uid="uid://cu3n4oo2vkoxy"]
+
+[ext_resource type="Script" path="res://match/score/Score.cs" id="1_kuexh"]
+[ext_resource type="Script" path="res://UI/Recipe/RecipeUI.cs" id="1_pcu2t"]
+[ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="2_grlru"]
+[ext_resource type="AudioStream" uid="uid://btbmntmdtpbfa" path="res://sound/Score/sound-fx-roblox-oof_G_major.wav" id="3_arhvh"]
+[ext_resource type="PackedScene" uid="uid://b118tqgwxreh4" path="res://match/MatchScoreText.tscn" id="4_s1fy1"]
+[ext_resource type="PackedScene" uid="uid://d1yewgtk7q7eh" path="res://UI/ColorUpgradePreviewUI.tscn" id="5_jo82k"]
+[ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="6_r0foi"]
+[ext_resource type="PackedScene" uid="uid://60wadmikervm" path="res://match/score/HeartUI.tscn" id="7_1sb4y"]
+[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="8_5wp8n"]
+[ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="9_yhfm6"]
+[ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://placeholders/inner3.png" id="10_g31gw"]
+[ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://placeholders/outter2.png" id="11_ejj81"]
+[ext_resource type="Texture2D" uid="uid://6lj3j2gff55" path="res://placeholders/heart2.png" id="12_kmngw"]
+[ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="13_nrgq8"]
+[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="14_nbh0i"]
+[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="15_1xgnr"]
+
+[sub_resource type="Resource" id="Resource_jmwbm"]
+script = ExtResource("6_r0foi")
+baseIncrease = 50
+multIncrease = 0.25
+gemType = 0
+finalMult = 1.0
+
+[node name="BossRecipeUI" type="Control" node_paths=PackedStringArray("recipeComponentHolder")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pcu2t")
+recipeComponentHolder = NodePath("VBoxContainer/HBoxContainer")
+inactiveColor = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="Score" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_kuexh")
+turnColor = Color(0, 1, 0.0509804, 1)
+heartColor = Color(1, 0, 1, 1)
+victoryAudio = ExtResource("2_grlru")
+oofAudio = ExtResource("3_arhvh")
+matchScoreTextPackedScene = ExtResource("4_s1fy1")
+colorUpgradeUI = ExtResource("5_jo82k")
+colorUpgrade = SubResource("Resource_jmwbm")
+heartUI = ExtResource("7_1sb4y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Score"]
+position = Vector2(0, 102)
+scale = Vector2(1, 1.60577)
+texture = ExtResource("8_5wp8n")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Score"]
+stream = ExtResource("9_yhfm6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Score"]
+offset_left = -140.0
+offset_top = -52.0
+offset_right = 142.0
+offset_bottom = 229.0
+
+[node name="Level Label" type="RichTextLabel" parent="Score/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "Level:"
+fit_content = true
+scroll_active = false
+
+[node name="ScoreLabelText" type="RichTextLabel" parent="Score/VBoxContainer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "LEVEL PROGRESS"
+fit_content = true
+scroll_active = false
+
+[node name="MultLabelText" type="RichTextLabel" parent="Score/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Each match's score is multiplied by this value. Each match you make will raise the multiplier and will reset when you end your turn"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Score Multiplier
+"
+fit_content = true
+
+[node name="MoneyLabelText" type="RichTextLabel" parent="Score/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "MONEY:"
+fit_content = true
+scroll_active = false
+
+[node name="Money Needed" type="RichTextLabel" parent="Score/VBoxContainer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "MONEY NEEDED:"
+fit_content = true
+scroll_active = false
+
+[node name="Level Progress" type="RichTextLabel" parent="Score/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(210, 30)
+layout_mode = 2
+tooltip_text = "This is your score and how many poins you need to clear the level"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Score:"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Score/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 20)
+layout_direction = 2
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Score/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100.03, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "100/200"
+fit_content = true
+scroll_active = false
+
+[node name="Turns Remaining" type="RichTextLabel" parent="Score/VBoxContainer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "TURNS REMAINING:"
+fit_content = true
+scroll_active = false
+
+[node name="ScoreProgressBar" type="TextureProgressBar" parent="Score/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("10_g31gw")
+texture_over = ExtResource("11_ejj81")
+texture_progress = ExtResource("10_g31gw")
+tint_under = Color(0.286275, 0.286275, 0.286275, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0, 0.968627, 0, 1)
+
+[node name="Turns" type="RichTextLabel" parent="Score/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+tooltip_text = "Number of turns you have to complete the level. If you run out of turns you will start burning hearts which don't replenish in-between levels"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Turns Remaining
+"
+fit_content = true
+scroll_active = false
+
+[node name="TurnsContainer" type="HBoxContainer" parent="Score/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+tooltip_text = "Number of turns you have to complete the level. If you run out of turns you will start burning hearts which don't replenish in-between levels"
+
+[node name="HeartsContainer" type="HBoxContainer" parent="Score/VBoxContainer/TurnsContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="TextureRect" parent="Score/VBoxContainer/TurnsContainer/HeartsContainer" instance=ExtResource("7_1sb4y")]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Score/VBoxContainer/TurnsContainer/HeartsContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("12_kmngw")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TurnsContainer" type="HBoxContainer" parent="Score/VBoxContainer/TurnsContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="TextureRect3" type="TextureRect" parent="Score/VBoxContainer/TurnsContainer/TurnsContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("13_nrgq8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect6" type="TextureRect" parent="Score/VBoxContainer/TurnsContainer/TurnsContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("13_nrgq8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect7" type="TextureRect" parent="Score/VBoxContainer/TurnsContainer/TurnsContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("13_nrgq8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CoinsContainer" type="HBoxContainer" parent="Score/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+tooltip_text = "money$$$$"
+
+[node name="TextureRect" type="TextureRect" parent="Score/VBoxContainer/CoinsContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("14_nbh0i")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Score/VBoxContainer/CoinsContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 35
+text = "10"
+fit_content = true
+scroll_active = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Score/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="UpgradeContainer" type="HBoxContainer" parent="Score/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Score/VBoxContainer/MarginContainer/UpgradeContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "this is a test tool tip"
+texture = ExtResource("13_nrgq8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ColorUpgradePreviewUI" parent="Score/VBoxContainer/MarginContainer/UpgradeContainer" instance=ExtResource("5_jo82k")]
+layout_mode = 2
+
+[node name="ProgressBarLocation" type="Node2D" parent="Score"]
+position = Vector2(-1, 70)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 136.0
+texture = ExtResource("8_5wp8n")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 289.0
+offset_bottom = 195.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]BOSS RECIPE[/center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Recipe" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_1xgnr")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_1xgnr")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_1xgnr")
+expand_mode = 2

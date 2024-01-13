@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cudpl1ed1iroy"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cudpl1ed1iroy"]
 
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="1_fjt7k"]
 [ext_resource type="Texture2D" uid="uid://j3ybt36fv2yv" path="res://cards/cardResources/cardArt/Switch-horizontal.png" id="1_xq4cn"]

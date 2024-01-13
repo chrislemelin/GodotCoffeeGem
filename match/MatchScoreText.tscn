@@ -81,22 +81,17 @@ _data = {
 "RiseAndFade": SubResource("Animation_fe46c")
 }
 
-[node name="MatchScoreText" type="Control" node_paths=PackedStringArray("animationPlayer", "textLabel")]
+[node name="MatchScoreText" type="Node2D" node_paths=PackedStringArray("animationPlayer", "textLabel")]
 material = SubResource("ShaderMaterial_2gdna")
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_xy1kr")
 animationPlayer = NodePath("AnimationPlayer")
 textLabel = NodePath("RichTextLabel")
+speed = 300.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 self_modulate = Color(0.996078, 0.996078, 0.996078, 1)
-layout_mode = 0
-offset_right = 258.0
+offset_left = -35.0
+offset_right = 223.0
 offset_bottom = 52.0
 theme = SubResource("Theme_rvtpx")
 theme_override_font_sizes/normal_font_size = 40

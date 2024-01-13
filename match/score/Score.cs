@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Xml.Schema;
 
-public partial class Score : Node
+public partial class Score : Node2D
 {
 	[Export] RichTextLabel scoreLabel;
 	[Export] RichTextLabel multLabel;
@@ -14,6 +14,8 @@ public partial class Score : Node
 	[Export] RichTextLabel levelLabel;
 	[Export] RichTextLabel coinsLabel;
 	[Export] HBoxContainer colorUpgradePreviewBox;
+	[Export] Node2D progressBarLocation;
+	[Export] Mult multUI;
 
 
 	[Export] Color turnColor;
@@ -31,6 +33,8 @@ public partial class Score : Node
 	[Export] GameManager gameManager;
 	[Export] PackedScene colorUpgradeUI;
 	[Export] public ColorUpgrade colorUpgrade;
+	[Export]
+	private RecipeUI bossRecipeUI;
 
 	[Export]
 	PackedScene heartUI;
@@ -225,20 +229,23 @@ public partial class Score : Node
 	public void setLevel(int newValue)
 	{
 		level = newValue;
-		levelLabel.Text = "LEVEL:" + newValue;
+		levelLabel.Text = "Level:" + newValue;
 	}
 
 	public void setScore(int newScore)
 	{
 		score = newScore;
-		scoreLabel.Text = "SCORE: " + score + "/" + moneyNeeded;
+		scoreLabel.Text = "Score: " + score + "/" + moneyNeeded;
 		progressBar.Value = (float)score / moneyNeeded * 100;
 	}
 
 	public void setMult(float newMult)
 	{
 		mult = newMult;
-		multLabel.Text = "Score Multiplier: " + newMult.ToString("0.##") + "x";
+		multLabel.Text = "Score Multiplier: " + getMultText(newMult);
+		if (multUI != null) {
+			multUI.setMult(newMult);
+		}
 	}
 
 	public void addMult(float value)
@@ -268,9 +275,11 @@ public partial class Score : Node
 
 	private void renderColorUpgradePreviews()
 	{
-		foreach (Node node in colorUpgradePreviewBox.GetChildren())
-		{
-			node.QueueFree();
+		if (colorUpgradePreviewBox.GetChildren() != null) {
+			foreach (Node node in colorUpgradePreviewBox.GetChildren())
+			{
+				node.QueueFree();
+			}
 		}
 		foreach (ColorUpgrade colorUpgrade in colorUpgradesCompressed.Values)
 		{
@@ -313,20 +322,31 @@ public partial class Score : Node
 
 			GemType gemType = extractGemTypeFromMatch(match);
 			int pointValue = 0;
+			int pointValueAfterMult = 0;
+			float newMultValue = mult;
 			if (gemType.matchable())
 			{
+				bossRecipeUI.evaulateMatch(gemType);
 				pointValue = evaluatePoints(match, gemType);
-				pointValue = (int)(pointValue * mult);
-				setMult(mult + evaluateMultIncrease(gemType));
-				totalPoints += pointValue;
+
+				pointValueAfterMult = (int)(pointValue * mult);
+				newMultValue += evaluateMultIncrease(gemType);
+				setMult(newMultValue);
+				if(bossRecipeUI.Visible && !bossRecipeUI.complete()) {
+					pointValueAfterMult = 0;
+				}
+				totalPoints += pointValueAfterMult;
+			
 			}
 
 			MatchScoreText matchScore = (MatchScoreText)matchScoreTextPackedScene.Instantiate();
-			matchScore.setText(pointValue.ToString());
 			AddChild(matchScore);
+
 			if (match.Count > 0)
 			{
 				matchScore.GlobalPosition = match.First().GlobalPosition;
+				matchScore.setText(pointValueAfterMult.ToString());
+				//matchScore.init(pointValue, pointValueAfterMult, newMultValue, ToLocal(multUI.GlobalPosition), progressBarLocation.Position, this, multUI);
 			}
 		}
 		setScore(score + totalPoints);
@@ -394,5 +414,32 @@ public partial class Score : Node
 			return Optional.None<ColorUpgrade>();
 		}
 		return Optional.Some<ColorUpgrade>(colorUpgradesCompressed[gemType]);
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("space"))
+		{
+			addMult(.25f);
+		}
+	}
+
+	public String getMultText(float mult) {
+		String waveText = "";
+		if (mult >= 1.5) {
+			waveText = "[wave amp=25.0 freq=2.0 connected=1]";
+		} if (mult >= 2) {
+			waveText = "[wave amp=50.0 freq=3.0 connected=1]";
+		} if (mult >= 3) {
+			waveText = "[wave amp=50.0 freq=6.0 connected=1]";
+		}
+		String rainbowText = "";
+		if (mult >= 2) {
+			rainbowText = "[rainbow freq=.5 sat=0.4 val=0.8]";
+		}
+		if (mult >= 3) {
+			rainbowText = "[rainbow freq=.5 sat=0.8 val=0.8]";
+		}
+		return waveText + rainbowText +"x" + mult;
 	}
 }

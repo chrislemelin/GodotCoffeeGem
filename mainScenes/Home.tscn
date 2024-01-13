@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dgfos0wevjgpv"]
+[gd_scene load_steps=20 format=3 uid="uid://dgfos0wevjgpv"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_8wsnh"]
 [ext_resource type="PackedScene" uid="uid://2av55t0yxy4e" path="res://UI/DayOverUI.tscn" id="1_xjb1y"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="8_n1ouh"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="9_hebao"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="10_k3anh"]
+[ext_resource type="Texture2D" uid="uid://j3ybt36fv2yv" path="res://cards/cardResources/cardArt/Switch-horizontal.png" id="10_qx4mo"]
 
 [sub_resource type="Resource" id="Resource_pbwlf"]
 resource_local_to_scene = true
@@ -23,7 +24,7 @@ CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_cb34m"]
+[sub_resource type="Resource" id="Resource_mbj2h"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch"
@@ -40,7 +41,7 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_6m4or"]
+[sub_resource type="Resource" id="Resource_hgbc3"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Vertical"
@@ -57,12 +58,13 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_hsxgb"]
+[sub_resource type="Resource" id="Resource_44axj"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Horiz"
 Description = "Switch positions of two horizontally adjacent ingredients"
 Cost = 1
+Picture = ExtResource("10_qx4mo")
 cardEffect = SubResource("Resource_ym5bx")
 
 [node name="Home" type="Node2D" node_paths=PackedStringArray("status", "dayOver", "newCardSelection")]
@@ -94,9 +96,9 @@ offset_right = -3.05176e-05
 offset_bottom = -218.0
 scale = Vector2(1.5, 1.5)
 gameManager = NodePath("..")
-upgradedSwitchCard = SubResource("Resource_cb34m")
-vertSwitchCard = SubResource("Resource_6m4or")
-horizSwitchCard = SubResource("Resource_hsxgb")
+upgradedSwitchCard = SubResource("Resource_mbj2h")
+vertSwitchCard = SubResource("Resource_hgbc3")
+horizSwitchCard = SubResource("Resource_44axj")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]
 anchors_preset = 1
@@ -109,6 +111,7 @@ offset_bottom = 66.0
 grow_horizontal = 0
 gameManager = NodePath("..")
 
-[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("4_v1i61")]
+[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("gameManager", "levelPassedText") instance=ExtResource("4_v1i61")]
 visible = false
 gameManager = NodePath("..")
+levelPassedText = []

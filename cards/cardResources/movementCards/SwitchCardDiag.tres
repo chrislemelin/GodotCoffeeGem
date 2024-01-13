@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dha7jg80nudyy"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dha7jg80nudyy"]
 
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="1_sd14e"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ljjbh"]

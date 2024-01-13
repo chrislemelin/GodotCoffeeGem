@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bs6s20l3sbdia"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bs6s20l3sbdia"]
 
 [ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectDealWithDevil.cs" id="1_ro7xl"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ts768"]

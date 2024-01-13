@@ -7,27 +7,41 @@ using System.Linq;
 public partial class GameManager : GameManagerIF
 {
 
-	int moneyNeededToPass;
+	int scoreNeededToPass;
 
 	[Export] public NewCardSelection newCardSelection;
+	[Export] public RecipeUI recipeUI;
+
 	[Export] public GameOverScreen gameOverScreen;
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
 	[Export] public Array<RelicResource> relicResources;
+
+	[Export] public Array<LevelResource> levels;
+
 	[Export] private bool debugMode;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		int currentLevel = global.currentLevel;
+		if (currentLevel > levels.Count) {
+			resetGlobals();
+			gameOverScreen.Visible = true;
+		}
+		LevelResource currentLevelResource = levels[currentLevel-1];
+		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
+		if (bossRecipe != null) {
+			recipeUI.loadRecipe(bossRecipe);
+		}
 
-		moneyNeededToPass = 500 + 500 * (currentLevel - 1);
+		scoreNeededToPass = currentLevelResource.score;
 		if (debugMode)
 		{
-			moneyNeededToPass = 50;
+			scoreNeededToPass = 50;
 			addCoins(100);
 		}
-		score.setMoneyNeeded(moneyNeededToPass);
+		score.setMoneyNeeded(scoreNeededToPass);
 		score.setLevel(currentLevel);
 		score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
@@ -43,10 +57,11 @@ public partial class GameManager : GameManagerIF
 		relicHolderUI.startUpRelics();
 	}
 
+	
 
 	public void evaluateLevel()
 	{
-		if (score.getScore() < moneyNeededToPass)
+		if (score.getScore() < scoreNeededToPass)
 		{
 			// its joever
 			resetGlobals();

@@ -80,15 +80,11 @@ public partial class Gem : lerp
 		switch (type)
 		{
 			case GemType.Coffee:
-				return beanTexture;
 			case GemType.Milk:
-				return milkTexture;
 			case GemType.Leaf:
-				return leafTexture;
 			case GemType.Vanilla:
-				return vanillaTexture;
 			case GemType.Sugar:
-				return sugarTexture;
+				return type.getTexture2D();
 			default:
 				return sprite2D.Texture;
 		}

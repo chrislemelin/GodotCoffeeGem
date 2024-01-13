@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bc61dsr0f6mj7"]
+
+[ext_resource type="Texture2D" uid="uid://c0x6wwbh64qp1" path="res://relics/sprites/Icon.3_60.png" id="1_wvd6c"]
+[ext_resource type="Script" path="res://relics/RelicResource.cs" id="2_atg80"]
+[ext_resource type="Script" path="res://relics/effects/GiveManaPassive.cs" id="3_6qvnd"]
+
+[sub_resource type="Resource" id="Resource_kas26"]
+script = ExtResource("3_6qvnd")
+value = 1
+
+[resource]
+script = ExtResource("2_atg80")
+title = "Amethyst"
+description = "+1 mana every 3 turns"
+image = ExtResource("1_wvd6c")
+cost = 40
+gameStartPassives = []
+gameStartExePassives = []
+turnStartPassives = []
+turnStartExePassives = [SubResource("Resource_kas26")]
+addToInvEffects = []
+counterMax = 3

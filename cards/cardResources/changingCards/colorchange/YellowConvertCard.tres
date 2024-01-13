@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://c0t40mre00w4j"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c0t40mre00w4j"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/CardEffectColorChange.cs" id="1_kicfu"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_f6brt"]
