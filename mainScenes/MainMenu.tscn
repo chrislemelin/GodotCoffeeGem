@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
-[ext_resource type="PackedScene" uid="uid://cnfw3144lcbcg" path="res://mainScenes/StartingCardChoice.tscn" id="2_8y66p"]
+[ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_qt6ch"]
 
@@ -11,7 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ro6go")
 newGameButton = NodePath("VBoxContainer/MarginContainer/VBoxContainer2/NewGameButton")
-gameScene = ExtResource("2_8y66p")
+gameScene = ExtResource("2_g2ipy")
 beanScene = ExtResource("3_3tqas")
 numberOfBeans = 50
 beanHolder = NodePath("BeanHolder")

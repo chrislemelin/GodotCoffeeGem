@@ -12,6 +12,8 @@ public partial class Deck : Node
 	[Export] Discard discard;
 	[Export] Boolean loadDeckFromGlobal;
 	[Export] GameManager gameManager;
+	[Export] DeckViewUI deckView;
+	[Export] Control control;
 	List<CardResource> cards = new List<CardResource>();
 
 	public override void _Ready()
@@ -19,13 +21,18 @@ public partial class Deck : Node
 		if (loadDeckFromGlobal) {
 			List<CardResource> deckCardList = gameManager.getDeckList();
 			if (deckCardList.Count != 0) {
-				//allCards = new Godot.Collections.Array<CardResource> (deckCardList);
 				foreach (CardResource cardResource in deckCardList) {
  					allCards.Add((CardResource)cardResource.Duplicate());
 				}
 				
 			}
 		}
+
+		control.GuiInput += (inputEvent) =>  {
+			if (inputEvent.IsActionPressed("click")) {
+				deckView.setUp(cards);
+			}	
+		}; 
 
 		addCardsToDeck();
 		RandomHelper.Shuffle(cards);

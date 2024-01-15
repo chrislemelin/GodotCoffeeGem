@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://dqyh1awc8okrc"]
+[gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://dqyh1awc8okrc"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="1_6cmgn"]
 [ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="2_b1nn1"]
 [ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="3_vvk82"]
-[ext_resource type="Resource" uid="uid://dn66xx7kn53eh" path="res://cards/cardResources/scoreCards/GearShift.tres" id="5_hpakf"]
-[ext_resource type="Resource" uid="uid://chsllpe05mfhj" path="res://cards/cardResources/changingCards/ComboGemsCard.tres" id="6_s8io4"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="5_dr1ge"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="6_1vkr2"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_uai24"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="7_f4atu"]
 
 [resource]
 script = ExtResource("1_6cmgn")
-allCards = Array[Object]([ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("6_uai24"), ExtResource("3_vvk82"), ExtResource("3_vvk82"), ExtResource("2_b1nn1"), ExtResource("5_hpakf"), ExtResource("6_s8io4")])
+allCards = Array[Object]([ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("3_vvk82"), ExtResource("2_b1nn1"), ExtResource("5_dr1ge"), ExtResource("6_1vkr2")])

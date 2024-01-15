@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bjsuryep3kbde"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bjsuryep3kbde"]
 
 [ext_resource type="Texture2D" uid="uid://cytuvv870755s" path="res://cards/cardResources/cardArt/Card_card-infusion.png" id="1_m6hox"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/CardEffectAddAddonGems.cs" id="1_qt74m"]

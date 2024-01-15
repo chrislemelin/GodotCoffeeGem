@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dtt0h7sooi356"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dtt0h7sooi356"]
 
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPop.cs" id="1_56l7d"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_nk7uw"]

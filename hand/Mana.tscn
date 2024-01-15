@@ -38,3 +38,12 @@ scroll_active = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_xufqt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -60.0
+offset_top = -99.0
+offset_right = 51.0
+offset_bottom = 63.0
+tooltip_text = "This is your mana, each card has a mana cost that is consumed when the card is played. Your mana is reset to 3 at the end of each turn."

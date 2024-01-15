@@ -172,7 +172,6 @@ public partial class Score : Node2D
 
 	public void initHeartsContainer()
 	{
-		;
 		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
 		foreach (Node node in nodes)
 		{

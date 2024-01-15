@@ -7,6 +7,8 @@ public partial class HomeGameManager : GameManagerIF
 	[Export] Status status;
 	[Export] DayOver dayOver;
 	[Export] NewCardSelection newCardSelection;
+	[Export] Button button;
+	[Export] DeckViewUI deckViewUI;
 
 	public override void _Ready()
 	{
@@ -14,6 +16,7 @@ public partial class HomeGameManager : GameManagerIF
 		if (status != null) {
 			status.setLevel(global.currentLevel);
 		}
+		button.Pressed += ()=> deckViewUI.setUp(getDeckList());
 	}
 	public override void advanceLevel() {
 		GetTree().ChangeSceneToFile("res://mainScenes/game.tscn");

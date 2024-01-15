@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://4uonrsb12akj" path="res://match/tile.png" id="2_gyji1"]
 [ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_5xmsj"]
 
-[node name="Discard" type="Node2D" node_paths=PackedStringArray("countLabel")]
+[node name="Discard" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
 script = ExtResource("1_mc7e2")
 countLabel = NodePath("RichTextLabel")
+control = NodePath("Control")
 
 [node name="Outline" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.203922)
@@ -24,3 +25,21 @@ offset_bottom = -262.0
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "1"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -211.0
+offset_top = -302.0
+offset_right = 211.0
+offset_bottom = 301.0
+tooltip_text = "Click to see the current cards in your discard if there are any"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = -166.0
+offset_top = -468.0
+offset_right = 182.0
+offset_bottom = -355.0
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "DISCARD"

@@ -10,7 +10,9 @@ public partial class NewCardSelection : Control
 	[Export] GameManagerIF gameManager;
 	[Export] Button skipButton;
 	[Export] RichTextLabel coinsGainedLabel;
-	[Export] Array<Control> levelPassedText = new Array<Control>(); 
+	[Export] Array<Control> levelPassedText = new Array<Control>();
+	[Export] DeckViewUI deckViewUI;
+	[Export] Button viewDeckButton;
 
 	[Export] Array<CardResource> cards = new Array<CardResource>();
 	[Export] int coinsGained = 0;
@@ -20,6 +22,7 @@ public partial class NewCardSelection : Control
 		skipButton.Pressed += () => gameManager.advanceLevel();
 		renderCards();
 		renderCoins();
+		viewDeckButton.Pressed  += () => deckViewUI.setUp(gameManager.getDeckList());
 	}
 
 	public void setCoins(int coinsGained) {

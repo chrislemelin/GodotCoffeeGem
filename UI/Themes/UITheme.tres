@@ -1,7 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cb56mr55sbqyi"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cb56mr55sbqyi"]
 
 [ext_resource type="StyleBox" uid="uid://bkqr0iynl6gtr" path="res://UI/Themes/TutorialStyleBox.tres" id="1_wm6a7"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obmym"]
+bg_color = Color(0.407843, 0.407843, 0.407843, 1)
+
 [resource]
 /styles/TutorialStyleBox = ExtResource("1_wm6a7")
+Button/styles/normal = SubResource("StyleBoxFlat_obmym")
 RichTextLabel/styles/normal = ExtResource("1_wm6a7")

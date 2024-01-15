@@ -143,3 +143,10 @@ text = "+1"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(127, 126)
 shape = SubResource("RectangleShape2D_crmls")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 253.0
+offset_bottom = 250.0

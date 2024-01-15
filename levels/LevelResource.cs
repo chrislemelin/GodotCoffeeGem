@@ -18,7 +18,6 @@ public partial class LevelResource : Resource
 			RecipeResource recipeResource = new RecipeResource();
 			recipeResource.ingredientList.Add(GemTypeHelper.getRandomColor());
 			recipeResource.ingredientList.Add(GemTypeHelper.getRandomColor());
-			recipeResource.ingredientList.Add(GemTypeHelper.getRandomColor());
 			return recipeResource;
 		}
 		return null;

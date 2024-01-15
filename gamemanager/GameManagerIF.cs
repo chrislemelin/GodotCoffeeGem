@@ -65,6 +65,7 @@ public partial class GameManagerIF : Node
 		getGlobal().currentLevel = 1;
 		getGlobal().currentHealth = 2;
 		getGlobal().relics = new List<RelicResource>();
+		getGlobal().shownBossTutorial = false;
 
 	}
 

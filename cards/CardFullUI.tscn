@@ -16,7 +16,7 @@ shader_parameter/line_thickness = 5.009
 
 [node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture")]
 self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(420, 600)
+custom_minimum_size = Vector2(530, 800)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 520.0

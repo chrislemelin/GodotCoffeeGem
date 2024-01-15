@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=11 format=3 uid="uid://bcelpenpmwhtr"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=11 format=3 uid="uid://bcelpenpmwhtr"]
 
 [ext_resource type="Resource" uid="uid://dyu7r35wo3yq4" path="res://relics/resources/AdderallRelic.tres" id="1_fjo1h"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_scp5n"]

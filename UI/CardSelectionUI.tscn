@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_twjff"]
 [ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="4_uxkls"]
 
-[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText")]
+[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText", "viewDeckButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ cardContainer = NodePath("Control/HBoxContainer")
 skipButton = NodePath("Control/MarginContainer/Button")
 coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")
 levelPassedText = [NodePath("Control/VBoxContainer/RichTextLabel"), NodePath("Control/VBoxContainer/HBoxContainer2")]
+viewDeckButton = NodePath("Button")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.39, 0.39, 0.39, 1)
@@ -33,6 +34,15 @@ texture = ExtResource("1_aegw7")
 expand_mode = 2
 flip_h = true
 flip_v = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 831.0
+offset_top = 800.0
+offset_right = 1131.0
+offset_bottom = 850.0
+theme_override_font_sizes/font_size = 30
+text = "View Deck"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -83,6 +93,7 @@ theme_override_constants/margin_right = 300
 
 [node name="Button" type="Button" parent="Control/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Skip selection
 "
 

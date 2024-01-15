@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dn66xx7kn53eh"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dn66xx7kn53eh"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_5eytb"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/MultIncreaseCardEffect.cs" id="1_tdhw7"]

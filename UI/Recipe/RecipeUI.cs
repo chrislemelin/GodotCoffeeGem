@@ -24,6 +24,9 @@ public partial class RecipeUI : Control
 
 	}
 	private void renderIngredientList() {
+		if(Visible != true) {
+			return;
+		}
 		for(int count = 0; count < recipeComponentHolder.GetChildCount(); count ++) {
 			TextureRect textureRect = (TextureRect)recipeComponentHolder.GetChild(count);
 			if (count >= recipeResource.ingredientList.Count) {

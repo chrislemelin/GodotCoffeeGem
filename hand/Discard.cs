@@ -5,12 +5,18 @@ using System.Collections.Generic;
 public partial class Discard : Node
 {	
 	[Export] RichTextLabel countLabel;
-
+	[Export] DeckViewUI deckView;
+	[Export] Control control; 
 	List<CardResource> cards;
 	public override void _Ready()
 	{
 		cards = new List<CardResource>();
 		updateCount();
+		control.GuiInput += (inputEvent) =>  {
+			if (inputEvent.IsActionPressed("click") && cards.Count != 0) {
+				deckView.setUp(cards);
+			}	
+		}; 
 	}
 
 	public void addCard(CardResource cardResource) {

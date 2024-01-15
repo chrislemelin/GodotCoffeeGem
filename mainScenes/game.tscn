@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=42 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
@@ -27,8 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://c4bqm3aiirl78" path="res://placeholders/tutorial/Screenshot 2023-12-19 090925.png" id="20_cw8l2"]
 [ext_resource type="Texture2D" uid="uid://lp4raqd5t3v5" path="res://placeholders/tutorial/Screenshot 2023-12-15 082252.png" id="21_1sem2"]
 [ext_resource type="Texture2D" uid="uid://cja74nrffthkl" path="res://placeholders/tutorial/BlackGem.png" id="22_hisef"]
-[ext_resource type="PackedScene" uid="uid://cu53i2w7x5pwc" path="res://match/score/Mult.tscn" id="27_tsj0a"]
+[ext_resource type="Texture2D" uid="uid://d4atoeb02hhv7" path="res://placeholders/tutorial/Screenshot 2024-01-14 160252.png" id="27_6giu6"]
+[ext_resource type="Script" path="res://UI/ToggleVisibilityOnButtonPress.cs" id="27_67js8"]
 [ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/BossRecipeUI.tscn" id="29_a8e6p"]
+[ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
 
 [sub_resource type="Resource" id="Resource_nv7p6"]
 script = ExtResource("2_iphd8")
@@ -80,7 +82,7 @@ script = ExtResource("2_iphd8")
 score = 10000
 makeRandomBossRecipe = true
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial")]
 position = Vector2(-1, 0)
 script = ExtResource("1_5jnm2")
 newCardSelection = NodePath("UIOverLays/CardSelectionUI")
@@ -89,6 +91,7 @@ gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
 relicResources = Array[Resource]([])
+bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("3_niyuq")
@@ -102,7 +105,7 @@ hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
 
-[node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager") instance=ExtResource("6_tl444")]
+[node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager", "deckView") instance=ExtResource("6_tl444")]
 position = Vector2(1774, 889)
 scale = Vector2(0.5, 0.5)
 hand = NodePath("../Hand")
@@ -111,19 +114,17 @@ cardList = ExtResource("7_vdncp")
 discard = NodePath("../Discard")
 loadDeckFromGlobal = true
 gameManager = NodePath("..")
+deckView = NodePath("../UIOverLays/DeckView")
 
-[node name="Discard" parent="." instance=ExtResource("9_o6m7d")]
+[node name="Discard" parent="." node_paths=PackedStringArray("deckView") instance=ExtResource("9_o6m7d")]
 position = Vector2(137, 910)
 scale = Vector2(0.5, 0.5)
-
-[node name="Mana" parent="." groups=["Mana"] instance=ExtResource("10_4f0tc")]
-unique_name_in_owner = true
-position = Vector2(1595, 637)
+deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Score" parent="." node_paths=PackedStringArray("multUI", "gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
-position = Vector2(1511, 270)
-multUI = NodePath("../Mult")
+position = Vector2(1511, 342)
+multUI = NodePath("")
 gameManager = NodePath("..")
 bossRecipeUI = NodePath("../BossRecipeUI")
 
@@ -138,19 +139,17 @@ mana = NodePath("../Mana")
 gameManager = NodePath("..")
 width = 900
 
-[node name="Mult" parent="." instance=ExtResource("27_tsj0a")]
-visible = false
-offset_left = 1358.0
-offset_top = 558.0
-offset_right = 1358.0
-offset_bottom = 558.0
+[node name="Mana" parent="." groups=["Mana"] instance=ExtResource("10_4f0tc")]
+unique_name_in_owner = true
+position = Vector2(271, 694)
 
 [node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
-offset_left = 1684.0
-offset_top = 623.0
-offset_right = 1869.0
-offset_bottom = 680.0
+offset_left = 1685.0
+offset_top = 592.0
+offset_right = 1870.0
+offset_bottom = 649.0
+tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
 
 [node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
 
@@ -159,11 +158,19 @@ stream = ExtResource("13_oa770")
 volume_db = -80.0
 autoplay = true
 
+[node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
+visible = false
+offset_left = 1358.0
+offset_top = 121.0
+offset_right = 1358.0
+offset_bottom = 121.0
+tooltip_text = "This recipe must be completed before you can score any points for the level"
+
 [node name="UIOverLays" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="TutorialScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("textureButton")]
+[node name="TutorialScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("textureButton", "button2")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -174,9 +181,10 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("17_nfscp")
 textureButton = NodePath("../TutorialButton")
+button2 = NodePath("Button")
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen"]
-modulate = Color(0, 0, 0, 0.301961)
+modulate = Color(0, 0, 0, 0.615686)
 layout_mode = 2
 offset_left = -10.0
 offset_right = 1922.0
@@ -191,10 +199,10 @@ flip_v = true
 
 [node name="GemsTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
 anchors_preset = 0
-offset_left = 29.0
-offset_top = 115.0
-offset_right = 29.0
-offset_bottom = 115.0
+offset_left = 767.0
+offset_top = 71.0
+offset_right = 767.0
+offset_bottom = 71.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/TutorialScreen/GemsTutorial"]
 layout_mode = 0
@@ -295,11 +303,12 @@ offset_bottom = 108.0
 texture = ExtResource("22_hisef")
 
 [node name="TurnsTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 anchors_preset = 0
-offset_left = 1468.0
-offset_top = 288.0
-offset_right = 1468.0
-offset_bottom = 288.0
+offset_left = 1213.0
+offset_top = 487.0
+offset_right = 1213.0
+offset_bottom = 487.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/TurnsTutorial"]
 layout_mode = 0
@@ -321,11 +330,12 @@ theme = ExtResource("18_y5ido")
 text = "This is the number of turns you have to complete the level, if you run out of turns you will start losing hearts, you lose when you run out of hearts"
 
 [node name="MoneyTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 anchors_preset = 0
-offset_left = 1498.0
-offset_top = 430.0
-offset_right = 1498.0
-offset_bottom = 430.0
+offset_left = 1249.0
+offset_top = 632.0
+offset_right = 1249.0
+offset_bottom = 632.0
 rotation = -0.333073
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/MoneyTutorial"]
@@ -378,12 +388,13 @@ theme = ExtResource("18_y5ido")
 text = "This is your progress for the level"
 
 [node name="MultTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1494.0
-offset_top = 187.0
-offset_right = 1494.0
-offset_bottom = 187.0
+offset_left = 1128.0
+offset_top = 395.0
+offset_right = 1128.0
+offset_bottom = 395.0
 rotation = 0.40695
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/MultTurorial"]
@@ -436,21 +447,22 @@ theme_override_styles/normal = ExtResource("18_uicyl")
 text = "This is the match 3 grid, make matches to advance your score to clear the level"
 
 [node name="ManaTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1383.0
-offset_top = 621.0
-offset_right = 1383.0
-offset_bottom = 621.0
+offset_left = 697.0
+offset_top = 690.0
+offset_right = 697.0
+offset_bottom = 690.0
 rotation = -0.0267641
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/ManaTurorial"]
 layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
+offset_left = -290.888
+offset_top = -82.8142
+offset_right = 109.112
+offset_bottom = 290.186
+rotation = -5.48986
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
@@ -465,6 +477,7 @@ theme_override_styles/normal = ExtResource("18_uicyl")
 text = "This is your mana it can be used to play cards"
 
 [node name="HandTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 541.0
@@ -492,12 +505,13 @@ theme_override_styles/normal = ExtResource("18_uicyl")
 text = "Play cards to make matches and earn points. Cards have a mana cost in the top left"
 
 [node name="EndTurnTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1885.0
-offset_top = 501.0
-offset_right = 1885.0
-offset_bottom = 501.0
+offset_left = 1571.0
+offset_top = 774.0
+offset_right = 1571.0
+offset_bottom = 774.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/EndTurnTutorial"]
 layout_mode = 0
@@ -510,13 +524,76 @@ text = "This will end the current turn, this will give you a new hand of cards a
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/EndTurnTutorial"]
 layout_mode = 0
-offset_left = -114.0
-offset_top = 87.0
-offset_right = 286.0
-offset_bottom = 460.0
-rotation = -0.860762
+offset_left = 61.0
+offset_top = -3.0
+offset_right = 461.0
+offset_bottom = 370.0
+rotation = -2.79419
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
+
+[node name="Button" type="Button" parent="UIOverLays/TutorialScreen"]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 825.0
+offset_right = 950.0
+offset_bottom = 894.0
+theme = ExtResource("18_y5ido")
+theme_override_font_sizes/font_size = 40
+text = "Close"
+
+[node name="BossRecipeTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("27_67js8")
+button = NodePath("Button")
+
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/BossRecipeTutorial"]
+modulate = Color(0, 0, 0, 0.568627)
+layout_mode = 2
+offset_left = -10.0
+offset_right = 1922.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/BossRecipeTutorial"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 226.0
+offset_right = 1029.0
+offset_bottom = 501.0
+
+[node name="TextureRect2" type="TextureRect" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("27_6giu6")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("18_y5ido")
+text = "Some Levels have Boss Recipies. You must make matches with the listed ingredients to complete the recipe. All matches will score 0 points untill the recipe is complete"
+fit_content = true
+
+[node name="Button" type="Button" parent="UIOverLays/BossRecipeTutorial"]
+modulate = Color(1, 0.996078, 0.996078, 1)
+layout_mode = 0
+offset_left = 847.0
+offset_top = 531.0
+offset_right = 916.0
+offset_bottom = 562.0
+theme = ExtResource("18_y5ido")
+text = "Contine"
 
 [node name="TutorialButton" type="TextureButton" parent="UIOverLays"]
 layout_mode = 0
@@ -527,19 +604,17 @@ offset_bottom = 469.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
 
-[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager", "levelPassedText") instance=ExtResource("14_31k88")]
+[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager", "levelPassedText", "deckViewUI") instance=ExtResource("14_31k88")]
 visible = false
 layout_mode = 1
 gameManager = NodePath("../..")
 levelPassedText = Array[Resource]([])
+deckViewUI = NodePath("../DeckView")
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
 visible = false
 layout_mode = 1
 
-[node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
+[node name="DeckView" parent="UIOverLays" instance=ExtResource("32_fnn8m")]
 visible = false
-offset_left = 1358.0
-offset_top = 59.0
-offset_right = 1358.0
-offset_bottom = 59.0
+layout_mode = 1

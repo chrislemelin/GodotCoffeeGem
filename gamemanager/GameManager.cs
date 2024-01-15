@@ -16,6 +16,7 @@ public partial class GameManager : GameManagerIF
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
 	[Export] public Array<RelicResource> relicResources;
+	[Export] public Control bossRecipeTutorial;
 
 	[Export] public Array<LevelResource> levels;
 
@@ -33,6 +34,10 @@ public partial class GameManager : GameManagerIF
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
 		if (bossRecipe != null) {
 			recipeUI.loadRecipe(bossRecipe);
+			if(!getGlobal().shownBossTutorial){
+				bossRecipeTutorial.Visible = true;
+				getGlobal().shownBossTutorial  = true;
+			}
 		}
 
 		scoreNeededToPass = currentLevelResource.score;
