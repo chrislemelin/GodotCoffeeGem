@@ -17,4 +17,5 @@ script = ExtResource("2_0wj0x")
 Title = "Ragnarok"
 Description = "Destroy every ingredient, gain a little bit of points for each burnt (black) ingredient destroyed."
 Cost = 2
+rarity = 1
 cardEffect = SubResource("Resource_0mlvv")

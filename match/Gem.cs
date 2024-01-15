@@ -12,14 +12,9 @@ public partial class Gem : lerp
 	[Export] public Texture2D manaAddonTexture;
 	[Export] public Texture2D cardAddonTexture;
 	[Export] public ShaderMaterial rainbowMaterial;
-
-	[Export] public Texture2D beanTexture;
-	[Export] public Texture2D leafTexture;
-	[Export] public Texture2D milkTexture;
-	[Export] public Texture2D sugarTexture;
-	[Export] public Texture2D vanillaTexture;
 	[Export] public Texture2D orbTexture;
 	[Export] public bool useSprites;
+	[Export] public Control control;
 	[Export] AnimationPlayer animationPlayer;
 
 	private int comboValue = 1;
@@ -139,21 +134,25 @@ public partial class Gem : lerp
 		{
 			case GemAddonType.None:
 				addonSprite.Texture = null;
+				control.TooltipText = "";
 				break;
 			case GemAddonType.Mana:
 				addonSprite.Visible = true;
 				addonSprite.Texture = manaAddonTexture;
 				addonSprite.Scale = new Vector2(.3f, .3f);
+				control.TooltipText = "Gain a mana when this ingredient is matched";
 				break;
 			case GemAddonType.Card:
 				addonSprite.Visible = true;
 				addonSprite.Texture = cardAddonTexture;
 				addonSprite.Scale = new Vector2(.5f, .5f);
+				control.TooltipText = "Draw a card when this ingredient is matched";
 				break;
 			case GemAddonType.Combo:
 				comboTextLabel.Visible = true;
 				comboValue = 1;
 				comboTextLabel.Text = "+" + comboValue;
+				control.TooltipText = "Doesnt disapear on match and gives extra points everytime this is matched";
 				break;
 		}
 	}

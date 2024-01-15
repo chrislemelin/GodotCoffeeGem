@@ -8,6 +8,8 @@ public partial class CardInfoLoader : Control
 	[Export] protected RichTextLabel costLabel;
 	[Export] protected CardResource cardResource;
 	[Export] protected TextureRect picture;
+	[Export] protected TextureRect titleSprite;
+
 
 
 	public override void _Ready()
@@ -33,6 +35,7 @@ public partial class CardInfoLoader : Control
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
+		titleSprite.Modulate = cardResource.rarity.getColor();
 	}
 
 }

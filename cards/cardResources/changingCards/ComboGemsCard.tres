@@ -18,4 +18,5 @@ script = ExtResource("3_n3bpe")
 Title = "Combo Infusion"
 Description = "Randomly create $value combo ingredient(s)"
 Cost = 0
+rarity = 1
 cardEffect = SubResource("Resource_m0v28")

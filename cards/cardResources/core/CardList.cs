@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 [GlobalClass, Tool]
 public partial class CardList : Resource
@@ -11,4 +13,10 @@ public partial class CardList : Resource
 	
 	}
 
+	public CardResource getRandomCard() {
+		CardRarity selectedRarity = CardRarityHelper.getRandomScaled();
+		List<CardResource> cards = allCards.Where((card) => card.rarity == selectedRarity).ToList();
+		RandomHelper.Shuffle(cards);
+		return(cards[0]);
+	}
 }

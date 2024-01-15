@@ -17,4 +17,5 @@ script = ExtResource("2_f6brt")
 Title = "Espresso Shot"
 Description = "Changes $value gem(s) with 1 spaces to Coffee"
 Cost = 1
+rarity = 0
 cardEffect = SubResource("Resource_mklkk")

@@ -17,4 +17,5 @@ script = ExtResource("2_4ergt")
 Title = "Rapture"
 Description = "Destroy all ingredients except for selected type"
 Cost = 3
+rarity = 2
 cardEffect = SubResource("Resource_dwgfk")

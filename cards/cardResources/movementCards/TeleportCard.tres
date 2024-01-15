@@ -15,6 +15,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_q6px8")
 Title = "Teleport"
-Description = "Swap the positions of 2 ingredients that are in the same row or coulmn"
+Description = "Swap the positions of 2 ingredients in the same row or coulmn"
 Cost = 1
+rarity = 1
 cardEffect = SubResource("Resource_lmv24")

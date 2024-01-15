@@ -19,18 +19,19 @@
 resource_local_to_scene = true
 script = ExtResource("7_e5l0a")
 Range = 1.0
-Value = 0
+Value = -1
 BlackGems = 0
 CardsToDiscard = 0
-canTargetBlackGems = false
+canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_8joto"]
+[sub_resource type="Resource" id="Resource_tceli"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch"
 Description = "Switch positions of two directly adjacent orbs"
 Cost = 1
+rarity = 0
 cardEffect = SubResource("Resource_pbwlf")
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
@@ -42,12 +43,13 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_1mdjk"]
+[sub_resource type="Resource" id="Resource_vw2kv"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Vertical"
 Description = "Switch positions of two vertically adjacent ingredients"
 Cost = 1
+rarity = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -59,12 +61,13 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_ioixw"]
+[sub_resource type="Resource" id="Resource_hv4lx"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Horiz"
 Description = "Switch positions of two horizontally adjacent ingredients"
 Cost = 1
+rarity = 0
 Picture = ExtResource("10_qx4mo")
 cardEffect = SubResource("Resource_ym5bx")
 
@@ -99,9 +102,9 @@ offset_right = -3.05176e-05
 offset_bottom = -218.0
 scale = Vector2(1.5, 1.5)
 gameManager = NodePath("..")
-upgradedSwitchCard = SubResource("Resource_8joto")
-vertSwitchCard = SubResource("Resource_1mdjk")
-horizSwitchCard = SubResource("Resource_ioixw")
+upgradedSwitchCard = SubResource("Resource_tceli")
+vertSwitchCard = SubResource("Resource_vw2kv")
+horizSwitchCard = SubResource("Resource_hv4lx")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]
 anchors_preset = 1

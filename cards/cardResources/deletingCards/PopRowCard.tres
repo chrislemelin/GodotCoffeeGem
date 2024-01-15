@@ -17,4 +17,5 @@ script = ExtResource("2_v1prq")
 Title = "Pop Row"
 Description = "Destroy all ingredients of a selected row"
 Cost = 2
+rarity = 0
 cardEffect = SubResource("Resource_nsl5v")

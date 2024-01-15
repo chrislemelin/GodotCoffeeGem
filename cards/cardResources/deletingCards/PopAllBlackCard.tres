@@ -17,4 +17,5 @@ script = ExtResource("2_tliwj")
 Title = "Purge"
 Description = "Destroy all black (burnt) ingredients"
 Cost = 1
+rarity = 1
 cardEffect = SubResource("Resource_u2hw2")

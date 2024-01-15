@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Security.Authentication;
 
 public partial class CardIF : lerp
 {
@@ -13,8 +14,7 @@ public partial class CardIF : lerp
 	[Export] public HighlightOnHover highlightOnHover;
 	[Export] protected CardResource cardResource;
 	[Export] protected Color disabledColor;
-
-
+	[Export] protected TextureRect titleSprite;
 
 
 	[Signal]
@@ -69,6 +69,7 @@ public partial class CardIF : lerp
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
+		titleSprite.Modulate = cardResource.rarity.getColor();
 	}
 
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)

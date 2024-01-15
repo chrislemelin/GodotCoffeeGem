@@ -17,4 +17,5 @@ script = ExtResource("2_6ct6l")
 Title = "Vanilla Convert"
 Description = "Changes $value ingredients to vanilla"
 Cost = 1
+rarity = 0
 cardEffect = SubResource("Resource_mklkk")

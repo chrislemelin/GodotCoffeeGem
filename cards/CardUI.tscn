@@ -18,7 +18,7 @@ shader_parameter/line_thickness = 5.009
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w66s"]
 size = Vector2(420, 603.333)
 
-[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover")]
+[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite")]
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_tb7xr")
 control = NodePath("UI")
@@ -29,6 +29,7 @@ picture = NodePath("UI/Picture/Sprite2D")
 highlightOnHover = NodePath("UI/Background")
 cardResource = ExtResource("2_fwhny")
 disabledColor = Color(0.560784, 0.560784, 0.560784, 1)
+titleSprite = NodePath("UI/Title/Sprite2D")
 speed = 500.0
 
 [node name="UI" type="Control" parent="."]
@@ -39,7 +40,7 @@ offset_top = -313.333
 offset_right = -220.0
 offset_bottom = -313.333
 
-[node name="Background" type="TextureRect" parent="UI" node_paths=PackedStringArray("area2D")]
+[node name="Background" type="TextureRect" parent="UI"]
 modulate = Color(0.239216, 0, 0.00392157, 1)
 material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 0
@@ -50,7 +51,6 @@ offset_bottom = 570.0
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_hibfg")
 script = ExtResource("3_a0ard")
-area2D = NodePath("../../Area2D")
 
 [node name="Description" type="Control" parent="UI"]
 anchors_preset = 0
@@ -107,6 +107,7 @@ offset_bottom = -0.000305176
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Title"]
+modulate = Color(0.145098, 0.811765, 0.960784, 1)
 layout_mode = 0
 offset_left = 9.04759
 offset_top = -6.66669
@@ -122,7 +123,9 @@ offset_top = 22.0
 offset_right = 363.0
 offset_bottom = 70.0
 mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "[center]CARD TITLE[/center]"

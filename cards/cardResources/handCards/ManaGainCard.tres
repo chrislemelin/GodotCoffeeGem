@@ -17,4 +17,5 @@ script = ExtResource("1_cdmb4")
 Title = "Mana Gain"
 Description = "Gain $value mana and burns 2 ingredients"
 Cost = 0
+rarity = 0
 cardEffect = SubResource("Resource_ihb2g")

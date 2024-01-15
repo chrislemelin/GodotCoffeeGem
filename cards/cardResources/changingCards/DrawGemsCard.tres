@@ -19,5 +19,6 @@ script = ExtResource("2_7gcs6")
 Title = "Draw Infusion"
 Description = "Randomly create $value draw ingredients(s) and burn 1 ingredient"
 Cost = 0
+rarity = 0
 Picture = ExtResource("1_m6hox")
 cardEffect = SubResource("Resource_m0v28")

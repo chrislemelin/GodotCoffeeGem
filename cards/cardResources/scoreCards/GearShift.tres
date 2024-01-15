@@ -15,7 +15,8 @@ effectGemType = 0
 
 [resource]
 script = ExtResource("1_5eytb")
-Title = "Gear Shift"
-Description = "Adds .25 to the multiplier for this turn"
+Title = "Compliment"
+Description = "Add .25 to the multiplier for this turn"
 Cost = 0
+rarity = 1
 cardEffect = SubResource("Resource_yybgl")

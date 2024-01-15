@@ -17,4 +17,5 @@ script = ExtResource("2_nk7uw")
 Title = "Pop"
 Description = "Destroy selected ingredient. If that ingredient had an infusion add it to 2 random gems."
 Cost = 1
+rarity = 0
 cardEffect = SubResource("Resource_yu3xx")

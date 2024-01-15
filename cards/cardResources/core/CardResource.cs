@@ -6,6 +6,7 @@ public partial class CardResource : Resource
 	[Export] public string Title { get; set; }
 	[Export(PropertyHint.MultilineText)] public string Description { private get; set; }
 	[Export] private int Cost { get; set; }
+	[Export] public CardRarity rarity = CardRarity.Common;
 	[Export] public Texture2D Picture { get; private set; }
 
 	[Export] public CardEffectIF cardEffect { get; set; }

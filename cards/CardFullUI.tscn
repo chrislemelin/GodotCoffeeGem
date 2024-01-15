@@ -14,7 +14,7 @@ shader = ExtResource("3_u3ora")
 shader_parameter/line_color = Color(1, 1, 0, 0)
 shader_parameter/line_thickness = 5.009
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture")]
+[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(530, 800)
 layout_mode = 3
@@ -30,6 +30,7 @@ titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Description/RichTextLabel")
 costLabel = NodePath("Center/Cost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
+titleSprite = NodePath("Center/Title/Sprite2D")
 
 [node name="Center" type="Control" parent="."]
 custom_minimum_size = Vector2(420, 600)
@@ -120,7 +121,8 @@ offset_top = 25.0
 offset_right = 324.0
 offset_bottom = 67.0
 mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]CARD TITLE[/center]"

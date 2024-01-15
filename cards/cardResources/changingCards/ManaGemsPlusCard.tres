@@ -20,4 +20,5 @@ script = ExtResource("2_yasco")
 Title = "Mana Ingredient +"
 Description = "Randomly create $value mana ingredient(s) and burn 1 ingredient"
 Cost = 0
+rarity = 1
 cardEffect = SubResource("Resource_m0v28")

@@ -15,6 +15,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_ux33c")
 Title = "Add Turn"
-Description = "Gan an additional Turn"
+Description = "Gain an additional turn"
 Cost = 3
+rarity = 2
 cardEffect = SubResource("Resource_ig02v")

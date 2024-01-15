@@ -17,4 +17,5 @@ script = ExtResource("2_tikbk")
 Title = "Pop All"
 Description = "Destroy all ingredients of a selected type"
 Cost = 2
+rarity = 0
 cardEffect = SubResource("Resource_i6k8f")

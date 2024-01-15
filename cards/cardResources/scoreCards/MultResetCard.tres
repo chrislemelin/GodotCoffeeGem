@@ -15,6 +15,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_trulp")
 Title = "Mult Reset"
-Description = "Reset mult to 1. Gain a card and a mana for each full unit of mult lost (max 3)"
+Description = "Reset multiplier to 1 and gain a card and an energy point for each whole number of mult lost (max 3)"
 Cost = 0
+rarity = 0
 cardEffect = SubResource("Resource_davew")

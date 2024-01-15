@@ -17,4 +17,5 @@ script = ExtResource("2_2qvkn")
 Title = "Sugar Rush"
 Description = "Change $value ingredient to sugar"
 Cost = 1
+rarity = 0
 cardEffect = SubResource("Resource_mklkk")

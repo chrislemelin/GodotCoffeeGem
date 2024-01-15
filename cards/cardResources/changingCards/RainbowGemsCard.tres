@@ -17,4 +17,5 @@ script = ExtResource("2_yglwu")
 Title = "Rainbow Splash"
 Description = "Randomly create $value rainbow ingredient(s) that can match with anything"
 Cost = 1
+rarity = 1
 cardEffect = SubResource("Resource_rb5l6")

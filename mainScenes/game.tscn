@@ -106,7 +106,7 @@ mana = NodePath("../Mana")
 score = NodePath("../Score")
 
 [node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager", "deckView") instance=ExtResource("6_tl444")]
-position = Vector2(1774, 889)
+position = Vector2(1784, 911)
 scale = Vector2(0.5, 0.5)
 hand = NodePath("../Hand")
 allCards = Array[Resource]([])
@@ -117,14 +117,13 @@ gameManager = NodePath("..")
 deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Discard" parent="." node_paths=PackedStringArray("deckView") instance=ExtResource("9_o6m7d")]
-position = Vector2(137, 910)
+position = Vector2(134, 909)
 scale = Vector2(0.5, 0.5)
 deckView = NodePath("../UIOverLays/DeckView")
 
-[node name="Score" parent="." node_paths=PackedStringArray("multUI", "gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
+[node name="Score" parent="." node_paths=PackedStringArray("gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
 position = Vector2(1511, 342)
-multUI = NodePath("")
 gameManager = NodePath("..")
 bossRecipeUI = NodePath("../BossRecipeUI")
 
@@ -145,10 +144,10 @@ position = Vector2(271, 694)
 
 [node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
-offset_left = 1685.0
-offset_top = 592.0
-offset_right = 1870.0
-offset_bottom = 649.0
+offset_left = 1692.0
+offset_top = 613.0
+offset_right = 1877.0
+offset_bottom = 670.0
 tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
 
 [node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
@@ -582,16 +581,18 @@ texture = ExtResource("27_6giu6")
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("18_y5ido")
-text = "Some Levels have Boss Recipies. You must make matches with the listed ingredients to complete the recipe. All matches will score 0 points untill the recipe is complete"
+text = "Oh no! Your rudest regular appears in the coffee shop, ready to ask for the manager if you don't get their order just right. You begrudgingly pull out the standard corporate recipe book.
+
+Some levels have recipes. You must make matches with the listed ingredients to complete the recipe. All matches will score 0 points until the recipe is complete."
 fit_content = true
 
 [node name="Button" type="Button" parent="UIOverLays/BossRecipeTutorial"]
 modulate = Color(1, 0.996078, 0.996078, 1)
 layout_mode = 0
-offset_left = 847.0
-offset_top = 531.0
-offset_right = 916.0
-offset_bottom = 562.0
+offset_left = 835.0
+offset_top = 690.0
+offset_right = 904.0
+offset_bottom = 721.0
 theme = ExtResource("18_y5ido")
 text = "Contine"
 
@@ -604,11 +605,10 @@ offset_bottom = 469.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
 
-[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager", "levelPassedText", "deckViewUI") instance=ExtResource("14_31k88")]
+[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager", "deckViewUI") instance=ExtResource("14_31k88")]
 visible = false
 layout_mode = 1
 gameManager = NodePath("../..")
-levelPassedText = Array[Resource]([])
 deckViewUI = NodePath("../DeckView")
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
