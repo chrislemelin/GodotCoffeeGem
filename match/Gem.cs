@@ -50,14 +50,14 @@ public partial class Gem : lerp
 			startingModulate = Modulate;
 		}
 		Type = type;
-		if (useSprites && !(type == GemType.Black || type == GemType.Rainbow))
+		if (useSprites && !(type == GemType.Rainbow))
 		{
 			Modulate = startingModulate.Value;
 			sprite2D.Texture = getTexture(type);
 		}
 		else
 		{
-			sprite2D.Texture = orbTexture;
+			sprite2D.Texture = getTexture(GemType.Sugar);
 			Modulate = type.GetColor();
 		}
 		if (type == GemType.Rainbow)
@@ -79,6 +79,7 @@ public partial class Gem : lerp
 			case GemType.Leaf:
 			case GemType.Vanilla:
 			case GemType.Sugar:
+			case GemType.Black:
 				return type.getTexture2D();
 			default:
 				return sprite2D.Texture;

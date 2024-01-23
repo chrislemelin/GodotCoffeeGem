@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bbvys5qb3cqbf"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bbvys5qb3cqbf"]
 
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="1_48m2x"]
+[ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="1_rutfs"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_gf1ng"]
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
@@ -19,4 +20,5 @@ Title = "Switch Vertical"
 Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
+Picture = ExtResource("1_rutfs")
 cardEffect = SubResource("Resource_lv7q0")

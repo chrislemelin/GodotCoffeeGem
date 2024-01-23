@@ -23,6 +23,12 @@ public partial class CardEffectIF: Resource
 
 	}
 
+	
+	public void init() {
+		cardPassives = new List<CardPassive>();
+	}
+
+
 	public void turnOver() {
 		cardPassives.RemoveAll(passive =>  passive.expireAfterTurnEnd);
 	}

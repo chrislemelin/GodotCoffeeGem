@@ -18,17 +18,17 @@
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
 [ext_resource type="PackedScene" uid="uid://cmj3k4irtmxwc" path="res://relics/RelicHolder.tscn" id="16_qkjnw"]
 [ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="16_rcb0t"]
-[ext_resource type="Script" path="res://UI/TutorialScreen.cs" id="17_nfscp"]
 [ext_resource type="Texture2D" uid="uid://bwuceu7gqp8u6" path="res://placeholders/red-arrow-png-36953.png" id="17_so8o5"]
-[ext_resource type="StyleBox" uid="uid://bkqr0iynl6gtr" path="res://UI/Themes/TutorialStyleBox.tres" id="18_uicyl"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="18_vk04q"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="18_y5ido"]
 [ext_resource type="Texture2D" uid="uid://br4ldam3vc7v3" path="res://placeholders/tutorial/Screenshot 2024-01-02 153911.png" id="20_2g6nx"]
 [ext_resource type="Texture2D" uid="uid://c4bqm3aiirl78" path="res://placeholders/tutorial/Screenshot 2023-12-19 090925.png" id="20_cw8l2"]
 [ext_resource type="Texture2D" uid="uid://lp4raqd5t3v5" path="res://placeholders/tutorial/Screenshot 2023-12-15 082252.png" id="21_1sem2"]
-[ext_resource type="Texture2D" uid="uid://cja74nrffthkl" path="res://placeholders/tutorial/BlackGem.png" id="22_hisef"]
+[ext_resource type="Texture2D" uid="uid://mqta6tnmb70t" path="res://placeholders/tutorial/Screenshot 2024-01-22 180542.png" id="24_d5am1"]
+[ext_resource type="Script" path="res://UI/WelcomeScreen.cs" id="26_gxqfm"]
 [ext_resource type="Texture2D" uid="uid://d4atoeb02hhv7" path="res://placeholders/tutorial/Screenshot 2024-01-14 160252.png" id="27_6giu6"]
 [ext_resource type="Script" path="res://UI/ToggleVisibilityOnButtonPress.cs" id="27_67js8"]
+[ext_resource type="Texture2D" uid="uid://c0npqs1omb3jo" path="res://placeholders/tutorial/Screenshot 2024-01-22 085344.png" id="29_85eqo"]
 [ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/BossRecipeUI.tscn" id="29_a8e6p"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
 
@@ -36,54 +36,64 @@
 script = ExtResource("2_iphd8")
 score = 500
 makeRandomBossRecipe = false
+blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_tq7p3"]
 script = ExtResource("2_iphd8")
 score = 1000
 makeRandomBossRecipe = false
+blockedTiles = 1
 
 [sub_resource type="Resource" id="Resource_y5jai"]
 script = ExtResource("2_iphd8")
 score = 1500
 makeRandomBossRecipe = false
+blockedTiles = 2
 
 [sub_resource type="Resource" id="Resource_66dt5"]
 script = ExtResource("2_iphd8")
 score = 2000
 makeRandomBossRecipe = true
+blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_sq5lj"]
 script = ExtResource("2_iphd8")
 score = 3000
 makeRandomBossRecipe = false
+blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_n37t5"]
 script = ExtResource("2_iphd8")
 score = 4000
 makeRandomBossRecipe = false
+blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_ihien"]
 script = ExtResource("2_iphd8")
 score = 5000
 makeRandomBossRecipe = true
+blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_tsje6"]
 script = ExtResource("2_iphd8")
 score = 6500
 makeRandomBossRecipe = false
+blockedTiles = 5
 
 [sub_resource type="Resource" id="Resource_ohlet"]
 script = ExtResource("2_iphd8")
 score = 8000
 makeRandomBossRecipe = false
+blockedTiles = 5
 
 [sub_resource type="Resource" id="Resource_qnqmx"]
 script = ExtResource("2_iphd8")
 score = 10000
 makeRandomBossRecipe = true
+blockedTiles = 0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial")]
-position = Vector2(-1, 0)
+[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial")]
+position = Vector2(-3, -2)
 script = ExtResource("1_5jnm2")
 newCardSelection = NodePath("UIOverLays/CardSelectionUI")
 recipeUI = NodePath("BossRecipeUI")
@@ -92,7 +102,10 @@ score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
 relicResources = Array[Resource]([])
 bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
+gooTutorial = NodePath("UIOverLays/GooTutorial")
+welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
+debugMode = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("3_niyuq")
 defaultCardList = ExtResource("3_tlo67")
@@ -169,25 +182,30 @@ tooltip_text = "This recipe must be completed before you can score any points fo
 layout_mode = 3
 anchors_preset = 0
 
-[node name="TutorialScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("textureButton", "button2")]
+[node name="WelcomeScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens", "textureButton")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("17_nfscp")
-textureButton = NodePath("../TutorialButton")
+script = ExtResource("26_gxqfm")
 button2 = NodePath("Button")
+screens = NodePath("WelcomeScreens")
+textureButton = NodePath("../TutorialButton")
 
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen"]
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen"]
 modulate = Color(0, 0, 0, 0.615686)
 layout_mode = 2
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 1935.0
+offset_bottom = 1079.0
+rotation = -0.000391196
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
@@ -196,40 +214,338 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="GemsTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
-anchors_preset = 0
-offset_left = 767.0
-offset_top = 71.0
-offset_right = 767.0
-offset_bottom = 71.0
+[node name="Button" type="Button" parent="UIOverLays/WelcomeScreen"]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 782.0
+offset_right = 1044.0
+offset_bottom = 867.0
+theme = ExtResource("18_y5ido")
+theme_override_font_sizes/font_size = 40
+text = "Advance"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/TutorialScreen/GemsTutorial"]
+[node name="WelcomeScreens" type="Control" parent="UIOverLays/WelcomeScreen"]
+anchors_preset = 0
+
+[node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
+layout_mode = 0
+offset_left = 449.0
+offset_top = 253.0
+offset_right = 1726.0
+offset_bottom = 530.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 25
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("18_y5ido")
+theme_override_font_sizes/normal_font_size = 50
+text = "Welcome to Beans of Production!"
+
+[node name="MarginContainer" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("18_y5ido")
+theme_override_font_sizes/normal_font_size = 20
+text = "You are a new barista working for [company name] at coffee shop #357. Work hard for the company and you might land yourself a promotion, or even a day off!"
+
+[node name="Screen2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
+anchors_preset = 0
+
+[node name="Match Tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 521.0
+offset_top = 333.0
+offset_right = 521.0
+offset_bottom = 333.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Match Tutorial"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 84.0001
+offset_right = 482.0
+offset_bottom = 457.0
+rotation = -2.44521
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Match Tutorial"]
+layout_mode = 0
+offset_left = -265.0
+offset_top = -75.0
+offset_right = 19.0
+offset_bottom = 91.0
+theme = ExtResource("18_y5ido")
+text = "This is your standard-issue coffee machine. You will be making 3-of-a-kind matches to generate points. Make enough points to stave off the thirsty masses and clear your shift."
+
+[node name="Card Tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 394.0
+offset_top = 838.0
+offset_right = 394.0
+offset_bottom = 838.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Card Tutorial"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 84.0001
+offset_right = 482.0
+offset_bottom = 457.0
+rotation = -2.44521
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Card Tutorial"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = -64.0
+offset_right = 19.0
+offset_bottom = 91.0
+theme = ExtResource("18_y5ido")
+text = "These are the cards you will use to make matches. Each card has an energy cost, shown in the upper left, that will be spent when you play the card."
+
+[node name="Deck" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1548.0
+offset_top = 833.0
+offset_right = 1548.0
+offset_bottom = 833.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Deck"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 84.0001
+offset_right = 482.0
+offset_bottom = 457.0
+rotation = -2.44521
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Deck"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = -64.0
+offset_right = 19.0
+offset_bottom = 123.0
+theme = ExtResource("18_y5ido")
+text = "This is your deck of cards, used to make drinks and match ingredients on the board. At the start of each turn, you will draw from this stack. Over time, you can upgrade your deck."
+
+[node name="EnergyTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 656.0
+offset_top = 649.0
+offset_right = 656.0
+offset_bottom = 649.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/EnergyTutorial"]
+layout_mode = 0
+offset_left = -290.0
+offset_top = -51.0
+offset_right = 110.0
+offset_bottom = 322.0
+rotation = -5.58643
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/EnergyTutorial"]
+layout_mode = 0
+offset_left = -225.0
+offset_top = -61.0
+offset_right = 31.0
+offset_bottom = 82.0
+theme = ExtResource("18_y5ido")
+text = "This is your current energy. Each move you make to clear your shift, represented by your cards, consumes some of your energy."
+
+[node name="Screen3" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
+anchors_preset = 0
+
+[node name="Mult tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1706.0
+offset_top = 143.0
+offset_right = 1706.0
+offset_bottom = 143.0
+rotation = -0.00465528
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Mult tutorial"]
+layout_mode = 0
+offset_left = -169.538
+offset_top = 115.212
+offset_right = 230.462
+offset_bottom = 488.212
+rotation = -0.853772
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Mult tutorial"]
+layout_direction = 2
+layout_mode = 0
+offset_left = -236.0
+offset_top = -64.0
+offset_right = 68.0
+offset_bottom = 91.0
+theme = ExtResource("18_y5ido")
+text = "This is your score multiplier, which increases the value of your ingredient matches. Each match you make on a given turn increases the multiplier, but the value resets to 1 when you end your turn."
+
+[node name="Score tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1216.0
+offset_top = 422.0
+offset_right = 1216.0
+offset_bottom = 422.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Score tutorial"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 84.0001
+offset_right = 482.0
+offset_bottom = 457.0
+rotation = -2.44521
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Score tutorial"]
+layout_mode = 0
+offset_left = -239.0
+offset_top = -42.0
+offset_right = 20.0
+offset_bottom = 44.0
+theme = ExtResource("18_y5ido")
+text = "This is your progress for the current level. Fill this bar to clear your shift."
+
+[node name="turns remaining" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1154.0
+offset_top = 454.0
+offset_right = 1154.0
+offset_bottom = 454.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/turns remaining"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 130.0
+offset_right = 546.0
+offset_bottom = 503.0
+rotation = -2.47667
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/turns remaining"]
+layout_mode = 0
+offset_left = -345.0
+offset_top = 23.0
+offset_right = 87.0
+offset_bottom = 137.0
+theme = ExtResource("18_y5ido")
+text = "These are the turns you have remaning to complete the level. When you run out of turns, your exhaustion takes its toll and begins to consume hearts. When you run out of hearts, the game is over."
+
+[node name="End Turn" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1526.0
+offset_top = 661.0
+offset_right = 1526.0
+offset_bottom = 661.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 92.0
+offset_right = 536.0
+offset_bottom = 465.0
+rotation = -2.72429
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn"]
+layout_mode = 0
+offset_left = -168.0
+offset_top = 24.0
+offset_right = 87.0
+offset_bottom = 138.0
+theme = ExtResource("18_y5ido")
+text = "End your turn to draw a new hand and reset your energy to 3. Turns are a limited resource."
+
+[node name="End Turn3" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1201.0
+offset_top = 580.0
+offset_right = 1201.0
+offset_bottom = 580.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn3"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 92.0
+offset_right = 536.0
+offset_bottom = 465.0
+rotation = -2.72429
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn3"]
+layout_mode = 0
+offset_left = -168.0
+offset_top = 24.0
+offset_right = 87.0
+offset_bottom = 92.0
+theme = ExtResource("18_y5ido")
+text = "Use your wages to buy upgrades between levels."
+
+[node name="GemsTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 810.0
+offset_top = 147.0
+offset_right = 810.0
+offset_bottom = 147.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial"]
 layout_mode = 0
 offset_left = -9.0
-offset_top = 68.0
+offset_top = 7.0
 offset_right = 291.0
-offset_bottom = 667.0
+offset_bottom = 606.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Types of ingredients"
 fit_content = true
 
-[node name="ManaGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
-custom_minimum_size = Vector2(300, 125)
+[node name="ManaGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ManaGemTutorial"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ManaGemTutorial"]
 layout_mode = 0
-offset_top = 4.0
+offset_top = 1.0
 offset_right = 171.0
-offset_bottom = 119.0
+offset_bottom = 137.0
 theme = ExtResource("18_y5ido")
-text = "Mana infused ingredients will give you a mana if you match them
-"
+text = "Energy-infused ingredients give you a point of energy when matched."
 
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ManaGemTutorial"]
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ManaGemTutorial"]
 layout_mode = 0
 offset_left = 180.0
 offset_top = 10.0
@@ -237,21 +553,21 @@ offset_right = 283.0
 offset_bottom = 108.0
 texture = ExtResource("20_cw8l2")
 
-[node name="CardGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
+[node name="CardGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
 custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/CardGemTutorial"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/CardGemTutorial"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 4.0
 offset_right = 174.0
 offset_bottom = 139.0
 theme = ExtResource("18_y5ido")
-text = "Card infused ingredients will draw a card into your hand if you match them
+text = "Card-infused ingredients draw a card into your hand when matched.
 "
 
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/CardGemTutorial"]
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/CardGemTutorial"]
 layout_mode = 0
 offset_left = 180.0
 offset_top = 10.0
@@ -259,11 +575,12 @@ offset_right = 283.0
 offset_bottom = 108.0
 texture = ExtResource("21_1sem2")
 
-[node name="ComboGemTutorial2" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
+[node name="ComboGemTutorial2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 140)
 layout_mode = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 171.0
@@ -272,7 +589,7 @@ theme = ExtResource("18_y5ido")
 text = "Combo infused ingredients will give increasing points with each match
 "
 
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
 layout_mode = 0
 offset_left = 180.0
 offset_top = 10.0
@@ -280,266 +597,27 @@ offset_right = 283.0
 offset_bottom = 108.0
 texture = ExtResource("20_2g6nx")
 
-[node name="BlackGemTutorial" type="Control" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer"]
+[node name="BlackGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
 custom_minimum_size = Vector2(300, 125)
 layout_mode = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/BlackGemTutorial"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/BlackGemTutorial"]
 layout_mode = 0
-offset_top = 4.0
-offset_right = 175.0
-offset_bottom = 181.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 172.0
+offset_bottom = 139.0
 theme = ExtResource("18_y5ido")
-text = "Black (burnt) ingredients are bad, they are unmatchable and unmovable, altho they can be destroyed
-"
+text = "Burnt ingredients are unmatchable and unmovable, but certain cards can destroy them."
 
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/TutorialScreen/GemsTutorial/VBoxContainer/BlackGemTutorial"]
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/BlackGemTutorial"]
 layout_mode = 0
 offset_left = 180.0
 offset_top = 10.0
-offset_right = 283.0
-offset_bottom = 108.0
-texture = ExtResource("22_hisef")
-
-[node name="TurnsTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-anchors_preset = 0
-offset_left = 1213.0
-offset_top = 487.0
-offset_right = 1213.0
-offset_bottom = 487.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/TurnsTutorial"]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/TurnsTutorial"]
-layout_mode = 0
-offset_left = -236.0
-offset_top = -64.0
-offset_right = 19.0
-offset_bottom = 91.0
-theme = ExtResource("18_y5ido")
-text = "This is the number of turns you have to complete the level, if you run out of turns you will start losing hearts, you lose when you run out of hearts"
-
-[node name="MoneyTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-anchors_preset = 0
-offset_left = 1249.0
-offset_top = 632.0
-offset_right = 1249.0
-offset_bottom = 632.0
-rotation = -0.333073
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/MoneyTutorial"]
-layout_mode = 0
-offset_left = -117.445
-offset_top = -73.4343
-offset_right = 54.5549
-offset_bottom = 79.5657
-rotation = 0.331085
-theme = ExtResource("18_y5ido")
-text = "This is your money, if you complete the level early you get a small bonus."
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/MoneyTutorial"]
-layout_mode = 0
-offset_left = 93.8188
-offset_top = 65.2606
-offset_right = 493.819
-offset_bottom = 438.261
-rotation = -2.6869
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="ScoreTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-anchors_preset = 0
-offset_left = 1360.0
-offset_top = 223.0
-offset_right = 1360.0
-offset_bottom = 223.0
-rotation = 0.40695
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/ScoreTutorial"]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/ScoreTutorial"]
-layout_mode = 0
-offset_left = -137.432
-offset_top = 22.2111
-offset_right = 2.56763
-offset_bottom = 107.211
-rotation = -0.392855
-theme = ExtResource("18_y5ido")
-text = "This is your progress for the level"
-
-[node name="MultTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1128.0
-offset_top = 395.0
-offset_right = 1128.0
-offset_bottom = 395.0
-rotation = 0.40695
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/MultTurorial"]
-layout_mode = 0
-offset_left = -151.554
-offset_top = -76.2399
-offset_right = 72.4463
-offset_bottom = 65.7601
-rotation = -0.400267
-theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This is your score mulitplier, you gain mult with each match but resets when you end each turn"
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/MultTurorial"]
-layout_mode = 0
-offset_left = 144.621
-offset_top = -38.3765
-offset_right = 544.621
-offset_bottom = 334.624
-rotation = -2.71035
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="GridTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 520.0
-offset_top = 445.0
-offset_right = 520.0
-offset_bottom = 445.0
-rotation = -0.0267641
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/GridTutorial"]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/GridTutorial"]
-layout_mode = 0
-offset_left = -210.676
-offset_top = -28.9792
-offset_right = 13.3245
-offset_bottom = 113.021
-theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This is the match 3 grid, make matches to advance your score to clear the level"
-
-[node name="ManaTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 697.0
-offset_top = 690.0
-offset_right = 697.0
-offset_bottom = 690.0
-rotation = -0.0267641
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/ManaTurorial"]
-layout_mode = 0
-offset_left = -290.888
-offset_top = -82.8142
-offset_right = 109.112
-offset_bottom = 290.186
-rotation = -5.48986
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/ManaTurorial"]
-layout_mode = 0
-offset_left = -218.0
-offset_top = -48.0
-offset_right = 18.0
-offset_bottom = 26.0
-rotation = 0.0259918
-theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This is your mana it can be used to play cards"
-
-[node name="HandTurorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 541.0
-offset_top = 877.0
-offset_right = 541.0
-offset_bottom = 877.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/HandTurorial"]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/HandTurorial"]
-layout_mode = 0
-offset_left = -211.0
-offset_top = -29.0
-offset_right = 13.0
-offset_bottom = 90.0
-theme_override_styles/normal = ExtResource("18_uicyl")
-text = "Play cards to make matches and earn points. Cards have a mana cost in the top left"
-
-[node name="EndTurnTutorial" type="Control" parent="UIOverLays/TutorialScreen"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1571.0
-offset_top = 774.0
-offset_right = 1571.0
-offset_bottom = 774.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/TutorialScreen/EndTurnTutorial"]
-layout_mode = 0
-offset_left = -215.0
-offset_top = -62.0
-offset_right = 13.0
-offset_bottom = 71.0
-theme_override_styles/normal = ExtResource("18_uicyl")
-text = "This will end the current turn, this will give you a new hand of cards and reset your mana"
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/TutorialScreen/EndTurnTutorial"]
-layout_mode = 0
-offset_left = 61.0
-offset_top = -3.0
-offset_right = 461.0
-offset_bottom = 370.0
-rotation = -2.79419
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("17_so8o5")
-
-[node name="Button" type="Button" parent="UIOverLays/TutorialScreen"]
-layout_mode = 0
-offset_left = 820.0
-offset_top = 825.0
-offset_right = 950.0
-offset_bottom = 894.0
-theme = ExtResource("18_y5ido")
-theme_override_font_sizes/font_size = 40
-text = "Close"
+offset_right = 290.0
+offset_bottom = 123.0
+texture = ExtResource("24_d5am1")
+expand_mode = 3
 
 [node name="BossRecipeTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
 visible = false
@@ -596,18 +674,79 @@ offset_bottom = 721.0
 theme = ExtResource("18_y5ido")
 text = "Contine"
 
+[node name="GooTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("27_67js8")
+button = NodePath("Button")
+
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/GooTutorial"]
+modulate = Color(0, 0, 0, 0.568627)
+layout_mode = 2
+offset_left = -10.0
+offset_right = 1922.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/GooTutorial"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 226.0
+offset_right = 1029.0
+offset_bottom = 501.0
+
+[node name="TextureRect2" type="TextureRect" parent="UIOverLays/GooTutorial/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("29_85eqo")
+expand_mode = 4
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/GooTutorial/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("18_y5ido")
+text = "Oh no, your trusty coffee machine has started secreting some kind of strange goo. This probabaly wont pass health expection.
+
+Goo tiles take up space that ingredients could go into. You can clear them out by making matches adjacent to goo tiles!"
+fit_content = true
+
+[node name="Button" type="Button" parent="UIOverLays/GooTutorial"]
+modulate = Color(1, 0.996078, 0.996078, 1)
+layout_mode = 0
+offset_left = 832.0
+offset_top = 779.0
+offset_right = 901.0
+offset_bottom = 810.0
+theme = ExtResource("18_y5ido")
+text = "Contine"
+
 [node name="TutorialButton" type="TextureButton" parent="UIOverLays"]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 69.0
+offset_top = 71.0
 offset_right = 404.0
-offset_bottom = 469.0
+offset_bottom = 471.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
 
 [node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager", "deckViewUI") instance=ExtResource("14_31k88")]
 visible = false
 layout_mode = 1
+offset_left = -5.0
+offset_top = -4.0
+offset_right = -5.0
+offset_bottom = -4.0
+scale = Vector2(1.01, 1.01)
 gameManager = NodePath("../..")
 deckViewUI = NodePath("../DeckView")
 

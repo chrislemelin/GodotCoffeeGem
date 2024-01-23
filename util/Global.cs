@@ -17,6 +17,9 @@ public partial class Global : Node
 	public int currentCoins = 0;
 	public int numberOfCardsToChoose = 3;
 	public bool shownBossTutorial = false;
+	public bool shownWelcomeTutorial = false;
+	public bool shownGooTutorial = false;
+
 
 	public Vector2 gridSize = new Vector2(6,5);
 

@@ -269,7 +269,6 @@ public partial class Score : Node2D
 		colorUpgrades.Add(colorUpgrade);
 		compressCurrentColorUpgrades();
 		renderColorUpgradePreviews();
-
 	}
 
 	private void renderColorUpgradePreviews()

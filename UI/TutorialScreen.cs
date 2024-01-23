@@ -9,7 +9,9 @@ public partial class TutorialScreen : Control
 	public override void _Ready()
 	{
 		base._Ready();
-		textureButton.Pressed += () => Visible = !Visible;
+		if (textureButton != null) {
+			textureButton.Pressed += () => Visible = !Visible;
+		}
 		button2.Pressed += () => Visible = !Visible;
 	}
 }

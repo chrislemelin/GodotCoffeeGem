@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ccn3bycf4uxbn"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ccn3bycf4uxbn"]
 
+[ext_resource type="Texture2D" uid="uid://wtfwmklx0mv3" path="res://cards/cardResources/cardArt/purge.png" id="1_0k3tp"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopAllBlack.cs" id="1_jxdwc"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_tliwj"]
 
@@ -18,4 +19,5 @@ Title = "Purge"
 Description = "Destroy all black (burnt) ingredients"
 Cost = 1
 rarity = 1
+Picture = ExtResource("1_0k3tp")
 cardEffect = SubResource("Resource_u2hw2")

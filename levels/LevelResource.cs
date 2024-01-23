@@ -9,6 +9,8 @@ public partial class LevelResource : Resource
 	public RecipeResource bossRecipe;
 	[Export]
 	public bool makeRandomBossRecipe;
+	[Export]
+	public int blockedTiles = 0;
 
 	public RecipeResource getBossRecipe(){
 		if (bossRecipe != null) {

@@ -6,7 +6,8 @@ public enum GemAddonType
 	None,
 	Mana,
 	Card,
-	Combo
+	Combo,
+	Mult,
 }
 
 static class GemAddonTypeHelper

@@ -11,7 +11,7 @@ public partial class DayOver : Control
 	[Export] ButtonWithCoinCost moreCardsButton;
 	[Export] ButtonWithCoinCost relicButton;
 	[Export] ButtonWithCoinCost upgradeCardButton;
-
+	[Export] ButtonWithCoinCost removeCardFromDeckButton;
 
 	[Export] Control relicShop;
 	[Export] PackedScene relicUIPackedScene;
@@ -36,13 +36,15 @@ public partial class DayOver : Control
 
 	private CardResource? cardToReplace;
 
+	[Export] DeckViewUI deckListUI;
+
 
 	public override void _Ready()
 	{
 		base._Ready();
 		buttonWithCoinCost.Add(sideHustleButton);
 		buttonWithCoinCost.Add(shoppingTherapyButton);
-		
+		buttonWithCoinCost.Add(removeCardFromDeckButton);
 		buttonWithCoinCost.Add(gemUpgradeButton);
 		buttonWithCoinCost.Add(moreCardsButton);
 		buttonWithCoinCost.Add(relicButton);
@@ -75,6 +77,11 @@ public partial class DayOver : Control
 		if (cardToReplace == null) {
 			upgradeCardButton.Disabled = true;
 		}
+
+		removeCardFromDeckButton.Pressed += () => {
+			deckListUI.setUpAndSelectCard(gameManager.getDeckList(), removeCardFromDeck) ;
+			confirmationText.Text = "Removed Card from Deck";
+		};
 
 
 		sideHustleButton.Pressed += () => {
@@ -154,6 +161,9 @@ public partial class DayOver : Control
 			};
 			relicShop.AddChild(relicUI);
 		}
+	}
 
+	private void removeCardFromDeck(CardResource cardResource) {
+		gameManager.removeCardFromDeckList(cardResource);
 	}
 }

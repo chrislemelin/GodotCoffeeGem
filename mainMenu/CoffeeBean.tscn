@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5lhdf87xxt55"]
 
-[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="1_34n3x"]
 [ext_resource type="Script" path="res://mainMenu/Rotate.cs" id="1_tc6sp"]
+[ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://placeholders/ingredients/bean-pixel-300px.png" id="2_rsimq"]
 
 [node name="CoffeeBean" type="Node2D"]
 scale = Vector2(0.5, 0.5)
@@ -10,4 +10,4 @@ rotateSpeed = 5.0
 
 [node name="Bean" type="Sprite2D" parent="."]
 position = Vector2(8, 13)
-texture = ExtResource("1_34n3x")
+texture = ExtResource("2_rsimq")

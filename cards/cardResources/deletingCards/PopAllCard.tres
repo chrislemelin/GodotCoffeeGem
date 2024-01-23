@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://b7wroy2v1oil"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b7wroy2v1oil"]
 
+[ext_resource type="Texture2D" uid="uid://bep1wvqyfuhy8" path="res://cards/cardResources/cardArt/popAll.png" id="1_4ibg8"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRandom.cs" id="1_tneas"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_tikbk"]
 
@@ -18,4 +19,5 @@ Title = "Pop All"
 Description = "Destroy all ingredients of a selected type"
 Cost = 2
 rarity = 0
+Picture = ExtResource("1_4ibg8")
 cardEffect = SubResource("Resource_i6k8f")

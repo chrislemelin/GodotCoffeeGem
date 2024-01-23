@@ -17,7 +17,8 @@ public partial class GameManager : GameManagerIF
 	[Export] public RelicHolderUI relicHolderUI;
 	[Export] public Array<RelicResource> relicResources;
 	[Export] public Control bossRecipeTutorial;
-
+	[Export] public Control gooTutorial;
+	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public Array<LevelResource> levels;
 
 	[Export] private bool debugMode;
@@ -27,7 +28,9 @@ public partial class GameManager : GameManagerIF
 		base._Ready();
 		int currentLevel = global.currentLevel;
 		if (currentLevel > levels.Count) {
+			// you win
 			resetGlobals();
+			gameOverScreen.label.Text = "You win!!!";
 			gameOverScreen.Visible = true;
 		}
 		LevelResource currentLevelResource = levels[currentLevel-1];
@@ -36,14 +39,23 @@ public partial class GameManager : GameManagerIF
 			recipeUI.loadRecipe(bossRecipe);
 			if(!getGlobal().shownBossTutorial){
 				bossRecipeTutorial.Visible = true;
-				getGlobal().shownBossTutorial  = true;
+				getGlobal().shownBossTutorial = true;
 			}
 		}
+		if (!getGlobal().shownWelcomeTutorial && !debugMode) {
+			welcomeTutorial.startUp();
+			getGlobal().shownWelcomeTutorial = true;
+		}
+		if (!getGlobal().shownGooTutorial && currentLevelResource.blockedTiles > 0 && !debugMode) {
+			gooTutorial.Visible = true;
+			getGlobal().shownGooTutorial = true;
+		}
+
 
 		scoreNeededToPass = currentLevelResource.score;
 		if (debugMode)
 		{
-			scoreNeededToPass = 50;
+			//scoreNeededToPass = 50;
 			addCoins(100);
 		}
 		score.setMoneyNeeded(scoreNeededToPass);
@@ -58,6 +70,7 @@ public partial class GameManager : GameManagerIF
 				addRelic(relicResource);
 			}
 		}
+		FindObjectHelper.getMatchBoard(this).addRandomBlockedTiles(currentLevelResource.blockedTiles);
 		relicHolderUI.setRelicList(getRelics());
 		relicHolderUI.startUpRelics();
 	}

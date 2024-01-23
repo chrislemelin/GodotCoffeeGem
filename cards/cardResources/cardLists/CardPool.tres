@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=30 format=3 uid="uid://b3grjg3l83q21"]
+[gd_resource type="Resource" script_class="CardList" load_steps=29 format=3 uid="uid://b3grjg3l83q21"]
 
 [ext_resource type="Resource" uid="uid://dem6i4eb31m22" path="res://cards/cardResources/changingCards/colorchange/MilkConvertCard.tres" id="1_4ei7j"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="1_wmkeb"]
+[ext_resource type="Resource" uid="uid://c0t40mre00w4j" path="res://cards/cardResources/changingCards/colorchange/EspressoConvertCard.tres" id="1_yiy6b"]
 [ext_resource type="Resource" uid="uid://dyreny5skf6al" path="res://cards/cardResources/changingCards/colorchange/TeaConvertCard.tres" id="2_mlfry"]
 [ext_resource type="Resource" uid="uid://bea3d4p3qbvtr" path="res://cards/cardResources/changingCards/colorchange/SugarConvertCard.tres" id="3_dbyj5"]
 [ext_resource type="Resource" uid="uid://liaexlmjhrer" path="res://cards/cardResources/changingCards/colorchange/VanillaConvertCard.tres" id="4_2tia1"]
@@ -9,7 +10,6 @@
 [ext_resource type="Resource" uid="uid://b7wroy2v1oil" path="res://cards/cardResources/deletingCards/PopAllCard.tres" id="8_6itjf"]
 [ext_resource type="Resource" uid="uid://cmaeddlco4ix0" path="res://cards/cardResources/movementCards/TeleportCard.tres" id="10_j8lqa"]
 [ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="11_6hmiv"]
-[ext_resource type="Resource" uid="uid://c0t40mre00w4j" path="res://cards/cardResources/changingCards/colorchange/YellowConvertCard.tres" id="11_oq3g4"]
 [ext_resource type="Resource" uid="uid://e3lvfo3yth8a" path="res://cards/cardResources/handCards/DrawBurstCard.tres" id="12_1j6v6"]
 [ext_resource type="Resource" uid="uid://ilwedgxbjrlf" path="res://cards/cardResources/changingCards/ManaGemsPlusCard.tres" id="12_g6xcg"]
 [ext_resource type="Resource" uid="uid://rdwavk835p20" path="res://cards/cardResources/changingCards/DrawGemsPlusCard.tres" id="13_6je6i"]
@@ -27,9 +27,8 @@
 [ext_resource type="Resource" uid="uid://ccn3bycf4uxbn" path="res://cards/cardResources/deletingCards/PopAllBlackCard.tres" id="24_5fdh8"]
 [ext_resource type="Resource" uid="uid://kw1s578aww0k" path="res://cards/cardResources/deletingCards/RaptureCard.tres" id="25_q5e38"]
 [ext_resource type="Resource" uid="uid://ltwr7y1awp6v" path="res://cards/cardResources/scoreCards/MultResetCard.tres" id="26_48q3w"]
-[ext_resource type="Resource" uid="uid://chsllpe05mfhj" path="res://cards/cardResources/changingCards/ComboGemsCard.tres" id="27_3t880"]
 [ext_resource type="Resource" uid="uid://70kmw430310t" path="res://cards/cardResources/scoreCards/AddTurn.tres" id="28_lncn2"]
 
 [resource]
 script = ExtResource("1_wmkeb")
-allCards = Array[Object]([ExtResource("1_4ei7j"), ExtResource("2_mlfry"), ExtResource("3_dbyj5"), ExtResource("11_oq3g4"), ExtResource("4_2tia1"), ExtResource("7_pa8ff"), ExtResource("8_6itjf"), ExtResource("11_6hmiv"), ExtResource("12_1j6v6"), ExtResource("14_08koo"), ExtResource("10_j8lqa"), ExtResource("12_g6xcg"), ExtResource("13_6je6i"), ExtResource("14_bnxso"), ExtResource("15_mil8h"), ExtResource("16_nhkj0"), ExtResource("17_rk73y"), ExtResource("18_fsv73"), ExtResource("19_3pbrq"), ExtResource("20_tldp7"), ExtResource("21_e1bdl"), ExtResource("22_h4sox"), ExtResource("23_ugkx8"), ExtResource("24_5fdh8"), ExtResource("25_q5e38"), ExtResource("26_48q3w"), ExtResource("27_3t880"), ExtResource("28_lncn2")])
+allCards = Array[Object]([ExtResource("1_yiy6b"), ExtResource("1_4ei7j"), ExtResource("2_mlfry"), ExtResource("3_dbyj5"), ExtResource("4_2tia1"), ExtResource("7_pa8ff"), ExtResource("8_6itjf"), ExtResource("11_6hmiv"), ExtResource("12_1j6v6"), ExtResource("14_08koo"), ExtResource("10_j8lqa"), ExtResource("12_g6xcg"), ExtResource("13_6je6i"), ExtResource("14_bnxso"), ExtResource("15_mil8h"), ExtResource("16_nhkj0"), ExtResource("17_rk73y"), ExtResource("18_fsv73"), ExtResource("19_3pbrq"), ExtResource("20_tldp7"), ExtResource("21_e1bdl"), ExtResource("22_h4sox"), ExtResource("23_ugkx8"), ExtResource("24_5fdh8"), ExtResource("25_q5e38"), ExtResource("26_48q3w"), ExtResource("28_lncn2")])

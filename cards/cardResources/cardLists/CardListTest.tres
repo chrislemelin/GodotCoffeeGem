@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=3 format=3 uid="uid://dbq6lsiphqhd2"]
+[gd_resource type="Resource" script_class="CardList" load_steps=5 format=3 uid="uid://dbq6lsiphqhd2"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="1_0qxya"]
-[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="1_0ws6n"]
+[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="1_4idoa"]
+[ext_resource type="Resource" uid="uid://d1nggr211uac1" path="res://cards/cardResources/deletingCards/PopRowCard.tres" id="3_7sirm"]
+[ext_resource type="Resource" uid="uid://c7fw01b7y86oy" path="res://cards/cardResources/deletingCards/RagnarokCard.tres" id="3_ellwg"]
 
 [resource]
 script = ExtResource("1_0qxya")
-allCards = Array[Object]([ExtResource("1_0ws6n"), ExtResource("1_0ws6n"), ExtResource("1_0ws6n"), ExtResource("1_0ws6n"), ExtResource("1_0ws6n")])
+allCards = Array[Object]([ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("1_4idoa"), ExtResource("3_7sirm"), ExtResource("3_ellwg")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=16 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_qwsb4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://cards/rainbowSmooth.gdshader" id="5_2oikk"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="5_qlodo"]
 [ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://placeholders/gem-gradient-painted.png" id="6_7pibk"]
+[ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://placeholders/ingredients/bean-pixel-300px.png" id="6_14v2q"]
 [ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/ComboStyleBox.tres" id="12_bexrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
@@ -92,9 +93,9 @@ libraries = {
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 
 [node name="GemSprite" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(27, 27)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("5_qlodo")
+position = Vector2(17, 18)
+scale = Vector2(0.726667, 0.726667)
+texture = ExtResource("6_14v2q")
 centered = false
 
 [node name="GemSprite3" type="Sprite2D" parent="CanvasGroup"]

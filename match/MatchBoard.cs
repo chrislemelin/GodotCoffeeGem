@@ -111,15 +111,9 @@ public partial class MatchBoard : Node
 			List<Vector2> customSelectableListOfTiles = card.getCardResource().cardEffect.getAllTilesSelectableAfterFirstSelection(this, center);
 			if (customSelectableListOfTiles.Count == 0)
 			{
-				foreach (Tile currentTile in tileSet)
-				{
-					if (currentTile.getTilePosition().DistanceTo(center.getTilePosition()) <= card.getCardResource().cardEffect.getRange())
-					{
-						if (currentTile != center)
-						{
-							addTileToAvailibleToSelectList(currentTile);
-						}
-					}
+				HashSet<Tile> tilesInRange = getTilesInRange(center.getTilePosition(),card.getCardResource().cardEffect.getRange());
+				foreach(Tile tile in tilesInRange) {
+					addTileToAvailibleToSelectList(tile);
 				}
 			}
 			else
@@ -135,6 +129,22 @@ public partial class MatchBoard : Node
 			}
 
 		}
+	}
+
+	private HashSet<Tile> getTilesInRange(Vector2 startPosition, float range) {
+		HashSet<Tile> tiles = new HashSet<Tile>();
+		foreach (Tile currentTile in tileSet)
+		{
+			if (currentTile.getTilePosition().DistanceTo(startPosition) <= range)
+			{
+				if (currentTile.getTilePosition() != startPosition)
+				{
+					tiles.Add(currentTile);
+				}
+			}
+		}
+
+		return tiles;
 	}
 
 	private void checkForDrops()
@@ -186,6 +196,14 @@ public partial class MatchBoard : Node
 				}
 			}
 
+		}
+	}
+
+	public void addRandomBlockedTiles(int numberOfTiles) {
+		List<Tile> tiles = getRandomTiles(numberOfTiles);
+		foreach(Tile tile in tiles) {
+			tile.setBlocked(true);
+			deleteGemAtPosition(tile.getTilePosition());
 		}
 	}
 
@@ -262,6 +280,9 @@ public partial class MatchBoard : Node
 
 	private bool canSelectTile(Tile tile, CardIF card)
 	{
+		if(tile.Gem == null){
+			return false;
+		}
 		if (tile.Gem != null && !card.getCardResource().cardEffect.canTargetBlackGems && tile.Gem.Type == GemType.Black)
 		{
 			return false;
@@ -279,19 +300,23 @@ public partial class MatchBoard : Node
 				Vector2 currentPosition = new Vector2(x, y);
 				HashSet<Tile> tileMatches = new HashSet<Tile>();
 
-				Optional<Tile> maybeTile = getTileOptional(currentPosition);
-				Optional<Gem> maybeGem = Optional.FromNullable(maybeTile.GetValue().Gem);
+				Tile tile = getTile(currentPosition);
+				if(tile.Gem == null) {
+					continue;
+				}
+
+				Optional<Gem> maybeGem = Optional.FromNullable(tile.Gem);
 				GemType gemType = maybeGem.GetValue().Type;
 				if (!gemType.matchable())
 				{
 					continue;
 				}
-				tileMatches.Add(maybeTile.GetValue());
+				tileMatches.Add(tile);
 
 				HashSet<Tile> leftMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Left, Vector2.Left, gemType);
 				HashSet<Tile> rightMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Right, Vector2.Right, gemType);
 				HashSet<Tile> horizontalMatches = new HashSet<Tile>(leftMatches.Union(rightMatches));
-				horizontalMatches.Add(maybeTile.GetValue());
+				horizontalMatches.Add(tile);
 
 				if (horizontalMatches.Count >= 3)
 				{
@@ -301,7 +326,7 @@ public partial class MatchBoard : Node
 				HashSet<Tile> upMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Up, Vector2.Up, gemType);
 				HashSet<Tile> downMatches = getGemsInDirectionOfSameType(currentPosition + Vector2.Down, Vector2.Down, gemType);
 				HashSet<Tile> verticalMatches = new HashSet<Tile>(upMatches.Union(downMatches));
-				verticalMatches.Add(maybeTile.GetValue());
+				verticalMatches.Add(tile);
 
 				if (verticalMatches.Count >= 3)
 				{
@@ -317,15 +342,24 @@ public partial class MatchBoard : Node
 		HashSet<HashSet<Tile>> matches = getMatches();
 
 		HashSet<Vector2> tilesToDeleteGem = new HashSet<Vector2>();
+		HashSet<Tile> tilesToClearBlocked = new HashSet<Tile>();
+
 		foreach (HashSet<Tile> currentMatches in matches)
 		{
 			foreach (Tile currentTile in currentMatches)
 			{
 				tilesToDeleteGem.Add(currentTile.getTilePosition());
 				currentTile.Gem.doAddonEffect();
+				HashSet<Tile> tileAdjacent = getTilesInRange(currentTile.getTilePosition(), 1.0f);
+
+				tilesToClearBlocked.UnionWith(tileAdjacent);
 			}
 		}
-		if (tilesToDeleteGem.Count > 0)
+		foreach(Tile tile in tilesToClearBlocked) {
+			tile.setBlocked(false);
+		}
+
+		if (tilesToDeleteGem.Count > 0) 
 		{
 			audioStreamPlayer2D.Stream = matchAudioStream;
 			audioStreamPlayer2D.Play();
@@ -355,7 +389,7 @@ public partial class MatchBoard : Node
 	{
 		foreach (HashSet<Tile> match in matches)
 		{
-			List<Tile> tilesToDelete = match.Where(tile => tile.Gem != null).ToList();
+			List<Tile> tilesToDelete = match.Where(tile => tile.Gem != null).Where(gem => gem != null).ToList();
 			List<Tile> gemsWithCombo = tilesToDelete.Where(tile => tile.Gem.getCombo() != 0).ToList();
 			if (gemsWithCombo.Count > 0)
 			{
@@ -385,7 +419,7 @@ public partial class MatchBoard : Node
 
 	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool playSound)
 	{
-		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).ToList();
+		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).Where(gem => gem != null).ToList();
 		if (playSound)
 		{
 			audioStreamPlayer2D.Stream = popAudioStream;
@@ -394,7 +428,9 @@ public partial class MatchBoard : Node
 		gemsToBeDeleted.UnionWith(gemsToDelete);
 		foreach (Gem gem in gemsToDelete)
 		{
-			gem.doneDyingSignal += gemDoneDying;
+			if (gem != null) {
+				gem.doneDyingSignal += gemDoneDying;
+			}
 		}
 
 		foreach (Vector2 position in positions)
@@ -420,11 +456,11 @@ public partial class MatchBoard : Node
 	{
 		HashSet<Tile> gemMatches = new HashSet<Tile>();
 		Optional<Tile> maybeTile = getTileOptional(startingPosition);
-		if (maybeTile.HasValue && maybeTile.GetValue().Gem != null)
+		if (maybeTile.HasValue) // ignore missing gems?
 		{
 			if (type.HasValue)
 			{
-				if (maybeTile.GetValue().Gem.Type == type.GetValue() || maybeTile.GetValue().Gem.Type == GemType.Rainbow)
+				if (maybeTile.GetValue().Gem != null && (maybeTile.GetValue().Gem.Type == type.GetValue() || maybeTile.GetValue().Gem.Type == GemType.Rainbow))
 				{
 					gemMatches.Add(maybeTile.GetValue());
 					gemMatches.UnionWith(getTilesInDirectionOfSameGemType(startingPosition + direction, direction, type));
@@ -449,7 +485,7 @@ public partial class MatchBoard : Node
 		Optional<Tile> maybeTile = getTileOptional(startingPosition);
 		if (maybeTile.HasValue)
 		{
-			if (maybeTile.GetValue().Gem != null && maybeTile.GetValue().Gem.Type.falls())
+			if (maybeTile.GetValue().Gem != null && maybeTile.GetValue().Gem.Type.falls() && !maybeTile.GetValue().getIsBlocked())
 			{
 				return Optional.Some(maybeTile.GetValue());
 			}
@@ -473,6 +509,9 @@ public partial class MatchBoard : Node
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				Tile tile = getTileOptional(currentPosition).GetValue();
+				if (tile.getIsBlocked()) {
+					continue;
+				}
 				if (tile.Gem == null)
 				{
 					Optional<Tile> upperTileWithGem = getNextTileWithGemInDirection(currentPosition, Vector2.Up);
@@ -546,7 +585,10 @@ public partial class MatchBoard : Node
 			for (int y = 0; y < sizeY; y++)
 			{
 				Vector2 currentPosition = new Vector2(x, y);
-				generateRandomGemForTile(currentPosition);
+				Tile tile = getTile(currentPosition);
+				if(!tile.getIsBlocked()){
+					generateRandomGemForTile(currentPosition);
+				}
 			}
 		}
 		HashSet<HashSet<Tile>> matches = getMatches();

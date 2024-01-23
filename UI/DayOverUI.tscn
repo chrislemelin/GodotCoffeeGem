@@ -16,7 +16,7 @@ multIncrease = 0.25
 gemType = 0
 finalMult = 1.0
 
-[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "upgradeCardButton", "relicShop", "advanceLevelButton", "confirmationText")]
+[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "upgradeCardButton", "removeCardFromDeckButton", "relicShop", "advanceLevelButton", "confirmationText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +35,7 @@ gemUpgradeButton = NodePath("VBoxContainer/GridContainer/Gem upgrade")
 moreCardsButton = NodePath("VBoxContainer/GridContainer/Moare cards")
 relicButton = NodePath("VBoxContainer/GridContainer/Relic")
 upgradeCardButton = NodePath("VBoxContainer/GridContainer/CardUpgrade")
+removeCardFromDeckButton = NodePath("VBoxContainer/GridContainer/RemoveCard")
 relicShop = NodePath("VBoxContainer/GridContainer/HBoxContainer")
 relicUIPackedScene = ExtResource("5_6xr0x")
 advanceLevelButton = NodePath("VBoxContainer/MarginContainer2/AdvanceButton")
@@ -99,6 +100,12 @@ cost = 30
 [node name="Gem upgrade" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Purchase better ingredients (Costs 40 coins)"
+script = ExtResource("2_x4g5w")
+cost = 40
+
+[node name="RemoveCard" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Remove a card from your deck (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
 

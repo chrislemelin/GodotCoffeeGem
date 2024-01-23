@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://d1nggr211uac1"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d1nggr211uac1"]
 
+[ext_resource type="Texture2D" uid="uid://bluufnw16b2pi" path="res://cards/cardResources/cardArt/popRow.png" id="1_bt0gg"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRow.cs" id="1_hsegb"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_v1prq"]
 
@@ -18,4 +19,5 @@ Title = "Pop Row"
 Description = "Destroy all ingredients of a selected row"
 Cost = 2
 rarity = 0
+Picture = ExtResource("1_bt0gg")
 cardEffect = SubResource("Resource_nsl5v")

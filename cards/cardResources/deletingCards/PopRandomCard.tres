@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ck7bf50t0c1t7"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ck7bf50t0c1t7"]
 
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRandom.cs" id="1_latni"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_sbuvw"]
+[ext_resource type="Texture2D" uid="uid://b2mpiwb5lypyn" path="res://cards/cardResources/cardArt/PopRandome.png" id="1_yq4np"]
 
 [sub_resource type="Resource" id="Resource_i6k8f"]
 script = ExtResource("1_latni")
@@ -15,7 +16,8 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_sbuvw")
 Title = "Pop Random"
-Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type draw a card and gain a mana."
+Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type draw a card and gain an energy."
 Cost = 1
 rarity = 1
+Picture = ExtResource("1_yq4np")
 cardEffect = SubResource("Resource_i6k8f")

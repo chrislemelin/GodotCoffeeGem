@@ -16,13 +16,16 @@ public partial class Deck : Node
 	[Export] Control control;
 	List<CardResource> cards = new List<CardResource>();
 
+	
 	public override void _Ready()
 	{
 		if (loadDeckFromGlobal) {
 			List<CardResource> deckCardList = gameManager.getDeckList();
 			if (deckCardList.Count != 0) {
 				foreach (CardResource cardResource in deckCardList) {
- 					allCards.Add((CardResource)cardResource.Duplicate());
+					CardResource cardResourceToAdd = (CardResource)cardResource.Duplicate();
+					cardResourceToAdd.cardEffect = (CardEffectIF)cardResource.cardEffect.Duplicate();
+ 					allCards.Add(cardResourceToAdd);
 				}
 				
 			}

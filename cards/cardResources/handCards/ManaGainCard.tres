@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bnq03drhjekx7"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bnq03drhjekx7"]
 
+[ext_resource type="Texture2D" uid="uid://dudy5ank146a0" path="res://cards/cardResources/cardArt/Energy.png" id="1_8nsds"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_cdmb4"]
 [ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectManaGain.cs" id="1_uvr6t"]
 
@@ -18,4 +19,5 @@ Title = "Mana Gain"
 Description = "Gain $value mana and burns 2 ingredients"
 Cost = 0
 rarity = 0
+Picture = ExtResource("1_8nsds")
 cardEffect = SubResource("Resource_ihb2g")

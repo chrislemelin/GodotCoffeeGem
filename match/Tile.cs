@@ -14,6 +14,7 @@ public partial class Tile : Node2D
 	[Export] Color highlightColor;
 	[Export] Color hoverColor;
 	[Export] Color selectColor;
+	[Export] Color blockedColor;
 
 	Color normalColor;
 
@@ -21,6 +22,7 @@ public partial class Tile : Node2D
 	bool isSelected = false;
 	bool isHovered = false;
 	bool isDisabled = false;
+	bool isBlocked = false;
 
 	public Gem Gem
 	{
@@ -40,6 +42,11 @@ public partial class Tile : Node2D
 		control.MouseExited += () => mouseExit();
 	}
 
+	public void setBlocked(bool value) {
+		isBlocked = value;
+		sprite2D.Modulate = getCurrentColor();
+	}
+
 	public Vector2 getTilePosition() {
 		return new Vector2(x,y);
 	}
@@ -51,6 +58,10 @@ public partial class Tile : Node2D
 		} else {
 			disableSprite2D.Visible = false;
 		}
+	}
+
+	public bool getIsBlocked() {
+		return isBlocked;
 	}
 
 	public void turnHighlightOn() {
@@ -90,7 +101,9 @@ public partial class Tile : Node2D
 		if (isHighlighted) {
 			return highlightColor;
 		}
-
+		if (isBlocked) {
+			return blockedColor;
+		}
 		return normalColor;
 	}
 	

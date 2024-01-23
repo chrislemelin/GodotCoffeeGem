@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cudpl1ed1iroy"]
 
+[ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="1_784p2"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="1_fjt7k"]
-[ext_resource type="Texture2D" uid="uid://j3ybt36fv2yv" path="res://cards/cardResources/cardArt/Switch-horizontal.png" id="1_xq4cn"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_k10px"]
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -20,5 +20,5 @@ Title = "Switch Horiz"
 Description = "Switch the positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_xq4cn")
+Picture = ExtResource("1_784p2")
 cardEffect = SubResource("Resource_ym5bx")
