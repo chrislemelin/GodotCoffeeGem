@@ -9,6 +9,7 @@ public partial class CardInfoLoader : Control
 	[Export] protected CardResource cardResource;
 	[Export] protected TextureRect picture;
 	[Export] protected TextureRect titleSprite;
+	[Export] protected HighlightOnHover highlightOnHover;
 
 
 
@@ -36,6 +37,10 @@ public partial class CardInfoLoader : Control
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
+	}
+
+	public void setForceHighlight(bool value) {
+		highlightOnHover.setForceHighlight(value);
 	}
 
 }

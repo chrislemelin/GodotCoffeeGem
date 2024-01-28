@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbshug8s4ulor"]
 
 [ext_resource type="Script" path="res://UI/Status.cs" id="1_py4bf"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="5_topv7"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_lcxc3"]
 [ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="7_v6prk"]
 [ext_resource type="Texture2D" uid="uid://6lj3j2gff55" path="res://placeholders/heart2.png" id="9_y6ahw"]
-[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="11_jy6bl"]
 
 [node name="Status" type="Control" node_paths=PackedStringArray("coinsLabel", "levelLabel", "heartsContainer")]
 layout_mode = 3
@@ -72,7 +72,7 @@ size_flags_stretch_ratio = 7.9
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/CoinsContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("11_jy6bl")
+texture = ExtResource("5_topv7")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CoinsContainer"]

@@ -19,6 +19,10 @@ public partial class MatchBoard : Node
 	[Export] public Mana mana;
 	[Export] public Score score;
 	[Export] public AudioStreamPlayer2D audioStreamPlayer2D;
+	[Export] public Node2D boardHolder;
+	[Export] public TextureProgressBar progressBar;
+	private double progressValue = 0;
+	[Export] private double progressStep;
 
 	[Export]
 	public AudioStream matchAudioStream;
@@ -35,7 +39,6 @@ public partial class MatchBoard : Node
 	HashSet<Tile> tilesAvailibleToBeSelected = new HashSet<Tile>();
 	HashSet<Gem> gemsToBeDeleted = new HashSet<Gem>();
 	Dictionary<Vector2, Tile> tileMap = new Dictionary<Vector2, Tile>();
-
 	private Vector2 tileSize;
 	private Vector2 tileSizeUnScaled;
 
@@ -207,6 +210,21 @@ public partial class MatchBoard : Node
 		}
 	}
 
+	private void scoreChanged(int score, int scoreNeeded) {
+		progressValue = (double)score / scoreNeeded * 100;
+		
+	}
+
+	private void updateScoreChanged() {
+		double currentProgress = progressBar.Value;
+		if (Math.Abs(currentProgress - progressValue) > progressStep) {
+			progressBar.Value = currentProgress + progressStep;
+		} else {
+			progressBar.Value = progressValue;
+		}
+
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -214,6 +232,15 @@ public partial class MatchBoard : Node
 		Vector2 gridSize = FindObjectHelper.getGameManager(this).getGridSize();
 		sizeX = (int)gridSize.X;
 		sizeY = (int)gridSize.Y;
+		progressBar.Value = 0;
+
+		score.scoreChange += scoreChanged;
+		timer = new Timer();
+		AddChild(timer);
+		timer.WaitTime = .1;
+		timer.Timeout += () => updateScoreChanged();
+		timer.Start();
+
 
 		Tile sizeTile = tileTemplate.Instantiate() as Tile;
 		tileSize = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.Scale.X * sizeTile.sprite2D.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.Scale.Y * sizeTile.sprite2D.Scale.Y);
@@ -226,7 +253,7 @@ public partial class MatchBoard : Node
 			for (int newY = 0; newY < sizeY; newY++)
 			{
 				Tile newTile = tileTemplate.Instantiate() as Tile;
-				AddChild(newTile);
+				boardHolder.AddChild(newTile);
 				newTile.control.GuiInput += (inputEvent) => tileClicked(newTile, inputEvent);
 				tileSet.Add(newTile);
 				tileMap.Add(new Vector2(newX, newY), newTile);
@@ -243,7 +270,6 @@ public partial class MatchBoard : Node
 		AddChild(timer);
 		timer.WaitTime = .1;
 		timer.Timeout += () => checkForDrops();
-		timer.OneShot = false;
 		timer.Start();
 	}
 	private void tileHovered(Tile tile)

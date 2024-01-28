@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs0yawupejkyk"]
+
+[ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
+[ext_resource type="Shader" path="res://cards/outlineShader.gdshader" id="2_0b8c7"]
+[ext_resource type="Texture2D" uid="uid://cqlredqy3j2x8" path="res://placeholders/Map/Shop.png" id="2_ern76"]
+[ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="4_edqu2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4i6bp"]
+shader = ExtResource("2_0b8c7")
+shader_parameter/line_color = Color(0.788235, 0.65098, 0, 1)
+shader_parameter/line_thickness = 1.615
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4i0a"]
+size = Vector2(99, 81)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i55io"]
+shader = ExtResource("2_0b8c7")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[node name="MapLocation" type="Control" node_paths=PackedStringArray("image", "label", "highlight")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 1.0
+script = ExtResource("1_3kcgv")
+image = NodePath("TextureRect")
+label = NodePath("RichTextLabel")
+highlight = NodePath("TextureRect")
+inActiveColor = Color(0.584314, 0.584314, 0.584314, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("area2D")]
+material = SubResource("ShaderMaterial_4i6bp")
+layout_mode = 0
+offset_left = -51.0
+offset_top = -35.0
+offset_right = 47.0
+offset_bottom = 46.0
+texture = ExtResource("2_ern76")
+script = ExtResource("4_edqu2")
+area2D = NodePath("../Area2D")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -63.0
+offset_right = 49.0
+offset_bottom = -38.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Gain Card"
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(49.5, 41.5)
+shape = SubResource("RectangleShape2D_a4i0a")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_i55io")
+position = Vector2(117, 84)
+texture = ExtResource("2_ern76")

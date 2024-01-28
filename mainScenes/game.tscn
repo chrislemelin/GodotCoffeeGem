@@ -112,7 +112,8 @@ defaultCardList = ExtResource("3_tlo67")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score") instance=ExtResource("5_4m14m")]
 unique_name_in_owner = true
-position = Vector2(695, 144)
+position = Vector2(697, 254)
+scale = Vector2(0.75, 0.75)
 sizeY = 5
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
@@ -228,7 +229,6 @@ text = "Advance"
 anchors_preset = 0
 
 [node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
 layout_mode = 0
 offset_left = 449.0
 offset_top = 253.0
@@ -339,9 +339,9 @@ layout_mode = 0
 offset_left = -236.0
 offset_top = -64.0
 offset_right = 19.0
-offset_bottom = 123.0
+offset_bottom = 84.0
 theme = ExtResource("18_y5ido")
-text = "This is your deck of cards, used to make drinks and match ingredients on the board. At the start of each turn, you will draw from this stack. Over time, you can upgrade your deck."
+text = "This is your deck of cards. At the start of each turn, you will draw 5 cards from this stack. Over time, you can upgrade your deck."
 
 [node name="EnergyTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
 layout_mode = 2
@@ -366,9 +366,9 @@ layout_mode = 0
 offset_left = -225.0
 offset_top = -61.0
 offset_right = 31.0
-offset_bottom = 82.0
+offset_bottom = 60.0
 theme = ExtResource("18_y5ido")
-text = "This is your current energy. Each move you make to clear your shift, represented by your cards, consumes some of your energy."
+text = "This is your current energy. You will get 3 each turn and each card you play will consume some energy"
 
 [node name="Screen3" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
 visible = false
@@ -739,7 +739,7 @@ offset_bottom = 471.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
 
-[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("gameManager", "deckViewUI") instance=ExtResource("14_31k88")]
+[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("deckViewUI") instance=ExtResource("14_31k88")]
 visible = false
 layout_mode = 1
 offset_left = -5.0
@@ -747,7 +747,6 @@ offset_top = -4.0
 offset_right = -5.0
 offset_bottom = -4.0
 scale = Vector2(1.01, 1.01)
-gameManager = NodePath("../..")
 deckViewUI = NodePath("../DeckView")
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]

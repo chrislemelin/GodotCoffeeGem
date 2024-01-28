@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=13 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
@@ -6,15 +6,26 @@
 [ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/MatchBoard/Rise01.mp3" id="4_dwyhn"]
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
-[ext_resource type="Texture2D" uid="uid://mj83hsskri5g" path="res://placeholders/Coffee-board.png" id="7_i3m7x"]
+[ext_resource type="Texture2D" uid="uid://cqa4fyn20trt" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px.png" id="7_hped7"]
+[ext_resource type="Texture2D" uid="uid://i3m6sunrvdwq" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-coffeetop.png" id="8_ne2r7"]
+[ext_resource type="Texture2D" uid="uid://ctq7u5f702wxg" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-under.png" id="9_dondr"]
+[ext_resource type="Texture2D" uid="uid://txt43aufv6j" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-over.png" id="10_728bt"]
+[ext_resource type="Texture2D" uid="uid://cm7bsmpwr64s3" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-coffeemain.png" id="11_218xq"]
 
-[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rlew"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "boardHolder", "progressBar")]
+position = Vector2(67, 319)
 script = ExtResource("1_4r3i0")
 sizeX = 6
 sizeY = 6
 tileTemplate = ExtResource("2_hppa1")
 gemScene = ExtResource("3_xdias")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+boardHolder = NodePath("Node2D")
+progressBar = NodePath("TextureProgressBar")
+progressStep = 2.0
 matchAudioStream = ExtResource("4_dwyhn")
 popAudioStream = ExtResource("5_wfbn1")
 switchAudioStream = ExtResource("6_iim20")
@@ -24,5 +35,42 @@ stream = ExtResource("4_dwyhn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(186, 154)
-scale = Vector2(1.9, 1.9)
-texture = ExtResource("7_i3m7x")
+texture = ExtResource("7_hped7")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -395.0
+offset_top = 77.0
+offset_right = -95.0
+offset_bottom = 525.0
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("9_dondr")
+texture_over = ExtResource("10_728bt")
+texture_progress = ExtResource("11_218xq")
+
+[node name="VSlider" type="VSlider" parent="."]
+visible = false
+offset_left = -398.0
+offset_top = 79.0
+offset_right = -94.0
+offset_bottom = 528.0
+size_flags_horizontal = 2
+theme_override_icons/grabber = ExtResource("8_ne2r7")
+theme_override_icons/grabber_highlight = ExtResource("8_ne2r7")
+theme_override_icons/grabber_disabled = ExtResource("8_ne2r7")
+theme_override_icons/tick = ExtResource("8_ne2r7")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8rlew")
+value = 53.0
+editable = false
+scrollable = false
+
+[node name="TextureRect" type="TextureRect" parent="VSlider"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_ne2r7")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(9, -146)
+scale = Vector2(1.3, 1.3)

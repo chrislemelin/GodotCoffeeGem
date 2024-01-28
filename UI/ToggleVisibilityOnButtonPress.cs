@@ -3,7 +3,7 @@ using System;
 
 public partial class ToggleVisibilityOnButtonPress : Control
 {
-	[Export] Button button;
+	[Export] public Button button;
 
 
 	public override void _Ready()

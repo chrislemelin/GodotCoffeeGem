@@ -8,6 +8,8 @@ public partial class ColorUpgrade : Resource
 	[Export] public float multIncrease = 0;
 	[Export] public GemType gemType;
 	[Export] public float finalMult = 1;
+	[Export] public bool temporary = false;
+
 
 	public ColorUpgrade() {
 

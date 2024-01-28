@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bhk1g2i014sms"]
+
+[ext_resource type="Texture2D" uid="uid://bw1wv3475sgdv" path="res://cards/cardResources/cardArt/Card_draw.png" id="1_e7iw6"]
+[ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectCardBurst.cs" id="2_b5km6"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_jn6nf"]
+
+[sub_resource type="Resource" id="Resource_dmeqn"]
+script = ExtResource("2_b5km6")
+Range = 1.0
+Value = 3
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+
+[resource]
+script = ExtResource("3_jn6nf")
+Title = "Draw Burst"
+Description = "Draw $value cards"
+Cost = 1
+rarity = 0
+Picture = ExtResource("1_e7iw6")
+cardEffect = SubResource("Resource_dmeqn")

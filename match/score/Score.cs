@@ -16,8 +16,6 @@ public partial class Score : Node2D
 	[Export] HBoxContainer colorUpgradePreviewBox;
 	[Export] Node2D progressBarLocation;
 	[Export] Mult multUI;
-
-
 	[Export] Color turnColor;
 	[Export] Color heartColor;
 
@@ -33,11 +31,17 @@ public partial class Score : Node2D
 	[Export] GameManager gameManager;
 	[Export] PackedScene colorUpgradeUI;
 	[Export] public ColorUpgrade colorUpgrade;
-	[Export]
-	private RecipeUI bossRecipeUI;
+	[Export] private RecipeUI bossRecipeUI;
 
-	[Export]
-	PackedScene heartUI;
+	[Export] PackedScene heartUI;
+	[Export] Texture2D heartFull;
+	[Export] Texture2D heartEmpty;
+
+	[Export] Texture2D turnFull;
+	[Export] Texture2D turnEmpty;
+
+	[Signal]
+	public delegate void scoreChangeEventHandler(int score, int maxScore);
 
 	private float muiltResetValue = 1.0f;
 	private int score;
@@ -47,7 +51,7 @@ public partial class Score : Node2D
 	private int maxHearts = 2;
 
 	private int level = 1;
-	private int moneyNeeded = 500;
+	private int scoreNeeded = 500;
 	private int coins;
 	private List<ColorUpgrade> colorUpgrades = new List<ColorUpgrade>();
 	private Dictionary<GemType, ColorUpgrade> colorUpgradesCompressed = new Dictionary<GemType, ColorUpgrade>();
@@ -63,7 +67,7 @@ public partial class Score : Node2D
 		FindObjectHelper.getNewTurnButton(this).SetUpNewTurn += () => newturn();
 		setMult(mult);
 		setScore(score);
-		setMoneyNeeded(moneyNeeded);
+		setMoneyNeeded(scoreNeeded);
 		setLevel(level);
 		setTurnsRemaining(turnsRemaining);
 		setCoins(coins);
@@ -76,7 +80,7 @@ public partial class Score : Node2D
 	public void newturn()
 	{
 		setMult(muiltResetValue);
-		if (score >= moneyNeeded)
+		if (score >= scoreNeeded)
 		{
 			setTurnsRemaining(turnsRemaining - 1);
 			audioStreamPlayer2D.Stream = victoryAudio;
@@ -84,6 +88,8 @@ public partial class Score : Node2D
 			GetTree().CreateTimer(0).Timeout += () => gameManager.evaluateLevel();
 			return;
 		}
+		colorUpgrades = colorUpgrades.Where(colorUpgrade => !colorUpgrade.temporary).ToList();
+		renderColorUpgradePreviews();
 
 		if (turnsRemaining >= 1 && turnsRemaining > 0)
 		{
@@ -144,11 +150,12 @@ public partial class Score : Node2D
 		{
 			if (count + 1 <= turnsRemaining)
 			{
-				((TextureRect)nodes[count]).Modulate = turnColor;
+				((TextureRect)nodes[count]).Texture = turnFull;
+
 			}
 			else
 			{
-				((TextureRect)nodes[count]).Modulate = new Color(1, 1, 1);
+				((TextureRect)nodes[count]).Texture = turnEmpty;
 			}
 		}
 	}
@@ -161,11 +168,11 @@ public partial class Score : Node2D
 		{
 			if (count + 1 <= heartsRemaining)
 			{
-				((TextureRect)nodes[count]).Modulate = heartColor;
+				((TextureRect)nodes[count]).Texture = heartFull;
 			}
 			else
 			{
-				((TextureRect)nodes[count]).Modulate = new Color(1, 1, 1);
+				((TextureRect)nodes[count]).Texture = heartEmpty;
 			}
 		}
 	}
@@ -205,7 +212,7 @@ public partial class Score : Node2D
 
 	public void setMoneyNeeded(int newValue)
 	{
-		moneyNeeded = newValue;
+		scoreNeeded = newValue;
 		moneyNeededLabel.Text = "MONEY NEEDED:" + (newValue / 100.0).ToString("C2");
 	}
 
@@ -218,6 +225,14 @@ public partial class Score : Node2D
 	{
 		return turnsRemaining;
 	}
+
+	public void addCoins(int value)
+	{
+		coins += value;
+		gameManager.addCoins(value);
+		coinsLabel.Text = coins.ToString();
+	}
+
 
 	public void setCoins(int newValue)
 	{
@@ -234,8 +249,9 @@ public partial class Score : Node2D
 	public void setScore(int newScore)
 	{
 		score = newScore;
-		scoreLabel.Text = "Score: " + score + "/" + moneyNeeded;
-		progressBar.Value = (float)score / moneyNeeded * 100;
+		scoreLabel.Text = "Score: " + score + "/" + scoreNeeded;
+		progressBar.Value = (float)score / scoreNeeded * 100;
+		EmitSignal(SignalName.scoreChange, score, scoreNeeded);
 	}
 
 	public void setMult(float newMult)
@@ -260,19 +276,19 @@ public partial class Score : Node2D
 	public void setColorUpgrades(List<ColorUpgrade> colorUpgrades)
 	{
 		this.colorUpgrades = colorUpgrades;
-		compressCurrentColorUpgrades();
 		renderColorUpgradePreviews();
 	}
 
 	public void addColorUpgrade(ColorUpgrade colorUpgrade)
 	{
 		colorUpgrades.Add(colorUpgrade);
-		compressCurrentColorUpgrades();
 		renderColorUpgradePreviews();
 	}
 
 	private void renderColorUpgradePreviews()
 	{
+		compressCurrentColorUpgrades();
+
 		if (colorUpgradePreviewBox.GetChildren() != null) {
 			foreach (Node node in colorUpgradePreviewBox.GetChildren())
 			{

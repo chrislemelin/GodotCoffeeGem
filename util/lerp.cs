@@ -9,10 +9,10 @@ public partial class lerp : Node2D
 	[Export] float speed;
 	float timeStartedMovement;
 	float timeAfterMovement;
+	
 
-	protected virtual void doneMoving() {
-
-	}
+	[Signal]
+	public delegate void doneMovingSignalEventHandler();
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -31,8 +31,10 @@ public partial class lerp : Node2D
 
 	public void moveToGlobalPostion(Vector2 newPosition)
 	{
-		moveToPostion(GlobalPosition - newPosition);
-		//this.localpo = ToLocal(newPosition);
+
+		// Vector2 pos = GetParent<MapGameManager>().ToLocal(newPosition);
+		// GD.Print(pos);
+		moveToPostion(newPosition);
 	}
 
 
@@ -60,6 +62,12 @@ public partial class lerp : Node2D
 		{
 			//moveToPostion(GetGlobalMousePosition());
 		}
+	}
+
+	
+	protected virtual void doneMoving() {
+		EmitSignal(SignalName.doneMovingSignal);
+		//doneMovingSignal =-
 	}
 
 }

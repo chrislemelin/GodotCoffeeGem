@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=19 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
 [ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="2_noj62"]
@@ -9,11 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://d1yewgtk7q7eh" path="res://UI/ColorUpgradePreviewUI.tscn" id="5_rxpiq"]
 [ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="6_ax4rp"]
 [ext_resource type="PackedScene" uid="uid://60wadmikervm" path="res://match/score/HeartUI.tscn" id="7_7t6v1"]
-[ext_resource type="Texture2D" uid="uid://6lj3j2gff55" path="res://placeholders/heart2.png" id="8_txey6"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="9_a0nhy"]
+[ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://placeholders/UI/heart-empty-pixel-300px.png" id="9_nlixp"]
 [ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://placeholders/inner3.png" id="9_xhewp"]
 [ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://placeholders/outter2.png" id="10_i5bib"]
-[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="11_w32at"]
+[ext_resource type="Texture2D" uid="uid://c77r8vld5eive" path="res://placeholders/UI/turn-orb-pixel-300px.png" id="10_pwl7c"]
+[ext_resource type="Texture2D" uid="uid://22671e24p2wq" path="res://placeholders/UI/turn-orb-empty-pixel-300px.png" id="11_liqc3"]
+[ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://placeholders/UI/heart-pixel-300px.png" id="12_i0n4t"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="17_bgy2v"]
 
 [sub_resource type="Resource" id="Resource_jmwbm"]
 script = ExtResource("5_5twdy")
@@ -21,6 +24,7 @@ baseIncrease = 50
 multIncrease = 0.25
 gemType = 0
 finalMult = 1.0
+temporary = false
 
 [node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")
@@ -43,6 +47,10 @@ heartsContainer = NodePath("VBoxContainer/TurnsContainer/HeartsContainer")
 colorUpgradeUI = ExtResource("5_rxpiq")
 colorUpgrade = SubResource("Resource_jmwbm")
 heartUI = ExtResource("7_7t6v1")
+heartFull = ExtResource("12_i0n4t")
+heartEmpty = ExtResource("9_nlixp")
+turnFull = ExtResource("10_pwl7c")
+turnEmpty = ExtResource("11_liqc3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 107)
@@ -197,7 +205,7 @@ layout_mode = 2
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("8_txey6")
+texture = ExtResource("12_i0n4t")
 expand_mode = 1
 stretch_mode = 4
 
@@ -234,7 +242,7 @@ tooltip_text = "This is the number of coins you have which can be spent in betwe
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/CoinsContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("11_w32at")
+texture = ExtResource("17_bgy2v")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CoinsContainer"]

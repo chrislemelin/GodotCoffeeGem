@@ -7,7 +7,6 @@ public partial class NewCardSelection : Control
 {
 	[Export] PackedScene cardUIPackagedScene;
 	[Export] Control cardContainer;
-	[Export] GameManagerIF gameManager;
 	[Export] Button skipButton;
 	[Export] RichTextLabel coinsGainedLabel;
 	[Export] Array<Control> levelPassedText = new Array<Control>();
@@ -16,13 +15,14 @@ public partial class NewCardSelection : Control
 
 	[Export] Array<CardResource> cards = new Array<CardResource>();
 	[Export] int coinsGained = 0;
+	[Signal] public delegate void windowClosedEventHandler(CardResource cardResource);
 
 	public override void _Ready()
 	{
-		skipButton.Pressed += () => gameManager.advanceLevel();
 		renderCards();
 		renderCoins();
-		viewDeckButton.Pressed  += () => deckViewUI.setUp(gameManager.getDeckList());
+		skipButton.Pressed += () => advance();
+		viewDeckButton.Pressed  += () => deckViewUI.setUp(FindObjectHelper.getGameManager(this).getDeckList());
 	}
 
 	public void setCoins(int coinsGained) {
@@ -43,6 +43,16 @@ public partial class NewCardSelection : Control
 		}
 	}
 
+	public void getRandomCardsToSelectFrom() {
+		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
+		GD.Print("showing cards");
+
+		int cardsToChoose = gameManager.getNumberOfCardToChoose();
+		List<CardResource> cardPoolList = new List<CardResource>(gameManager.cardPool.allCards);
+		RandomHelper.Shuffle(cardPoolList);
+		setCardsToSelectFrom(cardPoolList.GetRange(0,cardsToChoose));
+	}
+
 	public void setCardsToSelectFrom(List<CardResource> cardResources) {
 		cards = new Array<CardResource>(cardResources);
 		renderCards();
@@ -50,6 +60,9 @@ public partial class NewCardSelection : Control
 	private void renderCards() {
 		if (cards.Count > 0) {
 			Visible = true;
+			foreach (Node child in cardContainer.GetChildren()) {
+				child.QueueFree();
+			};
 			foreach(CardResource cardResource in cards) {
 				CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
 				cardInfoLoader.setUpCard(cardResource);
@@ -62,8 +75,19 @@ public partial class NewCardSelection : Control
 	private void cardClicked(InputEvent inputEvent, CardResource cardResource) {
 		if (inputEvent.IsActionPressed("click"))
 		{
-			gameManager.addCardToGlobalDeckAndAdvanceLevel(cardResource);
+			FindObjectHelper.getGameManager(this).addCardToDeckList(cardResource);
+			advance(cardResource);
 		};
+	}
+
+	private void advance(CardResource cardResource) {
+		Visible = false;
+		EmitSignal(SignalName.windowClosed, cardResource);
+	}
+
+	private void advance() {
+		Visible = false;
+		EmitSignal(SignalName.windowClosed, null);
 	}
 
 }

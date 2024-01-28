@@ -8,6 +8,8 @@ public partial class FindObjectHelper
     public static readonly String NEW_BUTTON_NAME = "%NewTurnButton";
     public static readonly String SCORE_NAME = "%Score";
     public static readonly String MATCH_BOARD_NAME = "%MatchBoard";
+    public static readonly String DECK_VIEW_NAME = "DeckViewUI";
+    public static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
 
 
     public static Hand getHand(Node node)
@@ -31,6 +33,15 @@ public partial class FindObjectHelper
         return node.GetNode<MatchBoard>(FindObjectHelper.MATCH_BOARD_NAME);
     }
 
+    public static DeckViewUI getDeckView(Node node)
+    {
+        return (DeckViewUI)node.GetTree().GetNodesInGroup(DECK_VIEW_NAME)[0];
+    }
+
+    public static NewCardSelection getCardSelection(Node node)
+    {
+        return (NewCardSelection)node.GetTree().GetNodesInGroup(CARD_SELECTION_NAME)[0];
+    }
 
     public static GameManagerIF getGameManager(Node node)
     {

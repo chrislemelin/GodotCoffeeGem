@@ -37,10 +37,8 @@ public partial class GameManager : GameManagerIF
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
 		if (bossRecipe != null) {
 			recipeUI.loadRecipe(bossRecipe);
-			if(!getGlobal().shownBossTutorial){
-				bossRecipeTutorial.Visible = true;
-				getGlobal().shownBossTutorial = true;
-			}
+			bossRecipeTutorial.Visible = true;
+			
 		}
 		if (!getGlobal().shownWelcomeTutorial && !debugMode) {
 			welcomeTutorial.startUp();
@@ -55,7 +53,7 @@ public partial class GameManager : GameManagerIF
 		scoreNeededToPass = currentLevelResource.score;
 		if (debugMode)
 		{
-			//scoreNeededToPass = 50;
+			scoreNeededToPass = 50;
 			addCoins(100);
 		}
 		score.setMoneyNeeded(scoreNeededToPass);
@@ -63,13 +61,13 @@ public partial class GameManager : GameManagerIF
 		score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
 		score.setColorUpgrades(global.colorUpgrades.ToList());
-		if (getRelics().Count == 0)
-		{
-			foreach (RelicResource relicResource in relicResources)
-			{
-				addRelic(relicResource);
-			}
-		}
+		// if (getRelics().Count == 0)
+		// {
+		// 	foreach (RelicResource relicResource in relicResources)
+		// 	{
+		// 		addRelic(relicResource);
+		// 	}
+		// }
 		FindObjectHelper.getMatchBoard(this).addRandomBlockedTiles(currentLevelResource.blockedTiles);
 		relicHolderUI.setRelicList(getRelics());
 		relicHolderUI.startUpRelics();
@@ -93,15 +91,12 @@ public partial class GameManager : GameManagerIF
 
 	public void nextLevel()
 	{
+		newCardSelection.windowClosed += (CardResource) => advanceLevel();
+
 		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
-		addCoins(coinsGained);
-		int cardsToChoose = getNumberOfCardToChoose();
-		HashSet<CardResource> cardsToDisplay = new HashSet<CardResource>();
-		while(cardsToDisplay.Count != cardsToChoose) {
-			cardsToDisplay.Add(cardPool.getRandomCard());
-		}
-		newCardSelection.setCardsToSelectFrom(cardsToDisplay.ToList());
+		newCardSelection.getRandomCardsToSelectFrom();
 		newCardSelection.setCoins(coinsGained);
+		addCoins(coinsGained);
 	}
 
 	public override void advanceLevel()

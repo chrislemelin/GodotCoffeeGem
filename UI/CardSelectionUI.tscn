@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_aegw7"]
 [ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="1_pv1p8"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_twjff"]
-[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="4_uxkls"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="4_0dujr"]
 
-[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "viewDeckButton")]
+[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText", "viewDeckButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,7 @@ cardUIPackagedScene = ExtResource("2_twjff")
 cardContainer = NodePath("Control/HBoxContainer")
 skipButton = NodePath("Control/MarginContainer/Button")
 coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")
+levelPassedText = [NodePath("Control/VBoxContainer/HBoxContainer2"), NodePath("Control/VBoxContainer/RichTextLabel")]
 viewDeckButton = NodePath("Button")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -127,7 +128,7 @@ scroll_active = false
 [node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("4_uxkls")
+texture = ExtResource("4_0dujr")
 expand_mode = 1
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer"]

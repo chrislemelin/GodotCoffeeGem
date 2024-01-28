@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://70kmw430310t"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://70kmw430310t"]
 
+[ext_resource type="Texture2D" uid="uid://b1wkforncfw8s" path="res://cards/cardResources/cardArt/turnOrb.png" id="1_dnpda"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/CardEffectAddTurn.cs" id="1_u6y8r"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_ux33c"]
 
@@ -18,4 +19,5 @@ Title = "Add Turn"
 Description = "Gain an additional turn"
 Cost = 3
 rarity = 2
+Picture = ExtResource("1_dnpda")
 cardEffect = SubResource("Resource_ig02v")

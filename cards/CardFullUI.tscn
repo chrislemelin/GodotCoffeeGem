@@ -14,7 +14,7 @@ shader = ExtResource("3_u3ora")
 shader_parameter/line_color = Color(1, 1, 0, 0)
 shader_parameter/line_thickness = 5.009
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite")]
+[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(530, 800)
 layout_mode = 3
@@ -31,6 +31,7 @@ descriptionLabel = NodePath("Center/Description/RichTextLabel")
 costLabel = NodePath("Center/Cost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
 titleSprite = NodePath("Center/Title/Sprite2D")
+highlightOnHover = NodePath("Center/Background")
 
 [node name="Center" type="Control" parent="."]
 custom_minimum_size = Vector2(420, 600)

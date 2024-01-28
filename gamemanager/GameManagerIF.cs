@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class GameManagerIF : Node
+public partial class GameManagerIF : Node2D
 {
 
 	protected Global global;
@@ -25,6 +25,9 @@ public partial class GameManagerIF : Node
 
 	public void addCardToDeckList(CardResource cardResource)
 	{
+		if (cardResource == null) {
+			return;
+		}
 		global.deckCardList.allCards.Add(cardResource);
 	}
 
@@ -71,7 +74,7 @@ public partial class GameManagerIF : Node
 
 	public void addCardToGlobalDeckAndAdvanceLevel(CardResource cardResource)
 	{
-		getGlobal().deckCardList.allCards.Add(cardResource);
+		addCardToDeckList(cardResource);
 		advanceLevel();
 	}
 

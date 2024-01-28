@@ -16,7 +16,10 @@ public partial class HomeGameManager : GameManagerIF
 		if (status != null) {
 			status.setLevel(global.currentLevel);
 		}
-		button.Pressed += ()=> deckViewUI.setUp(getDeckList());
+		if (button!= null) {
+			button.Pressed += ()=> deckViewUI.setUp(getDeckList());
+		}
+
 	}
 	public override void advanceLevel() {
 		GetTree().ChangeSceneToFile("res://mainScenes/game.tscn");
@@ -28,7 +31,6 @@ public partial class HomeGameManager : GameManagerIF
 		RandomHelper.Shuffle(cardPoolList);
 		newCardSelection.setCardsToSelectFrom(cardPoolList.GetRange(0,cardsToChoose));
 		newCardSelection.setCoins(0);
-
 	}
 
 }

@@ -15,7 +15,6 @@ public enum GemType
 }
 static class GemTypeHelper
 {
-
 	static Random random = new Random();
 	public static Color GetColor(this GemType gemType)
 	{

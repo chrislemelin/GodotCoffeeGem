@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bwurldl5ir2lt"]
+
+[ext_resource type="Texture2D" uid="uid://5j0gjjus280f" path="res://cards/cardResources/cardArt/coin.png" id="1_ekal6"]
+[ext_resource type="Script" path="res://cards/cardResources/scoreCards/GainCoinsCardEffect.cs" id="1_glud2"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_d4kqx"]
+
+[sub_resource type="Resource" id="Resource_7kxq4"]
+script = ExtResource("1_glud2")
+Range = 1.0
+Value = 10
+BlackGems = 3
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+
+[resource]
+script = ExtResource("2_d4kqx")
+Title = "Mandatory Tip"
+Description = "Gain 10 coins. Burn 3 random ingredients"
+Cost = 0
+rarity = 1
+Picture = ExtResource("1_ekal6")
+cardEffect = SubResource("Resource_7kxq4")

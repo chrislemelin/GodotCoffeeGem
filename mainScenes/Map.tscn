@@ -1,0 +1,249 @@
+[gd_scene load_steps=15 format=3 uid="uid://clabt1hecikx2"]
+
+[ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
+[ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
+[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_6g8vu"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
+[ext_resource type="Texture2D" uid="uid://cqlredqy3j2x8" path="res://placeholders/Map/Shop.png" id="3_3pb6l"]
+[ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="4_86n8f"]
+[ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
+[ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
+[ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
+[ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
+[ext_resource type="Script" path="res://util/lerp.cs" id="11_8ihbg"]
+[ext_resource type="Texture2D" uid="uid://dc30cb72mvn22" path="res://placeholders/character/Bob_run_16x16.png" id="11_g4jmp"]
+[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/CardSelectionUI.tscn" id="11_rx5ww"]
+
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("newCardSelection", "deckViewUI")]
+script = ExtResource("1_sas1p")
+newCardSelection = NodePath("CardSelectionUI")
+deckViewUI = NodePath("DeckViewUI")
+cardPool = ExtResource("2_6g8vu")
+relicList = ExtResource("3_mpj51")
+defaultCardList = ExtResource("4_86n8f")
+
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("home", "mapEventResolveUI", "topPathControls", "botPathControls", "character", "topLines", "botlines")]
+script = ExtResource("1_vwohc")
+home = NodePath("Control/Home")
+mapEventResolveUI = NodePath("../MapEventText")
+mapLocationPackedScene = ExtResource("4_pfyjt")
+topPathControls = [NodePath("Control/TopPath/Control"), NodePath("Control/TopPath/Control3")]
+botPathControls = [NodePath("Control/BotPath/Control"), NodePath("Control/BotPath/Control3")]
+character = NodePath("../Character")
+topLines = [NodePath("Paths/Line2D4"), NodePath("Paths/Line2D5"), NodePath("Paths/Line2D6")]
+botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths/Line2D3")]
+
+[node name="Background" type="TextureRect" parent="Map"]
+modulate = Color(1, 1, 0.831373, 1)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_g041w")
+
+[node name="Control" type="Control" parent="Map"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -8.0
+offset_bottom = -8.0
+
+[node name="TextureRect2" type="TextureRect" parent="Map/Control"]
+modulate = Color(1, 1, 0.831373, 1)
+layout_mode = 0
+offset_left = 111.0
+offset_top = 499.0
+offset_right = 316.0
+offset_bottom = 644.0
+texture = ExtResource("3_3pb6l")
+
+[node name="TopPath" type="Control" parent="Map/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="Map/Control/TopPath"]
+anchors_preset = 0
+offset_left = 645.0
+offset_top = 218.0
+offset_right = 645.0
+offset_bottom = 218.0
+scale = Vector2(2, 2)
+
+[node name="MapLocation" parent="Map/Control/TopPath/Control" instance=ExtResource("4_pfyjt")]
+visible = false
+
+[node name="Control3" type="Control" parent="Map/Control/TopPath"]
+anchors_preset = 0
+offset_left = 1240.0
+offset_top = 205.0
+offset_right = 1240.0
+offset_bottom = 205.0
+scale = Vector2(2, 2)
+
+[node name="MapLocation" parent="Map/Control/TopPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
+visible = false
+offset_left = -41.0
+offset_top = -36.0
+offset_right = 55.0
+offset_bottom = 45.0
+image = NodePath("../../Control/MapLocation/TextureRect")
+label = NodePath("../../Control/MapLocation/RichTextLabel")
+
+[node name="BotPath" type="Control" parent="Map/Control"]
+anchors_preset = 0
+
+[node name="Control" type="Control" parent="Map/Control/BotPath"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 658.0
+offset_top = 805.0
+offset_right = 658.0
+offset_bottom = 805.0
+scale = Vector2(2, 2)
+
+[node name="MapLocation" parent="Map/Control/BotPath/Control" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
+visible = false
+image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
+label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
+
+[node name="Control3" type="Control" parent="Map/Control/BotPath"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1340.0
+offset_top = 800.0
+offset_right = 1340.0
+offset_bottom = 800.0
+scale = Vector2(2, 2)
+
+[node name="MapLocation" parent="Map/Control/BotPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
+visible = false
+offset_left = -56.5
+offset_top = -30.5
+offset_right = 40.5
+offset_bottom = 49.5
+image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
+label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
+
+[node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
+offset_left = 1753.0
+offset_top = 466.0
+offset_right = 1849.0
+offset_bottom = 547.0
+scale = Vector2(2, 2)
+type = 4
+
+[node name="Paths" type="Node2D" parent="Map"]
+
+[node name="Line2D" type="Line2D" parent="Map/Paths"]
+position = Vector2(259.01, 842.908)
+points = PackedVector2Array(-32.0101, -178.908, 282.99, -32.9084)
+texture = ExtResource("4_rxy0n")
+texture_mode = 1
+
+[node name="Line2D2" type="Line2D" parent="Map/Paths"]
+position = Vector2(259.01, 842.908)
+points = PackedVector2Array(526.99, -43.9084, 944.99, -35.9084)
+texture = ExtResource("4_rxy0n")
+texture_mode = 1
+
+[node name="Line2D3" type="Line2D" parent="Map/Paths"]
+position = Vector2(776, 706)
+points = PackedVector2Array(668, 71.9999, 903, -157)
+texture = ExtResource("4_rxy0n")
+texture_mode = 1
+
+[node name="Line2D4" type="Line2D" parent="Map/Paths"]
+position = Vector2(776, 706)
+points = PackedVector2Array(609, -459, 838, -298)
+texture = ExtResource("4_rxy0n")
+texture_mode = 1
+
+[node name="Line2D5" type="Line2D" parent="Map/Paths"]
+position = Vector2(776, 706)
+points = PackedVector2Array(-27.9999, -477, 371, -500)
+texture = ExtResource("4_rxy0n")
+texture_mode = 1
+
+[node name="Line2D6" type="Line2D" parent="Map/Paths"]
+position = Vector2(776, 706)
+points = PackedVector2Array(-477, -196, -253, -467)
+texture = ExtResource("4_rxy0n")
+texture_mode = 1
+
+[node name="Character" type="Node2D" parent="."]
+position = Vector2(223, 566)
+scale = Vector2(4, 4)
+script = ExtResource("11_8ihbg")
+speed = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+position = Vector2(-0.5, -1)
+texture = ExtResource("11_g4jmp")
+hframes = 24
+frame = 1
+
+[node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_7gh4s")
+title = NodePath("Forground/title")
+description = NodePath("Forground/description")
+button = NodePath("Forground/Continue")
+
+[node name="Background" type="TextureRect" parent="MapEventText"]
+modulate = Color(0, 0, 0, 0.498039)
+layout_mode = 0
+offset_right = 1922.0
+offset_bottom = 1079.0
+texture = ExtResource("2_g041w")
+
+[node name="Forground" type="TextureRect" parent="MapEventText"]
+modulate = Color(0.831373, 0.933333, 0.921569, 1)
+layout_mode = 0
+offset_left = 472.0
+offset_top = 186.0
+offset_right = 1452.0
+offset_bottom = 872.0
+texture = ExtResource("2_g041w")
+
+[node name="title" type="RichTextLabel" parent="MapEventText/Forground"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 101.0
+offset_right = 816.0
+offset_bottom = 177.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]TITLE TEXT"
+
+[node name="description" type="RichTextLabel" parent="MapEventText/Forground"]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 181.0
+offset_right = 819.0
+offset_bottom = 544.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Title Description"
+
+[node name="Continue" type="Button" parent="MapEventText/Forground"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 562.0
+offset_right = 580.0
+offset_bottom = 611.0
+text = "Continue
+"
+
+[node name="DeckViewUI" parent="." groups=["DeckViewUI"] instance=ExtResource("10_6e71l")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") groups=["CardSelectionUI"] instance=ExtResource("11_rx5ww")]
+unique_name_in_owner = true
+visible = false
+deckViewUI = NodePath("../DeckViewUI")

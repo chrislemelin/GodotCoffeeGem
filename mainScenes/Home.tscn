@@ -25,7 +25,7 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_8qtof"]
+[sub_resource type="Resource" id="Resource_q0ftv"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch"
@@ -43,7 +43,7 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_modr3"]
+[sub_resource type="Resource" id="Resource_21pm7"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Vertical"
@@ -61,7 +61,7 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_gx8yq"]
+[sub_resource type="Resource" id="Resource_qg4oq"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Horiz"
@@ -102,9 +102,9 @@ offset_right = -3.05176e-05
 offset_bottom = -218.0
 scale = Vector2(1.5, 1.5)
 gameManager = NodePath("..")
-upgradedSwitchCard = SubResource("Resource_8qtof")
-vertSwitchCard = SubResource("Resource_modr3")
-horizSwitchCard = SubResource("Resource_gx8yq")
+upgradedSwitchCard = SubResource("Resource_q0ftv")
+vertSwitchCard = SubResource("Resource_21pm7")
+horizSwitchCard = SubResource("Resource_qg4oq")
 deckListUI = NodePath("../DeckView")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]

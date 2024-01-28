@@ -79,7 +79,7 @@ public partial class DayOver : Control
 		}
 
 		removeCardFromDeckButton.Pressed += () => {
-			deckListUI.setUpAndSelectCard(gameManager.getDeckList(), removeCardFromDeck) ;
+			deckListUI.setUp(gameManager.getDeckList(), removeCardFromDeck, TextHelper.centered("Remove Card From Deck"));
 			confirmationText.Text = "Removed Card from Deck";
 		};
 

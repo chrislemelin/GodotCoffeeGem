@@ -15,6 +15,7 @@ baseIncrease = 50
 multIncrease = 0.25
 gemType = 0
 finalMult = 1.0
+temporary = false
 
 [node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "upgradeCardButton", "removeCardFromDeckButton", "relicShop", "advanceLevelButton", "confirmationText")]
 layout_mode = 3

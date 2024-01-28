@@ -22,8 +22,10 @@ public partial class CardEffectPopRandom : CardEffectIF
 		List<Vector2> positions = getAllTilesToEffect(matchBoard, tile);
 		RandomHelper.Shuffle(positions);
 		if(positions.Count == getValue()) {
-			hand.drawCards(1);
-			mana.modifyMana(1);
+			matchBoard.GetTree().CreateTimer(.6).Timeout += () => {
+				hand.drawCards(1);
+				mana.modifyMana(1);
+			};
 		}
 		if(positions.Count > getValue()) {
 			positions = positions.GetRange(0, getValue());

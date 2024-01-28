@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
-public partial class HighlightOnHover : Control
+public partial class HighlightOnHover : TextureRect
 {
 	[Export] Area2D area2D;
 	bool forceHighlightOn = false;
+	bool forceHighlightOff = false;
+
 	bool isHovered = false;
 	public HighlightOnHover() {
 
@@ -24,32 +26,15 @@ public partial class HighlightOnHover : Control
 
 	public void setForceHighlight(bool forceHighlightValue)
 	{
-		// if (forceHighlightOn)
-		// {
-		// 	setHighlightOn();
-		// }
-		// else
-		// {
-		// 	//checkForHighlight();
-		// }
 		forceHighlightOn = forceHighlightValue;
 	}
 
-	// private void checkForHighlight()
-	// {
-	// 	if (forceHighlightOn)
-	// 	{
-	// 		return;
-	// 	}
-	// 	if (GetRect().HasPoint(GetLocalMousePosition()))
-	// 	{
-	// 		//setHighlightOn();
-	// 	}
-	// 	else
-	// 	{
-	// 		//setHighlightOff();
-	// 	}
-	// }
+	public void setForceHighlightOff(bool forceHighlightValue)
+	{
+		forceHighlightOff = forceHighlightValue;
+	}
+
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -60,7 +45,10 @@ public partial class HighlightOnHover : Control
 	private void renderHighlight() {
 		if(forceHighlightOn) {
 			setHighlightOn();
-		} else if (isHovered) {
+		} else if (forceHighlightOff) {
+			setHighlightOff();	
+		}
+		else if (isHovered) {
 			setHighlightOn();
 		} else {
 			setHighlightOff();
