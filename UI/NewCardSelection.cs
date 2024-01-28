@@ -89,5 +89,4 @@ public partial class NewCardSelection : Control
 		Visible = false;
 		EmitSignal(SignalName.windowClosed, null);
 	}
-
 }

@@ -52,7 +52,7 @@ layout_mode = 0
 offset_left = 608.0
 offset_top = 462.0
 offset_right = 1337.0
-offset_bottom = 1010.0
+offset_bottom = 889.0
 texture = ExtResource("1_ym8if")
 expand_mode = 3
 
@@ -71,7 +71,7 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 25
-text = "What do you decide to do after work?"
+text = "You have some time to chill before work tomorow"
 fit_content = true
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
@@ -80,6 +80,7 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 
 [node name="Side hustle" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Work on your side hustle (Gain 10 coins)"
@@ -87,6 +88,7 @@ script = ExtResource("2_x4g5w")
 cost = -10
 
 [node name="Moare cards" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "Gain an extra card (Costs 20 coins)"
 script = ExtResource("2_x4g5w")
@@ -94,6 +96,7 @@ cost = 20
 
 [node name="Shopping Therapy" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Online shopping therapy (Recover a heart for 30 coins)"
 script = ExtResource("2_x4g5w")
 cost = 30
@@ -105,12 +108,14 @@ script = ExtResource("2_x4g5w")
 cost = 40
 
 [node name="RemoveCard" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "Remove a card from your deck (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
 
 [node name="CardUpgrade" type="Button" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Turn one of your switch vert or switch horiz into a switch that can go in either direction"
@@ -163,7 +168,6 @@ theme_override_constants/margin_bottom = 20
 
 [node name="AdvanceButton" type="Button" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
-disabled = true
 text = "Advance "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]

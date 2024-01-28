@@ -102,6 +102,6 @@ public partial class GameManager : GameManagerIF
 	public override void advanceLevel()
 	{
 		global.currentLevel += 1;
-		GetTree().ChangeSceneToFile("res://mainScenes/Home.tscn");
+		GetTree().ChangeSceneToFile("res://mainScenes/Map.tscn");
 	}
 }

@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs0yawupejkyk"]
+[gd_scene load_steps=11 format=3 uid="uid://bs0yawupejkyk"]
 
 [ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
 [ext_resource type="Shader" path="res://cards/outlineShader.gdshader" id="2_0b8c7"]
 [ext_resource type="Texture2D" uid="uid://cqlredqy3j2x8" path="res://placeholders/Map/Shop.png" id="2_ern76"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_t53kr"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="3_os8q3"]
+[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_celhv"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="4_edqu2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4i6bp"]
@@ -28,6 +31,9 @@ image = NodePath("TextureRect")
 label = NodePath("RichTextLabel")
 highlight = NodePath("TextureRect")
 inActiveColor = Color(0.584314, 0.584314, 0.584314, 1)
+vertSwitchCard = ExtResource("2_t53kr")
+horizSwitchCard = ExtResource("3_os8q3")
+upgradedSwitchCard = ExtResource("4_celhv")
 
 [node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("area2D")]
 material = SubResource("ShaderMaterial_4i6bp")

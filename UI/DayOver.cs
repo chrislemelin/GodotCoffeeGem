@@ -59,10 +59,10 @@ public partial class DayOver : Control
 		foreach(ButtonWithCoinCost buttonWithCoinCost in buttonWithCoinCost) {
 			buttonWithCoinCost.Pressed += () => {
 				foreach(Button currentButton in buttons) {
-					currentButton.Disabled = true;
+					//currentButton.Disabled = true;
 				}
 				subtractCoins(buttonWithCoinCost);
-				advanceLevelButton.Disabled = false;
+				//advanceLevelButton.Disabled = false;
 			};
 		}
 		
