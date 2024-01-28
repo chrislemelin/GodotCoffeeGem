@@ -10,6 +10,8 @@ public partial class CardInfoLoader : Control
 	[Export] protected TextureRect picture;
 	[Export] protected TextureRect titleSprite;
 	[Export] protected HighlightOnHover highlightOnHover;
+	[Export] protected Control coinCostControl;
+	[Export] protected RichTextLabel coinCostText;
 
 
 
@@ -37,6 +39,11 @@ public partial class CardInfoLoader : Control
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
+		coinCostText.Text = cardResource.getCoinCost().ToString();
+	}
+
+	public void setShowCoinCost(bool visible) {
+		coinCostControl.Visible = visible;
 	}
 
 	public void setForceHighlight(bool value) {

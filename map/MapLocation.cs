@@ -54,7 +54,7 @@ public partial class MapLocation : Control
 		}
 		else if (type == MapEventType.GainCard) {
 			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street and stop to say hello. " +
-			"They have really rissen up the coperate ladder since you last saw. They give you a few tips to help you out!");
+			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");
 			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
 				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom()
 			);

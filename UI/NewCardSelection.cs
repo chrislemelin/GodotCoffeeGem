@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class NewCardSelection : Control
 {
@@ -45,12 +46,8 @@ public partial class NewCardSelection : Control
 
 	public void getRandomCardsToSelectFrom() {
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
-		GD.Print("showing cards");
-
-		int cardsToChoose = gameManager.getNumberOfCardToChoose();
-		List<CardResource> cardPoolList = new List<CardResource>(gameManager.cardPool.allCards);
-		RandomHelper.Shuffle(cardPoolList);
-		setCardsToSelectFrom(cardPoolList.GetRange(0,cardsToChoose));
+		int numberOfCardsToChoose = gameManager.getNumberOfCardToChoose();
+		setCardsToSelectFrom(CardRarityHelper.getRandomCards(numberOfCardsToChoose, gameManager.cardPool));
 	}
 
 	public void setCardsToSelectFrom(List<CardResource> cardResources) {

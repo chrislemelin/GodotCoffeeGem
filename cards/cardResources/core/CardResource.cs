@@ -8,6 +8,8 @@ public partial class CardResource : Resource
 	[Export] private int Cost { get; set; }
 	[Export] public CardRarity rarity = CardRarity.Common;
 	[Export] public Texture2D Picture { get; private set; }
+	[Export] private int coinCost { get; set; }
+
 
 	[Export] public CardEffectIF cardEffect { get; set; }
 
@@ -35,6 +37,23 @@ public partial class CardResource : Resource
 		}
 		return Math.Max(cost, 0);
 	}
+
+	public int getCoinCost()
+	{
+		if (coinCost == 0) {
+			if(rarity == CardRarity.Common) {
+				return 20;
+			}
+			if(rarity == CardRarity.Uncommon) {
+				return 35;
+			}
+			if(rarity == CardRarity.Rare) {
+				return 50;
+			}
+		}
+		return coinCost;
+	}
+
 	public String getDescription()
 	{
 		String newDescription = Description.Replace("$value", cardEffect.getValue().ToString());

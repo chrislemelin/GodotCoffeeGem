@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=14 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
@@ -7,10 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
 [ext_resource type="Texture2D" uid="uid://cqa4fyn20trt" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px.png" id="7_hped7"]
+[ext_resource type="Texture2D" uid="uid://cyf7pt22p1dgt" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-under-crop.png" id="8_aefcp"]
 [ext_resource type="Texture2D" uid="uid://i3m6sunrvdwq" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-coffeetop.png" id="8_ne2r7"]
-[ext_resource type="Texture2D" uid="uid://ctq7u5f702wxg" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-under.png" id="9_dondr"]
-[ext_resource type="Texture2D" uid="uid://txt43aufv6j" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-over.png" id="10_728bt"]
-[ext_resource type="Texture2D" uid="uid://cm7bsmpwr64s3" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-coffeemain.png" id="11_218xq"]
+[ext_resource type="Texture2D" uid="uid://de5dtu5c2komf" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-over-crop.png" id="9_opjj2"]
+[ext_resource type="Texture2D" uid="uid://cn51veay4bjc7" path="res://placeholders/CoffeeShop/coffeeboard-pixel-300px-coffeemain-crop.png" id="10_nn4j4"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="11_kn8cc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rlew"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -38,15 +39,24 @@ position = Vector2(186, 154)
 texture = ExtResource("7_hped7")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = -395.0
-offset_top = 77.0
-offset_right = -95.0
-offset_bottom = 525.0
-value = 50.0
+offset_left = -394.0
+offset_top = 211.0
+offset_right = -94.0
+offset_bottom = 535.0
+value = 66.0
 fill_mode = 3
-texture_under = ExtResource("9_dondr")
-texture_over = ExtResource("10_728bt")
-texture_progress = ExtResource("11_218xq")
+texture_under = ExtResource("8_aefcp")
+texture_over = ExtResource("9_opjj2")
+texture_progress = ExtResource("10_nn4j4")
+
+[node name="Top" type="TextureRect" parent="."]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+offset_left = -383.0
+offset_top = 167.0
+offset_right = -104.0
+offset_bottom = 212.0
+texture = ExtResource("11_kn8cc")
+expand_mode = 2
 
 [node name="VSlider" type="VSlider" parent="."]
 visible = false

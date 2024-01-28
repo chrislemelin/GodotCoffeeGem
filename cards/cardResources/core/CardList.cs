@@ -14,7 +14,7 @@ public partial class CardList : Resource
 	}
 
 	public CardResource getRandomCard() {
-		CardRarity selectedRarity = CardRarityHelper.getRandomScaled();
+		CardRarity selectedRarity = CardRarityHelper.getRandom();
 		List<CardResource> cards = allCards.Where((card) => card.rarity == selectedRarity).ToList();
 		RandomHelper.Shuffle(cards);
 		return(cards[0]);

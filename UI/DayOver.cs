@@ -30,9 +30,14 @@ public partial class DayOver : Control
 	// test dock 
 	[Export] CardResource horizSwitchCard;
 
+	[Export] Control cardShop;
+	[Export] PackedScene cardScene;
+	[Export] PackedScene marginContainerScene;
+
 
 	private List<Button> buttons = new List<Button>();
 	private List<ButtonWithCoinCost> buttonWithCoinCost = new List<ButtonWithCoinCost>();
+	private List<RelicUI> relicUIsInShop = new List<RelicUI>();
 
 	private CardResource? cardToReplace;
 
@@ -67,8 +72,8 @@ public partial class DayOver : Control
 		}
 		
 		addRelicsToShop();
-
-
+		addCardsToShop();
+		gameManager.coinsChanged += (int coins) => coinsChanged(coins);
 
 		if (gameManager.getHealth() == gameManager.getMaxHealth()) {
 			shoppingTherapyButton.Disabled = true;
@@ -137,6 +142,18 @@ public partial class DayOver : Control
 		gameManager.addCardToDeckList(upgradedSwitchCard);
 	}
 
+	private void coinsChanged(int coins) {
+		foreach(ButtonWithCoinCost buttonWithCoinCost in buttonWithCoinCost) {
+			buttonWithCoinCost.setCurrentCoin(coins);
+		}
+		if (gameManager.getHealth() == gameManager.getMaxHealth()) {
+			shoppingTherapyButton.Disabled = true;
+		}
+		foreach(RelicUI relicUI in relicUIsInShop) {
+			relicUI.buyButton.Disabled = gameManager.getCoins() < relicUI.relicResource.cost;
+		}
+	}
+
 	private void addRelicsToShop() {
 		List<RelicResource> relicResources = gameManager.getRelicPool();
 		RandomHelper.Shuffle(relicResources);
@@ -144,6 +161,7 @@ public partial class DayOver : Control
 
 		foreach(RelicResource relicResource in relicsInShop) {
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
+			relicUIsInShop.Add(relicUI);
 			relicUI.showPrice = true;
 			relicUI.setRelic(relicResource);
 
@@ -161,6 +179,30 @@ public partial class DayOver : Control
 			};
 			relicShop.AddChild(relicUI);
 		}
+	}
+	private void addCardsToShop() {
+		List<CardResource> cards = CardRarityHelper.getRandomCards(5, gameManager.cardPool);
+			foreach(CardResource cardResource in cards) {
+			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
+			//cardInfoLoaders.Add(cardInfoLoader);
+			cardInfoLoader.setUpCard(cardResource);
+			cardInfoLoader.setShowCoinCost(true);
+			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
+			marginContainer.AddChild(cardInfoLoader);
+			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, marginContainer);
+			cardShop.AddChild(marginContainer);
+		}
+	}
+
+	private void cardClicked(InputEvent inputEvent, CardResource cardResource, MarginContainer marginContainer) {
+		if (inputEvent.IsActionPressed("click"))
+		{
+			if (gameManager.getCoins() > cardResource.getCoinCost()) {
+				gameManager.addCoins(-1 * cardResource.getCoinCost());
+				gameManager.addCardToDeckList(cardResource);
+				cardShop.RemoveChild(marginContainer);
+			}
+		};
 	}
 
 	private void removeCardFromDeck(CardResource cardResource) {

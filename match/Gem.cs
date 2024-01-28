@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public partial class Gem : lerp
 {
@@ -16,6 +17,8 @@ public partial class Gem : lerp
 	[Export] public bool useSprites;
 	[Export] public Control control;
 	[Export] AnimationPlayer animationPlayer;
+
+	List<Tuple<Action<List<GemType>>, Boolean>> matchCallBacks = new List<Tuple<Action<List<GemType>>, Boolean>>();
 
 	private int comboValue = 1;
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=11 format=3 uid="uid://dicb3wwg7ecmd"]
 
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="1_qnag5"]
 [ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_u3ora"]
@@ -8,13 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_jrfr0"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="8_a11pv"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="9_w4arf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
 shader = ExtResource("3_u3ora")
 shader_parameter/line_color = Color(1, 1, 0, 0)
 shader_parameter/line_thickness = 5.009
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover")]
+[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(530, 800)
 layout_mode = 3
@@ -28,10 +29,12 @@ mouse_filter = 1
 script = ExtResource("1_qnag5")
 titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Description/RichTextLabel")
-costLabel = NodePath("Center/Cost/RichTextLabel")
+costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
 titleSprite = NodePath("Center/Title/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
+coinCostControl = NodePath("Center/CoinCost")
+coinCostText = NodePath("Center/CoinCost/HBoxContainer/RichTextLabel")
 
 [node name="Center" type="Control" parent="."]
 custom_minimum_size = Vector2(420, 600)
@@ -129,7 +132,7 @@ bbcode_enabled = true
 text = "[center]CARD TITLE[/center]"
 scroll_active = false
 
-[node name="Cost" type="Control" parent="Center"]
+[node name="EnergyCost" type="Control" parent="Center"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 62.65
@@ -138,7 +141,7 @@ offset_right = 62.65
 offset_bottom = 63.3333
 mouse_filter = 2
 
-[node name="Sprite2D2" type="TextureRect" parent="Center/Cost"]
+[node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
 layout_mode = 0
 offset_left = -80.0
 offset_top = -120.934
@@ -149,7 +152,7 @@ mouse_filter = 2
 texture = ExtResource("8_a11pv")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Center/Cost"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -169,3 +172,33 @@ bbcode_enabled = true
 text = "[center]1"
 fit_content = true
 scroll_active = false
+
+[node name="CoinCost" type="Control" parent="Center"]
+visible = false
+anchors_preset = 0
+offset_left = 86.0
+offset_top = 646.0
+offset_right = 358.0
+offset_bottom = 710.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Center/CoinCost"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Center/CoinCost/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 6.48
+theme_override_font_sizes/normal_font_size = 50
+text = "50"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Center/CoinCost/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_w4arf")
+expand_mode = 2

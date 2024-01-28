@@ -25,13 +25,14 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_q0ftv"]
+[sub_resource type="Resource" id="Resource_tghec"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch"
 Description = "Switch positions of two directly adjacent orbs"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_pbwlf")
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
@@ -43,13 +44,14 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_21pm7"]
+[sub_resource type="Resource" id="Resource_4s5ho"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Vertical"
 Description = "Switch positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -61,7 +63,7 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_qg4oq"]
+[sub_resource type="Resource" id="Resource_npyig"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Horiz"
@@ -69,6 +71,7 @@ Description = "Switch positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("10_qx4mo")
+coinCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [node name="Home" type="Node2D" node_paths=PackedStringArray("status", "dayOver", "newCardSelection", "button", "deckViewUI")]
@@ -96,15 +99,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -3.05176e-05
-offset_top = -218.0
-offset_right = -3.05176e-05
-offset_bottom = -218.0
+offset_left = -8.00003
+offset_top = -342.0
+offset_right = -8.00003
+offset_bottom = -342.0
 scale = Vector2(1.5, 1.5)
 gameManager = NodePath("..")
-upgradedSwitchCard = SubResource("Resource_q0ftv")
-vertSwitchCard = SubResource("Resource_21pm7")
-horizSwitchCard = SubResource("Resource_qg4oq")
+upgradedSwitchCard = SubResource("Resource_tghec")
+vertSwitchCard = SubResource("Resource_4s5ho")
+horizSwitchCard = SubResource("Resource_npyig")
 deckListUI = NodePath("../DeckView")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]
@@ -118,16 +121,15 @@ offset_bottom = 66.0
 grow_horizontal = 0
 gameManager = NodePath("..")
 
-[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("gameManager", "deckViewUI") instance=ExtResource("4_v1i61")]
+[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") instance=ExtResource("4_v1i61")]
 visible = false
-gameManager = NodePath("..")
 deckViewUI = NodePath("../DeckView")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 119.0
-offset_top = 462.0
-offset_right = 375.0
-offset_bottom = 539.0
+offset_left = 86.0
+offset_top = 519.0
+offset_right = 342.0
+offset_bottom = 596.0
 theme_override_font_sizes/font_size = 50
 text = "View Deck"
 

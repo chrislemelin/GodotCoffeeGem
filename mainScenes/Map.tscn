@@ -30,7 +30,7 @@ CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_1vqid"]
+[sub_resource type="Resource" id="Resource_6ej6d"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -38,6 +38,7 @@ Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -49,7 +50,7 @@ CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_giw6l"]
+[sub_resource type="Resource" id="Resource_j4147"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -57,6 +58,7 @@ Description = "Switch the positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
+coinCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_tlj12"]
@@ -69,16 +71,17 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_x1r6h"]
+[sub_resource type="Resource" id="Resource_se2dt"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_tlj12")
 
-[sub_resource type="Resource" id="Resource_x213k"]
+[sub_resource type="Resource" id="Resource_ga8vv"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -86,9 +89,10 @@ Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_vru5w"]
+[sub_resource type="Resource" id="Resource_mlxjs"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -96,6 +100,7 @@ Description = "Switch the positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
+coinCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_l5j6y"]
@@ -108,16 +113,17 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_kn3v8"]
+[sub_resource type="Resource" id="Resource_m7w06"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_l5j6y")
 
-[sub_resource type="Resource" id="Resource_ffimt"]
+[sub_resource type="Resource" id="Resource_ikg4h"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -125,9 +131,10 @@ Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_epacy"]
+[sub_resource type="Resource" id="Resource_mwsrh"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -135,6 +142,7 @@ Description = "Switch the positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
+coinCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_bimhj"]
@@ -147,16 +155,17 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_c88i0"]
+[sub_resource type="Resource" id="Resource_7ucut"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_bimhj")
 
-[sub_resource type="Resource" id="Resource_uy88q"]
+[sub_resource type="Resource" id="Resource_8wk2w"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -164,9 +173,10 @@ Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_0bcu1"]
+[sub_resource type="Resource" id="Resource_i4uwt"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -174,6 +184,7 @@ Description = "Switch the positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
+coinCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_23mlu"]
@@ -186,16 +197,17 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_a3wfw"]
+[sub_resource type="Resource" id="Resource_6v75w"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_23mlu")
 
-[sub_resource type="Resource" id="Resource_8vbad"]
+[sub_resource type="Resource" id="Resource_b46kd"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -203,9 +215,10 @@ Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_j6dai"]
+[sub_resource type="Resource" id="Resource_6x5d2"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -213,6 +226,7 @@ Description = "Switch the positions of two horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
+coinCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_smct3"]
@@ -225,13 +239,14 @@ CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_2n5mm"]
+[sub_resource type="Resource" id="Resource_lo81q"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_smct3")
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("newCardSelection", "deckViewUI")]
@@ -289,9 +304,9 @@ scale = Vector2(2, 2)
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control" instance=ExtResource("4_pfyjt")]
 visible = false
-vertSwitchCard = SubResource("Resource_1vqid")
-horizSwitchCard = SubResource("Resource_giw6l")
-upgradedSwitchCard = SubResource("Resource_x1r6h")
+vertSwitchCard = SubResource("Resource_6ej6d")
+horizSwitchCard = SubResource("Resource_j4147")
+upgradedSwitchCard = SubResource("Resource_se2dt")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
@@ -309,9 +324,9 @@ offset_right = 55.0
 offset_bottom = 45.0
 image = NodePath("../../Control/MapLocation/TextureRect")
 label = NodePath("../../Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_x213k")
-horizSwitchCard = SubResource("Resource_vru5w")
-upgradedSwitchCard = SubResource("Resource_kn3v8")
+vertSwitchCard = SubResource("Resource_ga8vv")
+horizSwitchCard = SubResource("Resource_mlxjs")
+upgradedSwitchCard = SubResource("Resource_m7w06")
 
 [node name="BotPath" type="Control" parent="Map/Control"]
 anchors_preset = 0
@@ -329,9 +344,9 @@ scale = Vector2(2, 2)
 visible = false
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_ffimt")
-horizSwitchCard = SubResource("Resource_epacy")
-upgradedSwitchCard = SubResource("Resource_c88i0")
+vertSwitchCard = SubResource("Resource_ikg4h")
+horizSwitchCard = SubResource("Resource_mwsrh")
+upgradedSwitchCard = SubResource("Resource_7ucut")
 
 [node name="Control3" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
@@ -350,9 +365,9 @@ offset_right = 40.5
 offset_bottom = 49.5
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_uy88q")
-horizSwitchCard = SubResource("Resource_0bcu1")
-upgradedSwitchCard = SubResource("Resource_a3wfw")
+vertSwitchCard = SubResource("Resource_8wk2w")
+horizSwitchCard = SubResource("Resource_i4uwt")
+upgradedSwitchCard = SubResource("Resource_6v75w")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
 offset_left = 1753.0
@@ -361,9 +376,9 @@ offset_right = 1849.0
 offset_bottom = 547.0
 scale = Vector2(2, 2)
 type = 4
-vertSwitchCard = SubResource("Resource_8vbad")
-horizSwitchCard = SubResource("Resource_j6dai")
-upgradedSwitchCard = SubResource("Resource_2n5mm")
+vertSwitchCard = SubResource("Resource_b46kd")
+horizSwitchCard = SubResource("Resource_6x5d2")
+upgradedSwitchCard = SubResource("Resource_lo81q")
 
 [node name="Paths" type="Node2D" parent="Map"]
 
@@ -414,6 +429,15 @@ position = Vector2(-0.5, -1)
 texture = ExtResource("11_g4jmp")
 hframes = 24
 frame = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 647.0
+offset_top = 467.0
+offset_right = 946.0
+offset_bottom = 552.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "Choose a path to take to get back home"
 
 [node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button")]
 visible = false

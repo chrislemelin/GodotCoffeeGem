@@ -3,7 +3,7 @@ using System;
 
 public partial class RelicUI : Control
 {
-	[Export] RelicResource relicResource;
+	[Export] public RelicResource relicResource;
 	[Export] TextureRect picture;
 	[Export] RichTextLabel counterLabel;
 	[Export] Label costLabel;
