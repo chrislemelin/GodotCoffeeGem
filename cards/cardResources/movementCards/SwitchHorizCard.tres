@@ -12,7 +12,6 @@ BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 consume = false
-retain = false
 effectGemType = 0
 
 [resource]

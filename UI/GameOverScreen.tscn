@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://mplh7y2efw3m"]
+[gd_scene load_steps=3 format=3 uid="uid://mplh7y2efw3m"]
 
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="3_1mwae"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_32t71"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="4_cepm3"]
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
 
 [node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton")]
@@ -14,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_dub5d")
-restartButton = NodePath("Panel/VBoxContainer/Button")
+restartButton = NodePath("VBoxContainer/Button")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
@@ -28,22 +26,14 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 333.0
-offset_top = 337.0
-offset_right = 1618.0
-offset_bottom = 748.0
-theme = ExtResource("3_1mwae")
+offset_left = 378.0
+offset_top = 373.0
+offset_right = 1466.0
+offset_bottom = 865.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 36.0
-offset_right = 1253.0
-offset_bottom = 528.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 100
@@ -51,8 +41,7 @@ bbcode_enabled = true
 text = "[center]Its JOEVER[/center]"
 fit_content = true
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_cepm3")
 theme_override_font_sizes/font_size = 50
 text = "Restart"
