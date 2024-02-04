@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://day2feovup55o"]
+[gd_scene load_steps=7 format=3 uid="uid://day2feovup55o"]
 
 [ext_resource type="Script" path="res://relics/RelicUI.cs" id="1_481rc"]
 [ext_resource type="Texture2D" uid="uid://yq4rsx1u50b4" path="res://relics/sprites/glove.png" id="3_31nq3"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="3_dacao"]
+[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="4_ys4kh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihfdc"]
 bg_color = Color(0, 0, 0, 1)
@@ -26,7 +28,7 @@ offset_bottom = 40.0
 script = ExtResource("1_481rc")
 picture = NodePath("RelicUI/TextureRect")
 counterLabel = NodePath("TextEdit")
-costLabel = NodePath("Control/Label")
+costLabel = NodePath("Control/HBoxContainer/RichTextLabel")
 minSizeWithCost = Vector2(60, 50)
 costControl = NodePath("Control")
 buyButton = NodePath("Control/Button")
@@ -63,6 +65,7 @@ offset_right = -1.0
 offset_bottom = 5.0
 
 [node name="Label" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 53.0
@@ -72,10 +75,31 @@ theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_2rl0d")
 text = "10 Coins"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 44.0
+offset_right = 59.0
+offset_bottom = 67.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "10"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_dacao")
+expand_mode = 2
+
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 79.0
-offset_right = 60.0
-offset_bottom = 110.0
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 59.0
+offset_bottom = 99.0
+theme = ExtResource("4_ys4kh")
+theme_override_font_sizes/font_size = 20
 text = "Buy"

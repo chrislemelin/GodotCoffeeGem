@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://2av55t0yxy4e"]
+[gd_scene load_steps=13 format=3 uid="uid://2av55t0yxy4e"]
 
 [ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ym8if"]
 [ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
 [ext_resource type="Script" path="res://UI/ButtonWithCoinCost.cs" id="2_x4g5w"]
 [ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_yvkph"]
@@ -10,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_fr8b3"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="8_8qiu1"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
+[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
 
 [sub_resource type="Resource" id="Resource_ioiih"]
 script = ExtResource("2_ahm5c")
@@ -39,7 +40,7 @@ moreCardsButton = NodePath("VBoxContainer/GridContainer/Moare cards")
 relicButton = NodePath("VBoxContainer/GridContainer/Relic")
 upgradeCardButton = NodePath("VBoxContainer/GridContainer/CardUpgrade")
 removeCardFromDeckButton = NodePath("VBoxContainer/GridContainer/RemoveCard")
-relicShop = NodePath("VBoxContainer/GridContainer/PassiveShop")
+relicShop = NodePath("PassiveShop")
 relicUIPackedScene = ExtResource("5_6xr0x")
 advanceLevelButton = NodePath("VBoxContainer/GridContainer/AdvanceButton")
 confirmationText = NodePath("VBoxContainer/GridContainer/RichTextLabel")
@@ -51,15 +52,13 @@ cardShop = NodePath("CardShop")
 cardScene = ExtResource("8_jclpp")
 marginContainerScene = ExtResource("8_8qiu1")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.388235, 0.388235, 0.388235, 1)
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 560.0
-offset_top = 462.0
-offset_right = 1364.0
-offset_bottom = 1086.0
-texture = ExtResource("1_ym8if")
-expand_mode = 3
+offset_left = 564.0
+offset_top = 460.0
+offset_right = 1360.0
+offset_bottom = 1119.0
+theme = ExtResource("9_m8ehy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -71,7 +70,8 @@ size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 25
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center] Cards available to purchase [center]"
 fit_content = true
@@ -141,10 +141,40 @@ theme_override_constants/margin_bottom = 20
 [node name="UI" parent="CardShop/MarginContainer6" instance=ExtResource("8_jclpp")]
 layout_mode = 2
 
+[node name="PassiveShop" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+offset_left = 758.0
+offset_top = 799.0
+offset_right = 1111.0
+offset_bottom = 919.0
+scale = Vector2(1.2, 1.2)
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Control" parent="PassiveShop" instance=ExtResource("5_6xr0x")]
+visible = false
+custom_minimum_size = Vector2(60, 100)
+layout_mode = 2
+
+[node name="Control2" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+counterLabel = NodePath("../Control/TextEdit")
+costLabel = NodePath("../Control/Control/Label")
+
+[node name="Control3" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+counterLabel = NodePath("../Control/TextEdit")
+costLabel = NodePath("../Control/Control/Label")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 639.0
-offset_top = 764.0
+offset_top = 755.0
 offset_right = 1297.0
 offset_bottom = 1111.0
 
@@ -155,33 +185,16 @@ theme_override_constants/v_separation = 10
 
 [node name="Passives To Purchase" type="RichTextLabel" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center] Passives available to purchase [center]"
 fit_content = true
 scroll_active = false
 
-[node name="PassiveShop" type="HBoxContainer" parent="VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(0, 120)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Control" parent="VBoxContainer/GridContainer/PassiveShop" instance=ExtResource("5_6xr0x")]
-visible = false
-layout_mode = 2
-
-[node name="Control2" parent="VBoxContainer/GridContainer/PassiveShop" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
-visible = false
-layout_mode = 2
-picture = NodePath("../Control/RelicUI/TextureRect")
-counterLabel = NodePath("../Control/TextEdit")
-costLabel = NodePath("../Control/Control/Label")
-
-[node name="Control3" parent="VBoxContainer/GridContainer/PassiveShop" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
-visible = false
-layout_mode = 2
-picture = NodePath("../Control/RelicUI/TextureRect")
-counterLabel = NodePath("../Control/TextEdit")
-costLabel = NodePath("../Control/Control/Label")
+theme_override_constants/margin_top = 130
 
 [node name="Side hustle" type="Button" parent="VBoxContainer/GridContainer"]
 visible = false
@@ -201,12 +214,14 @@ cost = 20
 [node name="Shopping Therapy" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Online shopping therapy (Recover a heart for 30 coins)"
+theme = ExtResource("11_37gdu")
+text = "Recover a heart  (Costs 30 coins)"
 script = ExtResource("2_x4g5w")
 cost = 30
 
 [node name="Gem upgrade" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+theme = ExtResource("11_37gdu")
 text = "Purchase better ingredients (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
@@ -236,6 +251,7 @@ cost = 100
 
 [node name="AdvanceButton" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+theme = ExtResource("11_37gdu")
 text = "Advance "
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/GridContainer"]
