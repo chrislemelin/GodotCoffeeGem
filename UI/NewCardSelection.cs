@@ -23,44 +23,57 @@ public partial class NewCardSelection : Control
 		renderCards();
 		renderCoins();
 		skipButton.Pressed += () => advance();
-		viewDeckButton.Pressed  += () => deckViewUI.setUp(FindObjectHelper.getGameManager(this).getDeckList());
+		viewDeckButton.Pressed += () => deckViewUI.setUp(FindObjectHelper.getGameManager(this).getDeckList());
 	}
 
-	public void setCoins(int coinsGained) {
+	public void setCoins(int coinsGained)
+	{
 		this.coinsGained = coinsGained;
 		renderCoins();
 	}
 
-	private void renderCoins() {
-		if(coinsGained == 0) {
-			foreach(Control control in levelPassedText) {
+	private void renderCoins()
+	{
+		if (coinsGained == 0)
+		{
+			foreach (Control control in levelPassedText)
+			{
 				control.Visible = false;
 			}
-		} else {
-			foreach(Control control in levelPassedText) {
+		}
+		else
+		{
+			foreach (Control control in levelPassedText)
+			{
 				control.Visible = true;
 			}
 			coinsGainedLabel.Text = coinsGainedLabel.Text + " " + coinsGained;
 		}
 	}
 
-	public void getRandomCardsToSelectFrom() {
+	public void getRandomCardsToSelectFrom()
+	{
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
 		int numberOfCardsToChoose = gameManager.getNumberOfCardToChoose();
 		setCardsToSelectFrom(CardRarityHelper.getRandomCards(numberOfCardsToChoose, gameManager.cardPool));
 	}
 
-	public void setCardsToSelectFrom(List<CardResource> cardResources) {
+	public void setCardsToSelectFrom(List<CardResource> cardResources)
+	{
 		cards = new Array<CardResource>(cardResources);
 		renderCards();
 	}
-	private void renderCards() {
-		if (cards.Count > 0) {
+	private void renderCards()
+	{
+		if (cards.Count > 0)
+		{
 			Visible = true;
-			foreach (Node child in cardContainer.GetChildren()) {
+			foreach (Node child in cardContainer.GetChildren())
+			{
 				child.QueueFree();
 			};
-			foreach(CardResource cardResource in cards) {
+			foreach (CardResource cardResource in cards)
+			{
 				CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
 				cardInfoLoader.setUpCard(cardResource);
 				cardContainer.AddChild(cardInfoLoader);
@@ -69,7 +82,8 @@ public partial class NewCardSelection : Control
 		}
 	}
 
-	private void cardClicked(InputEvent inputEvent, CardResource cardResource) {
+	private void cardClicked(InputEvent inputEvent, CardResource cardResource)
+	{
 		if (inputEvent.IsActionPressed("click"))
 		{
 			FindObjectHelper.getGameManager(this).addCardToDeckList(cardResource);
@@ -77,13 +91,16 @@ public partial class NewCardSelection : Control
 		};
 	}
 
-	private void advance(CardResource cardResource) {
+	private void advance(CardResource cardResource)
+	{
 		Visible = false;
 		EmitSignal(SignalName.windowClosed, cardResource);
 	}
 
-	private void advance() {
+	private void advance()
+	{
 		Visible = false;
-		EmitSignal(SignalName.windowClosed, null);
+
+		EmitSignal(SignalName.windowClosed, new CardResource());
 	}
 }

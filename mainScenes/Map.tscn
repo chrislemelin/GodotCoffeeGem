@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=45 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="21_ped7m"]
+[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
 script = ExtResource("10_ujm25")
@@ -32,7 +34,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_7fdm8"]
+[sub_resource type="Resource" id="Resource_j21f5"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -54,7 +56,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_7pb3l"]
+[sub_resource type="Resource" id="Resource_7p6sj"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -77,7 +79,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_yttmp"]
+[sub_resource type="Resource" id="Resource_t2nhx"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -87,7 +89,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_tlj12")
 
-[sub_resource type="Resource" id="Resource_o6p03"]
+[sub_resource type="Resource" id="Resource_j3ceq"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -98,7 +100,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_854jb"]
+[sub_resource type="Resource" id="Resource_kb673"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -121,7 +123,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_mwlu6"]
+[sub_resource type="Resource" id="Resource_w5753"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -131,7 +133,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_l5j6y")
 
-[sub_resource type="Resource" id="Resource_jvnvl"]
+[sub_resource type="Resource" id="Resource_djxch"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -142,7 +144,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_asv3e"]
+[sub_resource type="Resource" id="Resource_gf2jx"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -165,7 +167,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_18m7o"]
+[sub_resource type="Resource" id="Resource_kr2ov"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -175,7 +177,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_bimhj")
 
-[sub_resource type="Resource" id="Resource_14m32"]
+[sub_resource type="Resource" id="Resource_nekim"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -186,7 +188,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_xxhut"]
+[sub_resource type="Resource" id="Resource_scuqb"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -209,7 +211,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_7v0yx"]
+[sub_resource type="Resource" id="Resource_keqew"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -219,7 +221,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_23mlu")
 
-[sub_resource type="Resource" id="Resource_66ujy"]
+[sub_resource type="Resource" id="Resource_8q6kl"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -230,7 +232,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_57ubx"]
+[sub_resource type="Resource" id="Resource_oosji"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -253,7 +255,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_rmax2"]
+[sub_resource type="Resource" id="Resource_5c33p"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -316,9 +318,9 @@ offset_bottom = 254.0
 visible = false
 offset_left = 0.0
 offset_right = 1.0
-vertSwitchCard = SubResource("Resource_7fdm8")
-horizSwitchCard = SubResource("Resource_7pb3l")
-upgradedSwitchCard = SubResource("Resource_yttmp")
+vertSwitchCard = SubResource("Resource_j21f5")
+horizSwitchCard = SubResource("Resource_7p6sj")
+upgradedSwitchCard = SubResource("Resource_t2nhx")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
@@ -334,9 +336,9 @@ offset_right = 96.0
 offset_bottom = 81.0
 image = NodePath("../../Control/MapLocation/TextureRect")
 label = NodePath("../../Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_o6p03")
-horizSwitchCard = SubResource("Resource_854jb")
-upgradedSwitchCard = SubResource("Resource_mwlu6")
+vertSwitchCard = SubResource("Resource_j3ceq")
+horizSwitchCard = SubResource("Resource_kb673")
+upgradedSwitchCard = SubResource("Resource_w5753")
 
 [node name="BotPath" type="Control" parent="Map/Control"]
 anchors_preset = 0
@@ -355,9 +357,9 @@ offset_left = 0.0
 offset_right = 1.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_jvnvl")
-horizSwitchCard = SubResource("Resource_asv3e")
-upgradedSwitchCard = SubResource("Resource_18m7o")
+vertSwitchCard = SubResource("Resource_djxch")
+horizSwitchCard = SubResource("Resource_gf2jx")
+upgradedSwitchCard = SubResource("Resource_kr2ov")
 
 [node name="Control3" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
@@ -373,9 +375,9 @@ offset_left = 0.0
 offset_right = 1.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_14m32")
-horizSwitchCard = SubResource("Resource_xxhut")
-upgradedSwitchCard = SubResource("Resource_7v0yx")
+vertSwitchCard = SubResource("Resource_nekim")
+horizSwitchCard = SubResource("Resource_scuqb")
+upgradedSwitchCard = SubResource("Resource_keqew")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
 offset_left = 1186.0
@@ -383,9 +385,9 @@ offset_top = 950.0
 offset_right = 1282.0
 offset_bottom = 1031.0
 type = 4
-vertSwitchCard = SubResource("Resource_66ujy")
-horizSwitchCard = SubResource("Resource_57ubx")
-upgradedSwitchCard = SubResource("Resource_rmax2")
+vertSwitchCard = SubResource("Resource_8q6kl")
+horizSwitchCard = SubResource("Resource_oosji")
+upgradedSwitchCard = SubResource("Resource_5c33p")
 
 [node name="Paths" type="Node2D" parent="Map"]
 visible = false
@@ -480,6 +482,15 @@ offset_bottom = 541.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Click top or bottom buildings to choose a path to get back home"
 
+[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") groups=["CardSelectionUI"] instance=ExtResource("11_rx5ww")]
+unique_name_in_owner = true
+visible = false
+deckViewUI = NodePath("../DeckViewUI")
+
+[node name="DeckViewUI" parent="." groups=["DeckViewUI"] instance=ExtResource("10_6e71l")]
+unique_name_in_owner = true
+visible = false
+
 [node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button")]
 visible = false
 layout_mode = 3
@@ -487,9 +498,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_7gh4s")
-title = NodePath("Forground/title")
-description = NodePath("Forground/description")
-button = NodePath("Forground/Continue")
+title = NodePath("Control/title")
+description = NodePath("Control/description")
+button = NodePath("Control/Continue")
 
 [node name="Background" type="TextureRect" parent="MapEventText"]
 modulate = Color(0, 0, 0, 0.498039)
@@ -498,51 +509,48 @@ offset_right = 1922.0
 offset_bottom = 1079.0
 texture = ExtResource("2_g041w")
 
-[node name="Forground" type="TextureRect" parent="MapEventText"]
+[node name="Forground" type="Panel" parent="MapEventText"]
 modulate = Color(0.831373, 0.933333, 0.921569, 1)
 layout_mode = 0
-offset_left = 472.0
-offset_top = 186.0
-offset_right = 1452.0
-offset_bottom = 872.0
-texture = ExtResource("2_g041w")
+offset_left = 551.0
+offset_top = 263.0
+offset_right = 1420.0
+offset_bottom = 832.0
+theme = ExtResource("21_ped7m")
 
-[node name="title" type="RichTextLabel" parent="MapEventText/Forground"]
+[node name="Control" type="Control" parent="MapEventText"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="title" type="RichTextLabel" parent="MapEventText/Control"]
 layout_mode = 0
-offset_left = 203.0
-offset_top = 101.0
-offset_right = 816.0
-offset_bottom = 177.0
+offset_left = 675.0
+offset_top = 287.0
+offset_right = 1288.0
+offset_bottom = 363.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]TITLE TEXT"
 
-[node name="description" type="RichTextLabel" parent="MapEventText/Forground"]
+[node name="description" type="RichTextLabel" parent="MapEventText/Control"]
 layout_mode = 0
-offset_left = 206.0
-offset_top = 181.0
-offset_right = 819.0
-offset_bottom = 544.0
+offset_left = 678.0
+offset_top = 367.0
+offset_right = 1291.0
+offset_bottom = 730.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Title Description"
 
-[node name="Continue" type="Button" parent="MapEventText/Forground"]
+[node name="Continue" type="Button" parent="MapEventText/Control"]
 layout_mode = 0
-offset_left = 416.0
-offset_top = 562.0
-offset_right = 580.0
-offset_bottom = 611.0
+offset_left = 888.0
+offset_top = 748.0
+offset_right = 1052.0
+offset_bottom = 797.0
+theme = ExtResource("22_epuo7")
 text = "Continue
 "
-
-[node name="DeckViewUI" parent="." groups=["DeckViewUI"] instance=ExtResource("10_6e71l")]
-unique_name_in_owner = true
-visible = false
-
-[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") groups=["CardSelectionUI"] instance=ExtResource("11_rx5ww")]
-unique_name_in_owner = true
-visible = false
-deckViewUI = NodePath("../DeckViewUI")
