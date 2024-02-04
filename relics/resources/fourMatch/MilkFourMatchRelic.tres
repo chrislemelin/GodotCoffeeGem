@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MatchTypeRelic" load_steps=5 format=3 uid="uid://ch0gweqsv6vm6"]
+
+[ext_resource type="Script" path="res://relics/effects/AddCoinsEffect.cs" id="1_31u4f"]
+[ext_resource type="Texture2D" uid="uid://b0mky4l7aoxcp" path="res://relics/sprites/Icon.6_37.png" id="2_pg7pc"]
+[ext_resource type="Script" path="res://relics/scripts/MatchTypeRelic.cs" id="2_w3wgm"]
+
+[sub_resource type="Resource" id="Resource_i16ow"]
+script = ExtResource("1_31u4f")
+value = 5
+
+[resource]
+script = ExtResource("2_w3wgm")
+minMatchSize = 4
+ingredientType = 2
+title = ""
+description = "Gain 5 coins when you a match of 4 or more milk"
+image = ExtResource("2_pg7pc")
+cost = 50
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_i16ow")]
+counterMax = 0
+customCounter = false

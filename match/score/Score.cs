@@ -66,6 +66,7 @@ public partial class Score : Node2D
 			addColorUpgrade(colorUpgrade);
 		}
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		gameManagerIF.coinsChanged += (int coins) => setCoins(coins);
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => newturn();
 		setMult(mult);

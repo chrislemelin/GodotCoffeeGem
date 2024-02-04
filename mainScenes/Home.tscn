@@ -27,7 +27,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_hvq3m"]
+[sub_resource type="Resource" id="Resource_mcsr1"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch"
@@ -48,7 +48,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_fg7hp"]
+[sub_resource type="Resource" id="Resource_x6t88"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Vertical"
@@ -69,7 +69,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_yukav"]
+[sub_resource type="Resource" id="Resource_xyk06"]
 resource_local_to_scene = true
 script = ExtResource("8_n1ouh")
 Title = "Switch Horiz"
@@ -111,9 +111,9 @@ offset_right = -8.00003
 offset_bottom = -342.0
 scale = Vector2(1.5, 1.5)
 gameManager = NodePath("..")
-upgradedSwitchCard = SubResource("Resource_hvq3m")
-vertSwitchCard = SubResource("Resource_fg7hp")
-horizSwitchCard = SubResource("Resource_yukav")
+upgradedSwitchCard = SubResource("Resource_mcsr1")
+vertSwitchCard = SubResource("Resource_x6t88")
+horizSwitchCard = SubResource("Resource_xyk06")
 deckListUI = NodePath("../DeckView")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]

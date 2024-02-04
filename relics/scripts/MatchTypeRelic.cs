@@ -13,7 +13,9 @@ public partial class MatchTypeRelic : RelicResource
 
 	public override void ingredientsMatched(Match match)
 	{
+		GD.Print("got match");
 		if (match.ingredients.Count >= minMatchSize && match.GetGemType() == ingredientType) {
+			GD.Print("doing match effect");
 			executeEffects();
 		}
 	}

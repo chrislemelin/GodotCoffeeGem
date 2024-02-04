@@ -702,6 +702,13 @@ public partial class MatchBoard : Node
 		return tilesToReturn;
 	}
 
+	public List<Tile> getTilesWithColorOfGem(GemType gemType, int count)
+	{
+		List<Tile> tilesToReturn = getTilesWithColorOfGem(gemType);
+		RandomHelper.Shuffle(tilesToReturn);
+		return tilesToReturn.GetRange(0, count);
+	}
+
 	public List<Tile> getTilesWithAddon(GemAddonType addonType)
 	{
 		return getTilesWithCondition((tile) =>

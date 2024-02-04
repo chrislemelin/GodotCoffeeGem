@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MatchTypeRelic" load_steps=5 format=3 uid="uid://bffg6ur3c5fkg"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveCardPassive.cs" id="1_8scbi"]
+[ext_resource type="Script" path="res://relics/scripts/MatchTypeRelic.cs" id="2_1t2jq"]
+[ext_resource type="Texture2D" uid="uid://b0mky4l7aoxcp" path="res://relics/sprites/Icon.6_37.png" id="2_jswm5"]
+
+[sub_resource type="Resource" id="Resource_j2ldj"]
+script = ExtResource("1_8scbi")
+value = 1
+value = 1
+
+[resource]
+script = ExtResource("2_1t2jq")
+minMatchSize = 4
+ingredientType = 4
+title = ""
+description = "Draw one card when you a match of 4 or more tea"
+image = ExtResource("2_jswm5")
+cost = 50
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_j2ldj")]
+counterMax = 0
+customCounter = false

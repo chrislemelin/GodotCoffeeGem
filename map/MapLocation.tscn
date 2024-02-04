@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs0yawupejkyk"]
+[gd_scene load_steps=13 format=3 uid="uid://bs0yawupejkyk"]
 
 [ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
 [ext_resource type="Shader" path="res://cards/outlineShader.gdshader" id="2_0b8c7"]
@@ -13,6 +13,8 @@
 shader = ExtResource("2_0b8c7")
 shader_parameter/line_color = Color(0.788235, 0.65098, 0, 1)
 shader_parameter/line_thickness = 1.615
+
+[sub_resource type="Theme" id="Theme_h60qy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4i0a"]
 size = Vector2(99, 81)
@@ -40,25 +42,27 @@ upgradedSwitchCard = ExtResource("4_celhv")
 [node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("area2D")]
 material = SubResource("ShaderMaterial_4i6bp")
 layout_mode = 0
-offset_left = -70.0
-offset_top = -94.0
-offset_right = 68.0
-offset_bottom = 8.0
+offset_left = -97.0
+offset_top = -243.0
+offset_right = 191.0
+offset_bottom = 42.0
 texture = ExtResource("6_nn2rb")
-expand_mode = 2
 script = ExtResource("4_edqu2")
 area2D = NodePath("../Area2D")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = -41.0
-offset_top = -117.0
-offset_right = 87.0
-offset_bottom = -92.0
+offset_left = -143.0
+offset_top = -107.0
+offset_right = 166.0
+offset_bottom = -62.0
+rotation = 0.765164
+theme = SubResource("Theme_h60qy")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Gain Card"
+text = "[center]Gain Card"
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
