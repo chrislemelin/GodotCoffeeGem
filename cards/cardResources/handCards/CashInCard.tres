@@ -10,6 +10,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "Cash in"
 Description = "Gain rewards from all mana and card ingredients and then clear all infusions"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_vpfqo")

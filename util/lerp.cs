@@ -31,9 +31,6 @@ public partial class lerp : Node2D
 
 	public void moveToGlobalPostion(Vector2 newPosition)
 	{
-
-		// Vector2 pos = GetParent<MapGameManager>().ToLocal(newPosition);
-		// GD.Print(pos);
 		moveToPostion(newPosition);
 	}
 

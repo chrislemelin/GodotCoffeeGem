@@ -14,6 +14,12 @@ public partial class Map : Node
 	[Export] Godot.Collections.Array<Control> botPathControls = new Godot.Collections.Array<Control>();
 	[Export] private lerp character;
 
+	[Export] Node2D topPathNodes;
+	[Export] Node2D botPathNodes;
+
+	private bool? topSelected = null;
+	private Node2D nodeMovingTo;
+	private int indexMovingTo = 0;
 
 	private List<MapLocation> topPath = new List<MapLocation>();
 	[Export] private Godot.Collections.Array<Line2D> topLines = new Godot.Collections.Array<Line2D>();
@@ -41,7 +47,7 @@ public partial class Map : Node
 			if (inputEvent.IsActionPressed("click")) {
 				locationClicked(home);
 		}};
-		character.doneMovingSignal += () => locationVisited();
+		character.doneMovingSignal += () => nodeVisited();
 		setOnlyFirstLocationInPathToBeActive();
 }
 
@@ -68,25 +74,34 @@ public partial class Map : Node
 
 	private void locationClicked(MapLocation mapLocation) {
 		if (mapLocation.active && manMoving == false) {
+			if (topSelected == null) {
+				topSelected = true;
+				foreach(MapLocation currentMapLocation in botPath) {
+					if (mapLocation == currentMapLocation) {
+						topSelected = false;
+					}
+				}
+			}
 			manMoving = true;
-			character.moveToGlobalPostion(mapLocation.GlobalPosition);
+
+			List<Node> path = ((bool)topSelected)? topPathNodes.GetChildren().ToList() : botPathNodes.GetChildren().ToList();
+			character.moveToGlobalPostion(((Node2D)path[indexMovingTo++]).GlobalPosition);
 			locationMovingTo = mapLocation;
 		}
 	}
 
-	private void locationVisited() {
-		GD.Print("visiting location");
-		MapLocation mapLocation = locationMovingTo;
+	private void locationVisited(MapLocation location) {
+		MapLocation mapLocation = location;
 		manMoving = false;
 		if (pathTaken == 0) {
 			pathTaken = 1;
-			bool topSelected = true;
+			topSelected = true;
 			foreach(MapLocation currentMapLocation in botPath) {
 				if (mapLocation == currentMapLocation) {
 					topSelected = false;
 				}
 			}
-			List<Line2D> pathsToDeactive = !topSelected? topLines.ToList() : botlines.ToList();
+			List<Line2D> pathsToDeactive = !(bool)topSelected? topLines.ToList() : botlines.ToList();
 			foreach(Line2D line in pathsToDeactive) {
 				line.Visible = false;
 			}
@@ -114,5 +129,20 @@ public partial class Map : Node
 		}
 		mapLocation.resolveEvent(mapEventResolveUI);
 		mapLocation.setActive(false);
+	}
+
+	private void nodeVisited() {
+		List<Node> path = ((bool)topSelected)? topPathNodes.GetChildren().ToList() : botPathNodes.GetChildren().ToList();
+		List<MapLocation> locationPath = ((bool)topSelected)? topPath.ToList() : botPath.ToList();
+
+		if (indexMovingTo == 2) {
+			locationVisited(locationPath[0]);
+		} else if (indexMovingTo == 3) {
+			locationVisited(locationPath[1]);
+		} else if (indexMovingTo == path.Count) {
+			locationVisited(home);
+		} else {
+			character.moveToGlobalPostion(((Node2D)path[indexMovingTo++]).GlobalPosition);
+		}
 	}
 }

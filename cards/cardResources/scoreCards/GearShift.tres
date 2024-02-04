@@ -11,6 +11,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -19,4 +20,5 @@ Title = "Compliment"
 Description = "Add .25 to the multiplier for this turn"
 Cost = 0
 rarity = 1
+coinCost = 0
 cardEffect = SubResource("Resource_yybgl")

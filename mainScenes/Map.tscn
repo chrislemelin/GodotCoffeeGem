@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_6g8vu"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
-[ext_resource type="Texture2D" uid="uid://cqlredqy3j2x8" path="res://placeholders/Map/Shop.png" id="3_3pb6l"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
 [ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="4_86n8f"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
 [ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
+[ext_resource type="Texture2D" uid="uid://dso32ngfkaxqj" path="res://placeholders/Map/Map-scaledup.png" id="7_r6qp0"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
@@ -28,9 +28,11 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_6ej6d"]
+[sub_resource type="Resource" id="Resource_helvj"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -48,9 +50,11 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_j4147"]
+[sub_resource type="Resource" id="Resource_t5ya0"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -69,9 +73,11 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_se2dt"]
+[sub_resource type="Resource" id="Resource_xmwxd"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -81,7 +87,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_tlj12")
 
-[sub_resource type="Resource" id="Resource_ga8vv"]
+[sub_resource type="Resource" id="Resource_r24x5"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -92,7 +98,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_mlxjs"]
+[sub_resource type="Resource" id="Resource_4a5j3"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -111,9 +117,11 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_m7w06"]
+[sub_resource type="Resource" id="Resource_e2p0j"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -123,7 +131,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_l5j6y")
 
-[sub_resource type="Resource" id="Resource_ikg4h"]
+[sub_resource type="Resource" id="Resource_4yd00"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -134,7 +142,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_mwsrh"]
+[sub_resource type="Resource" id="Resource_3xcob"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -153,9 +161,11 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_7ucut"]
+[sub_resource type="Resource" id="Resource_d73ns"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -165,7 +175,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_bimhj")
 
-[sub_resource type="Resource" id="Resource_8wk2w"]
+[sub_resource type="Resource" id="Resource_2dyle"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -176,7 +186,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_i4uwt"]
+[sub_resource type="Resource" id="Resource_q367g"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -195,9 +205,11 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_6v75w"]
+[sub_resource type="Resource" id="Resource_1vn4o"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -207,7 +219,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_23mlu")
 
-[sub_resource type="Resource" id="Resource_b46kd"]
+[sub_resource type="Resource" id="Resource_0q3vk"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -218,7 +230,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_6x5d2"]
+[sub_resource type="Resource" id="Resource_1xnsi"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -237,9 +249,11 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_lo81q"]
+[sub_resource type="Resource" id="Resource_o63dq"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -257,7 +271,7 @@ cardPool = ExtResource("2_6g8vu")
 relicList = ExtResource("3_mpj51")
 defaultCardList = ExtResource("4_86n8f")
 
-[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("home", "mapEventResolveUI", "topPathControls", "botPathControls", "character", "topLines", "botlines")]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("home", "mapEventResolveUI", "topPathControls", "botPathControls", "character", "topPathNodes", "botPathNodes", "topLines", "botlines")]
 script = ExtResource("1_vwohc")
 home = NodePath("Control/Home")
 mapEventResolveUI = NodePath("../MapEventText")
@@ -265,10 +279,18 @@ mapLocationPackedScene = ExtResource("4_pfyjt")
 topPathControls = [NodePath("Control/TopPath/Control"), NodePath("Control/TopPath/Control3")]
 botPathControls = [NodePath("Control/BotPath/Control"), NodePath("Control/BotPath/Control3")]
 character = NodePath("../Character")
+topPathNodes = NodePath("TopPath")
+botPathNodes = NodePath("BotPath")
 topLines = [NodePath("Paths/Line2D4"), NodePath("Paths/Line2D5"), NodePath("Paths/Line2D6")]
 botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths/Line2D3")]
 
+[node name="Map2" type="Sprite2D" parent="Map"]
+position = Vector2(961.074, 540)
+scale = Vector2(1.23, 1.23)
+texture = ExtResource("7_r6qp0")
+
 [node name="Background" type="TextureRect" parent="Map"]
+visible = false
 modulate = Color(1, 1, 0.831373, 1)
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -280,107 +302,101 @@ anchors_preset = 0
 offset_top = -8.0
 offset_bottom = -8.0
 
-[node name="TextureRect2" type="TextureRect" parent="Map/Control"]
-modulate = Color(1, 1, 0.831373, 1)
-layout_mode = 0
-offset_left = 111.0
-offset_top = 499.0
-offset_right = 316.0
-offset_bottom = 644.0
-texture = ExtResource("3_3pb6l")
-
 [node name="TopPath" type="Control" parent="Map/Control"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Control" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 645.0
+offset_left = 1154.0
 offset_top = 218.0
-offset_right = 645.0
+offset_right = 1154.0
 offset_bottom = 218.0
 scale = Vector2(2, 2)
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control" instance=ExtResource("4_pfyjt")]
 visible = false
-vertSwitchCard = SubResource("Resource_6ej6d")
-horizSwitchCard = SubResource("Resource_j4147")
-upgradedSwitchCard = SubResource("Resource_se2dt")
+offset_left = 0.0
+offset_right = 1.0
+vertSwitchCard = SubResource("Resource_helvj")
+horizSwitchCard = SubResource("Resource_t5ya0")
+upgradedSwitchCard = SubResource("Resource_xmwxd")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 1240.0
-offset_top = 205.0
-offset_right = 1240.0
-offset_bottom = 205.0
+offset_left = 1381.0
+offset_top = 468.0
+offset_right = 1381.0
+offset_bottom = 468.0
 scale = Vector2(2, 2)
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
-offset_left = -41.0
-offset_top = -36.0
-offset_right = 55.0
-offset_bottom = 45.0
+offset_left = 0.0
+offset_right = 96.0
+offset_bottom = 81.0
 image = NodePath("../../Control/MapLocation/TextureRect")
 label = NodePath("../../Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_ga8vv")
-horizSwitchCard = SubResource("Resource_mlxjs")
-upgradedSwitchCard = SubResource("Resource_m7w06")
+vertSwitchCard = SubResource("Resource_r24x5")
+horizSwitchCard = SubResource("Resource_4a5j3")
+upgradedSwitchCard = SubResource("Resource_e2p0j")
 
 [node name="BotPath" type="Control" parent="Map/Control"]
 anchors_preset = 0
 
 [node name="Control" type="Control" parent="Map/Control/BotPath"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 658.0
-offset_top = 805.0
-offset_right = 658.0
-offset_bottom = 805.0
+offset_left = 569.0
+offset_top = 707.0
+offset_right = 569.0
+offset_bottom = 707.0
 scale = Vector2(2, 2)
 
 [node name="MapLocation" parent="Map/Control/BotPath/Control" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
-visible = false
+offset_left = 16.5
+offset_top = 3.5
+offset_right = 17.5
+offset_bottom = 4.5
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_ikg4h")
-horizSwitchCard = SubResource("Resource_mwsrh")
-upgradedSwitchCard = SubResource("Resource_7ucut")
+vertSwitchCard = SubResource("Resource_4yd00")
+horizSwitchCard = SubResource("Resource_3xcob")
+upgradedSwitchCard = SubResource("Resource_d73ns")
 
 [node name="Control3" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1340.0
-offset_top = 800.0
-offset_right = 1340.0
-offset_bottom = 800.0
+offset_left = 727.0
+offset_top = 914.0
+offset_right = 727.0
+offset_bottom = 914.0
 scale = Vector2(2, 2)
 
 [node name="MapLocation" parent="Map/Control/BotPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
-offset_left = -56.5
-offset_top = -30.5
-offset_right = 40.5
-offset_bottom = 49.5
+offset_left = 0.0
+offset_right = 97.0
+offset_bottom = 80.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_8wk2w")
-horizSwitchCard = SubResource("Resource_i4uwt")
-upgradedSwitchCard = SubResource("Resource_6v75w")
+vertSwitchCard = SubResource("Resource_2dyle")
+horizSwitchCard = SubResource("Resource_q367g")
+upgradedSwitchCard = SubResource("Resource_1vn4o")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
-offset_left = 1753.0
-offset_top = 466.0
-offset_right = 1849.0
-offset_bottom = 547.0
+offset_left = 1252.0
+offset_top = 894.0
+offset_right = 1348.0
+offset_bottom = 975.0
 scale = Vector2(2, 2)
 type = 4
-vertSwitchCard = SubResource("Resource_b46kd")
-horizSwitchCard = SubResource("Resource_6x5d2")
-upgradedSwitchCard = SubResource("Resource_lo81q")
+vertSwitchCard = SubResource("Resource_0q3vk")
+horizSwitchCard = SubResource("Resource_1xnsi")
+upgradedSwitchCard = SubResource("Resource_o63dq")
 
 [node name="Paths" type="Node2D" parent="Map"]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Map/Paths"]
 position = Vector2(259.01, 842.908)
@@ -418,26 +434,60 @@ points = PackedVector2Array(-477, -196, -253, -467)
 texture = ExtResource("4_rxy0n")
 texture_mode = 1
 
+[node name="TopPath" type="Node2D" parent="Map"]
+
+[node name="Node2D2" type="Node2D" parent="Map/TopPath"]
+position = Vector2(893, 75)
+
+[node name="Node2D3" type="Node2D" parent="Map/TopPath"]
+position = Vector2(1088, 270)
+
+[node name="Node2D4" type="Node2D" parent="Map/TopPath"]
+position = Vector2(1275, 460)
+
+[node name="Node2D5" type="Node2D" parent="Map/TopPath"]
+position = Vector2(1411, 596)
+
+[node name="Node2D6" type="Node2D" parent="Map/TopPath"]
+position = Vector2(1129, 763)
+
+[node name="BotPath" type="Node2D" parent="Map"]
+
+[node name="Node2D2" type="Node2D" parent="Map/BotPath"]
+position = Vector2(327, 617)
+
+[node name="Node2D3" type="Node2D" parent="Map/BotPath"]
+position = Vector2(431, 727)
+
+[node name="Node2D4" type="Node2D" parent="Map/BotPath"]
+position = Vector2(616, 918)
+
+[node name="Node2D5" type="Node2D" parent="Map/BotPath"]
+position = Vector2(704, 1012)
+
+[node name="Node2D6" type="Node2D" parent="Map/BotPath"]
+position = Vector2(1129, 763)
+
 [node name="Character" type="Node2D" parent="."]
-position = Vector2(223, 566)
+position = Vector2(450, 510)
 scale = Vector2(4, 4)
 script = ExtResource("11_8ihbg")
-speed = 200.0
+speed = 250.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Character"]
-position = Vector2(-0.5, -1)
+position = Vector2(-0.5, -13.5)
 texture = ExtResource("11_g4jmp")
 hframes = 24
 frame = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 647.0
-offset_top = 467.0
-offset_right = 946.0
-offset_bottom = 552.0
+offset_left = 790.0
+offset_top = 416.0
+offset_right = 1141.0
+offset_bottom = 541.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
-text = "Choose a path to take to get back home"
+text = "Click a building to choose a path to get back home"
 
 [node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button")]
 visible = false

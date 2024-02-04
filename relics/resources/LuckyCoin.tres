@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=5 format=3 uid="uid://brurieaqruacc"]
+
+[ext_resource type="Script" path="res://relics/effects/AddCoinsEffect.cs" id="2_d1p0k"]
+[ext_resource type="Texture2D" uid="uid://tv86kojie0uj" path="res://relics/sprites/Icons8_80.png" id="2_ppin2"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResourceBurntDestroyCount.cs" id="3_3t5l4"]
+
+[sub_resource type="Resource" id="Resource_f846d"]
+script = ExtResource("2_d1p0k")
+value = 10
+
+[resource]
+script = ExtResource("3_3t5l4")
+title = "Lucky coin"
+description = "Gain 10 coins at the end of each level"
+image = ExtResource("2_ppin2")
+cost = 30
+passives = []
+gameStartEffects = []
+effects = []
+addToInvEffects = []
+levelOverEffects = [SubResource("Resource_f846d")]
+counterMax = 0
+customCounter = false

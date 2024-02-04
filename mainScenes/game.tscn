@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=44 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://c0npqs1omb3jo" path="res://placeholders/tutorial/Screenshot 2024-01-22 085344.png" id="29_85eqo"]
 [ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/BossRecipeUI.tscn" id="29_a8e6p"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="32_otpbl"]
+[ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
 
 [sub_resource type="Resource" id="Resource_nv7p6"]
 script = ExtResource("2_iphd8")
@@ -92,7 +94,7 @@ score = 10000
 makeRandomBossRecipe = true
 blockedTiles = 0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "levelComplete")]
 position = Vector2(-3, -2)
 script = ExtResource("1_5jnm2")
 newCardSelection = NodePath("UIOverLays/CardSelectionUI")
@@ -100,11 +102,12 @@ recipeUI = NodePath("BossRecipeUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
-relicResources = Array[Resource]([])
+relicResources = Array[Object]([])
 bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
+levelComplete = NodePath("UIOverLays/LevelComplete")
 debugMode = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("3_niyuq")
@@ -123,7 +126,7 @@ score = NodePath("../Score")
 position = Vector2(1784, 911)
 scale = Vector2(0.5, 0.5)
 hand = NodePath("../Hand")
-allCards = Array[Resource]([])
+allCards = Array[Object]([])
 cardList = ExtResource("7_vdncp")
 discard = NodePath("../Discard")
 loadDeckFromGlobal = true
@@ -164,8 +167,6 @@ offset_right = 1877.0
 offset_bottom = 670.0
 tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
 
-[node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_oa770")
 volume_db = -80.0
@@ -178,6 +179,8 @@ offset_top = 121.0
 offset_right = 1358.0
 offset_bottom = 121.0
 tooltip_text = "This recipe must be completed before you can score any points for the level"
+
+[node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
 
 [node name="UIOverLays" type="Control" parent="."]
 layout_mode = 3
@@ -756,3 +759,80 @@ layout_mode = 1
 [node name="DeckView" parent="UIOverLays" instance=ExtResource("32_fnn8m")]
 visible = false
 layout_mode = 1
+
+[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("continueButton", "richTextLabel")]
+visible = false
+anchors_preset = 0
+script = ExtResource("32_x2qxf")
+continueButton = NodePath("Button")
+richTextLabel = NodePath("VBoxContainer/HBoxContainer2/RichTextLabel")
+
+[node name="Background" type="TextureRect" parent="UIOverLays/LevelComplete"]
+modulate = Color(0, 0, 0, 0.568627)
+layout_mode = 0
+offset_left = -10.0
+offset_right = 1922.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Foreground" type="TextureRect" parent="UIOverLays/LevelComplete"]
+modulate = Color(0.560784, 0.560784, 0.560784, 1)
+layout_mode = 0
+offset_left = 460.0
+offset_top = 367.0
+offset_right = 1483.0
+offset_bottom = 696.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/LevelComplete"]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 408.0
+offset_right = 1411.0
+offset_bottom = 566.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Level Passed!"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UIOverLays/LevelComplete/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "You gained"
+fit_content = true
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/LevelComplete/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("32_otpbl")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="UIOverLays/LevelComplete"]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 610.0
+offset_right = 1035.0
+offset_bottom = 669.0
+text = "Continue"

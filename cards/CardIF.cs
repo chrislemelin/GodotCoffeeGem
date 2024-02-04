@@ -68,8 +68,14 @@ public partial class CardIF : lerp
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
 		descriptionLabel.Text = cardResource.getDescription();
-		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
+		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
+		if (cardResource.cardEffect.consume) {
+			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
+		}
+		if (cardResource.cardEffect.retain) {
+			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
+		}
 	}
 
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)

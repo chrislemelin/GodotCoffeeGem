@@ -11,6 +11,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
+consume = false
 effectGemType = 0
 
 [resource]
@@ -21,4 +22,5 @@ Description = "Switch the positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_rutfs")
+coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")

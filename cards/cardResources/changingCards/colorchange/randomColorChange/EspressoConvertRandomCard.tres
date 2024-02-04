@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cyx0whk3fiin6"]
+
+[ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_luisg"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_ocwro"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_rw58r"]
+
+[sub_resource type="Resource" id="Resource_as0eh"]
+script = ExtResource("2_ocwro")
+Range = 1.0
+Value = 2
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+effectGemType = 4
+
+[resource]
+script = ExtResource("3_rw58r")
+Title = "Espresso Spray"
+Description = "Randomly change $value ingredients to coffee"
+Cost = 0
+rarity = 0
+Picture = ExtResource("1_luisg")
+coinCost = 0
+cardEffect = SubResource("Resource_as0eh")

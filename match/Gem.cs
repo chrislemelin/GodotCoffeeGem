@@ -9,14 +9,16 @@ public partial class Gem : lerp
 
 	[Export] public Sprite2D addonSprite;
 	[Export] public RichTextLabel comboTextLabel;
-
 	[Export] public Texture2D manaAddonTexture;
 	[Export] public Texture2D cardAddonTexture;
+	[Export] public Texture2D lockAddonTexture;
 	[Export] public ShaderMaterial rainbowMaterial;
 	[Export] public Texture2D orbTexture;
 	[Export] public bool useSprites;
 	[Export] public Control control;
 	[Export] AnimationPlayer animationPlayer;
+
+	[Export] Texture2D questionMark;
 
 	List<Tuple<Action<List<GemType>>, Boolean>> matchCallBacks = new List<Tuple<Action<List<GemType>>, Boolean>>();
 
@@ -48,22 +50,32 @@ public partial class Gem : lerp
 
 	public void setType(GemType type)
 	{
+		Type = type;
+		updateSprite();
+	}
+
+	private void updateSprite() {
+		if (AddonType == GemAddonType.Hidden) {
+			sprite2D.Texture = questionMark;
+			sprite2D.Scale = new Vector2(.55f,.55f);
+			//Modulate = new Color(0,0,0,1);
+			return;
+		}
 		if (startingModulate == null)
 		{
 			startingModulate = Modulate;
 		}
-		Type = type;
-		if (useSprites && !(type == GemType.Rainbow))
+		if (useSprites && !(Type == GemType.Rainbow))
 		{
 			Modulate = startingModulate.Value;
-			sprite2D.Texture = getTexture(type);
+			sprite2D.Texture = getTexture(Type);
 		}
 		else
 		{
 			sprite2D.Texture = getTexture(GemType.Sugar);
-			Modulate = type.GetColor();
+			Modulate = Type.GetColor();
 		}
-		if (type == GemType.Rainbow)
+		if (Type == GemType.Rainbow)
 		{
 			sprite2D.Material = rainbowMaterial;
 		}
@@ -71,8 +83,9 @@ public partial class Gem : lerp
 		{
 			sprite2D.Material = null;
 		}
-
+		
 	}
+
 	private Texture2D getTexture(GemType type)
 	{
 		switch (type)
@@ -158,6 +171,13 @@ public partial class Gem : lerp
 				comboTextLabel.Text = "+" + comboValue;
 				control.TooltipText = "Doesnt disapear on match and gives extra points everytime this is matched";
 				break;
+			case GemAddonType.Lock:
+				addonSprite.Visible = true;
+				addonSprite.Texture = lockAddonTexture;
+				addonSprite.Scale = new Vector2(.3f, .3f);
+				control.TooltipText = "Cannot move ingredient";
+				break;
 		}
+		updateSprite();
 	}
 }

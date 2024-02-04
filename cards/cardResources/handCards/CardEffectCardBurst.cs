@@ -17,6 +17,10 @@ public partial class CardEffectCardBurst : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		hand.drawCards(getValue());
+		int valueMod = 0;
+		if (matchBoard.getTilesWithAddon(GemAddonType.Card).Count > 2) {
+			valueMod = 1;
+		}
+		hand.drawCards(getValue() + valueMod);
 	}
 }

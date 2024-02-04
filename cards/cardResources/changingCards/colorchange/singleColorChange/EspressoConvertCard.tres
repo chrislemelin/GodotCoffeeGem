@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c0t40mre00w4j"]
 
-[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/CardEffectColorChange.cs" id="1_fj0od"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_fj0od"]
 [ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_nnae3"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_2hfyw"]
 
@@ -11,6 +11,7 @@ Value = 1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 4
 
 [resource]
@@ -20,4 +21,5 @@ Description = "Change $value ingredient to coffee"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_nnae3")
+coinCost = 0
 cardEffect = SubResource("Resource_mklkk")

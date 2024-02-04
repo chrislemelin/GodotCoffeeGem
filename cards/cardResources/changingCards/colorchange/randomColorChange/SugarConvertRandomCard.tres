@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://oov7pb8y5mml"]
+
+[ext_resource type="Texture2D" uid="uid://pts4w3vk8d2i" path="res://cards/cardResources/cardArt/sugar.png" id="1_3mefo"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_4km1i"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_vkrsl"]
+
+[sub_resource type="Resource" id="Resource_dplym"]
+script = ExtResource("2_4km1i")
+Range = 1.0
+Value = 2
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+effectGemType = 5
+
+[resource]
+script = ExtResource("3_vkrsl")
+Title = "Sugar Spray"
+Description = "Randomly change $value ingredients to sugar"
+Cost = 0
+rarity = 0
+Picture = ExtResource("1_3mefo")
+coinCost = 0
+cardEffect = SubResource("Resource_dplym")

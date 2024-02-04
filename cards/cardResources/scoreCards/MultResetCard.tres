@@ -10,6 +10,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "Mult Reset"
 Description = "Reset multiplier to 1 and gain a card and an energy point for each whole number of mult lost (max 3)"
 Cost = 0
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_davew")

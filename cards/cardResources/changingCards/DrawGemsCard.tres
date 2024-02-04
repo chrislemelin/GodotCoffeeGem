@@ -12,6 +12,7 @@ Value = 2
 BlackGems = 1
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -21,4 +22,5 @@ Description = "Randomly create $value draw ingredients(s) and burn 1 ingredient"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_m6hox")
+coinCost = 0
 cardEffect = SubResource("Resource_m0v28")

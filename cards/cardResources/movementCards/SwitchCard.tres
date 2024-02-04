@@ -11,6 +11,7 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -20,4 +21,5 @@ Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
 Cost = 1
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_n6fnt")

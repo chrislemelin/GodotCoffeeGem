@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://liaexlmjhrer"]
 
-[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/CardEffectColorChange.cs" id="1_1pux1"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_1pux1"]
 [ext_resource type="Texture2D" uid="uid://2k3qe88tbrv1" path="res://cards/cardResources/cardArt/vanilla.png" id="1_wkidi"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_6ct6l"]
 
@@ -11,6 +11,7 @@ Value = 1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 2
 
 [resource]
@@ -20,4 +21,5 @@ Description = "Changes $value ingredients to vanilla"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_wkidi")
+coinCost = 0
 cardEffect = SubResource("Resource_mklkk")

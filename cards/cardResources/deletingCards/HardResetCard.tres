@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cfpclvimgl453"]
+
+[ext_resource type="Texture2D" uid="uid://bep1wvqyfuhy8" path="res://cards/cardResources/cardArt/popAll.png" id="1_6ngj0"]
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectDeleteAllButBlack.cs" id="2_46sna"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_rrq7w"]
+
+[sub_resource type="Resource" id="Resource_6w1sj"]
+script = ExtResource("2_46sna")
+Range = 1.0
+Value = -1
+BlackGems = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+retain = true
+effectGemType = 0
+
+[resource]
+script = ExtResource("3_rrq7w")
+Title = "Hard Reset"
+Description = "Destroy all non-burn ingredients."
+Cost = 1
+rarity = 1
+Picture = ExtResource("1_6ngj0")
+coinCost = 0
+cardEffect = SubResource("Resource_6w1sj")

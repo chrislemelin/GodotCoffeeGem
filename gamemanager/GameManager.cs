@@ -20,8 +20,12 @@ public partial class GameManager : GameManagerIF
 	[Export] public Control gooTutorial;
 	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public Array<LevelResource> levels;
-
+	[Export] public LevelCompleteUI levelComplete;
+	[Signal] public delegate void levelOverEventHandler();
+	[Signal] public delegate void levelStartEventHandler();
 	[Export] private bool debugMode;
+	[Export] private bool endlessMode;
+
 
 	public override void _Ready()
 	{
@@ -56,21 +60,26 @@ public partial class GameManager : GameManagerIF
 			scoreNeededToPass = 50;
 			addCoins(100);
 		}
+		if (endlessMode) {
+			scoreNeededToPass = 50000;
+		}
 		score.setMoneyNeeded(scoreNeededToPass);
 		score.setLevel(currentLevel);
 		score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
 		score.setColorUpgrades(global.colorUpgrades.ToList());
-		// if (getRelics().Count == 0)
-		// {
-		// 	foreach (RelicResource relicResource in relicResources)
-		// 	{
-		// 		addRelic(relicResource);
-		// 	}
-		// }
+		if (getRelics().Count == 0)
+		{
+			foreach (RelicResource relicResource in relicResources)
+			{
+				addRelic(relicResource);
+			}
+		}
 		FindObjectHelper.getMatchBoard(this).addRandomBlockedTiles(currentLevelResource.blockedTiles);
 		relicHolderUI.setRelicList(getRelics());
 		relicHolderUI.startUpRelics();
+
+		EmitSignal(SignalName.levelStart);
 	}
 
 	
@@ -91,11 +100,13 @@ public partial class GameManager : GameManagerIF
 
 	public void nextLevel()
 	{
+		EmitSignal(SignalName.levelOver);
 		newCardSelection.windowClosed += (CardResource) => advanceLevel();
+		levelComplete.continueButton.Pressed += () => advanceLevel();
 
 		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
-		newCardSelection.getRandomCardsToSelectFrom();
-		newCardSelection.setCoins(coinsGained);
+		levelComplete.setCoinsGained(coinsGained);
+		levelComplete.Visible = true;
 		addCoins(coinsGained);
 	}
 

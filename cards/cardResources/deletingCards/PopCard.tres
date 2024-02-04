@@ -11,13 +11,16 @@ Value = 0
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
 [resource]
 script = ExtResource("2_nk7uw")
 Title = "Pop"
-Description = "Destroy selected ingredient. If that ingredient had an infusion add it to 2 random ingredients."
-Cost = 1
+Description = "Destroy selected ingredient."
+Cost = 0
 rarity = 0
 Picture = ExtResource("1_258jf")
+coinCost = 0
 cardEffect = SubResource("Resource_yu3xx")

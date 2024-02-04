@@ -8,6 +8,8 @@ public enum GemAddonType
 	Card,
 	Combo,
 	Mult,
+	Hidden,
+	Lock
 }
 
 static class GemAddonTypeHelper

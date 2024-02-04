@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=18 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_qwsb4"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="5_qlodo"]
 [ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://placeholders/gem-gradient-painted.png" id="6_7pibk"]
 [ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://placeholders/ingredients/bean-pixel-300px.png" id="6_14v2q"]
+[ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="6_rwy76"]
+[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="10_pd7po"]
 [ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/ComboStyleBox.tres" id="12_bexrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
@@ -78,11 +80,13 @@ addonSprite = NodePath("CanvasGroup/AddonParent/GemAddon")
 comboTextLabel = NodePath("CanvasGroup/AddonParent/ComboLabel")
 manaAddonTexture = ExtResource("2_qwsb4")
 cardAddonTexture = ExtResource("3_835wl")
+lockAddonTexture = ExtResource("10_pd7po")
 rainbowMaterial = SubResource("ShaderMaterial_jmian")
 orbTexture = ExtResource("5_qlodo")
 useSprites = true
 control = NodePath("Control")
 animationPlayer = NodePath("AnimationPlayer")
+questionMark = ExtResource("6_rwy76")
 speed = 1500.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -117,7 +121,7 @@ scale = Vector2(0.3, 0.3)
 
 [node name="GemAddon" type="Sprite2D" parent="CanvasGroup/AddonParent"]
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_qwsb4")
+texture = ExtResource("10_pd7po")
 
 [node name="ComboLabel" type="RichTextLabel" parent="CanvasGroup/AddonParent"]
 visible = false

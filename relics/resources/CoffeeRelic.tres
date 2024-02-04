@@ -1,18 +1,24 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://jq6lw7a54umt"]
+[gd_resource type="Resource" script_class="RelicResource" load_steps=5 format=3 uid="uid://jq6lw7a54umt"]
 
-[ext_resource type="Resource" uid="uid://c2adqxgbi4a8y" path="res://relics/effects/GiveCardPassive.tres" id="1_l0cya"]
+[ext_resource type="Script" path="res://relics/effects/GiveCardPassive.cs" id="1_n8kfy"]
 [ext_resource type="Texture2D" uid="uid://dsmqgki58m7dn" path="res://relics/sprites/Icon.6_45.png" id="2_yv50k"]
-[ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_vr56u"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_rrosl"]
+
+[sub_resource type="Resource" id="Resource_52o4b"]
+script = ExtResource("1_n8kfy")
+value = 2
+value = 2
 
 [resource]
-script = ExtResource("3_vr56u")
+script = ExtResource("3_rrosl")
 title = " Coffee"
 description = "+2 cards on first turn"
 image = ExtResource("2_yv50k")
 cost = 40
-gameStartPassives = []
-gameStartExePassives = [ExtResource("1_l0cya")]
-turnStartPassives = []
-turnStartExePassives = []
+gameStartEffects = [SubResource("Resource_52o4b")]
+turnStartEffects = []
 addToInvEffects = []
+levelOverEffects = []
+effects = []
 counterMax = 0
+customCounter = false

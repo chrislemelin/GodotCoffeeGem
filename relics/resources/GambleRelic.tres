@@ -1,22 +1,23 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c1m7oxay81yih"]
+[gd_resource type="Resource" script_class="RelicResource" load_steps=5 format=3 uid="uid://c1m7oxay81yih"]
 
 [ext_resource type="Script" path="res://relics/effects/GambleEffect.cs" id="1_ljaj3"]
 [ext_resource type="Texture2D" uid="uid://tv86kojie0uj" path="res://relics/sprites/Icons8_80.png" id="2_ul5wl"]
-[ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_fuu1l"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_20q4u"]
 
-[sub_resource type="Resource" id="Resource_scbgb"]
+[sub_resource type="Resource" id="Resource_o3jhy"]
 script = ExtResource("1_ljaj3")
 value = 0
 
 [resource]
-script = ExtResource("3_fuu1l")
+script = ExtResource("3_20q4u")
 title = "Gambler's coin"
 description = "On game start one random ingredient's points are doubled and another ingredient gives no points"
 image = ExtResource("2_ul5wl")
 cost = 50
-gameStartPassives = []
-gameStartExePassives = [SubResource("Resource_scbgb")]
-turnStartPassives = []
-turnStartExePassives = []
+gameStartEffects = [SubResource("Resource_o3jhy")]
+turnStartEffects = []
 addToInvEffects = []
+levelOverEffects = []
+effects = []
 counterMax = 0
+customCounter = false

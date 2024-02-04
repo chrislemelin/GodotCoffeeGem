@@ -69,7 +69,12 @@ public partial class MapLocation : Control
 			));
 		}
 		else if (type == MapEventType.Home) {
-			FindObjectHelper.getGameManager(this).advanceLevel();
+			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street right before you are about to head home. " +
+			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");
+			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom()
+			);
+			FindObjectHelper.getCardSelection(this).windowClosed += (card) => FindObjectHelper.getGameManager(this).advanceLevel();
 		}
 	}
 

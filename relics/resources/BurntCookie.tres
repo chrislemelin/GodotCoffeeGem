@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=5 format=3 uid="uid://bb8koi576w21k"]
+
+[ext_resource type="Texture2D" uid="uid://c1a4j6iwbuq6l" path="res://relics/sprites/ash.png" id="1_iptre"]
+[ext_resource type="Script" path="res://relics/effects/GiveScorePassive.cs" id="1_mmv8o"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResourceBurntDestroyCount.cs" id="3_k74sc"]
+
+[sub_resource type="Resource" id="Resource_o064v"]
+script = ExtResource("1_mmv8o")
+value = 200
+
+[resource]
+script = ExtResource("3_k74sc")
+title = "Burnt Cookie"
+description = "Gain 200 points whenever you destroy 4 burnt ingredients"
+image = ExtResource("1_iptre")
+cost = 60
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_o064v")]
+counterMax = 4
+customCounter = true

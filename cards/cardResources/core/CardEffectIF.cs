@@ -11,7 +11,8 @@ public partial class CardEffectIF: Resource
 	[Export] private int BlackGems = 0;
 	[Export] private int CardsToDiscard = 0;
 	[Export] public bool canTargetBlackGems = true;
-
+	[Export] public bool consume = false;
+	[Export] public bool retain = false;
 	[Export] public CardEffectGemType effectGemType {get;set;}
 	[Export] public CardPassive cardPassiveToApplyToHand;
 	[Signal] public delegate void CardPassivesChangedEventHandler();
@@ -25,7 +26,7 @@ public partial class CardEffectIF: Resource
 
 	
 	public void init() {
-		cardPassives = new List<CardPassive>();
+		//cardPassives = new List<CardPassive>();
 	}
 
 
@@ -100,6 +101,18 @@ public partial class CardEffectIF: Resource
 		}
 		return value;
 	}
+
+	public String getValueString() {
+		int value = Value;
+		foreach (CardPassive cardPassive in cardPassives) {
+			value += cardPassive.valueModification;
+		}
+		if (value != Value) {
+			return "[color=#2c8518]" + value.ToString() + "[/color]" ;
+		}
+		return value.ToString();
+	}
+
 
 	/// <summary>
 	///  Get all tiles that can be selected after the first tile selection. This can be manually set if the range value wont cut it.

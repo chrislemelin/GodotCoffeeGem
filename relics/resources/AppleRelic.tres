@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ddptylhymisuj" path="res://relics/sprites/Icon.2_15.png" id="1_3kawx"]
 [ext_resource type="Resource" uid="uid://b73mt2xa6yki8" path="res://relics/effects/MaxHealthUpgardeEffect.tres" id="1_tgg4k"]
-[ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_1drbo"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_1drbo"]
 
 [resource]
 script = ExtResource("3_1drbo")

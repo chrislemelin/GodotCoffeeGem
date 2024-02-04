@@ -15,6 +15,7 @@ public partial class RelicHolderUI : Control
 		this.relicResources = relicResources;
 		deleteRelics();
 		setUpRelics();
+
 	}
 
 	public List<RelicResource> getRelics()
@@ -36,15 +37,16 @@ public partial class RelicHolderUI : Control
 		{
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
 			relicUI.setRelic(relicResource);
+			relicResource.node = this;
 			relicControlHolder.AddChild(relicUI);
 		}
+		
 	}
 
 	public void startUpRelics()
 	{
 		foreach (RelicResource relicResource in relicResources)
 		{
-			//relicResource.resetCounter();
 			foreach (EffectResource executablePassive in relicResource.getGameStartExePassives())
 			{
 				executablePassive.execute(this);
@@ -60,6 +62,7 @@ public partial class RelicHolderUI : Control
 	{
 		foreach (RelicResource relicResource in relicResources)
 		{
+			relicResource.newTurn();
 			relicResource.incrementTurnCounter();
 			foreach (EffectResource executablePassive in relicResource.getTurnStartEffects())
 			{
@@ -68,9 +71,76 @@ public partial class RelicHolderUI : Control
 		}
 	}
 
+	public void beforeTurnCleanUp()
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.beforeTurnCleanUp();
+		}
+	}
+
+	public void afterTurnCleanUp()
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.afterTurnCleanUp();
+		}
+	}
+
+	public void levelOver()
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.levelOver();
+		}
+	}
+
+	public void cardDrawn(CardResource cardResource)
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.cardDrawn(cardResource);
+		}
+	}
+
+	public void multChanged(float newMult)
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.multChanged(newMult);
+		}
+	}
+
+	public void ingredientsMatched(Match match)
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.ingredientsMatched(match);
+		}
+	}
+
+	public void ingredientDestroyed(Gem gem)
+	{
+		foreach (RelicResource relicResource in relicResources)
+		{
+			relicResource.ingredientDestroyed(gem);
+		}
+	}
+
 	public override void _Ready()
 	{
 		base._Ready();
-		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => startNewTurn();
+		NewTurnButton newTurnButton = FindObjectHelper.getNewTurnButton(this);
+		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(this);
+
+		newTurnButton.StartNewTurn += () => startNewTurn();
+		newTurnButton.BeforeTurnCleanUp += () => beforeTurnCleanUp();
+		newTurnButton.AfterTurnCleanUp += () => afterTurnCleanUp();
+
+		matchBoard.ingredientDestroyed += (gem) => ingredientDestroyed(gem);
+		matchBoard.ingredientMatched += (match) => ingredientsMatched(match);
+		((GameManager)FindObjectHelper.getGameManager(this)).levelOver += () => levelOver();
+		FindObjectHelper.getHand(this).cardDrawn += (card) => cardDrawn(card);
+		FindObjectHelper.getScore(this).multChange += (mult) => multChanged(mult);
 	}
 }

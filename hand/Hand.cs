@@ -21,13 +21,10 @@ public partial class Hand : Node
 	[Export] AudioStream cardPlayedSoundEffect;
 	[Export] GameManager gameManager;
 	[Export] RelicResource relicResource;
-
+	[Signal] public delegate void cardDrawnEventHandler(CardResource cardResource);
 	List<CardIF> cards = new List<CardIF>();
 	List<CardResource> cardsPlayedThisTurn = new List<CardResource>();
-
 	List<HandPassive> handPassives = new List<HandPassive>();
-
-
 	Optional<CardIF> cardSelected = Optional.None<CardIF>();
 	Optional<CardIF> cardHovered = Optional.None<CardIF>();
 
@@ -52,13 +49,17 @@ public partial class Hand : Node
 	public override void _Ready()
 	{
 		//gameManager.addRelic(relicResource);
-		handPassives = gameManager.getRelics().SelectMany(passive => passive.getStartPassives<HandPassive>()).ToList();
-		handLine.turnOff();
-		setUpNewTurn();
-		startNewTurn();
+		//handPassives = gameManager.getRelics().SelectMany(passive => passive.getStartPassives<HandPassive>()).ToList();
+		gameManager.levelStart += () => startLevel();
 		mana.ManaChanged += () => checkCardsForDisabeling();
-		FindObjectHelper.getNewTurnButton(this).SetUpNewTurn += () => setUpNewTurn();
-		FindObjectHelper.getNewTurnButton(this).SetUpNewTurn += () => startNewTurn();
+		handLine.turnOff();
+	}
+
+	private void startLevel(){
+		cleanUpOldTurn();
+		startNewTurn();
+		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => cleanUpOldTurn();
+		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => startNewTurn();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -78,15 +79,15 @@ public partial class Hand : Node
 
 	private void playCard(CardIF card, List<Vector2> positions)
 	{
-		if (mana.manaValue >= card.getCardResource().getCost())
+		if (mana.manaValue >= card.getCardResource().getEnergyCost())
 		{
 			card.playCard(matchBoard, this, mana, positions);
 			cardsPlayedThisTurn.Add(card.getCardResource());
 			audioStreamPlayer2D.Stream = cardPlayedSoundEffect;
 			audioStreamPlayer2D.Play();
-			mana.modifyMana(card.getCardResource().getCost() * -1);
+			mana.modifyMana(card.getCardResource().getEnergyCost() * -1);
 			clearSelectedCard();
-			discardCard(card);
+			discardCard(card, true);
 			card.getCardResource().cardEffect.turnOver();
 			checkCardsForDisabeling();
 		}
@@ -128,6 +129,7 @@ public partial class Hand : Node
 
 		repositionCards();
 		checkCardsForDisabeling();
+		EmitSignal(SignalName.cardDrawn, cardResource);
 		return true;
 	}
 
@@ -156,7 +158,7 @@ public partial class Hand : Node
 
 	private void setSelectedCard(CardIF card)
 	{
-		if (mana.manaValue >= card.getCardResource().getCost())
+		if (mana.manaValue >= card.getCardResource().getEnergyCost())
 		{
 			clearSelectedCard();
 			handLine.turnOn(card.Position);
@@ -185,7 +187,7 @@ public partial class Hand : Node
 	{
 		foreach (CardIF card in cards)
 		{
-			if (card.getCardResource().getCost() > mana.manaValue)
+			if (card.getCardResource().getEnergyCost() > mana.manaValue)
 			{
 				card.setDisabled();
 			}
@@ -230,7 +232,7 @@ public partial class Hand : Node
 		}
 	}
 
-	public void setUpNewTurn()
+	public void cleanUpOldTurn()
 	{
 		discardHand();
 		cardsPlayedThisTurn.Clear();
@@ -240,27 +242,32 @@ public partial class Hand : Node
 
 	public void startNewTurn()
 	{
-		deck.drawCards(getCardsDrawnOnTurnStart());
+		drawCards(getCardsDrawnOnTurnStart());
 		audioStreamPlayer2D.Stream = newHandSoundEffect;
 		audioStreamPlayer2D.Play();
 	}
 
-	public void discardCard(CardIF card)
+	public void discardCard(CardIF card, bool playingCard)
 	{
-		cards.Remove(card);
-		discard.addCard(card.getCardResource());
-		card.delete();
+		if (!card.getCardResource().cardEffect.retain || playingCard) {
+			cards.Remove(card);
+			card.delete();
+		}
+		if (!card.getCardResource().cardEffect.consume) {
+			discard.addCard(card.getCardResource());
+		}
 		repositionCards();
 	}
 
 	public void discardHand()
 	{
-		foreach (CardIF card in cards)
+		foreach (CardIF card in cards.ToList())
 		{
-			discard.addCard(card.getCardResource());
-			card.delete();
+			discardCard(card, false);
+			// discard.addCard(card.getCardResource());
+			// card.delete();
 		}
-		cards.Clear();
+		//cards.Clear();
 	}
 
 	public void repositionCards()
@@ -279,7 +286,6 @@ public partial class Hand : Node
 		for (int index = 0; index < cards.Count; index++)
 		{
 			CardIF currentCard = cards[index];
-			lerp lerpScript = card as lerp;
 			if (currentCard == card)
 			{
 				return getPositionForCardV2(index);

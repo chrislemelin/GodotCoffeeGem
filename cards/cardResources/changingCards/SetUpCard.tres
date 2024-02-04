@@ -10,6 +10,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "SetUp"
 Description = "Randomly create 3 draw ingredients(s) and and 4 energy ingredient(s)"
 Cost = 2
 rarity = 2
+coinCost = 0
 cardEffect = SubResource("Resource_xlmvm")

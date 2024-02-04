@@ -21,17 +21,17 @@ public partial class CardEffectPop : CardEffectIF
 	{
 		Vector2 selectedTile = selectedTiles[0];
 		Gem gemToDelete = matchBoard.getTile(selectedTile).Gem;
-		GemAddonType gemAddonType = GemAddonType.None;
-		if (gemToDelete.AddonType != GemAddonType.None) {
-			gemAddonType = gemToDelete.AddonType;
-		}
+		// GemAddonType gemAddonType = GemAddonType.None;
+		// if (gemToDelete.AddonType != GemAddonType.None) {
+		// 	gemAddonType = gemToDelete.AddonType;
+		// }
 
 		matchBoard.deleteGemAtPosition(selectedTile);
 		
-		if(gemAddonType != GemAddonType.None) {
-			List<Tile> addonTiles = matchBoard.getRandomNonBlackNonAddonTiles(2);
-			matchBoard.addGemAddons(addonTiles.Select(x => x.getTilePosition()).ToList(), gemAddonType);
-		}
+		// if(gemAddonType != GemAddonType.None) {
+		// 	List<Tile> addonTiles = matchBoard.getRandomNonBlackNonAddonTiles(2);
+		// 	matchBoard.addGemAddons(addonTiles.Select(x => x.getTilePosition()).ToList(), gemAddonType);
+		// }
 	}
 
 

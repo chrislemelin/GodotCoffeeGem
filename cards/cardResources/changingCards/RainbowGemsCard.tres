@@ -10,6 +10,7 @@ Value = 1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "Rainbow Splash"
 Description = "Randomly create $value rainbow ingredient(s) that can match with anything"
 Cost = 1
 rarity = 1
+coinCost = 0
 cardEffect = SubResource("Resource_rb5l6")

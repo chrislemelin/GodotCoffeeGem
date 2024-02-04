@@ -1,31 +1,31 @@
 [gd_scene load_steps=13 format=3 uid="uid://dxglilg0fi5wj"]
 
-[ext_resource type="Script" path="res://cards/Card.cs" id="1_egnkj"]
-[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="2_5dnl5"]
-[ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_dxuit"]
-[ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_tuf2y"]
-[ext_resource type="Texture2D" uid="uid://cvmhfywxbwcvo" path="res://placeholders/cards/cardback.png" id="4_d7uyp"]
-[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="4_n3i8f"]
-[ext_resource type="Texture2D" uid="uid://ca0mcy3xcejpu" path="res://placeholders/cards/card_picture_placeholder.png" id="5_eam45"]
-[ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="6_usyyv"]
-[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="7_n0caa"]
-[ext_resource type="AudioStream" uid="uid://ns746kwxu5v7" path="res://sound/Hand/cardPlace1.wav" id="10_1cvfp"]
+[ext_resource type="Script" path="res://cards/Card.cs" id="1_xx10f"]
+[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="2_aqq8g"]
+[ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_mgol1"]
+[ext_resource type="Texture2D" uid="uid://cvmhfywxbwcvo" path="res://placeholders/cards/cardback.png" id="4_l0vlu"]
+[ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="5_xc7vq"]
+[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_2seia"]
+[ext_resource type="Texture2D" uid="uid://ca0mcy3xcejpu" path="res://placeholders/cards/card_picture_placeholder.png" id="7_hhpsp"]
+[ext_resource type="Texture2D" uid="uid://degul8hk4pgqr" path="res://placeholders/cards/card_cost_background.png" id="8_jea8b"]
+[ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="9_c1agu"]
+[ext_resource type="AudioStream" uid="uid://ns746kwxu5v7" path="res://sound/Hand/cardPlace1.wav" id="10_2a0jo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iahfw"]
 size = Vector2(139, 198)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
-shader = ExtResource("3_dxuit")
+shader = ExtResource("3_mgol1")
 shader_parameter/line_color = Color(1, 1, 0, 0)
 shader_parameter/line_thickness = 5.009
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "highlightOnHover")]
-script = ExtResource("1_egnkj")
+script = ExtResource("1_xx10f")
 titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Text/RichTextLabel")
 costLabel = NodePath("Center/Cost/RichTextLabel")
 highlightOnHover = NodePath("Center/Background")
-cardResource = ExtResource("2_5dnl5")
+cardResource = ExtResource("2_aqq8g")
 speed = 500.0
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -48,9 +48,9 @@ scale = Vector2(0.33, 0.33)
 material = SubResource("ShaderMaterial_pyxp0")
 position = Vector2(-18.1818, -33.3333)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("4_d7uyp")
+texture = ExtResource("4_l0vlu")
 centered = false
-script = ExtResource("3_tuf2y")
+script = ExtResource("5_xc7vq")
 area2D = NodePath("../../Area2D")
 
 [node name="Text" type="Node2D" parent="Center"]
@@ -58,7 +58,7 @@ position = Vector2(29, 331)
 scale = Vector2(1.2, 1.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Center/Text"]
-texture = ExtResource("4_n3i8f")
+texture = ExtResource("6_2seia")
 centered = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Text"]
@@ -74,14 +74,14 @@ text = "asdfasefasef"
 position = Vector2(66.6667, 87.8788)
 
 [node name="Sprite2D" type="Sprite2D" parent="Center/Picture"]
-texture = ExtResource("5_eam45")
+texture = ExtResource("7_hhpsp")
 centered = false
 
 [node name="Cost" type="Node2D" parent="Center"]
 position = Vector2(39.3939, 9.0909)
 
 [node name="Sprite2D" type="Sprite2D" parent="Center/Cost"]
-texture = ExtResource("7_n0caa")
+texture = ExtResource("8_jea8b")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Cost"]
 modulate = Color(0, 0, 0, 1)
@@ -106,7 +106,7 @@ scroll_active = false
 position = Vector2(42.4242, 6.06061)
 
 [node name="Sprite2D" type="Sprite2D" parent="Center/Title"]
-texture = ExtResource("6_usyyv")
+texture = ExtResource("9_c1agu")
 centered = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
@@ -123,4 +123,4 @@ fit_content = true
 scroll_active = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_1cvfp")
+stream = ExtResource("10_2a0jo")

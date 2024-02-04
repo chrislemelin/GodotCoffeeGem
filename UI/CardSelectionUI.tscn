@@ -21,7 +21,7 @@ cardContainer = NodePath("Control/HBoxContainer")
 skipButton = NodePath("Control/MarginContainer/Button")
 coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")
 levelPassedText = [NodePath("Control/VBoxContainer/HBoxContainer2"), NodePath("Control/VBoxContainer/RichTextLabel")]
-viewDeckButton = NodePath("Button")
+viewDeckButton = NodePath("Control/Button")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.39, 0.39, 0.39, 1)
@@ -35,15 +35,6 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 2
-offset_left = 831.0
-offset_top = 800.0
-offset_right = 1131.0
-offset_bottom = 850.0
-theme_override_font_sizes/font_size = 30
-text = "View Deck"
-
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 42.0
@@ -54,10 +45,10 @@ offset_bottom = -69.0
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 custom_minimum_size = Vector2(900, 400)
 layout_mode = 2
-offset_left = 502.0
-offset_top = 472.0
-offset_right = 2708.0
-offset_bottom = 1083.0
+offset_left = 510.0
+offset_top = 467.0
+offset_right = 2583.0
+offset_bottom = 1267.0
 scale = Vector2(0.4, 0.4)
 size_flags_vertical = 3
 alignment = 1
@@ -66,28 +57,26 @@ alignment = 1
 visible = false
 layout_mode = 2
 
-[node name="UI2" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("2_twjff")]
+[node name="UI2" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "picture") instance=ExtResource("2_twjff")]
 visible = false
 layout_mode = 2
 titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
-costLabel = NodePath("../UI/Center/Cost/RichTextLabel")
 picture = NodePath("../UI/Center/Picture/Sprite2D")
 
-[node name="UI3" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture") instance=ExtResource("2_twjff")]
+[node name="UI3" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "picture") instance=ExtResource("2_twjff")]
 visible = false
 layout_mode = 2
 titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
-costLabel = NodePath("../UI/Center/Cost/RichTextLabel")
 picture = NodePath("../UI/Center/Picture/Sprite2D")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 2
-offset_left = 489.0
-offset_top = 809.0
-offset_right = 1389.0
-offset_bottom = 840.0
+offset_left = 490.0
+offset_top = 930.0
+offset_right = 1390.0
+offset_bottom = 980.0
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_right = 300
 
@@ -98,11 +87,11 @@ text = "Skip selection
 "
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 304.0
-offset_right = 1400.0
-offset_bottom = 462.0
+layout_mode = 2
+offset_left = 483.0
+offset_top = 240.0
+offset_right = 1328.0
+offset_bottom = 398.0
 alignment = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
@@ -138,3 +127,12 @@ theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "Pick a new card to add to your deck to continue"
 fit_content = true
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 789.0
+offset_top = 869.0
+offset_right = 1089.0
+offset_bottom = 919.0
+theme_override_font_sizes/font_size = 30
+text = "View Deck"

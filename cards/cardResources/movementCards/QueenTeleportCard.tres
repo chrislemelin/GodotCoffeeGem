@@ -10,6 +10,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "Queen Teleport"
 Description = "Swap the positions of 2 ingredients along any straight or diagonal axis"
 Cost = 2
 rarity = 0
+coinCost = 0
 cardEffect = SubResource("Resource_f7rht")

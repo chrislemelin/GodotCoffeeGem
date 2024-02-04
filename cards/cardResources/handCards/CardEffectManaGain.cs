@@ -17,6 +17,10 @@ public partial class CardEffectManaGain : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		mana.modifyMana(getValue());
+		int valueMod = 0;
+		if (matchBoard.getTilesWithAddon(GemAddonType.Mana).Count > 2) {
+			valueMod = 1;
+		}
+		mana.modifyMana(getValue() + valueMod);
 	}
 }

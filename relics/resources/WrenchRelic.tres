@@ -1,22 +1,23 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bmssb1h1wvad5"]
+[gd_resource type="Resource" script_class="RelicResource" load_steps=5 format=3 uid="uid://bmssb1h1wvad5"]
 
 [ext_resource type="Script" path="res://relics/effects/AddNewColPassive.cs" id="1_enis4"]
 [ext_resource type="Texture2D" uid="uid://dhlhgbvdm0uns" path="res://relics/sprites/Icon.1_08.png" id="1_nsrsv"]
-[ext_resource type="Script" path="res://relics/RelicResource.cs" id="3_qemva"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_n87v8"]
 
 [sub_resource type="Resource" id="Resource_bsgv5"]
 script = ExtResource("1_enis4")
 value = 1
 
 [resource]
-script = ExtResource("3_qemva")
+script = ExtResource("3_n87v8")
 title = "Wrench"
 description = "Add 1 column to the match grid"
 image = ExtResource("1_nsrsv")
 cost = 60
-gameStartPassives = []
-gameStartExePassives = []
-turnStartPassives = []
-turnStartExePassives = []
+gameStartEffects = []
+turnStartEffects = []
 addToInvEffects = [SubResource("Resource_bsgv5")]
+levelOverEffects = []
+effects = []
 counterMax = 0
+customCounter = false

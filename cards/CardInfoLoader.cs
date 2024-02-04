@@ -18,6 +18,9 @@ public partial class CardInfoLoader : Control
 	public override void _Ready()
 	{
 		base._Ready();
+		this.GrowHorizontal = GrowDirection.Both;
+		this.GrowVertical = GrowDirection.Both;
+
 		//setUpCard(cardResource);
 	}
 
@@ -37,9 +40,12 @@ public partial class CardInfoLoader : Control
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
 		descriptionLabel.Text = cardResource.getDescription();
-		costLabel.Text = TextHelper.centered(cardResource.getCost().ToString());
+		costLabel.Text = TextHelper.centered(cardResource.getEnergyCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		coinCostText.Text = cardResource.getCoinCost().ToString();
+		if (cardResource.cardEffect.consume) {
+			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
+		}
 	}
 
 	public void setShowCoinCost(bool visible) {
@@ -49,5 +55,6 @@ public partial class CardInfoLoader : Control
 	public void setForceHighlight(bool value) {
 		highlightOnHover.setForceHighlight(value);
 	}
+	
 
 }

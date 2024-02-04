@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dyreny5skf6al"]
 
 [ext_resource type="Texture2D" uid="uid://3ifn8i2rt7bp" path="res://cards/cardResources/cardArt/leaf.png" id="1_eog86"]
-[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/CardEffectColorChange.cs" id="1_ttigb"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_ttigb"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_1klox"]
 
 [sub_resource type="Resource" id="Resource_mklkk"]
@@ -11,6 +11,7 @@ Value = 1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 3
 
 [resource]
@@ -20,4 +21,5 @@ Description = "Change $value ingredient to tea"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_eog86")
+coinCost = 0
 cardEffect = SubResource("Resource_mklkk")

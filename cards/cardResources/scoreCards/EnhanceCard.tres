@@ -10,6 +10,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "Enhance"
 Description = "Select an ingredient, increase the points gained from that ingredient for the turn"
 Cost = 0
 rarity = 1
+coinCost = 0
 cardEffect = SubResource("Resource_qx1wc")

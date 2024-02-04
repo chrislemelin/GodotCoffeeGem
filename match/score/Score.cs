@@ -43,6 +43,9 @@ public partial class Score : Node2D
 	[Signal]
 	public delegate void scoreChangeEventHandler(int score, int maxScore);
 
+	[Signal]
+	public delegate void multChangeEventHandler(float muilt);
+
 	private float muiltResetValue = 1.0f;
 	private int score;
 	private float mult = 1;
@@ -64,7 +67,7 @@ public partial class Score : Node2D
 		}
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 
-		FindObjectHelper.getNewTurnButton(this).SetUpNewTurn += () => newturn();
+		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => newturn();
 		setMult(mult);
 		setScore(score);
 		setMoneyNeeded(scoreNeeded);
@@ -80,7 +83,7 @@ public partial class Score : Node2D
 	public void newturn()
 	{
 		setMult(muiltResetValue);
-		if (score >= scoreNeeded)
+		if (scoreReached())
 		{
 			setTurnsRemaining(turnsRemaining - 1);
 			audioStreamPlayer2D.Stream = victoryAudio;
@@ -107,6 +110,10 @@ public partial class Score : Node2D
 			gameManager.evaluateLevel();
 			//gameManager.nextLevel();
 		}
+	}
+
+	public bool scoreReached() {
+		return score >= scoreNeeded;
 	}
 
 	public void addToTurnsRemaining(int value)
@@ -261,6 +268,7 @@ public partial class Score : Node2D
 		if (multUI != null) {
 			multUI.setMult(newMult);
 		}
+		EmitSignal(SignalName.multChange, mult);
 	}
 
 	public void addMult(float value)

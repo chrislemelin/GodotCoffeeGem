@@ -13,6 +13,7 @@ Value = 2
 BlackGems = 1
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -23,4 +24,5 @@ Description = "Randomly create $value energy infused ingredient(s) and burn 1 in
 Cost = 0
 rarity = 1
 Picture = ExtResource("1_2jbly")
+coinCost = 0
 cardEffect = SubResource("Resource_m0v28")

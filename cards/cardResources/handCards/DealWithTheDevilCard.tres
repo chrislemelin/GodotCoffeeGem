@@ -10,6 +10,7 @@ Value = -1
 BlackGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
 effectGemType = 0
 
 [resource]
@@ -18,4 +19,5 @@ Title = "Power Nap"
 Description = "Lose a turn (this can kill you) and then gain 3 cards and 2 mana"
 Cost = 0
 rarity = 1
+coinCost = 0
 cardEffect = SubResource("Resource_fm1w4")
