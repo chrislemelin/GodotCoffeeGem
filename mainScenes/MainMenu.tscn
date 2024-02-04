@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=5 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_qt6ch"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="5_y52an"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("newGameButton", "beanHolder")]
 custom_minimum_size = Vector2(1920, 1080)
@@ -18,7 +17,7 @@ numberOfBeans = 50
 beanHolder = NodePath("BeanHolder")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.156863, 0.172549, 0.2, 1)
+modulate = Color(0.270588, 0.368627, 0.521569, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,18 +40,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -459.0
-offset_top = -135.0
-offset_right = 567.0
-offset_bottom = 136.0
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 75
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "[center]Beans of Production[/center]"
 fit_content = true
@@ -61,15 +59,12 @@ scroll_active = false
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_direction = 2
 layout_mode = 2
-theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 400
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme = ExtResource("5_y52an")
 text = "new game"
