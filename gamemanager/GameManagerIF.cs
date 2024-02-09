@@ -118,6 +118,16 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().maxHealth;
 	}
 
+	public bool getGooRightRow()
+	{
+		return getGlobal().gooRightRow;
+	}
+
+	public void setGooRightRow(bool value)
+	{
+		getGlobal().gooRightRow = value;
+	}
+
 
 	public int getCoins()
 	{

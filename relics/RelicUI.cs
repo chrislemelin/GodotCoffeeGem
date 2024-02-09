@@ -6,7 +6,7 @@ public partial class RelicUI : Control
 	[Export] public RelicResource relicResource;
 	[Export] TextureRect picture;
 	[Export] RichTextLabel counterLabel;
-	[Export] RichTextLabel costLabel;
+	[Export] RichTextLabel costValueLabel;
 	[Export] public bool showPrice = false;
 	[Export] Vector2 minSizeWithCost;
 	[Export] private Control costControl;
@@ -29,7 +29,7 @@ public partial class RelicUI : Control
 
 	private void renderCost()
 	{
-		costLabel.Text = relicResource.cost.ToString();
+		costValueLabel.Text = relicResource.cost.ToString();
 		costControl.Visible = showPrice;
 		if (showPrice)
 		{

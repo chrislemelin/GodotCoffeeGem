@@ -68,6 +68,24 @@ public partial class MapLocation : Control
 				 TextHelper.centered("Remove Card From Deck")
 			));
 		}
+		else if (type == MapEventType.Mechanic) {
+			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+			bool currentBoardGooed =gameManagerIF.getGooRightRow();
+			if (currentBoardGooed) {
+				mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he removes the starting Goo from the machine");
+				mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+					gameManagerIF.setGooRightRow(false)
+				);
+			} else {
+				mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he adds an additional row to the machine, "+ 
+					"but that row will start with Goo");
+				mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> {
+					gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1,0));
+					gameManagerIF.setGooRightRow(true);
+				});
+			}
+	
+		}
 		else if (type == MapEventType.Home) {
 			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street right before you are about to head home. " +
 			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");

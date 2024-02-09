@@ -62,6 +62,7 @@ public partial class GameManager : GameManagerIF
 		}
 		if (endlessMode) {
 			scoreNeededToPass = 50000;
+			score.setTurnsRemaining(100);
 		}
 		score.setMoneyNeeded(scoreNeededToPass);
 		score.setLevel(currentLevel);

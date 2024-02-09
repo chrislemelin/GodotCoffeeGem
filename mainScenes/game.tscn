@@ -1,16 +1,16 @@
 [gd_scene load_steps=47 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
-[ext_resource type="Resource" uid="uid://ch0gweqsv6vm6" path="res://relics/resources/fourMatch/MilkFourMatchRelic.tres" id="2_7l53g"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
-[ext_resource type="Resource" uid="uid://n3v203tmk7o8" path="res://relics/resources/fourMatch/SugarFourMatchRelic.tres" id="3_56rbe"]
 [ext_resource type="Resource" uid="uid://dvafs8mkpm6dl" path="res://relics/RelicLists/RelicTestPool.tres" id="3_niyuq"]
 [ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_tlo67"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
 [ext_resource type="Resource" uid="uid://dbq6lsiphqhd2" path="res://cards/cardResources/cardLists/CardListTest.tres" id="7_vdncp"]
+[ext_resource type="Texture2D" uid="uid://dvpf75ec7jx2b" path="res://placeholders/CoffeeShop/MountainCoffeeShop.png" id="8_gqgux"]
 [ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="8_m8idd"]
+[ext_resource type="Texture2D" uid="uid://bog5s844e5fy5" path="res://placeholders/CoffeeShop/Wooden_Counter.png" id="9_hiq7b"]
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
@@ -105,7 +105,7 @@ recipeUI = NodePath("BossRecipeUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
-relicResources = Array[Object]([ExtResource("2_7l53g"), ExtResource("3_56rbe")])
+relicResources = Array[Object]([])
 bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
@@ -115,6 +115,18 @@ debugMode = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("3_niyuq")
 defaultCardList = ExtResource("3_tlo67")
+
+[node name="MountainCoffeeShop" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1000, 172)
+scale = Vector2(3.23373, 3.23373)
+texture = ExtResource("8_gqgux")
+
+[node name="WoodenCounter" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 717)
+scale = Vector2(1.9405, 0.9182)
+texture = ExtResource("9_hiq7b")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score") instance=ExtResource("5_4m14m")]
 unique_name_in_owner = true

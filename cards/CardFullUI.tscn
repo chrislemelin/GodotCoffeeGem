@@ -185,6 +185,7 @@ fit_content = true
 scroll_active = false
 
 [node name="CoinCost" type="Control" parent="Center"]
+visible = false
 anchors_preset = 0
 offset_left = 86.0
 offset_top = 646.0

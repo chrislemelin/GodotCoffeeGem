@@ -7,6 +7,7 @@ public enum MapEventType
     RemoveCard,
     GainCard,
     UpgradeCard,
+    Mechanic,
     Home
 }
 
@@ -25,6 +26,8 @@ static class MapEventTypeHelper
                 return "Gain Card";
             case MapEventType.UpgradeCard:
                 return "Upgrade Card";
+            case MapEventType.Mechanic:
+                return "Upgrade Coffee Machine";
             case MapEventType.Home:
                 return "Home";                
             default:

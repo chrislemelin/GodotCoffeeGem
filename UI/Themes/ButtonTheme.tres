@@ -14,7 +14,7 @@ corner_radius_bottom_left = 4
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uudkw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sv2r"]
-bg_color = Color(0.560784, 0.713726, 0.968627, 1)
+bg_color = Color(0.294118, 0.517647, 0.901961, 1)
 border_width_bottom = 6
 border_color = Color(0.231373, 0.380392, 0.631373, 1)
 corner_radius_top_left = 4

@@ -19,7 +19,7 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="Control" type="Control" node_paths=PackedStringArray("picture", "counterLabel", "costLabel", "costControl", "buyButton")]
+[node name="Control" type="Control" node_paths=PackedStringArray("picture", "counterLabel", "costValueLabel", "costControl", "buyButton")]
 custom_minimum_size = Vector2(60, 50)
 layout_mode = 3
 anchors_preset = 0
@@ -28,7 +28,7 @@ offset_bottom = 40.0
 script = ExtResource("1_481rc")
 picture = NodePath("RelicUI/TextureRect")
 counterLabel = NodePath("TextEdit")
-costLabel = NodePath("Control/HBoxContainer/RichTextLabel")
+costValueLabel = NodePath("Control/HBoxContainer/RichTextLabel")
 minSizeWithCost = Vector2(60, 50)
 costControl = NodePath("Control")
 buyButton = NodePath("Control/Button")

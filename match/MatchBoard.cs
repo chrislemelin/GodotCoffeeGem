@@ -211,6 +211,10 @@ public partial class MatchBoard : Node
 
 	public void addRandomBlockedTiles(int numberOfTiles) {
 		List<Tile> tiles = getRandomTiles(numberOfTiles);
+		blockTiles(tiles);
+	}
+
+	public void blockTiles(List<Tile> tiles) {
 		foreach(Tile tile in tiles) {
 			tile.setBlocked(true);
 			deleteGemAtPosition(tile.getTilePosition());
@@ -637,6 +641,16 @@ public partial class MatchBoard : Node
 					generateRandomGemForTile(currentPosition);
 				}
 			}
+		}
+		if(FindObjectHelper.getGameManager(this).getGooRightRow()) {
+			List<Tile> tilesToBlock = new List<Tile>();
+			for (int y = 0; y < sizeY; y++)
+			{
+				Vector2 currentPosition = new Vector2(sizeX-1, y);
+				tilesToBlock.Add(getTile(currentPosition));
+				
+			}
+			blockTiles(tilesToBlock);
 		}
 		HashSet<HashSet<Tile>> matches = getMatches();
 		while (matches.Count != 0)

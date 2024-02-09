@@ -18,7 +18,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("3_rrq7w")
 Title = "Hard Reset"
-Description = "Destroy all non-burn ingredients."
+Description = "Destroy all non-burnt ingredients."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_6ngj0")

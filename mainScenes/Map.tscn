@@ -34,7 +34,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_j21f5"]
+[sub_resource type="Resource" id="Resource_fjjbh"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -56,7 +56,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_7p6sj"]
+[sub_resource type="Resource" id="Resource_o6hbe"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -79,7 +79,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_t2nhx"]
+[sub_resource type="Resource" id="Resource_nhvi7"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -89,7 +89,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_tlj12")
 
-[sub_resource type="Resource" id="Resource_j3ceq"]
+[sub_resource type="Resource" id="Resource_btk2a"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -100,7 +100,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_kb673"]
+[sub_resource type="Resource" id="Resource_gsuwh"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -123,7 +123,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_w5753"]
+[sub_resource type="Resource" id="Resource_0cqan"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -133,7 +133,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_l5j6y")
 
-[sub_resource type="Resource" id="Resource_djxch"]
+[sub_resource type="Resource" id="Resource_a40ri"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -144,7 +144,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_gf2jx"]
+[sub_resource type="Resource" id="Resource_i5flc"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -167,7 +167,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_kr2ov"]
+[sub_resource type="Resource" id="Resource_on177"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -177,7 +177,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_bimhj")
 
-[sub_resource type="Resource" id="Resource_nekim"]
+[sub_resource type="Resource" id="Resource_srsyf"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -188,7 +188,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_scuqb"]
+[sub_resource type="Resource" id="Resource_era6y"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -211,7 +211,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_keqew"]
+[sub_resource type="Resource" id="Resource_hcett"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -221,7 +221,7 @@ rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_23mlu")
 
-[sub_resource type="Resource" id="Resource_8q6kl"]
+[sub_resource type="Resource" id="Resource_enx3k"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
@@ -232,7 +232,7 @@ Picture = ExtResource("9_c3q5o")
 coinCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
-[sub_resource type="Resource" id="Resource_oosji"]
+[sub_resource type="Resource" id="Resource_2dbq7"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
@@ -255,7 +255,7 @@ consume = false
 retain = false
 effectGemType = 0
 
-[sub_resource type="Resource" id="Resource_5c33p"]
+[sub_resource type="Resource" id="Resource_1fkik"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
@@ -318,9 +318,9 @@ offset_bottom = 254.0
 visible = false
 offset_left = 0.0
 offset_right = 1.0
-vertSwitchCard = SubResource("Resource_j21f5")
-horizSwitchCard = SubResource("Resource_7p6sj")
-upgradedSwitchCard = SubResource("Resource_t2nhx")
+vertSwitchCard = SubResource("Resource_fjjbh")
+horizSwitchCard = SubResource("Resource_o6hbe")
+upgradedSwitchCard = SubResource("Resource_nhvi7")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
@@ -336,9 +336,9 @@ offset_right = 96.0
 offset_bottom = 81.0
 image = NodePath("../../Control/MapLocation/TextureRect")
 label = NodePath("../../Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_j3ceq")
-horizSwitchCard = SubResource("Resource_kb673")
-upgradedSwitchCard = SubResource("Resource_w5753")
+vertSwitchCard = SubResource("Resource_btk2a")
+horizSwitchCard = SubResource("Resource_gsuwh")
+upgradedSwitchCard = SubResource("Resource_0cqan")
 
 [node name="BotPath" type="Control" parent="Map/Control"]
 anchors_preset = 0
@@ -357,9 +357,9 @@ offset_left = 0.0
 offset_right = 1.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_djxch")
-horizSwitchCard = SubResource("Resource_gf2jx")
-upgradedSwitchCard = SubResource("Resource_kr2ov")
+vertSwitchCard = SubResource("Resource_a40ri")
+horizSwitchCard = SubResource("Resource_i5flc")
+upgradedSwitchCard = SubResource("Resource_on177")
 
 [node name="Control3" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
@@ -375,19 +375,19 @@ offset_left = 0.0
 offset_right = 1.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
-vertSwitchCard = SubResource("Resource_nekim")
-horizSwitchCard = SubResource("Resource_scuqb")
-upgradedSwitchCard = SubResource("Resource_keqew")
+vertSwitchCard = SubResource("Resource_srsyf")
+horizSwitchCard = SubResource("Resource_era6y")
+upgradedSwitchCard = SubResource("Resource_hcett")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
 offset_left = 1186.0
 offset_top = 950.0
 offset_right = 1282.0
 offset_bottom = 1031.0
-type = 4
-vertSwitchCard = SubResource("Resource_8q6kl")
-horizSwitchCard = SubResource("Resource_oosji")
-upgradedSwitchCard = SubResource("Resource_5c33p")
+type = 5
+vertSwitchCard = SubResource("Resource_enx3k")
+horizSwitchCard = SubResource("Resource_2dbq7")
+upgradedSwitchCard = SubResource("Resource_1fkik")
 
 [node name="Paths" type="Node2D" parent="Map"]
 visible = false

@@ -141,36 +141,6 @@ theme_override_constants/margin_bottom = 20
 [node name="UI" parent="CardShop/MarginContainer6" instance=ExtResource("8_jclpp")]
 layout_mode = 2
 
-[node name="PassiveShop" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-offset_left = 758.0
-offset_top = 799.0
-offset_right = 1111.0
-offset_bottom = 919.0
-scale = Vector2(1.2, 1.2)
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="Control" parent="PassiveShop" instance=ExtResource("5_6xr0x")]
-visible = false
-custom_minimum_size = Vector2(60, 100)
-layout_mode = 2
-
-[node name="Control2" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
-visible = false
-layout_mode = 2
-picture = NodePath("../Control/RelicUI/TextureRect")
-counterLabel = NodePath("../Control/TextEdit")
-costLabel = NodePath("../Control/Control/Label")
-
-[node name="Control3" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel", "costLabel") instance=ExtResource("5_6xr0x")]
-visible = false
-layout_mode = 2
-picture = NodePath("../Control/RelicUI/TextureRect")
-counterLabel = NodePath("../Control/TextEdit")
-costLabel = NodePath("../Control/Control/Label")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 639.0
@@ -257,3 +227,31 @@ text = "Advance "
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 fit_content = true
+
+[node name="PassiveShop" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+offset_left = 758.0
+offset_top = 799.0
+offset_right = 1111.0
+offset_bottom = 919.0
+scale = Vector2(1.2, 1.2)
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Control" parent="PassiveShop" instance=ExtResource("5_6xr0x")]
+visible = false
+custom_minimum_size = Vector2(60, 100)
+layout_mode = 2
+
+[node name="Control2" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel") instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+counterLabel = NodePath("../Control/TextEdit")
+
+[node name="Control3" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel") instance=ExtResource("5_6xr0x")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+counterLabel = NodePath("../Control/TextEdit")

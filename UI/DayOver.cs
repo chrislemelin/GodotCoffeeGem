@@ -157,7 +157,7 @@ public partial class DayOver : Control
 	private void addRelicsToShop() {
 		List<RelicResource> relicResources = gameManager.getRelicPool();
 		RandomHelper.Shuffle(relicResources);
-		List<RelicResource> relicsInShop = relicResources.GetRange(0,Math.Min(2,relicResources.Count));
+		List<RelicResource> relicsInShop = relicResources.GetRange(0,Math.Min(3,relicResources.Count));
 
 		foreach(RelicResource relicResource in relicsInShop) {
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
@@ -168,9 +168,10 @@ public partial class DayOver : Control
 			relicUI.buyButton.Disabled = gameManager.getCoins() < relicResource.cost;
 			buttons.Add(relicUI.buyButton);
 			relicUI.buyButton.Pressed += () => {
-				foreach(Button currentButton in buttons) {
-					currentButton.Disabled = true;
-				}
+				//GD.Print("pressed relic button");
+				// foreach(Button currentButton in buttons) {
+				// 	currentButton.Disabled = true;
+				// }
 				subtractCoins(relicResource);
 				advanceLevelButton.Disabled = false;
 				confirmationText.Text = "Purchased " + relicResource.title;
