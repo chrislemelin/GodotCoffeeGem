@@ -1,13 +1,16 @@
 using Godot;
 using System;
 
-public partial class RelicUI : Control
+public partial class RelicUI : CustomToolTip
 {
 	[Export] public RelicResource relicResource;
-	[Export] TextureRect picture;
+	[Export] public TextureRect picture;
+	[Export] RichTextLabel titleLabel;
 	[Export] RichTextLabel counterLabel;
 	[Export] RichTextLabel costValueLabel;
 	[Export] public bool showPrice = false;
+	[Export] public bool showTitle = false;
+
 	[Export] Vector2 minSizeWithCost;
 	[Export] private Control costControl;
 	[Export] public Button buyButton;
@@ -15,16 +18,26 @@ public partial class RelicUI : Control
 	public void setRelic(RelicResource relicResource)
 	{
 		this.relicResource = relicResource;
-		setUp();
+		relicResource.CounterChanged += renderCounter;
+		render();
 	}
 
-	private void setUp()
-	{
+	public void setShowPrice(bool value) {
+		showPrice = value;
+		render();
+	}
+
+	private void render() {
+		titleLabel.Text = TextHelper.centered(relicResource.title);
 		picture.Texture = relicResource.image;
 		TooltipText = relicResource.description;
 		renderCost();
 		renderCounter(0);
-		relicResource.CounterChanged += renderCounter;
+	}
+
+	private void renderTitle() {
+		titleLabel.Text = TextHelper.centered(relicResource.title);
+		titleLabel.Visible = showTitle;
 	}
 
 	private void renderCost()

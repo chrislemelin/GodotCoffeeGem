@@ -15,16 +15,21 @@ public partial class GameManager : GameManagerIF
 	[Export] public GameOverScreen gameOverScreen;
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
-	[Export] public Array<RelicResource> relicResources;
+	[Export] public Array<RelicResource> relicTestResources = new Array<RelicResource>();
 	[Export] public Control bossRecipeTutorial;
 	[Export] public Control gooTutorial;
 	[Export] public WelcomeScreen welcomeTutorial;
+	[Export] public RelicSelection relicSelection;
 	[Export] public Array<LevelResource> levels;
 	[Export] public LevelCompleteUI levelComplete;
 	[Signal] public delegate void levelOverEventHandler();
 	[Signal] public delegate void levelStartEventHandler();
 	[Export] private bool debugMode;
 	[Export] private bool endlessMode;
+	[Export] private bool skipFirstLevel;
+
+	private int currentLevel;
+	private LevelResource currentLevelResource;
 
 
 	public override void _Ready()
@@ -37,7 +42,7 @@ public partial class GameManager : GameManagerIF
 			gameOverScreen.label.Text = "You win!!!";
 			gameOverScreen.Visible = true;
 		}
-		LevelResource currentLevelResource = levels[currentLevel-1];
+		currentLevelResource = levels[currentLevel-1];
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
 		if (bossRecipe != null) {
 			recipeUI.loadRecipe(bossRecipe);
@@ -64,14 +69,17 @@ public partial class GameManager : GameManagerIF
 			scoreNeededToPass = 50000;
 			score.setTurnsRemaining(100);
 		}
+		if(skipFirstLevel && currentLevel == 1) {
+			nextLevel();
+		}
 		score.setMoneyNeeded(scoreNeededToPass);
 		score.setLevel(currentLevel);
 		score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
 		score.setColorUpgrades(global.colorUpgrades.ToList());
-		if (getRelics().Count == 0)
+		if (relicTestResources.Count != 0)
 		{
-			foreach (RelicResource relicResource in relicResources)
+			foreach (RelicResource relicResource in relicTestResources)
 			{
 				addRelic(relicResource);
 			}
@@ -103,14 +111,32 @@ public partial class GameManager : GameManagerIF
 	{
 		EmitSignal(SignalName.levelOver);
 		newCardSelection.windowClosed += (CardResource) => advanceLevel();
-		levelComplete.continueButton.Pressed += () => advanceLevel();
 
 		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
 		levelComplete.setCoinsGained(coinsGained);
+		if (currentLevel == levels.Count - 1) {
+			resetGlobals();
+			gameOverScreen.label.Text = "You win!!!";
+			gameOverScreen.Visible = true;
+		}
+
+		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe) {
+			levelComplete.continueButton.Pressed += () => selectRandomRelic();
+		} else {
+			levelComplete.continueButton.Pressed += () => advanceLevel();
+		}
 		levelComplete.Visible = true;
 		addCoins(coinsGained);
 	}
 
+	private void selectRandomRelic() {
+		List<RelicResource> relicResources = getRelicPool();
+		RandomHelper.Shuffle(relicResources);
+		List<RelicResource> relicsInSelection = relicResources.GetRange(0,Math.Min(3,relicResources.Count));
+		relicSelection.setRelics(relicsInSelection);
+		relicSelection.WindowClosed += () => advanceLevel();
+		relicSelection.Visible = true;
+	}
 	public override void advanceLevel()
 	{
 		global.currentLevel += 1;

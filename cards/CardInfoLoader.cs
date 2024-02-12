@@ -46,6 +46,9 @@ public partial class CardInfoLoader : Control
 		if (cardResource.cardEffect.consume) {
 			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
 		}
+		if (cardResource.cardEffect.retain) {
+			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
+		}
 	}
 
 	public void setShowCoinCost(bool visible) {

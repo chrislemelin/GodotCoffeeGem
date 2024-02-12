@@ -10,5 +10,6 @@ public partial class CardPassive : Passive
 	[Export] public float rangeModification;
 	[Export] public int costModification;
 	[Export] public int valueModification;
-
+	[Export] public int manaGemsModification;
+	[Export] public int cardGemsModification;
 }

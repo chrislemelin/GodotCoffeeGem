@@ -39,7 +39,7 @@ vertSwitchCard = ExtResource("2_t53kr")
 horizSwitchCard = ExtResource("3_os8q3")
 upgradedSwitchCard = ExtResource("4_celhv")
 
-[node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("area2D")]
+[node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_4i6bp")
 layout_mode = 0
 offset_left = -97.0
@@ -48,7 +48,6 @@ offset_right = 191.0
 offset_bottom = 42.0
 texture = ExtResource("6_nn2rb")
 script = ExtResource("4_edqu2")
-area2D = NodePath("../Area2D")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0

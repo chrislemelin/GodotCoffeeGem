@@ -1,17 +1,18 @@
 [gd_resource type="Resource" script_class="RandDeleteUpgradeRelic" load_steps=3 format=3 uid="uid://m0rit4tghx2m"]
 
+[ext_resource type="Texture2D" uid="uid://c8s2niff1othe" path="res://relics/sprites/Icon.5_92.png" id="1_2xwb2"]
 [ext_resource type="Script" path="res://relics/scripts/RandDeleteUpgradeRelic.cs" id="1_3yfg0"]
-[ext_resource type="Texture2D" uid="uid://yq4rsx1u50b4" path="res://relics/sprites/glove.png" id="1_kle0i"]
 
 [resource]
 script = ExtResource("1_3yfg0")
-title = "Spray"
-description = "Every card that randomly converts ingredients to another ingredient will convert one more"
-image = ExtResource("1_kle0i")
+title = "Spray Upgrade"
+description = "Every card that converts random ingredients to another ingredient will convert one more."
+image = ExtResource("1_2xwb2")
 cost = 50
 gameStartEffects = []
-effects = []
+turnStartEffects = []
 addToInvEffects = []
 levelOverEffects = []
+effects = []
 counterMax = 0
 customCounter = false

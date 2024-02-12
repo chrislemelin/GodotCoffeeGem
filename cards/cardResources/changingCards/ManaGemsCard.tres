@@ -10,6 +10,8 @@ gemAddonType = 1
 Range = 1.0
 Value = 1
 BlackGems = 1
+ManaGems = 1
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -19,7 +21,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_ybbs8")
 Title = "Energy Infusion"
-Description = "Randomly create $value energy infused ingredient(s) and burn 1 ingredient"
+Description = "Randomly create $manaGems energy infused ingredient(s) and burn 1 ingredient"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_jqxj2")

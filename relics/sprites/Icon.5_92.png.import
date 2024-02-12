@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yq4rsx1u50b4"
-path="res://.godot/imported/glove.png-525b8fa9cc1469ace121f5e58ebb70a0.ctex"
+uid="uid://c8s2niff1othe"
+path="res://.godot/imported/Icon.5_92.png-fb88cc417478be7a9ace2d726e1c0b1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://relics/sprites/glove.png"
-dest_files=["res://.godot/imported/glove.png-525b8fa9cc1469ace121f5e58ebb70a0.ctex"]
+source_file="res://relics/sprites/Icon.5_92.png"
+dest_files=["res://.godot/imported/Icon.5_92.png-fb88cc417478be7a9ace2d726e1c0b1f.ctex"]
 
 [params]
 

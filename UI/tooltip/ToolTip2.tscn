@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbjva3tuie1yo"]
+
+[ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/ToolTipStyleBox.tres" id="2_4xjjp"]
+
+[sub_resource type="Theme" id="Theme_7yul7"]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_7yul7")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = ExtResource("2_4xjjp")
+theme_override_styles/normal = ExtResource("2_4xjjp")
+bbcode_enabled = true
+text = "This is a test tooltip 
+sfaesfasef"
+fit_content = true
+autowrap_mode = 0

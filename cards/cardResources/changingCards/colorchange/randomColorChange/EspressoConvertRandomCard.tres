@@ -9,6 +9,8 @@ script = ExtResource("2_ocwro")
 Range = 1.0
 Value = 2
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -18,7 +20,7 @@ effectGemType = 4
 [resource]
 script = ExtResource("3_rw58r")
 Title = "Espresso Spray"
-Description = "Randomly change $value ingredients to coffee"
+Description = "Change $value random ingredients to coffee"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_luisg")

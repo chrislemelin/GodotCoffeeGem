@@ -19,9 +19,10 @@ relicControlHolder = NodePath("HBoxContainer")
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.333333, 0.333333, 0.333333, 0.678431)
 layout_mode = 0
-offset_left = 1.0
-offset_right = 1921.0
-offset_bottom = 57.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 1922.0
+offset_bottom = 58.0
 texture = ExtResource("1_muhxp")
 expand_mode = 1
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class NewTurnButton : Button
+public partial class NewTurnButton : CustomToolTipButton
 {
 	[Signal] public delegate void BeforeTurnCleanUpEventHandler();
 	[Signal] public delegate void TurnCleanUpEventHandler();
@@ -10,6 +10,7 @@ public partial class NewTurnButton : Button
 
 	//[Signal] public delegate void SetUpNewTurnEventHandler();
 	//[Signal] public delegate void StartNewTurnEventHandler();
+	
 
 	public override void _Ready()
 	{

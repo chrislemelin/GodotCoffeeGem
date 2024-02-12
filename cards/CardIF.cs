@@ -5,8 +5,6 @@ using System.Security.Authentication;
 
 public partial class CardIF : lerp
 {
-
-
 	[Export] protected RichTextLabel titleLabel;
 	[Export] protected RichTextLabel descriptionLabel;
 	[Export] protected RichTextLabel costLabel;

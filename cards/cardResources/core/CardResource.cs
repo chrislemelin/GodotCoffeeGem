@@ -66,15 +66,18 @@ public partial class CardResource : Resource
 	public String getDescription()
 	{
 		String newDescription = Description.Replace("$value", cardEffect.getValueString());
+		newDescription = newDescription.Replace("$manaGems", cardEffect.getManaGems().ToString());
+		newDescription = newDescription.Replace("$cardGems", cardEffect.getCardGems().ToString());
+
 		if (cardEffect.consume) {
 			newDescription += " " + TextHelper.toolTip("Consume.", "Consume cards are trashed untill the next level");
 		}
 		if (cardEffect.retain) {
 			newDescription += " " + TextHelper.toolTip("Retain.", "Retain cards arn't discarded at the end of the turn");
 		}
-		//return ":"
 		return newDescription;
 	}
+
 
 	public bool equalToCard(CardResource cardResource)
 	{

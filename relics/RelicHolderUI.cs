@@ -36,6 +36,8 @@ public partial class RelicHolderUI : Control
 		foreach (RelicResource relicResource in relicResources)
 		{
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
+			relicUI.showTitle = false;
+			relicUI.showPrice = false;
 			relicUI.setRelic(relicResource);
 			relicResource.node = this;
 			relicControlHolder.AddChild(relicUI);

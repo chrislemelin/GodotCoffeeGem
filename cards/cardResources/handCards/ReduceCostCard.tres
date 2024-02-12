@@ -11,6 +11,8 @@ expireAfterNextCardPlayed = false
 rangeModification = 0.0
 costModification = -1
 valueModification = 0
+manaGemsModification = 0
+cardGemsModification = 0
 
 [sub_resource type="Resource" id="Resource_vyyx8"]
 resource_local_to_scene = true
@@ -18,6 +20,8 @@ script = ExtResource("1_vae2d")
 Range = 0.0
 Value = 0
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false

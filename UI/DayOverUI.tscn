@@ -33,17 +33,17 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(900, 600)
 script = ExtResource("1_ibp0t")
-sideHustleButton = NodePath("VBoxContainer/GridContainer/Side hustle")
-shoppingTherapyButton = NodePath("VBoxContainer/GridContainer/Shopping Therapy")
-gemUpgradeButton = NodePath("VBoxContainer/GridContainer/Gem upgrade")
-moreCardsButton = NodePath("VBoxContainer/GridContainer/Moare cards")
-relicButton = NodePath("VBoxContainer/GridContainer/Relic")
-upgradeCardButton = NodePath("VBoxContainer/GridContainer/CardUpgrade")
-removeCardFromDeckButton = NodePath("VBoxContainer/GridContainer/RemoveCard")
+sideHustleButton = NodePath("VBoxContainer/Side hustle")
+shoppingTherapyButton = NodePath("VBoxContainer/Shopping Therapy")
+gemUpgradeButton = NodePath("VBoxContainer/Gem upgrade")
+moreCardsButton = NodePath("VBoxContainer/Moare cards")
+relicButton = NodePath("VBoxContainer/Relic")
+upgradeCardButton = NodePath("VBoxContainer/CardUpgrade")
+removeCardFromDeckButton = NodePath("VBoxContainer/RemoveCard")
 relicShop = NodePath("PassiveShop")
 relicUIPackedScene = ExtResource("5_6xr0x")
-advanceLevelButton = NodePath("VBoxContainer/GridContainer/AdvanceButton")
-confirmationText = NodePath("VBoxContainer/GridContainer/RichTextLabel")
+advanceLevelButton = NodePath("VBoxContainer/MarginContainer/AdvanceButton")
+confirmationText = NodePath("VBoxContainer/RichTextLabel")
 colorUpgrade = SubResource("Resource_ioiih")
 upgradedSwitchCard = ExtResource("4_yvkph")
 vertSwitchCard = ExtResource("5_by2ub")
@@ -62,10 +62,10 @@ theme = ExtResource("9_m8ehy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-offset_left = 639.0
-offset_top = 481.0
-offset_right = 1297.0
-offset_bottom = 531.0
+offset_left = 644.0
+offset_top = 516.0
+offset_right = 1302.0
+offset_bottom = 566.0
 size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
@@ -79,10 +79,10 @@ scroll_active = false
 
 [node name="CardShop" type="HBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 578.0
-offset_top = 524.0
-offset_right = 3688.0
-offset_bottom = 1476.0
+offset_left = 572.0
+offset_top = 592.0
+offset_right = 3682.0
+offset_bottom = 1544.0
 scale = Vector2(0.25, 0.25)
 alignment = 1
 
@@ -143,17 +143,13 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 639.0
-offset_top = 755.0
-offset_right = 1297.0
-offset_bottom = 1111.0
+offset_left = 641.0
+offset_top = 847.0
+offset_right = 1299.0
+offset_bottom = 1045.0
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
-
-[node name="Passives To Purchase" type="RichTextLabel" parent="VBoxContainer/GridContainer"]
+[node name="Passives To Purchase" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 30
@@ -162,11 +158,7 @@ text = "[center] Passives available to purchase [center]"
 fit_content = true
 scroll_active = false
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/GridContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 130
-
-[node name="Side hustle" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Side hustle" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -174,14 +166,14 @@ text = "Work on your side hustle (Gain 10 coins)"
 script = ExtResource("2_x4g5w")
 cost = -10
 
-[node name="Moare cards" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Moare cards" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Gain an extra card (Costs 20 coins)"
 script = ExtResource("2_x4g5w")
 cost = 20
 
-[node name="Shopping Therapy" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Shopping Therapy" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("11_37gdu")
@@ -189,21 +181,21 @@ text = "Recover a heart  (Costs 30 coins)"
 script = ExtResource("2_x4g5w")
 cost = 30
 
-[node name="Gem upgrade" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Gem upgrade" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("11_37gdu")
 text = "Purchase better ingredients (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
 
-[node name="RemoveCard" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="RemoveCard" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Remove a card from your deck (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
 
-[node name="CardUpgrade" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="CardUpgrade" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -212,23 +204,28 @@ text = "Upgrade one of your switch cards (Costs 30 coins)"
 script = ExtResource("2_x4g5w")
 cost = 30
 
-[node name="Relic" type="Button" parent="VBoxContainer/GridContainer"]
-visible = false
+[node name="Relic" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Gain a random relic, provides a passive bonus(100 coins)"
+theme = ExtResource("11_37gdu")
+text = "Buy a relic (passive ability) (75 coins)"
 script = ExtResource("2_x4g5w")
-cost = 100
+cost = 75
 
-[node name="AdvanceButton" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="AdvanceButton" type="Button" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("11_37gdu")
 text = "Advance "
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/GridContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 fit_content = true
 
 [node name="PassiveShop" type="HBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 offset_left = 758.0

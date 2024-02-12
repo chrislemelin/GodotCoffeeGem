@@ -8,7 +8,9 @@ public partial class CardEffectIF: Resource
 {
 	[Export] private float Range = 1.0f;
 	[Export] private int Value = -1;
-	[Export] private int BlackGems = 0;
+	[Export] public int BlackGems {get; private set;} = 0;
+	[Export] public int ManaGems {get; private set;} = 0; 
+	[Export] public int CardGems {get; private set;}  = 0;
 	[Export] private int CardsToDiscard = 0;
 	[Export] public bool canTargetBlackGems = true;
 	[Export] public bool consume = false;
@@ -37,6 +39,8 @@ public partial class CardEffectIF: Resource
 	public void doEffect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles, Optional<CardIF> cardMaybe){
 		createBlackGems(matchBoard);
 		effect(matchBoard, hand, mana, selectedTiles);
+		createAddonGems(matchBoard, GemAddonType.Mana, getManaGems());
+		createAddonGems(matchBoard, GemAddonType.Card, getCardGems());
 		if (cardMaybe.HasValue) {
 			doEffectOnTargetedCard(cardMaybe.GetValue());
 		}
@@ -78,6 +82,11 @@ public partial class CardEffectIF: Resource
 		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
 	}
 
+	private void createAddonGems(MatchBoard matchBoard, GemAddonType type, int count) {
+		List<Tile> tiles = matchBoard.getRandomNonBlackNonAddonTiles(count);
+		matchBoard.addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), type);
+	}
+
 	public virtual void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles){
 		
 	}
@@ -100,6 +109,14 @@ public partial class CardEffectIF: Resource
 			value += cardPassive.valueModification;
 		}
 		return value;
+	}
+
+	public int getManaGems() {
+		return ManaGems;
+	}
+
+	public int getCardGems() {
+		return CardGems;
 	}
 
 	public String getValueString() {

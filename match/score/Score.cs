@@ -30,7 +30,6 @@ public partial class Score : Node2D
 	[Export] HBoxContainer heartsContainer;
 	[Export] GameManager gameManager;
 	[Export] PackedScene colorUpgradeUI;
-	[Export] public ColorUpgrade colorUpgrade;
 	[Export] private RecipeUI bossRecipeUI;
 
 	[Export] PackedScene heartUI;
@@ -61,10 +60,6 @@ public partial class Score : Node2D
 
 	public override void _Ready()
 	{
-		if (colorUpgrade != null)
-		{
-			addColorUpgrade(colorUpgrade);
-		}
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 		gameManagerIF.coinsChanged += (int coins) => setCoins(coins);
 
@@ -298,7 +293,7 @@ public partial class Score : Node2D
 	{
 		compressCurrentColorUpgrades();
 
-		if (colorUpgradePreviewBox.GetChildren() != null) {
+		if (colorUpgradePreviewBox != null) {
 			foreach (Node node in colorUpgradePreviewBox.GetChildren())
 			{
 				node.QueueFree();
@@ -443,7 +438,9 @@ public partial class Score : Node2D
 	{
 		if (@event.IsActionPressed("space"))
 		{
-			addMult(.25f);
+			//addMult(.25f);
+			//GetTree().Paused = true;
+
 		}
 	}
 

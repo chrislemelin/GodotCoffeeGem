@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxavdfi52bnxv"]
 
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_aegw7"]
-[ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="1_pv1p8"]
+[ext_resource type="Script" path="res://UI/Selection/NewCardSelection.cs" id="1_pv1p8"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_twjff"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="4_0dujr"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="4_50y77"]
@@ -58,19 +58,13 @@ alignment = 1
 visible = false
 layout_mode = 2
 
-[node name="UI2" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "picture") instance=ExtResource("2_twjff")]
+[node name="UI2" parent="Control/HBoxContainer" instance=ExtResource("2_twjff")]
 visible = false
 layout_mode = 2
-titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
-picture = NodePath("../UI/Center/Picture/Sprite2D")
 
-[node name="UI3" parent="Control/HBoxContainer" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "picture") instance=ExtResource("2_twjff")]
+[node name="UI3" parent="Control/HBoxContainer" instance=ExtResource("2_twjff")]
 visible = false
 layout_mode = 2
-titleLabel = NodePath("../UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../UI/Center/Description/RichTextLabel")
-picture = NodePath("../UI/Center/Picture/Sprite2D")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 2

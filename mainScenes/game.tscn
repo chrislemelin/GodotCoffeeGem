@@ -1,10 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=48 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
-[ext_resource type="Resource" uid="uid://dvafs8mkpm6dl" path="res://relics/RelicLists/RelicTestPool.tres" id="3_niyuq"]
 [ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_tlo67"]
+[ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
 [ext_resource type="Resource" uid="uid://dbq6lsiphqhd2" path="res://cards/cardResources/cardLists/CardListTest.tres" id="7_vdncp"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
 [ext_resource type="AudioStream" uid="uid://chm1wbxd0tacb" path="res://sound/music/ChillLofiR.mp3" id="13_oa770"]
-[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/CardSelectionUI.tscn" id="14_31k88"]
+[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="14_31k88"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="16_m0mlx"]
 [ext_resource type="PackedScene" uid="uid://cmj3k4irtmxwc" path="res://relics/RelicHolder.tscn" id="16_qkjnw"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="32_otpbl"]
 [ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
+[ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
 
 [sub_resource type="Resource" id="Resource_nv7p6"]
 script = ExtResource("2_iphd8")
@@ -52,14 +53,14 @@ blockedTiles = 1
 [sub_resource type="Resource" id="Resource_y5jai"]
 script = ExtResource("2_iphd8")
 score = 1500
-makeRandomBossRecipe = false
-blockedTiles = 2
+makeRandomBossRecipe = true
+blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_66dt5"]
 script = ExtResource("2_iphd8")
 score = 2000
-makeRandomBossRecipe = true
-blockedTiles = 0
+makeRandomBossRecipe = false
+blockedTiles = 2
 
 [sub_resource type="Resource" id="Resource_sq5lj"]
 script = ExtResource("2_iphd8")
@@ -97,23 +98,32 @@ score = 10000
 makeRandomBossRecipe = true
 blockedTiles = 0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "levelComplete")]
-position = Vector2(-3, -2)
+[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete")]
+position = Vector2(-3, -1)
 script = ExtResource("1_5jnm2")
 newCardSelection = NodePath("UIOverLays/CardSelectionUI")
 recipeUI = NodePath("BossRecipeUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
-relicResources = Array[Object]([])
 bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
+relicSelection = NodePath("UIOverLays/RelicSelection")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 levelComplete = NodePath("UIOverLays/LevelComplete")
 cardPool = ExtResource("2_uqcxx")
-relicList = ExtResource("3_niyuq")
+relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
+
+[node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
+unique_name_in_owner = true
+offset_left = 1686.0
+offset_top = 609.0
+offset_right = 1877.0
+offset_bottom = 670.0
+tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
+theme = ExtResource("16_m0mlx")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
 visible = false
@@ -172,15 +182,6 @@ width = 900
 [node name="Mana" parent="." groups=["Mana"] instance=ExtResource("10_4f0tc")]
 unique_name_in_owner = true
 position = Vector2(271, 694)
-
-[node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
-unique_name_in_owner = true
-offset_left = 1686.0
-offset_top = 609.0
-offset_right = 1877.0
-offset_bottom = 670.0
-tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
-theme = ExtResource("16_m0mlx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_oa770")
@@ -665,30 +666,39 @@ flip_v = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/BossRecipeTutorial"]
 layout_mode = 0
-offset_left = 721.0
-offset_top = 226.0
-offset_right = 1029.0
-offset_bottom = 501.0
+offset_left = 720.0
+offset_top = 193.0
+offset_right = 1028.0
+offset_bottom = 633.0
 
 [node name="TextureRect2" type="TextureRect" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource("27_6giu6")
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
 text = "Oh no! Your rudest regular appears in the coffee shop, ready to ask for the manager if you don't get their order just right. You begrudgingly pull out the standard corporate recipe book.
 
-Some levels have recipes. You must make matches with the listed ingredients to complete the recipe. All matches will score 0 points until the recipe is complete."
+Some levels have recipes. You must make matches with the listed ingredients to complete the recipe. All matches will score 0 points until the recipe is complete.
+
+You will recieve a special reward for clearing this level!"
 fit_content = true
 
 [node name="Button" type="Button" parent="UIOverLays/BossRecipeTutorial"]
 modulate = Color(1, 0.996078, 0.996078, 1)
 layout_mode = 0
-offset_left = 793.0
-offset_top = 692.0
-offset_right = 927.0
-offset_bottom = 736.0
+offset_left = 794.0
+offset_top = 735.0
+offset_right = 928.0
+offset_bottom = 779.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
 
@@ -861,3 +871,6 @@ offset_right = 1035.0
 offset_bottom = 669.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
+
+[node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]
+visible = false

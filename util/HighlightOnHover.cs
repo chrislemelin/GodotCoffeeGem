@@ -3,9 +3,9 @@ using System;
 
 public partial class HighlightOnHover : TextureRect
 {
-	[Export] Area2D area2D;
-	bool forceHighlightOn = false;
-	bool forceHighlightOff = false;
+	[Export] Control area2D;
+	[Export] bool forceHighlightOn = false;
+	[Export] bool forceHighlightOff = false;
 	[Export] Node2D makeBigger;
 	[Export] Control makeBiggerControl;
 
@@ -25,9 +25,10 @@ public partial class HighlightOnHover : TextureRect
 		Material = (Material)Material.Duplicate();
 		MouseEntered += () =>  setHighlightFromMouse(true);
 		MouseExited += () =>  setHighlightFromMouse(false);
-
-		//area2D.MouseShapeEntered += (a) => setHighlightOn();
-		//area2D.MouseShapeEntered += (a) => setHighlightOff();
+		if (area2D != null) {
+			area2D.MouseEntered += () => setHighlightFromMouse(true);
+			area2D.MouseExited += () => setHighlightFromMouse(false);
+		}
 	}
 
 	private void setHighlightFromMouse(bool value) {

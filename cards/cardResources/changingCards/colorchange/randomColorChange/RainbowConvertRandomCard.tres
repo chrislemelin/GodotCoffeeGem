@@ -8,6 +8,8 @@ script = ExtResource("2_a8o7s")
 Range = 1.0
 Value = 3
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -17,7 +19,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("3_kjq10")
 Title = "Rainbow Spray"
-Description = "Select an ingredient. Randomly change $value ingredients to the selected ingredient's type."
+Description = "Select an ingredient. Change $value random ingredients to the selected ingredient's type."
 Cost = 0
 rarity = 2
 coinCost = 0

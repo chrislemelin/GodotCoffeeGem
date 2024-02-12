@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://relics/scripts/MultRelic.cs" id="1_d42s0"]
 [ext_resource type="Script" path="res://relics/effects/GiveManaPassive.cs" id="1_h7syu"]
 [ext_resource type="Script" path="res://relics/effects/GiveCardPassive.cs" id="2_6wwge"]
-[ext_resource type="Texture2D" uid="uid://yq4rsx1u50b4" path="res://relics/sprites/glove.png" id="3_xfheh"]
+[ext_resource type="Texture2D" uid="uid://c8s2niff1othe" path="res://relics/sprites/Icon.5_92.png" id="3_8pi28"]
 
 [sub_resource type="Resource" id="Resource_cv85o"]
 script = ExtResource("1_h7syu")
@@ -17,9 +17,9 @@ value = 1
 [resource]
 script = ExtResource("1_d42s0")
 targetMult = 3.0
-title = ""
+title = "Mult Master"
 description = "Give +1 energy and +1 card if you end your turn with 3 or more mult"
-image = ExtResource("3_xfheh")
+image = ExtResource("3_8pi28")
 cost = 50
 gameStartEffects = []
 turnStartEffects = []

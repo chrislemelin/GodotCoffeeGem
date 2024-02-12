@@ -9,6 +9,8 @@ script = ExtResource("2_f4atw")
 Range = 1.0
 Value = 2
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -18,7 +20,7 @@ effectGemType = 2
 [resource]
 script = ExtResource("3_dsxvr")
 Title = "Vanilla Spray"
-Description = "Randomly change $value ingredients to vanilla"
+Description = "Change $value random ingredients to vanilla"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_t172a")

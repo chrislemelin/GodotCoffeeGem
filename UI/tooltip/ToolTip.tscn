@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://2q7w8mddh2y8"]
+
+[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="1_bko2i"]
+[ext_resource type="Script" path="res://UI/tooltip/ToolTip.cs" id="1_n07bs"]
+[ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/ToolTipStyleBox.tres" id="2_m8vvv"]
+
+[sub_resource type="Theme" id="Theme_7yul7"]
+
+[node name="ToolTip" type="VBoxContainer" node_paths=PackedStringArray("label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_right = -1614.0
+offset_bottom = -991.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_bko2i")
+script = ExtResource("1_n07bs")
+label = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_7yul7")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = ExtResource("2_m8vvv")
+theme_override_styles/normal = ExtResource("2_m8vvv")
+bbcode_enabled = true
+text = "This is a test tooltip 
+fasefasefasefasef fasefas fasfe
+ asef asef asef asef asef asefasefasefasefasef [hint={tooltip text displayed on hover}]{text}[/hint]"
+fit_content = true
+autowrap_mode = 0

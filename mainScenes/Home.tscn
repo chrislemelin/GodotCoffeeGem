@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dgfos0wevjgpv"]
+[gd_scene load_steps=23 format=3 uid="uid://dgfos0wevjgpv"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_8wsnh"]
 [ext_resource type="PackedScene" uid="uid://2av55t0yxy4e" path="res://UI/DayOverUI.tscn" id="1_xjb1y"]
@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_hntlq"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5vuys"]
 [ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_31lnn"]
-[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/CardSelectionUI.tscn" id="4_v1i61"]
+[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="4_v1i61"]
 [ext_resource type="Texture2D" uid="uid://cc8kht2epbt2g" path="res://placeholders/Honme.png" id="5_i4llw"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="7_e5l0a"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="8_n1ouh"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://j3ybt36fv2yv" path="res://cards/cardResources/cardArt/Switch-horizontal.png" id="10_qx4mo"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="14_ap4t7"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="14_ujune"]
+[ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="16_v1rpc"]
 
 [sub_resource type="Resource" id="Resource_pbwlf"]
 resource_local_to_scene = true
@@ -22,6 +23,8 @@ script = ExtResource("7_e5l0a")
 Range = 1.0
 Value = -1
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -43,6 +46,8 @@ script = ExtResource("9_hebao")
 Range = 1.0
 Value = -1
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -64,6 +69,8 @@ script = ExtResource("10_k3anh")
 Range = 1.0
 Value = -1
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -100,7 +107,7 @@ offset_bottom = 2481.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_i4llw")
 
-[node name="DayOverUI" parent="." node_paths=PackedStringArray("gameManager", "deckListUI") instance=ExtResource("1_xjb1y")]
+[node name="DayOverUI" parent="." node_paths=PackedStringArray("gameManager", "relicSelection", "deckListUI") instance=ExtResource("1_xjb1y")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -115,6 +122,7 @@ gameManager = NodePath("..")
 upgradedSwitchCard = SubResource("Resource_d7xqc")
 vertSwitchCard = SubResource("Resource_uahnf")
 horizSwitchCard = SubResource("Resource_erse6")
+relicSelection = NodePath("../RelicSelection")
 deckListUI = NodePath("../DeckView")
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]
@@ -142,4 +150,7 @@ theme_override_font_sizes/font_size = 50
 text = "View Deck"
 
 [node name="DeckView" parent="." instance=ExtResource("14_ujune")]
+visible = false
+
+[node name="RelicSelection" parent="." instance=ExtResource("16_v1rpc")]
 visible = false

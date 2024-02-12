@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RelicResource" load_steps=5 format=3 uid="uid://ckldfchg1chol"]
 
-[ext_resource type="Texture2D" uid="uid://yq4rsx1u50b4" path="res://relics/sprites/glove.png" id="2_bejpu"]
+[ext_resource type="Texture2D" uid="uid://c8s2niff1othe" path="res://relics/sprites/Icon.5_92.png" id="1_idk2t"]
 [ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="2_m7uiy"]
 [ext_resource type="Script" path="res://relics/effects/GiveCardPassive.cs" id="3_i8evw"]
 
@@ -13,7 +13,7 @@ value = 1
 script = ExtResource("2_m7uiy")
 title = "Gloves"
 description = "+1 card on each turn"
-image = ExtResource("2_bejpu")
+image = ExtResource("1_idk2t")
 cost = 30
 gameStartEffects = []
 turnStartEffects = [SubResource("Resource_esr6y")]

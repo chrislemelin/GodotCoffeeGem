@@ -8,8 +8,10 @@
 script = ExtResource("1_qt74m")
 gemAddonType = 2
 Range = 1.0
-Value = 2
+Value = -1
 BlackGems = 1
+ManaGems = 0
+CardGems = 2
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -19,7 +21,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_7gcs6")
 Title = "Draw Infusion"
-Description = "Randomly create $value draw ingredients(s) and burn 1 ingredient"
+Description = "Randomly create $cardGems draw ingredients(s) and burn 1 ingredient"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_m6hox")

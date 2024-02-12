@@ -29,7 +29,7 @@ public partial class DayOver : Control
 	[Export] CardResource vertSwitchCard;
 	// test dock 
 	[Export] CardResource horizSwitchCard;
-
+	[Export] RelicSelection relicSelection;
 	[Export] Control cardShop;
 	[Export] PackedScene cardScene;
 	[Export] PackedScene marginContainerScene;
@@ -131,10 +131,9 @@ public partial class DayOver : Control
 	private void addRelic() {
 		List<RelicResource> relicResources = gameManager.getRelicPool();
 		RandomHelper.Shuffle(relicResources);
-		RelicResource relicResource = relicResources[0];
-
-		gameManager.addRelic(relicResource);
-		confirmationText.Text = relicResource.description;
+		List<RelicResource> relicsInSelection = relicResources.GetRange(0,Math.Min(3,relicResources.Count));
+		relicSelection.setRelics(relicsInSelection);
+		relicSelection.Visible = true;
 	}
 
 	private void upgradeCard() {

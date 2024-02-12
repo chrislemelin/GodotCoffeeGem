@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://decpltn4recv4"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://decpltn4recv4"]
 
 [ext_resource type="StyleBox" uid="uid://b2iis8l3fgnke" path="res://UI/Themes/PixelBoxBackground.tres" id="1_gfhep"]
 
@@ -40,6 +40,15 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xodmf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osqdc"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0, 0, 0, 0.501961)
@@ -56,3 +65,5 @@ Button/styles/hover = SubResource("StyleBoxFlat_8sv2r")
 Button/styles/normal = SubResource("StyleBoxFlat_wrlob")
 Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
 Panel/styles/panel = ExtResource("1_gfhep")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_osqdc")
