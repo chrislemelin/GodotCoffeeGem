@@ -116,15 +116,6 @@ cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
 
-[node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
-unique_name_in_owner = true
-offset_left = 1686.0
-offset_top = 609.0
-offset_right = 1877.0
-offset_bottom = 670.0
-tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
-theme = ExtResource("16_m0mlx")
-
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(1000, 172)
@@ -187,6 +178,15 @@ position = Vector2(271, 694)
 stream = ExtResource("13_oa770")
 volume_db = -80.0
 autoplay = true
+
+[node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
+unique_name_in_owner = true
+offset_left = 1686.0
+offset_top = 609.0
+offset_right = 1877.0
+offset_bottom = 670.0
+tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
+theme = ExtResource("16_m0mlx")
 
 [node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
 visible = false

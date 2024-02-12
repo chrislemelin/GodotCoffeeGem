@@ -36,12 +36,6 @@ public partial class GameManager : GameManagerIF
 	{
 		base._Ready();
 		int currentLevel = global.currentLevel;
-		if (currentLevel > levels.Count) {
-			// you win
-			resetGlobals();
-			gameOverScreen.label.Text = "You win!!!";
-			gameOverScreen.Visible = true;
-		}
 		currentLevelResource = levels[currentLevel-1];
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
 		if (bossRecipe != null) {
@@ -114,10 +108,11 @@ public partial class GameManager : GameManagerIF
 
 		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
 		levelComplete.setCoinsGained(coinsGained);
-		if (currentLevel == levels.Count - 1) {
+		if (currentLevel == levels.Count) {
 			resetGlobals();
 			gameOverScreen.label.Text = "You win!!!";
 			gameOverScreen.Visible = true;
+			return;
 		}
 
 		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe) {

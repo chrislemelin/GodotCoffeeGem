@@ -183,6 +183,7 @@ cost = 30
 
 [node name="Gem upgrade" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+tooltip_text = "This will upgrade the points and mult gained from matching an ingredient"
 theme = ExtResource("11_37gdu")
 text = "Purchase better ingredients (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
@@ -207,9 +208,9 @@ cost = 30
 [node name="Relic" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("11_37gdu")
-text = "Buy a relic (passive ability) (75 coins)"
+text = "Buy a relic (passive ability) (60 coins)"
 script = ExtResource("2_x4g5w")
-cost = 75
+cost = 60
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
