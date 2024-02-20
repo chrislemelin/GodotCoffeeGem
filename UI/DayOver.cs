@@ -38,6 +38,7 @@ public partial class DayOver : Control
 	private List<Button> buttons = new List<Button>();
 	private List<ButtonWithCoinCost> buttonWithCoinCost = new List<ButtonWithCoinCost>();
 	private List<RelicUI> relicUIsInShop = new List<RelicUI>();
+	private List<CardInfoLoader> cardsInShop = new List<CardInfoLoader>();
 
 	private CardResource? cardToReplace;
 
@@ -110,6 +111,7 @@ public partial class DayOver : Control
 		};
 		relicButton.Pressed += addRelic;
 		advanceLevelButton.Pressed += () => gameManager.advanceLevel();
+		coinsChanged(gameManager.getCoins());
 	}
 
 	public void subtractCoins(ButtonWithCoinCost buttonWithCoinCost) {
@@ -151,6 +153,13 @@ public partial class DayOver : Control
 		foreach(RelicUI relicUI in relicUIsInShop) {
 			relicUI.buyButton.Disabled = gameManager.getCoins() < relicUI.relicResource.cost;
 		}
+		foreach(CardInfoLoader cardInfoLoader in cardsInShop) {
+			if(cardInfoLoader.cardResource.getCoinCost() > coins) {
+				cardInfoLoader.setDisabled();
+			} else {
+				cardInfoLoader.setEnabled();
+			}
+		}
 	}
 
 	private void addRelicsToShop() {
@@ -185,22 +194,24 @@ public partial class DayOver : Control
 			foreach(CardResource cardResource in cards) {
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
 			//cardInfoLoaders.Add(cardInfoLoader);
+			cardsInShop.Add(cardInfoLoader);
 			cardInfoLoader.setUpCard(cardResource);
 			cardInfoLoader.setShowCoinCost(true);
 			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
 			marginContainer.AddChild(cardInfoLoader);
-			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, marginContainer);
+			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader, marginContainer);
 			cardShop.AddChild(marginContainer);
 		}
 	}
 
-	private void cardClicked(InputEvent inputEvent, CardResource cardResource, MarginContainer marginContainer) {
+	private void cardClicked(InputEvent inputEvent, CardResource cardResource, CardInfoLoader cardInfoLoader, MarginContainer marginContainer) {
 		if (inputEvent.IsActionPressed("click"))
 		{
 			if (gameManager.getCoins() > cardResource.getCoinCost()) {
 				gameManager.addCoins(-1 * cardResource.getCoinCost());
 				gameManager.addCardToDeckList(cardResource);
 				cardShop.RemoveChild(marginContainer);
+				cardsInShop.Remove(cardInfoLoader);
 			}
 		};
 	}

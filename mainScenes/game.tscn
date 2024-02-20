@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=49 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="32_otpbl"]
 [ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
+[ext_resource type="Script" path="res://UI/Game/PlayableCardsUI.cs" id="37_635hs"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
 
 [sub_resource type="Resource" id="Resource_nv7p6"]
@@ -112,6 +113,7 @@ welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 levelComplete = NodePath("UIOverLays/LevelComplete")
+skipFirstLevel = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
@@ -155,7 +157,7 @@ deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Score" parent="." node_paths=PackedStringArray("gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
-position = Vector2(1511, 342)
+position = Vector2(1748, 257)
 gameManager = NodePath("..")
 bossRecipeUI = NodePath("../BossRecipeUI")
 
@@ -179,7 +181,7 @@ stream = ExtResource("13_oa770")
 volume_db = -80.0
 autoplay = true
 
-[node name="NewTurnButton" parent="." instance=ExtResource("13_hie55")]
+[node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
 offset_left = 1686.0
 offset_top = 609.0
@@ -187,6 +189,7 @@ offset_right = 1877.0
 offset_bottom = 670.0
 tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
 theme = ExtResource("16_m0mlx")
+playableCardsUI = NodePath("../UIOverLays/PlayableCards")
 
 [node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
 visible = false
@@ -396,10 +399,10 @@ anchors_preset = 0
 [node name="Mult tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1706.0
-offset_top = 143.0
-offset_right = 1706.0
-offset_bottom = 143.0
+offset_left = 1819.0
+offset_top = 76.0
+offset_right = 1819.0
+offset_bottom = 76.0
 rotation = -0.00465528
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Mult tutorial"]
@@ -425,10 +428,10 @@ text = "This is your score multiplier, which increases the value of your ingredi
 [node name="Score tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1216.0
-offset_top = 422.0
-offset_right = 1216.0
-offset_bottom = 422.0
+offset_left = 1459.0
+offset_top = 337.0
+offset_right = 1459.0
+offset_bottom = 337.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Score tutorial"]
 layout_mode = 0
@@ -452,10 +455,10 @@ text = "This is your progress for the current level. Fill this bar to clear your
 [node name="turns remaining" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1154.0
-offset_top = 454.0
-offset_right = 1154.0
-offset_bottom = 454.0
+offset_left = 1390.0
+offset_top = 377.0
+offset_right = 1390.0
+offset_bottom = 377.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/turns remaining"]
 layout_mode = 0
@@ -506,10 +509,10 @@ text = "End your turn to draw a new hand and reset your energy to 3. Turns are a
 [node name="End Turn3" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1201.0
-offset_top = 580.0
-offset_right = 1201.0
-offset_bottom = 580.0
+offset_left = 1420.0
+offset_top = 495.0
+offset_right = 1420.0
+offset_bottom = 495.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn3"]
 layout_mode = 0
@@ -761,9 +764,9 @@ text = "Continue"
 [node name="TutorialButton" type="TextureButton" parent="UIOverLays"]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 71.0
+offset_top = 70.0
 offset_right = 404.0
-offset_bottom = 471.0
+offset_bottom = 470.0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
 
@@ -871,6 +874,83 @@ offset_right = 1035.0
 offset_bottom = 669.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
+
+[node name="PlayableCards" type="Control" parent="UIOverLays" node_paths=PackedStringArray("showUI", "button")]
+visible = false
+anchors_preset = 0
+script = ExtResource("37_635hs")
+showUI = NodePath("CheckBox")
+button = NodePath("Button")
+
+[node name="Background" type="TextureRect" parent="UIOverLays/PlayableCards"]
+modulate = Color(0, 0, 0, 0.568627)
+layout_mode = 0
+offset_left = -10.0
+offset_right = 1922.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Panel" type="Panel" parent="UIOverLays/PlayableCards"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 367.0
+offset_right = 1481.0
+offset_bottom = 698.0
+theme = ExtResource("18_y5ido")
+
+[node name="Foreground" type="TextureRect" parent="UIOverLays/PlayableCards"]
+visible = false
+modulate = Color(0.560784, 0.560784, 0.560784, 1)
+layout_mode = 0
+offset_left = 460.0
+offset_top = 367.0
+offset_right = 1483.0
+offset_bottom = 696.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/PlayableCards"]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 408.0
+offset_right = 1411.0
+offset_bottom = 566.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/PlayableCards/VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "You still have cards you can play. Are you sure you want to end your turn? Most 0 cost cards are worth playing"
+fit_content = true
+
+[node name="Button" type="Button" parent="UIOverLays/PlayableCards"]
+layout_mode = 0
+offset_left = 762.0
+offset_top = 619.0
+offset_right = 1035.0
+offset_bottom = 678.0
+theme = ExtResource("16_m0mlx")
+text = "Continue"
+
+[node name="CheckBox" type="CheckBox" parent="UIOverLays/PlayableCards"]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 573.0
+offset_right = 1009.0
+offset_bottom = 604.0
+text = "Dont show me this again"
 
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]
 visible = false

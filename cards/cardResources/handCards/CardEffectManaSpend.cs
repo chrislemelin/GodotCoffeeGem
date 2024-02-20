@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 
 [GlobalClass, Tool]
-public partial class MultIncreaseCardEffect : CardEffectIF
+public partial class CardEffectManaSpend : CardEffectIF
 {
-	[Export] private float multIncrease;
-
-	public MultIncreaseCardEffect() {
+	public CardEffectManaSpend() {
+		 
 	}
 
 	public override SelectionType getSelectionType()
@@ -15,9 +14,11 @@ public partial class MultIncreaseCardEffect : CardEffectIF
 		return SelectionType.None;
 	}
 
+
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		FindObjectHelper.getScore(matchBoard).addMult(multIncrease);
-		hand.drawCards(1);
+		int manaValue = mana.manaValue;
+		mana.modifyMana(-1 * manaValue);
+		FindObjectHelper.getScore(matchBoard).addScore(100 * manaValue);
 	}
 }

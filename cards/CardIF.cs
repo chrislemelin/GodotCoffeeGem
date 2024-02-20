@@ -14,6 +14,8 @@ public partial class CardIF : lerp
 	[Export] protected Color disabledColor;
 	[Export] protected TextureRect titleSprite;
 
+	public bool enabled {get; private set;} = true;
+
 
 	[Signal]
 	public delegate void clickedSignalEventHandler(InputEvent inputEvent);
@@ -27,10 +29,12 @@ public partial class CardIF : lerp
 
 	public void setDisabled()
 	{
+		enabled = false;
 		Modulate = disabledColor;
 	}
 	public void setEnabled()
 	{
+		enabled = true;
 		Modulate = new Color(1, 1, 1);
 	}
 

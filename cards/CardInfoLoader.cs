@@ -6,12 +6,14 @@ public partial class CardInfoLoader : Control
 	[Export] protected RichTextLabel titleLabel;
 	[Export] protected RichTextLabel descriptionLabel;
 	[Export] protected RichTextLabel costLabel;
-	[Export] protected CardResource cardResource;
+	[Export] public CardResource cardResource;
 	[Export] protected TextureRect picture;
 	[Export] protected TextureRect titleSprite;
 	[Export] protected HighlightOnHover highlightOnHover;
 	[Export] protected Control coinCostControl;
 	[Export] protected RichTextLabel coinCostText;
+	[Export] protected Color disabledColor;
+	[Export] AnimationPlayer animationPlayer;
 
 
 
@@ -22,6 +24,21 @@ public partial class CardInfoLoader : Control
 		this.GrowVertical = GrowDirection.Both;
 
 		//setUpCard(cardResource);
+	}
+
+	public void flipCard() {
+		animationPlayer.Play("CardFlip");
+	}
+
+	public void setDisabled()
+	{
+		Modulate = disabledColor;
+		highlightOnHover.setForceHighlightOff(true);
+	}
+	public void setEnabled()
+	{
+		Modulate = new Color(1, 1, 1);
+		highlightOnHover.setForceHighlightOff(false);
 	}
 
 	public void setUpCard(CardResource cardResource)

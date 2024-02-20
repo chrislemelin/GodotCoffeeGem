@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=14 format=3 uid="uid://dicb3wwg7ecmd"]
 
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="1_qnag5"]
 [ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_u3ora"]
@@ -15,7 +15,67 @@ shader = ExtResource("3_u3ora")
 shader_parameter/line_color = Color(1, 1, 0, 0)
 shader_parameter/line_thickness = 5.009
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText")]
+[sub_resource type="Animation" id="Animation_jdv37"]
+resource_name = "CardFlip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Center:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1.25), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_l2nvg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Center:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjwwm"]
+_data = {
+"CardFlip": SubResource("Animation_jdv37"),
+"RESET": SubResource("Animation_l2nvg")
+}
+
+[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(530, 800)
 layout_mode = 3
@@ -43,24 +103,29 @@ titleSprite = NodePath("Center/Title/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
 coinCostControl = NodePath("CoinCost")
 coinCostText = NodePath("CoinCost/HBoxContainer/RichTextLabel")
+disabledColor = Color(0.501961, 0.501961, 0.501961, 1)
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Center" type="Control" parent="."]
 custom_minimum_size = Vector2(420, 600)
 layout_mode = 2
 anchors_preset = 0
-offset_right = 420.0
-offset_bottom = 600.0
+offset_left = 62.0
+offset_top = 80.0
+offset_right = 482.0
+offset_bottom = 680.0
 scale = Vector2(1.25, 1.25)
+pivot_offset = Vector2(210, 300)
 mouse_filter = 2
 
 [node name="Background" type="TextureRect" parent="Center"]
 modulate = Color(0.239216, 0, 0.00392157, 1)
 material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 2
-offset_left = -5.6
-offset_top = -26.4
-offset_right = 462.4
-offset_bottom = 651.6
+offset_left = -8.39999
+offset_top = -28.0
+offset_right = 459.6
+offset_bottom = 650.0
 texture = ExtResource("4_1yqfg")
 expand_mode = 1
 script = ExtResource("5_qjawy")
@@ -216,3 +281,19 @@ autowrap_mode = 0
 layout_mode = 2
 texture = ExtResource("9_w4arf")
 expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.560784, 0, 0.290196, 1)
+layout_mode = 1
+offset_left = -9.0
+offset_top = -34.0
+offset_right = 595.0
+offset_bottom = 829.0
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(285, 400)
+texture = ExtResource("4_1yqfg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hjwwm")
+}

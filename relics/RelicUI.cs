@@ -30,7 +30,7 @@ public partial class RelicUI : CustomToolTip
 	private void render() {
 		titleLabel.Text = TextHelper.centered(relicResource.title);
 		picture.Texture = relicResource.image;
-		TooltipText = relicResource.description;
+		picture.TooltipText = relicResource.description;
 		renderCost();
 		renderCounter(0);
 	}

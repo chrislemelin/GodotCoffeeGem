@@ -20,7 +20,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_5eytb")
 Title = "Compliment"
-Description = "Add .25 to the multiplier for this turn"
+Description = "Add .25 to the multiplier for this turn and then draw a card"
 Cost = 0
 rarity = 1
 coinCost = 0

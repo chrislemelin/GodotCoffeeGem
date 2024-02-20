@@ -208,6 +208,15 @@ public partial class Hand : Node
 		setCardHovered(Optional.None<CardIF>());
 	}
 
+	public bool hasPlayableCards() {
+		foreach(CardIF card in cards){
+			if (card.enabled) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	private void setCardHovered(Optional<CardIF> card)
 	{
@@ -234,9 +243,9 @@ public partial class Hand : Node
 
 	public void cleanUpOldTurn()
 	{
+		clearSelectedCard();
 		discardHand();
 		cardsPlayedThisTurn.Clear();
-		clearSelectedCard();
 		mana.resetManaValue();
 	}
 

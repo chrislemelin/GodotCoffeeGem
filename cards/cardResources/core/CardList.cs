@@ -9,6 +9,7 @@ public partial class CardList : Resource
 
 	[Export] public Godot.Collections.Array<CardResource> allCards;
 
+
 	public CardList () {
 	
 	}
@@ -19,4 +20,5 @@ public partial class CardList : Resource
 		RandomHelper.Shuffle(cards);
 		return(cards[0]);
 	}
+
 }

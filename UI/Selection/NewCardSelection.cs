@@ -77,6 +77,7 @@ public partial class NewCardSelection : Control
 				CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
 				cardInfoLoader.setUpCard(cardResource);
 				cardContainer.AddChild(cardInfoLoader);
+				cardInfoLoader.flipCard();
 				cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource);
 			}
 		}
