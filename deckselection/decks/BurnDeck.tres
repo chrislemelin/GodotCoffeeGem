@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://wb0sejxfci1g"]
+
+[ext_resource type="Resource" uid="uid://bqm1enm1moeal" path="res://cards/cardResources/cardLists/BurnCardList.tres" id="1_oajhn"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="3_cuh44"]
+
+[resource]
+script = ExtResource("3_cuh44")
+cardList = ExtResource("1_oajhn")
+relics = Array[Object]([])
+title = "Burn Deck"
+description = "Some people just want to watch the world burn.
+Start cards that make more burnt ingredients and have better cards for dealing with them"
+color = Color(0, 0, 0, 1)

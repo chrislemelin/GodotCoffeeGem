@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://2av55t0yxy4e"]
+[gd_scene load_steps=14 format=3 uid="uid://2av55t0yxy4e"]
 
 [ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
 [ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="8_8qiu1"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
+[ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="10_6qdhe"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
 
 [sub_resource type="Resource" id="Resource_ioiih"]
@@ -79,23 +80,25 @@ scroll_active = false
 
 [node name="CardShop" type="HBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 572.0
-offset_top = 592.0
-offset_right = 3682.0
-offset_bottom = 1544.0
+offset_left = 571.0
+offset_top = 574.0
+offset_right = 3681.0
+offset_bottom = 1526.0
 scale = Vector2(0.25, 0.25)
 alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="CardShop"]
 visible = false
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="CardShop/MarginContainer2" instance=ExtResource("8_jclpp")]
-layout_mode = 2
+[node name="card2" parent="CardShop/MarginContainer2" instance=ExtResource("10_6qdhe")]
+position = Vector2(313, 448)
+scale = Vector2(1.25, 1.25)
 
 [node name="MarginContainer3" type="MarginContainer" parent="CardShop"]
 visible = false
@@ -140,6 +143,106 @@ theme_override_constants/margin_bottom = 20
 
 [node name="UI" parent="CardShop/MarginContainer6" instance=ExtResource("8_jclpp")]
 layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="CardShop"]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="card2" parent="CardShop/MarginContainer7" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
+position = Vector2(313, 448)
+scale = Vector2(1.25, 1.25)
+control = NodePath("../../MarginContainer2/card2/UI")
+titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer2/card2/UI/Description/RichTextLabel")
+costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
+picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
+titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
+
+[node name="MarginContainer8" type="MarginContainer" parent="CardShop"]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="card2" parent="CardShop/MarginContainer8" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
+position = Vector2(313, 448)
+scale = Vector2(1.25, 1.25)
+control = NodePath("../../MarginContainer2/card2/UI")
+titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer2/card2/UI/Description/RichTextLabel")
+costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
+picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
+titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
+
+[node name="MarginContainer9" type="MarginContainer" parent="CardShop"]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="card2" parent="CardShop/MarginContainer9" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
+position = Vector2(313, 448)
+scale = Vector2(1.25, 1.25)
+control = NodePath("../../MarginContainer2/card2/UI")
+titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer2/card2/UI/Description/RichTextLabel")
+costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
+picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
+titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
+
+[node name="MarginContainer10" type="MarginContainer" parent="CardShop"]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="card2" parent="CardShop/MarginContainer10" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
+position = Vector2(313, 448)
+scale = Vector2(1.25, 1.25)
+control = NodePath("../../MarginContainer2/card2/UI")
+titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer2/card2/UI/Description/RichTextLabel")
+costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
+picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
+titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
+
+[node name="MarginContainer11" type="MarginContainer" parent="CardShop"]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="card2" parent="CardShop/MarginContainer11" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
+position = Vector2(313, 448)
+scale = Vector2(1.25, 1.25)
+control = NodePath("../../MarginContainer2/card2/UI")
+titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer2/card2/UI/Description/RichTextLabel")
+costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
+picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
+titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

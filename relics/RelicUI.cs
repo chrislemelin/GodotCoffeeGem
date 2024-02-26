@@ -14,6 +14,7 @@ public partial class RelicUI : CustomToolTip
 	[Export] Vector2 minSizeWithCost;
 	[Export] private Control costControl;
 	[Export] public Button buyButton;
+	[Export] public AnimationPlayer animationPlayer;
 
 	public void setRelic(RelicResource relicResource)
 	{
@@ -33,6 +34,10 @@ public partial class RelicUI : CustomToolTip
 		picture.TooltipText = relicResource.description;
 		renderCost();
 		renderCounter(0);
+	}
+
+	public void activateAnimation() {
+		animationPlayer.Play("Activate");
 	}
 
 	private void renderTitle() {

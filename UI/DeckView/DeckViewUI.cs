@@ -2,27 +2,34 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class DeckViewUI : Control
+public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 {
 	[Export] PackedScene cardScene;
 	[Export] PackedScene marginContainerScene;
 	[Export] GridContainer gridContainer;
-	[Export] Button closeButton;
 	[Export] RichTextLabel title;
+	[Export] float deletingFadeOutDelay = .25f;
+
+	private bool deleting = false;
 
 	private List<CardInfoLoader> cardInfoLoaders = new List<CardInfoLoader>();
 
 	private Action<CardResource> cardCallBack;
-	private CardResource cardSelected;
+	private CardInfoLoader cardSelected;
 
 	public override void _Ready()
 	{
 		base._Ready();
-		closeButton.Pressed += () => {
+		resetAnimation();
+		button.Pressed += () => {
 			if (cardCallBack != null) {
-				cardCallBack(cardSelected);
+				if (deleting) {
+					cardSelected.destroyCard();
+					GetTree().CreateTimer(.5f).Timeout += () => cardCallBack(cardSelected.cardResource);
+				} else {
+					cardCallBack(cardSelected.cardResource);
+				}
 			}
-			Visible = false;
 		};
 	}
 
@@ -39,26 +46,45 @@ public partial class DeckViewUI : Control
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
 			cardInfoLoaders.Add(cardInfoLoader);
 			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader);
+			cardInfoLoader.setForceHighlightOff(true);
 			cardInfoLoader.setUpCard(cardResource);
 			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
 			marginContainer.AddChild(cardInfoLoader);
 			gridContainer.AddChild(marginContainer);
 		}
-		Visible = true;
+		setVisible(true);
+		GetTree().CreateTimer(.25f).Timeout += () => {
+			foreach(CardInfoLoader cardInfoLoader in cardInfoLoaders) {
+				cardInfoLoader.setForceHighlightOff(false);
+			}
+		};
 	}
 
 	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title) {
+		
+		setUp(cards, cardCallBack, title, false);
+	}
+
+	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title, bool deleting) {
+		
 		this.cardCallBack = cardCallBack;
 		if (cardCallBack == null) {
-			closeButton.Text = "close";
-			closeButton.Disabled = false;
+			button.Text = "close";
+			button.Disabled = false;
 		} else {
-			closeButton.Text = "confirm";
-			closeButton.Disabled = true;
+			button.Text = "confirm";
+			button.Disabled = true;
 		}
 		this.title.Text = title;
+		this.deleting = deleting;
+		if (deleting) {
+			fadeOutDelay = deletingFadeOutDelay;
+		} else {
+			fadeOutDelay = 0;
+		}
 		setUpInternal(cards);
 	}
+
 
 	public void setUp(List<CardResource> cards) {
 		setUp(cards, null, "");
@@ -68,8 +94,8 @@ public partial class DeckViewUI : Control
 		if (inputEvent.IsActionPressed("click"))
 		{
 			if(cardCallBack != null) {
-				cardSelected = cardResource;
-				closeButton.Disabled = false;
+				cardSelected = cardInfoLoader;
+				button.Disabled = false;
 				foreach(CardInfoLoader currentCardInfoLoader in cardInfoLoaders) {
 					if(currentCardInfoLoader == cardInfoLoader) {
 						currentCardInfoLoader.setForceHighlight(true);

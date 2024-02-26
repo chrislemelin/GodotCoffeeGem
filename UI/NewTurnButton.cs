@@ -39,7 +39,7 @@ public partial class NewTurnButton : CustomToolTipButton
 	}
 
 	private bool shouldShowPlayableCardsUI() {
-		if (!hasShownPlayableCardsUI && !playableCardsUI.showUI.ButtonPressed) {
+		if (!hasShownPlayableCardsUI && !playableCardsUI.showUI.ButtonPressed && !FindObjectHelper.getScore(this).scoreReached()) {
 			return true;
 		}
 		return false;

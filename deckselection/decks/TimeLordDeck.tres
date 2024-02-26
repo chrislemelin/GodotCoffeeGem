@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://bb2orrhuvkgpk"]
+
+[ext_resource type="Resource" uid="uid://bpieaq7va0s0u" path="res://cards/cardResources/cardLists/TurnCardList.tres" id="1_ow6o7"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_0y13u"]
+
+[resource]
+script = ExtResource("2_0y13u")
+cardList = ExtResource("1_ow6o7")
+relics = Array[Object]([])
+title = "Turn Deck"
+description = "Who doesn't like more turns?
+Start with the powerful Add Turn card"
+color = Color(0, 0.678431, 0.156863, 1)

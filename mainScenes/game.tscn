@@ -1,9 +1,9 @@
-[gd_scene load_steps=49 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=52 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_tlo67"]
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_tlo67"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
@@ -15,9 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
-[ext_resource type="AudioStream" uid="uid://chm1wbxd0tacb" path="res://sound/music/ChillLofiR.mp3" id="13_oa770"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="14_31k88"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
+[ext_resource type="AudioStream" uid="uid://bihxsxxfe3i8s" path="res://sound/music/little_cafe.wav" id="16_18vio"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="16_m0mlx"]
 [ext_resource type="PackedScene" uid="uid://cmj3k4irtmxwc" path="res://relics/RelicHolder.tscn" id="16_qkjnw"]
 [ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="16_rcb0t"]
@@ -99,6 +99,44 @@ score = 10000
 makeRandomBossRecipe = true
 blockedTiles = 0
 
+[sub_resource type="Animation" id="Animation_n7a6h"]
+resource_name = "FadeIn"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(457, 1100), Vector2(457, 367)]
+}
+
+[sub_resource type="Animation" id="Animation_rp5ce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(457, 1300)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1386"]
+_data = {
+"FadeIn": SubResource("Animation_n7a6h"),
+"RESET": SubResource("Animation_rp5ce")
+}
+
 [node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete")]
 position = Vector2(-3, -1)
 script = ExtResource("1_5jnm2")
@@ -113,7 +151,6 @@ welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 levelComplete = NodePath("UIOverLays/LevelComplete")
-skipFirstLevel = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
@@ -177,9 +214,9 @@ unique_name_in_owner = true
 position = Vector2(271, 694)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_oa770")
-volume_db = -80.0
-autoplay = true
+visible = false
+stream = ExtResource("16_18vio")
+panning_strength = 1.28
 
 [node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
@@ -788,12 +825,13 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("continueButton", "richTextLabel")]
+[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("richTextLabel", "button", "animationPlayer")]
 visible = false
 anchors_preset = 0
 script = ExtResource("32_x2qxf")
-continueButton = NodePath("Button")
-richTextLabel = NodePath("VBoxContainer/HBoxContainer2/RichTextLabel")
+richTextLabel = NodePath("Panel/VBoxContainer/HBoxContainer2/RichTextLabel")
+button = NodePath("Panel/Button")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Background" type="TextureRect" parent="UIOverLays/LevelComplete"]
 modulate = Color(0, 0, 0, 0.568627)
@@ -812,35 +850,19 @@ flip_v = true
 [node name="Panel" type="Panel" parent="UIOverLays/LevelComplete"]
 layout_mode = 0
 offset_left = 457.0
-offset_top = 367.0
+offset_top = 1300.0
 offset_right = 1481.0
-offset_bottom = 698.0
-theme = ExtResource("18_y5ido")
+offset_bottom = 1631.0
+theme = ExtResource("16_m0mlx")
 
-[node name="Foreground" type="TextureRect" parent="UIOverLays/LevelComplete"]
-visible = false
-modulate = Color(0.560784, 0.560784, 0.560784, 1)
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/LevelComplete/Panel"]
 layout_mode = 0
-offset_left = 460.0
-offset_top = 367.0
-offset_right = 1483.0
-offset_bottom = 696.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("18_vk04q")
-expand_mode = 2
-flip_h = true
-flip_v = true
+offset_left = 54.0
+offset_top = 41.0
+offset_right = 954.0
+offset_bottom = 199.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/LevelComplete"]
-layout_mode = 0
-offset_left = 511.0
-offset_top = 408.0
-offset_right = 1411.0
-offset_bottom = 566.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(845, 50)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 35
@@ -848,11 +870,11 @@ bbcode_enabled = true
 text = "Level Passed!"
 fit_content = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UIOverLays/LevelComplete/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UIOverLays/LevelComplete/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 7.9
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/VBoxContainer/HBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/Panel/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 35
@@ -860,20 +882,25 @@ text = "You gained"
 fit_content = true
 scroll_active = false
 
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/LevelComplete/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/LevelComplete/Panel/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("32_otpbl")
 expand_mode = 1
 
-[node name="Button" type="Button" parent="UIOverLays/LevelComplete"]
+[node name="Button" type="Button" parent="UIOverLays/LevelComplete/Panel"]
 layout_mode = 0
-offset_left = 762.0
-offset_top = 610.0
-offset_right = 1035.0
-offset_bottom = 669.0
+offset_left = 305.0
+offset_top = 243.0
+offset_right = 578.0
+offset_bottom = 302.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIOverLays/LevelComplete"]
+libraries = {
+"": SubResource("AnimationLibrary_d1386")
+}
 
 [node name="PlayableCards" type="Control" parent="UIOverLays" node_paths=PackedStringArray("showUI", "button")]
 visible = false
@@ -881,6 +908,7 @@ anchors_preset = 0
 script = ExtResource("37_635hs")
 showUI = NodePath("CheckBox")
 button = NodePath("Button")
+fadeOutDelay = 0.25
 
 [node name="Background" type="TextureRect" parent="UIOverLays/PlayableCards"]
 modulate = Color(0, 0, 0, 0.568627)

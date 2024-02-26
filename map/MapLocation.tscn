@@ -1,35 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://bs0yawupejkyk"]
+[gd_scene load_steps=10 format=3 uid="uid://bs0yawupejkyk"]
 
 [ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
-[ext_resource type="Shader" path="res://cards/outlineShader.gdshader" id="2_0b8c7"]
-[ext_resource type="Texture2D" uid="uid://cqlredqy3j2x8" path="res://placeholders/Map/Shop.png" id="2_ern76"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_t53kr"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="3_os8q3"]
 [ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_celhv"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="4_edqu2"]
-[ext_resource type="Texture2D" uid="uid://ctpiva7ixvlkn" path="res://placeholders/Map/Building2-scaledup.png" id="6_nn2rb"]
+[ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="5_lg18n"]
+[ext_resource type="Texture2D" uid="uid://e5u303ieb0tt" path="res://placeholders/Map/RandomBuilding-pixel-scaled.png" id="6_i1fek"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4i6bp"]
-shader = ExtResource("2_0b8c7")
+shader = ExtResource("5_lg18n")
 shader_parameter/line_color = Color(0.788235, 0.65098, 0, 1)
 shader_parameter/line_thickness = 1.615
 
 [sub_resource type="Theme" id="Theme_h60qy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4i0a"]
-size = Vector2(99, 81)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i55io"]
-shader = ExtResource("2_0b8c7")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 1.0
-
 [node name="MapLocation" type="Control" node_paths=PackedStringArray("image", "label", "highlight")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1.0
-offset_right = 2.0
-offset_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_3kcgv")
 image = NodePath("TextureRect")
 label = NodePath("RichTextLabel")
@@ -39,15 +29,17 @@ vertSwitchCard = ExtResource("2_t53kr")
 horizSwitchCard = ExtResource("3_os8q3")
 upgradedSwitchCard = ExtResource("4_celhv")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("area2D")]
 material = SubResource("ShaderMaterial_4i6bp")
 layout_mode = 0
-offset_left = -97.0
-offset_top = -243.0
-offset_right = 191.0
-offset_bottom = 42.0
-texture = ExtResource("6_nn2rb")
+offset_left = -89.0
+offset_top = -327.0
+offset_right = 199.0
+offset_bottom = 60.0
+mouse_filter = 2
+texture = ExtResource("6_i1fek")
 script = ExtResource("4_edqu2")
+area2D = NodePath("../Control")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -56,6 +48,7 @@ offset_top = -107.0
 offset_right = 166.0
 offset_bottom = -15.0
 rotation = 0.792916
+mouse_filter = 2
 theme = SubResource("Theme_h60qy")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -63,16 +56,11 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]Gain Card"
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(49.5, 41.5)
-shape = SubResource("RectangleShape2D_a4i0a")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_i55io")
-position = Vector2(117, 84)
-texture = ExtResource("2_ern76")
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -126.0
+offset_top = -95.0
+offset_right = 190.0
+offset_bottom = 119.0
+rotation = -0.785398
+mouse_filter = 1

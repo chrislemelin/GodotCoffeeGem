@@ -20,7 +20,7 @@ public partial class GameManagerIF : Node2D
 	public List<CardResource> getDeckList()
 	{
 		loadGlobalAndSetDeckToDefault();
-		return new List<CardResource>(global.deckCardList.allCards);
+		return new List<CardResource>(global.deckCardList.getCards());
 	}
 
 	public void addCardToDeckList(CardResource cardResource)
@@ -28,12 +28,12 @@ public partial class GameManagerIF : Node2D
 		if (cardResource == null) {
 			return;
 		}
-		global.deckCardList.allCards.Add(cardResource);
+		global.deckCardList.getCards().Add(cardResource);
 	}
 
 	public void removeCardFromDeckList(CardResource cardResource)
 	{
-		global.deckCardList.allCards.Remove(cardResource);
+		global.deckCardList.getCards().Remove(cardResource);
 	}
 
 	public override void _Ready()
@@ -52,24 +52,33 @@ public partial class GameManagerIF : Node2D
 
 	protected void loadGlobalAndSetDeckToDefault()
 	{
-		if (getGlobal().deckCardList == null || getGlobal().deckCardList.allCards.Count == 0)
-		{
-			Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.allCards);
-			CardList newCardList = new CardList();
-			newCardList.allCards = cardList;
-			getGlobal().deckCardList = newCardList;
+		if (defaultCardList != null){
+			if (getGlobal().deckCardList == null || getGlobal().deckCardList.getCards().Count == 0)
+			{
+				Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards());
+				CardList newCardList = new CardList();
+				newCardList.setCards(cardList);
+				getGlobal().deckCardList = newCardList;
+			}
 		}
 	}
 
 	public void resetGlobals()
 	{
-		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.allCards);
-		getGlobal().deckCardList.allCards = cardList;
+		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards());
+		getGlobal().deckCardList.setCards(cardList);
 		getGlobal().currentLevel = 1;
 		getGlobal().currentHealth = 2;
 		getGlobal().relics = new List<RelicResource>();
 		getGlobal().shownBossTutorial = false;
+	}
 
+	public void setCardList(List<CardResource> cardResources)
+	{
+		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(cardResources);
+		CardList newCardList = new CardList();
+		newCardList.setCards(cardList);
+		getGlobal().deckCardList = newCardList;
 	}
 
 	public void addCardToGlobalDeckAndAdvanceLevel(CardResource cardResource)

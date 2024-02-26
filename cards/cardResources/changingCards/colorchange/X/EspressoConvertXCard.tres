@@ -11,6 +11,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -20,7 +22,7 @@ effectGemType = 4
 [resource]
 script = ExtResource("3_fywxn")
 Title = "Espresso Shot X"
-Description = "Change selected ingredient and ingredients diagonally adjacent to coffee"
+Description = "Change selected ingredient and diagonal ingredients to coffee"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_lhf2y")

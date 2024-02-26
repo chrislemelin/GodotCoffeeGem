@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MatchTypeRelic" load_steps=5 format=3 uid="uid://mewnbmllg73s"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveMultPassive.cs" id="1_72q4g"]
+[ext_resource type="Texture2D" uid="uid://b0mky4l7aoxcp" path="res://relics/sprites/Icon.6_37.png" id="2_qvkjq"]
+[ext_resource type="Script" path="res://relics/scripts/MatchTypeRelic.cs" id="3_l6eed"]
+
+[sub_resource type="Resource" id="Resource_kxjnb"]
+script = ExtResource("1_72q4g")
+multIncrease = 0.5
+value = 0
+
+[resource]
+script = ExtResource("3_l6eed")
+minMatchSize = 4
+ingredientType = 1
+title = "Vanilla 4 Matcher"
+description = "Gain .5 mult when you a match of 4 or more Vanilla"
+image = ExtResource("2_qvkjq")
+cost = 50
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_kxjnb")]
+counterMax = 0
+customCounter = false

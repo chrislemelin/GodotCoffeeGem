@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://fy1nlchg0ua5"]
+
+[ext_resource type="Resource" uid="uid://dwqsi2vsiplps" path="res://cards/cardResources/cardLists/EasyCardList.tres" id="1_8utyb"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_ubkqk"]
+
+[resource]
+script = ExtResource("2_ubkqk")
+cardList = ExtResource("1_8utyb")
+relics = Array[Object]([])
+title = "Baby Mode"
+description = "This is the baby mode deck (no judgement). Enjoy a little bit of extra starting power."
+color = Color(0.678431, 0.678431, 0.678431, 1)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardList" load_steps=10 format=3 uid="uid://del104butjxvh"]
+
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="1_16vtj"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_1fah7"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_eiu0j"]
+[ext_resource type="Resource" uid="uid://cyx0whk3fiin6" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/EspressoConvertRandomCard.tres" id="4_jed0k"]
+[ext_resource type="Resource" uid="uid://n1nnocv6743g" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/MilkConvertRandomCard.tres" id="5_vrp20"]
+[ext_resource type="Resource" uid="uid://oov7pb8y5mml" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/SugarConvertRandomCard.tres" id="6_xyclo"]
+[ext_resource type="Resource" uid="uid://b5qti3iu5mmlf" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/TeaConvertRandomCard.tres" id="7_jcw3e"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="7_qvv6d"]
+[ext_resource type="Resource" uid="uid://ct0cmbf354u4s" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/VanillaConvertRandomCard.tres" id="8_jop3p"]
+
+[resource]
+script = ExtResource("7_qvv6d")
+allCards = Array[Object]([ExtResource("4_jed0k"), ExtResource("5_vrp20"), ExtResource("6_xyclo"), ExtResource("7_jcw3e"), ExtResource("8_jop3p"), ExtResource("4_eiu0j"), ExtResource("2_1fah7"), ExtResource("2_1fah7"), ExtResource("1_16vtj"), ExtResource("1_16vtj")])

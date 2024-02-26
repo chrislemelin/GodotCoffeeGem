@@ -6,6 +6,8 @@ public partial class HighlightOnHover : TextureRect
 	[Export] Control area2D;
 	[Export] bool forceHighlightOn = false;
 	[Export] bool forceHighlightOff = false;
+	[Export] bool highlightOnSelf = true;
+
 	[Export] Node2D makeBigger;
 	[Export] Control makeBiggerControl;
 
@@ -23,8 +25,10 @@ public partial class HighlightOnHover : TextureRect
 	{
 
 		Material = (Material)Material.Duplicate();
-		MouseEntered += () =>  setHighlightFromMouse(true);
-		MouseExited += () =>  setHighlightFromMouse(false);
+		if (highlightOnSelf) {
+			MouseEntered += () =>  setHighlightFromMouse(true);
+			MouseExited += () =>  setHighlightFromMouse(false);
+		}
 		if (area2D != null) {
 			area2D.MouseEntered += () => setHighlightFromMouse(true);
 			area2D.MouseExited += () => setHighlightFromMouse(false);
@@ -56,16 +60,19 @@ public partial class HighlightOnHover : TextureRect
 				makeBiggerControl.Scale = (Vector2)startingSize;
 			}
 		}
+		renderHighlight();
 	}
 
 	public void setForceHighlight(bool forceHighlightValue)
 	{
 		forceHighlightOn = forceHighlightValue;
+		renderHighlight();
 	}
 
 	public void setForceHighlightOff(bool forceHighlightValue)
 	{
 		forceHighlightOff = forceHighlightValue;
+		renderHighlight();
 	}
 
 

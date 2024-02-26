@@ -3,15 +3,16 @@ using System;
 using System.Linq;
 
 [GlobalClass, Tool]
-public partial class AddManaGemsEffect : EffectResource
+public partial class AdddManaGemsEffect : EffectResource
 {	
+	[Export] GemAddonType type;
 
-	public AddManaGemsEffect() {
+	public AdddManaGemsEffect() {
 		 
 	}
 	
 	public override void execute(Node node) {
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
-		matchBoard.addGemAddons(matchBoard.getRandomNonBlackNonAddonTiles(value).Select(tile => tile.getTilePosition()).ToList(), GemAddonType.Mana);
+		matchBoard.addGemAddons(matchBoard.getRandomNonBlackNonAddonTiles(value).Select(tile => tile.getTilePosition()).ToList(), type);
 	}
 }

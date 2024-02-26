@@ -1,15 +1,15 @@
-[gd_scene load_steps=45 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=52 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_6g8vu"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="4_86n8f"]
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_86n8f"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
 [ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
-[ext_resource type="Texture2D" uid="uid://cx5yqj107517" path="res://placeholders/Map/Map-scaledup-nn.png" id="7_7jcq4"]
+[ext_resource type="Texture2D" uid="uid://bhwe8q2pky8uf" path="res://placeholders/Map/Map-newangles-scaled.png" id="7_8ddqg"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
@@ -20,8 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="21_ped7m"]
+[ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="20_y0tqh"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
+[ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
 script = ExtResource("10_ujm25")
@@ -30,6 +31,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 consume = false
@@ -54,6 +57,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 consume = false
@@ -79,6 +84,8 @@ Value = 0
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -125,6 +132,8 @@ Value = 0
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -171,6 +180,8 @@ Value = 0
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -217,6 +228,8 @@ Value = 0
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -263,6 +276,8 @@ Value = 0
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -278,6 +293,80 @@ Cost = 1
 rarity = 0
 coinCost = 0
 cardEffect = SubResource("Resource_smct3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t7lgg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g43en"]
+noise = SubResource("FastNoiseLite_t7lgg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsfkn"]
+shader = ExtResource("20_y0tqh")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = null
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_g43en")
+
+[sub_resource type="Animation" id="Animation_hbqvg"]
+resource_name = "FadeIn"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Forground:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.05, 0, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(551, 263), Vector2(551, 1200), Vector2(551, 263)]
+}
+
+[sub_resource type="Animation" id="Animation_eouyj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Forground:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(551, 1200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cse58"]
+_data = {
+"FadeIn": SubResource("Animation_hbqvg"),
+"RESET": SubResource("Animation_eouyj")
+}
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("newCardSelection", "deckViewUI")]
 script = ExtResource("1_sas1p")
@@ -301,9 +390,9 @@ topLines = [NodePath("Paths/Line2D4"), NodePath("Paths/Line2D5"), NodePath("Path
 botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths/Line2D3")]
 
 [node name="Map2" type="Sprite2D" parent="Map"]
-position = Vector2(961.074, 540)
-scale = Vector2(1.23, 1.23)
-texture = ExtResource("7_7jcq4")
+position = Vector2(968, 548)
+scale = Vector2(0.93, 0.93)
+texture = ExtResource("7_8ddqg")
 
 [node name="Background" type="TextureRect" parent="Map"]
 visible = false
@@ -315,7 +404,9 @@ texture = ExtResource("2_g041w")
 [node name="Control" type="Control" parent="Map"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 1.0
 offset_top = -8.0
+offset_right = 1.0
 offset_bottom = -8.0
 
 [node name="TopPath" type="Control" parent="Map/Control"]
@@ -323,14 +414,13 @@ anchors_preset = 0
 
 [node name="Control" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 1151.0
-offset_top = 254.0
-offset_right = 1151.0
-offset_bottom = 254.0
+offset_left = 984.0
+offset_top = 253.0
+offset_right = 984.0
+offset_bottom = 253.0
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control" instance=ExtResource("4_pfyjt")]
 visible = false
-offset_left = 0.0
 offset_right = 1.0
 vertSwitchCard = SubResource("Resource_bsuud")
 horizSwitchCard = SubResource("Resource_cy0ua")
@@ -338,14 +428,13 @@ upgradedSwitchCard = SubResource("Resource_oyaui")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 1349.0
-offset_top = 462.0
-offset_right = 1349.0
-offset_bottom = 462.0
+offset_left = 1266.0
+offset_top = 534.0
+offset_right = 1266.0
+offset_bottom = 534.0
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
-offset_left = 0.0
 offset_right = 96.0
 offset_bottom = 81.0
 image = NodePath("../../Control/MapLocation/TextureRect")
@@ -360,14 +449,13 @@ anchors_preset = 0
 [node name="Control" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 500.0
-offset_top = 713.0
-offset_right = 501.0
-offset_bottom = 714.0
+offset_left = 420.0
+offset_top = 802.0
+offset_right = 421.0
+offset_bottom = 803.0
 
 [node name="MapLocation" parent="Map/Control/BotPath/Control" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
-offset_left = 0.0
 offset_right = 1.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
@@ -378,14 +466,13 @@ upgradedSwitchCard = SubResource("Resource_vuu47")
 [node name="Control3" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 701.0
-offset_top = 918.0
-offset_right = 701.0
-offset_bottom = 918.0
+offset_left = 586.0
+offset_top = 969.0
+offset_right = 586.0
+offset_bottom = 969.0
 
 [node name="MapLocation" parent="Map/Control/BotPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
-offset_left = 0.0
 offset_right = 1.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
@@ -394,11 +481,11 @@ horizSwitchCard = SubResource("Resource_ahjpb")
 upgradedSwitchCard = SubResource("Resource_imnlm")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
-offset_left = 1186.0
-offset_top = 950.0
-offset_right = 1282.0
-offset_bottom = 1031.0
-type = 5
+offset_left = 1561.0
+offset_top = 827.0
+offset_right = 1561.0
+offset_bottom = 827.0
+type = 6
 vertSwitchCard = SubResource("Resource_ilocs")
 horizSwitchCard = SubResource("Resource_7a0hk")
 upgradedSwitchCard = SubResource("Resource_wb2ak")
@@ -445,39 +532,42 @@ texture_mode = 1
 [node name="TopPath" type="Node2D" parent="Map"]
 
 [node name="Node2D2" type="Node2D" parent="Map/TopPath"]
-position = Vector2(893, 75)
+position = Vector2(780, 135)
 
 [node name="Node2D3" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1088, 270)
+position = Vector2(927, 274)
 
 [node name="Node2D4" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1275, 460)
+position = Vector2(1198, 548)
 
 [node name="Node2D5" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1411, 596)
+position = Vector2(1299, 655)
 
 [node name="Node2D6" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1129, 763)
+position = Vector2(1489, 844)
 
 [node name="BotPath" type="Node2D" parent="Map"]
 
 [node name="Node2D2" type="Node2D" parent="Map/BotPath"]
-position = Vector2(327, 617)
+position = Vector2(218, 686)
 
 [node name="Node2D3" type="Node2D" parent="Map/BotPath"]
-position = Vector2(431, 727)
+position = Vector2(353, 821)
 
 [node name="Node2D4" type="Node2D" parent="Map/BotPath"]
-position = Vector2(616, 918)
+position = Vector2(523, 988)
 
 [node name="Node2D5" type="Node2D" parent="Map/BotPath"]
-position = Vector2(704, 1012)
+position = Vector2(596, 1066)
 
 [node name="Node2D6" type="Node2D" parent="Map/BotPath"]
-position = Vector2(1129, 763)
+position = Vector2(1301, 654)
+
+[node name="Node2D7" type="Node2D" parent="Map/BotPath"]
+position = Vector2(1487, 844)
 
 [node name="Character" type="Node2D" parent="."]
-position = Vector2(450, 510)
+position = Vector2(445, 453)
 scale = Vector2(4, 4)
 script = ExtResource("11_8ihbg")
 speed = 250.0
@@ -489,10 +579,10 @@ hframes = 24
 frame = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 790.0
-offset_top = 416.0
-offset_right = 1141.0
-offset_bottom = 541.0
+offset_left = 619.0
+offset_top = 479.0
+offset_right = 970.0
+offset_bottom = 604.0
 theme_override_font_sizes/normal_font_size = 25
 text = "Click top or bottom buildings to choose a path to get back home"
 
@@ -505,16 +595,18 @@ deckViewUI = NodePath("../DeckViewUI")
 unique_name_in_owner = true
 visible = false
 
-[node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button")]
+[node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button", "animationPlayer")]
 visible = false
+material = SubResource("ShaderMaterial_gsfkn")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("7_7gh4s")
-title = NodePath("Control/title")
-description = NodePath("Control/description")
-button = NodePath("Control/Continue")
+title = NodePath("Forground/Control/title")
+description = NodePath("Forground/Control/description")
+button = NodePath("Forground/Control/Continue")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Background" type="TextureRect" parent="MapEventText"]
 modulate = Color(0, 0, 0, 0.498039)
@@ -525,19 +617,24 @@ texture = ExtResource("2_g041w")
 
 [node name="Forground" type="Panel" parent="MapEventText"]
 modulate = Color(0.831373, 0.933333, 0.921569, 1)
+use_parent_material = true
 layout_mode = 0
 offset_left = 551.0
-offset_top = 263.0
+offset_top = 1200.0
 offset_right = 1420.0
-offset_bottom = 832.0
-theme = ExtResource("21_ped7m")
+offset_bottom = 1769.0
+theme = ExtResource("22_epuo7")
 
-[node name="Control" type="Control" parent="MapEventText"]
+[node name="Control" type="Control" parent="MapEventText/Forground"]
+use_parent_material = true
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -512.0
+offset_top = -257.0
+offset_right = -512.0
+offset_bottom = -257.0
 
-[node name="title" type="RichTextLabel" parent="MapEventText/Control"]
+[node name="title" type="RichTextLabel" parent="MapEventText/Forground/Control"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 675.0
 offset_top = 287.0
@@ -548,7 +645,8 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]TITLE TEXT"
 
-[node name="description" type="RichTextLabel" parent="MapEventText/Control"]
+[node name="description" type="RichTextLabel" parent="MapEventText/Forground/Control"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 678.0
 offset_top = 367.0
@@ -559,7 +657,8 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Title Description"
 
-[node name="Continue" type="Button" parent="MapEventText/Control"]
+[node name="Continue" type="Button" parent="MapEventText/Forground/Control"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 888.0
 offset_top = 748.0
@@ -568,3 +667,15 @@ offset_bottom = 797.0
 theme = ExtResource("22_epuo7")
 text = "Continue
 "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MapEventText"]
+libraries = {
+"": SubResource("AnimationLibrary_cse58")
+}
+
+[node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("23_y5l24")]
+offset_left = 1764.0
+offset_top = 69.0
+offset_right = 1764.0
+offset_bottom = 69.0
+gameManager = NodePath("..")

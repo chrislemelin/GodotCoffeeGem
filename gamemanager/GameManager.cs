@@ -116,11 +116,10 @@ public partial class GameManager : GameManagerIF
 		}
 
 		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe) {
-			levelComplete.continueButton.Pressed += () => selectRandomRelic();
+			levelComplete.WindowClosedSignal += () => selectRandomRelic();
 		} else {
-			levelComplete.continueButton.Pressed += () => advanceLevel();
+			levelComplete.WindowClosedSignal += () => advanceLevel();
 		}
-		levelComplete.Visible = true;
 		addCoins(coinsGained);
 	}
 

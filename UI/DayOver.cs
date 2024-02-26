@@ -207,11 +207,12 @@ public partial class DayOver : Control
 	private void cardClicked(InputEvent inputEvent, CardResource cardResource, CardInfoLoader cardInfoLoader, MarginContainer marginContainer) {
 		if (inputEvent.IsActionPressed("click"))
 		{
-			if (gameManager.getCoins() > cardResource.getCoinCost()) {
+			if (gameManager.getCoins() >= cardResource.getCoinCost() && cardsInShop.Contains(cardInfoLoader)) {
 				gameManager.addCoins(-1 * cardResource.getCoinCost());
 				gameManager.addCardToDeckList(cardResource);
-				cardShop.RemoveChild(marginContainer);
+				//cardShop.RemoveChild(marginContainer);
 				cardsInShop.Remove(cardInfoLoader);
+				cardInfoLoader.destroyCard();
 			}
 		};
 	}

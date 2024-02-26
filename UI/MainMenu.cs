@@ -3,15 +3,21 @@ using System;
 
 public partial class MainMenu : Node
 {
-	[Export] Button newGameButton;
+	[Export] Button quickPlayButton;
+	[Export] Button deckSelectionButton;
+
 	[Export] PackedScene gameScene;
+	[Export] PackedScene deckSelectionScene;
+
 	[Export] PackedScene beanScene;
 	[Export] int numberOfBeans;
 	[Export] Node2D beanHolder;
 	
 	public override void _Ready()
 	{
-		newGameButton.Pressed += () => GetTree().ChangeSceneToPacked(gameScene);
+		quickPlayButton.Pressed += () => GetTree().ChangeSceneToPacked(gameScene);
+		deckSelectionButton.Pressed += () => GetTree().ChangeSceneToPacked(deckSelectionScene);
+
 		for(int a = 0; a < numberOfBeans; a ++) {
 			generateBean();
 		}

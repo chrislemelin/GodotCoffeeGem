@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://pjf6f8g0iacc"]
+
+[ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="1_5gwg4"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionUI.cs" id="1_ry7pk"]
+[ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="3_2e1f7"]
+[ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_gx4kr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wyr1"]
+shader = ExtResource("1_5gwg4")
+shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/line_thickness = 3.4
+
+[node name="DeckSelectionUi" type="Control" node_paths=PackedStringArray("title", "picture", "highlightOnHover")]
+custom_minimum_size = Vector2(441, 780)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = 6.0
+offset_right = -1696.0
+offset_bottom = -294.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("1_ry7pk")
+title = NodePath("RichTextLabel")
+picture = NodePath("TextureRect")
+highlightOnHover = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.854902, 0.580392, 0, 1)
+material = SubResource("ShaderMaterial_7wyr1")
+layout_mode = 0
+offset_left = -1.0
+offset_top = 90.0
+offset_right = 419.0
+offset_bottom = 690.0
+texture = ExtResource("3_2e1f7")
+script = ExtResource("3_gx4kr")
+makeBiggerScale = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 411.0
+offset_bottom = 88.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]TEST TITLE"

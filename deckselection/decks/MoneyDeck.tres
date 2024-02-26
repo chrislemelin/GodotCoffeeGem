@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://cr1bg7cjxlymo"]
+
+[ext_resource type="Resource" uid="uid://c3mx6eec1nqpk" path="res://cards/cardResources/cardLists/MoneyCardList.tres" id="1_ca4qx"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_6valu"]
+
+[resource]
+script = ExtResource("2_6valu")
+cardList = ExtResource("1_ca4qx")
+relics = Array[Object]([])
+title = "Money Deck"
+description = "For the true capitalist. 
+Start with more money based cards and buy your way to victory!"
+color = Color(0.788235, 0.788235, 0, 1)

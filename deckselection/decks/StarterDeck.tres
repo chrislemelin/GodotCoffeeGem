@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://b2vcn6wnju7y3"]
+
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="1_g33gc"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="1_pjjsm"]
+
+[resource]
+script = ExtResource("1_pjjsm")
+cardList = ExtResource("1_g33gc")
+relics = Array[Object]([])
+title = "Starter Deck"
+description = "This is the starter deck, recommended for first time players"
+color = Color(0.47451, 0.27451, 0.929412, 1)

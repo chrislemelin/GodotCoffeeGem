@@ -104,8 +104,9 @@ public partial class CardIF : lerp
 	}
 	protected override void Dispose(bool disposing)
 	{
-		//if (cardResource )
-		cardResource.cardEffect.CardPassivesChanged -= setUpCard;
+		if (cardResource != null ) {
+			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
+		}
 		base.Dispose(disposing);
 	}
 

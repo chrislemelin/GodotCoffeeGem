@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="2_a2bku"]
 [ext_resource type="Texture2D" uid="uid://biq4g72ribsxr" path="res://relics/sprites/Icon.7_71.png" id="2_lrx1a"]
-[ext_resource type="Script" path="res://relics/effects/AddManaGemsEffect.cs" id="3_ufccn"]
+[ext_resource type="Script" path="res://relics/effects/AddAddonGemsEffect.cs" id="3_4d35n"]
 
-[sub_resource type="Resource" id="Resource_vdtln"]
-script = ExtResource("3_ufccn")
+[sub_resource type="Resource" id="Resource_77olc"]
+script = ExtResource("3_4d35n")
+type = 1
 value = 1
 
 [resource]
@@ -15,7 +16,7 @@ description = "+1 mana ingredient every 2 turns"
 image = ExtResource("2_lrx1a")
 cost = 50
 gameStartEffects = []
-turnStartEffects = [SubResource("Resource_vdtln")]
+turnStartEffects = [SubResource("Resource_77olc")]
 addToInvEffects = []
 levelOverEffects = []
 effects = []

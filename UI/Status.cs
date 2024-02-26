@@ -5,12 +5,10 @@ public partial class Status : Node
 {
 	[Export] RichTextLabel coinsLabel;
 	[Export] RichTextLabel levelLabel;
-	[Export] HBoxContainer heartsContainer; 
-
-	[Export]
-	private GameManagerIF gameManager;
-
-	[Export] Color heartColor;
+	[Export] HBoxContainer heartsContainer;
+	[Export] Texture2D fullHeart; 
+	[Export] Texture2D emptyHeart; 
+	[Export] private GameManagerIF gameManager;
 
 
 	private int coins = 0;
@@ -18,6 +16,7 @@ public partial class Status : Node
 	private int level = 1;
 
 	public  override void _Ready() {
+		setMaxHealth(gameManager.getMaxHealth());
 		setHeartsRemaining(gameManager.getHealth());
 		setCoins(gameManager.getCoins());
 
@@ -25,14 +24,26 @@ public partial class Status : Node
 		gameManager.coinsChanged += (newCoins) => setCoins(newCoins);
 	}
 
+	
+	public void setMaxHealth(int newMaxHealth) {
+		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
+		if (nodes.Count < newMaxHealth) {
+			for(int count = 0; count < newMaxHealth - nodes.Count; count ++){
+				Node copyNode = nodes[0];
+				Node newNode = copyNode.Duplicate();
+				heartsContainer.AddChild(newNode);
+			}
+		}
+	}
+
 	public void setHeartsRemaining(int newValue) {
 		heartsRemaining = newValue;
 		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
 		for(int count = 0; count < nodes.Count; count ++) {
 			if (count + 1 <= heartsRemaining) {
-				((TextureRect)nodes[count]).Modulate = heartColor;
+				((TextureRect)nodes[count]).Texture = fullHeart;
 			} else {
-				((TextureRect)nodes[count]).Modulate = new Color(1,1,1);
+				((TextureRect)nodes[count]).Texture = emptyHeart;
 			}
 		}
 	}

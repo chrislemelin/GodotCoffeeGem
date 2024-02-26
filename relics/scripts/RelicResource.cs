@@ -43,18 +43,29 @@ public partial class RelicResource : Resource
 		if (counter > counterMax)
 		{
 			counter = 1;
-			foreach (EffectResource executablePassive in effects)
+			foreach (EffectResource effect in effects)
 			{
-				executablePassive.execute(node);
+				effect.execute(node);
 			}
 		}
-		EmitSignal(SignalName.CounterChanged, counter);
+		EmitSignal(SignalName.CounterChanged, counter); 
 	}
 
 	public void executeEffects() {
 		foreach (EffectResource effect in effects)
 		{
 			effect.execute(node);
+		}
+	}
+
+	public void executeEffectsOrIncreaseCount() {
+		if (customCounter) {
+			incrementCounter();
+		} else {
+			foreach (EffectResource effect in effects)
+			{
+				effect.execute(node);
+			}
 		}
 	}
 

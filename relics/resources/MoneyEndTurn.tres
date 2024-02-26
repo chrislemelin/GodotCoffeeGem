@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://d30aghimthf4q"]
+
+[ext_resource type="Script" path="res://relics/effects/AddAddonGemsEffect.cs" id="1_mklpc"]
+[ext_resource type="Script" path="res://relics/scripts/ManaEndTurnRelic.cs" id="2_0e6wb"]
+[ext_resource type="Texture2D" uid="uid://tv86kojie0uj" path="res://relics/sprites/Icons8_80.png" id="2_roax6"]
+
+[sub_resource type="Resource" id="Resource_yti5y"]
+script = ExtResource("1_mklpc")
+type = 7
+value = 8
+
+[resource]
+script = ExtResource("2_0e6wb")
+manaValue = 3
+title = "Money Gems"
+description = "If you end your turn with 3 energy. Create 8 coin ingredients"
+image = ExtResource("2_roax6")
+cost = 40
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_yti5y")]
+counterMax = 0
+customCounter = false

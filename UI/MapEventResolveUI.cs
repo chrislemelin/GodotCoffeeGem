@@ -10,7 +10,8 @@ public partial class MapEventResolveUI : ToggleVisibilityOnButtonPress
 	public void setUp(string title, string description) {
 		this.title.Text = title;
 		this.description.Text = description;
-		Visible = true;
+		resetAnimation();
+		setVisible(true);
 	}
 
 }

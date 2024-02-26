@@ -11,6 +11,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -20,7 +22,7 @@ effectGemType = 3
 [resource]
 script = ExtResource("3_cjqa4")
 Title = "Tea Shot X"
-Description = "Change selected ingredient and ingredients diagonally adjacent to tea"
+Description = "Change selected ingredient and diagonal ingredients to tea"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_38o3h")

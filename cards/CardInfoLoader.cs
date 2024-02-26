@@ -13,6 +13,8 @@ public partial class CardInfoLoader : Control
 	[Export] protected Control coinCostControl;
 	[Export] protected RichTextLabel coinCostText;
 	[Export] protected Color disabledColor;
+	private bool disabled = false;
+	public bool wiggleEnabled {get; private set;} = true;
 	[Export] AnimationPlayer animationPlayer;
 
 
@@ -20,29 +22,52 @@ public partial class CardInfoLoader : Control
 	public override void _Ready()
 	{
 		base._Ready();
-		this.GrowHorizontal = GrowDirection.Both;
-		this.GrowVertical = GrowDirection.Both;
+		Material = (Material)Material.Duplicate();
 
-		//setUpCard(cardResource);
+		GrowHorizontal = GrowDirection.Both;
+		GrowVertical = GrowDirection.Both;
+		MouseEntered += () => wiggleCard();
+	}
+
+	public void wiggleCard() {
+		if (!disabled && wiggleEnabled) {
+			animationPlayer.Play("CardWiggle");
+		}
 	}
 
 	public void flipCard() {
 		animationPlayer.Play("CardFlip");
+		wiggleEnabled = false;
+		GetTree().CreateTimer(.5f).Timeout += () => wiggleEnabled = true;
 	}
+
+	public void destroyCard() {
+		wiggleEnabled = false;
+		setShowCoinCost(false);
+		animationPlayer.Play("Destroy");
+	}
+
 
 	public void setDisabled()
 	{
 		Modulate = disabledColor;
+		disabled = true;
 		highlightOnHover.setForceHighlightOff(true);
 	}
 	public void setEnabled()
 	{
 		Modulate = new Color(1, 1, 1);
+		disabled = false;
 		highlightOnHover.setForceHighlightOff(false);
+	}
+
+	public void resetAnimation() {
+		animationPlayer.Play("RESET");
 	}
 
 	public void setUpCard(CardResource cardResource)
 	{
+		animationPlayer.Play("RESET");
 		this.cardResource = cardResource;
 
 		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None)
@@ -74,6 +99,10 @@ public partial class CardInfoLoader : Control
 
 	public void setForceHighlight(bool value) {
 		highlightOnHover.setForceHighlight(value);
+	}
+
+	public void setForceHighlightOff(bool value) {
+		highlightOnHover.setForceHighlightOff(value);
 	}
 	
 

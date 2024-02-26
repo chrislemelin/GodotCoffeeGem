@@ -13,10 +13,13 @@ public partial class NewCardSelection : Control
 	[Export] Array<Control> levelPassedText = new Array<Control>();
 	[Export] DeckViewUI deckViewUI;
 	[Export] Button viewDeckButton;
-
 	[Export] Array<CardResource> cards = new Array<CardResource>();
 	[Export] int coinsGained = 0;
+	List<CardInfoLoader> cardInfoLoaders = new List<CardInfoLoader>();
 	[Signal] public delegate void windowClosedEventHandler(CardResource cardResource);
+	[Export] AnimationPlayer animationPlayer;
+
+	private bool cardSelected = false;
 
 	public override void _Ready()
 	{
@@ -65,6 +68,8 @@ public partial class NewCardSelection : Control
 	}
 	private void renderCards()
 	{
+		cardSelected = false;
+		cardInfoLoaders.Clear();
 		if (cards.Count > 0)
 		{
 			Visible = true;
@@ -75,22 +80,32 @@ public partial class NewCardSelection : Control
 			foreach (CardResource cardResource in cards)
 			{
 				CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
+				cardInfoLoaders.Add(cardInfoLoader);
 				cardInfoLoader.setUpCard(cardResource);
 				cardContainer.AddChild(cardInfoLoader);
 				cardInfoLoader.flipCard();
-				cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource);
+				cardInfoLoader.setForceHighlightOff(true);
+				GetTree().CreateTimer(.25).Timeout += () => cardInfoLoader.setForceHighlightOff(false);
+				cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardInfoLoader);
 			}
 		}
 	}
 
-	private void cardClicked(InputEvent inputEvent, CardResource cardResource)
+	private void cardClicked(InputEvent inputEvent, CardInfoLoader cardInfoLoader)
 	{
-		if (inputEvent.IsActionPressed("click"))
+		if (inputEvent.IsActionPressed("click") && !cardSelected)
 		{
+			cardSelected = true;
+			CardResource cardResource = cardInfoLoader.cardResource;
 			FindObjectHelper.getGameManager(this).addCardToDeckList(cardResource);
-			advance(cardResource);
+			GetTree().CreateTimer(.75).Timeout += () => advance(cardResource);
+			foreach(CardInfoLoader currentCardInfoLoader in cardInfoLoaders) {
+				if (currentCardInfoLoader != cardInfoLoader) {
+					currentCardInfoLoader.destroyCard();
+				}
+			}
 		};
-	}
+}
 
 	private void advance(CardResource cardResource)
 	{
@@ -101,7 +116,6 @@ public partial class NewCardSelection : Control
 	private void advance()
 	{
 		Visible = false;
-
 		EmitSignal(SignalName.windowClosed, new CardResource());
 	}
 }

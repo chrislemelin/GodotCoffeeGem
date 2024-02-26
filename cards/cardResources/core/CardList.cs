@@ -7,11 +7,19 @@ using System.Linq;
 public partial class CardList : Resource
 {
 
-	[Export] public Godot.Collections.Array<CardResource> allCards;
+	[Export] private Godot.Collections.Array<CardResource> allCards;
 
 
 	public CardList () {
 	
+	}
+
+	public void setCards(Godot.Collections.Array<CardResource> allCards) {
+		this.allCards = allCards;
+	}
+
+	public List<CardResource> getCards() {
+		return allCards.ToList().Where(card => card != null).ToList();
 	}
 
 	public CardResource getRandomCard() {

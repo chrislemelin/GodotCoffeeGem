@@ -1,33 +1,65 @@
-[gd_scene load_steps=14 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=25 format=3 uid="uid://dicb3wwg7ecmd"]
 
+[ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_16axm"]
+[ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="1_qnag5"]
-[ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_u3ora"]
-[ext_resource type="Texture2D" uid="uid://cvmhfywxbwcvo" path="res://placeholders/cards/cardback.png" id="4_1yqfg"]
+[ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="4_1yqfg"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="5_qjawy"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_4xx5d"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_jrfr0"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="8_a11pv"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="9_w4arf"]
+[ext_resource type="Texture2D" uid="uid://cs4ueo01xrpu7" path="res://placeholders/cards/CardBack_Balatro.png" id="11_qrf1e"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjn8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4b35t"]
+noise = SubResource("FastNoiseLite_nfjn8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pfgj"]
+shader = ExtResource("1_16axm")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/line_color = Color(0.376471, 0.372549, 0, 0.454902)
+shader_parameter/line_thickness = 5.371
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_4b35t")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_emh0e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xyswb"]
+noise = SubResource("FastNoiseLite_emh0e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
-shader = ExtResource("3_u3ora")
-shader_parameter/line_color = Color(1, 1, 0, 0)
-shader_parameter/line_thickness = 5.009
+shader = ExtResource("1_idfrd")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
+shader_parameter/line_thickness = 5.0
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_xyswb")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7oja6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqyc8"]
+shader = ExtResource("1_idfrd")
+shader_parameter/dissolve_value = 0.623
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = null
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_7oja6")
 
 [sub_resource type="Animation" id="Animation_jdv37"]
 resource_name = "CardFlip"
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/path = NodePath("CardBack:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0, 1)]
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -36,10 +68,68 @@ tracks/1/path = NodePath("Center:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 0.9),
+"times": PackedFloat32Array(0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 1.25), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_7d1ed"]
+resource_name = "CardWiggle"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0174533, 0.0, -0.0174533, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"resetAnimation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_w675f"]
+resource_name = "Destroy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Center/Background:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_l2nvg"]
@@ -47,7 +137,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/path = NodePath("CardBack:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,15 +158,54 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1.25, 1.25)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Center/Background:material:shader_parameter/dissolve_value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath(".:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hjwwm"]
 _data = {
 "CardFlip": SubResource("Animation_jdv37"),
+"CardWiggle": SubResource("Animation_7d1ed"),
+"Destroy": SubResource("Animation_w675f"),
 "RESET": SubResource("Animation_l2nvg")
 }
 
 [node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer")]
 self_modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_7pfgj")
 custom_minimum_size = Vector2(530, 800)
 layout_mode = 3
 anchors_preset = 8
@@ -107,6 +236,7 @@ disabledColor = Color(0.501961, 0.501961, 0.501961, 1)
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Center" type="Control" parent="."]
+use_parent_material = true
 custom_minimum_size = Vector2(420, 600)
 layout_mode = 2
 anchors_preset = 0
@@ -132,6 +262,7 @@ script = ExtResource("5_qjawy")
 makeBiggerScale = 1.0
 
 [node name="Description2" type="Control" parent="Center"]
+use_parent_material = true
 anchors_preset = 0
 offset_left = 28.8
 offset_top = -100.0
@@ -140,6 +271,7 @@ offset_bottom = -100.0
 mouse_filter = 1
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Description2"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 18.0
 offset_top = 426.0
@@ -149,6 +281,7 @@ mouse_filter = 2
 texture = ExtResource("6_4xx5d")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Description2"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 34.0
 offset_top = 439.0
@@ -162,6 +295,7 @@ text = "This is a test tooltip
 sfaesfasef [hint={tooltip text displayed on hover}]{text}[/hint]"
 
 [node name="Picture" type="Control" parent="Center"]
+use_parent_material = true
 anchors_preset = 0
 offset_left = 63.0
 offset_top = 97.0
@@ -171,6 +305,7 @@ mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Picture"]
 modulate = Color(0.196078, 0.196078, 0.196078, 1)
+use_parent_material = true
 layout_mode = 0
 offset_left = -6.99999
 offset_top = -17.8
@@ -182,6 +317,7 @@ texture = ExtResource("7_jrfr0")
 expand_mode = 1
 
 [node name="Title" type="Control" parent="Center"]
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 53.6
@@ -191,11 +327,13 @@ offset_bottom = -0.8
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Title"]
+use_parent_material = true
 layout_mode = 0
 mouse_filter = 2
 texture = ExtResource("8_coj1d")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 28.0
 offset_top = 25.0
@@ -210,6 +348,7 @@ text = "[center]CARD TITLE[/center]"
 scroll_active = false
 
 [node name="EnergyCost" type="Control" parent="Center"]
+use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 62.65
@@ -219,6 +358,8 @@ offset_bottom = 63.3333
 mouse_filter = 2
 
 [node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
+material = SubResource("ShaderMaterial_bqyc8")
+use_parent_material = true
 layout_mode = 0
 offset_left = -80.0
 offset_top = -120.934
@@ -231,6 +372,7 @@ expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
 modulate = Color(0, 0, 0, 1)
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -282,16 +424,15 @@ layout_mode = 2
 texture = ExtResource("9_w4arf")
 expand_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.560784, 0, 0.290196, 1)
+[node name="CardBack" type="TextureRect" parent="."]
 layout_mode = 1
-offset_left = -9.0
-offset_top = -34.0
-offset_right = 595.0
-offset_bottom = 829.0
+offset_left = 6.0
+offset_top = -12.0
+offset_right = 558.0
+offset_bottom = 777.0
 scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(285, 400)
-texture = ExtResource("4_1yqfg")
+texture = ExtResource("11_qrf1e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -363,8 +363,8 @@ public partial class Score : Node2D
 			if (match.Count > 0)
 			{
 				matchScore.GlobalPosition = match.First().GlobalPosition;
-				matchScore.setText(pointValueAfterMult.ToString());
-				//matchScore.init(pointValue, pointValueAfterMult, newMultValue, ToLocal(multUI.GlobalPosition), progressBarLocation.Position, this, multUI);
+				//matchScore.setText(pointValueAfterMult.ToString());
+				matchScore.init(pointValue, pointValueAfterMult);
 			}
 		}
 		setScore(score + totalPoints);

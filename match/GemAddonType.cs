@@ -9,7 +9,8 @@ public enum GemAddonType
 	Combo,
 	Mult,
 	Hidden,
-	Lock
+	Lock,
+	Money
 }
 
 static class GemAddonTypeHelper

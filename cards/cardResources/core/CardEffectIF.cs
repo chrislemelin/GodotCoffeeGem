@@ -11,6 +11,8 @@ public partial class CardEffectIF: Resource
 	[Export] public int BlackGems {get; private set;} = 0;
 	[Export] public int ManaGems {get; private set;} = 0; 
 	[Export] public int CardGems {get; private set;}  = 0;
+	[Export] public int CoinGems {get; private set;}  = 0;
+	[Export] public int DrawCards {get; private set;}  = 0;
 	[Export] private int CardsToDiscard = 0;
 	[Export] public bool canTargetBlackGems = true;
 	[Export] public bool consume = false;
@@ -41,6 +43,9 @@ public partial class CardEffectIF: Resource
 		effect(matchBoard, hand, mana, selectedTiles);
 		createAddonGems(matchBoard, GemAddonType.Mana, getManaGems());
 		createAddonGems(matchBoard, GemAddonType.Card, getCardGems());
+		createAddonGems(matchBoard, GemAddonType.Money, getCoinGems());
+		hand.drawCards(DrawCards);
+
 		if (cardMaybe.HasValue) {
 			doEffectOnTargetedCard(cardMaybe.GetValue());
 		}
@@ -117,6 +122,10 @@ public partial class CardEffectIF: Resource
 
 	public int getCardGems() {
 		return CardGems;
+	}
+
+	public int getCoinGems() {
+		return CoinGems;
 	}
 
 	public String getValueString() {

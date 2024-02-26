@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1vcw8het36xd"]
+
+[ext_resource type="Script" path="res://gamemanager/DeckSelectionGameManager.cs" id="1_wvgmj"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ydtrs"]
+[ext_resource type="PackedScene" uid="uid://pjf6f8g0iacc" path="res://deckselection/DeckSelectionUI.tscn" id="2_sfky1"]
+[ext_resource type="Resource" uid="uid://b2vcn6wnju7y3" path="res://deckselection/decks/StarterDeck.tres" id="2_un8pl"]
+[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="3_2aryu"]
+[ext_resource type="Resource" uid="uid://chj73go1oottc" path="res://deckselection/decks/AdvancedDeck.tres" id="4_horrj"]
+[ext_resource type="Resource" uid="uid://wb0sejxfci1g" path="res://deckselection/decks/BurnDeck.tres" id="5_nciyr"]
+[ext_resource type="Resource" uid="uid://dlrun5k7nfg04" path="res://deckselection/decks/ChaosDeck.tres" id="5_rt60l"]
+[ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="5_wai7x"]
+[ext_resource type="Resource" uid="uid://cr1bg7cjxlymo" path="res://deckselection/decks/MoneyDeck.tres" id="6_o4igf"]
+[ext_resource type="Resource" uid="uid://bb2orrhuvkgpk" path="res://deckselection/decks/TimeLordDeck.tres" id="7_f5fi5"]
+
+[node name="DeckSelectionPicker" type="Node2D" node_paths=PackedStringArray("deckViewUI", "deckSelectionUIParent", "continueButton", "viewDeckButton")]
+script = ExtResource("1_wvgmj")
+deckViewUI = NodePath("Control/DeckView")
+deckSelections = Array[Object]([ExtResource("2_un8pl"), ExtResource("4_horrj"), ExtResource("5_rt60l"), ExtResource("5_nciyr"), ExtResource("6_o4igf"), ExtResource("7_f5fi5")])
+deckSelectionUIPackedScene = ExtResource("2_sfky1")
+deckSelectionUIParent = NodePath("Control/HBoxContainer")
+continueButton = NodePath("Control/VBoxContainer2/Continue")
+viewDeckButton = NodePath("Control/VBoxContainer2/View Selected Deck")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color(0.156863, 0.172549, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 1924.0
+offset_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ydtrs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 282.0
+offset_right = 3536.0
+offset_bottom = 1062.0
+scale = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="DeckSelectionUi" parent="Control/HBoxContainer" instance=ExtResource("2_sfky1")]
+visible = false
+layout_mode = 2
+
+[node name="DeckSelectionUi2" parent="Control/HBoxContainer" instance=ExtResource("2_sfky1")]
+visible = false
+layout_mode = 2
+
+[node name="DeckSelectionUi3" parent="Control/HBoxContainer" instance=ExtResource("2_sfky1")]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 461.0
+offset_top = 42.0
+offset_right = 1487.0
+offset_bottom = 313.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "[center]Starter Deck Selection[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]Select a deck to get started! Click on a deck to get a preview of the cards in the deck. The starter deck is recommended for your first play through
+[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 776.0
+offset_top = 717.0
+offset_right = 1109.0
+offset_bottom = 842.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="View Selected Deck" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("3_2aryu")
+disabled = true
+text = "View Selected Deck"
+
+[node name="Continue" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("3_2aryu")
+disabled = true
+text = "Continue"
+
+[node name="DeckView" parent="Control" instance=ExtResource("5_wai7x")]
+visible = false
+layout_mode = 1
+offset_right = -40.0
+offset_bottom = -40.0

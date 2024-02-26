@@ -48,38 +48,48 @@ public partial class MapLocation : Control
 		} else if (type == MapEventType.UpgradeCard) {
 			mapEventResolveUI.setUp("Upgrade a Card", "You walk through a park on your way back home. Reconnecting with nature relieves some stress of the workday. " +
 			"A random horizontal or vertical switch card has been upgraded!");
-			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
 				upgradeCard()
 			);
 		}
 		else if (type == MapEventType.GainCard) {
 			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street and stop to say hello. " +
 			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");
-			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
 				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom()
 			);
 		}
 		else if (type == MapEventType.RemoveCard) {
 			mapEventResolveUI.setUp("Remove a Card", "You decide to stop at the bar on the way from home to drown out your sorrows. " +
 			"You can feel the trama leaving your soul as you take your first sip. Remove a card from your Deck!");
-			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
 				FindObjectHelper.getDeckView(this).setUp(FindObjectHelper.getGameManager(this).getDeckList(),
 				 (CardResource cardResource) => FindObjectHelper.getGameManager(this).removeCardFromDeckList(cardResource), 
-				 TextHelper.centered("Remove Card From Deck")
+				 TextHelper.centered("Remove Card From Deck"),true
 			));
+		}
+		else if (type == MapEventType.Heal) {
+			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+			mapEventResolveUI.setUp("Get your head fixed", "You stop by a free clinic on your way home, you have been feeling sick but cant afford to take off work."+ 
+			"You wait about 3 hours before the doctor sees you for about 5 minutes. She writes you a prescription and send you off. Heal 1 heart!");
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
+				gameManagerIF.setHealth(gameManagerIF.getHealth() +1)
+			);
+
+	
 		}
 		else if (type == MapEventType.Mechanic) {
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 			bool currentBoardGooed =gameManagerIF.getGooRightRow();
 			if (currentBoardGooed) {
 				mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he removes the starting Goo from the machine");
-				mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
 					gameManagerIF.setGooRightRow(false)
 				);
 			} else {
 				mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he adds an additional row to the machine, "+ 
 					"but that row will start with Goo");
-				mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> {
+				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> {
 					gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1,0));
 					gameManagerIF.setGooRightRow(true);
 				});
@@ -89,7 +99,7 @@ public partial class MapLocation : Control
 		else if (type == MapEventType.Home) {
 			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street right before you are about to head home. " +
 			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");
-			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(()=> 
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
 				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom()
 			);
 			FindObjectHelper.getCardSelection(this).windowClosed += (card) => FindObjectHelper.getGameManager(this).advanceLevel();

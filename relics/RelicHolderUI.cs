@@ -8,7 +8,9 @@ public partial class RelicHolderUI : Control
 {
 	[Export] PackedScene relicUIPackedScene;
 	[Export] Control relicControlHolder;
-	List<RelicResource> relicResources;
+	List<RelicResource> relicResources = new List<RelicResource>();
+	List<RelicUI> relicUIs = new List<RelicUI>();
+
 
 	public void setRelicList(List<RelicResource> relicResources)
 	{
@@ -33,11 +35,13 @@ public partial class RelicHolderUI : Control
 
 	private void setUpRelics()
 	{
+		relicUIs.Clear();
 		foreach (RelicResource relicResource in relicResources)
 		{
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
 			relicUI.showTitle = false;
 			relicUI.showPrice = false;
+			relicUIs.Add(relicUI);
 			relicUI.setRelic(relicResource);
 			relicResource.node = this;
 			relicControlHolder.AddChild(relicUI);
@@ -46,29 +50,32 @@ public partial class RelicHolderUI : Control
 	}
 
 	public void startUpRelics()
-	{
-		foreach (RelicResource relicResource in relicResources)
+	{ 
+		foreach (RelicUI relicUI in relicUIs)
 		{
-			foreach (EffectResource executablePassive in relicResource.getGameStartExePassives())
+			foreach (EffectResource executablePassive in relicUI.relicResource.getGameStartExePassives())
 			{
 				executablePassive.execute(this);
+				relicUI.activateAnimation();
 			}
-			foreach (EffectResource executablePassive in relicResource.getTurnStartEffects())
+			foreach (EffectResource executablePassive in relicUI.relicResource.getTurnStartEffects())
 			{
 				executablePassive.execute(this);
+				relicUI.activateAnimation();
 			}
 		}
 	}
 
 	public void startNewTurn()
 	{
-		foreach (RelicResource relicResource in relicResources)
+		foreach (RelicUI relicUI in relicUIs)
 		{
-			relicResource.newTurn();
-			relicResource.incrementTurnCounter();
-			foreach (EffectResource executablePassive in relicResource.getTurnStartEffects())
+			relicUI.relicResource.newTurn();
+			relicUI.relicResource.incrementTurnCounter();
+			foreach (EffectResource executablePassive in relicUI.relicResource.getTurnStartEffects())
 			{
 				executablePassive.execute(this);
+				relicUI.activateAnimation();
 			}
 		}
 	}

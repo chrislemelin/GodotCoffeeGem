@@ -11,10 +11,5 @@ public partial class CustomToolTipButton : Button
 		ToolTip toolTip =  (ToolTip)scene.Instantiate(); 
 		toolTip.label.Text = forText;
 		return toolTip;
-
-		// PackedScene scene2 = GD.Load<PackedScene>("res://UI/tooltip/ToolTip2.tscn"); 
-		// toolTip toolTip2 =  (toolTip)scene.Instantiate(); 
-		// toolTip2.lText = forText;
-
 	}
 }

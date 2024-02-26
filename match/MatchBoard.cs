@@ -748,6 +748,10 @@ public partial class MatchBoard : Node
 	{
 		deleteGemAtPositions(positions, false);
 	}
+	public void deleteGemAtPositions(IEnumerable<Vector2> positions)
+	{
+		deleteGemAtPositions(positions, false);
+	}
 
 	public void deleteGemAtPosition(Vector2 position)
 	{

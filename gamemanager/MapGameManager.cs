@@ -26,7 +26,7 @@ public partial class MapGameManager : GameManagerIF
 
 	public void selectNewCard() {
 		int cardsToChoose = getNumberOfCardToChoose();
-		List<CardResource> cardPoolList = new List<CardResource>(cardPool.allCards);
+		List<CardResource> cardPoolList = new List<CardResource>(cardPool.getCards());
 		RandomHelper.Shuffle(cardPoolList);
 		newCardSelection.setCardsToSelectFrom(cardPoolList.GetRange(0,cardsToChoose));
 		newCardSelection.setCoins(0);

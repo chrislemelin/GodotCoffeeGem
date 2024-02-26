@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=20 format=3 uid="uid://bcelpenpmwhtr"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=21 format=3 uid="uid://bcelpenpmwhtr"]
 
 [ext_resource type="Resource" uid="uid://dyu7r35wo3yq4" path="res://relics/resources/AdderallRelic.tres" id="1_fjo1h"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_scp5n"]
@@ -19,7 +19,8 @@
 [ext_resource type="Resource" uid="uid://bffg6ur3c5fkg" path="res://relics/resources/fourMatch/TeaFourMatchRelic.tres" id="16_ifx2w"]
 [ext_resource type="Resource" uid="uid://dhx7r074ui4bh" path="res://relics/resources/fourMatch/VanillaFourMatchRelic.tres" id="17_3lnrg"]
 [ext_resource type="Resource" uid="uid://oxn8l5i8w2tn" path="res://relics/resources/MultResetRelic.tres" id="18_5tq7i"]
+[ext_resource type="Resource" uid="uid://d30aghimthf4q" path="res://relics/resources/MoneyEndTurn.tres" id="19_linpx"]
 
 [resource]
 script = ExtResource("1_scp5n")
-allRelics = [ExtResource("1_fjo1h"), ExtResource("2_m8m6o"), ExtResource("3_d7cmc"), ExtResource("4_3w1f8"), ExtResource("5_iuyq7"), ExtResource("6_sxrbg"), ExtResource("7_gffpy"), ExtResource("8_lgbbd"), ExtResource("9_ea36q"), ExtResource("10_jbr6w"), ExtResource("11_dykg8"), ExtResource("12_2c37n"), ExtResource("13_0qqhw"), ExtResource("14_f6oyh"), ExtResource("15_w8ppe"), ExtResource("16_ifx2w"), ExtResource("17_3lnrg"), ExtResource("18_5tq7i")]
+allRelics = [ExtResource("1_fjo1h"), ExtResource("2_m8m6o"), ExtResource("3_d7cmc"), ExtResource("4_3w1f8"), ExtResource("5_iuyq7"), ExtResource("6_sxrbg"), ExtResource("7_gffpy"), ExtResource("8_lgbbd"), ExtResource("9_ea36q"), ExtResource("10_jbr6w"), ExtResource("11_dykg8"), ExtResource("12_2c37n"), ExtResource("13_0qqhw"), ExtResource("14_f6oyh"), ExtResource("15_w8ppe"), ExtResource("16_ifx2w"), ExtResource("17_3lnrg"), ExtResource("18_5tq7i"), ExtResource("19_linpx")]

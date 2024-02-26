@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardList" load_steps=6 format=3 uid="uid://b10m4yin3co4p"]
+
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="1_2v528"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_3ss1s"]
+[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="3_6uk1o"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_l2mqd"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="7_m2de3"]
+
+[resource]
+script = ExtResource("7_m2de3")
+allCards = Array[Object]([ExtResource("1_2v528"), ExtResource("1_2v528"), ExtResource("1_2v528"), ExtResource("2_3ss1s"), ExtResource("2_3ss1s"), ExtResource("2_3ss1s"), ExtResource("4_l2mqd"), ExtResource("3_6uk1o"), ExtResource("3_6uk1o"), ExtResource("3_6uk1o")])

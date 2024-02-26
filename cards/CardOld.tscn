@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://cards/Card.cs" id="1_6tj2w"]
 [ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="2_5g62a"]
-[ext_resource type="Shader" path="res://cards/highlight.gdshader" id="3_kt3c0"]
+[ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="3_kt3c0"]
 [ext_resource type="Texture2D" uid="uid://cvmhfywxbwcvo" path="res://placeholders/cards/cardback.png" id="4_nrlgw"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="5_vlfpy"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_rjk5q"]

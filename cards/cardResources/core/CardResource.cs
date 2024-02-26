@@ -68,6 +68,8 @@ public partial class CardResource : Resource
 		String newDescription = Description.Replace("$value", cardEffect.getValueString());
 		newDescription = newDescription.Replace("$manaGems", cardEffect.getManaGems().ToString());
 		newDescription = newDescription.Replace("$cardGems", cardEffect.getCardGems().ToString());
+		newDescription = newDescription.Replace("$moneyGems", cardEffect.getCoinGems().ToString());
+
 
 		if (cardEffect.consume) {
 			newDescription += " " + TextHelper.toolTip("Consume.", "Consume cards are trashed untill the next level");

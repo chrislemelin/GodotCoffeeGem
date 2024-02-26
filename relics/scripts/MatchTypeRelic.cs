@@ -7,16 +7,14 @@ using System.Linq;
 [GlobalClass, Tool]
 public partial class MatchTypeRelic : RelicResource
 {
-	float currentMult = 1.0f;
 	[Export] int minMatchSize;
 	[Export] GemType ingredientType;
 
 	public override void ingredientsMatched(Match match)
 	{
-		GD.Print("got match");
+
 		if (match.ingredients.Count >= minMatchSize && match.GetGemType() == ingredientType) {
-			GD.Print("doing match effect");
-			executeEffects();
+			executeEffectsOrIncreaseCount();
 		}
 	}
 

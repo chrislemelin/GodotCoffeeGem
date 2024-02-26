@@ -7,6 +7,7 @@ public enum MapEventType
     RemoveCard,
     GainCard,
     UpgradeCard,
+    Heal,
     Mechanic,
     Home
 }
@@ -28,6 +29,8 @@ static class MapEventTypeHelper
                 return "Upgrade Card";
             case MapEventType.Mechanic:
                 return "Upgrade Coffee Machine";
+            case MapEventType.Heal:
+                return "Heal a Heart";                
             case MapEventType.Home:
                 return "Home";                
             default:
@@ -37,7 +40,8 @@ static class MapEventTypeHelper
 
     public static MapEventType getRandom()
 	{
-		return (MapEventType)random.Next(4);
+		return (MapEventType)random.Next(5);
+        //return MapEventType.RemoveCard;
 	}
 	
 }

@@ -27,4 +27,4 @@ addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_cv85o"), SubResource("Resource_s7km8")]
 counterMax = 0
-customCounter = true
+customCounter = false

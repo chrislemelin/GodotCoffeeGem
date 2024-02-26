@@ -33,23 +33,56 @@ public partial class Map : Node
 	{
 		base._Ready();
 
+		List<List<MapEventType>> map = generateRandomMap();
+
+		int topCount = 0;
+		int botCount = 0;
 		foreach(Control control in topPathControls) {
-			MapLocation mapLocation = createMapLocation(MapEventTypeHelper.getRandom());
+			MapLocation mapLocation = createMapLocation(map[0][topCount++]);
 			control.AddChild(mapLocation);
 			topPath.AddRange(new List<MapLocation>{mapLocation});
 		}
 		foreach(Control control in botPathControls) {
-			MapLocation mapLocation = createMapLocation(MapEventTypeHelper.getRandom());
+			MapLocation mapLocation = createMapLocation(map[1][botCount++]);
 			control.AddChild(mapLocation);
 			botPath.AddRange(new List<MapLocation>{mapLocation});
 		}
 		home.GuiInput += (inputEvent) => {
 			if (inputEvent.IsActionPressed("click")) {
+				GD.Print("beep");
 				locationClicked(home);
 		}};
 		character.doneMovingSignal += () => nodeVisited();
 		setOnlyFirstLocationInPathToBeActive();
-}
+	}
+
+	private List<List<MapEventType>> generateRandomMap() {
+		bool usedHealSpot = false;
+		List<List<MapEventType>> map = new List<List<MapEventType>>();
+		for(int pathCount = 0; pathCount < 2; pathCount++) {
+			List<MapEventType> path = new List<MapEventType>();
+			for(int pathLength = 0; pathLength < 2; pathLength++) 
+			{
+				MapEventType mapEventType = MapEventTypeHelper.getRandom();
+				if (mapEventType == MapEventType.Heal) 
+				{
+					if (!usedHealSpot) 
+					{
+						usedHealSpot = true;
+					} else 
+					{
+						while(mapEventType == MapEventType.Heal) {
+							mapEventType = MapEventTypeHelper.getRandom();
+						}
+					}
+				}
+				path.Add(mapEventType);
+			}
+			map.Add(path);
+		}
+		return map;
+
+	}
 
 	private MapLocation createMapLocation(MapEventType eventType) {
 		MapLocation mapLocation = (MapLocation)mapLocationPackedScene.Instantiate();
@@ -57,7 +90,7 @@ public partial class Map : Node
 			if (inputEvent.IsActionPressed("click")) {
 				locationClicked(mapLocation);
 			}};
-		mapLocation.setEventType(eventType);
+	mapLocation.setEventType(eventType);
 		return mapLocation;
 	}
 

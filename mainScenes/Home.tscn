@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="2_eaxi2"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_hntlq"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5vuys"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="3_31lnn"]
+[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_31lnn"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="4_v1i61"]
 [ext_resource type="Texture2D" uid="uid://cc8kht2epbt2g" path="res://placeholders/Honme.png" id="5_i4llw"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="7_e5l0a"]
@@ -25,6 +25,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -48,6 +50,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -71,6 +75,8 @@ Value = -1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
+CoinGems = 0
+DrawCards = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
