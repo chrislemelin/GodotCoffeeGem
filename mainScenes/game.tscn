@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=53 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
@@ -38,6 +38,7 @@
 [ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
 [ext_resource type="Script" path="res://UI/Game/PlayableCardsUI.cs" id="37_635hs"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
+[ext_resource type="PackedScene" uid="uid://dul64fgsaye3s" path="res://camera/camera_2d.tscn" id="39_3yyxa"]
 
 [sub_resource type="Resource" id="Resource_nv7p6"]
 script = ExtResource("2_iphd8")
@@ -167,7 +168,7 @@ position = Vector2(960, 717)
 scale = Vector2(1.9405, 0.9182)
 texture = ExtResource("9_hiq7b")
 
-[node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score") instance=ExtResource("5_4m14m")]
+[node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") instance=ExtResource("5_4m14m")]
 unique_name_in_owner = true
 position = Vector2(697, 254)
 scale = Vector2(0.75, 0.75)
@@ -175,6 +176,7 @@ sizeY = 5
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
+gameCamera = NodePath("../Camera2D")
 
 [node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager", "deckView") instance=ExtResource("6_tl444")]
 position = Vector2(1784, 911)
@@ -982,3 +984,5 @@ text = "Dont show me this again"
 
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]
 visible = false
+
+[node name="Camera2D" parent="." instance=ExtResource("39_3yyxa")]

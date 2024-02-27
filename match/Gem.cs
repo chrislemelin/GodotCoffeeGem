@@ -18,6 +18,7 @@ public partial class Gem : lerp
 	[Export] public bool useSprites;
 	[Export] public Control control;
 	[Export] AnimationPlayer animationPlayer;
+	[Export] PackedScene explosion;
 
 	[Export] Texture2D questionMark;
 
@@ -119,6 +120,14 @@ public partial class Gem : lerp
 		}
 	}
 
+	public void startDyingMatch()
+	{
+		animationPlayer.Play("PopAnimation");
+		Node explode = explosion.Instantiate();
+		this.AddChild(explode);
+
+	}
+
 	public void startDying()
 	{
 		animationPlayer.Play("PopAnimation");
@@ -126,7 +135,7 @@ public partial class Gem : lerp
 
 	public void doneDying()
 	{
-		QueueFree();
+		GetTree().CreateTimer(5).Timeout += () => QueueFree();
 		EmitSignal(SignalName.doneDyingSignal, this);
 	}
 

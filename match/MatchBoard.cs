@@ -24,12 +24,15 @@ public partial class MatchBoard : Node
 	private double progressValue = 0;
 	[Export] private double progressStep;
 
+
 	[Export]
 	public AudioStream matchAudioStream;
 	[Export]
 	public AudioStream popAudioStream;
 	[Export]
 	public AudioStream switchAudioStream;
+	[Export] private GameCamera gameCamera;
+
 
 	
 	[Signal]
@@ -401,6 +404,7 @@ public partial class MatchBoard : Node
 
 		if (tilesToDeleteGem.Count > 0) 
 		{
+			gameCamera.shake();
 			audioStreamPlayer2D.Stream = matchAudioStream;
 			audioStreamPlayer2D.Play();
 		}
@@ -495,8 +499,12 @@ public partial class MatchBoard : Node
 			Tile tile = tileMaybe.GetValue();
 			if (tile.Gem != null)
 			{
-				if (!fromMatch) {
+				if (fromMatch) {
+					tile.Gem.startDyingMatch();
+				} else {
 					EmitSignal(SignalName.ingredientDestroyed, tile.Gem);
+					tile.Gem.startDying();
+
 				}
 				tile.Gem.startDying();
 				tileMaybe.GetValue().Gem = null;
@@ -748,10 +756,7 @@ public partial class MatchBoard : Node
 	{
 		deleteGemAtPositions(positions, false);
 	}
-	public void deleteGemAtPositions(IEnumerable<Vector2> positions)
-	{
-		deleteGemAtPositions(positions, false);
-	}
+
 
 	public void deleteGemAtPosition(Vector2 position)
 	{
