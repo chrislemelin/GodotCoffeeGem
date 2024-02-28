@@ -108,7 +108,8 @@ public partial class Score : Node2D
 		}
 	}
 
-	public bool scoreReached() {
+	public bool scoreReached()
+	{
 		return score >= scoreNeeded;
 	}
 
@@ -261,7 +262,8 @@ public partial class Score : Node2D
 	{
 		mult = newMult;
 		multLabel.Text = "Score Multiplier: " + getMultText(newMult);
-		if (multUI != null) {
+		if (multUI != null)
+		{
 			multUI.setMult(newMult);
 		}
 		EmitSignal(SignalName.multChange, mult);
@@ -293,7 +295,8 @@ public partial class Score : Node2D
 	{
 		compressCurrentColorUpgrades();
 
-		if (colorUpgradePreviewBox != null) {
+		if (colorUpgradePreviewBox != null)
+		{
 			foreach (Node node in colorUpgradePreviewBox.GetChildren())
 			{
 				node.QueueFree();
@@ -350,11 +353,12 @@ public partial class Score : Node2D
 				pointValueAfterMult = (int)(pointValue * mult);
 				newMultValue += evaluateMultIncrease(gemType);
 				setMult(newMultValue);
-				if(bossRecipeUI.Visible && !bossRecipeUI.complete()) {
+				if (bossRecipeUI.Visible && !bossRecipeUI.complete())
+				{
 					pointValueAfterMult = 0;
 				}
 				totalPoints += pointValueAfterMult;
-			
+
 			}
 
 			MatchScoreText matchScore = (MatchScoreText)matchScoreTextPackedScene.Instantiate();
@@ -444,22 +448,30 @@ public partial class Score : Node2D
 		}
 	}
 
-	public String getMultText(float mult) {
+	public String getMultText(float mult)
+	{
 		String waveText = "";
-		if (mult >= 1.5) {
+		if (mult >= 1.5)
+		{
 			waveText = "[wave amp=25.0 freq=2.0 connected=1]";
-		} if (mult >= 2) {
+		}
+		if (mult >= 2)
+		{
 			waveText = "[wave amp=50.0 freq=3.0 connected=1]";
-		} if (mult >= 3) {
+		}
+		if (mult >= 3)
+		{
 			waveText = "[wave amp=50.0 freq=6.0 connected=1]";
 		}
 		String rainbowText = "";
-		if (mult >= 2) {
+		if (mult >= 2)
+		{
 			rainbowText = "[rainbow freq=.5 sat=0.4 val=0.8]";
 		}
-		if (mult >= 3) {
+		if (mult >= 3)
+		{
 			rainbowText = "[rainbow freq=.5 sat=0.8 val=0.8]";
 		}
-		return waveText + rainbowText +"x" + mult;
+		return waveText + rainbowText + "x" + mult;
 	}
 }

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=5 format=3 uid="uid://bb8koi576w21k"]
+[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=5 format=3 uid="uid://d1e7k01hhad58"]
 
 [ext_resource type="Script" path="res://relics/effects/GiveScorePassive.cs" id="1_mmv8o"]
 [ext_resource type="Texture2D" uid="uid://mkrq8xtnnki2" path="res://relics/sprites/Icon.5_35.png" id="2_gjh1d"]

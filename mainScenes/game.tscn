@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_tlo67"]
+[ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_tlo67"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="14_31k88"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
 [ext_resource type="AudioStream" uid="uid://bihxsxxfe3i8s" path="res://sound/music/little_cafe.wav" id="16_18vio"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="16_m0mlx"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="16_m0mlx"]
 [ext_resource type="PackedScene" uid="uid://cmj3k4irtmxwc" path="res://relics/RelicHolder.tscn" id="16_qkjnw"]
 [ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="16_rcb0t"]
 [ext_resource type="Texture2D" uid="uid://bwuceu7gqp8u6" path="res://placeholders/red-arrow-png-36953.png" id="17_so8o5"]
@@ -152,6 +152,8 @@ welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 levelComplete = NodePath("UIOverLays/LevelComplete")
+debugMode = true
+endlessMode = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")

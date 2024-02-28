@@ -22,7 +22,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_v1prq")
 Title = "Pop Row"
-Description = "Destroy all ingredients of a selected row"
+Description = "Destroy all ingredients of a selected row. If this destroys 3 or more of the same type count it as a match"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_bt0gg")

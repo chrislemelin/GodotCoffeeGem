@@ -10,18 +10,20 @@ public partial class CardEffectPopRow : CardEffectIF
 	{
 		Tile tile = matchBoard.getTile(selectedTiles[0]);
 
-		matchBoard.deleteGemAtPositions(getAllTilesToEffect(matchBoard, tile));
+		matchBoard.checkManuallyForMatchOrDelete(getAllTilesToEffect(matchBoard, tile));
 	}
 
-	public override SelectionType getSelectionType(){
+	public override SelectionType getSelectionType()
+	{
 		return SelectionType.Single;
 	}
 
-	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile) {
+	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile)
+	{
 		List<Tile> tilesToClear = new List<Tile>();
 		tilesToClear.Add(tile);
-		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(),Vector2.Right));
-		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(),Vector2.Left));
+		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Right));
+		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Left));
 		return tilesToClear.Select(x => x.getTilePosition()).ToList();
 	}
 }
