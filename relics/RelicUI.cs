@@ -10,15 +10,18 @@ public partial class RelicUI : CustomToolTip
 	[Export] RichTextLabel costValueLabel;
 	[Export] public bool showPrice = false;
 	[Export] public bool showTitle = false;
+	[Export] public Control hitBox;
 
 	[Export] Vector2 minSizeWithCost;
 	[Export] private Control costControl;
 	[Export] public Button buyButton;
 	[Export] public AnimationPlayer animationPlayer;
+	[Export] public AudioStreamPlayer2D audio;
 
 	public void setRelic(RelicResource relicResource)
 	{
 		this.relicResource = relicResource;
+		relicResource.relicUI = this;
 		relicResource.CounterChanged += renderCounter;
 		render();
 	}
@@ -29,15 +32,16 @@ public partial class RelicUI : CustomToolTip
 	}
 
 	private void render() {
-		titleLabel.Text = TextHelper.centered(relicResource.title);
+		renderTitle();
 		picture.Texture = relicResource.image;
-		picture.TooltipText = relicResource.description;
+		hitBox.TooltipText = relicResource.description;
 		renderCost();
 		renderCounter(0);
 	}
 
 	public void activateAnimation() {
 		animationPlayer.Play("Activate");
+		audio.Play();
 	}
 
 	private void renderTitle() {

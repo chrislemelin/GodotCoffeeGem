@@ -23,7 +23,6 @@ public partial class HighlightOnHover : TextureRect
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
 		Material = (Material)Material.Duplicate();
 		if (highlightOnSelf) {
 			MouseEntered += () =>  setHighlightFromMouse(true);

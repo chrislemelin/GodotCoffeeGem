@@ -472,18 +472,6 @@ public partial class MatchBoard : Node
 				}
 			}
 			deleteGemAtPositions(tilesToDelete.Select(tile => tile.getTilePosition()).ToList(), true);
-
-			// List<Gem> gemsToDelete = tilesToDelete.Select(tile => tile.Gem).ToList();
-			// gemsToBeDeleted.UnionWith(gemsToDelete);
-			// foreach (Gem gem in gemsToDelete)
-			// {
-			// 	gem.doneDyingSignal += gemDoneDying;
-			// }
-
-			// foreach (Tile tile in tilesToDelete)
-			// {
-			// 	deleteGemAtPositionInternal(tile.getTilePosition());
-			// }
 		}
 
 	}
@@ -798,13 +786,14 @@ public partial class MatchBoard : Node
 	public void checkManuallyForMatchOrDelete(IEnumerable<Vector2> positions)
 	{
 		positions = filterOutInvalidPosition(positions);
-		HashSet<Vector2> tilesMatched = checkManuallyForMatch(positions).ToHashSet();
+		HashSet<HashSet<Tile>> matches = getMatchesInPositions(positions).ToHashSet();
+		HashSet<Vector2> tilesMatched = matches.SelectMany(matchList => matchList.Select(match => match.getTilePosition()).ToHashSet()).ToHashSet();
 		HashSet<Vector2> tilesNeedToDelete = positions.ToHashSet();
 		tilesNeedToDelete.ExceptWith(tilesMatched);
 		deleteGemAtPositions(tilesNeedToDelete);
 	}
 
-	public List<Vector2> checkManuallyForMatch(IEnumerable<Vector2> positions)
+	public HashSet<HashSet<Tile>> getMatchesInPositions(IEnumerable<Vector2> positions)
 	{
 		List<Tile> tiles = getTiles(positions).Where(tile => tile.Gem != null).ToList();
 		HashSet<HashSet<Tile>> matches = new HashSet<HashSet<Tile>>();
@@ -818,11 +807,14 @@ public partial class MatchBoard : Node
 				{
 					matches.Add(gemsOfCurrentType);
 					returnTiles.AddRange(gemsOfCurrentType.Select(tile => tile.getTilePosition()));
+					foreach(Tile tile in gemsOfCurrentType) {
+						EmitSignal(SignalName.ingredientDestroyed, tile.Gem);
+					}
 				}
 			}
 		}
 		scoreMatches(matches);
-		return returnTiles;
+		return matches;
 	}
 
 	public void deleteGemAtPosition(Vector2 position)
@@ -842,7 +834,7 @@ public partial class MatchBoard : Node
 
 	public void changeGemsColorAtPosition(Vector2 position, GemType gemType)
 	{
-		changeGemsColorAtPosition(new HashSet<Vector2> { position }, gemType);
+		changeGemsColorAtPosition(filterOutInvalidPosition(new HashSet<Vector2> { position}), gemType);
 	}
 
 	public List<Tile> getRandomNonBlackTile(int count)
@@ -930,8 +922,10 @@ public partial class MatchBoard : Node
 	{
 		foreach (Vector2 position in positions)
 		{
-			Tile tile = getTile(position);
-			tile.Gem.setType(gemType);
+			Optional<Tile> tile = getTileOptional(position);
+			if (tile.HasValue) {
+				tile.GetValue().Gem.setType(gemType);
+			}
 		}
 		thingsAreMoving = true;
 	}

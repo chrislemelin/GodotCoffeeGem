@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://3d6t3ubetydb"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://decpltn4recv4"]
 
-[ext_resource type="StyleBox" path="res://UI/Themes/PixelBoxBackground.tres" id="1_gfhep"]
+[ext_resource type="StyleBox" uid="uid://b2iis8l3fgnke" path="res://UI/Themes/PixelBoxBackground.tres" id="1_gfhep"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
 bg_color = Color(0.231373, 0.380392, 0.631373, 1)

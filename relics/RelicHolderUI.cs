@@ -58,13 +58,12 @@ public partial class RelicHolderUI : Control
 				executablePassive.execute(this);
 				relicUI.activateAnimation();
 			}
-			foreach (EffectResource executablePassive in relicUI.relicResource.getTurnStartEffects())
-			{
-				executablePassive.execute(this);
-				relicUI.activateAnimation();
-			}
+			relicUI.relicResource.startLevel();
+
+			startNewTurn();
 		}
 	}
+
 
 	public void startNewTurn()
 	{
@@ -72,9 +71,12 @@ public partial class RelicHolderUI : Control
 		{
 			relicUI.relicResource.newTurn();
 			relicUI.relicResource.incrementTurnCounter();
-			foreach (EffectResource executablePassive in relicUI.relicResource.getTurnStartEffects())
+			List<EffectResource> executablePassives = relicUI.relicResource.getTurnStartEffects();
+			foreach (EffectResource executablePassive in executablePassives)
 			{
 				executablePassive.execute(this);
+			}
+			if (executablePassives.Count != 0) {
 				relicUI.activateAnimation();
 			}
 		}

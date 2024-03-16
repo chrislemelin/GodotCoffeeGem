@@ -49,7 +49,6 @@ public partial class Map : Node
 		}
 		home.GuiInput += (inputEvent) => {
 			if (inputEvent.IsActionPressed("click")) {
-				GD.Print("beep");
 				locationClicked(home);
 		}};
 		character.doneMovingSignal += () => nodeVisited();

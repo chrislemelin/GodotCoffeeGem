@@ -40,7 +40,7 @@ static class MapEventTypeHelper
 
     public static MapEventType getRandom()
 	{
-		return (MapEventType)random.Next(5);
+		return (MapEventType)random.Next(4);
         //return MapEventType.RemoveCard;
 	}
 	

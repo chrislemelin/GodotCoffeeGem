@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmj3k4irtmxwc"]
+[gd_scene load_steps=4 format=3 uid="uid://cmj3k4irtmxwc"]
 
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_muhxp"]
 [ext_resource type="Script" path="res://relics/RelicHolderUI.cs" id="1_xfp3o"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_2scfp"]
-[ext_resource type="Script" path="res://relics/RelicUI.cs" id="4_jhhel"]
 
 [node name="RelicHolder" type="Control" node_paths=PackedStringArray("relicControlHolder")]
 layout_mode = 3
@@ -31,4 +30,4 @@ layout_mode = 0
 offset_top = 4.0
 offset_right = 1920.0
 offset_bottom = 54.0
-script = ExtResource("4_jhhel")
+alignment = 1

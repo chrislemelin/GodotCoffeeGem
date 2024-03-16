@@ -22,6 +22,10 @@ public partial class CardList : Resource
 		return allCards.ToList().Where(card => card != null).ToList();
 	}
 
+	public Godot.Collections.Array<CardResource> getRealList() {
+		return allCards;
+	}
+
 	public CardResource getRandomCard() {
 		CardRarity selectedRarity = CardRarityHelper.getRandom();
 		List<CardResource> cards = allCards.Where((card) => card.rarity == selectedRarity).ToList();

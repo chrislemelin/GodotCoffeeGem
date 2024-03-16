@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://xba81q45hybp"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bel8snq1m4gog"]
 
 [ext_resource type="Texture2D" uid="uid://bluufnw16b2pi" path="res://cards/cardResources/cardArt/popRow.png" id="1_xmfl4"]
-[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopGrid.cs" id="2_atfuc"]
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopGrid.cs" id="2_4jw5d"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_rg42k"]
 
-[sub_resource type="Resource" id="Resource_a4f5q"]
-script = ExtResource("2_atfuc")
+[sub_resource type="Resource" id="Resource_73qtu"]
+script = ExtResource("2_4jw5d")
 Range = 1.0
 Value = -1
 BlackGems = 0
@@ -27,4 +27,4 @@ Cost = 2
 rarity = 0
 Picture = ExtResource("1_xmfl4")
 coinCost = 0
-cardEffect = SubResource("Resource_a4f5q")
+cardEffect = SubResource("Resource_73qtu")

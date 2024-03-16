@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://day2feovup55o"]
+[gd_scene load_steps=15 format=3 uid="uid://day2feovup55o"]
 
 [ext_resource type="Script" path="res://relics/RelicUI.cs" id="1_481rc"]
 [ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="3_1loxs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_km4ke"]
 [ext_resource type="Texture2D" uid="uid://di0saajd1dtqq" path="res://relics/sprites/hammer.png" id="3_yfw20"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="4_ys4kh"]
+[ext_resource type="AudioStream" uid="uid://bxghgp64mew5m" path="res://sound/switch3.wav" id="7_or46b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dr4ex"]
 shader = ExtResource("3_1loxs")
@@ -26,24 +27,6 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="Animation" id="Animation_ng1m4"]
-resource_name = "Wiggle"
-
-[sub_resource type="Animation" id="Animation_a1neb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="Animation" id="Animation_cuh4b"]
 resource_name = "Activate"
 length = 0.3
@@ -60,6 +43,48 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, -0.0872665, 0.0, 0.0872665, 0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RelicUI:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a1neb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RelicUI:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ng1m4"]
+resource_name = "Wiggle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6hfpg"]
 _data = {
@@ -68,38 +93,45 @@ _data = {
 "Wiggle": SubResource("Animation_ng1m4")
 }
 
-[node name="Control" type="Control" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "costControl", "buyButton", "animationPlayer")]
+[node name="Control" type="Control" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "hitBox", "costControl", "buyButton", "animationPlayer", "audio")]
 custom_minimum_size = Vector2(60, 50)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 50.0
 pivot_offset = Vector2(30, 30)
+mouse_filter = 1
 theme = ExtResource("4_ys4kh")
 script = ExtResource("1_481rc")
 picture = NodePath("RelicUI/TextureRect")
 titleLabel = NodePath("Title")
 counterLabel = NodePath("TextEdit")
 costValueLabel = NodePath("Control/HBoxContainer/RichTextLabel")
+hitBox = NodePath("HoverHitBox")
 minSizeWithCost = Vector2(60, 50)
 costControl = NodePath("Control")
 buyButton = NodePath("Control/Button")
 animationPlayer = NodePath("AnimationPlayer")
+audio = NodePath("AudioStreamPlayer2D")
 
 [node name="RelicUI" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(60, 50)
 layout_mode = 0
 offset_right = 66.0
 offset_bottom = 55.0
+pivot_offset = Vector2(35, 27)
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="TextureRect" type="TextureRect" parent="RelicUI"]
+[node name="TextureRect" type="TextureRect" parent="RelicUI" node_paths=PackedStringArray("area2D")]
 material = SubResource("ShaderMaterial_dr4ex")
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("3_yfw20")
 expand_mode = 1
 script = ExtResource("3_km4ke")
+area2D = NodePath("../../HoverHitBox")
+highlightOnSelf = false
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
 layout_direction = 3
@@ -181,3 +213,13 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_6hfpg")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_or46b")
+
+[node name="HoverHitBox" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 51.0

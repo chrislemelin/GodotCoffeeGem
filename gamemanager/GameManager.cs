@@ -91,6 +91,7 @@ public partial class GameManager : GameManagerIF
 	{
 		if (score.getScore() < scoreNeededToPass)
 		{
+			FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
 			// its joever
 			resetGlobals();
 			gameOverScreen.Visible = true;
@@ -109,6 +110,7 @@ public partial class GameManager : GameManagerIF
 		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
 		levelComplete.setCoinsGained(coinsGained);
 		if (currentLevel == levels.Count) {
+			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
 			resetGlobals();
 			gameOverScreen.label.Text = "You win!!!";
 			gameOverScreen.Visible = true;

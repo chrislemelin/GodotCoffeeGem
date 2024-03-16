@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgfos0wevjgpv"]
+[gd_scene load_steps=24 format=3 uid="uid://dgfos0wevjgpv"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_8wsnh"]
 [ext_resource type="PackedScene" uid="uid://2av55t0yxy4e" path="res://UI/DayOverUI.tscn" id="1_xjb1y"]
@@ -16,6 +16,7 @@
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="14_ap4t7"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="14_ujune"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="16_v1rpc"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="17_orjqr"]
 
 [sub_resource type="Resource" id="Resource_pbwlf"]
 resource_local_to_scene = true
@@ -160,3 +161,5 @@ visible = false
 
 [node name="RelicSelection" parent="." instance=ExtResource("16_v1rpc")]
 visible = false
+
+[node name="SettingsMenu" parent="." instance=ExtResource("17_orjqr")]

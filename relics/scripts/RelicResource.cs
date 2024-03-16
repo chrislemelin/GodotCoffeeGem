@@ -12,6 +12,7 @@ public partial class RelicResource : Resource
 	[Export(PropertyHint.MultilineText)] public String description;
 	[Export] public Texture2D image;
 	[Export(PropertyHint.MultilineText)] public int cost = 0;
+	public RelicUI relicUI;
 
 	[Export] private Array<EffectResource> gameStartEffects = new Array<EffectResource>();
 	[Export] private Array<EffectResource> turnStartEffects = new Array<EffectResource>();
@@ -20,9 +21,20 @@ public partial class RelicResource : Resource
 	[Export] private Array<EffectResource> effects = new Array<EffectResource>();
 
 	[Signal] public delegate void CounterChangedEventHandler(int newCount);
+	// Max value for the counter, we expect to excute the effetcs in the effects list when this is reached
 	[Export] public int counterMax;
+	// Flag to deterimine if the counter goes up when a new turn starts or if this goes up by a custom call
 	[Export] public bool customCounter;
-	public int counter = 1;
+	// Flag to determine if the counter goes down instead of going up, not implemented yet
+	[Export] public bool counterDown = false;
+	// Flag to determine if the we should reset the counter when the level starts
+	[Export] public bool counterResetOnLevelStart = false;
+	// Flag to determine if we should reset the counter after we reach the max
+	[Export] public bool resetCounterAfterReachingMax = true;
+	// Flag to determine if the we should reset the counter when the level starts
+	[Export] public bool doEffectsOnTurnStartIfCounterAtMax = false;
+
+	public int counter = 0;
 	public Node node;
 
 	public void incrementTurnCounter()
@@ -39,19 +51,33 @@ public partial class RelicResource : Resource
 
 	public void incrementCounter()
 	{
-		counter++;
-		if (counter > counterMax)
-		{
-			counter = 1;
-			foreach (EffectResource effect in effects)
-			{
-				effect.execute(node);
+		if (counterMax == 0 ){
+			executeEffects(); 
+		} else {
+			counter++;
+			if (counter == counterMax) {
+				executeEffects();
 			}
+			if (counter > counterMax) {
+				if (resetCounterAfterReachingMax) {
+					counter = 1;
+				} else {
+					counter = counterMax;
+				}
+			}
+			EmitSignal(SignalName.CounterChanged, counter); 
 		}
+	}
+
+	private void setCounter(int counter) {
+		this.counter = counter;
 		EmitSignal(SignalName.CounterChanged, counter); 
 	}
 
 	public void executeEffects() {
+		if (relicUI != null && effects.Count != 0) {
+			relicUI.activateAnimation();
+		}
 		foreach (EffectResource effect in effects)
 		{
 			effect.execute(node);
@@ -62,10 +88,7 @@ public partial class RelicResource : Resource
 		if (customCounter) {
 			incrementCounter();
 		} else {
-			foreach (EffectResource effect in effects)
-			{
-				effect.execute(node);
-			}
+			executeEffects();
 		}
 	}
 
@@ -81,8 +104,13 @@ public partial class RelicResource : Resource
 
 	}
 
-	public virtual void newTurn(){
+	public void startLevel() {
+		if(counterResetOnLevelStart) {
+			counter = 0;
+		}
+	}
 
+	public virtual void newTurn(){
 	}
 	public virtual void afterTurnCleanUp(){
 
@@ -131,6 +159,9 @@ public partial class RelicResource : Resource
 		if (counterMax == 0 || counter == counterMax && !customCounter)
 		{
 			return turnStartEffects.ToList();
+		}
+		if (counter == counterMax && doEffectsOnTurnStartIfCounterAtMax) {
+			executeEffects();
 		}
 		return new List<EffectResource>();
 	}

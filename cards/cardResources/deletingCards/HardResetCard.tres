@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://clka6ebcl2f8u"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cfpclvimgl453"]
 
 [ext_resource type="Texture2D" uid="uid://bep1wvqyfuhy8" path="res://cards/cardResources/cardArt/popAll.png" id="1_6ngj0"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectDeleteAllButBlack.cs" id="2_46sna"]

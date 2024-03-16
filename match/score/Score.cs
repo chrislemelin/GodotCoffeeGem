@@ -241,6 +241,7 @@ public partial class Score : Node2D
 	public void setCoins(int newValue)
 	{
 		coins = newValue;
+
 		coinsLabel.Text = newValue.ToString();
 	}
 

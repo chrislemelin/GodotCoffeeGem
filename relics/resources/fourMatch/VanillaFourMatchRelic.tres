@@ -24,3 +24,7 @@ levelOverEffects = []
 effects = [SubResource("Resource_kxjnb")]
 counterMax = 0
 customCounter = false
+counterDown = false
+counterResetOnLevelStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

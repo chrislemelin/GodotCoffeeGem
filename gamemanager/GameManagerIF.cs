@@ -17,6 +17,10 @@ public partial class GameManagerIF : Node2D
 
 	[Signal]
 	public delegate void coinsChangedEventHandler(int newCoins);
+
+	public bool isIntialized() {
+		return global.deckCardList != null;
+	}
 	public List<CardResource> getDeckList()
 	{
 		loadGlobalAndSetDeckToDefault();
@@ -28,12 +32,12 @@ public partial class GameManagerIF : Node2D
 		if (cardResource == null) {
 			return;
 		}
-		global.deckCardList.getCards().Add(cardResource);
+		getGlobal().deckCardList.getRealList().Add(cardResource);
 	}
 
 	public void removeCardFromDeckList(CardResource cardResource)
 	{
-		global.deckCardList.getCards().Remove(cardResource);
+		global.deckCardList.getRealList().Remove(cardResource);
 	}
 
 	public override void _Ready()
@@ -65,17 +69,24 @@ public partial class GameManagerIF : Node2D
 
 	public void resetGlobals()
 	{
-		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards());
-		getGlobal().deckCardList.setCards(cardList);
-		getGlobal().currentLevel = 1;
-		getGlobal().currentHealth = 2;
-		getGlobal().relics = new List<RelicResource>();
-		getGlobal().shownBossTutorial = false;
+		Global global = getGlobal();
+		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards()).Duplicate();
+		global.deckCardList.setCards(cardList);
+		global.relics = new List<RelicResource>();
+		global.currentLevel = 1;
+		global.currentHealth = 2;
+		global.shownBossTutorial = false;
+		global.currentCoins = 0;
+		global.allCoinsGained = 0;
+		global.deckSelection = null;
+		global.numberOfCardsToChoose = 3;
+		global.gridSize = new Vector2(6,5);
+
 	}
 
 	public void setCardList(List<CardResource> cardResources)
 	{
-		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(cardResources);
+		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(cardResources).Duplicate();
 		CardList newCardList = new CardList();
 		newCardList.setCards(cardList);
 		getGlobal().deckCardList = newCardList;
@@ -96,6 +107,14 @@ public partial class GameManagerIF : Node2D
 	{
 	}
 
+	public void setCollectData(bool value){
+		getGlobal().collectData = value;
+	}
+
+	public bool getCollectData(){
+		return getGlobal().collectData;
+	}
+
 	public void setHealth(int newHealth)
 	{
 		getGlobal().currentHealth = Math.Clamp(newHealth, 0, getGlobal().maxHealth);
@@ -110,6 +129,16 @@ public partial class GameManagerIF : Node2D
 	public int getNumberOfCardToChoose()
 	{
 		return getGlobal().numberOfCardsToChoose;
+	}
+
+	public DeckSelectionResource getDeckSelection()
+	{
+		return getGlobal().deckSelection;
+	}
+
+	public void setDeckSelection(DeckSelectionResource deckSelectionResource)
+	{
+		getGlobal().deckSelection = deckSelectionResource;
 	}
 
 	public void setNumberOfCardToChoose(int value)
@@ -143,6 +172,16 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().currentCoins;
 	}
 
+	public int getAllCoinsGained()
+	{
+		return getGlobal().allCoinsGained;
+	}
+
+	public int getLevel()
+	{
+		return getGlobal().currentLevel;
+	}
+
 	public Vector2 getGridSize()
 	{
 		return getGlobal().gridSize;
@@ -173,6 +212,7 @@ public partial class GameManagerIF : Node2D
 	public void addCoins(int coinValue)
 	{
 		getGlobal().currentCoins += coinValue;
+		getGlobal().allCoinsGained += coinValue;
 		EmitSignal(SignalName.coinsChanged, global.currentCoins);
 	}
 

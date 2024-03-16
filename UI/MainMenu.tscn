@@ -4,12 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_p6qqt"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_0xd82"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("newGameButton")]
+[node name="MainMenu" type="Control"]
 custom_minimum_size = Vector2(1800, 1200)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5lild")
-newGameButton = NodePath("VBoxContainer/MarginContainer/VBoxContainer2/NewGameButton")
 gameScene = ExtResource("2_0xd82")
 
 [node name="TextureRect" type="TextureRect" parent="."]

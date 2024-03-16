@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=9 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_qt6ch"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="5_y52an"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "beanHolder")]
-layout_mode = 3
-anchors_preset = 0
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "beanHolder")]
 script = ExtResource("1_ro6go")
 quickPlayButton = NodePath("VBoxContainer2/quickstart")
 deckSelectionButton = NodePath("VBoxContainer2/deckSelection")
@@ -21,7 +21,6 @@ beanHolder = NodePath("BeanHolder")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.156863, 0.172549, 0.2, 1)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -41,7 +40,6 @@ rotation = -0.575959
 rotateSpeed = 20.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -72,7 +70,6 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 400
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 0
 offset_left = 652.0
 offset_top = 613.0
 offset_right = 1354.0
@@ -89,3 +86,13 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Advanced Mode"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("7_vbbet")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 711.0
+offset_top = 757.0
+offset_right = 1308.0
+offset_bottom = 843.0
+theme = ExtResource("8_e2q8p")
+text = "This game collects game play data. This data is anonymous and its very helpful to balance the game, but it can be disabled in the settings menu if desired"

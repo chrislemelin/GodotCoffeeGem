@@ -7,7 +7,7 @@ public partial class Deck : Node
 {
 	[Export] RichTextLabel countLabel;
 	[Export] Hand hand;
-	[Export] Godot.Collections.Array<CardResource> allCards;
+	[Export] Godot.Collections.Array<CardResource> allCards = new Godot.Collections.Array<CardResource>();
 	[Export] CardList cardList;
 	[Export] Discard discard;
 	[Export] Boolean loadDeckFromGlobal;
@@ -20,6 +20,7 @@ public partial class Deck : Node
 	public override void _Ready()
 	{
 		if (loadDeckFromGlobal) {
+			allCards.Clear();
 			List<CardResource> deckCardList = gameManager.getDeckList();
 			if (deckCardList.Count != 0) {
 				foreach (CardResource cardResource in deckCardList) {

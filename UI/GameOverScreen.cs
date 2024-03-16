@@ -9,8 +9,7 @@ public partial class GameOverScreen : Control
 
 	public override void _Ready()
 	{
-		restartButton.Pressed += () => GetTree().ReloadCurrentScene();
-
+		restartButton.Pressed += () => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn");
 	}
 
 }

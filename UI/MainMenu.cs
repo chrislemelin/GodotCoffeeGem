@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MainMenu : Node
+public partial class MainMenu : GameManagerIF
 {
 	[Export] Button quickPlayButton;
 	[Export] Button deckSelectionButton;

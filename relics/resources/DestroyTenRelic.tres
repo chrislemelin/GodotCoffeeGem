@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="PopRelic" load_steps=5 format=3 uid="uid://boppuad2fl8xd"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveMultPassive.cs" id="1_to12x"]
+[ext_resource type="Script" path="res://relics/scripts/PopRelic.cs" id="2_adqd8"]
+[ext_resource type="Texture2D" uid="uid://di0saajd1dtqq" path="res://relics/sprites/hammer.png" id="2_ewjlv"]
+
+[sub_resource type="Resource" id="Resource_tifok"]
+script = ExtResource("1_to12x")
+multIncrease = 1.0
+value = 0
+
+[resource]
+script = ExtResource("2_adqd8")
+title = "Destruction"
+description = "Gain +1 mult every turn, but only activates afer 10 ingredients are destroyed"
+image = ExtResource("2_ewjlv")
+cost = 40
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_tifok")]
+counterMax = 10
+customCounter = true
+counterDown = false
+counterResetOnLevelStart = true
+resetCounterAfterReachingMax = false
+doEffectsOnTurnStartIfCounterAtMax = true

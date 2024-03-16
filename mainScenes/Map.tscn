@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=53 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
@@ -23,6 +23,7 @@
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="20_y0tqh"]
 [ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="24_a84c2"]
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
 script = ExtResource("10_ujm25")
@@ -679,3 +680,5 @@ offset_top = 69.0
 offset_right = 1764.0
 offset_bottom = 69.0
 gameManager = NodePath("..")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("24_a84c2")]

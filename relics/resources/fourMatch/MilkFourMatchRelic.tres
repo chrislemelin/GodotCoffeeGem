@@ -10,7 +10,7 @@ value = 5
 
 [resource]
 script = ExtResource("2_w3wgm")
-minMatchSize = 4
+minMatchSize = 3
 ingredientType = 2
 title = "Milk 4 Matcher"
 description = "Gain 5 coins when you a match of 4 or more milk"
@@ -23,3 +23,7 @@ levelOverEffects = []
 effects = [SubResource("Resource_i16ow")]
 counterMax = 0
 customCounter = false
+counterDown = false
+counterResetOnLevelStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

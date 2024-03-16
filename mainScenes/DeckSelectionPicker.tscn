@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1vcw8het36xd"]
+[gd_scene load_steps=13 format=3 uid="uid://c1vcw8het36xd"]
 
 [ext_resource type="Script" path="res://gamemanager/DeckSelectionGameManager.cs" id="1_wvgmj"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ydtrs"]
@@ -11,11 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="5_wai7x"]
 [ext_resource type="Resource" uid="uid://cr1bg7cjxlymo" path="res://deckselection/decks/MoneyDeck.tres" id="6_o4igf"]
 [ext_resource type="Resource" uid="uid://bb2orrhuvkgpk" path="res://deckselection/decks/TimeLordDeck.tres" id="7_f5fi5"]
+[ext_resource type="Resource" uid="uid://dy7h4rshc1ou" path="res://deckselection/decks/PopDeck.tres" id="8_yqyph"]
 
 [node name="DeckSelectionPicker" type="Node2D" node_paths=PackedStringArray("deckViewUI", "deckSelectionUIParent", "continueButton", "viewDeckButton")]
 script = ExtResource("1_wvgmj")
 deckViewUI = NodePath("Control/DeckView")
-deckSelections = Array[Object]([ExtResource("2_un8pl"), ExtResource("4_horrj"), ExtResource("5_rt60l"), ExtResource("5_nciyr"), ExtResource("6_o4igf"), ExtResource("7_f5fi5")])
+deckSelections = Array[Object]([ExtResource("2_un8pl"), ExtResource("4_horrj"), ExtResource("5_rt60l"), ExtResource("5_nciyr"), ExtResource("6_o4igf"), ExtResource("7_f5fi5"), ExtResource("8_yqyph")])
 deckSelectionUIPackedScene = ExtResource("2_sfky1")
 deckSelectionUIParent = NodePath("Control/HBoxContainer")
 continueButton = NodePath("Control/VBoxContainer2/Continue")

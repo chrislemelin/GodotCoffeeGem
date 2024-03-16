@@ -20,10 +20,15 @@ public partial class RelicSelection : Control
 		};
 	}
 	public void setRelics(List<RelicResource> relicResources) {
+		foreach (Node child in relicHolder.GetChildren())
+		{
+			child.QueueFree();
+		};		
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
 		gameManager.coinsChanged += (coinValue) => updatePurchasableRelicButtons(coinValue);
 		foreach(RelicResource relicResource in relicResources) {
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
+			relicUI.showTitle = true;
 			relicUI.setRelic(relicResource);
 			relicUI.setShowPrice(purchasable);
 			relicUIs.Add(relicUI);
@@ -42,7 +47,7 @@ public partial class RelicSelection : Control
 					gameManager.addCoins(-1 * relicResource.cost);
 				};
 			} else {
-				relicUI.picture.GuiInput += (inputEvent) => {
+				relicUI.hitBox.GuiInput += (inputEvent) => {
 					if (inputEvent.IsActionPressed("click")) {
 						FindObjectHelper.getGameManager(this).addRelic(relicResource);
 						Visible = false;
