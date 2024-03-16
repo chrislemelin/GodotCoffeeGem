@@ -527,8 +527,12 @@ public partial class MatchBoard : Node
 			}
 		}
 	}
-	public HashSet<Tile> getTilesInDirectionOfSameGemType(Vector2 startingPosition, Vector2 direction, Optional<GemType> type)
+	public HashSet<Tile> getTilesInDirectionOfSameGemType(Vector2 startingPosition, Vector2 direction, Optional<GemType> type, int range = 999, int count = 0)
 	{
+		if (count > range)
+		{
+			return new HashSet<Tile>();
+		}
 		HashSet<Tile> gemMatches = new HashSet<Tile>();
 		Optional<Tile> maybeTile = getTileOptional(startingPosition);
 		if (maybeTile.HasValue) // ignore missing gems?
@@ -538,13 +542,13 @@ public partial class MatchBoard : Node
 				if (maybeTile.GetValue().Gem != null && (maybeTile.GetValue().Gem.Type == type.GetValue() || maybeTile.GetValue().Gem.Type == GemType.Rainbow))
 				{
 					gemMatches.Add(maybeTile.GetValue());
-					gemMatches.UnionWith(getTilesInDirectionOfSameGemType(startingPosition + direction, direction, type));
+					gemMatches.UnionWith(getTilesInDirectionOfSameGemType(startingPosition + direction, direction, type, range, count + 1));
 				}
 			}
 			else
 			{
 				gemMatches.Add(maybeTile.GetValue());
-				gemMatches.UnionWith(getTilesInDirectionOfSameGemType(startingPosition + direction, direction, type));
+				gemMatches.UnionWith(getTilesInDirectionOfSameGemType(startingPosition + direction, direction, type, range, count + 1));
 			}
 		}
 		return gemMatches;
@@ -641,6 +645,16 @@ public partial class MatchBoard : Node
 		{
 			gem.GlobalPosition = location;
 			gem.moveToPostion(Vector2.Zero);
+
+			// code to speed up long switches, but this code needs to know if the switch is happening from a card vs just falling
+			// if (tileTo.getTilePosition().DistanceTo(removeFromTile.getTilePosition()) < 2)
+			// {
+			// 	gem.moveToPostion(Vector2.Zero);
+			// }
+			// else
+			// {
+			// 	gem.moveToPostionConstTime(Vector2.Zero, .1f);
+			// }
 		}
 
 	}
@@ -807,7 +821,8 @@ public partial class MatchBoard : Node
 				{
 					matches.Add(gemsOfCurrentType);
 					returnTiles.AddRange(gemsOfCurrentType.Select(tile => tile.getTilePosition()));
-					foreach(Tile tile in gemsOfCurrentType) {
+					foreach (Tile tile in gemsOfCurrentType)
+					{
 						EmitSignal(SignalName.ingredientDestroyed, tile.Gem);
 					}
 				}
@@ -827,14 +842,14 @@ public partial class MatchBoard : Node
 		return getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>());
 	}
 
-	public HashSet<Tile> getTilesInDirections(Vector2 startingPosition, HashSet<Vector2> directions)
+	public HashSet<Tile> getTilesInDirections(Vector2 startingPosition, HashSet<Vector2> directions, int range = 999)
 	{
-		return directions.SelectMany(direction => getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>())).ToHashSet();
+		return directions.SelectMany(direction => getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>(), range)).ToHashSet();
 	}
 
 	public void changeGemsColorAtPosition(Vector2 position, GemType gemType)
 	{
-		changeGemsColorAtPosition(filterOutInvalidPosition(new HashSet<Vector2> { position}), gemType);
+		changeGemsColorAtPosition(filterOutInvalidPosition(new HashSet<Vector2> { position }), gemType);
 	}
 
 	public List<Tile> getRandomNonBlackTile(int count)
@@ -923,7 +938,8 @@ public partial class MatchBoard : Node
 		foreach (Vector2 position in positions)
 		{
 			Optional<Tile> tile = getTileOptional(position);
-			if (tile.HasValue) {
+			if (tile.HasValue)
+			{
 				tile.GetValue().Gem.setType(gemType);
 			}
 		}

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MultRelic" load_steps=7 format=3 uid="uid://oxn8l5i8w2tn"]
+[gd_resource type="Resource" script_class="MultRelic" load_steps=7 format=3 uid="uid://bnj8vvvotpxaj"]
 
 [ext_resource type="Script" path="res://relics/scripts/MultRelic.cs" id="1_d42s0"]
 [ext_resource type="Script" path="res://relics/effects/GiveManaPassive.cs" id="1_h7syu"]
@@ -28,7 +28,3 @@ levelOverEffects = []
 effects = [SubResource("Resource_cv85o"), SubResource("Resource_s7km8")]
 counterMax = 0
 customCounter = false
-counterDown = false
-counterResetOnLevelStart = false
-resetCounterAfterReachingMax = true
-doEffectsOnTurnStartIfCounterAtMax = false

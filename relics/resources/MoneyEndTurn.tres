@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://d30aghimthf4q"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cfpj2dschhbtn"]
 
 [ext_resource type="Script" path="res://relics/effects/AddAddonGemsEffect.cs" id="1_mklpc"]
 [ext_resource type="Script" path="res://relics/scripts/ManaEndTurnRelic.cs" id="2_0e6wb"]
@@ -23,7 +23,3 @@ levelOverEffects = []
 effects = [SubResource("Resource_yti5y")]
 counterMax = 0
 customCounter = false
-counterDown = false
-counterResetOnLevelStart = false
-resetCounterAfterReachingMax = true
-doEffectsOnTurnStartIfCounterAtMax = false

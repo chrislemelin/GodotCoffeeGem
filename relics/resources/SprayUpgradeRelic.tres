@@ -16,7 +16,3 @@ levelOverEffects = []
 effects = []
 counterMax = 0
 customCounter = false
-counterDown = false
-counterResetOnLevelStart = false
-resetCounterAfterReachingMax = true
-doEffectsOnTurnStartIfCounterAtMax = false

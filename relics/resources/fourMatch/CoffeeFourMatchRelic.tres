@@ -23,7 +23,3 @@ levelOverEffects = []
 effects = [SubResource("Resource_nwy7j")]
 counterMax = 0
 customCounter = false
-counterDown = false
-counterResetOnLevelStart = false
-resetCounterAfterReachingMax = true
-doEffectsOnTurnStartIfCounterAtMax = false

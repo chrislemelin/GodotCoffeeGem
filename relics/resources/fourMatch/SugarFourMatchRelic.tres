@@ -24,7 +24,3 @@ levelOverEffects = []
 effects = [SubResource("Resource_0cr4t")]
 counterMax = 0
 customCounter = false
-counterDown = false
-counterResetOnLevelStart = false
-resetCounterAfterReachingMax = true
-doEffectsOnTurnStartIfCounterAtMax = false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bgkyb81m8v60u"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b8nqlwbtu4tcd"]
 
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/GainCoinsCardEffect.cs" id="1_kxe18"]
 [ext_resource type="Texture2D" uid="uid://5j0gjjus280f" path="res://cards/cardResources/cardArt/coin.png" id="1_ngwwr"]

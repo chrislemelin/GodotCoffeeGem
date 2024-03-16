@@ -4,12 +4,13 @@ using System.Drawing;
 
 public partial class lerp : Node2D
 {
-	Vector2 startPosition; 
+	Vector2 startPosition;
 	Vector2 endPosition;
 	[Export] float speed;
+	float constantTimeSpeed;
 	float timeStartedMovement;
 	float timeAfterMovement;
-	
+
 
 	[Signal]
 	public delegate void doneMovingSignalEventHandler();
@@ -29,6 +30,12 @@ public partial class lerp : Node2D
 		timeAfterMovement = timeStartedMovement;
 	}
 
+	public void moveToPostionConstTime(Vector2 newPosition, float time)
+	{
+		moveToPostion(newPosition);
+		constantTimeSpeed = endPosition.DistanceTo(startPosition) / time;
+	}
+
 	public void moveToGlobalPostion(Vector2 newPosition)
 	{
 		moveToPostion(newPosition);
@@ -40,9 +47,10 @@ public partial class lerp : Node2D
 	{
 		if (timeStartedMovement > 0)
 		{
+			float currentSpeed = constantTimeSpeed == 0.0 ? speed : constantTimeSpeed;
 			float distance = endPosition.DistanceTo(startPosition);
 			timeAfterMovement += (float)delta;
-			float lerpValue = (timeAfterMovement - timeStartedMovement) * speed / distance;
+			float lerpValue = (timeAfterMovement - timeStartedMovement) * currentSpeed / distance;
 			Vector2 finalPosition = startPosition.Lerp(endPosition, lerpValue);
 			if (lerpValue > 1)
 			{
@@ -61,9 +69,11 @@ public partial class lerp : Node2D
 		}
 	}
 
-	
-	protected virtual void doneMoving() {
+
+	protected virtual void doneMoving()
+	{
 		EmitSignal(SignalName.doneMovingSignal);
+		constantTimeSpeed = 0.0f;
 		//doneMovingSignal =-
 	}
 

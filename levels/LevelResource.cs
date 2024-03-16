@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+[GlobalClass, Tool]
 public partial class LevelResource : Resource
 {
 	[Export]
@@ -12,11 +12,14 @@ public partial class LevelResource : Resource
 	[Export]
 	public int blockedTiles = 0;
 
-	public RecipeResource getBossRecipe(){
-		if (bossRecipe != null) {
+	public RecipeResource getBossRecipe()
+	{
+		if (bossRecipe != null)
+		{
 			return bossRecipe;
 		}
-		if (makeRandomBossRecipe) {
+		if (makeRandomBossRecipe)
+		{
 			RecipeResource recipeResource = new RecipeResource();
 			recipeResource.ingredientList.Add(GemTypeHelper.getRandomColor());
 			recipeResource.ingredientList.Add(GemTypeHelper.getRandomColor());

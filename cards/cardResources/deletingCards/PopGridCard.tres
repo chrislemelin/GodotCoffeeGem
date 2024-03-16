@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bel8snq1m4gog"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://xba81q45hybp"]
 
 [ext_resource type="Texture2D" uid="uid://bluufnw16b2pi" path="res://cards/cardResources/cardArt/popRow.png" id="1_xmfl4"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopGrid.cs" id="2_4jw5d"]

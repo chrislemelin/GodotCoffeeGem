@@ -7,7 +7,7 @@ public partial class FormSubmitter : HttpRequest
 {
 	String urlform = "https://docs.google.com/forms/d/e/1FAIpQLSfIQ7RMk7pz1Qs4DmNkajjnQ4KdCPYQRQguVK-YK6HI0EVsNQ/formResponse";
 
-	string[] headers = {"Content-Type: application/x-www-form-urlencoded"};
+	string[] headers = { "Content-Type: application/x-www-form-urlencoded" };
 
 	private Action callBack;
 
@@ -22,16 +22,16 @@ public partial class FormSubmitter : HttpRequest
 		base._ExitTree();
 	}
 
-	public void submitData(String reasonQuiting, GameManagerIF gameManager){
+	public void submitData(String reasonQuiting, GameManagerIF gameManager)
+	{
 		this.submitData(reasonQuiting, gameManager, null);
 	}
 
 	public void submitData(String reasonQuiting, GameManagerIF gameManager, Action callBack)
-	{	
-		GD.Print("data collection allowed "+ gameManager.getCollectData());
+	{
+		GD.Print("data collection allowed " + gameManager.getCollectData());
 		if (OS.HasFeature("standalone") && gameManager.getCollectData() && gameManager.isIntialized())
 		{
-
 			String data = "";
 			List<String> deckList = gameManager.getDeckList().Select(card => card.Title).ToList();
 			data = appendData(data, "entry.739229763", String.Join(",", deckList));
@@ -45,38 +45,47 @@ public partial class FormSubmitter : HttpRequest
 			data = appendData(data, "entry.1849250167", gameManager.getLevel().ToString());
 
 			Score score = FindObjectHelper.getScore(this);
-			if (score != null) {
+			if (score != null)
+			{
 				data = appendData(data, "entry.1921693847", score.getScore().ToString());
 			}
 
 			data = appendData(data, "entry.1410312729", gameManager.getCoins().ToString());
 			data = appendData(data, "entry.1443935098", gameManager.getAllCoinsGained().ToString());
 
-			DeckSelectionResource deckSelection =  gameManager.getDeckSelection();
-			if (deckSelection != null){
+			DeckSelectionResource deckSelection = gameManager.getDeckSelection();
+			if (deckSelection != null)
+			{
 				data = appendData(data, "entry.1435208426", deckSelection.title);
 			}
 
 			this.callBack = callBack;
 			var response = Request(urlform, headers, HttpClient.Method.Post, data);
-		} else {
-			if (callBack != null) {
+		}
+		else
+		{
+			if (callBack != null)
+			{
 				callBack.Invoke();
 			}
 		}
 
 	}
 
-	private void executeCallBack(long result, long responseCode, string[] headers, byte[] body) {
-		if(callBack != null) {
+	private void executeCallBack(long result, long responseCode, string[] headers, byte[] body)
+	{
+		if (callBack != null)
+		{
 			callBack.Invoke();
 		}
 		callBack = null;
 	}
 
-	private String appendData(String data, String entryKey, String entryValue, bool last = false) {
+	private String appendData(String data, String entryKey, String entryValue, bool last = false)
+	{
 		data += entryKey + "=" + entryValue;
-		if (!last) {
+		if (!last)
+		{
 			data += "&";
 		}
 		return data;

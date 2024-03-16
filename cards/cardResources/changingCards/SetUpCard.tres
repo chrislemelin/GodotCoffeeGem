@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://lvke4l8svulc"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bgn0mkcp2rhux"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/CardEffectIF.cs" id="1_a5u7o"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_mgvwa"]
