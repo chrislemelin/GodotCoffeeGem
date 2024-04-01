@@ -25,4 +25,5 @@ Description = "Swap the positions of 2 ingredients in the same row or coulmn"
 Cost = 1
 rarity = 1
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lmv24")

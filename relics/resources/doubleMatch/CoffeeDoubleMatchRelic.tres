@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MatchTypeRelic" load_steps=5 format=3 uid="uid://b6snedfgsv10u"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveScorePassive.cs" id="1_8ooc4"]
+[ext_resource type="Texture2D" uid="uid://b0mky4l7aoxcp" path="res://relics/sprites/Icon.6_37.png" id="2_oiail"]
+[ext_resource type="Script" path="res://relics/scripts/MatchTypeRelic.cs" id="3_2gfyu"]
+
+[sub_resource type="Resource" id="Resource_ir5xr"]
+script = ExtResource("1_8ooc4")
+value = 150
+
+[resource]
+script = ExtResource("3_2gfyu")
+minMatchSize = 3
+ingredientType = 0
+title = "Coffee Double Matcher"
+description = "Gain 150 score on every other coffee match on the same turn"
+image = ExtResource("2_oiail")
+cost = 50
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_ir5xr")]
+counterMax = 2
+customCounter = true
+counterResetOnLevelStart = true
+counterResetOnTurnStart = true
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

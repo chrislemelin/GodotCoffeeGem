@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxshhmv8s75ky"]
+[gd_scene load_steps=12 format=3 uid="uid://bxshhmv8s75ky"]
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_tb7xr"]
 [ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="2_663k4"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_a0ard"]
 [ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="3_hibfg"]
-[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="4_we8e7"]
+[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="6_2kaga"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="6_w0vkw"]
+[ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="6_yrfys"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_8y700"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="9_g6p6g"]
 
@@ -65,18 +66,23 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Description"]
 layout_mode = 0
+offset_left = -5.0
+offset_right = 307.0
+offset_bottom = 214.0
 mouse_filter = 2
-texture = ExtResource("4_we8e7")
+texture = ExtResource("7_8y700")
+expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Description"]
 layout_mode = 0
-offset_left = 13.9286
-offset_top = 11.468
-offset_right = 288.929
-offset_bottom = 190.468
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 300.0
+offset_bottom = 207.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/normal_font = ExtResource("6_2kaga")
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[hint={test}]blah blah blah[/hint]"
 
@@ -91,10 +97,10 @@ mouse_filter = 2
 [node name="Sprite2D" type="TextureRect" parent="UI/Picture"]
 modulate = Color(0.196078, 0.196078, 0.196078, 1)
 layout_mode = 0
-offset_left = -13.0
-offset_top = -10.3336
-offset_right = 387.0
-offset_bottom = 389.666
+offset_left = -25.8571
+offset_top = -3.66699
+offset_right = 374.143
+offset_bottom = 396.333
 scale = Vector2(0.8, 0.55)
 mouse_filter = 2
 texture = ExtResource("7_8y700")
@@ -111,34 +117,33 @@ mouse_filter = 2
 [node name="Sprite2D" type="TextureRect" parent="UI/Title"]
 modulate = Color(0.145098, 0.811765, 0.960784, 1)
 layout_mode = 0
-offset_left = 9.04759
-offset_top = -6.6666
-offset_right = 367.048
-offset_bottom = 101.333
+offset_left = -22.0
+offset_top = -7.0
+offset_right = 367.0
+offset_bottom = 101.0
 mouse_filter = 2
 texture = ExtResource("6_w0vkw")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Title"]
 layout_mode = 0
-offset_left = 18.0
+offset_left = -11.0
 offset_top = 22.0
 offset_right = 363.0
 offset_bottom = 70.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 0
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]CARD TITLE[/center]"
 scroll_active = false
 
 [node name="Cost" type="Control" parent="UI"]
 anchors_preset = 0
-offset_left = 62.65
-offset_top = 63.3333
-offset_right = 62.65
-offset_bottom = 63.3333
+offset_left = 40.0
+offset_top = 36.1901
+offset_right = 40.0
+offset_bottom = 36.1901
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Cost"]
@@ -160,13 +165,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -51.2214
-offset_top = -75.7146
+offset_top = -67.1432
 offset_right = -4.22141
-offset_bottom = 7.28543
+offset_bottom = 15.8568
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_yrfys")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]0"

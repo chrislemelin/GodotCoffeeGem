@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk057h7ksmnub"]
+[gd_scene load_steps=5 format=3 uid="uid://bk057h7ksmnub"]
 
 [ext_resource type="Script" path="res://UI/global/SettingsMenu.cs" id="1_0lkxj"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="1_kbkdg"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_kbkdg"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_nhw1p"]
+[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="4_6wc46"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSluder", "dataCollectionCheckBox", "quitButton", "closeButton", "visibleButton", "panel")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "panel") groups=["SettingsMenu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,18 +14,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0lkxj")
 sfxSlider = NodePath("Panel/VBoxContainer/SFX Slider/HSlider")
-musicSluder = NodePath("Panel/VBoxContainer/Music Slider/HSlider")
+musicSlider = NodePath("Panel/VBoxContainer/Music Slider/HSlider")
 dataCollectionCheckBox = NodePath("Panel/VBoxContainer/Data Collection/CheckBox")
 quitButton = NodePath("Panel/VBoxContainer/QuitButton/Button")
 closeButton = NodePath("Panel/VBoxContainer/CloseButton/Button")
+mainMenuButton = NodePath("Panel/VBoxContainer/MainMenuButton/Button")
 visibleButton = NodePath("Button")
 panel = NodePath("Panel")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1775.0
+offset_left = 1759.0
 offset_top = 21.0
-offset_right = 1896.0
+offset_right = 1901.0
 offset_bottom = 71.0
 theme = ExtResource("1_kbkdg")
 text = "Settings"
@@ -48,13 +50,14 @@ offset_bottom = 808.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_top = 34.0
-offset_right = 613.0
-offset_bottom = 429.0
+offset_left = -48.0
+offset_top = 32.0
+offset_right = 681.0
+offset_bottom = 427.0
 
 [node name="Settings Title" type="RichTextLabel" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]Settings"
 fit_content = true
@@ -62,18 +65,16 @@ fit_content = true
 [node name="Spacing" type="MarginContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 30
 
 [node name="Music Title" type="RichTextLabel" parent="Panel/VBoxContainer"]
-visible = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]Music Slider"
 fit_content = true
 
 [node name="Music Slider" type="MarginContainer" parent="Panel/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
@@ -81,17 +82,18 @@ theme_override_constants/margin_right = 150
 
 [node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/Music Slider"]
 layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="SFX Slider2" type="RichTextLabel" parent="Panel/VBoxContainer"]
-visible = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]SFX Slider"
 fit_content = true
 
 [node name="SFX Slider" type="MarginContainer" parent="Panel/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
@@ -99,6 +101,10 @@ theme_override_constants/margin_right = 150
 
 [node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/SFX Slider"]
 layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 1
 
 [node name="Data Collection" type="MarginContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -109,6 +115,8 @@ theme_override_constants/margin_right = 150
 [node name="CheckBox" type="CheckBox" parent="Panel/VBoxContainer/Data Collection"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
+theme_override_fonts/font = ExtResource("4_6wc46")
+theme_override_font_sizes/font_size = 36
 text = "Enable game play data collection"
 
 [node name="QuitButton" type="MarginContainer" parent="Panel/VBoxContainer"]
@@ -122,6 +130,17 @@ layout_mode = 2
 theme = ExtResource("1_kbkdg")
 text = "Quit Game"
 
+[node name="MainMenuButton" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nhw1p")
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/MainMenuButton"]
+layout_mode = 2
+theme = ExtResource("1_kbkdg")
+text = "Main Menu"
+
 [node name="CloseButton" type="MarginContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
@@ -131,4 +150,4 @@ theme_override_constants/margin_right = 150
 [node name="Button" type="Button" parent="Panel/VBoxContainer/CloseButton"]
 layout_mode = 2
 theme = ExtResource("1_kbkdg")
-text = "Close Menu"
+text = "Resume"

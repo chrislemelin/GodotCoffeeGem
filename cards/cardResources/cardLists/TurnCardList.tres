@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=7 format=3 uid="uid://bpieaq7va0s0u"]
+[gd_resource type="Resource" script_class="CardList" load_steps=6 format=3 uid="uid://bpieaq7va0s0u"]
 
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="1_6uws0"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_j5lf6"]
-[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="3_qu7ml"]
-[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_12kqt"]
+[ext_resource type="Resource" uid="uid://bo4jhb130ba2i" path="res://cards/cardResources/otherCards/TrashCard.tres" id="4_13jqp"]
 [ext_resource type="Resource" uid="uid://70kmw430310t" path="res://cards/cardResources/scoreCards/AddTurn.tres" id="5_vc17m"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="6_had48"]
 
 [resource]
 script = ExtResource("6_had48")
-allCards = Array[Object]([ExtResource("5_vc17m"), ExtResource("1_6uws0"), ExtResource("1_6uws0"), ExtResource("1_6uws0"), ExtResource("2_j5lf6"), ExtResource("2_j5lf6"), ExtResource("2_j5lf6"), ExtResource("3_qu7ml"), ExtResource("3_qu7ml"), ExtResource("4_12kqt")])
+allCards = Array[Object]([ExtResource("5_vc17m"), ExtResource("1_6uws0"), ExtResource("1_6uws0"), ExtResource("1_6uws0"), ExtResource("2_j5lf6"), ExtResource("2_j5lf6"), ExtResource("2_j5lf6"), ExtResource("4_13jqp"), ExtResource("4_13jqp"), ExtResource("4_13jqp")])

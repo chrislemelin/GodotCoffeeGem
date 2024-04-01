@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu3n4oo2vkoxy"]
 
 [ext_resource type="Script" path="res://UI/Recipe/RecipeUI.cs" id="1_pcu2t"]
-[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="8_5wp8n"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_dubq4"]
 [ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="15_1xgnr"]
 
 [node name="BossRecipeUI" type="Control" node_paths=PackedStringArray("recipeComponentHolder")]
@@ -15,12 +15,12 @@ script = ExtResource("1_pcu2t")
 recipeComponentHolder = NodePath("VBoxContainer/HBoxContainer")
 inactiveColor = Color(0.443137, 0.443137, 0.443137, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 304.0
-offset_bottom = 136.0
-texture = ExtResource("8_5wp8n")
-expand_mode = 2
+[node name="Panel" type="Panel" parent="."]
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 307.0
+offset_bottom = 113.0
+theme = ExtResource("2_dubq4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://buh6thout0ca2"]
+[gd_scene load_steps=3 format=3 uid="uid://buh6thout0ca2"]
 
-[ext_resource type="AudioStream" uid="uid://bihxsxxfe3i8s" path="res://sound/music/little_cafe.wav" id="1_6r4dm"]
+[ext_resource type="AudioStream" uid="uid://bumaaadtnrwye" path="res://sound/music/Patreon Challenge - 03.ogg" id="1_jgsg6"]
+[ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="2_o3n0h"]
 
 [node name="MusicPlayer" type="Node2D"]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("1_6r4dm")
-volume_db = -80.0
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." groups=["MusicPlayer"]]
+stream = ExtResource("1_jgsg6")
 autoplay = true
+script = ExtResource("2_o3n0h")
+minValue = -40.0

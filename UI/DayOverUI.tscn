@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="10_6qdhe"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
 
 [sub_resource type="Resource" id="Resource_ioiih"]
 script = ExtResource("2_ahm5c")
@@ -56,9 +56,9 @@ marginContainerScene = ExtResource("8_8qiu1")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 564.0
-offset_top = 460.0
+offset_top = 492.0
 offset_right = 1360.0
-offset_bottom = 1119.0
+offset_bottom = 1068.0
 theme = ExtResource("9_m8ehy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -72,7 +72,7 @@ size_flags_vertical = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center] Cards available to purchase [center]"
 fit_content = true
@@ -285,6 +285,7 @@ script = ExtResource("2_x4g5w")
 cost = 30
 
 [node name="Gem upgrade" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 tooltip_text = "This will upgrade the points and mult gained from matching an ingredient"
 theme = ExtResource("11_37gdu")

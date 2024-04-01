@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="2_u2nuu"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="3_b4ktr"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="4_lxweo"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="5_l31ds"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="5_l31ds"]
 
 [sub_resource type="Animation" id="Animation_elfug"]
 resource_name = "FadeIn"
@@ -78,27 +78,26 @@ flip_v = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 578.0
-offset_top = 157.0
-offset_right = 1191.0
-offset_bottom = 869.0
+offset_left = 276.0
+offset_top = 136.0
+offset_right = 1510.0
+offset_bottom = 901.0
 theme = ExtResource("4_lxweo")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
-offset_left = 598.0
-offset_top = 173.0
-offset_right = 2356.0
-offset_bottom = 2246.0
-scale = Vector2(0.33, 0.33)
+offset_left = 287.0
+offset_top = 160.0
+offset_right = 2667.0
+offset_bottom = 1604.0
+scale = Vector2(0.5, 0.5)
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 clip_contents = true
 layout_mode = 2
-columns = 3
+columns = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -109,7 +108,6 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -125,7 +123,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -141,7 +138,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -157,7 +153,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer6" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -173,7 +168,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer7" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -189,7 +183,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer8" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -205,7 +198,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer9" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -221,7 +213,6 @@ titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 
 [node name="MarginContainer10" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20

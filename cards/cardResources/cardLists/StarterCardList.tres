@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=10 format=3 uid="uid://cuupjsry3idhf"]
+[gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://cuupjsry3idhf"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="1_6cmgn"]
 [ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="2_b1nn1"]
@@ -7,9 +7,7 @@
 [ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="6_1vkr2"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_uai24"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="7_f4atu"]
-[ext_resource type="Resource" uid="uid://flvg7jdclp20" path="res://cards/cardResources/movementCards/SwitchVertCardPlus.tres" id="7_wq36t"]
-[ext_resource type="Resource" uid="uid://bwow4do4vy5l" path="res://cards/cardResources/movementCards/SwitchHorizPlusCard.tres" id="8_210t6"]
 
 [resource]
 script = ExtResource("1_6cmgn")
-allCards = Array[Object]([ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("3_vvk82"), ExtResource("2_b1nn1"), ExtResource("5_dr1ge"), ExtResource("6_1vkr2"), ExtResource("7_wq36t"), ExtResource("8_210t6")])
+allCards = Array[Object]([ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("3_vvk82"), ExtResource("2_b1nn1"), ExtResource("5_dr1ge"), ExtResource("6_1vkr2")])

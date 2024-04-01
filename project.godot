@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 Globals="*res://util/Global.cs"
 MusicPlayer="*res://sound/music/MusicPlayer.tscn"
 FormSubmitter="*res://dataGathering/FormSubmitter.tscn"
-SettingsMenu="res://UI/global/SettingsMenu.tscn"
 
 [display]
 
@@ -34,6 +33,7 @@ project/assembly_name="CoffeeGem"
 
 [gui]
 
+theme/custom_font="res://fonts/EXEPixelPerfect.ttf"
 timers/tooltip_delay_sec=0.14
 
 [input]

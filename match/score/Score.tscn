@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=20 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
 [ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="2_noj62"]
-[ext_resource type="AudioStream" uid="uid://btbmntmdtpbfa" path="res://sound/Score/sound-fx-roblox-oof_G_major.wav" id="3_af7pr"]
+[ext_resource type="AudioStream" uid="uid://eufccuj6xdo3" path="res://sound/Score/Voice_Male_V2_Pain_Mono_01.wav" id="3_77qsr"]
 [ext_resource type="PackedScene" uid="uid://b118tqgwxreh4" path="res://match/MatchScoreText.tscn" id="4_q1bh3"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="5_lvyy0"]
 [ext_resource type="PackedScene" uid="uid://d1yewgtk7q7eh" path="res://UI/ColorUpgradePreviewUI.tscn" id="5_rxpiq"]
@@ -14,8 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://placeholders/outter2.png" id="10_i5bib"]
 [ext_resource type="Texture2D" uid="uid://c77r8vld5eive" path="res://placeholders/UI/turn-orb-pixel-300px.png" id="10_pwl7c"]
 [ext_resource type="Texture2D" uid="uid://22671e24p2wq" path="res://placeholders/UI/turn-orb-empty-pixel-300px.png" id="11_liqc3"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="11_xqdl2"]
 [ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://placeholders/UI/heart-pixel-300px.png" id="12_i0n4t"]
+[ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="13_mxfsq"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="17_bgy2v"]
+[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="17_iagpe"]
 
 [node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")
@@ -30,7 +33,7 @@ turnColor = Color(0, 1, 0.0509804, 1)
 heartColor = Color(1, 0, 1, 1)
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 victoryAudio = ExtResource("2_noj62")
-oofAudio = ExtResource("3_af7pr")
+oofAudio = ExtResource("3_77qsr")
 matchScoreTextPackedScene = ExtResource("4_q1bh3")
 progressBar = NodePath("VBoxContainer/ScoreProgressBar")
 turnsContainer = NodePath("VBoxContainer/TurnsContainer/TurnsContainer")
@@ -42,13 +45,23 @@ heartEmpty = ExtResource("9_nlixp")
 turnFull = ExtResource("10_pwl7c")
 turnEmpty = ExtResource("11_liqc3")
 
+[node name="Panel" type="Panel" parent="."]
+offset_left = -153.0
+offset_top = -65.0
+offset_right = 152.0
+offset_bottom = 102.0
+theme = ExtResource("11_xqdl2")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 107)
 scale = Vector2(1, 1.65385)
 texture = ExtResource("5_lvyy0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ax4rp")
+script = ExtResource("13_mxfsq")
+soundEffect = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = -140.0
@@ -57,6 +70,7 @@ offset_right = 142.0
 offset_bottom = 229.0
 
 [node name="Level Label" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
@@ -80,6 +94,7 @@ fit_content = true
 scroll_active = false
 
 [node name="MultLabelText" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 tooltip_text = "The score from each match you make is multiplied against the score multiplier. This will go up a bit after each match and will reset back to 1 after the end of each turn"
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -110,6 +125,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Level Progress" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(210, 30)
@@ -151,6 +167,7 @@ fit_content = true
 scroll_active = false
 
 [node name="ScoreProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 tooltip_text = "This is the number of points you have collected in the level so far and how many points you need to clear the level"
@@ -165,15 +182,15 @@ texture_over = ExtResource("10_i5bib")
 texture_progress = ExtResource("9_xhewp")
 tint_under = Color(0.286275, 0.286275, 0.286275, 1)
 tint_over = Color(0, 0, 0, 1)
-tint_progress = Color(0, 0.968627, 0, 1)
+tint_progress = Color(0.52549, 0.858824, 0.294118, 1)
 
 [node name="Turns" type="RichTextLabel" parent="VBoxContainer"]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
-tooltip_text = "This is the number of turns you have to clear the level. If you run out of turns you will start losing hearts and if you run out of hearts you die"
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 25
+theme_override_fonts/normal_font = ExtResource("17_iagpe")
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Turns Remaining
 "
@@ -183,7 +200,6 @@ scroll_active = false
 [node name="TurnsContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 7.9
-tooltip_text = "This is the number of turns you have to clear the level. If you run out of turns you will start losing hearts and if you run out of hearts you die"
 
 [node name="HeartsContainer" type="HBoxContainer" parent="VBoxContainer/TurnsContainer"]
 layout_mode = 2
@@ -227,7 +243,6 @@ stretch_mode = 4
 [node name="CoinsContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 7.9
-tooltip_text = "This is the number of coins you have which can be spent in between rounds. Clearing a level early will score you some extra coins"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/CoinsContainer"]
 custom_minimum_size = Vector2(50, 50)
@@ -239,7 +254,8 @@ expand_mode = 1
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 35
+theme_override_fonts/normal_font = ExtResource("17_iagpe")
+theme_override_font_sizes/normal_font_size = 64
 text = "10"
 fit_content = true
 scroll_active = false

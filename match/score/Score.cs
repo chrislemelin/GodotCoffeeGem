@@ -58,6 +58,8 @@ public partial class Score : Node2D
 	private List<ColorUpgrade> colorUpgrades = new List<ColorUpgrade>();
 	private Dictionary<GemType, ColorUpgrade> colorUpgradesCompressed = new Dictionary<GemType, ColorUpgrade>();
 
+	private bool levelCleared = false;
+
 	public override void _Ready()
 	{
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
@@ -66,7 +68,7 @@ public partial class Score : Node2D
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => newturn();
 		setMult(mult);
 		setScore(score);
-		setMoneyNeeded(scoreNeeded);
+		setScoreNeeded(scoreNeeded);
 		setLevel(level);
 		setTurnsRemaining(turnsRemaining);
 		setCoins(coins);
@@ -84,7 +86,7 @@ public partial class Score : Node2D
 			setTurnsRemaining(turnsRemaining - 1);
 			audioStreamPlayer2D.Stream = victoryAudio;
 			audioStreamPlayer2D.Play();
-			GetTree().CreateTimer(0).Timeout += () => gameManager.evaluateLevel();
+			gameManager.evaluateLevel();
 			return;
 		}
 		colorUpgrades = colorUpgrades.Where(colorUpgrade => !colorUpgrade.temporary).ToList();
@@ -111,6 +113,10 @@ public partial class Score : Node2D
 	public bool scoreReached()
 	{
 		return score >= scoreNeeded;
+	}
+
+	public int getScoreNeeded() {
+		return scoreNeeded;
 	}
 
 	public void addToTurnsRemaining(int value)
@@ -214,7 +220,7 @@ public partial class Score : Node2D
 		colorUpgradesCompressed = colorUpgradesCompressedNew;
 	}
 
-	public void setMoneyNeeded(int newValue)
+	public void setScoreNeeded(int newValue)
 	{
 		scoreNeeded = newValue;
 		moneyNeededLabel.Text = "MONEY NEEDED:" + (newValue / 100.0).ToString("C2");
@@ -257,6 +263,7 @@ public partial class Score : Node2D
 		scoreLabel.Text = "Score: " + score + "/" + scoreNeeded;
 		progressBar.Value = (float)score / scoreNeeded * 100;
 		EmitSignal(SignalName.scoreChange, score, scoreNeeded);
+		checkForLevelOver();
 	}
 
 	public void setMult(float newMult)
@@ -334,6 +341,16 @@ public partial class Score : Node2D
 	{
 		int pointValue = (int)(scoreValue * mult);
 		setScore(score + pointValue);
+	}
+
+	public void checkForLevelOver(){
+		if (scoreReached() && levelCleared == false)
+		{
+			audioStreamPlayer2D.Stream = victoryAudio;
+			audioStreamPlayer2D.Play();
+			gameManager.evaluateLevel();
+			levelCleared = true;
+		}
 	}
 
 	public void scoreMatches(HashSet<HashSet<Tile>> matches)

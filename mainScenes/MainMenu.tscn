@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1vcw8het36xd" path="res://mainScenes/DeckSelectionPicker.tscn" id="3_3ea2j"]
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_qt6ch"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="5_y52an"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="5_y52an"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
 
@@ -56,7 +56,7 @@ theme_override_constants/separation = 25
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 75
+theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
 text = "[center]Beans of Production[/center]"
 fit_content = true
@@ -93,6 +93,6 @@ text = "Advanced Mode"
 offset_left = 711.0
 offset_top = 757.0
 offset_right = 1308.0
-offset_bottom = 843.0
+offset_bottom = 868.0
 theme = ExtResource("8_e2q8p")
 text = "This game collects game play data. This data is anonymous and its very helpful to balance the game, but it can be disabled in the settings menu if desired"

@@ -25,4 +25,5 @@ Description = "Lose a turn (this can kill you) and then gain 3 cards and 2 mana"
 Cost = 0
 rarity = 1
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_fm1w4")

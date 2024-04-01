@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 public partial class FormSubmitter : HttpRequest
 {
@@ -14,7 +15,7 @@ public partial class FormSubmitter : HttpRequest
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		RequestCompleted += executeCallBack;
+		RequestCompleted += (result, responseCode, headers, body) => executeCallBack();
 	}
 
 	public override void _ExitTree()
@@ -29,14 +30,27 @@ public partial class FormSubmitter : HttpRequest
 
 	public void submitData(String reasonQuiting, GameManagerIF gameManager, Action callBack)
 	{
-		GD.Print("data collection allowed " + gameManager.getCollectData());
+		GD.Print("data collection allowed " + gameManager.getCollectData() + "userId " + gameManager.getUserId());
 		if (OS.HasFeature("standalone") && gameManager.getCollectData() && gameManager.isIntialized())
 		{
 			String data = "";
+			Score score = FindObjectHelper.getScore(this);
+			if (score != null && score.getScore() == 0 && gameManager.getLevel() == 1) {
+				if (callBack != null)
+				{
+					callBack.Invoke();
+				}
+				// they have just started to run, don't collect data
+				return;
+			}
+			data = appendData(data, "entry.639787288", gameManager.getUserId()+"");
+
 			List<String> deckList = gameManager.getDeckList().Select(card => card.Title).ToList();
 			data = appendData(data, "entry.739229763", String.Join(",", deckList));
 
 			data = appendData(data, "entry.151133640", reasonQuiting);
+
+			data = appendData(data, "entry.1814658543", (Time.GetTicksMsec() -  gameManager.getStartTime())/1000.0+ "");
 
 
 			List<String> relicList = gameManager.getRelics().Select(relic => relic.title).ToList();
@@ -44,10 +58,10 @@ public partial class FormSubmitter : HttpRequest
 
 			data = appendData(data, "entry.1849250167", gameManager.getLevel().ToString());
 
-			Score score = FindObjectHelper.getScore(this);
 			if (score != null)
 			{
 				data = appendData(data, "entry.1921693847", score.getScore().ToString());
+				data = appendData(data, "entry.1041408558", score.getScoreNeeded().ToString());
 			}
 
 			data = appendData(data, "entry.1410312729", gameManager.getCoins().ToString());
@@ -58,9 +72,10 @@ public partial class FormSubmitter : HttpRequest
 			{
 				data = appendData(data, "entry.1435208426", deckSelection.title);
 			}
-
+			data = appendData(data, "entry.687983885", Version.version);
 			this.callBack = callBack;
 			var response = Request(urlform, headers, HttpClient.Method.Post, data);
+			GetTree().CreateTimer(5).Timeout += () => executeCallBack();
 		}
 		else
 		{
@@ -69,10 +84,9 @@ public partial class FormSubmitter : HttpRequest
 				callBack.Invoke();
 			}
 		}
-
 	}
 
-	private void executeCallBack(long result, long responseCode, string[] headers, byte[] body)
+	private void executeCallBack()
 	{
 		if (callBack != null)
 		{
@@ -83,6 +97,7 @@ public partial class FormSubmitter : HttpRequest
 
 	private String appendData(String data, String entryKey, String entryValue, bool last = false)
 	{
+		entryValue = HttpUtility.UrlEncode(entryValue);
 		data += entryKey + "=" + entryValue;
 		if (!last)
 		{
@@ -97,9 +112,12 @@ public partial class FormSubmitter : HttpRequest
 	entry.1639561478: relics
 	entry.1849250167: level reached
 	entry.1921693847: score reached
+	entry.1041408558: score required
 	entry.151133640: how did the run end
 	entry.1443935098: totalcoins
 	entry.1410312729: coins
+	entry.1814658543: run duration
+	entry.687983885: version
 	*/
 
 }

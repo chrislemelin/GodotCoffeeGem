@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=11 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="2_3nowl"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="4_jlt7i"]
 [ext_resource type="Script" path="res://hand/HandLine.cs" id="4_lebxv"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="5_lbql7"]
+[ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="9_nslao"]
 
 [sub_resource type="Gradient" id="Gradient_s4lcq"]
 offsets = PackedFloat32Array(0, 0.98503)
@@ -88,5 +89,7 @@ script = ExtResource("4_lebxv")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_7bv56")
+script = ExtResource("9_nslao")
+soundEffect = true
 
 [node name="CardContainer" type="Node2D" parent="."]

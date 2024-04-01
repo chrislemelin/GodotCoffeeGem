@@ -5,15 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="2_eaxi2"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_hntlq"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5vuys"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_31lnn"]
+[ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_31lnn"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="4_v1i61"]
-[ext_resource type="Texture2D" uid="uid://cc8kht2epbt2g" path="res://placeholders/Honme.png" id="5_i4llw"]
+[ext_resource type="Texture2D" uid="uid://banirrb6y866k" path="res://placeholders/home/Common Room.png" id="5_7y1oa"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="7_e5l0a"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="8_n1ouh"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="9_hebao"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="10_k3anh"]
 [ext_resource type="Texture2D" uid="uid://j3ybt36fv2yv" path="res://cards/cardResources/cardArt/Switch-horizontal.png" id="10_qx4mo"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="14_ap4t7"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="14_ap4t7"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="14_ujune"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="16_v1rpc"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="17_orjqr"]
@@ -42,6 +42,7 @@ Description = "Switch positions of two directly adjacent orbs"
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_pbwlf")
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
@@ -67,6 +68,7 @@ Description = "Switch positions of two vertically adjacent ingredients"
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -93,6 +95,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("10_qx4mo")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_ym5bx")
 
 [node name="Home" type="Node2D" node_paths=PackedStringArray("status", "dayOver", "newCardSelection", "button", "deckViewUI")]
@@ -112,7 +115,7 @@ offset_top = -103.0
 offset_right = 3849.0
 offset_bottom = 2481.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_i4llw")
+texture = ExtResource("5_7y1oa")
 
 [node name="DayOverUI" parent="." node_paths=PackedStringArray("gameManager", "relicSelection", "deckListUI") instance=ExtResource("1_xjb1y")]
 anchors_preset = 8

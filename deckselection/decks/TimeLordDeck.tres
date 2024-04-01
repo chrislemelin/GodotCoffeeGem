@@ -8,6 +8,6 @@ script = ExtResource("2_0y13u")
 cardList = ExtResource("1_ow6o7")
 relics = Array[Object]([])
 title = "Turn Deck"
-description = "Who doesn't like more turns?
-Start with the powerful Add Turn card"
+description = "Who doesn't like more turns? 
+Start with the powerful Add Turn card. Also a third of your deck is trash."
 color = Color(0, 0.678431, 0.156863, 1)

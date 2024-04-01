@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://3d6t3ubetydb"]
 
-[ext_resource type="StyleBox" uid="uid://b2iis8l3fgnke" path="res://UI/Themes/PixelBoxBackground.tres" id="1_gfhep"]
+[ext_resource type="StyleBox" uid="uid://bwc2d0age3pc3" path="res://UI/Themes/PanelBackground.tres" id="1_ahnws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
 bg_color = Color(0.231373, 0.380392, 0.631373, 1)
@@ -58,12 +58,13 @@ Button/colors/font_hover_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/font_outline_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/font_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/font_sizes/font_size = 25
+Button/font_sizes/font_size = 48
 Button/styles/disabled = SubResource("StyleBoxFlat_2a2oj")
 Button/styles/focus = SubResource("StyleBoxEmpty_uudkw")
 Button/styles/hover = SubResource("StyleBoxFlat_8sv2r")
 Button/styles/normal = SubResource("StyleBoxFlat_wrlob")
 Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
-Panel/styles/panel = ExtResource("1_gfhep")
+Panel/styles/panel = ExtResource("1_ahnws")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
+RichTextLabel/font_sizes/normal_font_size = 46
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_osqdc")

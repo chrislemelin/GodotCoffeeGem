@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=15 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
@@ -7,27 +7,36 @@
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
 [ext_resource type="Texture2D" uid="uid://c07w41hdxnn7t" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-machine.png" id="7_pc7t1"]
+[ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="7_y00am"]
 [ext_resource type="Texture2D" uid="uid://dl1ln57tsw13r" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-under.png" id="8_gtf6h"]
 [ext_resource type="Texture2D" uid="uid://d2p1r3oe3jbwq" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-over-3.png" id="9_rr4cj"]
 [ext_resource type="Texture2D" uid="uid://cupvxc45baixk" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-coffee.png" id="10_imxj2"]
+[ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://placeholders/bg-square-round-49.png" id="12_g4i3p"]
+[ext_resource type="FontFile" uid="uid://b3enwhg2wydrp" path="res://fonts/Technology.ttf" id="13_83ke4"]
+[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="14_symjt"]
 
-[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "boardHolder", "progressBar")]
+[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "boardHolder", "progressBar", "levelLabel", "scoreLabel", "multLabel")]
 script = ExtResource("1_4r3i0")
 sizeX = 6
 sizeY = 6
 tileTemplate = ExtResource("2_hppa1")
 gemScene = ExtResource("3_xdias")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
-boardHolder = NodePath("Node2D")
+boardHolder = NodePath("BoardPoint")
 progressBar = NodePath("TextureProgressBar")
 progressStep = 2.0
 matchAudioStream = ExtResource("4_prplw")
 popAudioStream = ExtResource("5_wfbn1")
 switchAudioStream = ExtResource("6_iim20")
+levelLabel = NodePath("LevelText/RichTextLabel2")
+scoreLabel = NodePath("ScoreText/RichTextLabel2")
+multLabel = NodePath("MultText/RichTextLabel2")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_prplw")
 volume_db = -15.0
+script = ExtResource("7_y00am")
+soundEffect = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(186, 154)
@@ -47,6 +56,93 @@ texture_under = ExtResource("8_gtf6h")
 texture_over = ExtResource("9_rr4cj")
 texture_progress = ExtResource("10_imxj2")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="BoardPoint" type="Node2D" parent="."]
 position = Vector2(9, -146)
 scale = Vector2(1.3, 1.3)
+
+[node name="MultText" type="Node2D" parent="."]
+position = Vector2(-389, -227)
+
+[node name="Sprite2D" type="Sprite2D" parent="MultText"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(144, 22.8125)
+scale = Vector2(0.472, 0.2385)
+texture = ExtResource("12_g4i3p")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MultText"]
+modulate = Color(0.811765, 0, 0, 1)
+offset_left = 94.0
+offset_top = -3.37502
+offset_right = 225.0
+offset_bottom = 59.625
+theme_override_fonts/normal_font = ExtResource("13_83ke4")
+theme_override_font_sizes/normal_font_size = 60
+text = "10.25"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MultText"]
+modulate = Color(0.701961, 0.701961, 0.701961, 1)
+offset_left = -37.0
+offset_top = -19.0
+offset_right = 113.0
+offset_bottom = 54.0
+theme_override_fonts/normal_font = ExtResource("14_symjt")
+theme_override_font_sizes/normal_font_size = 90
+text = "Mult"
+
+[node name="ScoreText" type="Node2D" parent="."]
+position = Vector2(-131, -228)
+
+[node name="Sprite2D" type="Sprite2D" parent="ScoreText"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(323.5, 24.8125)
+scale = Vector2(1.468, 0.2385)
+texture = ExtResource("12_g4i3p")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ScoreText"]
+modulate = Color(0.811765, 0, 0, 1)
+offset_left = 143.0
+offset_top = -20.0
+offset_right = 508.0
+offset_bottom = 65.0
+theme_override_fonts/normal_font = ExtResource("13_83ke4")
+theme_override_font_sizes/normal_font_size = 60
+text = "100/500"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScoreText"]
+modulate = Color(0.701961, 0.701961, 0.701961, 1)
+offset_left = -37.0
+offset_top = -17.0
+offset_right = 141.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("14_symjt")
+theme_override_font_sizes/normal_font_size = 90
+text = "Score"
+
+[node name="LevelText" type="Node2D" parent="."]
+position = Vector2(568, -225)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelText"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(199, 24.8125)
+scale = Vector2(0.472, 0.2385)
+texture = ExtResource("12_g4i3p")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="LevelText"]
+modulate = Color(0.811765, 0, 0, 1)
+offset_left = 149.0
+offset_top = -1.37502
+offset_right = 280.0
+offset_bottom = 61.625
+theme_override_fonts/normal_font = ExtResource("13_83ke4")
+theme_override_font_sizes/normal_font_size = 60
+text = "10.25"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LevelText"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -37.0
+offset_top = -17.0
+offset_right = 141.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("14_symjt")
+theme_override_font_sizes/normal_font_size = 90
+text = "Level"

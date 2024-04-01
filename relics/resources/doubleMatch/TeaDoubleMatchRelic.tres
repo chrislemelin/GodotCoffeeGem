@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MatchTypeRelic" load_steps=5 format=3 uid="uid://021hnwhmer0"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveScorePassive.cs" id="1_6ircn"]
+[ext_resource type="Texture2D" uid="uid://b0mky4l7aoxcp" path="res://relics/sprites/Icon.6_37.png" id="2_bslyp"]
+[ext_resource type="Script" path="res://relics/scripts/MatchTypeRelic.cs" id="3_0qcwp"]
+
+[sub_resource type="Resource" id="Resource_ir5xr"]
+script = ExtResource("1_6ircn")
+value = 150
+
+[resource]
+script = ExtResource("3_0qcwp")
+minMatchSize = 3
+ingredientType = 4
+title = "Tea Double Matcher"
+description = "Gain 150 score on every other tea match on the same turn"
+image = ExtResource("2_bslyp")
+cost = 50
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_ir5xr")]
+counterMax = 2
+customCounter = true
+counterResetOnLevelStart = true
+counterResetOnTurnStart = true
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

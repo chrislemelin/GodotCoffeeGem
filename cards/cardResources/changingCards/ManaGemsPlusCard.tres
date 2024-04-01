@@ -24,10 +24,11 @@ effectGemType = 0
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_yasco")
-Title = "Energy Ingredient +"
+Title = "Energy Infusion +"
 Description = "Randomly create $manaGems energy infused ingredient(s) and burn 1 ingredient"
 Cost = 0
 rarity = 1
 Picture = ExtResource("1_2jbly")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_m0v28")

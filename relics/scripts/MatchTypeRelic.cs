@@ -18,5 +18,11 @@ public partial class MatchTypeRelic : RelicResource
 		}
 	}
 
+	public override void newTurn()
+	{
+		base.newTurn();
+		
+	}
+
 
 }

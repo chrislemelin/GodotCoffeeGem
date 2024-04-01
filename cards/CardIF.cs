@@ -14,7 +14,7 @@ public partial class CardIF : lerp
 	[Export] protected Color disabledColor;
 	[Export] protected TextureRect titleSprite;
 
-	public bool enabled {get; private set;} = true;
+	private bool enabled = true;
 
 
 	[Signal]
@@ -25,6 +25,10 @@ public partial class CardIF : lerp
 	public override void _Ready()
 	{
 		base._Ready();
+	}
+
+	public bool getEnabled() {
+		return enabled || cardResource.playable;
 	}
 
 	public void setDisabled()

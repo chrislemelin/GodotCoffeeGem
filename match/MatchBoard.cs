@@ -18,13 +18,11 @@ public partial class MatchBoard : Node
 	[Export] public Hand hand;
 	[Export] public Mana mana;
 	[Export] public Score score;
-	[Export] public AudioStreamPlayer2D audioStreamPlayer2D;
+	[Export] public AudioPlayer audioStreamPlayer2D;
 	[Export] public Node2D boardHolder;
 	[Export] public TextureProgressBar progressBar;
 	private double progressValue = 0;
 	[Export] private double progressStep;
-
-
 	[Export]
 	public AudioStream matchAudioStream;
 	[Export]
@@ -33,6 +31,9 @@ public partial class MatchBoard : Node
 	public AudioStream switchAudioStream;
 	[Export] private GameCamera gameCamera;
 
+	[Export] public RichTextLabel levelLabel;
+	[Export] public RichTextLabel scoreLabel;
+	[Export] public RichTextLabel multLabel;
 
 
 	[Signal]
@@ -232,6 +233,7 @@ public partial class MatchBoard : Node
 	private void scoreChanged(int score, int scoreNeeded)
 	{
 		progressValue = (double)score / scoreNeeded * 100;
+		scoreLabel.Text = score+"/"+scoreNeeded;
 
 	}
 
@@ -258,7 +260,10 @@ public partial class MatchBoard : Node
 		sizeY = (int)gridSize.Y;
 		progressBar.Value = 0;
 
+		levelLabel.Text = ""+FindObjectHelper.getGameManager(this).getLevel();
+
 		score.scoreChange += scoreChanged;
+		score.multChange += (value) => multLabel.Text = "" + value;
 		timer = new Timer();
 		AddChild(timer);
 		timer.WaitTime = .1;
@@ -295,6 +300,7 @@ public partial class MatchBoard : Node
 		timer.WaitTime = .1;
 		timer.Timeout += () => checkForDrops();
 		timer.Start();
+
 	}
 	private void tileHovered(Tile tile)
 	{
@@ -424,6 +430,7 @@ public partial class MatchBoard : Node
 		{
 			gameCamera.shake();
 			audioStreamPlayer2D.Stream = matchAudioStream;
+			audioStreamPlayer2D.setBaseVolumeMult(.60f);
 			audioStreamPlayer2D.Play();
 		}
 		score.scoreMatches(matches);
@@ -483,10 +490,12 @@ public partial class MatchBoard : Node
 
 	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch)
 	{
+		positions = filterOutInvalidPosition(positions);
 		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).Where(gem => gem != null).ToList();
 		if (!fromMatch)
 		{
 			audioStreamPlayer2D.Stream = popAudioStream;
+			audioStreamPlayer2D.setBaseVolumeMult(1.0f);
 			audioStreamPlayer2D.Play();
 		}
 		gemsToBeDeleted.UnionWith(gemsToDelete);
@@ -637,24 +646,14 @@ public partial class MatchBoard : Node
 		Vector2 location = gem.GlobalPosition;
 		clearTilesGem(removeFromTile, gem);
 		tileTo.gemParent.AddChild(gem);
-		if (teleport)
+		gem.GlobalPosition = location;
+		if (tileTo.getTilePosition().DistanceTo(removeFromTile.getTilePosition()) > 2 && teleport)
 		{
-			gem.Position = Vector2.Zero;
+			gem.moveToPostionConstTime(Vector2.Zero, .25f);
 		}
 		else
 		{
-			gem.GlobalPosition = location;
 			gem.moveToPostion(Vector2.Zero);
-
-			// code to speed up long switches, but this code needs to know if the switch is happening from a card vs just falling
-			// if (tileTo.getTilePosition().DistanceTo(removeFromTile.getTilePosition()) < 2)
-			// {
-			// 	gem.moveToPostion(Vector2.Zero);
-			// }
-			// else
-			// {
-			// 	gem.moveToPostionConstTime(Vector2.Zero, .1f);
-			// }
 		}
 
 	}
@@ -935,6 +934,7 @@ public partial class MatchBoard : Node
 
 	public void changeGemsColorAtPosition(IEnumerable<Vector2> positions, GemType gemType)
 	{
+		positions = filterOutInvalidPosition(positions);
 		foreach (Vector2 position in positions)
 		{
 			Optional<Tile> tile = getTileOptional(position);
@@ -953,6 +953,7 @@ public partial class MatchBoard : Node
 		Optional<Gem> gem1 = Optional.FromNullable(tile1.Gem);
 		Optional<Gem> gem2 = Optional.FromNullable(tile2.Gem);
 		audioStreamPlayer2D.Stream = switchAudioStream;
+		audioStreamPlayer2D.setBaseVolumeMult(1.0f);
 		audioStreamPlayer2D.Play();
 		if (gem1.HasValue)
 		{

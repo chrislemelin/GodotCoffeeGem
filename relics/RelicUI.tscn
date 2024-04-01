@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="3_dacao"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_km4ke"]
 [ext_resource type="Texture2D" uid="uid://di0saajd1dtqq" path="res://relics/sprites/hammer.png" id="3_yfw20"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="4_ys4kh"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_ys4kh"]
 [ext_resource type="AudioStream" uid="uid://bxghgp64mew5m" path="res://sound/switch3.wav" id="7_or46b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dr4ex"]

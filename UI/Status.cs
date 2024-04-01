@@ -19,6 +19,7 @@ public partial class Status : Node
 		setMaxHealth(gameManager.getMaxHealth());
 		setHeartsRemaining(gameManager.getHealth());
 		setCoins(gameManager.getCoins());
+		setLevel(gameManager.getLevel());
 
 		gameManager.healthChanged += (newHealth) => setHeartsRemaining(newHealth);
 		gameManager.coinsChanged += (newCoins) => setCoins(newCoins);

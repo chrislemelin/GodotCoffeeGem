@@ -3,12 +3,12 @@ using System;
 
 public partial class SettingsMenu : Node
 {
-	[Export] HSlider sfxSlider;
-	[Export] HSlider musicSluder;
+	[Export] public HSlider sfxSlider;
+	[Export] public HSlider musicSlider;
 	[Export] CheckBox dataCollectionCheckBox;
 	[Export] Button quitButton;
 	[Export] Button closeButton;
-
+	[Export] Button mainMenuButton;
 	[Export] Button visibleButton;
 	[Export] Panel panel;
 
@@ -16,13 +16,23 @@ public partial class SettingsMenu : Node
 	public override void _Ready()
 	{
 		base._Ready();
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 		panel.Visible = false;
 		quitButton.Pressed += () => quitGame();
 		visibleButton.Pressed += () => panel.Visible = !panel.Visible;
 		closeButton.Pressed += () => panel.Visible = !panel.Visible;
+		
+		sfxSlider.Value = gameManagerIF.getSFXVolume();
+		sfxSlider.ValueChanged += (value) => gameManagerIF.setSFXVolume((float)value); 
+		musicSlider.Value = gameManagerIF.getMusicVolume();
+		musicSlider.ValueChanged += (value) => gameManagerIF.setMusicVolume((float)value); 
+
+		mainMenuButton.Pressed += () => FindObjectHelper.getFormSubmitter(this).submitData("quit to main menu", gameManagerIF,() => {
+			gameManagerIF.resetGlobals();
+			GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn");
+		});
 		closeButton.Disabled = false;
 
-		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 
 		dataCollectionCheckBox.ButtonPressed = gameManagerIF.getCollectData();
 		dataCollectionCheckBox.Pressed += () => gameManagerIF.setCollectData(dataCollectionCheckBox.ButtonPressed);

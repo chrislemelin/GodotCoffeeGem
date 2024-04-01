@@ -43,6 +43,66 @@ public partial class GameManagerIF : Node2D
 	public override void _Ready()
 	{
 		loadGlobalAndSetDeckToDefault();
+		loadUserId();
+		setUpMusicPlayer();
+	}
+
+	private void setUpMusicPlayer() {
+		FindObjectHelper.GetMusicPlayer(this).setUp();
+	}
+
+	public void setStartTime(){
+		getGlobal().timeStartedRun = Time.GetTicksMsec();
+ 	}
+
+	public ulong getStartTime(){
+		return getGlobal().timeStartedRun;
+ 	}
+
+	public void setMusicVolume(float value){
+		getGlobal().musicVolume = value;
+ 	}
+
+	public float getMusicVolume(){
+		return getGlobal().musicVolume;
+ 	}
+
+	public void setSFXVolume(float value){
+		getGlobal().sfXvolume = value;
+ 	}
+
+	public float getSFXVolume(){
+		return getGlobal().sfXvolume;
+ 	}
+
+	private void loadUserId(){
+		if (getGlobal().userId == -1) {
+			if (!FileAccess.FileExists("user://userId.save"))
+			{
+				int newUserId = GD.RandRange(1, Int32.MaxValue);
+				getGlobal().userId = newUserId;
+				using var userIdSave = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Write);
+				Godot.Collections.Dictionary<String, String> userIdDict = new Godot.Collections.Dictionary<String, String>();
+				userIdDict.Add("userId", newUserId+"");
+				var jsonString = Json.Stringify(userIdDict);
+				// Store the save dictionary as a new line in the save file.
+				userIdSave.StoreLine(jsonString);
+			}
+			else {
+				using var saveGame = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Read);
+				var jsonString = saveGame.GetLine();
+				// Creates the helper class to interact with JSON
+				var json = new Json();
+				var parseResult = json.Parse(jsonString);
+				if (parseResult != Error.Ok)
+				{
+					GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
+					return;
+				}
+				Godot.Collections.Dictionary<String, String> nodeData = new Godot.Collections.Dictionary<String, String>((Godot.Collections.Dictionary)json.Data);
+				getGlobal().userId = Int32.Parse(nodeData["userId"]);
+			}
+		}
 	}
 
 	private void loadGLobal()
@@ -73,8 +133,10 @@ public partial class GameManagerIF : Node2D
 		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards()).Duplicate();
 		global.deckCardList.setCards(cardList);
 		global.relics = new List<RelicResource>();
+		global.timeStartedRun = 0;
 		global.currentLevel = 1;
 		global.currentHealth = 2;
+		global.maxHealth = 2;
 		global.shownBossTutorial = false;
 		global.currentCoins = 0;
 		global.allCoinsGained = 0;
@@ -124,6 +186,11 @@ public partial class GameManagerIF : Node2D
 	public int getHealth()
 	{
 		return getGlobal().currentHealth;
+	}
+
+	public int getUserId()
+	{
+		return getGlobal().userId;
 	}
 
 	public int getNumberOfCardToChoose()
@@ -212,7 +279,9 @@ public partial class GameManagerIF : Node2D
 	public void addCoins(int coinValue)
 	{
 		getGlobal().currentCoins += coinValue;
-		getGlobal().allCoinsGained += coinValue;
+		if (coinValue > 0) {
+			getGlobal().allCoinsGained += coinValue;
+		}
 		EmitSignal(SignalName.coinsChanged, global.currentCoins);
 	}
 

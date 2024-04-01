@@ -25,4 +25,5 @@ Description = "Destroy every ingredient, gain a little bit of points for each bu
 Cost = 2
 rarity = 1
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_0mlvv")

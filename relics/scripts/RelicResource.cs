@@ -25,10 +25,10 @@ public partial class RelicResource : Resource
 	[Export] public int counterMax;
 	// Flag to deterimine if the counter goes up when a new turn starts or if this goes up by a custom call
 	[Export] public bool customCounter;
-	// Flag to determine if the counter goes down instead of going up, not implemented yet
-	[Export] public bool counterDown = false;
 	// Flag to determine if the we should reset the counter when the level starts
 	[Export] public bool counterResetOnLevelStart = false;
+	// Flag to determine if the we should reset the counter when the turn starts
+	[Export] public bool counterResetOnTurnStart = false;
 	// Flag to determine if we should reset the counter after we reach the max
 	[Export] public bool resetCounterAfterReachingMax = true;
 	// Flag to determine if the we should reset the counter when the level starts
@@ -106,11 +106,14 @@ public partial class RelicResource : Resource
 
 	public void startLevel() {
 		if(counterResetOnLevelStart) {
-			counter = 0;
+			resetCounter();
 		}
 	}
 
 	public virtual void newTurn(){
+		if(counterResetOnTurnStart) {
+			resetCounter();
+		}
 	}
 	public virtual void afterTurnCleanUp(){
 
@@ -125,7 +128,7 @@ public partial class RelicResource : Resource
 
 	public void resetCounter()
 	{
-		counter = 1;
+		counter = 0;
 		EmitSignal(SignalName.CounterChanged, counter);
 	}
 

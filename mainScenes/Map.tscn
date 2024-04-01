@@ -1,15 +1,15 @@
-[gd_scene load_steps=53 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=49 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_6g8vu"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_86n8f"]
+[ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_86n8f"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
 [ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
-[ext_resource type="Texture2D" uid="uid://bhwe8q2pky8uf" path="res://placeholders/Map/Map-newangles-scaled.png" id="7_8ddqg"]
+[ext_resource type="Texture2D" uid="uid://dpilfwmi6oc0i" path="res://placeholders/Map/Map-newangles-scaled-03-17-2024.png" id="7_skbxq"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
@@ -20,8 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
-[ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="20_y0tqh"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="24_a84c2"]
 
@@ -49,6 +48,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -75,6 +75,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_tlj12"]
@@ -101,6 +102,7 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_tlj12")
 
 [sub_resource type="Resource" id="Resource_lf283"]
@@ -112,6 +114,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_rsqfq"]
@@ -123,6 +126,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_l5j6y"]
@@ -149,6 +153,7 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_l5j6y")
 
 [sub_resource type="Resource" id="Resource_32dpp"]
@@ -160,6 +165,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_8tsqs"]
@@ -171,6 +177,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_bimhj"]
@@ -197,6 +204,7 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_bimhj")
 
 [sub_resource type="Resource" id="Resource_e3gl4"]
@@ -208,6 +216,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ahjpb"]
@@ -219,6 +228,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_23mlu"]
@@ -245,6 +255,7 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_23mlu")
 
 [sub_resource type="Resource" id="Resource_ilocs"]
@@ -256,6 +267,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_7a0hk"]
@@ -267,6 +279,7 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_smct3"]
@@ -293,19 +306,8 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_smct3")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_t7lgg"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g43en"]
-noise = SubResource("FastNoiseLite_t7lgg")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsfkn"]
-shader = ExtResource("20_y0tqh")
-shader_parameter/dissolve_value = 1.0
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = null
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_g43en")
 
 [sub_resource type="Animation" id="Animation_hbqvg"]
 resource_name = "FadeIn"
@@ -318,10 +320,10 @@ tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0, 1.0]
+"values": [0.0, 1.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -330,10 +332,10 @@ tracks/1/path = NodePath("Forground:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.05, 0, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(-0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(551, 263), Vector2(551, 1200), Vector2(551, 263)]
+"values": [Vector2(551, 800), Vector2(551, 263)]
 }
 
 [sub_resource type="Animation" id="Animation_eouyj"]
@@ -393,7 +395,7 @@ botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths
 [node name="Map2" type="Sprite2D" parent="Map"]
 position = Vector2(968, 548)
 scale = Vector2(0.93, 0.93)
-texture = ExtResource("7_8ddqg")
+texture = ExtResource("7_skbxq")
 
 [node name="Background" type="TextureRect" parent="Map"]
 visible = false
@@ -574,6 +576,7 @@ script = ExtResource("11_8ihbg")
 speed = 250.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Character"]
+texture_filter = 1
 position = Vector2(-0.5, -13.5)
 texture = ExtResource("11_g4jmp")
 hframes = 24
@@ -584,7 +587,7 @@ offset_left = 619.0
 offset_top = 479.0
 offset_right = 970.0
 offset_bottom = 604.0
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 36
 text = "Click top or bottom buildings to choose a path to get back home"
 
 [node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") groups=["CardSelectionUI"] instance=ExtResource("11_rx5ww")]
@@ -598,7 +601,6 @@ visible = false
 
 [node name="MapEventText" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button", "animationPlayer")]
 visible = false
-material = SubResource("ShaderMaterial_gsfkn")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -642,7 +644,7 @@ offset_top = 287.0
 offset_right = 1288.0
 offset_bottom = 363.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[center]TITLE TEXT"
 
@@ -654,7 +656,6 @@ offset_top = 367.0
 offset_right = 1291.0
 offset_bottom = 730.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Title Description"
 

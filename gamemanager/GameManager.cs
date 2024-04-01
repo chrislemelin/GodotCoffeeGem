@@ -38,6 +38,9 @@ public partial class GameManager : GameManagerIF
 		base._Ready();
 		currentLevel = global.currentLevel;
 		currentLevelResource = levels[currentLevel - 1];
+		if (currentLevel == 1) {
+			setStartTime();
+		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
 		if (bossRecipe != null)
 		{
@@ -72,7 +75,7 @@ public partial class GameManager : GameManagerIF
 		{
 			nextLevel();
 		}
-		score.setMoneyNeeded(scoreNeededToPass);
+		score.setScoreNeeded(scoreNeededToPass);
 		score.setLevel(currentLevel);
 		score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());

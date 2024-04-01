@@ -12,6 +12,8 @@ public partial class Global : Node
 	public List<RelicResource> relics = new List<RelicResource>();
 	public DeckSelectionResource deckSelection = null;
 
+	public ulong timeStartedRun = 0;
+
 	public int currentLevel = 1;
 	public int currentHealth = 2;
 	public int maxHealth = 2;
@@ -23,10 +25,13 @@ public partial class Global : Node
 	public bool shownGooTutorial = false;
 	public bool gooRightRow = false;
 	public bool collectData = true;
+	public int userId = -1;
+	public float musicVolume = .5f;
+	public float sfXvolume = .5f;
+
 
 
 
 	public Vector2 gridSize = new Vector2(6,5);
-
 
 }

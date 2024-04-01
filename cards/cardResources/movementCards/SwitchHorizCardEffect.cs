@@ -20,7 +20,7 @@ public partial class SwitchHorizCardEffect : CardEffectIF
 	{
 		Vector2 selectedTile1 = selectedTiles[0];
 		Vector2 selectedTile2 = selectedTiles[1];
-		matchBoard.switchGemsInPositions(selectedTile1, selectedTile2);
+		matchBoard.switchGemsInPositions(selectedTile1, selectedTile2, true);
 	}
 
 	public override List<Vector2> getAllTilesSelectableAfterFirstSelection(MatchBoard matchBoard, Tile tile)

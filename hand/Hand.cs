@@ -210,7 +210,7 @@ public partial class Hand : Node
 
 	public bool hasPlayableCards() {
 		foreach(CardIF card in cards){
-			if (card.enabled) {
+			if (card.getEnabled()) {
 				return true;
 			}
 		}

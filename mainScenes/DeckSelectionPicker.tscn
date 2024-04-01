@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1vcw8het36xd"]
+[gd_scene load_steps=14 format=3 uid="uid://c1vcw8het36xd"]
 
 [ext_resource type="Script" path="res://gamemanager/DeckSelectionGameManager.cs" id="1_wvgmj"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ydtrs"]
 [ext_resource type="PackedScene" uid="uid://pjf6f8g0iacc" path="res://deckselection/DeckSelectionUI.tscn" id="2_sfky1"]
 [ext_resource type="Resource" uid="uid://b2vcn6wnju7y3" path="res://deckselection/decks/StarterDeck.tres" id="2_un8pl"]
-[ext_resource type="Theme" uid="uid://decpltn4recv4" path="res://UI/Themes/ButtonTheme.tres" id="3_2aryu"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="3_2aryu"]
 [ext_resource type="Resource" uid="uid://chj73go1oottc" path="res://deckselection/decks/AdvancedDeck.tres" id="4_horrj"]
 [ext_resource type="Resource" uid="uid://wb0sejxfci1g" path="res://deckselection/decks/BurnDeck.tres" id="5_nciyr"]
 [ext_resource type="Resource" uid="uid://dlrun5k7nfg04" path="res://deckselection/decks/ChaosDeck.tres" id="5_rt60l"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://cr1bg7cjxlymo" path="res://deckselection/decks/MoneyDeck.tres" id="6_o4igf"]
 [ext_resource type="Resource" uid="uid://bb2orrhuvkgpk" path="res://deckselection/decks/TimeLordDeck.tres" id="7_f5fi5"]
 [ext_resource type="Resource" uid="uid://dy7h4rshc1ou" path="res://deckselection/decks/PopDeck.tres" id="8_yqyph"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="13_rhxi4"]
 
 [node name="DeckSelectionPicker" type="Node2D" node_paths=PackedStringArray("deckViewUI", "deckSelectionUIParent", "continueButton", "viewDeckButton")]
 script = ExtResource("1_wvgmj")
@@ -133,3 +134,5 @@ visible = false
 layout_mode = 1
 offset_right = -40.0
 offset_bottom = -40.0
+
+[node name="SettingsMenu" parent="." instance=ExtResource("13_rhxi4")]

@@ -21,10 +21,11 @@ effectGemType = 4
 
 [resource]
 script = ExtResource("3_fywxn")
-Title = "Espresso Shot X"
+Title = "Coffee Shot X"
 Description = "Change selected ingredient and diagonal ingredients to coffee"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_lhf2y")
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_asf6r")

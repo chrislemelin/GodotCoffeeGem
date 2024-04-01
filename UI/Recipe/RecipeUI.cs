@@ -41,6 +41,9 @@ public partial class RecipeUI : Control
 				textureRect.Modulate = new Color(1.0f,1.0f,1.0f);
 			}
 		}
+		if(complete()){
+			Visible = false;
+		}
 	}
 	public bool complete(){
 		return completedComponents.All(value => value);

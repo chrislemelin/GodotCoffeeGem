@@ -21,3 +21,7 @@ levelOverEffects = []
 effects = [SubResource("Resource_o064v")]
 counterMax = 4
 customCounter = true
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

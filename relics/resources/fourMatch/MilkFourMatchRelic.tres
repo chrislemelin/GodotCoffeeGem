@@ -23,3 +23,7 @@ levelOverEffects = []
 effects = [SubResource("Resource_i16ow")]
 counterMax = 0
 customCounter = false
+counterDown = false
+counterResetOnLevelStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

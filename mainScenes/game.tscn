@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=53 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
@@ -7,8 +7,8 @@
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
+[ext_resource type="Texture2D" uid="uid://c1s2lxholqwbh" path="res://placeholders/CoffeeShop/Coffee 1.png" id="6_v4hji"]
 [ext_resource type="Resource" uid="uid://dbq6lsiphqhd2" path="res://cards/cardResources/cardLists/CardListTest.tres" id="7_vdncp"]
-[ext_resource type="Texture2D" uid="uid://dvpf75ec7jx2b" path="res://placeholders/CoffeeShop/MountainCoffeeShop.png" id="8_gqgux"]
 [ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="8_m8idd"]
 [ext_resource type="Texture2D" uid="uid://bog5s844e5fy5" path="res://placeholders/CoffeeShop/Wooden_Counter.png" id="9_hiq7b"]
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="14_31k88"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
-[ext_resource type="AudioStream" uid="uid://bihxsxxfe3i8s" path="res://sound/music/little_cafe.wav" id="16_18vio"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="16_m0mlx"]
 [ext_resource type="PackedScene" uid="uid://cmj3k4irtmxwc" path="res://relics/RelicHolder.tscn" id="16_qkjnw"]
 [ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="16_rcb0t"]
@@ -140,7 +139,7 @@ _data = {
 }
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete")]
-position = Vector2(-3, -1)
+position = Vector2(-4, -1)
 script = ExtResource("1_5jnm2")
 newCardSelection = NodePath("UIOverLays/CardSelectionUI")
 recipeUI = NodePath("BossRecipeUI")
@@ -153,15 +152,16 @@ welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 levelComplete = NodePath("UIOverLays/LevelComplete")
+skipFirstLevel = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1000, 172)
-scale = Vector2(3.23373, 3.23373)
-texture = ExtResource("8_gqgux")
+modulate = Color(0.454902, 0.454902, 0.454902, 1)
+position = Vector2(970, 438)
+scale = Vector2(0.836182, 0.836182)
+texture = ExtResource("6_v4hji")
 
 [node name="WoodenCounter" type="Sprite2D" parent="."]
 visible = false
@@ -171,7 +171,7 @@ texture = ExtResource("9_hiq7b")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") instance=ExtResource("5_4m14m")]
 unique_name_in_owner = true
-position = Vector2(697, 254)
+position = Vector2(823, 271)
 scale = Vector2(0.75, 0.75)
 sizeY = 5
 hand = NodePath("../Hand")
@@ -196,7 +196,7 @@ deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Score" parent="." node_paths=PackedStringArray("gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
-position = Vector2(1748, 257)
+position = Vector2(292, 318)
 gameManager = NodePath("..")
 bossRecipeUI = NodePath("../BossRecipeUI")
 
@@ -213,12 +213,7 @@ width = 900
 
 [node name="Mana" parent="." groups=["Mana"] instance=ExtResource("10_4f0tc")]
 unique_name_in_owner = true
-position = Vector2(271, 694)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("16_18vio")
-panning_strength = 1.28
+position = Vector2(1622, 705)
 
 [node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
@@ -226,16 +221,15 @@ offset_left = 1686.0
 offset_top = 609.0
 offset_right = 1877.0
 offset_bottom = 670.0
-tooltip_text = "This will end your current turn. Turns are a limited resource so be careful!"
 theme = ExtResource("16_m0mlx")
 playableCardsUI = NodePath("../UIOverLays/PlayableCards")
 
 [node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
 visible = false
-offset_left = 1358.0
-offset_top = 121.0
-offset_right = 1358.0
-offset_bottom = 121.0
+offset_left = 1456.0
+offset_top = 62.0
+offset_right = 1456.0
+offset_bottom = 62.0
 tooltip_text = "This recipe must be completed before you can score any points for the level"
 
 [node name="RelicHolder" parent="." instance=ExtResource("16_qkjnw")]
@@ -290,6 +284,7 @@ text = "Advance"
 anchors_preset = 0
 
 [node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
 layout_mode = 0
 offset_left = 449.0
 offset_top = 253.0
@@ -305,7 +300,7 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 72
 text = "Welcome to Beans of Production!"
 
 [node name="MarginContainer" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
@@ -316,7 +311,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
-theme_override_font_sizes/normal_font_size = 20
 text = "You are a new barista working for [company name] at coffee shop #357. Work hard for the company and you might land yourself a promotion, or even a day off!"
 
 [node name="Screen2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
@@ -346,7 +340,7 @@ layout_mode = 0
 offset_left = -265.0
 offset_top = -75.0
 offset_right = 19.0
-offset_bottom = 91.0
+offset_bottom = 157.0
 theme = ExtResource("18_y5ido")
 text = "This is your standard-issue coffee machine. You will be making 3-of-a-kind matches to generate points. Make enough points to stave off the thirsty masses and clear your shift."
 
@@ -373,7 +367,7 @@ layout_mode = 0
 offset_left = -236.0
 offset_top = -64.0
 offset_right = 19.0
-offset_bottom = 91.0
+offset_bottom = 172.0
 theme = ExtResource("18_y5ido")
 text = "These are the cards you will use to make matches. Each card has an energy cost, shown in the upper left, that will be spent when you play the card."
 
@@ -397,28 +391,28 @@ texture = ExtResource("17_so8o5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Deck"]
 layout_mode = 0
-offset_left = -236.0
-offset_top = -64.0
+offset_left = -284.0
+offset_top = -31.0
 offset_right = 19.0
-offset_bottom = 84.0
+offset_bottom = 182.0
 theme = ExtResource("18_y5ido")
 text = "This is your deck of cards. At the start of each turn, you will draw 5 cards from this stack. Over time, you can upgrade your deck."
 
 [node name="EnergyTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 656.0
-offset_top = 649.0
-offset_right = 656.0
-offset_bottom = 649.0
+offset_left = 1426.0
+offset_top = 693.0
+offset_right = 1426.0
+offset_bottom = 693.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/EnergyTutorial"]
 layout_mode = 0
-offset_left = -290.0
-offset_top = -51.0
-offset_right = 110.0
-offset_bottom = 322.0
-rotation = -5.58643
+offset_left = 83.0
+offset_top = 84.0
+offset_right = 483.0
+offset_bottom = 457.0
+rotation = -8.63012
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
@@ -427,7 +421,7 @@ layout_mode = 0
 offset_left = -225.0
 offset_top = -61.0
 offset_right = 31.0
-offset_bottom = 60.0
+offset_bottom = 95.0
 theme = ExtResource("18_y5ido")
 text = "This is your current energy. You will get 3 each turn and each card you play will consume some energy"
 
@@ -438,47 +432,47 @@ anchors_preset = 0
 [node name="Mult tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1819.0
-offset_top = 76.0
-offset_right = 1819.0
-offset_bottom = 76.0
+offset_left = 731.0
+offset_top = 245.0
+offset_right = 731.0
+offset_bottom = 245.0
 rotation = -0.00465528
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Mult tutorial"]
 layout_mode = 0
-offset_left = -169.538
-offset_top = 115.212
-offset_right = 230.462
-offset_bottom = 488.212
-rotation = -0.853772
+offset_left = -18.8323
+offset_top = -36.0881
+offset_right = 381.168
+offset_bottom = 336.912
+rotation = -3.95877
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Mult tutorial"]
 layout_direction = 2
 layout_mode = 0
-offset_left = -236.0
-offset_top = -64.0
-offset_right = 68.0
-offset_bottom = 91.0
+offset_left = -247.058
+offset_top = 11.85
+offset_right = 56.942
+offset_bottom = 270.85
 theme = ExtResource("18_y5ido")
 text = "This is your score multiplier, which increases the value of your ingredient matches. Each match you make on a given turn increases the multiplier, but the value resets to 1 when you end your turn."
 
 [node name="Score tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1459.0
-offset_top = 337.0
-offset_right = 1459.0
-offset_bottom = 337.0
+offset_left = 1068.0
+offset_top = 275.0
+offset_right = 1068.0
+offset_bottom = 275.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Score tutorial"]
 layout_mode = 0
-offset_left = 82.0
-offset_top = 84.0001
-offset_right = 482.0
-offset_bottom = 457.0
-rotation = -2.44521
+offset_left = -80.0
+offset_top = -62.0
+offset_right = 320.0
+offset_bottom = 311.0
+rotation = -3.94908
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
@@ -487,44 +481,44 @@ layout_mode = 0
 offset_left = -239.0
 offset_top = -42.0
 offset_right = 20.0
-offset_bottom = 44.0
+offset_bottom = 109.0
 theme = ExtResource("18_y5ido")
 text = "This is your progress for the current level. Fill this bar to clear your shift."
 
 [node name="turns remaining" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1390.0
-offset_top = 377.0
-offset_right = 1390.0
-offset_bottom = 377.0
+offset_left = 458.0
+offset_top = 18.0
+offset_right = 458.0
+offset_bottom = 18.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/turns remaining"]
 layout_mode = 0
-offset_left = 146.0
-offset_top = 130.0
-offset_right = 546.0
-offset_bottom = 503.0
-rotation = -2.47667
+offset_left = -202.0
+offset_top = 182.0
+offset_right = 198.0
+offset_bottom = 555.0
+rotation = -0.821254
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/turns remaining"]
 layout_mode = 0
-offset_left = -345.0
-offset_top = 23.0
-offset_right = 87.0
-offset_bottom = 137.0
+offset_left = -382.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 189.0
 theme = ExtResource("18_y5ido")
 text = "These are the turns you have remaning to complete the level. When you run out of turns, your exhaustion takes its toll and begins to consume hearts. When you run out of hearts, the game is over."
 
 [node name="End Turn" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1526.0
-offset_top = 661.0
-offset_right = 1526.0
-offset_bottom = 661.0
+offset_left = 1499.0
+offset_top = 653.0
+offset_right = 1499.0
+offset_bottom = 653.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn"]
 layout_mode = 0
@@ -538,37 +532,37 @@ texture = ExtResource("17_so8o5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn"]
 layout_mode = 0
-offset_left = -168.0
+offset_left = -205.0
 offset_top = 24.0
 offset_right = 87.0
-offset_bottom = 138.0
+offset_bottom = 169.0
 theme = ExtResource("18_y5ido")
 text = "End your turn to draw a new hand and reset your energy to 3. Turns are a limited resource."
 
-[node name="End Turn3" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+[node name="Money" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1420.0
-offset_top = 495.0
-offset_right = 1420.0
-offset_bottom = 495.0
+offset_left = 294.0
+offset_top = 470.0
+offset_right = 294.0
+offset_bottom = 470.0
 
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn3"]
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Money"]
 layout_mode = 0
-offset_left = 136.0
-offset_top = 92.0
-offset_right = 536.0
-offset_bottom = 465.0
-rotation = -2.72429
+offset_left = -13.0
+offset_top = 18.0
+offset_right = 387.0
+offset_bottom = 391.0
+rotation = -3.80257
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/End Turn3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Money"]
 layout_mode = 0
 offset_left = -168.0
 offset_top = 24.0
 offset_right = 87.0
-offset_bottom = 92.0
+offset_bottom = 125.0
 theme = ExtResource("18_y5ido")
 text = "Use your wages to buy upgrades between levels."
 
@@ -585,12 +579,12 @@ offset_bottom = 147.0
 layout_mode = 0
 offset_left = -9.0
 offset_top = 7.0
-offset_right = 291.0
+offset_right = 337.0
 offset_bottom = 606.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 48
 text = "Types of ingredients"
 fit_content = true
 
@@ -600,9 +594,10 @@ layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ManaGemTutorial"]
 layout_mode = 0
+offset_left = -76.0
 offset_top = 1.0
 offset_right = 171.0
-offset_bottom = 137.0
+offset_bottom = 150.0
 theme = ExtResource("18_y5ido")
 text = "Energy-infused ingredients give you a point of energy when matched."
 
@@ -620,7 +615,7 @@ layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/CardGemTutorial"]
 layout_mode = 0
-offset_left = 3.0
+offset_left = -77.0
 offset_top = 4.0
 offset_right = 174.0
 offset_bottom = 139.0
@@ -664,10 +659,10 @@ layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/BlackGemTutorial"]
 layout_mode = 0
-offset_left = -3.0
+offset_left = -77.0
 offset_top = 1.0
 offset_right = 172.0
-offset_bottom = 139.0
+offset_bottom = 150.0
 theme = ExtResource("18_y5ido")
 text = "Burnt ingredients are unmatchable and unmovable, but certain cards can destroy them."
 
@@ -706,25 +701,22 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/BossRecipeTutorial"]
-layout_mode = 0
-offset_left = 720.0
-offset_top = 193.0
-offset_right = 1028.0
-offset_bottom = 633.0
-
-[node name="TextureRect2" type="TextureRect" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="UIOverLays/BossRecipeTutorial"]
 layout_mode = 2
+offset_left = 709.0
+offset_top = 194.0
+offset_right = 1017.0
+offset_bottom = 330.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("27_6giu6")
 
-[node name="MarginContainer" type="MarginContainer" parent="UIOverLays/BossRecipeTutorial/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial"]
 layout_mode = 2
-theme_override_constants/margin_top = 15
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial/VBoxContainer/MarginContainer"]
-layout_mode = 2
+offset_left = 601.0
+offset_top = 356.0
+offset_right = 1157.0
+offset_bottom = 688.0
 size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
 text = "Oh no! Your rudest regular appears in the coffee shop, ready to ask for the manager if you don't get their order just right. You begrudgingly pull out the standard corporate recipe book.
@@ -737,10 +729,10 @@ fit_content = true
 [node name="Button" type="Button" parent="UIOverLays/BossRecipeTutorial"]
 modulate = Color(1, 0.996078, 0.996078, 1)
 layout_mode = 0
-offset_left = 794.0
-offset_top = 735.0
-offset_right = 928.0
-offset_bottom = 779.0
+offset_left = 777.0
+offset_top = 715.0
+offset_right = 957.0
+offset_bottom = 774.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
 
@@ -772,10 +764,10 @@ flip_v = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/GooTutorial"]
 layout_mode = 0
-offset_left = 721.0
-offset_top = 226.0
-offset_right = 1029.0
-offset_bottom = 501.0
+offset_left = 641.0
+offset_top = 137.0
+offset_right = 1037.0
+offset_bottom = 791.0
 
 [node name="TextureRect2" type="TextureRect" parent="UIOverLays/GooTutorial/VBoxContainer"]
 layout_mode = 2
@@ -793,10 +785,10 @@ fit_content = true
 [node name="Button" type="Button" parent="UIOverLays/GooTutorial"]
 modulate = Color(1, 0.996078, 0.996078, 1)
 layout_mode = 0
-offset_left = 805.0
-offset_top = 777.0
-offset_right = 935.0
-offset_bottom = 818.0
+offset_left = 744.0
+offset_top = 806.0
+offset_right = 939.0
+offset_bottom = 871.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
 
@@ -867,7 +859,7 @@ offset_bottom = 199.0
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(845, 50)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "Level Passed!"
 fit_content = true
@@ -879,7 +871,6 @@ size_flags_stretch_ratio = 7.9
 [node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/Panel/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 35
 text = "You gained"
 fit_content = true
 scroll_active = false
@@ -986,5 +977,6 @@ text = "Dont show me this again"
 visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("39_btpum")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" parent="." instance=ExtResource("39_3yyxa")]

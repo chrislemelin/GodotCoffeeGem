@@ -9,6 +9,7 @@ public partial class CardResource : Resource
 	[Export] public CardRarity rarity = CardRarity.Common;
 	[Export] public Texture2D Picture { get; private set; }
 	[Export] private int coinCost { get; set; }
+	[Export] public bool playable { get; set; }
 
 
 	[Export] public CardEffectIF cardEffect { get; set; }

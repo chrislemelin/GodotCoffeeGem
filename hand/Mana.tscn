@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm6smnkgl28wr"]
+[gd_scene load_steps=5 format=3 uid="uid://bm6smnkgl28wr"]
 
 [ext_resource type="Script" path="res://hand/Mana.cs" id="1_x7nhu"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_xw0rw"]
+[ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="3_tj302"]
 [ext_resource type="AudioStream" uid="uid://2v0ksk6rso4g" path="res://sound/mana/magical_1.ogg" id="3_xufqt"]
 
 [node name="Mana" type="Node2D" node_paths=PackedStringArray("costText", "audioStreamPlayer2D")]
@@ -21,15 +22,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -42.0
-offset_right = 44.0
-offset_bottom = 52.0
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 50.0
+offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
+theme_override_fonts/normal_font = ExtResource("3_tj302")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]3
@@ -46,4 +48,3 @@ offset_left = -60.0
 offset_top = -99.0
 offset_right = 51.0
 offset_bottom = 63.0
-tooltip_text = "This is your mana, each card has a mana cost that is consumed when the card is played. Your mana is reset to 3 at the end of each turn."

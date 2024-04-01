@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MatchTypeRelic" load_steps=5 format=3 uid="uid://c5sibe0gfoq4t"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveScorePassive.cs" id="1_e084d"]
+[ext_resource type="Texture2D" uid="uid://b0mky4l7aoxcp" path="res://relics/sprites/Icon.6_37.png" id="2_hb1mu"]
+[ext_resource type="Script" path="res://relics/scripts/MatchTypeRelic.cs" id="3_lovls"]
+
+[sub_resource type="Resource" id="Resource_ir5xr"]
+script = ExtResource("1_e084d")
+value = 150
+
+[resource]
+script = ExtResource("3_lovls")
+minMatchSize = 3
+ingredientType = 1
+title = "Vanilla Double Matcher"
+description = "Gain 150 score on every other vanilla match on the same turn"
+image = ExtResource("2_hb1mu")
+cost = 50
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_ir5xr")]
+counterMax = 2
+customCounter = true
+counterResetOnLevelStart = true
+counterResetOnTurnStart = true
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false
