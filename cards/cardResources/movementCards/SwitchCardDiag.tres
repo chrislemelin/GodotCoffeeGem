@@ -25,5 +25,4 @@ Description = "Switch the positions of two vertically, horizontally, or diagonal
 Cost = 1
 rarity = 1
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_n6fnt")

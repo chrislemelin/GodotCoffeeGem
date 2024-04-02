@@ -38,7 +38,8 @@ public partial class GameManager : GameManagerIF
 		base._Ready();
 		currentLevel = global.currentLevel;
 		currentLevelResource = levels[currentLevel - 1];
-		if (currentLevel == 1) {
+		if (currentLevel == 1)
+		{
 			setStartTime();
 		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
@@ -59,17 +60,16 @@ public partial class GameManager : GameManagerIF
 			getGlobal().shownGooTutorial = true;
 		}
 
-
 		scoreNeededToPass = currentLevelResource.score;
 		if (debugMode)
 		{
 			scoreNeededToPass = 50;
 			addCoins(100);
 		}
-		if (endlessMode)
+		if (endlessMode || getGlobal().zenMode)
 		{
-			scoreNeededToPass = 50000;
-			score.setTurnsRemaining(100);
+			scoreNeededToPass = 999999999;
+			score.setTurnsRemaining(999999999);
 		}
 		if (skipFirstLevel && currentLevel == 1)
 		{

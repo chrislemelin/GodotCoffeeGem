@@ -25,5 +25,4 @@ Description = "Select an ingredient. Change $value random ingredients to the sel
 Cost = 0
 rarity = 2
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_3tx3t")

@@ -13,12 +13,12 @@ void vertex() {
 	modulate = COLOR;
 }
 
+
 void fragment(){
 	
+	    vec4 main_texture = texture(TEXTURE, UV);
+	    vec4 noise_texture = texture(dissolve_texture, UV);
+	    main_texture.a *= floor(dissolve_value + min(1.0, noise_texture.x));
+	    COLOR = modulate * main_texture;
 	
-	
-    vec4 main_texture = texture(TEXTURE, UV);
-    vec4 noise_texture = texture(dissolve_texture, UV);
-    main_texture.a *= floor(dissolve_value + min(1.0, noise_texture.x));
-    COLOR = modulate * main_texture;
 }

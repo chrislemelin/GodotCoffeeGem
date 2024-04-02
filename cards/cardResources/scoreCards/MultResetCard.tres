@@ -25,5 +25,4 @@ Description = "Reset multiplier to 1 and gain a card and an energy point for eac
 Cost = 0
 rarity = 0
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_davew")

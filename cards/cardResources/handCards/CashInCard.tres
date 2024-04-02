@@ -25,5 +25,4 @@ Description = "Gain rewards from all mana and card ingredients and then clear al
 Cost = 1
 rarity = 0
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_vpfqo")

@@ -9,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "beanHolder")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "beanHolder")]
 script = ExtResource("1_ro6go")
 quickPlayButton = NodePath("VBoxContainer2/quickstart")
 deckSelectionButton = NodePath("VBoxContainer2/deckSelection")
+zenModButton = NodePath("VBoxContainer2/zenMode")
 gameScene = ExtResource("2_g2ipy")
 deckSelectionScene = ExtResource("3_3ea2j")
 beanScene = ExtResource("3_3tqas")
@@ -46,9 +47,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 482.0
-offset_top = 333.0
+offset_top = 143.0
 offset_right = 1508.0
-offset_bottom = 511.0
+offset_bottom = 473.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
@@ -62,24 +63,23 @@ text = "[center]Beans of Production[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_direction = 2
-layout_mode = 2
-theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 400
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-offset_left = 652.0
-offset_top = 613.0
-offset_right = 1354.0
-offset_bottom = 779.0
+offset_left = 658.0
+offset_top = 492.0
+offset_right = 1360.0
+offset_bottom = 719.0
 
 [node name="quickstart" type="Button" parent="VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Quick Start (First time playing)"
+
+[node name="zenMode" type="Button" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("5_y52an")
+text = "Zen Mode"
 
 [node name="deckSelection" type="Button" parent="VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)

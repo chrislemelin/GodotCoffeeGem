@@ -27,5 +27,4 @@ Cost = 0
 rarity = 0
 Picture = ExtResource("1_cuue2")
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_58thy")

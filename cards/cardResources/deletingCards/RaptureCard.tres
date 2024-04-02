@@ -25,5 +25,4 @@ Description = "Destroy all ingredients except for selected type"
 Cost = 3
 rarity = 2
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_dwgfk")

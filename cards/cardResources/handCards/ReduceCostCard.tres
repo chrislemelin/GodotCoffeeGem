@@ -39,5 +39,4 @@ Description = "Reduce the cost of each card in hand by 1 for this turn"
 Cost = 3
 rarity = 1
 coinCost = 0
-playable = false
 cardEffect = SubResource("Resource_vyyx8")

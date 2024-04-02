@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=29 format=3 uid="uid://dicb3wwg7ecmd"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_16axm"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="9_w4arf"]
 [ext_resource type="Texture2D" uid="uid://d3hvm7mjrstbo" path="res://placeholders/cards/RedCardBack.png" id="13_hn8m8"]
+[ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="14_5dyd3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjn8"]
 
@@ -204,6 +205,14 @@ _data = {
 "Destroy": SubResource("Animation_w675f"),
 "RESET": SubResource("Animation_l2nvg")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_muung"]
+shader = ExtResource("14_5dyd3")
+shader_parameter/shine_color = Color(1, 1, 1, 0.537255)
+shader_parameter/shine_progress = 1.0
+shader_parameter/shine_size = 0.09
+shader_parameter/shine_angle = 37.5
+shader_parameter/shine_on = 1.0
 
 [node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer")]
 self_modulate = Color(1, 1, 1, 0)
@@ -445,3 +454,11 @@ texture = ExtResource("13_hn8m8")
 libraries = {
 "": SubResource("AnimationLibrary_hjwwm")
 }
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_muung")
+layout_mode = 0
+offset_left = 25.0
+offset_right = 558.0
+offset_bottom = 793.0
+texture = ExtResource("7_jrfr0")

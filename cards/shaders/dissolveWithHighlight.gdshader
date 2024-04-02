@@ -11,6 +11,7 @@ void vertex() {
 	modulate = COLOR;
 }
 
+
 void fragment(){
 	// See if we are disolving
 	if (dissolve_value != 1.0){
@@ -40,9 +41,6 @@ void fragment(){
 		    COLOR = vec4(final_color, clamp(alpha, 0.0, modulate.a));
 		}
 	}
-	
 
-	
-	
-    //COLOR = modulate * main_texture;
+
 }

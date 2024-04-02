@@ -18,7 +18,8 @@ public partial class GameManagerIF : Node2D
 	[Signal]
 	public delegate void coinsChangedEventHandler(int newCoins);
 
-	public bool isIntialized() {
+	public bool isIntialized()
+	{
 		return global.deckCardList != null;
 	}
 	public List<CardResource> getDeckList()
@@ -29,7 +30,8 @@ public partial class GameManagerIF : Node2D
 
 	public void addCardToDeckList(CardResource cardResource)
 	{
-		if (cardResource == null) {
+		if (cardResource == null)
+		{
 			return;
 		}
 		getGlobal().deckCardList.getRealList().Add(cardResource);
@@ -47,48 +49,58 @@ public partial class GameManagerIF : Node2D
 		setUpMusicPlayer();
 	}
 
-	private void setUpMusicPlayer() {
+	private void setUpMusicPlayer()
+	{
 		FindObjectHelper.GetMusicPlayer(this).setUp();
 	}
 
-	public void setStartTime(){
+	public void setStartTime()
+	{
 		getGlobal().timeStartedRun = Time.GetTicksMsec();
- 	}
+	}
 
-	public ulong getStartTime(){
+	public ulong getStartTime()
+	{
 		return getGlobal().timeStartedRun;
- 	}
+	}
 
-	public void setMusicVolume(float value){
+	public void setMusicVolume(float value)
+	{
 		getGlobal().musicVolume = value;
- 	}
+	}
 
-	public float getMusicVolume(){
+	public float getMusicVolume()
+	{
 		return getGlobal().musicVolume;
- 	}
+	}
 
-	public void setSFXVolume(float value){
+	public void setSFXVolume(float value)
+	{
 		getGlobal().sfXvolume = value;
- 	}
+	}
 
-	public float getSFXVolume(){
+	public float getSFXVolume()
+	{
 		return getGlobal().sfXvolume;
- 	}
+	}
 
-	private void loadUserId(){
-		if (getGlobal().userId == -1) {
+	private void loadUserId()
+	{
+		if (getGlobal().userId == -1)
+		{
 			if (!FileAccess.FileExists("user://userId.save"))
 			{
 				int newUserId = GD.RandRange(1, Int32.MaxValue);
 				getGlobal().userId = newUserId;
 				using var userIdSave = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Write);
 				Godot.Collections.Dictionary<String, String> userIdDict = new Godot.Collections.Dictionary<String, String>();
-				userIdDict.Add("userId", newUserId+"");
+				userIdDict.Add("userId", newUserId + "");
 				var jsonString = Json.Stringify(userIdDict);
 				// Store the save dictionary as a new line in the save file.
 				userIdSave.StoreLine(jsonString);
 			}
-			else {
+			else
+			{
 				using var saveGame = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Read);
 				var jsonString = saveGame.GetLine();
 				// Creates the helper class to interact with JSON
@@ -116,7 +128,8 @@ public partial class GameManagerIF : Node2D
 
 	protected void loadGlobalAndSetDeckToDefault()
 	{
-		if (defaultCardList != null){
+		if (defaultCardList != null)
+		{
 			if (getGlobal().deckCardList == null || getGlobal().deckCardList.getCards().Count == 0)
 			{
 				Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards());
@@ -127,6 +140,11 @@ public partial class GameManagerIF : Node2D
 		}
 	}
 
+	public void setZenMode(bool value)
+	{
+		getGlobal().zenMode = value;
+	}
+
 	public void resetGlobals()
 	{
 		Global global = getGlobal();
@@ -134,6 +152,7 @@ public partial class GameManagerIF : Node2D
 		global.deckCardList.setCards(cardList);
 		global.relics = new List<RelicResource>();
 		global.timeStartedRun = 0;
+		global.zenMode = false;
 		global.currentLevel = 1;
 		global.currentHealth = 2;
 		global.maxHealth = 2;
@@ -142,7 +161,7 @@ public partial class GameManagerIF : Node2D
 		global.allCoinsGained = 0;
 		global.deckSelection = null;
 		global.numberOfCardsToChoose = 3;
-		global.gridSize = new Vector2(6,5);
+		global.gridSize = new Vector2(6, 5);
 
 	}
 
@@ -169,11 +188,13 @@ public partial class GameManagerIF : Node2D
 	{
 	}
 
-	public void setCollectData(bool value){
+	public void setCollectData(bool value)
+	{
 		getGlobal().collectData = value;
 	}
 
-	public bool getCollectData(){
+	public bool getCollectData()
+	{
 		return getGlobal().collectData;
 	}
 
@@ -279,7 +300,8 @@ public partial class GameManagerIF : Node2D
 	public void addCoins(int coinValue)
 	{
 		getGlobal().currentCoins += coinValue;
-		if (coinValue > 0) {
+		if (coinValue > 0)
+		{
 			getGlobal().allCoinsGained += coinValue;
 		}
 		EmitSignal(SignalName.coinsChanged, global.currentCoins);

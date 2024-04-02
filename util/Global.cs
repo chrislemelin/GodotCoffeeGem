@@ -13,6 +13,7 @@ public partial class Global : Node
 	public DeckSelectionResource deckSelection = null;
 
 	public ulong timeStartedRun = 0;
+	public bool zenMode = false;
 
 	public int currentLevel = 1;
 	public int currentHealth = 2;
@@ -32,6 +33,6 @@ public partial class Global : Node
 
 
 
-	public Vector2 gridSize = new Vector2(6,5);
+	public Vector2 gridSize = new Vector2(6, 5);
 
 }

@@ -152,7 +152,6 @@ welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
 levels = Array[Resource]([SubResource("Resource_nv7p6"), SubResource("Resource_tq7p3"), SubResource("Resource_y5jai"), SubResource("Resource_66dt5"), SubResource("Resource_sq5lj"), SubResource("Resource_n37t5"), SubResource("Resource_ihien"), SubResource("Resource_tsje6"), SubResource("Resource_ohlet"), SubResource("Resource_qnqmx")])
 levelComplete = NodePath("UIOverLays/LevelComplete")
-skipFirstLevel = true
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
