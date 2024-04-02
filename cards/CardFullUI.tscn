@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=30 format=3 uid="uid://dicb3wwg7ecmd"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_16axm"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
@@ -197,13 +197,41 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShineTexture:material:shader_parameter/shine_progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_f65lf"]
+resource_name = "Shine"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShineTexture:material:shader_parameter/shine_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hjwwm"]
 _data = {
 "CardFlip": SubResource("Animation_jdv37"),
 "CardWiggle": SubResource("Animation_7d1ed"),
 "Destroy": SubResource("Animation_w675f"),
-"RESET": SubResource("Animation_l2nvg")
+"RESET": SubResource("Animation_l2nvg"),
+"Shine": SubResource("Animation_f65lf")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_muung"]
@@ -455,10 +483,11 @@ libraries = {
 "": SubResource("AnimationLibrary_hjwwm")
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ShineTexture" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_muung")
 layout_mode = 0
 offset_left = 25.0
 offset_right = 558.0
 offset_bottom = 793.0
+mouse_filter = 2
 texture = ExtResource("7_jrfr0")

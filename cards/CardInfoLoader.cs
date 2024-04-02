@@ -14,7 +14,7 @@ public partial class CardInfoLoader : Control
 	[Export] protected RichTextLabel coinCostText;
 	[Export] protected Color disabledColor;
 	private bool disabled = false;
-	public bool wiggleEnabled {get; private set;} = true;
+	public bool wiggleEnabled { get; private set; } = true;
 	[Export] AnimationPlayer animationPlayer;
 
 
@@ -29,19 +29,24 @@ public partial class CardInfoLoader : Control
 		MouseEntered += () => wiggleCard();
 	}
 
-	public void wiggleCard() {
-		if (!disabled && wiggleEnabled) {
+	public void wiggleCard()
+	{
+		if (!disabled && wiggleEnabled)
+		{
 			animationPlayer.Play("CardWiggle");
 		}
 	}
 
-	public void flipCard() {
+	public void flipCard()
+	{
 		animationPlayer.Play("CardFlip");
 		wiggleEnabled = false;
-		GetTree().CreateTimer(.5f).Timeout += () => wiggleEnabled = true;
+		GetTree().CreateTimer(.5f).Timeout += () => animationPlayer.Play("Shine");
+		GetTree().CreateTimer(1f).Timeout += () => wiggleEnabled = true;
 	}
 
-	public void destroyCard() {
+	public void destroyCard()
+	{
 		wiggleEnabled = false;
 		setShowCoinCost(false);
 		animationPlayer.Play("Destroy");
@@ -61,7 +66,8 @@ public partial class CardInfoLoader : Control
 		highlightOnHover.setForceHighlightOff(false);
 	}
 
-	public void resetAnimation() {
+	public void resetAnimation()
+	{
 		animationPlayer.Play("RESET");
 	}
 
@@ -85,25 +91,30 @@ public partial class CardInfoLoader : Control
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		coinCostText.Text = cardResource.getCoinCost().ToString();
-		if (cardResource.cardEffect.consume) {
+		if (cardResource.cardEffect.consume)
+		{
 			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
 		}
-		if (cardResource.cardEffect.retain) {
+		if (cardResource.cardEffect.retain)
+		{
 			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
 		}
 	}
 
-	public void setShowCoinCost(bool visible) {
+	public void setShowCoinCost(bool visible)
+	{
 		coinCostControl.Visible = visible;
 	}
 
-	public void setForceHighlight(bool value) {
+	public void setForceHighlight(bool value)
+	{
 		highlightOnHover.setForceHighlight(value);
 	}
 
-	public void setForceHighlightOff(bool value) {
+	public void setForceHighlightOff(bool value)
+	{
 		highlightOnHover.setForceHighlightOff(value);
 	}
-	
+
 
 }
