@@ -26,4 +26,5 @@ Description = "Add .25 to the multiplier for this turn and then draw a card"
 Cost = 0
 rarity = 1
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_yybgl")

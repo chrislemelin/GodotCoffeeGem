@@ -31,7 +31,7 @@ public partial class FormSubmitter : HttpRequest
 	public void submitData(String reasonQuiting, GameManagerIF gameManager, Action callBack)
 	{
 		GD.Print("data collection allowed " + gameManager.getCollectData() + "userId " + gameManager.getUserId());
-		if (OS.HasFeature("standalone") && gameManager.getCollectData() && gameManager.isIntialized())
+		if (/*OS.HasFeature("standalone") && */gameManager.getCollectData() && gameManager.isIntialized())
 		{
 			String data = "";
 			Score score = FindObjectHelper.getScore(this);
@@ -50,7 +50,8 @@ public partial class FormSubmitter : HttpRequest
 
 			data = appendData(data, "entry.151133640", reasonQuiting);
 
-			data = appendData(data, "entry.1814658543", (Time.GetTicksMsec() -  gameManager.getStartTime())/1000.0+ "");
+			TimeSpan ts = TimeSpan.FromMilliseconds((Time.GetTicksMsec() -  gameManager.getStartTime()));
+			data = appendData(data, "entry.1814658543", ts.ToString(@"hh\:mm\:ss"));
 
 
 			List<String> relicList = gameManager.getRelics().Select(relic => relic.title).ToList();

@@ -20,6 +20,9 @@ public partial class CardEffectIF: Resource
 	[Export] public CardEffectGemType effectGemType {get;set;}
 	[Export] public CardPassive cardPassiveToApplyToHand;
 	[Signal] public delegate void CardPassivesChangedEventHandler();
+	[Signal] public delegate void ValueChangedEventHandler();
+
+	public Node node;
 
 	private List<CardPassive> cardPassives = new List<CardPassive>();
 
@@ -29,8 +32,7 @@ public partial class CardEffectIF: Resource
 	}
 
 	
-	public void init() {
-		//cardPassives = new List<CardPassive>();
+	public virtual void init() {
 	}
 
 
@@ -108,7 +110,7 @@ public partial class CardEffectIF: Resource
 		return range;
 	}
 
-	public int getValue() {
+	public virtual int getValue() {
 		int value = Value;
 		foreach (CardPassive cardPassive in cardPassives) {
 			value += cardPassive.valueModification;
@@ -128,7 +130,7 @@ public partial class CardEffectIF: Resource
 		return CoinGems;
 	}
 
-	public String getValueString() {
+	public virtual String getValueString() {
 		int value = Value;
 		foreach (CardPassive cardPassive in cardPassives) {
 			value += cardPassive.valueModification;

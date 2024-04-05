@@ -25,4 +25,5 @@ Description = "Randomly create $cardGems draw ingredients(s) and and $manaGems e
 Cost = 2
 rarity = 2
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_6num8")

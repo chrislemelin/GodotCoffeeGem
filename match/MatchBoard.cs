@@ -23,14 +23,10 @@ public partial class MatchBoard : Node
 	[Export] public TextureProgressBar progressBar;
 	private double progressValue = 0;
 	[Export] private double progressStep;
-	[Export]
-	public AudioStream matchAudioStream;
-	[Export]
-	public AudioStream popAudioStream;
-	[Export]
-	public AudioStream switchAudioStream;
+	[Export] public AudioStream matchAudioStream;
+	[Export] public AudioStream popAudioStream;
+	[Export] public AudioStream switchAudioStream;
 	[Export] private GameCamera gameCamera;
-
 	[Export] public RichTextLabel levelLabel;
 	[Export] public RichTextLabel scoreLabel;
 	[Export] public RichTextLabel multLabel;
@@ -52,6 +48,14 @@ public partial class MatchBoard : Node
 	Dictionary<Vector2, Tile> tileMap = new Dictionary<Vector2, Tile>();
 	private Vector2 tileSize;
 	private Vector2 tileSizeUnScaled;
+
+
+	//stats
+	public HashSet<Match> matchesThisTurn = new HashSet<Match>();
+	public int blackGemsCreatedThisTurn = 0;
+	[Signal]
+	public delegate void blackGemsCreatedThisTurnChangedEventHandler();
+
 
 	private void tileClicked(Tile tile, InputEvent inputEvent)
 	{
@@ -251,6 +255,11 @@ public partial class MatchBoard : Node
 
 	}
 
+	private void resetTurnStats() {
+		matchesThisTurn = new HashSet<Match>();
+		blackGemsCreatedThisTurn = 0;
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -259,6 +268,8 @@ public partial class MatchBoard : Node
 		sizeX = (int)gridSize.X;
 		sizeY = (int)gridSize.Y;
 		progressBar.Value = 0;
+
+		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
 
 		levelLabel.Text = ""+FindObjectHelper.getGameManager(this).getLevel();
 
@@ -439,6 +450,7 @@ public partial class MatchBoard : Node
 			Match currentMatch = new Match();
 			currentMatch.ingredients = match.Select(tile => tile.Gem).ToList();
 			EmitSignal(SignalName.ingredientMatched, currentMatch);
+			matchesThisTurn.Add(currentMatch);
 
 		}
 		deleteGemAtPositionsFromMatches(matches);
@@ -943,6 +955,10 @@ public partial class MatchBoard : Node
 				tile.GetValue().Gem.setType(gemType);
 			}
 		}
+		if (gemType == GemType.Black) {
+			blackGemsCreatedThisTurn += positions.Count();
+			EmitSignal(SignalName.blackGemsCreatedThisTurnChanged);
+		}
 		thingsAreMoving = true;
 	}
 
@@ -966,4 +982,8 @@ public partial class MatchBoard : Node
 		thingsAreMoving = true;
 	}
 
+	public static explicit operator MatchBoard(Godot.Collections.Array<Node> v)
+	{
+		throw new NotImplementedException();
+	}
 }

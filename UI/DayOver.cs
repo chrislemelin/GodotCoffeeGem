@@ -193,14 +193,15 @@ public partial class DayOver : Control
 		List<CardResource> cards = CardRarityHelper.getRandomCards(5, gameManager.cardPool);
 			foreach(CardResource cardResource in cards) {
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
+			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
+			marginContainer.AddChild(cardInfoLoader);
+			cardShop.AddChild(marginContainer);
+
 			//cardInfoLoaders.Add(cardInfoLoader);
 			cardsInShop.Add(cardInfoLoader);
 			cardInfoLoader.setUpCard(cardResource);
 			cardInfoLoader.setShowCoinCost(true);
-			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
-			marginContainer.AddChild(cardInfoLoader);
 			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader, marginContainer);
-			cardShop.AddChild(marginContainer);
 		}
 	}
 

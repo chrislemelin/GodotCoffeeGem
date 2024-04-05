@@ -16,6 +16,7 @@ recipeComponentHolder = NodePath("VBoxContainer/HBoxContainer")
 inactiveColor = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
 offset_right = 307.0

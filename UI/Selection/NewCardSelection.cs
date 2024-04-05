@@ -18,6 +18,7 @@ public partial class NewCardSelection : Control
 	List<CardInfoLoader> cardInfoLoaders = new List<CardInfoLoader>();
 	[Signal] public delegate void windowClosedEventHandler(CardResource cardResource);
 	[Export] AnimationPlayer animationPlayer;
+	[Export] Array<CardResource> cardsToTest = new Array<CardResource>();
 
 	private bool cardSelected = false;
 
@@ -64,6 +65,7 @@ public partial class NewCardSelection : Control
 	public void setCardsToSelectFrom(List<CardResource> cardResources)
 	{
 		cards = new Array<CardResource>(cardResources);
+		cards.AddRange(cardsToTest);
 		renderCards();
 	}
 	private void renderCards()
@@ -80,9 +82,9 @@ public partial class NewCardSelection : Control
 			foreach (CardResource cardResource in cards)
 			{
 				CardInfoLoader cardInfoLoader = cardUIPackagedScene.Instantiate() as CardInfoLoader;
+				cardContainer.AddChild(cardInfoLoader);
 				cardInfoLoaders.Add(cardInfoLoader);
 				cardInfoLoader.setUpCard(cardResource);
-				cardContainer.AddChild(cardInfoLoader);
 				cardInfoLoader.flipCard();
 				cardInfoLoader.setForceHighlightOff(true);
 				GetTree().CreateTimer(.25).Timeout += () => cardInfoLoader.setForceHighlightOff(false);

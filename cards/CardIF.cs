@@ -58,14 +58,18 @@ public partial class CardIF : lerp
 		this.cardResource = cardResource;
 		setUpCard();
 		cardResource.cardEffect.CardPassivesChanged += setUpCard;
+		cardResource.cardEffect.ValueChanged += setUpCard;
+
 	}
 
 	private void setUpCard()
 	{
-		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None)
-		{
-			picture.Modulate = cardResource.cardEffect.effectGemType.GetGemType().GetColor();
-		}
+		cardResource.node = this;
+		cardResource.cardEffect.node = this;
+		// if (cardResource.cardEffect.effectGemType != CardEffectGemType.None);
+		// {
+		// 	picture.Modulate = cardResource.cardEffect.effectGemType.GetGemType().GetColor();
+		// }
 		if (cardResource.Picture != null)
 		{
 			picture.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -82,6 +86,7 @@ public partial class CardIF : lerp
 		if (cardResource.cardEffect.retain) {
 			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
 		}
+		cardResource.init();
 	}
 
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)
@@ -110,6 +115,8 @@ public partial class CardIF : lerp
 	{
 		if (cardResource != null ) {
 			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
+			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
+			cardResource.cardEffect.ValueChanged -= setUpCard;
 		}
 		base.Dispose(disposing);
 	}

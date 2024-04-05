@@ -34,7 +34,7 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 	}
 
 	private void setUpInternal(List<CardResource> cards) {
-		cardInfoLoaders.Clear();
+	cardInfoLoaders.Clear();
 		Godot.Collections.Array<Node> nodes = gridContainer.GetChildren();
 		foreach (Node node in nodes)
 		{
@@ -44,13 +44,14 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 
 		foreach(CardResource cardResource in cards) {
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
+			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
+			marginContainer.AddChild(cardInfoLoader);
+			gridContainer.AddChild(marginContainer);
 			cardInfoLoaders.Add(cardInfoLoader);
 			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader);
 			cardInfoLoader.setForceHighlightOff(true);
 			cardInfoLoader.setUpCard(cardResource);
-			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
-			marginContainer.AddChild(cardInfoLoader);
-			gridContainer.AddChild(marginContainer);
+			
 		}
 		setVisible(true);
 		GetTree().CreateTimer(.25f).Timeout += () => {

@@ -7,7 +7,7 @@ public partial class FindObjectHelper
 
 	public static readonly String NEW_BUTTON_NAME = "%NewTurnButton";
 	public static readonly String SCORE_NAME = "%Score";
-	public static readonly String MATCH_BOARD_NAME = "%MatchBoard";
+	public static readonly String MATCH_BOARD_NAME = "MatchBoard";
 	public static readonly String DECK_VIEW_NAME = "DeckViewUI";
 	public static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
 	public static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
@@ -38,7 +38,12 @@ public partial class FindObjectHelper
 	}
 	public static MatchBoard getMatchBoard(Node node)
 	{
-		return node.GetNode<MatchBoard>(FindObjectHelper.MATCH_BOARD_NAME);
+		Godot.Collections.Array<Node> list = node.GetTree().GetNodesInGroup(MATCH_BOARD_NAME);
+		if (list.Count > 0) {
+			return (MatchBoard)list[0];
+		} else {
+			return null;
+		}
 	}
 
 	public static DeckViewUI getDeckView(Node node)

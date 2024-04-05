@@ -25,4 +25,5 @@ Description = "Randomly create $value rainbow ingredient(s) that can match with 
 Cost = 1
 rarity = 1
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_rb5l6")

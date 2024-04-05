@@ -10,7 +10,7 @@ public partial class CardResource : Resource
 	[Export] public Texture2D Picture { get; private set; }
 	[Export] private int coinCost { get; set; }
 	[Export] public bool playable { get; set; }
-
+	public Node node;
 
 	[Export] public CardEffectIF cardEffect { get; set; }
 
@@ -85,6 +85,9 @@ public partial class CardResource : Resource
 	public bool equalToCard(CardResource cardResource)
 	{
 		return Title.Equals(cardResource.Title);
+	}
+	public void init () {
+		cardEffect.init();
 	}
 
 }

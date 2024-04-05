@@ -115,13 +115,13 @@ public partial class Hand : Node
 			return false;
 		}
 		CardIF newcard = cardTemplate.Instantiate() as CardIF;
+		cardContainer.AddChild(newcard);
 		newcard.setCardResource(cardResource);
 		newcard.clickedSignal += (inputEvent) => cardClicked(inputEvent, newcard);
 		newcard.listenToMouseEnter(() => setCardHovered(newcard));
 		newcard.listenToMouseExit(() => clearCardHovered());
 
 
-		cardContainer.AddChild(newcard);
 		cards.Add(newcard);
 
 		Vector2 startingPosition = getPositionForCard(cards.Count - 1);

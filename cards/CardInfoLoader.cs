@@ -75,6 +75,8 @@ public partial class CardInfoLoader : Control
 	{
 		animationPlayer.Play("RESET");
 		this.cardResource = cardResource;
+		this.cardResource.node = this;
+		this.cardResource.cardEffect.node = this;
 
 		if (cardResource.cardEffect.effectGemType != CardEffectGemType.None)
 		{
