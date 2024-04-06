@@ -48,21 +48,24 @@ offset_bottom = -69.0
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 custom_minimum_size = Vector2(900, 400)
 layout_mode = 2
-offset_left = 316.0
-offset_top = 409.0
-offset_right = 2858.0
-offset_bottom = 1209.0
-scale = Vector2(0.5, 0.5)
+offset_left = 510.0
+offset_top = 467.0
+offset_right = 2583.0
+offset_bottom = 1267.0
+scale = Vector2(0.4, 0.4)
 size_flags_vertical = 3
 alignment = 1
 
 [node name="UI" parent="Control/HBoxContainer" instance=ExtResource("2_twjff")]
+visible = false
 layout_mode = 2
 
 [node name="UI2" parent="Control/HBoxContainer" instance=ExtResource("2_twjff")]
+visible = false
 layout_mode = 2
 
 [node name="UI3" parent="Control/HBoxContainer" instance=ExtResource("2_twjff")]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]

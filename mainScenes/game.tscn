@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=53 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="2_iphd8"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://c1s2lxholqwbh" path="res://placeholders/CoffeeShop/Coffee 1.png" id="6_v4hji"]
 [ext_resource type="Resource" uid="uid://dbq6lsiphqhd2" path="res://cards/cardResources/cardLists/CardListTest.tres" id="7_vdncp"]
 [ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="8_m8idd"]
-[ext_resource type="Texture2D" uid="uid://dkehgsvlvt1p4" path="res://placeholders/character/portrait2.png" id="8_pamu5"]
 [ext_resource type="Texture2D" uid="uid://bog5s844e5fy5" path="res://placeholders/CoffeeShop/Wooden_Counter.png" id="9_hiq7b"]
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
@@ -169,14 +168,9 @@ position = Vector2(960, 717)
 scale = Vector2(1.9405, 0.9182)
 texture = ExtResource("9_hiq7b")
 
-[node name="BeansOfProduction" type="Sprite2D" parent="."]
-position = Vector2(411, 540)
-scale = Vector2(1.2207, 1.2207)
-texture = ExtResource("8_pamu5")
-
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") groups=["MatchBoard"] instance=ExtResource("5_4m14m")]
 unique_name_in_owner = true
-position = Vector2(886, 269)
+position = Vector2(823, 271)
 scale = Vector2(0.75, 0.75)
 sizeY = 5
 hand = NodePath("../Hand")
@@ -201,7 +195,7 @@ deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Score" parent="." node_paths=PackedStringArray("gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
-position = Vector2(368, 161)
+position = Vector2(292, 318)
 gameManager = NodePath("..")
 bossRecipeUI = NodePath("../BossRecipeUI")
 
@@ -815,7 +809,6 @@ offset_right = -5.0
 offset_bottom = -4.0
 scale = Vector2(1.01, 1.01)
 deckViewUI = NodePath("../DeckView")
-cardsToTest = []
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
 visible = false
@@ -977,7 +970,6 @@ offset_left = 790.0
 offset_top = 573.0
 offset_right = 1009.0
 offset_bottom = 604.0
-theme_override_font_sizes/font_size = 30
 text = "Dont show me this again"
 
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]
