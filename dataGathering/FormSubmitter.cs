@@ -31,11 +31,12 @@ public partial class FormSubmitter : HttpRequest
 	public void submitData(String reasonQuiting, GameManagerIF gameManager, Action callBack)
 	{
 		GD.Print("data collection allowed " + gameManager.getCollectData() + "userId " + gameManager.getUserId());
-		if (/*OS.HasFeature("standalone") && */gameManager.getCollectData() && gameManager.isIntialized())
+		if (OS.HasFeature("standalone") && gameManager.getCollectData() && gameManager.isIntialized())
 		{
 			String data = "";
 			Score score = FindObjectHelper.getScore(this);
-			if (score != null && score.getScore() == 0 && gameManager.getLevel() == 1) {
+			if (score != null && score.getScore() == 0 && gameManager.getLevel() == 1)
+			{
 				if (callBack != null)
 				{
 					callBack.Invoke();
@@ -43,14 +44,14 @@ public partial class FormSubmitter : HttpRequest
 				// they have just started to run, don't collect data
 				return;
 			}
-			data = appendData(data, "entry.639787288", gameManager.getUserId()+"");
+			data = appendData(data, "entry.639787288", gameManager.getUserId() + "");
 
 			List<String> deckList = gameManager.getDeckList().Select(card => card.Title).ToList();
 			data = appendData(data, "entry.739229763", String.Join(",", deckList));
 
 			data = appendData(data, "entry.151133640", reasonQuiting);
 
-			TimeSpan ts = TimeSpan.FromMilliseconds((Time.GetTicksMsec() -  gameManager.getStartTime()));
+			TimeSpan ts = TimeSpan.FromMilliseconds((Time.GetTicksMsec() - gameManager.getStartTime()));
 			data = appendData(data, "entry.1814658543", ts.ToString(@"hh\:mm\:ss"));
 
 
