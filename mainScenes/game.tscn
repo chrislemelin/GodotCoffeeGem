@@ -170,7 +170,7 @@ scale = Vector2(1.9405, 0.9182)
 texture = ExtResource("9_hiq7b")
 
 [node name="BeansOfProduction" type="Sprite2D" parent="."]
-position = Vector2(398, 555)
+position = Vector2(411, 540)
 scale = Vector2(1.2207, 1.2207)
 texture = ExtResource("8_pamu5")
 
