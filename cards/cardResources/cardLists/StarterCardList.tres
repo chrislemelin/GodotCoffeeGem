@@ -6,10 +6,10 @@
 [ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="5_dr1ge"]
 [ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="6_1vkr2"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_uai24"]
-[ext_resource type="Resource" uid="uid://eegpmkcrcfr5" path="res://cards/cardResources/scoreCards/BurnMasterCard.tres" id="7_1uq24"]
+[ext_resource type="Resource" uid="uid://cm5hfr725bb0n" path="res://cards/cardResources/scoreCards/RainbowScoreCard.tres" id="7_1whoc"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="7_f4atu"]
-[ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="8_5x72t"]
+[ext_resource type="Resource" uid="uid://eaj30vxpmibo" path="res://cards/cardResources/scoreCards/matchScoreCards/CoffeeMatchScoreCard.tres" id="8_ng7al"]
 
 [resource]
 script = ExtResource("1_6cmgn")
-allCards = Array[Object]([ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("3_vvk82"), ExtResource("2_b1nn1"), ExtResource("5_dr1ge"), ExtResource("6_1vkr2"), ExtResource("7_1uq24"), ExtResource("7_1uq24"), ExtResource("7_1uq24"), ExtResource("8_5x72t"), ExtResource("8_5x72t"), ExtResource("8_5x72t")])
+allCards = Array[Object]([ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("6_uai24"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("7_f4atu"), ExtResource("3_vvk82"), ExtResource("2_b1nn1"), ExtResource("5_dr1ge"), ExtResource("6_1vkr2"), ExtResource("7_1whoc"), ExtResource("8_ng7al")])

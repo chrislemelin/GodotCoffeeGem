@@ -42,22 +42,27 @@ public partial class CardResource : Resource
 	public string getEnergyCostString()
 	{
 		int cost = getEnergyCost();
-		if (cost != Cost) {
-			return "[color=#2c8518]" + cost.ToString() + "[/color]" ;
+		if (cost != Cost)
+		{
+			return "[color=#2c8518]" + cost.ToString() + "[/color]";
 		}
 		return cost.ToString();
 	}
 
 	public int getCoinCost()
 	{
-		if (coinCost == 0) {
-			if(rarity == CardRarity.Common) {
+		if (coinCost == 0)
+		{
+			if (rarity == CardRarity.Common)
+			{
 				return 30;
 			}
-			if(rarity == CardRarity.Uncommon) {
+			if (rarity == CardRarity.Uncommon)
+			{
 				return 45;
 			}
-			if(rarity == CardRarity.Rare) {
+			if (rarity == CardRarity.Rare)
+			{
 				return 60;
 			}
 		}
@@ -70,12 +75,15 @@ public partial class CardResource : Resource
 		newDescription = newDescription.Replace("$manaGems", cardEffect.getManaGems().ToString());
 		newDescription = newDescription.Replace("$cardGems", cardEffect.getCardGems().ToString());
 		newDescription = newDescription.Replace("$moneyGems", cardEffect.getCoinGems().ToString());
+		newDescription = newDescription.Replace("$customText", cardEffect.getCustomText().ToString());
 
 
-		if (cardEffect.consume) {
+		if (cardEffect.consume)
+		{
 			newDescription += " " + TextHelper.toolTip("Consume.", "Consume cards are trashed untill the next level");
 		}
-		if (cardEffect.retain) {
+		if (cardEffect.retain)
+		{
 			newDescription += " " + TextHelper.toolTip("Retain.", "Retain cards arn't discarded at the end of the turn");
 		}
 		return newDescription;
@@ -86,7 +94,8 @@ public partial class CardResource : Resource
 	{
 		return Title.Equals(cardResource.Title);
 	}
-	public void init () {
+	public void init()
+	{
 		cardEffect.init();
 	}
 

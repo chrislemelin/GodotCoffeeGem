@@ -896,7 +896,6 @@ libraries = {
 }
 
 [node name="PlayableCards" type="Control" parent="UIOverLays" node_paths=PackedStringArray("showUI", "button")]
-visible = false
 anchors_preset = 0
 script = ExtResource("37_635hs")
 showUI = NodePath("CheckBox")
@@ -971,6 +970,7 @@ offset_left = 790.0
 offset_top = 573.0
 offset_right = 1009.0
 offset_bottom = 604.0
+theme_override_font_sizes/font_size = 30
 text = "Dont show me this again"
 
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]

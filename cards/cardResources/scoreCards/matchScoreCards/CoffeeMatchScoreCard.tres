@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://eaj30vxpmibo"]
+
+[ext_resource type="Script" path="res://cards/cardResources/scoreCards/matchScoreCards/MatchScoreCardEffect.cs" id="1_on4xk"]
+[ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_v8ehh"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_lw0vr"]
+
+[sub_resource type="Resource" id="Resource_7cy1d"]
+script = ExtResource("1_on4xk")
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+retain = false
+effectGemType = 4
+
+[resource]
+script = ExtResource("2_lw0vr")
+Title = "Coffee Score"
+Description = "Gain 75 points for match of coffee made this level. ($value)"
+Cost = 1
+rarity = 1
+Picture = ExtResource("1_v8ehh")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_7cy1d")

@@ -52,6 +52,8 @@ public partial class MatchBoard : Node
 
 	//stats
 	public HashSet<Match> matchesThisTurn = new HashSet<Match>();
+	public HashSet<Match> matchesThisLevel = new HashSet<Match>();
+
 	public int blackGemsCreatedThisTurn = 0;
 	[Signal]
 	public delegate void blackGemsCreatedThisTurnChangedEventHandler();
@@ -237,7 +239,7 @@ public partial class MatchBoard : Node
 	private void scoreChanged(int score, int scoreNeeded)
 	{
 		progressValue = (double)score / scoreNeeded * 100;
-		scoreLabel.Text = score+"/"+scoreNeeded;
+		scoreLabel.Text = score + "/" + scoreNeeded;
 
 	}
 
@@ -255,7 +257,8 @@ public partial class MatchBoard : Node
 
 	}
 
-	private void resetTurnStats() {
+	private void resetTurnStats()
+	{
 		matchesThisTurn = new HashSet<Match>();
 		blackGemsCreatedThisTurn = 0;
 	}
@@ -271,7 +274,7 @@ public partial class MatchBoard : Node
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
 
-		levelLabel.Text = ""+FindObjectHelper.getGameManager(this).getLevel();
+		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel();
 
 		score.scoreChange += scoreChanged;
 		score.multChange += (value) => multLabel.Text = "" + value;
@@ -449,8 +452,9 @@ public partial class MatchBoard : Node
 		{
 			Match currentMatch = new Match();
 			currentMatch.ingredients = match.Select(tile => tile.Gem).ToList();
-			EmitSignal(SignalName.ingredientMatched, currentMatch);
+			matchesThisLevel.Add(currentMatch);
 			matchesThisTurn.Add(currentMatch);
+			EmitSignal(SignalName.ingredientMatched, currentMatch);
 
 		}
 		deleteGemAtPositionsFromMatches(matches);
@@ -955,7 +959,8 @@ public partial class MatchBoard : Node
 				tile.GetValue().Gem.setType(gemType);
 			}
 		}
-		if (gemType == GemType.Black) {
+		if (gemType == GemType.Black)
+		{
 			blackGemsCreatedThisTurn += positions.Count();
 			EmitSignal(SignalName.blackGemsCreatedThisTurnChanged);
 		}

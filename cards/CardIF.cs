@@ -27,7 +27,8 @@ public partial class CardIF : lerp
 		base._Ready();
 	}
 
-	public bool getEnabled() {
+	public bool getEnabled()
+	{
 		return enabled || cardResource.playable;
 	}
 
@@ -59,7 +60,7 @@ public partial class CardIF : lerp
 		setUpCard();
 		cardResource.cardEffect.CardPassivesChanged += setUpCard;
 		cardResource.cardEffect.ValueChanged += setUpCard;
-
+		cardResource.cardEffect.CustomTextChanged += setUpCard;
 	}
 
 	private void setUpCard()
@@ -80,10 +81,12 @@ public partial class CardIF : lerp
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
-		if (cardResource.cardEffect.consume) {
+		if (cardResource.cardEffect.consume)
+		{
 			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
 		}
-		if (cardResource.cardEffect.retain) {
+		if (cardResource.cardEffect.retain)
+		{
 			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
 		}
 		cardResource.init();
@@ -113,10 +116,12 @@ public partial class CardIF : lerp
 	}
 	protected override void Dispose(bool disposing)
 	{
-		if (cardResource != null ) {
+		if (cardResource != null)
+		{
 			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 			cardResource.cardEffect.ValueChanged -= setUpCard;
+			cardResource.cardEffect.CustomTextChanged -= setUpCard;
 		}
 		base.Dispose(disposing);
 	}
