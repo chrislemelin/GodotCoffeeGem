@@ -809,6 +809,7 @@ offset_right = -5.0
 offset_bottom = -4.0
 scale = Vector2(1.01, 1.01)
 deckViewUI = NodePath("../DeckView")
+cardsToTest = []
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
 visible = false

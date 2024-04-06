@@ -25,4 +25,5 @@ Description = "Select an ingredient, increase the points gained from that ingred
 Cost = 0
 rarity = 1
 coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_qx1wc")
