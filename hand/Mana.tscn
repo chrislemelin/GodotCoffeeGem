@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm6smnkgl28wr"]
 
 [ext_resource type="Script" path="res://hand/Mana.cs" id="1_x7nhu"]
-[ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_xw0rw"]
+[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="2_akfqu"]
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="3_tj302"]
 [ext_resource type="AudioStream" uid="uid://2v0ksk6rso4g" path="res://sound/mana/magical_1.ogg" id="3_xufqt"]
 
@@ -11,9 +11,9 @@ costText = NodePath("RichTextLabel")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-5, -17)
-scale = Vector2(0.138879, 0.138879)
-texture = ExtResource("2_xw0rw")
+position = Vector2(9, -25)
+scale = Vector2(0.434124, 0.434124)
+texture = ExtResource("2_akfqu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)

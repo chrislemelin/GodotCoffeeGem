@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="6_w0vkw"]
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="6_yrfys"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_8y700"]
-[ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="9_g6p6g"]
+[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="8_hyiww"]
 
 [sub_resource type="Theme" id="Theme_kwco5"]
 TooltipLabel/font_sizes/font_size = 32
@@ -144,21 +144,20 @@ scroll_active = false
 
 [node name="Cost" type="Control" parent="UI"]
 anchors_preset = 0
-offset_left = 40.0
-offset_top = 36.1901
-offset_right = 40.0
-offset_bottom = 36.1901
+offset_left = 62.8571
+offset_top = 53.333
+offset_right = 62.8571
+offset_bottom = 53.333
 mouse_filter = 2
 
-[node name="Sprite2D" type="TextureRect" parent="UI/Cost"]
+[node name="1" type="TextureRect" parent="UI/Cost"]
 layout_mode = 0
-offset_left = -85.5068
-offset_top = -132.857
-offset_right = 1028.49
-offset_bottom = 1478.14
-scale = Vector2(0.1, 0.1)
+offset_left = -94.2858
+offset_top = -131.429
+offset_right = 42.7142
+offset_bottom = 5.57143
 mouse_filter = 2
-texture = ExtResource("9_g6p6g")
+texture = ExtResource("8_hyiww")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/Cost"]
@@ -168,10 +167,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.2214
-offset_top = -67.1432
-offset_right = -4.22141
-offset_bottom = 15.8568
+offset_left = -54.2857
+offset_top = -65.7143
+offset_right = -7.28572
+offset_bottom = 17.2857
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
