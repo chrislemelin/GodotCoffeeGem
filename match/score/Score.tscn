@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=21 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
 [ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="2_noj62"]
@@ -19,8 +19,9 @@
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="13_mxfsq"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="17_bgy2v"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="17_iagpe"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="20_1df3m"]
 
-[node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
+[node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "metaCoinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")
 scoreLabel = NodePath("VBoxContainer/Level Progress")
 multLabel = NodePath("VBoxContainer/MultLabelText")
@@ -28,12 +29,14 @@ turnsRemainingLabel = NodePath("VBoxContainer/Turns Remaining")
 moneyNeededLabel = NodePath("VBoxContainer/Level Progress")
 levelLabel = NodePath("VBoxContainer/Level Label")
 coinsLabel = NodePath("VBoxContainer/CoinsContainer/RichTextLabel")
+metaCoinsLabel = NodePath("VBoxContainer/CoinsContainer2/RichTextLabel")
 colorUpgradePreviewBox = NodePath("VBoxContainer/MarginContainer/UpgradeContainer")
 turnColor = Color(0, 1, 0.0509804, 1)
 heartColor = Color(1, 0, 1, 1)
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 victoryAudio = ExtResource("2_noj62")
 oofAudio = ExtResource("3_77qsr")
+coinAudio = ExtResource("6_ax4rp")
 matchScoreTextPackedScene = ExtResource("4_q1bh3")
 progressBar = NodePath("VBoxContainer/ScoreProgressBar")
 turnsContainer = NodePath("VBoxContainer/TurnsContainer/TurnsContainer")
@@ -49,7 +52,7 @@ turnEmpty = ExtResource("11_liqc3")
 offset_left = -153.0
 offset_top = -65.0
 offset_right = 152.0
-offset_bottom = 102.0
+offset_bottom = 154.0
 theme = ExtResource("11_xqdl2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -251,6 +254,26 @@ texture = ExtResource("17_bgy2v")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CoinsContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("17_iagpe")
+theme_override_font_sizes/normal_font_size = 64
+text = "10"
+fit_content = true
+scroll_active = false
+
+[node name="CoinsContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CoinsContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("20_1df3m")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CoinsContainer2"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3

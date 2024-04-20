@@ -9,8 +9,15 @@ gemAddonType = 3
 Range = 1.0
 Value = 1
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 
 [resource]
@@ -19,4 +26,6 @@ Title = "Combo Infusion"
 Description = "Randomly create $value combo ingredient(s)"
 Cost = 0
 rarity = 1
+coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_m0v28")

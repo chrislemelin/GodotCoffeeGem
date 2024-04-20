@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://eegpmkcrcfr5"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://eegpmkcrcfr5"]
 
+[ext_resource type="Texture2D" uid="uid://cm7njlsn6r8x1" path="res://cards/cardResources/cardArt/trash.png" id="1_e7v05"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/BurnMasterCardEffect.cs" id="1_o15dq"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_g2oql"]
 
@@ -12,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -24,6 +26,7 @@ Title = "BurnMaster"
 Description = "Gain 50 points for each ingredient burnt this turn ($value)"
 Cost = 1
 rarity = 1
+Picture = ExtResource("1_e7v05")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_3jub0")

@@ -13,6 +13,7 @@ public partial class Gem : lerp
 	[Export] public Texture2D cardAddonTexture;
 	[Export] public Texture2D lockAddonTexture;
 	[Export] public Texture2D coinAddonTexture;
+	[Export] public Texture2D metaCoinAddonTexture;
 	[Export] public ShaderMaterial rainbowMaterial;
 	[Export] public Texture2D orbTexture;
 	[Export] public bool useSprites;
@@ -117,6 +118,9 @@ public partial class Gem : lerp
 			case GemAddonType.Money:
 				FindObjectHelper.getGameManager(this).addCoins(5);
 				break;
+			case GemAddonType.MetaCoin:
+				FindObjectHelper.getGameManager(this).addMetaCoins(2);
+				break;
 		}
 	}
 
@@ -193,6 +197,12 @@ public partial class Gem : lerp
 			case GemAddonType.Money:
 				addonSprite.Visible = true;
 				addonSprite.Texture = coinAddonTexture;
+				addonSprite.Scale = new Vector2(1.25f, 1.25f);
+				control.TooltipText = "Cannot move ingredient";
+				break;
+			case GemAddonType.MetaCoin:
+				addonSprite.Visible = true;
+				addonSprite.Texture = metaCoinAddonTexture;
 				addonSprite.Scale = new Vector2(1.25f, 1.25f);
 				control.TooltipText = "Cannot move ingredient";
 				break;

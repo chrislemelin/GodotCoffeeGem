@@ -10,9 +10,9 @@ public partial class FindObjectHelper
 	public static readonly String MATCH_BOARD_NAME = "MatchBoard";
 	public static readonly String DECK_VIEW_NAME = "DeckViewUI";
 	public static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
+	public static readonly String RELIC_SELECTION_NAME = "RelicSelection";
 	public static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
 	public static readonly String SETTINGS_MENU_NAME = "SettingsMenu";
-
 
 
 	public static Hand getHand(Node node)
@@ -64,6 +64,11 @@ public partial class FindObjectHelper
 	public static NewCardSelection getCardSelection(Node node)
 	{
 		return (NewCardSelection)node.GetTree().GetNodesInGroup(CARD_SELECTION_NAME)[0];
+	}
+
+	public static RelicSelection getRelicSelection(Node node)
+	{
+		return (RelicSelection)node.GetTree().GetNodesInGroup(RELIC_SELECTION_NAME)[0];
 	}
 
 	public static GameManagerIF getGameManager(Node node)

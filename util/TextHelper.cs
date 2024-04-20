@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 
 public static class TextHelper
 {
@@ -16,5 +17,8 @@ public static class TextHelper
 	{
 		return "[hint={" + toolTip + "}]" + text + "[/hint]";
 		// [hint={test}]blah blah blah[/hint]
+	}
+	public static string spliceText(string text, int lineLength) {
+		return Regex.Replace(text, "(.{" + lineLength + "})", "$1" + System.Environment.NewLine);
 	}
 }

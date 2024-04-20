@@ -20,6 +20,7 @@ public partial class RelicSelection : Control
 		};
 	}
 	public void setRelics(List<RelicResource> relicResources) {
+		Visible = true;
 		foreach (Node child in relicHolder.GetChildren())
 		{
 			child.QueueFree();

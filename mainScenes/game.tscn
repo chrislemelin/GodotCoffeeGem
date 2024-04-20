@@ -55,50 +55,50 @@ blockedTiles = 1
 
 [sub_resource type="Resource" id="Resource_y5jai"]
 script = ExtResource("2_iphd8")
-score = 1500
-makeRandomBossRecipe = true
+score = 2000
+makeRandomBossRecipe = false
 blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_66dt5"]
 script = ExtResource("2_iphd8")
-score = 2000
+score = 3000
 makeRandomBossRecipe = false
 blockedTiles = 2
 
 [sub_resource type="Resource" id="Resource_sq5lj"]
 script = ExtResource("2_iphd8")
-score = 3000
+score = 4000
 makeRandomBossRecipe = false
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_n37t5"]
 script = ExtResource("2_iphd8")
-score = 4000
+score = 6000
 makeRandomBossRecipe = false
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_ihien"]
 script = ExtResource("2_iphd8")
-score = 5000
-makeRandomBossRecipe = true
+score = 8000
+makeRandomBossRecipe = false
 blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_tsje6"]
 script = ExtResource("2_iphd8")
-score = 6500
+score = 1000
 makeRandomBossRecipe = false
 blockedTiles = 5
 
 [sub_resource type="Resource" id="Resource_ohlet"]
 script = ExtResource("2_iphd8")
-score = 8000
+score = 13000
 makeRandomBossRecipe = false
 blockedTiles = 5
 
 [sub_resource type="Resource" id="Resource_qnqmx"]
 script = ExtResource("2_iphd8")
-score = 10000
-makeRandomBossRecipe = true
+score = 17000
+makeRandomBossRecipe = false
 blockedTiles = 0
 
 [sub_resource type="Animation" id="Animation_n7a6h"]
@@ -139,10 +139,9 @@ _data = {
 "RESET": SubResource("Animation_rp5ce")
 }
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("newCardSelection", "recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete")]
 position = Vector2(-4, -1)
 script = ExtResource("1_5jnm2")
-newCardSelection = NodePath("UIOverLays/CardSelectionUI")
 recipeUI = NodePath("BossRecipeUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
@@ -159,7 +158,7 @@ defaultCardList = ExtResource("3_tlo67")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
 modulate = Color(0.454902, 0.454902, 0.454902, 1)
-position = Vector2(970, 438)
+position = Vector2(972, 438)
 scale = Vector2(0.836182, 0.836182)
 texture = ExtResource("6_v4hji")
 
@@ -170,6 +169,7 @@ scale = Vector2(1.9405, 0.9182)
 texture = ExtResource("9_hiq7b")
 
 [node name="Portrait2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(378, 568)
 texture = ExtResource("8_bn8a0")
 
@@ -200,7 +200,7 @@ deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Score" parent="." node_paths=PackedStringArray("gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
-position = Vector2(321, 152)
+position = Vector2(309, 282)
 gameManager = NodePath("..")
 bossRecipeUI = NodePath("../BossRecipeUI")
 
@@ -226,6 +226,7 @@ offset_top = 609.0
 offset_right = 1877.0
 offset_bottom = 670.0
 theme = ExtResource("16_m0mlx")
+theme_override_font_sizes/font_size = 45
 playableCardsUI = NodePath("../UIOverLays/PlayableCards")
 
 [node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
@@ -288,7 +289,6 @@ text = "Advance"
 anchors_preset = 0
 
 [node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
 layout_mode = 0
 offset_left = 449.0
 offset_top = 253.0
@@ -436,18 +436,18 @@ anchors_preset = 0
 [node name="Mult tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 731.0
-offset_top = 245.0
-offset_right = 731.0
-offset_bottom = 245.0
+offset_left = 887.0
+offset_top = 200.0
+offset_right = 887.0
+offset_bottom = 200.0
 rotation = -0.00465528
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Mult tutorial"]
 layout_mode = 0
-offset_left = -18.8323
-offset_top = -36.0881
-offset_right = 381.168
-offset_bottom = 336.912
+offset_left = -132.031
+offset_top = 6.38543
+offset_right = 267.969
+offset_bottom = 379.386
 rotation = -3.95877
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
@@ -465,18 +465,18 @@ text = "This is your score multiplier, which increases the value of your ingredi
 [node name="Score tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1068.0
-offset_top = 275.0
-offset_right = 1068.0
-offset_bottom = 275.0
+offset_left = 1224.0
+offset_top = 230.0
+offset_right = 1224.0
+offset_bottom = 230.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Score tutorial"]
 layout_mode = 0
-offset_left = -80.0
-offset_top = -62.0
-offset_right = 320.0
-offset_bottom = 311.0
-rotation = -3.94908
+offset_left = -168.0
+offset_top = -65.0
+offset_right = 232.0
+offset_bottom = 308.0
+rotation = -4.45391
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
@@ -546,12 +546,39 @@ text = "End your turn to draw a new hand and reset your energy to 3. Turns are a
 [node name="Money" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 294.0
-offset_top = 470.0
-offset_right = 294.0
-offset_bottom = 470.0
+offset_left = 541.0
+offset_top = 306.0
+offset_right = 541.0
+offset_bottom = 306.0
 
 [node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Money"]
+layout_mode = 0
+offset_left = -202.0
+offset_top = -35.0
+offset_right = 198.0
+offset_bottom = 338.0
+rotation = -5.60432
+scale = Vector2(0.282487, 0.282487)
+texture = ExtResource("17_so8o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Money"]
+layout_mode = 0
+offset_left = -166.0
+offset_top = -1.0
+offset_right = 89.0
+offset_bottom = 100.0
+theme = ExtResource("18_y5ido")
+text = "Use your wages to buy upgrades between levels."
+
+[node name="MetaCoins" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 309.0
+offset_top = 487.0
+offset_right = 309.0
+offset_bottom = 487.0
+
+[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/MetaCoins"]
 layout_mode = 0
 offset_left = -13.0
 offset_top = 18.0
@@ -561,14 +588,14 @@ rotation = -3.80257
 scale = Vector2(0.282487, 0.282487)
 texture = ExtResource("17_so8o5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/Money"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3/MetaCoins"]
 layout_mode = 0
-offset_left = -168.0
+offset_left = -167.0
 offset_top = 24.0
-offset_right = 87.0
-offset_bottom = 125.0
+offset_right = 116.0
+offset_bottom = 146.0
 theme = ExtResource("18_y5ido")
-text = "Use your wages to buy upgrades between levels."
+text = "Earn meta coins after each run. These can be spent on permanent upgrades"
 
 [node name="GemsTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
 visible = false
@@ -806,7 +833,6 @@ scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("16_rcb0t")
 
 [node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("deckViewUI") instance=ExtResource("14_31k88")]
-visible = false
 layout_mode = 1
 offset_left = -5.0
 offset_top = -4.0
@@ -814,6 +840,7 @@ offset_right = -5.0
 offset_bottom = -4.0
 scale = Vector2(1.01, 1.01)
 deckViewUI = NodePath("../DeckView")
+cards = []
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
 visible = false
@@ -971,10 +998,11 @@ text = "Continue"
 
 [node name="CheckBox" type="CheckBox" parent="UIOverLays/PlayableCards"]
 layout_mode = 0
-offset_left = 790.0
-offset_top = 573.0
-offset_right = 1009.0
-offset_bottom = 604.0
+offset_left = 768.0
+offset_top = 574.0
+offset_right = 1029.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 30
 text = "Dont show me this again"
 
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]

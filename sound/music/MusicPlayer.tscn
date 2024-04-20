@@ -9,4 +9,4 @@
 stream = ExtResource("1_jgsg6")
 autoplay = true
 script = ExtResource("2_o3n0h")
-minValue = -40.0
+minValue = -50.0

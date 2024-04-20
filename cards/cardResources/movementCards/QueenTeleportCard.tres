@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ckbaxa24q0y0s"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ckbaxa24q0y0s"]
 
+[ext_resource type="Texture2D" uid="uid://bcq17llxnxjfl" path="res://cards/cardResources/cardArt/switchPlus.png" id="1_4oxvx"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/CardEffectQueenTeleport.cs" id="1_6qe8u"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_pll2h"]
 
@@ -12,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -24,6 +26,7 @@ Title = "Queen Teleport"
 Description = "Swap the positions of 2 ingredients along any straight or diagonal axis"
 Cost = 2
 rarity = 0
+Picture = ExtResource("1_4oxvx")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_f7rht")

@@ -79,7 +79,7 @@ public partial class GameManager : GameManagerIF
 		score.setLevel(currentLevel);
 		score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
-		score.setColorUpgrades(global.colorUpgrades.ToList());
+		score.setColorUpgrades(getColorUpgrades().ToList());
 		if (relicTestResources.Count != 0)
 		{
 			foreach (RelicResource relicResource in relicTestResources)
@@ -104,12 +104,22 @@ public partial class GameManager : GameManagerIF
 			FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
 			// its joever
 			resetGlobals();
+			int metaCoins = evaluateMetaCoins();
+			gameOverScreen.setMetaCoins(metaCoins);
+			addMetaCoins(metaCoins);
 			gameOverScreen.Visible = true;
 		}
 		else
 		{
 			nextLevel();
 		}
+	}
+
+	private int evaluateMetaCoins () {
+		if (currentLevel == levels.Count) {
+			return 20;
+		}
+		return currentLevel + Math.Max(0, currentLevel - 5);
 	}
 
 	public void nextLevel()
@@ -121,6 +131,9 @@ public partial class GameManager : GameManagerIF
 			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
 			resetGlobals();
 			gameOverScreen.label.Text = "You win!!!";
+			int metaCoins = evaluateMetaCoins();
+			gameOverScreen.setMetaCoins(metaCoins);
+			addMetaCoins(metaCoins);
 			gameOverScreen.Visible = true;
 			return;
 		}

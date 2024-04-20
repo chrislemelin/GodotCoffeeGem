@@ -13,16 +13,17 @@ public partial class Score : Node2D
 	[Export] RichTextLabel moneyNeededLabel;
 	[Export] RichTextLabel levelLabel;
 	[Export] RichTextLabel coinsLabel;
+	[Export] RichTextLabel metaCoinsLabel;
+
 	[Export] HBoxContainer colorUpgradePreviewBox;
 	[Export] Node2D progressBarLocation;
 	[Export] Mult multUI;
 	[Export] Color turnColor;
 	[Export] Color heartColor;
-
 	[Export] AudioStreamPlayer2D audioStreamPlayer2D;
 	[Export] AudioStream victoryAudio;
 	[Export] AudioStream oofAudio;
-
+	[Export] AudioStream coinAudio;
 	[Export] PackedScene matchScoreTextPackedScene;
 	[Export] private float multIncrement = .25f;
 	[Export] TextureProgressBar progressBar;
@@ -63,7 +64,16 @@ public partial class Score : Node2D
 	public override void _Ready()
 	{
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-		gameManagerIF.coinsChanged += (int coins) => setCoins(coins);
+		gameManagerIF.coinsChanged += (int coins) => {
+			setCoins(coins);
+			audioStreamPlayer2D.Stream = coinAudio;
+			audioStreamPlayer2D.Play();
+		};
+		gameManagerIF.metaCoinsChanged += (int coins) => {
+			setMetaCoins(coins);
+ 			audioStreamPlayer2D.Stream = coinAudio;
+			audioStreamPlayer2D.Play();
+		};
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => newturn();
 		setMult(mult);
@@ -72,6 +82,7 @@ public partial class Score : Node2D
 		setLevel(level);
 		setTurnsRemaining(turnsRemaining);
 		setCoins(coins);
+		setMetaCoins(gameManagerIF.getMetaCoins());
 
 		maxHearts = gameManager.getMaxHealth();
 		initHeartsContainer();
@@ -247,9 +258,15 @@ public partial class Score : Node2D
 	public void setCoins(int newValue)
 	{
 		coins = newValue;
-
 		coinsLabel.Text = newValue.ToString();
 	}
+
+	
+	public void setMetaCoins(int value)
+	{
+		metaCoinsLabel.Text = value.ToString();
+	}
+
 
 	public void setLevel(int newValue)
 	{
@@ -462,7 +479,6 @@ public partial class Score : Node2D
 		{
 			//addMult(.25f);
 			//GetTree().Paused = true;
-
 		}
 	}
 

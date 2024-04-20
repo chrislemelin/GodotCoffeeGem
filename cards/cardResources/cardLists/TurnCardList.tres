@@ -8,4 +8,5 @@
 
 [resource]
 script = ExtResource("6_had48")
+removeDuplicates = false
 allCards = Array[Object]([ExtResource("5_vc17m"), ExtResource("1_6uws0"), ExtResource("1_6uws0"), ExtResource("1_6uws0"), ExtResource("2_j5lf6"), ExtResource("2_j5lf6"), ExtResource("2_j5lf6"), ExtResource("4_13jqp"), ExtResource("4_13jqp"), ExtResource("4_13jqp")])

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://buerc0ue7yljk"]
+
+[ext_resource type="Texture2D" uid="uid://clb24jhbqxgqx" path="res://cards/cardResources/cardArt/PopX.png" id="1_gqql4"]
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopX.cs" id="2_c6063"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_r5svq"]
+
+[sub_resource type="Resource" id="Resource_l5fnd"]
+script = ExtResource("2_c6063")
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+retain = false
+effectGemType = 0
+
+[resource]
+script = ExtResource("3_r5svq")
+Title = "Pop X"
+Description = "Destroy ingredients in an X shape. If this destroys 3 or more of the same type count it as a match"
+Cost = 1
+rarity = 0
+Picture = ExtResource("1_gqql4")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_l5fnd")

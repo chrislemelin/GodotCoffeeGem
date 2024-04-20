@@ -24,7 +24,7 @@ public partial class NewCardSelection : Control
 
 	public override void _Ready()
 	{
-		renderCards();
+		// renderCards();
 		renderCoins();
 		skipButton.Pressed += () => advance();
 		viewDeckButton.Pressed += () => deckViewUI.setUp(FindObjectHelper.getGameManager(this).getDeckList());

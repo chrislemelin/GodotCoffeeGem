@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dc4pd2ttyf34l"]
 
-[ext_resource type="Texture2D" uid="uid://xqk1jrhdags6" path="res://cards/cardResources/cardArt/milk.png" id="1_f6b8r"]
+[ext_resource type="Texture2D" uid="uid://hxeglfefjn86" path="res://cards/cardResources/cardArt/MilkX.png" id="1_iw0jn"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/X/CardEffectColorChangeX.cs" id="2_1kkx0"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_j0kmt"]
 
@@ -13,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -25,7 +26,7 @@ Title = "Milk Shot X"
 Description = "Change selected ingredient and diagonal ingredients to milk"
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_f6b8r")
+Picture = ExtResource("1_iw0jn")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_asf6r")

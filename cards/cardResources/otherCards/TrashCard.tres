@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bo4jhb130ba2i"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bo4jhb130ba2i"]
 
+[ext_resource type="Texture2D" uid="uid://cm7njlsn6r8x1" path="res://cards/cardResources/cardArt/trash.png" id="1_yglh3"]
 [ext_resource type="Script" path="res://cards/cardResources/otherCards/CardEffectBlank.cs" id="2_d36se"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_05aq0"]
 
@@ -12,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -24,6 +26,7 @@ Title = "Trash"
 Description = "Does nothing, just a waste of space"
 Cost = 0
 rarity = 0
+Picture = ExtResource("1_yglh3")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_w0i3j")

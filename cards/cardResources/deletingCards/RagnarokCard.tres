@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://c7fw01b7y86oy"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c7fw01b7y86oy"]
 
+[ext_resource type="Texture2D" uid="uid://cfetltbahdrn7" path="res://cards/cardResources/cardArt/PopGrid.png" id="1_8b7b4"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectRagnarok.cs" id="1_pmhrm"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_0wj0x"]
 
@@ -12,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -24,6 +26,7 @@ Title = "Ragnarok"
 Description = "Destroy every ingredient, gain a little bit of points for each burnt (black) ingredient destroyed."
 Cost = 2
 rarity = 1
+Picture = ExtResource("1_8b7b4")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_0mlvv")

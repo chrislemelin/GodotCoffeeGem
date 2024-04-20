@@ -7,6 +7,8 @@ public partial class GameManagerIF : Node2D
 {
 
 	protected Global global;
+	protected MetaGlobal metaGlobal;
+
 	[Export] public CardList cardPool;
 	[Export] public RelicList relicList;
 	[Export] public CardList defaultCardList;
@@ -14,6 +16,9 @@ public partial class GameManagerIF : Node2D
 
 	[Signal]
 	public delegate void healthChangedEventHandler(int newHealth);
+
+	[Signal]
+	public delegate void metaCoinsChangedEventHandler(int newCoins);
 
 	[Signal]
 	public delegate void coinsChangedEventHandler(int newCoins);
@@ -45,7 +50,7 @@ public partial class GameManagerIF : Node2D
 	public override void _Ready()
 	{
 		loadGlobalAndSetDeckToDefault();
-		loadUserId();
+		//loadUserId();
 		setUpMusicPlayer();
 	}
 
@@ -67,6 +72,7 @@ public partial class GameManagerIF : Node2D
 	public void setMusicVolume(float value)
 	{
 		getGlobal().musicVolume = value;
+		getGlobal().save();
 	}
 
 	public float getMusicVolume()
@@ -77,6 +83,7 @@ public partial class GameManagerIF : Node2D
 	public void setSFXVolume(float value)
 	{
 		getGlobal().sfXvolume = value;
+		getGlobal().save();
 	}
 
 	public float getSFXVolume()
@@ -84,44 +91,52 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().sfXvolume;
 	}
 
-	private void loadUserId()
-	{
-		if (getGlobal().userId == -1)
-		{
-			if (!FileAccess.FileExists("user://userId.save"))
-			{
-				int newUserId = GD.RandRange(1, Int32.MaxValue);
-				getGlobal().userId = newUserId;
-				using var userIdSave = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Write);
-				Godot.Collections.Dictionary<String, String> userIdDict = new Godot.Collections.Dictionary<String, String>();
-				userIdDict.Add("userId", newUserId + "");
-				var jsonString = Json.Stringify(userIdDict);
-				// Store the save dictionary as a new line in the save file.
-				userIdSave.StoreLine(jsonString);
-			}
-			else
-			{
-				using var saveGame = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Read);
-				var jsonString = saveGame.GetLine();
-				// Creates the helper class to interact with JSON
-				var json = new Json();
-				var parseResult = json.Parse(jsonString);
-				if (parseResult != Error.Ok)
-				{
-					GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
-					return;
-				}
-				Godot.Collections.Dictionary<String, String> nodeData = new Godot.Collections.Dictionary<String, String>((Godot.Collections.Dictionary)json.Data);
-				getGlobal().userId = Int32.Parse(nodeData["userId"]);
-			}
-		}
-	}
+	// private void loadUserId()
+	// {
+	// 	if (getGlobal().userId == -1)
+	// 	{
+	// 		if (!FileAccess.FileExists("user://userId.save"))
+	// 		{
+	// 			int newUserId = GD.RandRange(1, Int32.MaxValue);
+	// 			getGlobal().userId = newUserId;
+	// 			using var userIdSave = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Write);
+	// 			Godot.Collections.Dictionary<String, String> userIdDict = new Godot.Collections.Dictionary<String, String>();
+	// 			userIdDict.Add("userId", newUserId + "");
+	// 			var jsonString = Json.Stringify(userIdDict);
+	// 			// Store the save dictionary as a new line in the save file.
+	// 			userIdSave.StoreLine(jsonString);
+	// 		}
+	// 		else
+	// 		{
+	// 			using var saveGame = FileAccess.Open("user://userId.save", FileAccess.ModeFlags.Read);
+	// 			var jsonString = saveGame.GetLine();
+	// 			// Creates the helper class to interact with JSON
+	// 			var json = new Json();
+	// 			var parseResult = json.Parse(jsonString);
+	// 			if (parseResult != Error.Ok)
+	// 			{
+	// 				GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
+	// 				return;
+	// 			}
+	// 			Godot.Collections.Dictionary<String, String> nodeData = new Godot.Collections.Dictionary<String, String>((Godot.Collections.Dictionary)json.Data);
+	// 			getGlobal().userId = Int32.Parse(nodeData["userId"]);
+	// 		}
+	// 	}
+	// }
 
 	private void loadGLobal()
 	{
 		if (global == null)
 		{
 			global = GetNode<Global>(Global.LOAD_STRING);
+		}
+	}
+
+	private void loadMetaGLobal()
+	{
+		if (metaGlobal == null)
+		{
+			metaGlobal = GetNode<MetaGlobal>(MetaGlobal.LOAD_STRING);
 		}
 	}
 
@@ -147,22 +162,7 @@ public partial class GameManagerIF : Node2D
 
 	public void resetGlobals()
 	{
-		Global global = getGlobal();
-		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards()).Duplicate();
-		global.deckCardList.setCards(cardList);
-		global.relics = new List<RelicResource>();
-		global.timeStartedRun = 0;
-		global.zenMode = false;
-		global.currentLevel = 1;
-		global.currentHealth = 2;
-		global.maxHealth = 2;
-		global.shownBossTutorial = false;
-		global.currentCoins = 0;
-		global.allCoinsGained = 0;
-		global.deckSelection = null;
-		global.numberOfCardsToChoose = 3;
-		global.gridSize = new Vector2(6, 5);
-
+		getGlobal().reset();
 	}
 
 	public void setCardList(List<CardResource> cardResources)
@@ -312,9 +312,73 @@ public partial class GameManagerIF : Node2D
 		getGlobal().colorUpgrades.Add(colorUpgrade);
 	}
 
+	public Godot.Collections.Array<ColorUpgrade> getColorUpgrades() {
+		Godot.Collections.Array<ColorUpgrade> upgrades = getGlobal().colorUpgrades.Duplicate();
+		upgrades.AddRange(getMetaGlobal().getColorUpgrades());
+		return upgrades;
+	}
+
+	public void upgradeColorMeta(GemType gemType) {
+		getMetaGlobal().upgradeGemType(gemType);
+	}
+	public int getColorUpgradeMeta(GemType gemType) {
+		return getMetaGlobal().getGemUpgrade(gemType);
+	}
+
+	public int getColorUpgradeMetaMax() {
+		return getMetaGlobal().gemUpgradeMax;
+	}
+
+	public int getCoinDropRate() {
+		return getMetaGlobal().coinDropRate;
+	}
+
+	public int getCoinDropRateMax() {
+		return getMetaGlobal().coinDropRateMax;
+	}
+
+	public void addCoinDropRate(int value) {
+		getMetaGlobal().addCoinDropRate(value);
+	}
+
+	public int getMetaCoinDropRate() {
+		return getMetaGlobal().metaCoinDropRate;
+	}
+
+	public int getMetaCoinDropRateMax() {
+		return getMetaGlobal().metaCoinDropRateMax;
+	}
+
+	public void addMetaCoinDropRate(int value) {
+		getMetaGlobal().addMetaCoinDropRate(value);
+	}
+
+
+	public void resetMetaProgression() {
+		getMetaGlobal().reset();
+	}
+
+	public void addMetaCoins(int value) {
+		getGlobal().currentMetaCoins += value;
+		getGlobal().save();
+		EmitSignal(SignalName.metaCoinsChanged, getGlobal().currentMetaCoins);
+	}
+
+	public int getMetaCoins() {
+		return getGlobal().currentMetaCoins;
+	}
+
+
+
 	protected Global getGlobal()
 	{
 		loadGLobal();
 		return global;
+	}
+
+	protected MetaGlobal getMetaGlobal()
+	{
+		loadMetaGLobal();
+		return metaGlobal;
 	}
 }

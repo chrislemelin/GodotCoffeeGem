@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dyhj7peoy2amj"]
 
-[ext_resource type="Texture2D" uid="uid://2k3qe88tbrv1" path="res://cards/cardResources/cardArt/vanilla.png" id="1_axito"]
+[ext_resource type="Texture2D" uid="uid://d38umqikch4qq" path="res://cards/cardResources/cardArt/vanillaX.png" id="1_10gdu"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/X/CardEffectColorChangeX.cs" id="2_wh5ma"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_oyjpk"]
 
@@ -13,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -25,7 +26,7 @@ Title = "Vanilla Shot X"
 Description = "Change selected ingredient and diagonal ingredients to vanilla"
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_axito")
+Picture = ExtResource("1_10gdu")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_asf6r")

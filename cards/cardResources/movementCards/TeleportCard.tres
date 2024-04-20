@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://cmaeddlco4ix0"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cmaeddlco4ix0"]
 
+[ext_resource type="Texture2D" uid="uid://2duvweucyck6" path="res://cards/cardResources/cardArt/switch.png" id="1_72u2q"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/CardEffectTeleport.cs" id="1_nhdjh"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_q6px8"]
 
@@ -12,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -24,6 +26,7 @@ Title = "Teleport"
 Description = "Swap the positions of 2 ingredients in the same row or coulmn"
 Cost = 1
 rarity = 1
+Picture = ExtResource("1_72u2q")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_lmv24")

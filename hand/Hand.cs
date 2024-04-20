@@ -261,11 +261,11 @@ public partial class Hand : Node
 		if (!card.getCardResource().cardEffect.retain || playingCard) {
 			cards.Remove(card);
 			card.delete();
+			if (!card.getCardResource().cardEffect.consume) {
+				discard.addCard(card.getCardResource());
+			}
+			repositionCards();
 		}
-		if (!card.getCardResource().cardEffect.consume) {
-			discard.addCard(card.getCardResource());
-		}
-		repositionCards();
 	}
 
 	public void discardHand()

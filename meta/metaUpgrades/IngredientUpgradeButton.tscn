@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://tflijotfj2df"]
+
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_u1mnb"]
+[ext_resource type="Script" path="res://meta/metaUpgrades/IngredientUpgradeButton.cs" id="1_xqp56"]
+[ext_resource type="Texture2D" uid="uid://dviq5ad1ymrgv" path="res://placeholders/ingredients/bean-pixel-100px.png" id="2_anven"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="3_grqvk"]
+
+[node name="CoffeeUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+custom_minimum_size = Vector2(280, 110)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+theme = ExtResource("1_u1mnb")
+script = ExtResource("1_xqp56")
+button = NodePath("CoffeeUpgradeButton")
+upgradeLevel = NodePath("UpgradeLabel")
+costLabel = NodePath("CostLabel")
+
+[node name="CoffeeUpgradeButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 278.0
+offset_bottom = 110.0
+tooltip_text = "Increase points given when matching a certain ingredient"
+text = " Upgrade"
+icon = ExtResource("2_anven")
+
+[node name="UpgradeLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = -42.0
+offset_right = 116.0
+offset_bottom = -2.0
+text = "0/5"
+
+[node name="CostLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = -40.0
+offset_right = 265.0
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = -43.0
+offset_right = 203.0
+offset_bottom = -3.0
+texture = ExtResource("3_grqvk")
+expand_mode = 1
+stretch_mode = 4

@@ -736,7 +736,23 @@ public partial class MatchBoard : Node
 		{
 			//gem.setAddonType(GemAddonType.Lock);
 		}
+		addRandomAddon(gem);
 		return gem;
+	}
+
+	private void addRandomAddon(Gem gem) {
+		int randomPercentage = GD.RandRange(0, 99);
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		if (randomPercentage <= gameManagerIF.getCoinDropRate()) {
+			gem.setAddonType(GemAddonType.Money);
+			return;
+		}
+
+		randomPercentage = GD.RandRange(0, 99);
+		if (randomPercentage <= gameManagerIF.getMetaCoinDropRate()) {
+			gem.setAddonType(GemAddonType.MetaCoin);
+			return;
+		}
 	}
 
 	public List<Tile> getRandomTilesWithCondition(int count, Func<Tile, bool> condition)
@@ -819,7 +835,7 @@ public partial class MatchBoard : Node
 		HashSet<Vector2> tilesMatched = matches.SelectMany(matchList => matchList.Select(match => match.getTilePosition()).ToHashSet()).ToHashSet();
 		HashSet<Vector2> tilesNeedToDelete = positions.ToHashSet();
 		tilesNeedToDelete.ExceptWith(tilesMatched);
-		deleteGemAtPositions(tilesNeedToDelete);
+		deleteGemAtPositions(tilesNeedToDelete, matches.Count > 0);
 	}
 
 	public HashSet<HashSet<Tile>> getMatchesInPositions(IEnumerable<Vector2> positions)
@@ -985,6 +1001,10 @@ public partial class MatchBoard : Node
 			sendGemToTile(gem2.GetValue(), tile1, tile2, teleport);
 		}
 		thingsAreMoving = true;
+	}
+
+	public List<Match> getMatchesThisTurn(GemType gemType) {
+		return matchesThisTurn.Where(match => match.GetGemType() == gemType).ToList();
 	}
 
 	public static explicit operator MatchBoard(Godot.Collections.Array<Node> v)

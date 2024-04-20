@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c6bt7pp3ju4aw"]
+
+[ext_resource type="Texture2D" uid="uid://bw1wv3475sgdv" path="res://cards/cardResources/cardArt/Card_draw.png" id="1_la2n2"]
+[ext_resource type="Script" path="res://cards/cardResources/handCards/DiscardDrawCardEffect.cs" id="2_q2tg4"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_e3ayx"]
+
+[sub_resource type="Resource" id="Resource_j5w02"]
+script = ExtResource("2_q2tg4")
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+retain = false
+effectGemType = 0
+
+[resource]
+script = ExtResource("3_e3ayx")
+Title = "Hand Refresh"
+Description = "Discard your hand, then draw a card for each card discarded"
+Cost = 1
+rarity = 0
+Picture = ExtResource("1_la2n2")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_j5w02")

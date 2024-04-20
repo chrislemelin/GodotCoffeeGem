@@ -56,21 +56,35 @@ public partial class Map : Node
 	}
 
 	private List<List<MapEventType>> generateRandomMap() {
-		bool usedHealSpot = false;
+		bool usedMechanicSpot = false;
+		bool usedRelicSpot = false;
+
 		List<List<MapEventType>> map = new List<List<MapEventType>>();
 		for(int pathCount = 0; pathCount < 2; pathCount++) {
 			List<MapEventType> path = new List<MapEventType>();
 			for(int pathLength = 0; pathLength < 2; pathLength++) 
 			{
 				MapEventType mapEventType = MapEventTypeHelper.getRandom();
-				if (mapEventType == MapEventType.Heal) 
+				if (mapEventType == MapEventType.Mechanic) 
 				{
-					if (!usedHealSpot) 
+					if (!usedMechanicSpot) 
 					{
-						usedHealSpot = true;
+						usedMechanicSpot = true;
 					} else 
 					{
-						while(mapEventType == MapEventType.Heal) {
+						while(mapEventType == MapEventType.Mechanic) {
+							mapEventType = MapEventTypeHelper.getRandom();
+						}
+					}
+				}
+				if (mapEventType == MapEventType.RelicShop) 
+				{
+					if (!usedRelicSpot) 
+					{
+						usedRelicSpot = true;
+					} else 
+					{
+						while(mapEventType == MapEventType.RelicShop) {
 							mapEventType = MapEventTypeHelper.getRandom();
 						}
 					}

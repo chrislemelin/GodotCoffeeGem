@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://mplh7y2efw3m"]
+[gd_scene load_steps=6 format=3 uid="uid://mplh7y2efw3m"]
 
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="3_1mwae"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_32t71"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_cepm3"]
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_ijhti"]
 
-[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label")]
+[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_dub5d")
-restartButton = NodePath("VBoxContainer/Button")
+restartButton = NodePath("Button")
 label = NodePath("VBoxContainer/RichTextLabel")
+metaCoinLabel = NodePath("VBoxContainer/MetaCoinDisplay/RichTextLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
@@ -52,8 +54,33 @@ bbcode_enabled = true
 text = "[center]GAME OVER[/center]"
 fit_content = true
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="MetaCoinDisplay" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MetaCoinDisplay"]
+layout_mode = 0
+offset_left = 533.0
+offset_right = 702.0
+offset_bottom = 47.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Gained 10"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MetaCoinDisplay"]
+layout_mode = 0
+offset_left = 713.0
+offset_top = -7.0
+offset_right = 767.0
+offset_bottom = 47.0
+texture = ExtResource("4_ijhti")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 769.0
+offset_top = 511.0
+offset_right = 1199.0
+offset_bottom = 563.0
 theme = ExtResource("4_cepm3")
 theme_override_font_sizes/font_size = 50
 text = "Restart"

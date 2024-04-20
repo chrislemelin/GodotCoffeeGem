@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class MapLocation : Control
@@ -71,30 +72,50 @@ public partial class MapLocation : Control
 		else if (type == MapEventType.Heal) {
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 			mapEventResolveUI.setUp("Get your head fixed", "You stop by a free clinic on your way home, you have been feeling sick but cant afford to take off work."+ 
-			"You wait about 3 hours before the doctor sees you for about 5 minutes. She writes you a prescription and send you off. Heal 1 heart!");
+			"You wait about 3 hours before the doctor sees you for about 5 minutes. She writes you a prescription and sends you on your way. Heal 1 heart!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
 				gameManagerIF.setHealth(gameManagerIF.getHealth() +1)
 			);
-
-	
 		}
 		else if (type == MapEventType.Mechanic) {
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-			bool currentBoardGooed =gameManagerIF.getGooRightRow();
-			if (currentBoardGooed) {
-				mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he removes the starting Goo from the machine");
-				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
-					gameManagerIF.setGooRightRow(false)
-				);
+			if (gameManagerIF.getCoins() >= 40) {
+				bool currentBoardGooed = gameManagerIF.getGooRightRow();
+				gameManagerIF.addCoins(-40);
+				if (currentBoardGooed) {
+					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he removes the starting Goo from the machine");
+					mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> 
+						gameManagerIF.setGooRightRow(false)
+					);
+				} else {
+					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he adds an additional row to the machine, "+ 
+						"but that row will start with Goo");
+					mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> {
+						gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1,0));
+						gameManagerIF.setGooRightRow(true);
+					});
+				}
 			} else {
-				mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he adds an additional row to the machine, "+ 
-					"but that row will start with Goo");
-				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> {
-					gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1,0));
-					gameManagerIF.setGooRightRow(true);
-				});
+					mapEventResolveUI.setUp("You Broke", "You are too broke to visit the mechanic. RIP BROKIE");
 			}
-	
+		}
+		else if (type == MapEventType.RelicShop) {
+			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+			if (gameManagerIF.getCoins() >= 20) {
+				gameManagerIF.addCoins(-20);
+				mapEventResolveUI.setUp("Relic shop", "You stumble into a the relic shop, they have items that should help your run");
+				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(()=> {
+					List<RelicResource> relicResources = gameManagerIF.getRelicPool();
+					RandomHelper.Shuffle(relicResources);
+					List<RelicResource> relicsInSelection = relicResources.GetRange(0, Math.Min(3, relicResources.Count));
+					RelicSelection relicSelection = FindObjectHelper.getRelicSelection(this);
+					relicSelection.setRelics(relicsInSelection);
+				});
+			
+
+			} else {
+					mapEventResolveUI.setUp("You Broke", "You are too broke to visit the relic shop. RIP BROKIE");
+			}
 		}
 		else if (type == MapEventType.Home) {
 			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street right before you are about to head home. " +

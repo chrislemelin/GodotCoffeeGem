@@ -99,7 +99,7 @@ public partial class CardInfoLoader : Control
 		}
 		if (cardResource.cardEffect.retain)
 		{
-			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
+			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of the turn";
 		}
 	}
 

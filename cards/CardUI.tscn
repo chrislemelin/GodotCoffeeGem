@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxshhmv8s75ky"]
+[gd_scene load_steps=13 format=3 uid="uid://bxshhmv8s75ky"]
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_tb7xr"]
 [ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="2_663k4"]
@@ -9,6 +9,9 @@
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="6_yrfys"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_8y700"]
 [ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="9_g6p6g"]
+
+[sub_resource type="Theme" id="Theme_kwco5"]
+TooltipLabel/font_sizes/font_size = 32
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
 shader = ExtResource("2_663k4")
@@ -39,6 +42,7 @@ offset_left = -220.0
 offset_top = -313.333
 offset_right = -220.0
 offset_bottom = -313.333
+theme = SubResource("Theme_kwco5")
 
 [node name="Background" type="TextureRect" parent="UI" node_paths=PackedStringArray("makeBigger")]
 modulate = Color(0.239216, 0, 0.00392157, 1)

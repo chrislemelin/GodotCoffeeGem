@@ -13,6 +13,8 @@ public partial class CardEffectIF : Resource
 	[Export] public int CardGems { get; private set; } = 0;
 	[Export] public int CoinGems { get; private set; } = 0;
 	[Export] public int DrawCards { get; private set; } = 0;
+	[Export] private SelectionType selectionType;
+
 	[Export] private int CardsToDiscard = 0;
 	[Export] public bool canTargetBlackGems = true;
 	[Export] public bool consume = false;
@@ -125,7 +127,7 @@ public partial class CardEffectIF : Resource
 
 	public virtual SelectionType getSelectionType()
 	{
-		return SelectionType.None;
+		return selectionType;
 	}
 
 	public float getRange()

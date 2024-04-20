@@ -43,18 +43,19 @@ area2D = NodePath("../Control")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = -143.0
-offset_top = -107.0
-offset_right = 166.0
-offset_bottom = -15.0
+offset_left = -110.0
+offset_top = -73.0
+offset_right = 105.0
+offset_bottom = 13.0
 rotation = 0.792916
 mouse_filter = 2
 theme = SubResource("Theme_h60qy")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 46
 bbcode_enabled = true
-text = "[center]Gain Card"
+text = "[center]Mechanic
+(40 Coins)"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0

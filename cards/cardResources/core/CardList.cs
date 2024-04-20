@@ -7,6 +7,7 @@ using System.Linq;
 public partial class CardList : Resource
 {
 
+	[Export] bool removeDuplicates = false;
 	[Export] private Godot.Collections.Array<CardResource> allCards;
 
 
@@ -19,7 +20,15 @@ public partial class CardList : Resource
 	}
 
 	public List<CardResource> getCards() {
-		return allCards.ToList().Where(card => card != null).ToList();
+		List<CardResource> returnCards = allCards.ToList().Where(card => card != null).ToList();
+		if (removeDuplicates) {
+			List<CardResource> returnCardsNoDups = returnCards.GroupBy(x => x.Title).Select(y => y.First()).ToList();
+			if (!returnCardsNoDups.Equals(returnCards)){
+				GD.Print(returnCards.Except(returnCardsNoDups).ToList());
+			}
+			returnCards = returnCardsNoDups;
+		}
+		return returnCards;
 	}
 
 	public Godot.Collections.Array<CardResource> getRealList() {

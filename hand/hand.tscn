@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=12 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="2_3nowl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://hand/HandLine.cs" id="4_lebxv"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="5_lbql7"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="9_nslao"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="10_o673s"]
 
 [sub_resource type="Gradient" id="Gradient_s4lcq"]
 offsets = PackedFloat32Array(0, 0.98503)
@@ -72,7 +73,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Confirm "
 
+[node name="Panel" type="Panel" parent="."]
+offset_left = -450.0
+offset_top = -130.0
+offset_right = 452.0
+offset_bottom = 116.0
+theme = ExtResource("10_o673s")
+
 [node name="Node2D" type="Sprite2D" parent="."]
+visible = false
 texture_repeat = 2
 position = Vector2(1.11731, -6.70384)
 scale = Vector2(3, 1.20864)

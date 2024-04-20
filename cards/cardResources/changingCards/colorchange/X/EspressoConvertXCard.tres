@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d2yu5srn147u4"]
 
-[ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_lhf2y"]
+[ext_resource type="Texture2D" uid="uid://bwxfefhw1bw33" path="res://cards/cardResources/cardArt/CoffeeX.png" id="1_w2ehf"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/X/CardEffectColorChangeX.cs" id="2_ntjoo"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_fywxn"]
 
@@ -13,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -25,7 +26,7 @@ Title = "Coffee Shot X"
 Description = "Change selected ingredient and diagonal ingredients to coffee"
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_lhf2y")
+Picture = ExtResource("1_w2ehf")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_asf6r")

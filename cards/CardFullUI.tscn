@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=31 format=3 uid="uid://dicb3wwg7ecmd"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_16axm"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="1_qnag5"]
+[ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="3_34kys"]
 [ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="4_1yqfg"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="5_qjawy"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_4xx5d"]
@@ -262,6 +263,7 @@ pivot_offset = Vector2(250, 400)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
+theme = ExtResource("3_34kys")
 script = ExtResource("1_qnag5")
 titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Description2/RichTextLabel")
@@ -378,15 +380,15 @@ texture = ExtResource("8_coj1d")
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
 use_parent_material = true
 layout_mode = 0
-offset_left = -24.0
-offset_top = 21.0
-offset_right = 367.0
-offset_bottom = 63.0
+offset_left = -23.6
+offset_top = 20.0
+offset_right = 367.4
+offset_bottom = 74.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center]CARD TITLE[/center]"
+text = "[center]test tiple[/center]"
 scroll_active = false
 
 [node name="EnergyCost" type="Control" parent="Center"]

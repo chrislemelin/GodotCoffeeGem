@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://xba81q45hybp"]
 
-[ext_resource type="Texture2D" uid="uid://bluufnw16b2pi" path="res://cards/cardResources/cardArt/popRow.png" id="1_xmfl4"]
+[ext_resource type="Texture2D" uid="uid://cfetltbahdrn7" path="res://cards/cardResources/cardArt/PopGrid.png" id="1_3j4pf"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopGrid.cs" id="2_4jw5d"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_rg42k"]
 
@@ -13,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -25,7 +26,7 @@ Title = "Pop Grid"
 Description = "Destroy selected ingredient and all adjacent ingredients. If this destroys 3 or more of the same type count it as a match"
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_xmfl4")
+Picture = ExtResource("1_3j4pf")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_73qtu")

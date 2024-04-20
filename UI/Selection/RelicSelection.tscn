@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://UI/Selection/RelicSelection.cs" id="1_wta24"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_gpnmu"]
 
-[node name="RelicSelection" type="Control" node_paths=PackedStringArray("relicHolder", "skipButton")]
+[node name="RelicSelection" type="Control" node_paths=PackedStringArray("relicHolder", "skipButton") groups=["RelicSelection"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_wta24")
@@ -25,16 +25,16 @@ offset_top = 248.0
 offset_right = 1163.0
 offset_bottom = 305.0
 theme = ExtResource("1_kmfb8")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]Choose a relic"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 653.0
+offset_left = 572.0
 offset_top = 314.0
-offset_right = 1163.0
-offset_bottom = 370.0
+offset_right = 1372.0
+offset_bottom = 410.0
 theme = ExtResource("1_kmfb8")
 bbcode_enabled = true
 text = "[center]relics give you passive affects that will enhance your run. Hover over each relic to see what it does."
@@ -65,9 +65,9 @@ layout_mode = 2
 
 [node name="SkipSelection" type="Button" parent="."]
 layout_mode = 0
-offset_left = 834.0
+offset_left = 816.0
 offset_top = 749.0
-offset_right = 1034.0
+offset_right = 1056.0
 offset_bottom = 798.0
 theme = ExtResource("1_kmfb8")
 text = "Skip Selection"

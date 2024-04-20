@@ -69,6 +69,8 @@ public partial class FormSubmitter : HttpRequest
 			data = appendData(data, "entry.1410312729", gameManager.getCoins().ToString());
 			data = appendData(data, "entry.1443935098", gameManager.getAllCoinsGained().ToString());
 
+			data = appendData(data, "entry.537817310", gameManager.getGridSize().ToString());
+
 			DeckSelectionResource deckSelection = gameManager.getDeckSelection();
 			if (deckSelection != null)
 			{
@@ -120,6 +122,7 @@ public partial class FormSubmitter : HttpRequest
 	entry.1410312729: coins
 	entry.1814658543: run duration
 	entry.687983885: version
+	entry.537817310: board size
 	*/
 
 }

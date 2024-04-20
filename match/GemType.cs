@@ -15,6 +15,16 @@ public enum GemType
 }
 static class GemTypeHelper
 {
+
+	public static bool hasEnumValue(string value) {
+		return Enum.IsDefined(typeof(GemType), value);
+	}
+
+	public static GemType fromString(string value)
+	{
+		return (GemType) Enum.Parse(typeof(GemType), value, true);
+	}
+
 	static Random random = new Random();
 	public static Color GetColor(this GemType gemType)
 	{
@@ -52,6 +62,23 @@ static class GemTypeHelper
 				return (Texture2D)GD.Load("res://placeholders/ingredients/milk-pixel-300px.png");
 			case GemType.Black:
 				return (Texture2D)GD.Load("res://placeholders/ingredients/burnt-pixel-300px.png");
+			default:
+				return null;
+		}
+	}
+	public static Texture2D getSmallTexture2D(this GemType gemType) {
+		switch (gemType)
+		{
+			case GemType.Coffee:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/bean-pixel-100px.png");
+			case GemType.Sugar:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/sugar-pixel-100px.png");
+			case GemType.Leaf:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/leaf-pixel-100px.png");
+			case GemType.Vanilla:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/vanilla-pixel-100px.png");
+			case GemType.Milk:
+				return (Texture2D)GD.Load("res://placeholders/ingredients/milk-pixel-100px.png");
 			default:
 				return null;
 		}

@@ -11,6 +11,8 @@ expireAfterNextCardPlayed = false
 rangeModification = 0.0
 costModification = 0
 valueModification = 1
+manaGemsModification = 0
+cardGemsModification = 0
 
 [sub_resource type="Resource" id="Resource_vyyx8"]
 resource_local_to_scene = true
@@ -18,8 +20,15 @@ script = ExtResource("2_k4tn2")
 Range = 0.0
 Value = 0
 BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+consume = false
+retain = false
 effectGemType = 0
 cardPassiveToApplyToHand = SubResource("Resource_qv0ad")
 
@@ -30,4 +39,6 @@ Title = "Reduce Cost"
 Description = "Increase the effect of each card in hand by 1 for the turn (Doesnt work)"
 Cost = 2
 rarity = 0
+coinCost = 0
+playable = false
 cardEffect = SubResource("Resource_vyyx8")

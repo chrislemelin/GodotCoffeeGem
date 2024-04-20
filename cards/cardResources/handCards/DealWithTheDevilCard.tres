@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bs6s20l3sbdia"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bs6s20l3sbdia"]
 
+[ext_resource type="Texture2D" uid="uid://b1hjkrttk6eds" path="res://cards/cardResources/cardArt/turnOrbDelete.png" id="1_2ly8k"]
 [ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectDealWithDevil.cs" id="1_ro7xl"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ts768"]
 
@@ -12,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -24,6 +26,7 @@ Title = "Power Nap"
 Description = "Lose a turn (this can kill you) and then gain 3 cards and 2 mana"
 Cost = 0
 rarity = 1
+Picture = ExtResource("1_2ly8k")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_fm1w4")

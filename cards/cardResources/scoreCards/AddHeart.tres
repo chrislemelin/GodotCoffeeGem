@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://wmstccurf1xr"]
+
+[ext_resource type="Texture2D" uid="uid://dfp1fpahwaslh" path="res://cards/cardResources/cardArt/heart.png" id="1_88206"]
+[ext_resource type="Script" path="res://cards/cardResources/scoreCards/CardEffectAddHeart.cs" id="1_uq515"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_qyj6d"]
+
+[sub_resource type="Resource" id="Resource_niiun"]
+script = ExtResource("1_uq515")
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+consume = false
+retain = false
+effectGemType = 0
+
+[resource]
+script = ExtResource("3_qyj6d")
+Title = "Gain Heart"
+Description = "Gain a heart and draw a card"
+Cost = 2
+rarity = 1
+Picture = ExtResource("1_88206")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_niiun")

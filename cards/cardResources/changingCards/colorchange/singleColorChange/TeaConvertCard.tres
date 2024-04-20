@@ -13,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -22,7 +23,7 @@ effectGemType = 3
 [resource]
 script = ExtResource("2_1klox")
 Title = "Tea blend"
-Description = "Change $value ingredient to tea"
+Description = "Change selected ingredient to tea"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_eog86")

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://k2c5nvdb82wy"]
 
-[ext_resource type="Texture2D" uid="uid://3ifn8i2rt7bp" path="res://cards/cardResources/cardArt/leaf.png" id="1_38o3h"]
+[ext_resource type="Texture2D" uid="uid://diyl1x5d6wtiv" path="res://cards/cardResources/cardArt/leafX.png" id="1_wx45s"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/X/CardEffectColorChangeX.cs" id="2_n48h6"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_cjqa4"]
 
@@ -13,6 +13,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -25,7 +26,7 @@ Title = "Tea Shot X"
 Description = "Change selected ingredient and diagonal ingredients to tea"
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_38o3h")
+Picture = ExtResource("1_wx45s")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_asf6r")

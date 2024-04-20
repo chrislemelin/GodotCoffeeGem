@@ -10,7 +10,8 @@ public enum GemAddonType
 	Mult,
 	Hidden,
 	Lock,
-	Money
+	Money,
+	MetaCoin
 }
 
 static class GemAddonTypeHelper

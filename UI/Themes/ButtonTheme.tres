@@ -67,4 +67,5 @@ Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
 Panel/styles/panel = ExtResource("1_ahnws")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
 RichTextLabel/font_sizes/normal_font_size = 46
+TooltipLabel/font_sizes/font_size = 32
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_osqdc")
