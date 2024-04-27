@@ -21,7 +21,7 @@
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="17_iagpe"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="20_1df3m"]
 
-[node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "metaCoinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
+[node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")
 scoreLabel = NodePath("VBoxContainer/Level Progress")
 multLabel = NodePath("VBoxContainer/MultLabelText")
@@ -29,14 +29,12 @@ turnsRemainingLabel = NodePath("VBoxContainer/Turns Remaining")
 moneyNeededLabel = NodePath("VBoxContainer/Level Progress")
 levelLabel = NodePath("VBoxContainer/Level Label")
 coinsLabel = NodePath("VBoxContainer/CoinsContainer/RichTextLabel")
-metaCoinsLabel = NodePath("VBoxContainer/CoinsContainer2/RichTextLabel")
 colorUpgradePreviewBox = NodePath("VBoxContainer/MarginContainer/UpgradeContainer")
 turnColor = Color(0, 1, 0.0509804, 1)
 heartColor = Color(1, 0, 1, 1)
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 victoryAudio = ExtResource("2_noj62")
 oofAudio = ExtResource("3_77qsr")
-coinAudio = ExtResource("6_ax4rp")
 matchScoreTextPackedScene = ExtResource("4_q1bh3")
 progressBar = NodePath("VBoxContainer/ScoreProgressBar")
 turnsContainer = NodePath("VBoxContainer/TurnsContainer/TurnsContainer")

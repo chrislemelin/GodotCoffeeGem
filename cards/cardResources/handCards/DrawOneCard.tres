@@ -13,7 +13,6 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 1
-selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false

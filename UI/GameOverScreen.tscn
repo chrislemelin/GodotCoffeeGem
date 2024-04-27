@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_ijhti"]
 
-[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel")]
+[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,6 @@ mouse_filter = 1
 script = ExtResource("4_dub5d")
 restartButton = NodePath("Button")
 label = NodePath("VBoxContainer/RichTextLabel")
-metaCoinLabel = NodePath("VBoxContainer/MetaCoinDisplay/RichTextLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
