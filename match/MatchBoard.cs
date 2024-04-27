@@ -740,16 +740,19 @@ public partial class MatchBoard : Node
 		return gem;
 	}
 
-	private void addRandomAddon(Gem gem) {
+	private void addRandomAddon(Gem gem)
+	{
 		int randomPercentage = GD.RandRange(0, 99);
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-		if (randomPercentage <= gameManagerIF.getCoinDropRate()) {
+		if (randomPercentage < gameManagerIF.getCoinDropRate())
+		{
 			gem.setAddonType(GemAddonType.Money);
 			return;
 		}
 
 		randomPercentage = GD.RandRange(0, 99);
-		if (randomPercentage <= gameManagerIF.getMetaCoinDropRate()) {
+		if (randomPercentage < gameManagerIF.getMetaCoinDropRate())
+		{
 			gem.setAddonType(GemAddonType.MetaCoin);
 			return;
 		}
@@ -1003,7 +1006,8 @@ public partial class MatchBoard : Node
 		thingsAreMoving = true;
 	}
 
-	public List<Match> getMatchesThisTurn(GemType gemType) {
+	public List<Match> getMatchesThisTurn(GemType gemType)
+	{
 		return matchesThisTurn.Where(match => match.GetGemType() == gemType).ToList();
 	}
 

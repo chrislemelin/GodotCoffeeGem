@@ -11,7 +11,12 @@ public partial class RelicResource : Resource
 	[Export] public String title;
 	[Export(PropertyHint.MultilineText)] public String description;
 	[Export] public Texture2D image;
-	[Export(PropertyHint.MultilineText)] public int cost = 0;
+	[Export] public int cost = 0;
+
+	[Export] public bool hidden = false;
+	[Export] public bool lastForOneTurn = false;
+
+
 	public RelicUI relicUI;
 
 	[Export] private Array<EffectResource> gameStartEffects = new Array<EffectResource>();
@@ -39,7 +44,8 @@ public partial class RelicResource : Resource
 
 	public void incrementTurnCounter()
 	{
-		if (!customCounter) {
+		if (!customCounter)
+		{
 			counter++;
 			if (counter > counterMax)
 			{
@@ -51,31 +57,42 @@ public partial class RelicResource : Resource
 
 	public void incrementCounter()
 	{
-		if (counterMax == 0 ){
-			executeEffects(); 
-		} else {
+		if (counterMax == 0)
+		{
+			executeEffects();
+		}
+		else
+		{
 			counter++;
-			if (counter == counterMax) {
+			if (counter == counterMax)
+			{
 				executeEffects();
 			}
-			if (counter > counterMax) {
-				if (resetCounterAfterReachingMax) {
+			if (counter > counterMax)
+			{
+				if (resetCounterAfterReachingMax)
+				{
 					counter = 1;
-				} else {
+				}
+				else
+				{
 					counter = counterMax;
 				}
 			}
-			EmitSignal(SignalName.CounterChanged, counter); 
+			EmitSignal(SignalName.CounterChanged, counter);
 		}
 	}
 
-	private void setCounter(int counter) {
+	private void setCounter(int counter)
+	{
 		this.counter = counter;
-		EmitSignal(SignalName.CounterChanged, counter); 
+		EmitSignal(SignalName.CounterChanged, counter);
 	}
 
-	public void executeEffects() {
-		if (relicUI != null && effects.Count != 0) {
+	public void executeEffects()
+	{
+		if (relicUI != null && effects.Count != 0)
+		{
 			relicUI.activateAnimation();
 		}
 		foreach (EffectResource effect in effects)
@@ -84,45 +101,59 @@ public partial class RelicResource : Resource
 		}
 	}
 
-	public void executeEffectsOrIncreaseCount() {
-		if (customCounter) {
+	public void executeEffectsOrIncreaseCount()
+	{
+		if (customCounter)
+		{
 			incrementCounter();
-		} else {
+		}
+		else
+		{
 			executeEffects();
 		}
 	}
 
-	public virtual void ingredientDestroyed(Gem gem){
+	public virtual void ingredientDestroyed(Gem gem)
+	{
 
 	}
 
-	public virtual void cardDrawn(CardResource cardResource){
+	public virtual void cardDrawn(CardResource cardResource)
+	{
 
 	}
 
-	public virtual void multChanged(float mult){
+	public virtual void multChanged(float mult)
+	{
 
 	}
 
-	public void startLevel() {
-		if(counterResetOnLevelStart) {
+	public void startLevel()
+	{
+		if (counterResetOnLevelStart)
+		{
 			resetCounter();
 		}
 	}
 
-	public virtual void newTurn(){
-		if(counterResetOnTurnStart) {
+	public virtual void newTurn()
+	{
+		if (counterResetOnTurnStart)
+		{
 			resetCounter();
 		}
 	}
-	public virtual void afterTurnCleanUp(){
+	public virtual void afterTurnCleanUp()
+	{
 
 	}
-	public virtual void beforeTurnCleanUp(){
+	public virtual void beforeTurnCleanUp()
+	{
 
 	}
 
-	public virtual void ingredientsMatched(Match match){
+	public virtual void ingredientsMatched(Match match)
+	{
 
 	}
 
@@ -163,7 +194,8 @@ public partial class RelicResource : Resource
 		{
 			return turnStartEffects.ToList();
 		}
-		if (counter == counterMax && doEffectsOnTurnStartIfCounterAtMax) {
+		if (counter == counterMax && doEffectsOnTurnStartIfCounterAtMax)
+		{
 			executeEffects();
 		}
 		return new List<EffectResource>();

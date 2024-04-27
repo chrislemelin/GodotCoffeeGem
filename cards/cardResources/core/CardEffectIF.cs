@@ -13,6 +13,9 @@ public partial class CardEffectIF : Resource
 	[Export] public int CardGems { get; private set; } = 0;
 	[Export] public int CoinGems { get; private set; } = 0;
 	[Export] public int DrawCards { get; private set; } = 0;
+
+	[Export] public RelicResource relicResource = null;
+
 	[Export] private SelectionType selectionType;
 
 	[Export] private int CardsToDiscard = 0;
@@ -24,6 +27,7 @@ public partial class CardEffectIF : Resource
 	[Signal] public delegate void CardPassivesChangedEventHandler();
 	[Signal] public delegate void ValueChangedEventHandler();
 	[Signal] public delegate void CustomTextChangedEventHandler();
+
 
 
 	public Node node;
@@ -60,8 +64,11 @@ public partial class CardEffectIF : Resource
 		{
 			doEffectOnTargetedCard(cardMaybe.GetValue());
 		}
-
 		applyPassiveToHand(hand);
+		if (relicResource != null)
+		{
+			FindObjectHelper.getRelicHolderUI(node).addRelic(relicResource);
+		}
 	}
 
 	protected virtual void doEffectOnTargetedCard(CardIF card)

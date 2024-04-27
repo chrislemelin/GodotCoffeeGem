@@ -13,6 +13,7 @@ public partial class FindObjectHelper
 	public static readonly String RELIC_SELECTION_NAME = "RelicSelection";
 	public static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
 	public static readonly String SETTINGS_MENU_NAME = "SettingsMenu";
+	public static readonly String RELIC_HOLDER_UI_NAME = "RelicHolder";
 
 
 	public static Hand getHand(Node node)
@@ -39,9 +40,12 @@ public partial class FindObjectHelper
 	public static MatchBoard getMatchBoard(Node node)
 	{
 		Godot.Collections.Array<Node> list = node.GetTree().GetNodesInGroup(MATCH_BOARD_NAME);
-		if (list.Count > 0) {
+		if (list.Count > 0)
+		{
 			return (MatchBoard)list[0];
-		} else {
+		}
+		else
+		{
 			return null;
 		}
 	}
@@ -50,6 +54,12 @@ public partial class FindObjectHelper
 	{
 		return (DeckViewUI)node.GetTree().GetNodesInGroup(DECK_VIEW_NAME)[0];
 	}
+
+	public static RelicHolderUI getRelicHolderUI(Node node)
+	{
+		return (RelicHolderUI)node.GetTree().GetNodesInGroup(RELIC_HOLDER_UI_NAME)[0];
+	}
+
 
 	public static SettingsMenu getSettingsMenu(Node node)
 	{

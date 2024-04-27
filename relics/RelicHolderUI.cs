@@ -20,6 +20,20 @@ public partial class RelicHolderUI : Control
 
 	}
 
+	public void addRelic(RelicResource relicResource)
+	{
+		relicResources.Add(relicResource);
+		deleteRelics();
+		setUpRelics();
+	}
+
+	public void removeRelic(RelicResource relicResource)
+	{
+		relicResources.Remove(relicResource);
+		deleteRelics();
+		setUpRelics();
+	}
+
 	public List<RelicResource> getRelics()
 	{
 		return relicResources;
@@ -46,11 +60,10 @@ public partial class RelicHolderUI : Control
 			relicResource.node = this;
 			relicControlHolder.AddChild(relicUI);
 		}
-		
 	}
 
 	public void startUpRelics()
-	{ 
+	{
 		foreach (RelicUI relicUI in relicUIs)
 		{
 			foreach (EffectResource executablePassive in relicUI.relicResource.getGameStartExePassives())
@@ -76,7 +89,8 @@ public partial class RelicHolderUI : Control
 			{
 				executablePassive.execute(this);
 			}
-			if (executablePassives.Count != 0) {
+			if (executablePassives.Count != 0)
+			{
 				relicUI.activateAnimation();
 			}
 		}
@@ -95,6 +109,11 @@ public partial class RelicHolderUI : Control
 		foreach (RelicResource relicResource in relicResources)
 		{
 			relicResource.afterTurnCleanUp();
+		}
+		List<RelicResource> relicsToRemove = relicResources.Where(relicResources => relicResources.lastForOneTurn).ToList();
+		foreach (RelicResource relicResourceToRemove in relicsToRemove)
+		{
+			removeRelic(relicResourceToRemove);
 		}
 	}
 
@@ -154,4 +173,6 @@ public partial class RelicHolderUI : Control
 		FindObjectHelper.getHand(this).cardDrawn += (card) => cardDrawn(card);
 		FindObjectHelper.getScore(this).multChange += (mult) => multChanged(mult);
 	}
+
+
 }
