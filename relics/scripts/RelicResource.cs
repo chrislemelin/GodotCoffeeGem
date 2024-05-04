@@ -15,7 +15,7 @@ public partial class RelicResource : Resource
 
 	[Export] public bool hidden = false;
 	[Export] public bool lastForOneTurn = false;
-
+	[Export] public bool lastForOneLevel = false;
 
 	public RelicUI relicUI;
 
@@ -24,6 +24,8 @@ public partial class RelicResource : Resource
 	[Export] private Array<EffectResource> addToInvEffects = new Array<EffectResource>();
 	[Export] private Array<EffectResource> levelOverEffects = new Array<EffectResource>();
 	[Export] private Array<EffectResource> effects = new Array<EffectResource>();
+	[Export] private Array<MatchEffectResource> matchEffects = new Array<MatchEffectResource>();
+
 
 	[Signal] public delegate void CounterChangedEventHandler(int newCount);
 	// Max value for the counter, we expect to excute the effetcs in the effects list when this is reached
@@ -154,7 +156,10 @@ public partial class RelicResource : Resource
 
 	public virtual void ingredientsMatched(Match match)
 	{
-
+		foreach (MatchEffectResource matchEffect in matchEffects)
+		{
+			matchEffect.execute(node, match);
+		}
 	}
 
 	public void resetCounter()

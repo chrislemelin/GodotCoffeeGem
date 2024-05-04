@@ -152,7 +152,6 @@ public partial class Score : Node2D
 				setHeartsRemaining(heartsRemaining - 1);
 				audioStreamPlayer2D.Stream = oofAudio;
 				audioStreamPlayer2D.Play();
-				gameManager.setHealth(heartsRemaining);
 			}
 			if (turnsRemaining == 0 && heartsRemaining == 0)
 			{
@@ -181,9 +180,14 @@ public partial class Score : Node2D
 		}
 	}
 
+	public void addHearts(int value) {
+		setHeartsRemaining(heartsRemaining + value);
+	}
+
 	public void setHeartsRemaining(int newValue)
 	{
-		heartsRemaining = newValue;
+		heartsRemaining = Math.Min(newValue, maxHearts);
+		gameManager.setHealth(heartsRemaining);
 		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
 		for (int count = 0; count < nodes.Count; count++)
 		{
@@ -195,6 +199,10 @@ public partial class Score : Node2D
 			{
 				((TextureRect)nodes[count]).Texture = heartEmpty;
 			}
+		}
+		if(heartsRemaining <= 0)
+		{
+			gameManager.evaluateLevel();
 		}
 	}
 

@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="LevelListResource" load_steps=13 format=3 uid="uid://cbno64gc8kxnf"]
+
+[ext_resource type="Script" path="res://levels/LevelListResource.cs" id="1_b7xni"]
+[ext_resource type="Script" path="res://levels/LevelResource.cs" id="1_uvx8r"]
+
+[sub_resource type="Resource" id="Resource_txmk3"]
+script = ExtResource("1_uvx8r")
+score = 500
+makeRandomBossRecipe = false
+blockedTiles = 0
+
+[sub_resource type="Resource" id="Resource_7jx5j"]
+script = ExtResource("1_uvx8r")
+score = 1000
+makeRandomBossRecipe = false
+blockedTiles = 1
+
+[sub_resource type="Resource" id="Resource_en0rj"]
+script = ExtResource("1_uvx8r")
+score = 2000
+makeRandomBossRecipe = false
+blockedTiles = 0
+
+[sub_resource type="Resource" id="Resource_aj5l7"]
+script = ExtResource("1_uvx8r")
+score = 3000
+makeRandomBossRecipe = false
+blockedTiles = 2
+
+[sub_resource type="Resource" id="Resource_2mlyu"]
+script = ExtResource("1_uvx8r")
+score = 4000
+makeRandomBossRecipe = false
+blockedTiles = 3
+
+[sub_resource type="Resource" id="Resource_qvwn2"]
+script = ExtResource("1_uvx8r")
+score = 6000
+makeRandomBossRecipe = false
+blockedTiles = 3
+
+[sub_resource type="Resource" id="Resource_d23x1"]
+script = ExtResource("1_uvx8r")
+score = 8000
+makeRandomBossRecipe = false
+blockedTiles = 3
+
+[sub_resource type="Resource" id="Resource_hw3tv"]
+script = ExtResource("1_uvx8r")
+score = 10000
+makeRandomBossRecipe = false
+blockedTiles = 3
+
+[sub_resource type="Resource" id="Resource_oj2hp"]
+script = ExtResource("1_uvx8r")
+score = 13000
+makeRandomBossRecipe = false
+blockedTiles = 3
+
+[sub_resource type="Resource" id="Resource_i1xfv"]
+script = ExtResource("1_uvx8r")
+score = 20000
+makeRandomBossRecipe = false
+blockedTiles = 0
+
+[resource]
+script = ExtResource("1_b7xni")
+levelResources = [SubResource("Resource_txmk3"), SubResource("Resource_7jx5j"), SubResource("Resource_en0rj"), SubResource("Resource_aj5l7"), SubResource("Resource_2mlyu"), SubResource("Resource_qvwn2"), SubResource("Resource_d23x1"), SubResource("Resource_hw3tv"), SubResource("Resource_oj2hp"), SubResource("Resource_i1xfv")]

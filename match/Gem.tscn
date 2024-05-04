@@ -1,7 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
-[ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="2_qwsb4"]
 [ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_835wl"]
 [ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="5_0i62a"]
 [ext_resource type="Shader" path="res://cards/shaders/rainbowSmooth.gdshader" id="5_2oikk"]
@@ -14,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="10_pd7po"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="11_3xbkf"]
 [ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/ComboStyleBox.tres" id="12_bexrd"]
+[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="14_jq5a0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
 shader = ExtResource("5_2oikk")
@@ -81,7 +81,7 @@ script = ExtResource("2_5yd20")
 sprite2D = NodePath("CanvasGroup/GemSprite")
 addonSprite = NodePath("CanvasGroup/AddonParent/GemAddon")
 comboTextLabel = NodePath("CanvasGroup/AddonParent/ComboLabel")
-manaAddonTexture = ExtResource("2_qwsb4")
+manaAddonTexture = ExtResource("14_jq5a0")
 cardAddonTexture = ExtResource("3_835wl")
 lockAddonTexture = ExtResource("10_pd7po")
 coinAddonTexture = ExtResource("11_3xbkf")
@@ -122,12 +122,12 @@ texture = ExtResource("6_7pibk")
 centered = false
 
 [node name="AddonParent" type="Node2D" parent="CanvasGroup"]
-position = Vector2(200, 199)
+position = Vector2(204, 189)
 scale = Vector2(0.3, 0.3)
 
 [node name="GemAddon" type="Sprite2D" parent="CanvasGroup/AddonParent"]
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("11_3xbkf")
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("14_jq5a0")
 
 [node name="ComboLabel" type="RichTextLabel" parent="CanvasGroup/AddonParent"]
 visible = false

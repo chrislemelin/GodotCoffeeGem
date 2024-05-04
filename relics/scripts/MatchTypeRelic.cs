@@ -12,7 +12,7 @@ public partial class MatchTypeRelic : RelicResource
 
 	public override void ingredientsMatched(Match match)
 	{
-
+		base.ingredientsMatched(match);
 		if (match.ingredients.Count >= minMatchSize && match.GetGemType() == ingredientType) {
 			executeEffectsOrIncreaseCount();
 		}
@@ -20,9 +20,7 @@ public partial class MatchTypeRelic : RelicResource
 
 	public override void newTurn()
 	{
-		base.newTurn();
-		
+		base.newTurn();	
 	}
-
 
 }

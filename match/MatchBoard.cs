@@ -291,10 +291,48 @@ public partial class MatchBoard : Node
 
 		sizeTile.QueueFree();
 
+ 		generateTiles();
+		gooIntialTiles();
+		populateBoard();
+		timer = new Timer();
+		AddChild(timer);
+		timer.WaitTime = .1;
+		timer.Timeout += () => checkForDrops();
+		timer.Start();
+	}
+
+	public void addColumn() {
+		sizeX ++;
+		generateTiles();
+		populateBoard();
+	}
+
+	public void removeColumn() {
+		for (int newY = 0; newY < sizeY; newY++) {
+			deleteTile(new Vector2(sizeX-1, newY));
+		}
+		sizeX --;
+	}
+
+	public void deleteTile(Vector2 position) {
+		Tile tile = getTile(position);
+		if (tile != null) {
+			tileMap.Remove(position);
+			tileSet.Remove(tile);
+			tile.Gem?.QueueFree();
+			tile.QueueFree();
+		}
+	}
+
+	private void generateTiles() {
 		for (int newX = 0; newX < sizeX; newX++)
 		{
 			for (int newY = 0; newY < sizeY; newY++)
 			{
+				Vector2 position = new Vector2(newX, newY);
+				if (tileMap.ContainsKey(position)) {
+					continue;
+				}
 				Tile newTile = tileTemplate.Instantiate() as Tile;
 				boardHolder.AddChild(newTile);
 				newTile.control.GuiInput += (inputEvent) => tileClicked(newTile, inputEvent);
@@ -308,13 +346,6 @@ public partial class MatchBoard : Node
 				newTile.control.MouseExited += () => clearHover(newTile);
 			}
 		}
-		populateBoard();
-		timer = new Timer();
-		AddChild(timer);
-		timer.WaitTime = .1;
-		timer.Timeout += () => checkForDrops();
-		timer.Start();
-
 	}
 	private void tileHovered(Tile tile)
 	{
@@ -688,20 +719,7 @@ public partial class MatchBoard : Node
 		}
 	}
 
-	private void populateBoard()
-	{
-		for (int x = 0; x < sizeX; x++)
-		{
-			for (int y = 0; y < sizeY; y++)
-			{
-				Vector2 currentPosition = new Vector2(x, y);
-				Tile tile = getTile(currentPosition);
-				if (!tile.getIsBlocked())
-				{
-					generateRandomGemForTile(currentPosition);
-				}
-			}
-		}
+	private void gooIntialTiles() {
 		if (FindObjectHelper.getGameManager(this).getGooRightRow())
 		{
 			List<Tile> tilesToBlock = new List<Tile>();
@@ -713,6 +731,33 @@ public partial class MatchBoard : Node
 			}
 			blockTiles(tilesToBlock);
 		}
+	}
+
+	private void populateBoard()
+	{
+		for (int x = 0; x < sizeX; x++)
+		{
+			for (int y = 0; y < sizeY; y++)
+			{
+				Vector2 currentPosition = new Vector2(x, y);
+				Tile tile = getTile(currentPosition);
+				if (!tile.getIsBlocked() && tile.Gem == null)
+				{
+					generateRandomGemForTile(currentPosition);
+				}
+			}
+		}
+		// if (FindObjectHelper.getGameManager(this).getGooRightRow())
+		// {
+		// 	List<Tile> tilesToBlock = new List<Tile>();
+		// 	for (int y = 0; y < sizeY; y++)
+		// 	{
+		// 		Vector2 currentPosition = new Vector2(sizeX - 1, y);
+		// 		tilesToBlock.Add(getTile(currentPosition));
+
+		// 	}
+		// 	blockTiles(tilesToBlock);
+		// }
 		HashSet<HashSet<Tile>> matches = getMatches();
 		while (matches.Count != 0)
 		{

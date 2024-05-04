@@ -6,7 +6,6 @@ using System.Linq;
 
 public partial class GameManager : GameManagerIF
 {
-
 	int scoreNeededToPass;
 
 	[Export] public NewCardSelection newCardSelection;
@@ -20,7 +19,7 @@ public partial class GameManager : GameManagerIF
 	[Export] public Control gooTutorial;
 	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public RelicSelection relicSelection;
-	[Export] public Array<LevelResource> levels;
+	[Export] public LevelListResource levelList;
 
 	[Export] public LevelCompleteUI levelComplete;
 	[Signal] public delegate void levelOverEventHandler();
@@ -32,12 +31,11 @@ public partial class GameManager : GameManagerIF
 	private int currentLevel;
 	private LevelResource currentLevelResource;
 
-
 	public override void _Ready()
 	{
 		base._Ready();
 		currentLevel = global.currentLevel;
-		currentLevelResource = levels[currentLevel - 1];
+		currentLevelResource = levelList.levelResources[currentLevel - 1];
 		if (currentLevel == 1)
 		{
 			setStartTime();
@@ -116,7 +114,7 @@ public partial class GameManager : GameManagerIF
 	}
 
 	private int evaluateMetaCoins () {
-		if (currentLevel == levels.Count) {
+		if (currentLevel == levelList.levelResources.Count) {
 			return 20;
 		}
 		return currentLevel + Math.Max(0, currentLevel - 5);
@@ -125,8 +123,9 @@ public partial class GameManager : GameManagerIF
 	public void nextLevel()
 	{
 		EmitSignal(SignalName.levelOver);
+		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
 		//newCardSelection.windowClosed += (CardResource) => advanceLevel();
-		if (currentLevel == levels.Count)
+		if (currentLevel == levelList.levelResources.Count)
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
 			resetGlobals();

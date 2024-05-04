@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RetainMultRelic" load_steps=2 format=3 uid="uid://bfvusjnvsr0e6"]
+
+[ext_resource type="Script" path="res://relics/scripts/RetainMultRelic.cs" id="1_48fhm"]
+
+[resource]
+script = ExtResource("1_48fhm")
+title = "Retain Relic"
+description = "Don't reset multiplier to 1 at the end of the turn"
+cost = 0
+hidden = false
+lastForOneTurn = true
+gameStartEffects = []
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

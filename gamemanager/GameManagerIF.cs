@@ -292,7 +292,7 @@ public partial class GameManagerIF : Node2D
 		getGlobal().relics.Add((RelicResource)relicResource.Duplicate());
 	}
 
-	public void syncRelics(List<RelicResource> relicResources)
+	public void setRelics(List<RelicResource> relicResources)
 	{
 		getGlobal().relics = relicResources;
 	}

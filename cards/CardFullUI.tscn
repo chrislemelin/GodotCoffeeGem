@@ -10,9 +10,9 @@
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="7_8gbvv"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="7_jkbfx"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_jrfr0"]
-[ext_resource type="Texture2D" uid="uid://c8h6hp5qop2ck" path="res://placeholders/cards/Fueguito magia copia.png" id="8_a11pv"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="9_w4arf"]
+[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="11_kkerm"]
 [ext_resource type="Texture2D" uid="uid://d3hvm7mjrstbo" path="res://placeholders/cards/RedCardBack.png" id="13_hn8m8"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="14_5dyd3"]
 
@@ -395,23 +395,23 @@ scroll_active = false
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 48.4
-offset_top = 36.0
-offset_right = 48.4
-offset_bottom = 36.0
+offset_left = 56.4
+offset_top = 44.0
+offset_right = 56.4
+offset_bottom = 44.0
 mouse_filter = 2
 
 [node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
 material = SubResource("ShaderMaterial_bqyc8")
 use_parent_material = true
 layout_mode = 0
-offset_left = -80.0
-offset_top = -120.934
-offset_right = 909.0
-offset_bottom = 1309.07
+offset_left = -90.4
+offset_top = -124.0
+offset_right = 1237.6
+offset_bottom = 1204.0
 scale = Vector2(0.1, 0.1)
 mouse_filter = 2
-texture = ExtResource("8_a11pv")
+texture = ExtResource("11_kkerm")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]

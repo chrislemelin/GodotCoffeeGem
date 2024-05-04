@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_i5u2u"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_d36ka"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5gnnn"]
-[ext_resource type="Resource" uid="uid://dqyh1awc8okrc" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="4_y4qoe"]
+[ext_resource type="Resource" path="res://cards/cardResources/cardLists/StarterDeck.tres" id="4_y4qoe"]
 [ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="10_yqm4d"]
 [ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="12_dlut0"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="13_oo2ug"]

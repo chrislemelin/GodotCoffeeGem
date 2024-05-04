@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=6 format=3 uid="uid://d2a71fk4odeoo"]
+
+[ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="1_hwcjc"]
+[ext_resource type="Script" path="res://relics/effects/AddColorUpgradeEffect.cs" id="2_ipv3a"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_jym7c"]
+
+[sub_resource type="Resource" id="Resource_bdpyi"]
+script = ExtResource("1_hwcjc")
+baseIncrease = -50
+multIncrease = 0.0
+gemType = 3
+finalMult = 1.0
+temporary = false
+
+[sub_resource type="Resource" id="Resource_wirus"]
+script = ExtResource("2_ipv3a")
+colorUpgrade = SubResource("Resource_bdpyi")
+value = 0
+
+[resource]
+script = ExtResource("3_jym7c")
+title = "Sugar Decrease"
+description = "Sugar match are worth less points"
+cost = 0
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = [SubResource("Resource_wirus")]
+turnStartEffects = []
+addToInvEffects = []
+levelOverEffects = []
+effects = []
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

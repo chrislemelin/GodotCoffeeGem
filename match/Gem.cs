@@ -173,7 +173,7 @@ public partial class Gem : lerp
 			case GemAddonType.Mana:
 				addonSprite.Visible = true;
 				addonSprite.Texture = manaAddonTexture;
-				addonSprite.Scale = new Vector2(.3f, .3f);
+				addonSprite.Scale = new Vector2(1.3f, 1.3f);
 				control.TooltipText = "Gain a mana when this ingredient is matched";
 				break;
 			case GemAddonType.Card:

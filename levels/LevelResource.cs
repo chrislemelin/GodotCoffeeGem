@@ -10,6 +10,10 @@ public partial class LevelResource : Resource
 	[Export]
 	public bool makeRandomBossRecipe;
 	[Export]
+	public RelicResource bossRelic;
+	[Export]
+	public bool generateRandomBossRelic = false;
+	[Export]
 	public int blockedTiles = 0;
 
 	public RecipeResource getBossRecipe()

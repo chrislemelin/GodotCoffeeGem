@@ -20,7 +20,6 @@ public partial class CardEffectDealWithDevil : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		FindObjectHelper.getScore(matchBoard).modifyTurnsRemaining(-1);
-		hand.drawCards(3);
-		mana.modifyMana(2);
+		FindObjectHelper.getGameManager(matchBoard).addCoins(getValue());
 	}
 }
