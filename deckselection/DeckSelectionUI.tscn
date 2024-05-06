@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://pjf6f8g0iacc"]
+[gd_scene load_steps=7 format=3 uid="uid://pjf6f8g0iacc"]
 
 [ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="1_5gwg4"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_ocb6t"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionUI.cs" id="1_ry7pk"]
 [ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="3_2e1f7"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_gx4kr"]
@@ -11,19 +12,16 @@ shader_parameter/line_color = Color(1, 1, 0, 1)
 shader_parameter/line_thickness = 3.4
 
 [node name="DeckSelectionUi" type="Control" node_paths=PackedStringArray("title", "picture", "highlightOnHover")]
-custom_minimum_size = Vector2(441, 780)
+custom_minimum_size = Vector2(441, 680)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -217.0
-offset_top = 6.0
-offset_right = -1696.0
-offset_bottom = -294.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
+anchors_preset = 0
+offset_right = 441.0
+offset_bottom = 680.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "test thingy"
 mouse_filter = 1
+theme = ExtResource("1_ocb6t")
 script = ExtResource("1_ry7pk")
 title = NodePath("RichTextLabel")
 picture = NodePath("TextureRect")

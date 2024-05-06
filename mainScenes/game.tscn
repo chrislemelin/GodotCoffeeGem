@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=44 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
+[ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_ca4kv"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_tlo67"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
@@ -89,6 +90,7 @@ bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
+levelList = ExtResource("2_ca4kv")
 levelComplete = NodePath("UIOverLays/LevelComplete")
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")

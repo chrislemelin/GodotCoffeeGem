@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://budo5dofendqy"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://budo5dofendqy"]
 
-[ext_resource type="Resource" uid="uid://bfvusjnvsr0e6" path="res://cards/cardResources/scoreCards/mult/RetainMultRelic.tres" id="1_8liii"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardEffectIF.cs" id="2_erf4i"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_0acrh"]
 
@@ -13,7 +12,6 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
-relicResource = ExtResource("1_8liii")
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true

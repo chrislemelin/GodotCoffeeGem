@@ -16,27 +16,31 @@ public partial class Deck : Node
 	[Export] Control control;
 	List<CardResource> cards = new List<CardResource>();
 
-	
+
 	public override void _Ready()
 	{
-		if (loadDeckFromGlobal) {
+		if (loadDeckFromGlobal)
+		{
 			allCards.Clear();
 			List<CardResource> deckCardList = gameManager.getDeckList();
-			if (deckCardList.Count != 0) {
-				foreach (CardResource cardResource in deckCardList) {
+			if (deckCardList.Count != 0)
+			{
+				foreach (CardResource cardResource in deckCardList)
+				{
 					CardResource cardResourceToAdd = (CardResource)cardResource.Duplicate();
 					cardResourceToAdd.cardEffect = (CardEffectIF)cardResource.cardEffect.Duplicate();
- 					allCards.Add(cardResourceToAdd);
+					allCards.Add(cardResourceToAdd);
 				}
-				
 			}
 		}
 
-		control.GuiInput += (inputEvent) =>  {
-			if (inputEvent.IsActionPressed("click")) {
+		control.GuiInput += (inputEvent) =>
+		{
+			if (inputEvent.IsActionPressed("click"))
+			{
 				deckView.setUp(cards);
-			}	
-		}; 
+			}
+		};
 
 		addCardsToDeck();
 		RandomHelper.Shuffle(cards);
@@ -44,12 +48,15 @@ public partial class Deck : Node
 		GetNode<Button>(FindObjectHelper.NEW_BUTTON_NAME).Pressed += () => turnOver();
 	}
 
-	private void addCardsToDeck() {
+	private void addCardsToDeck()
+	{
 		cards.AddRange(allCards);
 	}
 
-	private void turnOver() {
-		foreach(CardResource cardResource in allCards) {
+	private void turnOver()
+	{
+		foreach (CardResource cardResource in allCards)
+		{
 			cardResource.cardEffect.turnOver();
 		}
 	}
@@ -73,21 +80,23 @@ public partial class Deck : Node
 		{
 			cards.AddRange(discard.getAllCardsAndReset());
 			updateCount();
-			if (cards.Count == 0) {
+			if (cards.Count == 0)
+			{
 				return;
 			}
 
 		}
 		CardResource nextCard = cards[0];
 		bool cardAddedToHand = hand.addNewCardToHand(nextCard);
-		if (cardAddedToHand) {
+		if (cardAddedToHand)
+		{
 			cards.RemoveAt(0);
 			updateCount();
 		}
 
 	}
 	public override void _Input(InputEvent @event)
-	{}
+	{ }
 
 
 }

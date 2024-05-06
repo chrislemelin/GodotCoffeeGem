@@ -39,7 +39,8 @@ public partial class Global : Node
 
 	public Vector2 gridSize = new Vector2(6, 5);
 
-	public void reset() {
+	public void reset()
+	{
 		deckCardList = null;
 		colorUpgrades = new Array<ColorUpgrade>();
 		relics = new List<RelicResource>();
@@ -61,7 +62,8 @@ public partial class Global : Node
 		gridSize = new Vector2(6, 5);
 	}
 
-	public override void _Ready() {
+	public override void _Ready()
+	{
 		if (!FileAccess.FileExists(SAVE_FILE_NAME))
 		{
 			save();
@@ -72,8 +74,10 @@ public partial class Global : Node
 		}
 	}
 
-	public void save() {
-		if (userId == -1) {
+	public void save()
+	{
+		if (userId == -1)
+		{
 			userId = GD.RandRange(1, Int32.MaxValue);
 		}
 		using var userIdSave = FileAccess.Open(SAVE_FILE_NAME, FileAccess.ModeFlags.Write);
@@ -88,7 +92,8 @@ public partial class Global : Node
 		userIdSave.StoreLine(jsonString);
 	}
 
-	private void load() {
+	private void load()
+	{
 		using var saveGame = FileAccess.Open(SAVE_FILE_NAME, FileAccess.ModeFlags.Read);
 		var jsonString = saveGame.GetLine();
 		// Creates the helper class to interact with JSON
@@ -100,10 +105,13 @@ public partial class Global : Node
 			return;
 		}
 		Godot.Collections.Dictionary<String, String> nodeData = new Godot.Collections.Dictionary<String, String>((Godot.Collections.Dictionary)json.Data);
-		
+
 		userId = Int32.Parse(nodeData[USER_ID_SAVE_NAME]);
-		currentMetaCoins = Int32.Parse(nodeData[META_COINS_SAVE_NAME]);
-		sfXvolume = float.Parse(nodeData[SFX_VOLUME_SAVE_NAME]);
-		musicVolume = float.Parse(nodeData[MUSIC_VOLUME_SAVE_NAME]);
+		if (nodeData.ContainsKey(META_COINS_SAVE_NAME))
+		{
+			currentMetaCoins = Int32.Parse(nodeData[META_COINS_SAVE_NAME]);
+		}
+		//sfXvolume = float.Parse(nodeData[SFX_VOLUME_SAVE_NAME]);
+		//musicVolume = float.Parse(nodeData[MUSIC_VOLUME_SAVE_NAME]);
 	}
 }

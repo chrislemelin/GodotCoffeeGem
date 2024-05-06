@@ -20,7 +20,7 @@ public partial class GameManager : GameManagerIF
 	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public RelicSelection relicSelection;
 	[Export] public LevelListResource levelList;
-
+	[Export] public RelicList bossRelics;
 	[Export] public LevelCompleteUI levelComplete;
 	[Signal] public delegate void levelOverEventHandler();
 	[Signal] public delegate void levelStartEventHandler();
@@ -87,13 +87,15 @@ public partial class GameManager : GameManagerIF
 		}
 		FindObjectHelper.getMatchBoard(this).addRandomBlockedTiles(currentLevelResource.blockedTiles);
 		relicHolderUI.setRelicList(getRelics());
+		if (currentLevelResource.generateRandomBossRelic)
+		{
+			relicHolderUI.setRelicList(getRelics());
+		}
+		relicHolderUI.addRelic(getRandomBossRelic());
 		relicHolderUI.startUpRelics();
 
 		EmitSignal(SignalName.levelStart);
-
 	}
-
-
 
 	public void evaluateLevel()
 	{
@@ -113,8 +115,10 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 
-	private int evaluateMetaCoins () {
-		if (currentLevel == levelList.levelResources.Count) {
+	private int evaluateMetaCoins()
+	{
+		if (currentLevel == levelList.levelResources.Count)
+		{
 			return 20;
 		}
 		return currentLevel + Math.Max(0, currentLevel - 5);
@@ -148,6 +152,11 @@ public partial class GameManager : GameManagerIF
 		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
 		levelComplete.setCoinsGained(coinsGained);
 		addCoins(coinsGained);
+	}
+
+	private RelicResource getRandomBossRelic()
+	{
+		return bossRelics.allRelics[0];
 	}
 
 	private void selectRandomRelic()

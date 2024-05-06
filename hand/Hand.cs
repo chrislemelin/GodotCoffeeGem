@@ -120,8 +120,6 @@ public partial class Hand : Node
 		newcard.clickedSignal += (inputEvent) => cardClicked(inputEvent, newcard);
 		newcard.listenToMouseEnter(() => setCardHovered(newcard));
 		newcard.listenToMouseExit(() => clearCardHovered());
-
-
 		cards.Add(newcard);
 
 		Vector2 startingPosition = getPositionForCard(cards.Count - 1);

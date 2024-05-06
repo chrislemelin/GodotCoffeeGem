@@ -140,7 +140,6 @@ public partial class GameManagerIF : Node2D
 		}
 	}
 
-
 	protected void loadGlobalAndSetDeckToDefault()
 	{
 		if (defaultCardList != null)

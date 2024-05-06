@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://3d6t3ubetydb"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://3d6t3ubetydb"]
 
 [ext_resource type="StyleBox" uid="uid://bwc2d0age3pc3" path="res://UI/Themes/PanelBackground.tres" id="1_ahnws"]
+[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_q7xkx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
 bg_color = Color(0.231373, 0.380392, 0.631373, 1)
@@ -44,6 +45,10 @@ corner_radius_bottom_left = 4
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osqdc"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -67,5 +72,12 @@ Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
 Panel/styles/panel = ExtResource("1_ahnws")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
 RichTextLabel/font_sizes/normal_font_size = 46
+TooltipLabel/colors/font_color = Color(0, 0, 0, 1)
+TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 0)
+TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
+TooltipLabel/constants/outline_size = 0
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
 TooltipLabel/font_sizes/font_size = 32
+TooltipLabel/fonts/font = ExtResource("2_q7xkx")
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_osqdc")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://cards/cardResources/otherCards/AddColumnCardEffect.cs" id="1_wd7po"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_jpbe3"]
 
-[sub_resource type="Resource" id="Resource_ldyxs"]
+[sub_resource type="Resource" id="Resource_60p6m"]
 script = ExtResource("1_wd7po")
 Range = 1.0
 Value = -1
@@ -27,4 +27,4 @@ Cost = 1
 rarity = 2
 coinCost = 0
 playable = false
-cardEffect = SubResource("Resource_ldyxs")
+cardEffect = SubResource("Resource_60p6m")
