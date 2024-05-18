@@ -19,6 +19,9 @@ public partial class NewCardSelection : Control
 	[Signal] public delegate void windowClosedEventHandler(CardResource cardResource);
 	[Export] AnimationPlayer animationPlayer;
 	[Export] Array<CardResource> cardsToTest = new Array<CardResource>();
+	[Export] ButtonWithCoinCost refreshSelectionButton;
+
+	private GameManagerIF gameManagerIF;
 
 	private bool cardSelected = false;
 
@@ -27,7 +30,22 @@ public partial class NewCardSelection : Control
 		// renderCards();
 		renderCoins();
 		skipButton.Pressed += () => advance();
-		viewDeckButton.Pressed += () => deckViewUI.setUp(FindObjectHelper.getGameManager(this).getDeckList());
+		gameManagerIF = FindObjectHelper.getGameManager(this);
+		viewDeckButton.Pressed += () => deckViewUI.setUp(gameManagerIF.getDeckList());
+		refreshSelectionButton.Pressed += () =>  {
+			gameManagerIF.addCoins(- refreshSelectionButton.cost);
+			getRandomCardsToSelectFrom();
+		};
+		gameManagerIF.coinsChanged += (int value) => checkIfButtonIsActivated();
+		checkIfButtonIsActivated();
+	}
+
+	public void checkIfButtonIsActivated() {
+		if (gameManagerIF.getCoins() >= refreshSelectionButton.cost) {
+			refreshSelectionButton.Disabled = false;
+		} else {
+			refreshSelectionButton.Disabled = true;
+		}
 	}
 
 	public void setCoins(int coinsGained)

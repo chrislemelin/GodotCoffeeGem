@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_ijhti"]
 
-[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label")]
+[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel", "debtLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,8 @@ mouse_filter = 1
 script = ExtResource("4_dub5d")
 restartButton = NodePath("Button")
 label = NodePath("VBoxContainer/RichTextLabel")
+metaCoinLabel = NodePath("VBoxContainer/MetaCoinDisplay/RichTextLabel")
+debtLabel = NodePath("VBoxContainer/DebtDisplay/RichTextLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
@@ -74,12 +76,28 @@ offset_bottom = 47.0
 texture = ExtResource("4_ijhti")
 expand_mode = 1
 
+[node name="DebtDisplay" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/DebtDisplay"]
+layout_mode = 0
+offset_left = 414.0
+offset_top = -1.0
+offset_right = 830.0
+offset_bottom = 46.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Debt was reduce by 100$"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
-offset_left = 769.0
-offset_top = 511.0
-offset_right = 1199.0
-offset_bottom = 563.0
+offset_left = 788.0
+offset_top = 572.0
+offset_right = 1218.0
+offset_bottom = 624.0
 theme = ExtResource("4_cepm3")
 theme_override_font_sizes/font_size = 50
 text = "Restart"

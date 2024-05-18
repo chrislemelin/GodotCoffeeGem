@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://4igrfc0dhhxj"
+path="res://.godot/imported/AfterWorkTalk.dialogue-2947d93798fc32f890f47b1efd0f35e3.tres"
+
+[deps]
+
+source_file="res://dialogue/AfterWorkTalk.dialogue"
+dest_files=["res://.godot/imported/AfterWorkTalk.dialogue-2947d93798fc32f890f47b1efd0f35e3.tres"]
+
+[params]
+
+defaults=true

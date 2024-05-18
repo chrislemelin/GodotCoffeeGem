@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://v31t3xiejrlg"
+path="res://.godot/imported/BobConvo2.dialogue-509acd167aae53d54861f7aa0550bfcf.tres"
+
+[deps]
+
+source_file="res://dialogue/BobConvo2.dialogue"
+dest_files=["res://.godot/imported/BobConvo2.dialogue-509acd167aae53d54861f7aa0550bfcf.tres"]
+
+[params]
+
+defaults=true

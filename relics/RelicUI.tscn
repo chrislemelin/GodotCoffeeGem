@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://day2feovup55o"]
+[gd_scene load_steps=17 format=3 uid="uid://day2feovup55o"]
 
 [ext_resource type="Script" path="res://relics/RelicUI.cs" id="1_481rc"]
 [ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="3_1loxs"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_ys4kh"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="6_7bo4k"]
 [ext_resource type="AudioStream" uid="uid://bxghgp64mew5m" path="res://sound/switch3.wav" id="7_or46b"]
+[ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="9_2tq21"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dr4ex"]
 shader = ExtResource("3_1loxs")
@@ -227,6 +228,9 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_or46b")
+script = ExtResource("9_2tq21")
+soundEffect = true
+minValue = -40.0
 
 [node name="HoverHitBox" type="Control" parent="."]
 anchors_preset = 0

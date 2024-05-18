@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 public partial class FormSubmitter : HttpRequest
@@ -30,9 +31,10 @@ public partial class FormSubmitter : HttpRequest
 
 	public void submitData(String reasonQuiting, GameManagerIF gameManager, Action callBack)
 	{
-		GD.Print("data collection allowed " + gameManager.getCollectData() + "userId " + gameManager.getUserId());
 		if (OS.HasFeature("standalone") && gameManager.getCollectData() && gameManager.isIntialized())
 		{
+			GD.Print("data collection allowed " + gameManager.getCollectData() + "userId " + gameManager.getUserId());
+
 			String data = "";
 			Score score = FindObjectHelper.getScore(this);
 			if (score != null && score.getScore() == 0 && gameManager.getLevel() == 1)
@@ -78,16 +80,20 @@ public partial class FormSubmitter : HttpRequest
 			}
 			data = appendData(data, "entry.687983885", Version.version);
 			this.callBack = callBack;
-			var response = Request(urlform, headers, HttpClient.Method.Post, data);
-			GetTree().CreateTimer(5).Timeout += () => executeCallBack();
+
+			GetTree().CreateTimer(.1f).Timeout += () => Request(urlform, headers, HttpClient.Method.Post, data);
+
+			//Thread myThread = new Thread(new ThreadStart(() => Request(urlform, headers, HttpClient.Method.Post, data)));
+			//myThread.Start();
+			//var response = Request(urlform, headers, HttpClient.Method.Post, data);
+			//GetTree().CreateTimer(5).Timeout += () => executeCallBack();
+			
 		}
-		else
+		if (callBack != null)
 		{
-			if (callBack != null)
-			{
-				callBack.Invoke();
-			}
+			callBack.Invoke();
 		}
+		
 	}
 
 	private void executeCallBack()

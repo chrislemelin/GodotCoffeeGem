@@ -120,6 +120,7 @@ theme_override_font_sizes/font_size = 36
 text = "Enable game play data collection"
 
 [node name="QuitButton" type="MarginContainer" parent="Panel/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150

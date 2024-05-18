@@ -7,6 +7,7 @@ public partial class MainMenu : GameManagerIF
 	[Export] Button deckSelectionButton;
 
 	[Export] Button zenModButton;
+	[Export] Button quitButton;
 
 	[Export] PackedScene gameScene;
 	[Export] PackedScene deckSelectionScene;
@@ -30,6 +31,7 @@ public partial class MainMenu : GameManagerIF
 		{
 			generateBean();
 		}
+		quitButton.Pressed += () => GetTree().Quit();
 	}
 
 	private void generateBean()

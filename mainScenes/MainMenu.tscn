@@ -10,11 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "beanHolder")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "quitButton", "beanHolder")]
 script = ExtResource("1_ro6go")
 quickPlayButton = NodePath("VBoxContainer2/quickstart")
 deckSelectionButton = NodePath("VBoxContainer2/deckSelection")
 zenModButton = NodePath("VBoxContainer2/zenMode")
+quitButton = NodePath("VBoxContainer2/QuitButton")
 gameScene = ExtResource("2_g2ipy")
 deckSelectionScene = ExtResource("3_3ea2j")
 beanScene = ExtResource("3_3tqas")
@@ -94,6 +95,14 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Meta Progression"
+script = ExtResource("7_mbdpe")
+sceneString = "res://mainScenes/MetaProgressionUI.tscn"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("5_y52an")
+text = "Quit"
 script = ExtResource("7_mbdpe")
 sceneString = "res://mainScenes/MetaProgressionUI.tscn"
 

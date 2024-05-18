@@ -21,7 +21,7 @@ blockedTiles = 1
 script = ExtResource("1_uvx8r")
 score = 2000
 makeRandomBossRecipe = false
-generateRandomBossRelic = false
+generateRandomBossRelic = true
 blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_aj5l7"]
@@ -42,7 +42,7 @@ blockedTiles = 3
 script = ExtResource("1_uvx8r")
 score = 6000
 makeRandomBossRecipe = false
-generateRandomBossRelic = false
+generateRandomBossRelic = true
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_d23x1"]
@@ -70,7 +70,7 @@ blockedTiles = 3
 script = ExtResource("1_uvx8r")
 score = 20000
 makeRandomBossRecipe = false
-generateRandomBossRelic = false
+generateRandomBossRelic = true
 blockedTiles = 0
 
 [resource]

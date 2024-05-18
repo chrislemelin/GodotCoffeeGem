@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dsmqgki58m7dn" path="res://relics/sprites/Icon.6_45.png" id="2_yv50k"]
 [ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_rrosl"]
 
-[sub_resource type="Resource" id="Resource_52o4b"]
+[sub_resource type="Resource" id="Resource_h0ewd"]
 script = ExtResource("1_n8kfy")
 value = 2
 value = 2
@@ -17,11 +17,13 @@ image = ExtResource("2_yv50k")
 cost = 40
 hidden = false
 lastForOneTurn = false
-gameStartEffects = [SubResource("Resource_52o4b")]
+lastForOneLevel = false
+gameStartEffects = [SubResource("Resource_h0ewd")]
 turnStartEffects = []
 addToInvEffects = []
 levelOverEffects = []
 effects = []
+matchEffects = []
 counterMax = 0
 customCounter = false
 counterResetOnLevelStart = false

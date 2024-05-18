@@ -13,12 +13,17 @@ public partial class Global : Node
 	private const String META_COINS_SAVE_NAME = "meatCoins";
 	private const String MUSIC_VOLUME_SAVE_NAME = "musicVolum";
 	private const String SFX_VOLUME_SAVE_NAME = "sfxVolume";
+	private const String DEBT_SAVE_NAME = "debt";
+	private const String TUTORIAL_SAVE_NAME = "seenTutorial";
+	private const String NUMBER_OF_LEVELS_PLAYED = "numberOfLevelsPlayed";
 
 	public CardList deckCardList = null;
 	public Array<ColorUpgrade> colorUpgrades = new Array<ColorUpgrade>();
 	public List<RelicResource> relics = new List<RelicResource>();
 	public DeckSelectionResource deckSelection = null;
 
+	public int debt = 500;
+	public int numberOfLevelsPlayed = 0;
 	public ulong timeStartedRun = 0;
 	public bool zenMode = false;
 	public int currentLevel = 1;
@@ -56,7 +61,6 @@ public partial class Global : Node
 		allCoinsGained = 0;
 		numberOfCardsToChoose = 3;
 		shownBossTutorial = false;
-		shownWelcomeTutorial = false;
 		shownGooTutorial = false;
 		gooRightRow = false;
 		gridSize = new Vector2(6, 5);
@@ -76,6 +80,8 @@ public partial class Global : Node
 
 	public void save()
 	{
+		GD.Print(shownBossTutorial + " save");
+
 		if (userId == -1)
 		{
 			userId = GD.RandRange(1, Int32.MaxValue);
@@ -86,10 +92,14 @@ public partial class Global : Node
 		saveDict.Add(META_COINS_SAVE_NAME, currentMetaCoins.ToString());
 		saveDict.Add(SFX_VOLUME_SAVE_NAME, sfXvolume.ToString());
 		saveDict.Add(MUSIC_VOLUME_SAVE_NAME, musicVolume.ToString());
+		saveDict.Add(DEBT_SAVE_NAME, debt.ToString());
+		saveDict.Add(TUTORIAL_SAVE_NAME, shownWelcomeTutorial.ToString());
+		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfCardsToChoose.ToString());
 
 		var jsonString = Json.Stringify(saveDict);
 		// Store the save dictionary as a new line in the save file.
 		userIdSave.StoreLine(jsonString);
+
 	}
 
 	private void load()
@@ -111,7 +121,30 @@ public partial class Global : Node
 		{
 			currentMetaCoins = Int32.Parse(nodeData[META_COINS_SAVE_NAME]);
 		}
-		//sfXvolume = float.Parse(nodeData[SFX_VOLUME_SAVE_NAME]);
-		//musicVolume = float.Parse(nodeData[MUSIC_VOLUME_SAVE_NAME]);
+		sfXvolume = tryLoadFloat(nodeData, SFX_VOLUME_SAVE_NAME, sfXvolume);
+		musicVolume = tryLoadFloat(nodeData, MUSIC_VOLUME_SAVE_NAME, musicVolume);
+		debt = tryLoadInt(nodeData, DEBT_SAVE_NAME, debt);
+		shownWelcomeTutorial = tryLoadBool(nodeData, TUTORIAL_SAVE_NAME, shownWelcomeTutorial);
+		numberOfLevelsPlayed = tryLoadInt(nodeData, NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed);
+	}
+
+	private float tryLoadFloat(Godot.Collections.Dictionary<String, String> nodeData, String name, float defaultValue) {
+		if (nodeData.ContainsKey(name)) {
+			return float.Parse(nodeData[name]);
+		}
+		return defaultValue;
+	}
+	private int tryLoadInt(Godot.Collections.Dictionary<String, String> nodeData, String name, int defaultValue) {
+		if (nodeData.ContainsKey(name)) {
+			return int.Parse(nodeData[name]);
+		}
+		return defaultValue;
+	}
+
+	private bool tryLoadBool(Godot.Collections.Dictionary<String, String> nodeData, String name, bool defaultValue) {
+		if (nodeData.ContainsKey(name)) {
+			return bool.Parse(nodeData[name]);
+		}
+		return defaultValue;
 	}
 }

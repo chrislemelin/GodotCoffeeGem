@@ -8,7 +8,6 @@ public partial class MetaGlobal : Node
 
 	private Godot.Collections.Dictionary<GemType, int> gemTypeToUpgradeLevel = new();
 	public int gemUpgradeMax = 5;
-
 	private const String COIN_DROP_RATE_STRING = "coinDropRate";
 	public int coinDropRate = 0;
 	public int coinDropRateMax = 5;

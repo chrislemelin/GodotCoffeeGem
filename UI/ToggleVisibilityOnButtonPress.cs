@@ -5,6 +5,8 @@ public partial class ToggleVisibilityOnButtonPress : Control
 {
 	[Export] public Button button;
 	[Export] AnimationPlayer animationPlayer;
+	[Export] public RichTextLabel richTextLabel;
+
 	[Signal] public delegate void WindowClosedSignalEventHandler();
 
 	[Export] protected float fadeOutDelay = 0.0f;

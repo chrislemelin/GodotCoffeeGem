@@ -1,10 +1,13 @@
-[gd_scene load_steps=44 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=49 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
-[ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_ca4kv"]
+[ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_uqcxx"]
+[ext_resource type="Resource" uid="uid://bewp1ndgxw4gx" path="res://relics/bossRelics/BossRelicList.tres" id="3_7yc8h"]
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_tlo67"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
+[ext_resource type="Resource" uid="uid://dpl17deaxo8r7" path="res://dialogue/BobConvo1.dialogue" id="4_kwqte"]
+[ext_resource type="Resource" uid="uid://v31t3xiejrlg" path="res://dialogue/BobConvo2.dialogue" id="4_tmapm"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
 [ext_resource type="Texture2D" uid="uid://c1s2lxholqwbh" path="res://placeholders/CoffeeShop/Coffee 1.png" id="6_v4hji"]
@@ -15,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
+[ext_resource type="Texture2D" uid="uid://k22e2kqicd4o" path="res://placeholders/character/MainCharacter2.png" id="12_vif15"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="14_31k88"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
@@ -25,14 +29,14 @@
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="18_vk04q"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="18_y5ido"]
 [ext_resource type="Texture2D" uid="uid://br4ldam3vc7v3" path="res://placeholders/tutorial/Screenshot 2024-01-02 153911.png" id="20_2g6nx"]
-[ext_resource type="Texture2D" uid="uid://c4bqm3aiirl78" path="res://placeholders/tutorial/Screenshot 2023-12-19 090925.png" id="20_cw8l2"]
-[ext_resource type="Texture2D" uid="uid://lp4raqd5t3v5" path="res://placeholders/tutorial/Screenshot 2023-12-15 082252.png" id="21_1sem2"]
 [ext_resource type="Texture2D" uid="uid://mqta6tnmb70t" path="res://placeholders/tutorial/Screenshot 2024-01-22 180542.png" id="24_d5am1"]
 [ext_resource type="Script" path="res://UI/WelcomeScreen.cs" id="26_gxqfm"]
 [ext_resource type="Texture2D" uid="uid://d4atoeb02hhv7" path="res://placeholders/tutorial/Screenshot 2024-01-14 160252.png" id="27_6giu6"]
 [ext_resource type="Script" path="res://UI/ToggleVisibilityOnButtonPress.cs" id="27_67js8"]
+[ext_resource type="Texture2D" uid="uid://cc01hsvaa3yhd" path="res://placeholders/tutorial/Screenshot 2024-05-06 221727.png" id="28_4vqb1"]
 [ext_resource type="Texture2D" uid="uid://c0npqs1omb3jo" path="res://placeholders/tutorial/Screenshot 2024-01-22 085344.png" id="29_85eqo"]
 [ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/BossRecipeUI.tscn" id="29_a8e6p"]
+[ext_resource type="Texture2D" uid="uid://b2lt3phdihruj" path="res://placeholders/tutorial/Screenshot 2024-05-06 221820.png" id="29_r1q5u"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="32_otpbl"]
 [ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
@@ -40,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
 [ext_resource type="PackedScene" uid="uid://dul64fgsaye3s" path="res://camera/camera_2d.tscn" id="39_3yyxa"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="39_btpum"]
+[ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://placeholders/character/Boss.png" id="43_eeut1"]
 
 [sub_resource type="Animation" id="Animation_n7a6h"]
 resource_name = "FadeIn"
@@ -79,26 +84,35 @@ _data = {
 "RESET": SubResource("Animation_rp5ce")
 }
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "UICover", "gameOverScreen", "score", "relicHolderUI", "bossRelicTutorial", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay")]
 position = Vector2(-4, -1)
 script = ExtResource("1_5jnm2")
 recipeUI = NodePath("BossRecipeUI")
+UICover = NodePath("UIOverLays/Cover")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
+bossRelicTutorial = NodePath("UIOverLays/BossRelicDisplay")
 bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
-levelList = ExtResource("2_ca4kv")
+levelList = ExtResource("2_qtucr")
+bossRelics = ExtResource("3_7yc8h")
 levelComplete = NodePath("UIOverLays/LevelComplete")
+debtDisplay = NodePath("Debt")
+dialougeDict = {
+1: ExtResource("4_kwqte"),
+2: ExtResource("4_tmapm")
+}
+dialougeResource = ExtResource("4_tmapm")
 cardPool = ExtResource("2_uqcxx")
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
 modulate = Color(0.454902, 0.454902, 0.454902, 1)
-position = Vector2(972, 438)
+position = Vector2(965, 435)
 scale = Vector2(0.836182, 0.836182)
 texture = ExtResource("6_v4hji")
 
@@ -122,6 +136,12 @@ hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
 gameCamera = NodePath("../Camera2D")
+
+[node name="MainCharacter" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(402, 525)
+scale = Vector2(0.998632, 0.998632)
+texture = ExtResource("12_vif15")
 
 [node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager", "deckView") instance=ExtResource("6_tl444")]
 position = Vector2(1784, 911)
@@ -179,6 +199,42 @@ tooltip_text = "This recipe must be completed before you can score any points fo
 
 [node name="RelicHolder" parent="." groups=["RelicHolder"] instance=ExtResource("16_qkjnw")]
 
+[node name="Debt" type="Control" parent="." node_paths=PackedStringArray("button", "richTextLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 28.0
+offset_right = 2.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("27_67js8")
+button = NodePath("../UIOverLays/BossRecipeTutorial/Button")
+richTextLabel = NodePath("RichTextLabel2")
+
+[node name="Panel" type="Panel" parent="Debt"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 123.0
+offset_right = 460.0
+offset_bottom = 164.0
+theme = ExtResource("18_y5ido")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Debt"]
+layout_mode = 2
+offset_left = 166.0
+offset_top = 123.0
+offset_right = 456.0
+offset_bottom = 167.0
+size_flags_vertical = 3
+theme = ExtResource("16_m0mlx")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Debt:"
+fit_content = true
+
 [node name="UIOverLays" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -228,34 +284,48 @@ text = "Advance"
 [node name="WelcomeScreens" type="Control" parent="UIOverLays/WelcomeScreen"]
 anchors_preset = 0
 
-[node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-layout_mode = 0
-offset_left = 449.0
-offset_top = 253.0
-offset_right = 1726.0
-offset_bottom = 530.0
+[node name="Screen1" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="MarginContainer2" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
+[node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 263.0
+offset_right = 1494.0
+offset_bottom = 550.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_bottom = 25
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/MarginContainer2"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1/MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
 theme_override_font_sizes/normal_font_size = 72
 text = "Welcome to Beans of Production!"
 
-[node name="MarginContainer" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
+[node name="MarginContainer1" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1/MarginContainer1"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
-text = "You are a new barista working for [company name] at coffee shop #357. Work hard for the company and you might land yourself a promotion, or even a day off!"
+text = "My name is Bob, your AI boss. I want to welcome you to the E-Family as a barista at BeanTown coffee shop #357, a subsidiary of E-Corp. We here at E-Corp offer a generous and fulfilling bartista program for team. It will let you gain vauable experience while working off your debt at the same time! We have concluded our standard 5 minute small talk. It's time to start your training."
+
+[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 481.0
+offset_top = 510.0
+offset_right = 801.0
+offset_bottom = 830.0
+texture = ExtResource("43_eeut1")
 
 [node name="Screen2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
 visible = false
@@ -368,6 +438,15 @@ offset_right = 31.0
 offset_bottom = 95.0
 theme = ExtResource("18_y5ido")
 text = "This is your current energy. You will get 3 each turn and each card you play will consume some energy"
+
+[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 509.0
+offset_top = 415.0
+offset_right = 829.0
+offset_bottom = 735.0
+texture = ExtResource("43_eeut1")
 
 [node name="Screen3" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
 visible = false
@@ -508,7 +587,7 @@ offset_top = -1.0
 offset_right = 89.0
 offset_bottom = 100.0
 theme = ExtResource("18_y5ido")
-text = "Use your wages to buy upgrades between levels."
+text = "Use E-Bucks to buy upgrades between levels."
 
 [node name="MetaCoins" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
 layout_mode = 2
@@ -532,10 +611,19 @@ texture = ExtResource("17_so8o5")
 layout_mode = 0
 offset_left = -167.0
 offset_top = 24.0
-offset_right = 116.0
+offset_right = 174.0
 offset_bottom = 146.0
 theme = ExtResource("18_y5ido")
-text = "Earn meta coins after each run. These can be spent on permanent upgrades"
+text = "You will earn E-Corp loyalty points after each run. These can be spent on permanent upgrades"
+
+[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen3"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 509.0
+offset_top = 415.0
+offset_right = 829.0
+offset_bottom = 735.0
+texture = ExtResource("43_eeut1")
 
 [node name="GemsTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
 visible = false
@@ -578,7 +666,7 @@ offset_left = 180.0
 offset_top = 10.0
 offset_right = 283.0
 offset_bottom = 108.0
-texture = ExtResource("20_cw8l2")
+texture = ExtResource("28_4vqb1")
 
 [node name="CardGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
 custom_minimum_size = Vector2(300, 150)
@@ -600,7 +688,7 @@ offset_left = 180.0
 offset_top = 10.0
 offset_right = 283.0
 offset_bottom = 108.0
-texture = ExtResource("21_1sem2")
+texture = ExtResource("29_r1q5u")
 
 [node name="ComboGemTutorial2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
 visible = false
@@ -645,6 +733,74 @@ offset_right = 290.0
 offset_bottom = 123.0
 texture = ExtResource("24_d5am1")
 expand_mode = 3
+
+[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -377.0
+offset_top = 231.0
+offset_right = -57.0
+offset_bottom = 551.0
+texture = ExtResource("43_eeut1")
+
+[node name="GoodLuck" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 810.0
+offset_top = 147.0
+offset_right = 810.0
+offset_bottom = 147.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GoodLuck"]
+layout_mode = 0
+offset_left = -70.0
+offset_top = 317.0
+offset_right = 552.0
+offset_bottom = 464.0
+theme = ExtResource("18_y5ido")
+text = "Well, that concludes your training. I will be checking up on you to make sure you hit your quotas. You will be put on a mandatory unpaid vacation if you don't hit quotas in a timely manner. Anyway, no  pressure. I'm sure you will do fine."
+
+[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GoodLuck"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -377.0
+offset_top = 231.0
+offset_right = -57.0
+offset_bottom = 551.0
+texture = ExtResource("43_eeut1")
+
+[node name="Cover" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens", "textureButton")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("26_gxqfm")
+button2 = NodePath("../WelcomeScreen/Button")
+screens = NodePath("../WelcomeScreen/WelcomeScreens")
+textureButton = NodePath("../TutorialButton")
+
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/Cover"]
+modulate = Color(0, 0, 0, 0.615686)
+layout_mode = 2
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 1935.0
+offset_bottom = 1079.0
+rotation = -0.000391196
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
 
 [node name="BossRecipeTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
 visible = false
@@ -763,6 +919,56 @@ offset_bottom = 871.0
 theme = ExtResource("16_m0mlx")
 text = "Continue"
 
+[node name="BossRelicDisplay" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "richTextLabel")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("27_67js8")
+button = NodePath("Button")
+richTextLabel = NodePath("Text")
+
+[node name="TextureRect" type="TextureRect" parent="UIOverLays/BossRelicDisplay"]
+modulate = Color(0, 0, 0, 0.568627)
+layout_mode = 2
+offset_left = -10.0
+offset_right = 1922.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("18_vk04q")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Text" type="RichTextLabel" parent="UIOverLays/BossRelicDisplay"]
+layout_mode = 2
+offset_left = 542.0
+offset_top = 297.0
+offset_right = 1142.0
+offset_bottom = 577.0
+theme = ExtResource("18_y5ido")
+text = "Oh no, you accidently make a drink wrong for a customer and she demands to speak to your manager. You are rattled for the rest of the day
+
+EFFECT FOR THIS LEVEL:
+"
+fit_content = true
+
+[node name="Button" type="Button" parent="UIOverLays/BossRelicDisplay"]
+modulate = Color(1, 0.996078, 0.996078, 1)
+layout_mode = 0
+offset_left = 744.0
+offset_top = 806.0
+offset_right = 939.0
+offset_bottom = 871.0
+theme = ExtResource("16_m0mlx")
+text = "Continue"
+
 [node name="TutorialButton" type="TextureButton" parent="UIOverLays"]
 layout_mode = 0
 offset_left = 4.0
@@ -790,13 +996,14 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("richTextLabel", "button", "animationPlayer")]
+[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("richTextLabel", "button", "animationPlayer", "richTextLabel")]
 visible = false
 anchors_preset = 0
 script = ExtResource("32_x2qxf")
 richTextLabel = NodePath("Panel/VBoxContainer/HBoxContainer2/RichTextLabel")
 button = NodePath("Panel/Button")
 animationPlayer = NodePath("AnimationPlayer")
+richTextLabel = NodePath("Panel/VBoxContainer/HBoxContainer2/RichTextLabel")
 
 [node name="Background" type="TextureRect" parent="UIOverLays/LevelComplete"]
 modulate = Color(0, 0, 0, 0.568627)

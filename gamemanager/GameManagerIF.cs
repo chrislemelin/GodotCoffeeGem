@@ -192,6 +192,28 @@ public partial class GameManagerIF : Node2D
 		getGlobal().collectData = value;
 	}
 
+	public int getDebt()
+	{
+		return getGlobal().debt;
+	}
+
+	public void changeDebt(int value)
+	{
+		getGlobal().debt += value;
+		getGlobal().save();
+	}
+
+	public int getNumberOfLevelsPlayed()
+	{
+		return getGlobal().numberOfLevelsPlayed;
+	}
+
+	public void incrementNumberOfLevelsPlayed()
+	{
+		getGlobal().numberOfLevelsPlayed += 1;
+	}	
+
+
 	public bool getCollectData()
 	{
 		return getGlobal().collectData;

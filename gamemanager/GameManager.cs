@@ -10,11 +10,13 @@ public partial class GameManager : GameManagerIF
 
 	[Export] public NewCardSelection newCardSelection;
 	[Export] public RecipeUI recipeUI;
+	[Export] Control UICover;
 
 	[Export] public GameOverScreen gameOverScreen;
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
 	[Export] public Array<RelicResource> relicTestResources = new Array<RelicResource>();
+	[Export] public ToggleVisibilityOnButtonPress bossRelicTutorial;
 	[Export] public Control bossRecipeTutorial;
 	[Export] public Control gooTutorial;
 	[Export] public WelcomeScreen welcomeTutorial;
@@ -22,11 +24,15 @@ public partial class GameManager : GameManagerIF
 	[Export] public LevelListResource levelList;
 	[Export] public RelicList bossRelics;
 	[Export] public LevelCompleteUI levelComplete;
+	[Export] public ToggleVisibilityOnButtonPress debtDisplay;
 	[Signal] public delegate void levelOverEventHandler();
 	[Signal] public delegate void levelStartEventHandler();
 	[Export] private bool debugMode;
 	[Export] private bool endlessMode;
 	[Export] private bool skipFirstLevel;
+	[Export] private Godot.Collections.Dictionary<int, Resource> dialougeDict = new Godot.Collections.Dictionary<int, Resource>();
+
+	[Export] Resource dialougeResource;
 
 	private int currentLevel;
 	private LevelResource currentLevelResource;
@@ -35,7 +41,7 @@ public partial class GameManager : GameManagerIF
 	{
 		base._Ready();
 		currentLevel = global.currentLevel;
-		currentLevelResource = levelList.levelResources[currentLevel - 1];
+		currentLevelResource = levelList.levelResources[currentLevel -1];
 		if (currentLevel == 1)
 		{
 			setStartTime();
@@ -51,6 +57,7 @@ public partial class GameManager : GameManagerIF
 		{
 			welcomeTutorial.startUp();
 			getGlobal().shownWelcomeTutorial = true;
+			getGlobal().save();
 		}
 		if (!getGlobal().shownGooTutorial && currentLevelResource.blockedTiles > 0 && !debugMode)
 		{
@@ -87,14 +94,35 @@ public partial class GameManager : GameManagerIF
 		}
 		FindObjectHelper.getMatchBoard(this).addRandomBlockedTiles(currentLevelResource.blockedTiles);
 		relicHolderUI.setRelicList(getRelics());
+
 		if (currentLevelResource.generateRandomBossRelic)
 		{
-			relicHolderUI.setRelicList(getRelics());
+			RelicResource bossRelic = getRandomBossRelic();
+			relicHolderUI.addRelic(bossRelic);
+			bossRelicTutorial.richTextLabel.Text += bossRelic.description;
+			bossRelicTutorial.Visible = true;
 		}
-		relicHolderUI.addRelic(getRandomBossRelic());
-		relicHolderUI.startUpRelics();
-
 		EmitSignal(SignalName.levelStart);
+		relicHolderUI.startUpRelics();
+		debtDisplay.richTextLabel.Text += "$"+getDebt();
+
+		//EmitSignal(SignalName.levelStart);
+		//startDialouge(dialougeResource);
+
+	}
+
+	private Optional<Resource> getDialouge() {
+		int value = getNumberOfLevelsPlayed();
+		GD.Print("levels played " + value);
+		if (dialougeDict.ContainsKey(value)) {
+			return Optional.Some(dialougeDict[value]);
+		} else {
+			return Optional.None<Resource>();
+		}
+	}
+
+	public void startDialouge (Resource dialougeResource){
+		DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
 	}
 
 	public void evaluateLevel()
@@ -105,6 +133,7 @@ public partial class GameManager : GameManagerIF
 			// its joever
 			resetGlobals();
 			int metaCoins = evaluateMetaCoins();
+			changeDebt(-metaCoins);
 			gameOverScreen.setMetaCoins(metaCoins);
 			addMetaCoins(metaCoins);
 			gameOverScreen.Visible = true;
@@ -156,7 +185,9 @@ public partial class GameManager : GameManagerIF
 
 	private RelicResource getRandomBossRelic()
 	{
-		return bossRelics.allRelics[0];
+		List<RelicResource> relicList = bossRelics.allRelics.ToList();
+		RandomHelper.Shuffle(relicList);
+		return relicList[0];
 	}
 
 	private void selectRandomRelic()
@@ -170,7 +201,25 @@ public partial class GameManager : GameManagerIF
 	}
 	public override void advanceLevel()
 	{
+		incrementNumberOfLevelsPlayed();
+		Optional<Resource> dialougeMaybe = getDialouge();
+		if (dialougeMaybe.HasValue) {
+			DialogueManagerRuntime.DialogueManager.DialogueEnded += loadNewScene;
+			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeMaybe.GetValue());
+		} else {
+			loadNewScene(dialougeMaybe.GetValue());
+		}
+	}
+	private void  loadNewScene(Resource resource) {
 		global.currentLevel += 1;
 		GetTree().ChangeSceneToFile("res://mainScenes/Map.tscn");
+		//DialogueManagerRuntime.DialogueManager.DialogueEnded -= (Resource dialogueResource) => loadNewScene();
 	}
+
+	protected override void Dispose(bool disposing)
+	{
+		DialogueManagerRuntime.DialogueManager.DialogueEnded -= loadNewScene;
+		base.Dispose(disposing);
+	}
+
 }

@@ -21,6 +21,11 @@ Globals="*res://util/Global.cs"
 MusicPlayer="*res://sound/music/MusicPlayer.tscn"
 FormSubmitter="*res://dataGathering/FormSubmitter.tscn"
 MetaGlobal="*res://meta/MetaGlobal.cs"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[dialogue_manager]
+
+general/balloon_path="res://addons/dialogue_manager/balloons/Balloon.tscn"
 
 [display]
 
@@ -31,6 +36,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="CoffeeGem"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
@@ -55,3 +64,7 @@ space={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue/BobConvo1.dialogue", "res://dialogue/IntroDialouge1.dialogue", "res://dialogue/BobConvo2.dialogue", "res://dialogue/AfterWorkTalk.dialogue", "res://dialogue/ShopKeeper.dialogue")
