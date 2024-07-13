@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
 [ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
-[ext_resource type="Texture2D" uid="uid://dpilfwmi6oc0i" path="res://placeholders/Map/Map-newangles-scaled-03-17-2024.png" id="7_skbxq"]
+[ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://placeholders/Map/map-07-08-2024.png" id="7_v8p8x"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
@@ -401,9 +401,10 @@ topLines = [NodePath("Paths/Line2D4"), NodePath("Paths/Line2D5"), NodePath("Path
 botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths/Line2D3")]
 
 [node name="Map2" type="Sprite2D" parent="Map"]
-position = Vector2(968, 548)
-scale = Vector2(0.93, 0.93)
-texture = ExtResource("7_skbxq")
+texture_filter = 1
+position = Vector2(961.788, 538.5)
+scale = Vector2(3.7099, 3.7099)
+texture = ExtResource("7_v8p8x")
 
 [node name="Background" type="TextureRect" parent="Map"]
 visible = false
@@ -425,10 +426,10 @@ anchors_preset = 0
 
 [node name="Control" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 989.0
-offset_top = 251.0
-offset_right = 989.0
-offset_bottom = 251.0
+offset_left = 998.0
+offset_top = 252.0
+offset_right = 998.0
+offset_bottom = 252.0
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control" instance=ExtResource("4_pfyjt")]
 visible = false
@@ -439,10 +440,10 @@ upgradedSwitchCard = SubResource("Resource_oyaui")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 1269.0
-offset_top = 532.0
-offset_right = 1269.0
-offset_bottom = 532.0
+offset_left = 1153.0
+offset_top = 412.0
+offset_right = 1153.0
+offset_bottom = 412.0
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
@@ -492,10 +493,10 @@ horizSwitchCard = SubResource("Resource_ahjpb")
 upgradedSwitchCard = SubResource("Resource_imnlm")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
-offset_left = 1561.0
-offset_top = 826.0
-offset_right = 1561.0
-offset_bottom = 826.0
+offset_left = 1386.0
+offset_top = 609.0
+offset_right = 1386.0
+offset_bottom = 609.0
 type = 7
 vertSwitchCard = SubResource("Resource_ilocs")
 horizSwitchCard = SubResource("Resource_7a0hk")
@@ -549,13 +550,10 @@ position = Vector2(780, 135)
 position = Vector2(927, 274)
 
 [node name="Node2D4" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1198, 548)
-
-[node name="Node2D5" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1299, 655)
+position = Vector2(1067, 416)
 
 [node name="Node2D6" type="Node2D" parent="Map/TopPath"]
-position = Vector2(1489, 844)
+position = Vector2(1304, 655)
 
 [node name="BotPath" type="Node2D" parent="Map"]
 
@@ -569,13 +567,13 @@ position = Vector2(353, 821)
 position = Vector2(523, 988)
 
 [node name="Node2D5" type="Node2D" parent="Map/BotPath"]
-position = Vector2(596, 1066)
+position = Vector2(650, 1100)
 
 [node name="Node2D6" type="Node2D" parent="Map/BotPath"]
-position = Vector2(1301, 654)
+position = Vector2(1205, 545)
 
 [node name="Node2D7" type="Node2D" parent="Map/BotPath"]
-position = Vector2(1487, 844)
+position = Vector2(1304, 655)
 
 [node name="Character" type="Node2D" parent="."]
 position = Vector2(445, 453)

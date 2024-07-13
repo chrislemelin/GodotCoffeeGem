@@ -80,8 +80,6 @@ public partial class Global : Node
 
 	public void save()
 	{
-		GD.Print(shownBossTutorial + " save");
-
 		if (userId == -1)
 		{
 			userId = GD.RandRange(1, Int32.MaxValue);

@@ -41,7 +41,7 @@ public partial class GameManager : GameManagerIF
 	{
 		base._Ready();
 		currentLevel = global.currentLevel;
-		currentLevelResource = levelList.levelResources[currentLevel -1];
+		currentLevelResource = levelList.levelResources[currentLevel - 1];
 		if (currentLevel == 1)
 		{
 			setStartTime();
@@ -104,24 +104,29 @@ public partial class GameManager : GameManagerIF
 		}
 		EmitSignal(SignalName.levelStart);
 		relicHolderUI.startUpRelics();
-		debtDisplay.richTextLabel.Text += "$"+getDebt();
+		debtDisplay.richTextLabel.Text += "$" + getDebt();
 
 		//EmitSignal(SignalName.levelStart);
 		//startDialouge(dialougeResource);
 
 	}
 
-	private Optional<Resource> getDialouge() {
+	private Optional<Resource> getDialouge()
+	{
 		int value = getNumberOfLevelsPlayed();
 		GD.Print("levels played " + value);
-		if (dialougeDict.ContainsKey(value)) {
+		if (dialougeDict.ContainsKey(value))
+		{
 			return Optional.Some(dialougeDict[value]);
-		} else {
+		}
+		else
+		{
 			return Optional.None<Resource>();
 		}
 	}
 
-	public void startDialouge (Resource dialougeResource){
+	public void startDialouge(Resource dialougeResource)
+	{
 		DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
 	}
 
@@ -203,14 +208,18 @@ public partial class GameManager : GameManagerIF
 	{
 		incrementNumberOfLevelsPlayed();
 		Optional<Resource> dialougeMaybe = getDialouge();
-		if (dialougeMaybe.HasValue) {
+		if (dialougeMaybe.HasValue)
+		{
 			DialogueManagerRuntime.DialogueManager.DialogueEnded += loadNewScene;
 			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeMaybe.GetValue());
-		} else {
+		}
+		else
+		{
 			loadNewScene(dialougeMaybe.GetValue());
 		}
 	}
-	private void  loadNewScene(Resource resource) {
+	private void loadNewScene(Resource resource)
+	{
 		global.currentLevel += 1;
 		GetTree().ChangeSceneToFile("res://mainScenes/Map.tscn");
 		//DialogueManagerRuntime.DialogueManager.DialogueEnded -= (Resource dialogueResource) => loadNewScene();

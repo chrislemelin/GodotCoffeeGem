@@ -23,7 +23,7 @@ public partial class CardList : Resource
 		List<CardResource> returnCards = allCards.ToList().Where(card => card != null).ToList();
 		if (removeDuplicates) {
 			List<CardResource> returnCardsNoDups = returnCards.GroupBy(x => x.Title).Select(y => y.First()).ToList();
-			if (!returnCardsNoDups.Equals(returnCards)){
+			if (!returnCardsNoDups.Equals(returnCards)) {
 				GD.Print(returnCards.Except(returnCardsNoDups).ToList());
 			}
 			returnCards = returnCardsNoDups;

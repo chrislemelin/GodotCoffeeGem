@@ -28,6 +28,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -54,6 +55,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -80,6 +82,7 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 consume = false
@@ -147,7 +150,6 @@ grow_horizontal = 0
 gameManager = NodePath("..")
 
 [node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") instance=ExtResource("4_v1i61")]
-visible = false
 deckViewUI = NodePath("../DeckView")
 
 [node name="Button" type="Button" parent="."]
