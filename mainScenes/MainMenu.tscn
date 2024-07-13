@@ -103,8 +103,6 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Quit"
-script = ExtResource("7_mbdpe")
-sceneString = "res://mainScenes/MetaProgressionUI.tscn"
 
 [node name="SettingsMenu" parent="." instance=ExtResource("7_vbbet")]
 

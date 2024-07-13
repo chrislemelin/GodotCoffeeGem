@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs0yawupejkyk"]
+[gd_scene load_steps=13 format=3 uid="uid://bs0yawupejkyk"]
 
 [ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
+[ext_resource type="Texture2D" uid="uid://cu1wkob0mu81w" path="res://placeholders/Map/buildings/Park.png" id="2_mxisg"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_t53kr"]
+[ext_resource type="Texture2D" uid="uid://kbf0scsm15wd" path="res://placeholders/Map/buildings/PlantHouse2.png" id="3_4rp63"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="3_os8q3"]
+[ext_resource type="Texture2D" uid="uid://d3un70kqewgub" path="res://placeholders/Map/buildings/portrait2.png" id="4_c7odg"]
 [ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_celhv"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="4_edqu2"]
 [ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="5_lg18n"]
-[ext_resource type="Texture2D" uid="uid://e5u303ieb0tt" path="res://placeholders/Map/RandomBuilding-pixel-scaled.png" id="6_i1fek"]
+[ext_resource type="Texture2D" uid="uid://bucfaofsbgqyk" path="res://placeholders/Map/buildings/RandomBuilding-Awning.png" id="5_nwbbn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4i6bp"]
 shader = ExtResource("5_lg18n")
@@ -25,11 +28,14 @@ image = NodePath("TextureRect")
 label = NodePath("RichTextLabel")
 highlight = NodePath("TextureRect")
 inActiveColor = Color(0.584314, 0.584314, 0.584314, 1)
+mapTypes = [0, 1, 2, 3, 4, 5]
+mapTextures = [ExtResource("2_mxisg"), ExtResource("2_mxisg"), ExtResource("3_4rp63"), ExtResource("3_4rp63"), ExtResource("4_c7odg"), ExtResource("5_nwbbn")]
 vertSwitchCard = ExtResource("2_t53kr")
 horizSwitchCard = ExtResource("3_os8q3")
 upgradedSwitchCard = ExtResource("4_celhv")
 
 [node name="TextureRect" type="TextureRect" parent="." node_paths=PackedStringArray("area2D")]
+texture_filter = 1
 material = SubResource("ShaderMaterial_4i6bp")
 layout_mode = 0
 offset_left = -89.0
@@ -37,7 +43,7 @@ offset_top = -327.0
 offset_right = 199.0
 offset_bottom = 60.0
 mouse_filter = 2
-texture = ExtResource("6_i1fek")
+texture = ExtResource("3_4rp63")
 script = ExtResource("4_edqu2")
 area2D = NodePath("../Control")
 
