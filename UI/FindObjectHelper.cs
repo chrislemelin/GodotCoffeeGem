@@ -8,12 +8,14 @@ public partial class FindObjectHelper
 	public static readonly String NEW_BUTTON_NAME = "%NewTurnButton";
 	public static readonly String SCORE_NAME = "%Score";
 	public static readonly String MATCH_BOARD_NAME = "MatchBoard";
-	public static readonly String DECK_VIEW_NAME = "DeckViewUI";
+	public static readonly String DECK_VIEW_NAME = "DeckView";
 	public static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
 	public static readonly String RELIC_SELECTION_NAME = "RelicSelection";
 	public static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
 	public static readonly String SETTINGS_MENU_NAME = "SettingsMenu";
 	public static readonly String RELIC_HOLDER_UI_NAME = "RelicHolder";
+	public static readonly String CARD_LIBRARY_NAME = "CardLibrary";
+
 
 
 	public static Hand getHand(Node node)
@@ -23,6 +25,10 @@ public partial class FindObjectHelper
 	public static Mana getMana(Node node)
 	{
 		return (Mana)node.GetTree().GetFirstNodeInGroup("Mana");
+	}
+	public static CardLibrary getCardLibrary(Node node)
+	{
+		return (CardLibrary)node.GetTree().GetFirstNodeInGroup(CARD_LIBRARY_NAME);
 	}
 	public static FormSubmitter getFormSubmitter(Node node)
 	{
@@ -52,7 +58,7 @@ public partial class FindObjectHelper
 
 	public static DeckViewUI getDeckView(Node node)
 	{
-		return (DeckViewUI)node.GetTree().GetNodesInGroup(DECK_VIEW_NAME)[0];
+		return (DeckViewUI)node.GetTree().GetFirstNodeInGroup(DECK_VIEW_NAME);
 	}
 
 	public static RelicHolderUI getRelicHolderUI(Node node)

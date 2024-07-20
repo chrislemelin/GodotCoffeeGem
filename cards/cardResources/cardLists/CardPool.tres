@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardList" load_steps=66 format=3 uid="uid://b3grjg3l83q21"]
 
 [ext_resource type="Resource" uid="uid://c0t40mre00w4j" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/EspressoConvertCard.tres" id="1_mbdou"]
-[ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="1_wmkeb"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_wmkeb"]
 [ext_resource type="Resource" uid="uid://dem6i4eb31m22" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/MilkConvertCard.tres" id="2_sy0be"]
 [ext_resource type="Resource" uid="uid://dyreny5skf6al" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/TeaConvertCard.tres" id="3_ct2g8"]
 [ext_resource type="Resource" uid="uid://bea3d4p3qbvtr" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/SugarConvertCard.tres" id="4_17mqs"]

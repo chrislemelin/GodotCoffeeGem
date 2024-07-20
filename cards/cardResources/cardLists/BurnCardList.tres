@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_g83be"]
 [ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="5_hctx3"]
 [ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="6_pl0eo"]
-[ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="7_urlfj"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="7_urlfj"]
 
 [resource]
 script = ExtResource("7_urlfj")

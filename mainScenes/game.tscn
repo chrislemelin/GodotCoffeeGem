@@ -204,6 +204,7 @@ offset_bottom = 62.0
 tooltip_text = "This recipe must be completed before you can score any points for the level"
 
 [node name="RelicHolder" parent="." groups=["RelicHolder"] instance=ExtResource("16_qkjnw")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Debt" type="Control" parent="." node_paths=PackedStringArray("button", "richTextLabel")]
 layout_mode = 3
@@ -967,7 +968,7 @@ cards = []
 visible = false
 layout_mode = 1
 
-[node name="DeckView" parent="UIOverLays" instance=ExtResource("32_fnn8m")]
+[node name="DeckView" parent="UIOverLays" groups=["DeckView"] instance=ExtResource("32_fnn8m")]
 visible = false
 layout_mode = 1
 

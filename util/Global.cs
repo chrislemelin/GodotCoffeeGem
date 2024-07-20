@@ -80,7 +80,7 @@ public partial class Global : Node
 
 	public void save()
 	{
-		if (userId == -1)
+		if (userId == -1) 
 		{
 			userId = GD.RandRange(1, Int32.MaxValue);
 		}

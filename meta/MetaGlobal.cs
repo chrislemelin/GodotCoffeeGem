@@ -52,7 +52,7 @@ public partial class MetaGlobal : Node
 		}
 		coinDropRate = Int32.Parse(nodeData[COIN_DROP_RATE_STRING]);
 		metaCoinDropRate = Int32.Parse(nodeData[META_COIN_DROP_RATE_STRING]);
-		cardPacksUnlocked = new HashSet<string>(nodeData[META_COIN_DROP_RATE_STRING].Split(','));
+		cardPacksUnlocked = new HashSet<string>(nodeData[CARDS_UNLOCKED_STRING].Split(','));
 
 	}
 
@@ -79,6 +79,12 @@ public partial class MetaGlobal : Node
 			GD.PrintErr("tried to upgrade gem type " + gemType.ToString() + " which doenst exist");
 		}
 	}
+
+	public void addUnlockedCardPack(UnlockableCardPack unlockableCardPack) {
+		cardPacksUnlocked.Add(unlockableCardPack.title);
+		save();
+	}
+
 	public void addCoinDropRate(int value) {
 		Mathf.Max(coinDropRate += value, coinDropRateMax);
 		save();
@@ -103,6 +109,7 @@ public partial class MetaGlobal : Node
 		initDictionary();
 		coinDropRate = 0;
 		metaCoinDropRate = 0;
+		cardPacksUnlocked = new HashSet<string>();
 		save();
 	}
 

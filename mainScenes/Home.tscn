@@ -168,7 +168,7 @@ theme = ExtResource("14_ap4t7")
 theme_override_font_sizes/font_size = 50
 text = "View Deck"
 
-[node name="DeckView" parent="." instance=ExtResource("14_ujune")]
+[node name="DeckView" parent="." groups=["DeckView"] instance=ExtResource("14_ujune")]
 visible = false
 
 [node name="RelicSelection" parent="." instance=ExtResource("16_v1rpc")]

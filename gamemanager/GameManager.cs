@@ -114,7 +114,6 @@ public partial class GameManager : GameManagerIF
 	private Optional<Resource> getDialouge()
 	{
 		int value = getNumberOfLevelsPlayed();
-		//GD.Print("levels played " + value);
 		if (dialougeDict.ContainsKey(value))
 		{
 			return Optional.Some(dialougeDict[value]);
@@ -135,6 +134,8 @@ public partial class GameManager : GameManagerIF
 		if (score.getScore() < scoreNeededToPass)
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
+			unlockNewCards();
+
 			// its joever
 			resetGlobals();
 			int metaCoins = evaluateMetaCoins();
@@ -146,6 +147,16 @@ public partial class GameManager : GameManagerIF
 		else
 		{
 			nextLevel();
+		}
+	}
+	
+	private void unlockNewCards() {
+		List<UnlockableCardPack> lockedPacks = getLockedCardPacks().ToList();
+		if (lockedPacks.Count > 0) {
+			UnlockableCardPack unlockedPack = lockedPacks[0];
+			GD.Print(unlockedPack.title);
+			FindObjectHelper.getDeckView(this).setUp(unlockedPack.getCards(), null, TextHelper.centered("New Cards Unlocked"));
+			unlockCardPack(unlockedPack);
 		}
 	}
 

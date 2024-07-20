@@ -114,11 +114,6 @@ public partial class Score : Node2D
 			audioStreamPlayer2D.Play();
 			gameManager.setHealth(heartsRemaining);
 		}
-		if (turnsRemaining == 0 && heartsRemaining == 0)
-		{
-			gameManager.evaluateLevel();
-			//gameManager.nextLevel();
-		}
 	}
 
 	public bool scoreReached()

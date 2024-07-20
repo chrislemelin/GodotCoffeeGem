@@ -334,7 +334,7 @@ public partial class Hand : Node
 		}
 		if (@event.IsActionPressed("space"))
 		{
-			deck.drawCards(1);
+			//deck.drawCards(1);
 		}
 	}
 }

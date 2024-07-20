@@ -12,7 +12,7 @@ config_version=5
 
 config/name="BeansOfProduction"
 run/main_scene="res://mainScenes/MainMenu.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +22,7 @@ MusicPlayer="*res://sound/music/MusicPlayer.tscn"
 FormSubmitter="*res://dataGathering/FormSubmitter.tscn"
 MetaGlobal="*res://meta/MetaGlobal.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+CardLibrary="*res://cards/cardResources/core/library/CardLibrary.tscn"
 
 [dialogue_manager]
 

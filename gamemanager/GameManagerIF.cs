@@ -5,14 +5,13 @@ using System.Linq;
 
 public partial class GameManagerIF : Node2D
 {
-
 	protected Global global;
 	protected MetaGlobal metaGlobal;
+	protected CardLibrary cardLibrary;
 	[Export] public CardList defaultCardPool;
 	[Export] private Godot.Collections.Array<UnlockableCardPack> cardPacks;
 	[Export] public RelicList relicList;
 	[Export] public CardList defaultCardList;
-
 
 	[Signal]
 	public delegate void healthChangedEventHandler(int newHealth);
@@ -44,21 +43,15 @@ public partial class GameManagerIF : Node2D
 
 	public List<CardResource> getDefaultCardPool() {
 		HashSet<String> allUnlockableCards = new HashSet<String>();
-		foreach(UnlockableCardPack pack in cardPacks) {
-			GD.Print("------");
-			GD.Print(pack.title);
-			GD.Print("------");
+		foreach(UnlockableCardPack pack in getCardLibrary().cardPacks.packs) {
 
-			//GD.Print(allUnlockableCards.Count + " cards in the unlock pool from " + cardPacks.Count + " packs");
 			allUnlockableCards.UnionWith(pack.getCards().Select(card =>  {
-				GD.Print(card.Title);
 				return card.Title;
 				}).ToList());
 		}
-		GD.Print(allUnlockableCards.Count + " cards in the unlock pool from " + cardPacks.Count + " packs");
 
 
-		List<CardResource> cards = defaultCardPool.getCards();
+		List<CardResource> cards = cardLibrary.defaultCardPool.getCards();
 		cards.RemoveAll(card => allUnlockableCards.Contains(card.Title));
 		return cards;
 	}
@@ -67,12 +60,27 @@ public partial class GameManagerIF : Node2D
 		HashSet<string> cardPacksUnlocked = getMetaGlobal().cardPacksUnlocked;
 		HashSet<CardResource> cardsUnlocked = new HashSet<CardResource>();
 
-		foreach(UnlockableCardPack pack in cardPacks) {
+		foreach(UnlockableCardPack pack in getCardLibrary().cardPacks.packs) {
 			if(cardPacksUnlocked.Contains(pack.title)) {
 				cardsUnlocked.UnionWith(pack.getCards());
 			}
 		}
 		return cardsUnlocked;
+	}
+	public List<UnlockableCardPack> getLockedCardPacks() {
+		HashSet<string> cardPacksUnlocked = getMetaGlobal().cardPacksUnlocked;
+		List<UnlockableCardPack> lockedCardPackList = new List<UnlockableCardPack>();
+
+		foreach(UnlockableCardPack pack in getCardLibrary().cardPacks.packs) {
+			if(!cardPacksUnlocked.Contains(pack.title)) {
+				lockedCardPackList.Add(pack);
+			}
+		}
+		return lockedCardPackList;
+	}
+
+	public void unlockCardPack(UnlockableCardPack unlockableCardPack) {
+		getMetaGlobal().addUnlockedCardPack(unlockableCardPack);
 	}
 
 	public void addCardToDeckList(CardResource cardResource)
@@ -181,19 +189,25 @@ public partial class GameManagerIF : Node2D
 			metaGlobal = GetNode<MetaGlobal>(MetaGlobal.LOAD_STRING);
 		}
 	}
+	private void loadCardLibrary()
+	{
+		if (cardLibrary == null)
+		{
+			cardLibrary = FindObjectHelper.getCardLibrary(this);
+		}
+	}
 
 	protected void loadGlobalAndSetDeckToDefault()
 	{
-		if (defaultCardList != null)
+
+		if (getGlobal().deckCardList == null || getGlobal().deckCardList.getCards().Count == 0)
 		{
-			if (getGlobal().deckCardList == null || getGlobal().deckCardList.getCards().Count == 0)
-			{
-				Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(defaultCardList.getCards());
-				CardList newCardList = new CardList();
-				newCardList.setCards(cardList);
-				getGlobal().deckCardList = newCardList;
-			}
+			Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(getCardLibrary().defaultCardList.getCards());
+			CardList newCardList = new CardList();
+			newCardList.setCards(cardList);
+			getGlobal().deckCardList = newCardList;
 		}
+		
 	}
 
 	public void setZenMode(bool value)
@@ -443,5 +457,10 @@ public partial class GameManagerIF : Node2D
 	{
 		loadMetaGLobal();
 		return metaGlobal;
+	}
+	protected CardLibrary getCardLibrary()
+	{
+		loadCardLibrary();
+		return cardLibrary;
 	}
 }

@@ -51,17 +51,17 @@ static class GemTypeHelper
 		switch (gemType)
 		{
 			case GemType.Coffee:
-				return (Texture2D)GD.Load("res://placeholders/ingredients/bean-pixel-300px.png");
+				return (Texture2D)GD.Load("res://placeholders/ingredients/final/Bean-pixel2.png");
 			case GemType.Sugar:
-				return (Texture2D)GD.Load("res://placeholders/ingredients/sugar-pixel-300px.png");
+				return (Texture2D)GD.Load("res://placeholders/ingredients/final/sugar-pixel2.png");
 			case GemType.Leaf:
-				return (Texture2D)GD.Load("res://placeholders/ingredients/leaf-pixel-300px.png");
+				return (Texture2D)GD.Load("res://placeholders/ingredients/final/leaf-pixel-2.png");
 			case GemType.Vanilla:
-				return (Texture2D)GD.Load("res://placeholders/ingredients/vanilla-pixel-300px.png");
+				return (Texture2D)GD.Load("res://placeholders/ingredients/final/vanilla-pixel2.png");
 			case GemType.Milk:
-				return (Texture2D)GD.Load("res://placeholders/ingredients/milk-pixel-300px.png");
+				return (Texture2D)GD.Load("res://placeholders/ingredients/final/milk-pixel-2.png");
 			case GemType.Black:
-				return (Texture2D)GD.Load("res://placeholders/ingredients/burnt-pixel-300px.png");
+				return (Texture2D)GD.Load("res://placeholders/ingredients/final/burnt-pixel-34px.png");
 			default:
 				return null;
 		}

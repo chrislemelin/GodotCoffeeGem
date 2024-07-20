@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://cuupjsry3idhf"]
 
-[ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="1_6cmgn"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_6cmgn"]
 [ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="2_b1nn1"]
 [ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="3_vvk82"]
 [ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="5_dr1ge"]

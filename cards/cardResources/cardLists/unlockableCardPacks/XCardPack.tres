@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bo0msp240jdfp" path="res://cards/cardResources/changingCards/colorchange/X/SugarConvertXCard.tres" id="3_xrslf"]
 [ext_resource type="Resource" uid="uid://k2c5nvdb82wy" path="res://cards/cardResources/changingCards/colorchange/X/TeaConvertXCard.tres" id="4_5lun0"]
 [ext_resource type="Resource" uid="uid://dyhj7peoy2amj" path="res://cards/cardResources/changingCards/colorchange/X/VanillaConvertXCard.tres" id="5_r7afa"]
-[ext_resource type="Script" path="res://cards/cardResources/core/UnlockableCardPack.cs" id="7_j8ael"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/UnlockableCardPack.cs" id="7_j8ael"]
 
 [resource]
 script = ExtResource("7_j8ael")

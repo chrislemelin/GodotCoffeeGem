@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://n1nnocv6743g" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/MilkConvertRandomCard.tres" id="5_vrp20"]
 [ext_resource type="Resource" uid="uid://oov7pb8y5mml" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/SugarConvertRandomCard.tres" id="6_xyclo"]
 [ext_resource type="Resource" uid="uid://b5qti3iu5mmlf" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/TeaConvertRandomCard.tres" id="7_jcw3e"]
-[ext_resource type="Script" path="res://cards/cardResources/core/CardList.cs" id="7_qvv6d"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="7_qvv6d"]
 [ext_resource type="Resource" uid="uid://ct0cmbf354u4s" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/VanillaConvertRandomCard.tres" id="8_jop3p"]
 
 [resource]

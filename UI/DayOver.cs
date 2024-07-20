@@ -176,10 +176,7 @@ public partial class DayOver : Control
 			relicUI.buyButton.Disabled = gameManager.getCoins() < relicResource.cost;
 			buttons.Add(relicUI.buyButton);
 			relicUI.buyButton.Pressed += () => {
-				//GD.Print("pressed relic button");
-				// foreach(Button currentButton in buttons) {
-				// 	currentButton.Disabled = true;
-				// }
+
 				subtractCoins(relicResource);
 				advanceLevelButton.Disabled = false;
 				confirmationText.Text = "Purchased " + relicResource.title;
