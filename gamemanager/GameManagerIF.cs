@@ -8,8 +8,8 @@ public partial class GameManagerIF : Node2D
 
 	protected Global global;
 	protected MetaGlobal metaGlobal;
-
-	[Export] public CardList cardPool;
+	[Export] public CardList defaultCardPool;
+	[Export] private Godot.Collections.Array<UnlockableCardPack> cardPacks;
 	[Export] public RelicList relicList;
 	[Export] public CardList defaultCardList;
 
@@ -31,6 +31,48 @@ public partial class GameManagerIF : Node2D
 	{
 		loadGlobalAndSetDeckToDefault();
 		return new List<CardResource>(global.deckCardList.getCards());
+	}
+
+	public List<CardResource> getCardPool() {
+		List<CardResource> cards = getDefaultCardPool();
+		GD.Print(cards.Count + " cards in the default pool");
+
+		cards.AddRange(getCardsUnlocked());
+		GD.Print(cards.Count + " cards in the pool");
+		return cards;
+	}
+
+	public List<CardResource> getDefaultCardPool() {
+		HashSet<String> allUnlockableCards = new HashSet<String>();
+		foreach(UnlockableCardPack pack in cardPacks) {
+			GD.Print("------");
+			GD.Print(pack.title);
+			GD.Print("------");
+
+			//GD.Print(allUnlockableCards.Count + " cards in the unlock pool from " + cardPacks.Count + " packs");
+			allUnlockableCards.UnionWith(pack.getCards().Select(card =>  {
+				GD.Print(card.Title);
+				return card.Title;
+				}).ToList());
+		}
+		GD.Print(allUnlockableCards.Count + " cards in the unlock pool from " + cardPacks.Count + " packs");
+
+
+		List<CardResource> cards = defaultCardPool.getCards();
+		cards.RemoveAll(card => allUnlockableCards.Contains(card.Title));
+		return cards;
+	}
+
+	private HashSet<CardResource> getCardsUnlocked() {
+		HashSet<string> cardPacksUnlocked = getMetaGlobal().cardPacksUnlocked;
+		HashSet<CardResource> cardsUnlocked = new HashSet<CardResource>();
+
+		foreach(UnlockableCardPack pack in cardPacks) {
+			if(cardPacksUnlocked.Contains(pack.title)) {
+				cardsUnlocked.UnionWith(pack.getCards());
+			}
+		}
+		return cardsUnlocked;
 	}
 
 	public void addCardToDeckList(CardResource cardResource)

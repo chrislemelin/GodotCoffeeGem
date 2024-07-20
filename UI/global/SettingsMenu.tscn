@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_nhw1p"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="4_6wc46"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "panel") groups=["SettingsMenu"]]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "fullScreenCheckBox", "resolutionsOptionButton", "panel") groups=["SettingsMenu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,8 @@ quitButton = NodePath("Panel/VBoxContainer/QuitButton/Button")
 closeButton = NodePath("Panel/VBoxContainer/CloseButton/Button")
 mainMenuButton = NodePath("Panel/VBoxContainer/MainMenuButton/Button")
 visibleButton = NodePath("Button")
+fullScreenCheckBox = NodePath("Panel/VBoxContainer/FullScreen/CheckBox")
+resolutionsOptionButton = NodePath("Panel/VBoxContainer/Resolutions/VBoxContainer/OptionButton")
 panel = NodePath("Panel")
 
 [node name="Button" type="Button" parent="."]
@@ -37,7 +39,7 @@ layout_mode = 0
 offset_left = 637.0
 offset_top = 274.0
 offset_right = 1253.0
-offset_bottom = 706.0
+offset_bottom = 868.0
 theme = ExtResource("1_kbkdg")
 
 [node name="Background" type="Panel" parent="Panel"]
@@ -118,6 +120,36 @@ theme = ExtResource("2_nhw1p")
 theme_override_fonts/font = ExtResource("4_6wc46")
 theme_override_font_sizes/font_size = 36
 text = "Enable game play data collection"
+
+[node name="FullScreen" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nhw1p")
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="CheckBox" type="CheckBox" parent="Panel/VBoxContainer/FullScreen"]
+layout_mode = 2
+theme = ExtResource("2_nhw1p")
+theme_override_fonts/font = ExtResource("4_6wc46")
+theme_override_font_sizes/font_size = 36
+text = "FullScreen"
+
+[node name="Resolutions" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_nhw1p")
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Resolutions"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Resolutions/VBoxContainer"]
+layout_mode = 2
+text = "Resolutions"
+fit_content = true
+
+[node name="OptionButton" type="OptionButton" parent="Panel/VBoxContainer/Resolutions/VBoxContainer"]
+layout_mode = 2
 
 [node name="QuitButton" type="MarginContainer" parent="Panel/VBoxContainer"]
 visible = false

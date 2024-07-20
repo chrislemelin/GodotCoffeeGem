@@ -16,6 +16,9 @@ public partial class MetaGlobal : Node
 	public int metaCoinDropRate = 0;
 	public int metaCoinDropRateMax = 5;
 
+	private const String CARDS_UNLOCKED_STRING = "cardPacksUnlocked";
+	public HashSet<String> cardPacksUnlocked = new HashSet<String>();
+
 	private string saveFileName = "user://metaData.save";
 
 	public override void _Ready() {
@@ -49,6 +52,8 @@ public partial class MetaGlobal : Node
 		}
 		coinDropRate = Int32.Parse(nodeData[COIN_DROP_RATE_STRING]);
 		metaCoinDropRate = Int32.Parse(nodeData[META_COIN_DROP_RATE_STRING]);
+		cardPacksUnlocked = new HashSet<string>(nodeData[META_COIN_DROP_RATE_STRING].Split(','));
+
 	}
 
 	private void save() {
@@ -60,6 +65,7 @@ public partial class MetaGlobal : Node
 		}
 		metaDict[COIN_DROP_RATE_STRING] = coinDropRate.ToString();
 		metaDict[META_COIN_DROP_RATE_STRING] = metaCoinDropRate.ToString();
+		metaDict[CARDS_UNLOCKED_STRING] = string.Join(",", cardPacksUnlocked);
 
 		var jsonString = Json.Stringify(metaDict);
 		metaSave.StoreLine(jsonString);

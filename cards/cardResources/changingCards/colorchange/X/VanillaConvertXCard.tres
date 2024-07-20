@@ -23,7 +23,7 @@ effectGemType = 2
 [resource]
 script = ExtResource("3_oyjpk")
 Title = "Vanilla Shot X"
-Description = "Change selected ingredient and diagonal ingredients to vanilla"
+Description = "Change selected ingredient and all ingredients along its diagonal to vanilla"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_10gdu")

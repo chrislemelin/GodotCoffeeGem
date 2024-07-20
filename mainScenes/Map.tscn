@@ -1,25 +1,32 @@
-[gd_scene load_steps=50 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=57 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_6g8vu"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
+[ext_resource type="Resource" uid="uid://xe62kwq1lrrg" path="res://cards/cardResources/cardLists/unlockableCardPacks/DeleteCardPack.tres" id="3_b783o"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
+[ext_resource type="Resource" uid="uid://dehp68dxia78h" path="res://cards/cardResources/cardLists/unlockableCardPacks/SpendCardPack.tres" id="3_ou8qp"]
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_86n8f"]
+[ext_resource type="Resource" uid="uid://chocekvyfot6p" path="res://cards/cardResources/cardLists/unlockableCardPacks/MatchScoreCardPack.tres" id="4_nmvjh"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
 [ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
+[ext_resource type="Resource" uid="uid://br3mqyckepxh3" path="res://cards/cardResources/cardLists/unlockableCardPacks/MoneyCardPack.tres" id="5_rqdmq"]
+[ext_resource type="Resource" uid="uid://bi0son5almaow" path="res://cards/cardResources/cardLists/unlockableCardPacks/RandomCardPack.tres" id="6_a1ipc"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
 [ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://placeholders/Map/map-07-08-2024.png" id="7_v8p8x"]
+[ext_resource type="Resource" uid="uid://dh65of2731mau" path="res://cards/cardResources/cardLists/unlockableCardPacks/XCardPack.tres" id="8_nxl4l"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
 [ext_resource type="Script" path="res://util/lerp.cs" id="11_8ihbg"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="11_fn4xu"]
-[ext_resource type="Texture2D" uid="uid://dc30cb72mvn22" path="res://placeholders/character/Bob_run_16x16.png" id="11_g4jmp"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="11_rx5ww"]
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
+[ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://placeholders/Map/guy.png" id="17_718sm"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="18_pogo2"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="24_1i55l"]
@@ -383,7 +390,8 @@ _data = {
 script = ExtResource("1_sas1p")
 newCardSelection = NodePath("CardSelectionUI")
 deckViewUI = NodePath("DeckViewUI")
-cardPool = ExtResource("2_6g8vu")
+defaultCardPool = ExtResource("2_6g8vu")
+cardPacks = Array[Object]([ExtResource("4_nmvjh"), ExtResource("5_rqdmq"), ExtResource("6_a1ipc"), ExtResource("8_nxl4l"), ExtResource("3_b783o"), ExtResource("3_ou8qp")])
 relicList = ExtResource("3_mpj51")
 defaultCardList = ExtResource("4_86n8f")
 
@@ -402,7 +410,7 @@ botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths
 
 [node name="Map2" type="Sprite2D" parent="Map"]
 texture_filter = 1
-position = Vector2(961.788, 538.5)
+position = Vector2(965, 544)
 scale = Vector2(3.7099, 3.7099)
 texture = ExtResource("7_v8p8x")
 
@@ -416,20 +424,20 @@ texture = ExtResource("2_g041w")
 [node name="Control" type="Control" parent="Map"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1.0
-offset_top = -8.0
-offset_right = 1.0
-offset_bottom = -8.0
+offset_left = 1.00012
+offset_top = -7.99994
+offset_right = 1.00012
+offset_bottom = -7.99994
 
 [node name="TopPath" type="Control" parent="Map/Control"]
 anchors_preset = 0
 
 [node name="Control" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 998.0
-offset_top = 252.0
-offset_right = 998.0
-offset_bottom = 252.0
+offset_left = 984.0
+offset_top = 217.0
+offset_right = 984.0
+offset_bottom = 217.0
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control" instance=ExtResource("4_pfyjt")]
 visible = false
@@ -440,10 +448,10 @@ upgradedSwitchCard = SubResource("Resource_oyaui")
 
 [node name="Control3" type="Control" parent="Map/Control/TopPath"]
 anchors_preset = 0
-offset_left = 1153.0
-offset_top = 412.0
-offset_right = 1153.0
-offset_bottom = 412.0
+offset_left = 1152.0
+offset_top = 395.0
+offset_right = 1152.0
+offset_bottom = 395.0
 
 [node name="MapLocation" parent="Map/Control/TopPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
@@ -461,10 +469,10 @@ anchors_preset = 0
 [node name="Control" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 420.0
-offset_top = 802.0
-offset_right = 421.0
-offset_bottom = 803.0
+offset_left = 413.0
+offset_top = 774.0
+offset_right = 414.0
+offset_bottom = 775.0
 
 [node name="MapLocation" parent="Map/Control/BotPath/Control" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
@@ -478,14 +486,17 @@ upgradedSwitchCard = SubResource("Resource_vuu47")
 [node name="Control3" type="Control" parent="Map/Control/BotPath"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 586.0
-offset_top = 969.0
-offset_right = 586.0
-offset_bottom = 969.0
+offset_left = 597.0
+offset_top = 948.0
+offset_right = 597.0
+offset_bottom = 948.0
 
 [node name="MapLocation" parent="Map/Control/BotPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
-offset_right = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 40.0
 image = NodePath("../../../TopPath/Control/MapLocation/TextureRect")
 label = NodePath("../../../TopPath/Control/MapLocation/RichTextLabel")
 vertSwitchCard = SubResource("Resource_e3gl4")
@@ -493,10 +504,10 @@ horizSwitchCard = SubResource("Resource_ahjpb")
 upgradedSwitchCard = SubResource("Resource_imnlm")
 
 [node name="Home" parent="Map/Control" instance=ExtResource("4_pfyjt")]
-offset_left = 1386.0
-offset_top = 609.0
-offset_right = 1386.0
-offset_bottom = 609.0
+offset_left = 1396.0
+offset_top = 619.0
+offset_right = 1396.0
+offset_bottom = 619.0
 type = 7
 vertSwitchCard = SubResource("Resource_ilocs")
 horizSwitchCard = SubResource("Resource_7a0hk")
@@ -584,15 +595,14 @@ speed = 250.0
 [node name="Sprite2D" type="Sprite2D" parent="Character"]
 texture_filter = 1
 position = Vector2(-0.5, -13.5)
-texture = ExtResource("11_g4jmp")
-hframes = 24
-frame = 1
+texture = ExtResource("17_718sm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 619.0
 offset_top = 479.0
 offset_right = 970.0
 offset_bottom = 604.0
+theme = ExtResource("18_pogo2")
 theme_override_font_sizes/normal_font_size = 36
 text = "Click top or bottom buildings to choose a path to get back home"
 

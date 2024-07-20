@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnlockableCardPack" load_steps=7 format=3 uid="uid://dehp68dxia78h"]
+
+[ext_resource type="Resource" uid="uid://bvr6lvcnj7ldi" path="res://cards/cardResources/handCards/CardSpendCard.tres" id="1_27qn2"]
+[ext_resource type="Script" path="res://cards/cardResources/core/UnlockableCardPack.cs" id="1_lrrlo"]
+[ext_resource type="Resource" uid="uid://mtplaa65jo0k" path="res://cards/cardResources/handCards/ManaSpendCard.tres" id="2_yabpf"]
+[ext_resource type="Resource" uid="uid://c6bt7pp3ju4aw" path="res://cards/cardResources/handCards/DiscardDrawCard.tres" id="3_wfe7c"]
+[ext_resource type="Resource" uid="uid://bj05nhbgysjfd" path="res://cards/cardResources/handCards/CashInCard.tres" id="4_x5e2r"]
+[ext_resource type="Resource" uid="uid://c6ef43op8s0gl" path="res://cards/cardResources/handCards/ReduceCostCard.tres" id="5_uspl7"]
+
+[resource]
+script = ExtResource("1_lrrlo")
+title = "Spend"
+removeDuplicates = false
+allCards = Array[Object]([ExtResource("1_27qn2"), ExtResource("2_yabpf"), ExtResource("3_wfe7c"), ExtResource("4_x5e2r"), ExtResource("5_uspl7")])

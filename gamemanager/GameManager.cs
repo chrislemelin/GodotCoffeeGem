@@ -114,7 +114,7 @@ public partial class GameManager : GameManagerIF
 	private Optional<Resource> getDialouge()
 	{
 		int value = getNumberOfLevelsPlayed();
-		GD.Print("levels played " + value);
+		//GD.Print("levels played " + value);
 		if (dialougeDict.ContainsKey(value))
 		{
 			return Optional.Some(dialougeDict[value]);
@@ -207,27 +207,28 @@ public partial class GameManager : GameManagerIF
 	public override void advanceLevel()
 	{
 		incrementNumberOfLevelsPlayed();
-		Optional<Resource> dialougeMaybe = getDialouge();
-		if (dialougeMaybe.HasValue)
-		{
-			DialogueManagerRuntime.DialogueManager.DialogueEnded += loadNewScene;
-			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeMaybe.GetValue());
-		}
-		else
-		{
-			loadNewScene(dialougeMaybe.GetValue());
-		}
+		// Used for dialoge at the end of the level
+		// Optional<Resource> dialougeMaybe = getDialouge();
+		// if (dialougeMaybe.HasValue)
+		// {
+		// 	DialogueManagerRuntime.DialogueManager.DialogueEnded += loadNewScene;
+		// 	DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeMaybe.GetValue());
+		// }
+		// else
+		// {
+		// 	loadNewScene();
+		// }
+		loadNewScene();
 	}
-	private void loadNewScene(Resource resource)
+	private void loadNewScene()
 	{
 		global.currentLevel += 1;
 		GetTree().ChangeSceneToFile("res://mainScenes/Map.tscn");
-		//DialogueManagerRuntime.DialogueManager.DialogueEnded -= (Resource dialogueResource) => loadNewScene();
 	}
 
 	protected override void Dispose(bool disposing)
 	{
-		DialogueManagerRuntime.DialogueManager.DialogueEnded -= loadNewScene;
+		//DialogueManagerRuntime.DialogueManager.DialogueEnded -= loadNewScene;
 		base.Dispose(disposing);
 	}
 

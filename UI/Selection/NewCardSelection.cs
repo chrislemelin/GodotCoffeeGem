@@ -77,7 +77,7 @@ public partial class NewCardSelection : Control
 	{
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
 		int numberOfCardsToChoose = gameManager.getNumberOfCardToChoose();
-		setCardsToSelectFrom(CardRarityHelper.getRandomCards(numberOfCardsToChoose, gameManager.cardPool));
+		setCardsToSelectFrom(CardRarityHelper.getRandomCards(numberOfCardsToChoose, gameManager.getCardPool()));
 	}
 
 	public void setCardsToSelectFrom(List<CardResource> cardResources)

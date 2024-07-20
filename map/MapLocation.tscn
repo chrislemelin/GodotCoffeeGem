@@ -1,35 +1,39 @@
-[gd_scene load_steps=13 format=3 uid="uid://bs0yawupejkyk"]
+[gd_scene load_steps=14 format=3 uid="uid://bs0yawupejkyk"]
 
 [ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
-[ext_resource type="Texture2D" uid="uid://cu1wkob0mu81w" path="res://placeholders/Map/buildings/Park.png" id="2_mxisg"]
+[ext_resource type="Texture2D" uid="uid://biete8vjgr8f7" path="res://placeholders/Map/buildings/Park_standard.png" id="2_d8f8a"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_t53kr"]
-[ext_resource type="Texture2D" uid="uid://kbf0scsm15wd" path="res://placeholders/Map/buildings/PlantHouse2.png" id="3_4rp63"]
+[ext_resource type="Texture2D" uid="uid://cncvaqjwe5iev" path="res://placeholders/Map/buildings/PlantHouse_standard.png" id="3_aiu7u"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="3_os8q3"]
-[ext_resource type="Texture2D" uid="uid://d3un70kqewgub" path="res://placeholders/Map/buildings/portrait2.png" id="4_c7odg"]
 [ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_celhv"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="4_edqu2"]
+[ext_resource type="Texture2D" uid="uid://cqijgyupcn7ia" path="res://placeholders/Map/buildings/SignBuilding_standard.png" id="4_scnsq"]
 [ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="5_lg18n"]
-[ext_resource type="Texture2D" uid="uid://bucfaofsbgqyk" path="res://placeholders/Map/buildings/RandomBuilding-Awning.png" id="5_nwbbn"]
+[ext_resource type="Texture2D" uid="uid://b1g7qgdsksfwc" path="res://placeholders/Map/buildings/AwningBuilding_standard.png" id="5_yx8by"]
+[ext_resource type="Texture2D" uid="uid://17ilpj6a6lqa" path="res://placeholders/Map/buildings/Home-Store_standard.png" id="6_tsotk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4i6bp"]
+resource_local_to_scene = true
 shader = ExtResource("5_lg18n")
-shader_parameter/line_color = Color(0.788235, 0.65098, 0, 1)
-shader_parameter/line_thickness = 1.615
+shader_parameter/line_color = Color(0.788235, 0.65098, 0, 0)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="Theme" id="Theme_h60qy"]
 
 [node name="MapLocation" type="Control" node_paths=PackedStringArray("image", "label", "highlight")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 50.0
+offset_bottom = 41.0
 script = ExtResource("1_3kcgv")
 image = NodePath("TextureRect")
 label = NodePath("RichTextLabel")
 highlight = NodePath("TextureRect")
 inActiveColor = Color(0.584314, 0.584314, 0.584314, 1)
-mapTypes = [0, 1, 2, 3, 4, 5]
-mapTextures = [ExtResource("2_mxisg"), ExtResource("2_mxisg"), ExtResource("3_4rp63"), ExtResource("3_4rp63"), ExtResource("4_c7odg"), ExtResource("5_nwbbn")]
+mapTypes = [0, 1, 2, 3, 4, 5, 7]
+mapTextures = [ExtResource("2_d8f8a"), ExtResource("2_d8f8a"), ExtResource("3_aiu7u"), ExtResource("3_aiu7u"), ExtResource("4_scnsq"), ExtResource("5_yx8by"), ExtResource("6_tsotk")]
 vertSwitchCard = ExtResource("2_t53kr")
 horizSwitchCard = ExtResource("3_os8q3")
 upgradedSwitchCard = ExtResource("4_celhv")
@@ -38,21 +42,22 @@ upgradedSwitchCard = ExtResource("4_celhv")
 texture_filter = 1
 material = SubResource("ShaderMaterial_4i6bp")
 layout_mode = 0
-offset_left = -89.0
-offset_top = -327.0
-offset_right = 199.0
-offset_bottom = 60.0
+offset_left = -113.0
+offset_top = -465.0
+offset_right = -27.0
+offset_bottom = -323.0
+scale = Vector2(3.71, 3.71)
 mouse_filter = 2
-texture = ExtResource("3_4rp63")
+texture = ExtResource("3_aiu7u")
 script = ExtResource("4_edqu2")
 area2D = NodePath("../Control")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = -110.0
-offset_top = -73.0
-offset_right = 105.0
-offset_bottom = 13.0
+offset_left = -121.0
+offset_top = -61.0
+offset_right = 94.0
+offset_bottom = 25.0
 rotation = 0.792916
 mouse_filter = 2
 theme = SubResource("Theme_h60qy")

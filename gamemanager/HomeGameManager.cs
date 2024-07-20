@@ -27,7 +27,7 @@ public partial class HomeGameManager : GameManagerIF
 
 	public void selectNewCard() {
 		int cardsToChoose = getNumberOfCardToChoose();
-		List<CardResource> cardPoolList = new List<CardResource>(cardPool.getCards());
+		List<CardResource> cardPoolList = new List<CardResource>(getCardPool());
 		RandomHelper.Shuffle(cardPoolList);
 		newCardSelection.setCardsToSelectFrom(cardPoolList.GetRange(0,cardsToChoose));
 		newCardSelection.setCoins(0);

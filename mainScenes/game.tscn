@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=55 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
@@ -11,13 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
 [ext_resource type="Texture2D" uid="uid://c1s2lxholqwbh" path="res://placeholders/CoffeeShop/Coffee 1.png" id="6_v4hji"]
+[ext_resource type="Resource" uid="uid://xe62kwq1lrrg" path="res://cards/cardResources/cardLists/unlockableCardPacks/DeleteCardPack.tres" id="7_7e87s"]
 [ext_resource type="Resource" uid="uid://dbq6lsiphqhd2" path="res://cards/cardResources/cardLists/CardListTest.tres" id="7_vdncp"]
 [ext_resource type="Texture2D" uid="uid://dkehgsvlvt1p4" path="res://placeholders/character/portrait2.png" id="8_bn8a0"]
+[ext_resource type="Resource" uid="uid://chocekvyfot6p" path="res://cards/cardResources/cardLists/unlockableCardPacks/MatchScoreCardPack.tres" id="8_hjr65"]
 [ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="8_m8idd"]
 [ext_resource type="Texture2D" uid="uid://bog5s844e5fy5" path="res://placeholders/CoffeeShop/Wooden_Counter.png" id="9_hiq7b"]
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
+[ext_resource type="Resource" uid="uid://br3mqyckepxh3" path="res://cards/cardResources/cardLists/unlockableCardPacks/MoneyCardPack.tres" id="9_tfpgi"]
+[ext_resource type="Resource" uid="uid://bi0son5almaow" path="res://cards/cardResources/cardLists/unlockableCardPacks/RandomCardPack.tres" id="10_1myyw"]
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
+[ext_resource type="Resource" uid="uid://dehp68dxia78h" path="res://cards/cardResources/cardLists/unlockableCardPacks/SpendCardPack.tres" id="11_dqjkx"]
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
+[ext_resource type="Resource" uid="uid://dh65of2731mau" path="res://cards/cardResources/cardLists/unlockableCardPacks/XCardPack.tres" id="12_7jcjk"]
 [ext_resource type="Texture2D" uid="uid://k22e2kqicd4o" path="res://placeholders/character/MainCharacter2.png" id="12_vif15"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="14_31k88"]
@@ -84,11 +90,10 @@ _data = {
 "RESET": SubResource("Animation_rp5ce")
 }
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "UICover", "gameOverScreen", "score", "relicHolderUI", "bossRelicTutorial", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRelicTutorial", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay")]
 position = Vector2(-4, -1)
 script = ExtResource("1_5jnm2")
 recipeUI = NodePath("BossRecipeUI")
-UICover = NodePath("UIOverLays/Cover")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
@@ -106,7 +111,8 @@ dialougeDict = {
 2: ExtResource("4_tmapm")
 }
 dialougeResource = ExtResource("4_tmapm")
-cardPool = ExtResource("2_uqcxx")
+defaultCardPool = ExtResource("2_uqcxx")
+cardPacks = Array[Object]([ExtResource("8_hjr65"), ExtResource("9_tfpgi"), ExtResource("10_1myyw"), ExtResource("12_7jcjk"), ExtResource("7_7e87s"), ExtResource("11_dqjkx")])
 relicList = ExtResource("4_dls5h")
 defaultCardList = ExtResource("3_tlo67")
 
@@ -285,6 +291,7 @@ text = "Advance"
 anchors_preset = 0
 
 [node name="Screen1" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -769,38 +776,6 @@ offset_top = 231.0
 offset_right = -57.0
 offset_bottom = 551.0
 texture = ExtResource("43_eeut1")
-
-[node name="Cover" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens", "textureButton")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -2.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("26_gxqfm")
-button2 = NodePath("../WelcomeScreen/Button")
-screens = NodePath("../WelcomeScreen/WelcomeScreens")
-textureButton = NodePath("../TutorialButton")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/Cover"]
-modulate = Color(0, 0, 0, 0.615686)
-layout_mode = 2
-offset_left = 3.0
-offset_top = -1.0
-offset_right = 1935.0
-offset_bottom = 1079.0
-rotation = -0.000391196
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("18_vk04q")
-expand_mode = 2
-flip_h = true
-flip_v = true
 
 [node name="BossRecipeTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
 visible = false

@@ -23,7 +23,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_1fttl")
 Title = "Draw Burst"
-Description = "Draw $value cards. If you have 3 or more draw ingredients, draw an additional card."
+Description = "Draw $value cards. If you have 3 or more draw ingredients, draw an additional card"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_nbgun")

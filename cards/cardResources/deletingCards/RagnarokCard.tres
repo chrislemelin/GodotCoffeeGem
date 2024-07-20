@@ -23,7 +23,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_0wj0x")
 Title = "Ragnarok"
-Description = "Destroy every ingredient, gain a little bit of points for each burnt (black) ingredient destroyed."
+Description = "Destroy every ingredient, gain a little bit of points for each burnt ingredient destroyed"
 Cost = 2
 rarity = 1
 Picture = ExtResource("1_8b7b4")

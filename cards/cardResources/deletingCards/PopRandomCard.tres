@@ -23,7 +23,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_sbuvw")
 Title = "Pop Random"
-Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type draw a card and gain an energy."
+Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type draw a card and gain an energy"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_yq4np")

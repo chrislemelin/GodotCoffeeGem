@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnlockableCardPack" load_steps=7 format=3 uid="uid://xe62kwq1lrrg"]
+
+[ext_resource type="Resource" uid="uid://d1nggr211uac1" path="res://cards/cardResources/deletingCards/PopRowCard.tres" id="1_csmo2"]
+[ext_resource type="Resource" uid="uid://dsr6hgn8djewp" path="res://cards/cardResources/deletingCards/PopColCard.tres" id="2_lexul"]
+[ext_resource type="Resource" uid="uid://xba81q45hybp" path="res://cards/cardResources/deletingCards/PopGridCard.tres" id="3_4gc7d"]
+[ext_resource type="Resource" uid="uid://c7fw01b7y86oy" path="res://cards/cardResources/deletingCards/RagnarokCard.tres" id="4_50myh"]
+[ext_resource type="Resource" uid="uid://kw1s578aww0k" path="res://cards/cardResources/deletingCards/RaptureCard.tres" id="5_ehd1g"]
+[ext_resource type="Script" path="res://cards/cardResources/core/UnlockableCardPack.cs" id="6_158n1"]
+
+[resource]
+script = ExtResource("6_158n1")
+title = "Delete"
+removeDuplicates = false
+allCards = Array[Object]([ExtResource("1_csmo2"), ExtResource("2_lexul"), ExtResource("3_4gc7d"), ExtResource("4_50myh"), ExtResource("5_ehd1g")])

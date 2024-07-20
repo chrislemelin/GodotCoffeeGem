@@ -49,7 +49,7 @@ static class CardRarityHelper
 		}
 	}
 
-	public static List<CardResource> getRandomCards(int cardCount, CardList cardPool) {
+	public static List<CardResource> getRandomCards(int cardCount, List<CardResource> cardPool) {
 		int commonCards = 0;
 		int uncommonCards = 0;
 		int rareCards = 0;
@@ -72,8 +72,8 @@ static class CardRarityHelper
 	}
 
 	
-	private static List<CardResource> getRandomCardsOfRarity(int count, CardRarity cardRarity, CardList cardPool){
-		List<CardResource> cardPoolList = cardPool.getCards().Where((card) => card.rarity == cardRarity).ToList();
+	private static List<CardResource> getRandomCardsOfRarity(int count, CardRarity cardRarity, List<CardResource> cardPool){
+		List<CardResource> cardPoolList = cardPool.Where((card) => card.rarity == cardRarity).ToList();
 		RandomHelper.Shuffle(cardPoolList);
 		return cardPoolList.GetRange(0, count);
 	}

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d2fqotqln4kk5"]
 
-[ext_resource type="Texture2D" uid="uid://dudy5ank146a0" path="res://cards/cardResources/cardArt/Energy.png" id="1_7qfi0"]
+[ext_resource type="Texture2D" uid="uid://dgjj0onr3k777" path="res://cards/cardResources/cardArt/Energy2.png" id="1_3bu1t"]
 [ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectManaGain.cs" id="2_a0ryj"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_r8k0b"]
 
@@ -26,7 +26,7 @@ Title = "Energy Gain Consume"
 Description = "Gain $value energy."
 Cost = 0
 rarity = 1
-Picture = ExtResource("1_7qfi0")
+Picture = ExtResource("1_3bu1t")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_ihb2g")

@@ -23,7 +23,7 @@ effectGemType = 5
 [resource]
 script = ExtResource("3_empu6")
 Title = "Sugar Shot X"
-Description = "Change selected ingredient and diagonal ingredients to sugar"
+Description = "Change selected ingredient and all ingredients along its diagonal to sugar"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_vwu2v")

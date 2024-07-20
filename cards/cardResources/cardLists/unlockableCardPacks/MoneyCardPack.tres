@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnlockableCardPack" load_steps=6 format=3 uid="uid://br3mqyckepxh3"]
+
+[ext_resource type="Resource" uid="uid://cf1jqna4be6ek" path="res://cards/cardResources/scoreCards/GainCoinsGreedCard.tres" id="1_yw5lo"]
+[ext_resource type="Resource" uid="uid://b8nqlwbtu4tcd" path="res://cards/cardResources/scoreCards/GainCoinsCard.tres" id="2_xwilc"]
+[ext_resource type="Resource" uid="uid://bfn60jdh2miwr" path="res://cards/cardResources/changingCards/MoneyGemsCard.tres" id="3_qjx6c"]
+[ext_resource type="Resource" uid="uid://bs6s20l3sbdia" path="res://cards/cardResources/handCards/DealWithTheDevilCard.tres" id="4_m2pku"]
+[ext_resource type="Script" path="res://cards/cardResources/core/UnlockableCardPack.cs" id="6_wg0b8"]
+
+[resource]
+script = ExtResource("6_wg0b8")
+title = "Money"
+removeDuplicates = false
+allCards = Array[Object]([ExtResource("1_yw5lo"), ExtResource("2_xwilc"), ExtResource("3_qjx6c"), ExtResource("4_m2pku")])

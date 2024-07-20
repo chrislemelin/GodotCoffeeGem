@@ -23,7 +23,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("1_q6px8")
 Title = "Teleport"
-Description = "Swap the positions of 2 ingredients in the same row or coulmn"
+Description = "Swap the positions of 2 ingredients in the same row or column"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_72u2q")

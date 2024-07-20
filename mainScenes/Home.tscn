@@ -1,14 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgfos0wevjgpv"]
+[gd_scene load_steps=30 format=3 uid="uid://dgfos0wevjgpv"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_8wsnh"]
 [ext_resource type="PackedScene" uid="uid://2av55t0yxy4e" path="res://UI/DayOverUI.tscn" id="1_xjb1y"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="2_eaxi2"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_hntlq"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5vuys"]
+[ext_resource type="Resource" uid="uid://xe62kwq1lrrg" path="res://cards/cardResources/cardLists/unlockableCardPacks/DeleteCardPack.tres" id="3_028kp"]
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_31lnn"]
+[ext_resource type="Resource" uid="uid://chocekvyfot6p" path="res://cards/cardResources/cardLists/unlockableCardPacks/MatchScoreCardPack.tres" id="4_a5u5p"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="4_v1i61"]
+[ext_resource type="Resource" uid="uid://br3mqyckepxh3" path="res://cards/cardResources/cardLists/unlockableCardPacks/MoneyCardPack.tres" id="5_5w6eo"]
 [ext_resource type="Texture2D" uid="uid://banirrb6y866k" path="res://placeholders/home/Common Room.png" id="5_7y1oa"]
+[ext_resource type="Resource" uid="uid://bi0son5almaow" path="res://cards/cardResources/cardLists/unlockableCardPacks/RandomCardPack.tres" id="6_f7bhy"]
+[ext_resource type="Resource" uid="uid://dehp68dxia78h" path="res://cards/cardResources/cardLists/unlockableCardPacks/SpendCardPack.tres" id="7_3hgxu"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="7_e5l0a"]
+[ext_resource type="Resource" uid="uid://dh65of2731mau" path="res://cards/cardResources/cardLists/unlockableCardPacks/XCardPack.tres" id="8_eu4gr"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="8_n1ouh"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="9_hebao"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="10_k3anh"]
@@ -108,7 +114,8 @@ dayOver = NodePath("DayOverUI")
 newCardSelection = NodePath("CardSelectionUI")
 button = NodePath("Button")
 deckViewUI = NodePath("DeckView")
-cardPool = ExtResource("2_hntlq")
+defaultCardPool = ExtResource("2_hntlq")
+cardPacks = Array[Object]([ExtResource("4_a5u5p"), ExtResource("5_5w6eo"), ExtResource("6_f7bhy"), ExtResource("8_eu4gr"), ExtResource("3_028kp"), ExtResource("7_3hgxu")])
 relicList = ExtResource("3_5vuys")
 defaultCardList = ExtResource("3_31lnn")
 

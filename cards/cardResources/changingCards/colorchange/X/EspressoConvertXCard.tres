@@ -23,7 +23,7 @@ effectGemType = 4
 [resource]
 script = ExtResource("3_fywxn")
 Title = "Coffee Shot X"
-Description = "Change selected ingredient and diagonal ingredients to coffee"
+Description = "Change selected ingredient and all ingredients along its diagonal to coffee"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_w2ehf")

@@ -22,7 +22,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("3_kjq10")
 Title = "Rainbow Spray"
-Description = "Select an ingredient. Change $value random ingredients to the selected ingredient's type."
+Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type"
 Cost = 0
 rarity = 2
 coinCost = 0

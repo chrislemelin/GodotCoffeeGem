@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://mtplaa65jo0k"]
 
-[ext_resource type="Texture2D" uid="uid://dudy5ank146a0" path="res://cards/cardResources/cardArt/Energy.png" id="1_xsppl"]
+[ext_resource type="Texture2D" uid="uid://dgjj0onr3k777" path="res://cards/cardResources/cardArt/Energy2.png" id="1_38ktj"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_4awg8"]
 [ext_resource type="Script" path="res://cards/cardResources/handCards/CardEffectManaSpend.cs" id="2_ywq08"]
 
@@ -26,7 +26,7 @@ Title = "Energy Spend"
 Description = "Lose all of your energy, and then gain 100 points for each energy lost"
 Cost = 0
 rarity = 2
-Picture = ExtResource("1_xsppl")
+Picture = ExtResource("1_38ktj")
 coinCost = 0
 playable = false
 cardEffect = SubResource("Resource_k81gf")

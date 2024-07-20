@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnlockableCardPack" load_steps=7 format=3 uid="uid://dh65of2731mau"]
+
+[ext_resource type="Resource" uid="uid://d2yu5srn147u4" path="res://cards/cardResources/changingCards/colorchange/X/EspressoConvertXCard.tres" id="1_jdkxx"]
+[ext_resource type="Resource" uid="uid://dc4pd2ttyf34l" path="res://cards/cardResources/changingCards/colorchange/X/MilkConvertXCard.tres" id="2_ih3hn"]
+[ext_resource type="Resource" uid="uid://bo0msp240jdfp" path="res://cards/cardResources/changingCards/colorchange/X/SugarConvertXCard.tres" id="3_xrslf"]
+[ext_resource type="Resource" uid="uid://k2c5nvdb82wy" path="res://cards/cardResources/changingCards/colorchange/X/TeaConvertXCard.tres" id="4_5lun0"]
+[ext_resource type="Resource" uid="uid://dyhj7peoy2amj" path="res://cards/cardResources/changingCards/colorchange/X/VanillaConvertXCard.tres" id="5_r7afa"]
+[ext_resource type="Script" path="res://cards/cardResources/core/UnlockableCardPack.cs" id="7_j8ael"]
+
+[resource]
+script = ExtResource("7_j8ael")
+title = "X"
+removeDuplicates = false
+allCards = Array[Object]([ExtResource("1_jdkxx"), ExtResource("2_ih3hn"), ExtResource("3_xrslf"), ExtResource("4_5lun0"), ExtResource("5_r7afa")])

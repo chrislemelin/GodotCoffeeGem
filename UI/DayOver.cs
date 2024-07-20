@@ -190,7 +190,7 @@ public partial class DayOver : Control
 		}
 	}
 	private void addCardsToShop() {
-		List<CardResource> cards = CardRarityHelper.getRandomCards(5, gameManager.cardPool);
+		List<CardResource> cards = CardRarityHelper.getRandomCards(5, gameManager.getCardPool());
 			foreach(CardResource cardResource in cards) {
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
 			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();

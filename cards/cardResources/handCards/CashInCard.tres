@@ -22,7 +22,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_faatb")
 Title = "Cash in"
-Description = "Gain rewards from all mana and card ingredients and then clear all infusions"
+Description = "Gain rewards from all energy and card infused ingredients and then clear all infusions"
 Cost = 1
 rarity = 0
 coinCost = 0

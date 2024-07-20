@@ -23,7 +23,7 @@ effectGemType = 0
 [resource]
 script = ExtResource("2_nk7uw")
 Title = "Pop"
-Description = "Destroy selected ingredient."
+Description = "Destroy selected ingredient"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_258jf")

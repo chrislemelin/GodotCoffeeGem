@@ -19,6 +19,10 @@ public partial class CardList : Resource
 		this.allCards = allCards;
 	}
 
+	public void addCards(Godot.Collections.Array<CardResource> cards) {
+		allCards.AddRange(cards);
+	}
+
 	public List<CardResource> getCards() {
 		List<CardResource> returnCards = allCards.ToList().Where(card => card != null).ToList();
 		if (removeDuplicates) {

@@ -23,7 +23,7 @@ effectGemType = 4
 [resource]
 script = ExtResource("3_rw58r")
 Title = "Espresso Spray"
-Description = "Change $value random ingredients to coffee"
+Description = "Change $value random ingredient(s) to coffee"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_luisg")

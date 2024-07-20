@@ -104,8 +104,6 @@ layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Quit"
 
-[node name="SettingsMenu" parent="." instance=ExtResource("7_vbbet")]
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 711.0
 offset_top = 757.0
@@ -113,3 +111,5 @@ offset_right = 1308.0
 offset_bottom = 868.0
 theme = ExtResource("8_e2q8p")
 text = "This game collects game play data. This data is anonymous and its very helpful to balance the game, but it can be disabled in the settings menu if desired"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("7_vbbet")]
