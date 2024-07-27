@@ -74,6 +74,8 @@ public partial class Score : Node2D
  			audioStreamPlayer2D.Stream = coinAudio;
 			audioStreamPlayer2D.Play();
 		};
+		gameManagerIF.healthChanged += (int value) => setHeartsRemaining(value);
+
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => newturn();
 		setMult(mult);
@@ -182,7 +184,7 @@ public partial class Score : Node2D
 	public void setHeartsRemaining(int newValue)
 	{
 		heartsRemaining = Math.Min(newValue, maxHearts);
-		gameManager.setHealth(heartsRemaining);
+		//gameManager.setHealth(heartsRemaining);
 		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
 		for (int count = 0; count < nodes.Count; count++)
 		{
@@ -373,12 +375,11 @@ public partial class Score : Node2D
 		}
 	}
 
-	public void scoreMatches(HashSet<HashSet<Tile>> matches)
+	public void scoreMatchesWithPointOverride(HashSet<HashSet<Tile>> matches, Optional<int> pointValueOverride)
 	{
 		int totalPoints = 0;
 		foreach (HashSet<Tile> match in matches)
 		{
-
 			GemType gemType = extractGemTypeFromMatch(match);
 			int pointValue = 0;
 			int pointValueAfterMult = 0;
@@ -391,13 +392,14 @@ public partial class Score : Node2D
 				pointValueAfterMult = (int)(pointValue * mult);
 				newMultValue += evaluateMultIncrease(gemType);
 				setMult(newMultValue);
-				if (bossRecipeUI.Visible && !bossRecipeUI.complete())
-				{
+				if (bossRecipeUI.Visible && !bossRecipeUI.complete()) {
 					pointValueAfterMult = 0;
 				}
-				totalPoints += pointValueAfterMult;
-
 			}
+			if (pointValueOverride.HasValue) {
+				pointValueAfterMult = pointValueOverride.GetValue();
+			}
+			totalPoints += pointValueAfterMult;
 
 			MatchScoreText matchScore = (MatchScoreText)matchScoreTextPackedScene.Instantiate();
 			AddChild(matchScore);
@@ -410,6 +412,12 @@ public partial class Score : Node2D
 			}
 		}
 		setScore(score + totalPoints);
+	}
+
+
+	public void scoreMatches(HashSet<HashSet<Tile>> matches)
+	{
+		scoreMatchesWithPointOverride(matches, Optional.None<int>());
 	}
 
 	private GemType extractGemTypeFromMatch(HashSet<Tile> tiles)

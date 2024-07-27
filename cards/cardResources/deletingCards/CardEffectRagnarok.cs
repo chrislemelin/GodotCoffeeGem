@@ -18,9 +18,12 @@ public partial class CardEffectRagnarok : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		List<Tile> tiles = matchBoard.getTilesWithColorOfGem(GemType.Black);
-		FindObjectHelper.getScore(matchBoard).addScore(50*tiles.Count);
-		matchBoard.deleteGemAtPositions(matchBoard.getAllTiles().Select(tile => tile.getTilePosition()).ToList());
+		HashSet<Tile> burntTiles = matchBoard.getTilesWithColorOfGem(GemType.Black).ToHashSet();
+		//FindObjectHelper.getScore(matchBoard).addScore(50*tiles.Count);
+		//HashSet<Tile> burntTiles
+		HashSet<Tile> nonBurntTiles = matchBoard.getRandomNonBlackTile().ToHashSet();
+		matchBoard.deleteGemAtPositionsWithScoringForEach(burntTiles.Select(tile => tile.getTilePosition()).ToList(), 50);
+		matchBoard.deleteGemAtPositions(nonBurntTiles.Select(tile => tile.getTilePosition()).ToList());
 	}
 	
 }

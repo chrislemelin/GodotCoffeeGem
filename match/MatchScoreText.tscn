@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b118tqgwxreh4"]
+[gd_scene load_steps=10 format=3 uid="uid://b118tqgwxreh4"]
 
 [ext_resource type="Shader" path="res://cards/shaders/highlightRainbow.gdshader" id="1_45tgh"]
 [ext_resource type="Script" path="res://match/MatchScoreText.cs" id="1_xy1kr"]
+[ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/Gem.tscn" id="3_dq4ac"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2gdna"]
 shader = ExtResource("1_45tgh")
@@ -98,10 +99,13 @@ gradient = SubResource("Gradient_ja6de")
 targetColorScore = 300
 speed = 300.0
 
+[node name="Gem" parent="." instance=ExtResource("3_dq4ac")]
+visible = false
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 self_modulate = Color(0.996078, 0.996078, 0.996078, 1)
-offset_left = -35.0
-offset_right = 223.0
+offset_left = 28.0
+offset_right = 286.0
 offset_bottom = 52.0
 theme = SubResource("Theme_rvtpx")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

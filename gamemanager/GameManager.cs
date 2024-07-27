@@ -82,7 +82,7 @@ public partial class GameManager : GameManagerIF
 		}
 		score.setScoreNeeded(scoreNeededToPass);
 		score.setLevel(currentLevel);
-		score.setHeartsRemaining(global.currentHealth);
+		//score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
 		score.setColorUpgrades(getColorUpgrades().ToList());
 		if (relicTestResources.Count != 0)
