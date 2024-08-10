@@ -8,17 +8,33 @@
 [sub_resource type="Resource" id="Resource_cv85o"]
 script = ExtResource("1_h7syu")
 value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_s7km8"]
 script = ExtResource("2_6wwge")
 value = 1
 value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("1_d42s0")
 targetMult = 3.0
 title = "Mult Master"
-description = "Give +1 energy and +1 card if you end your turn with 3 or more mult"
+description = "Gain +1 energy and +1 card if you end your turn with 3 or more mult"
 image = ExtResource("3_8pi28")
 cost = 50
 hidden = false

@@ -30,7 +30,7 @@ public partial class CardEffectPopRandom : CardEffectIF
 		if(positions.Count > getValue()) {
 			positions = positions.GetRange(0, getValue());
 		}
-		matchBoard.deleteGemAtPositions(positions);
+		matchBoard.deleteGemAtPositions(positions, true);
 	}
 
 	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile) {

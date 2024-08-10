@@ -11,15 +11,15 @@ value = 1
 
 [resource]
 script = ExtResource("2_a2bku")
-title = " Mana Gems"
-description = "+1 mana ingredient every 2 turns"
+title = " Energy Infusions"
+description = "+2 energy ingredients every 2 turns"
 image = ExtResource("2_lrx1a")
 cost = 50
 hidden = false
 lastForOneTurn = false
 lastForOneLevel = false
 gameStartEffects = []
-turnStartEffects = [SubResource("Resource_77olc")]
+turnStartEffects = [SubResource("Resource_77olc"), null]
 addToInvEffects = []
 levelOverEffects = []
 effects = []

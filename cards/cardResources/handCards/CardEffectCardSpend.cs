@@ -19,6 +19,6 @@ public partial class CardEffectCardSpend : CardEffectIF
 	{
 		int handValue = hand.getAllCards().Count;
 		hand.discardHand();
-		FindObjectHelper.getScore(matchBoard).addScore(75 * handValue);
+		FindObjectHelper.getScore(matchBoard).addScoreFromNode(75 * handValue, node);
 	}
 }

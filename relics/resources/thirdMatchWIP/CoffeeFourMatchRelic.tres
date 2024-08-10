@@ -7,6 +7,14 @@
 [sub_resource type="Resource" id="Resource_nwy7j"]
 script = ExtResource("1_igtae")
 value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_8xy30")
@@ -16,13 +24,18 @@ title = "Coffee 4 Matcher"
 description = "Gain on energy when you a match of 4 or more coffee"
 image = ExtResource("2_22jj1")
 cost = 50
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_nwy7j")]
+matchEffects = []
 counterMax = 0
 customCounter = false
-counterDown = false
 counterResetOnLevelStart = false
+counterResetOnTurnStart = false
 resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

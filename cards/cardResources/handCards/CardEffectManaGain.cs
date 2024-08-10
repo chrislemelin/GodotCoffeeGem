@@ -18,7 +18,7 @@ public partial class CardEffectManaGain : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		int valueMod = 0;
-		if (matchBoard.getMatchesThisTurn(GemType.Coffee).Count >= 1){} {
+		if (matchBoard.getMatchesThisTurn(GemType.Coffee).Count >= 1){
 			valueMod = 1;
 		}
 		mana.modifyMana(getValue() + valueMod);

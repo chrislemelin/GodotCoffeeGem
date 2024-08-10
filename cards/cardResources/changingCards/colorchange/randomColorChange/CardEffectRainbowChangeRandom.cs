@@ -22,5 +22,12 @@ public partial class CardEffectRainbowChangeRandom : CardEffectIF
 		GemType gemType = matchBoard.getTile(selectedTiles[0]).Gem.Type;
 		List<Vector2> tilePositions = matchBoard.getRandomNonBlackNotOfTypeTiles(getValue(), gemType).Select((tile) => tile.getTilePosition()).ToList();
 		matchBoard.changeGemsColorAtPosition(tilePositions, gemType);
+		bool hasDrawnCard = false;
+		matchBoard.addMatchActionsOnPositions(tilePositions, (list) =>  {
+			if (hasDrawnCard == false){
+				hand.drawCards(1);
+				hasDrawnCard = true;
+			}
+		});
 	}
 }

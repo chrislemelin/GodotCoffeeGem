@@ -71,25 +71,25 @@ var while_loopbacks: Array[String] = []
 
 
 ## Parse some raw dialogue text. Returns a dictionary containing parse results
-static func parse_string(string: String, path: String) -> DialogueManagerParseResult:
-	var parser: DialogueManagerParser = DialogueManagerParser.new()
-	var error: Error = parser.parse(string, path)
-	var data: DialogueManagerParseResult = parser.get_data()
-	parser.free()
-
-	if error == OK:
-		return data
-	else:
-		return null
+#static func parse_string(string: String, path: String) -> DialogueManagerParseResult:
+	##var parser: DialogueManagerParser = DialogueManagerParser.new()
+	#var error: Error = parser.parse(string, path)
+	#var data: DialogueManagerParseResult = parser.get_data()
+	#parser.free()
+#
+	#if error == OK:
+		#return data
+	#else:
+		#return null
 
 
 ## Extract bbcode and other markers from a string
-static func extract_markers_from_string(string: String) -> ResolvedLineData:
-	var parser: DialogueManagerParser = DialogueManagerParser.new()
-	var markers: ResolvedLineData = parser.extract_markers(string)
-	parser.free()
-
-	return markers
+#static func extract_markers_from_string(string: String) -> ResolvedLineData:
+	#var parser: DialogueManagerParser = DialogueManagerParser.new()
+	#var markers: ResolvedLineData = parser.extract_markers(string)
+	#parser.free()
+#
+	#return markers
 
 
 ## Parse some raw dialogue text. Returns a dictionary containing parse results

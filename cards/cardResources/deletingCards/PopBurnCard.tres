@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bndjvymr0xra3"]
+
+[ext_resource type="Texture2D" uid="uid://b20i5li1f74i1" path="res://cards/cardResources/cardArt/pop.png" id="1_qvwan"]
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPop.cs" id="2_vd6er"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_8m17l"]
+
+[sub_resource type="Resource" id="Resource_yu3xx"]
+script = ExtResource("2_vd6er")
+Range = 1.0
+Value = 0
+BlackGems = 1
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainMana = 0
+bonusPassives = []
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+consume = false
+retain = false
+matchy = false
+
+[resource]
+script = ExtResource("3_8m17l")
+Title = "Pop Burn"
+Description = "Destroy selected ingredient. Draw a card. Burn an ingredient"
+Cost = 0
+rarity = 0
+Picture = ExtResource("1_qvwan")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_yu3xx")

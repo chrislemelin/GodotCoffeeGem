@@ -11,7 +11,7 @@ value = 0
 [resource]
 script = ExtResource("3_20q4u")
 title = "Gambler's coin"
-description = "On game start one random ingredient's points are doubled and another ingredient gives no points"
+description = "On level start one random ingredient's points are doubled and another ingredient gives no points"
 image = ExtResource("2_ul5wl")
 cost = 50
 hidden = false

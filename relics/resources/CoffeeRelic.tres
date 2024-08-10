@@ -12,7 +12,7 @@ value = 2
 [resource]
 script = ExtResource("3_rrosl")
 title = " Coffee Cup"
-description = "+2 cards on first turn"
+description = "+2 cards on the first turn of each level"
 image = ExtResource("2_yv50k")
 cost = 40
 hidden = false

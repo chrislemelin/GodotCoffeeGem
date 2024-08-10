@@ -110,7 +110,6 @@ gemType = 4
 gameManagerIF = NodePath("../../..")
 
 [node name="Reset" type="Button" parent="Menu" node_paths=PackedStringArray("gameManagerIF")]
-visible = false
 layout_mode = 0
 offset_left = 705.0
 offset_top = 876.0

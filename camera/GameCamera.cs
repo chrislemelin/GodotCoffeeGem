@@ -8,6 +8,11 @@ public partial class GameCamera : Camera2D
 	[Export] float shakeIntensity;
 	[Export] float shakeDecay;
 	[Export] float shakeSpeed;
+	[Export] float shakeIntensityRiseDividor;
+	[Export] float shakeIntensityMult;
+	[Export] float shakeIntensityMax;
+
+	private float shakeIntensityCurrent;
 
 
 	Vector2 startPosition;
@@ -25,7 +30,6 @@ public partial class GameCamera : Camera2D
 		startPosition = Position;
 	}
 
-	
 
 	public override void _Process(double delta)
 	{

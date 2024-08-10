@@ -19,7 +19,7 @@ public partial class CardEffectDeleteAllButBlack : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		List<Tile> tiles = matchBoard.getRandomNonBlackTile(-1);
-		matchBoard.deleteGemAtPositions(matchBoard.getAllTiles().Select(tile => tile.getTilePosition()).ToList());
+		matchBoard.deleteGemAtPositions(tiles.Select(tile => tile.getTilePosition()).ToList());
 	}
 	
 }

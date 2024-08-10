@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://geonj4kbb33j"]
 
-[ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/ToolTipStyleBox.tres" id="2_4xjjp"]
+[ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="2_4xjjp"]
 
 [sub_resource type="Theme" id="Theme_7yul7"]
 

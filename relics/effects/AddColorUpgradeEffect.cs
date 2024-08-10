@@ -11,7 +11,7 @@ public partial class AddColorUpgradeEffect : EffectResource
 		 
 	}
 	
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		FindObjectHelper.getScore(node).addColorUpgrade(colorUpgrade);
 	}
 }

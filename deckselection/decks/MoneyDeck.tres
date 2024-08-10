@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://cr1bg7cjxlymo"]
 
-[ext_resource type="Resource" uid="uid://c3mx6eec1nqpk" path="res://cards/cardResources/cardLists/MoneyCardList.tres" id="1_ca4qx"]
+[ext_resource type="Resource" uid="uid://c3mx6eec1nqpk" path="res://cards/cardResources/cardLists/MoneyCardList.tres" id="1_6kyla"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_6valu"]
 
 [resource]
 script = ExtResource("2_6valu")
-cardList = ExtResource("1_ca4qx")
+cardList = ExtResource("1_6kyla")
 relics = Array[Object]([])
 title = "Money Deck"
 description = "For the true capitalist. 

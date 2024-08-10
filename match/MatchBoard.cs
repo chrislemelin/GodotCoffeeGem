@@ -19,6 +19,8 @@ public partial class MatchBoard : Node
 	[Export] public Mana mana;
 	[Export] public Score score;
 	[Export] public AudioPlayer audioStreamPlayer2D;
+	[Export] public AudioPlayer audioPourStreamPlayer2D;
+
 	[Export] public Node2D boardHolder;
 	[Export] public TextureProgressBar progressBar;
 	private double progressValue = 0;
@@ -31,6 +33,9 @@ public partial class MatchBoard : Node
 	[Export] public RichTextLabel scoreLabel;
 	[Export] public RichTextLabel multLabel;
 
+	[Export] private float scorePitchMult = .1f;
+	[Export] private float scorePitchMax =.3f;
+ 
 
 	[Signal]
 	public delegate void ingredientDestroyedEventHandler(Gem gem);
@@ -238,9 +243,12 @@ public partial class MatchBoard : Node
 
 	private void scoreChanged(int score, int scoreNeeded)
 	{
-		progressValue = (double)score / scoreNeeded * 100;
+		double newProgressValue = (double)score / scoreNeeded * 100;
+		if (newProgressValue > progressValue) {
+			//GetTree().CreateTimer(.35f).Timeout += () => audioPourStreamPlayer2D.Play();
+		}
+		progressValue = newProgressValue;
 		scoreLabel.Text = score + "/" + scoreNeeded;
-
 	}
 
 	private void updateScoreChanged()
@@ -277,7 +285,10 @@ public partial class MatchBoard : Node
 		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel();
 
 		score.scoreChange += scoreChanged;
-		score.multChange += (value) => multLabel.Text = "" + value;
+		score.multChange += (value) =>  {
+			multLabel.Text = Mult.getMultString(value);
+			multLabel.Modulate = Mult.getMultColor(value);
+		};
 		timer = new Timer();
 		AddChild(timer);
 		timer.WaitTime = .1;
@@ -294,6 +305,9 @@ public partial class MatchBoard : Node
  		generateTiles();
 		gooIntialTiles();
 		populateBoard();
+		
+		hand.cardPlayed += (card) => clearMatchActions();
+
 		timer = new Timer();
 		AddChild(timer);
 		timer.WaitTime = .1;
@@ -457,10 +471,11 @@ public partial class MatchBoard : Node
 
 		foreach (HashSet<Tile> currentMatches in matches)
 		{
+			List<Gem> gems = currentMatches.Select(tile => tile.Gem).ToList();
 			foreach (Tile currentTile in currentMatches)
 			{
 				tilesToDeleteGem.Add(currentTile.getTilePosition());
-				currentTile.Gem.doAddonEffect();
+				currentTile.Gem.doMatchEffects(gems);
 				HashSet<Tile> tileAdjacent = getTilesInRange(currentTile.getTilePosition(), 1.0f);
 
 				tilesToClearBlocked.UnionWith(tileAdjacent);
@@ -474,9 +489,7 @@ public partial class MatchBoard : Node
 		if (tilesToDeleteGem.Count > 0)
 		{
 			gameCamera.shake();
-			audioStreamPlayer2D.Stream = matchAudioStream;
-			audioStreamPlayer2D.setBaseVolumeMult(.60f);
-			audioStreamPlayer2D.Play();
+			playMatchSound();
 		}
 		score.scoreMatches(matches);
 		foreach (HashSet<Tile> match in matches)
@@ -490,6 +503,20 @@ public partial class MatchBoard : Node
 		}
 		deleteGemAtPositionsFromMatches(matches);
 		return matches.Count > 0;
+	}
+
+	public void playMatchSound() {
+		audioStreamPlayer2D.Stream = matchAudioStream;
+		audioStreamPlayer2D.PitchScale = 1.0f + Math.Min(score.getMult() * scorePitchMult, scorePitchMax);
+		audioStreamPlayer2D.setBaseVolumeMult(.60f);
+		audioStreamPlayer2D.Play();
+	}
+
+	private void playPopSound() {
+		audioStreamPlayer2D.Stream = popAudioStream;
+		audioStreamPlayer2D.setBaseVolumeMult(1.0f);
+		audioStreamPlayer2D.Play();
+		audioStreamPlayer2D.PitchScale = 1.0f;
 	}
 
 	private void gemDoneDying(Gem gem)
@@ -525,7 +552,7 @@ public partial class MatchBoard : Node
 					survivingGem.Gem.addCombo(gemWithCombo.Gem.getCombo());
 				}
 			}
-			deleteGemAtPositions(tilesToDelete.Select(tile => tile.getTilePosition()).ToList(), true);
+			deleteGemAtPositions(tilesToDelete.Select(tile => tile.getTilePosition()).ToList(), true, false);
 		}
 
 	}
@@ -534,19 +561,17 @@ public partial class MatchBoard : Node
 	{
 		return positions.Where(pos => tileMap.ContainsKey(pos)).Where(pos => tileMap[pos].Gem != null).ToList();
 	}
-	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch) {
-		deleteGemAtPositions(positions, fromMatch, Optional.None<int>());
+	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, bool explode) {
+		deleteGemAtPositions(positions, fromMatch, explode, Optional.None<int>());
 	}
 
-	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, Optional<int> scorePointValue)
+	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, bool explode, Optional<int> scorePointValue)
 	{
 		positions = filterOutInvalidPosition(positions);
 		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).Where(gem => gem != null).ToList();
 		if (!fromMatch)
 		{
-			audioStreamPlayer2D.Stream = popAudioStream;
-			audioStreamPlayer2D.setBaseVolumeMult(1.0f);
-			audioStreamPlayer2D.Play();
+			playPopSound();
 		}
 		gemsToBeDeleted.UnionWith(gemsToDelete);
 		foreach (Gem gem in gemsToDelete)
@@ -567,11 +592,11 @@ public partial class MatchBoard : Node
 
 		foreach (Vector2 position in positions)
 		{
-			deleteGemAtPositionInternal(position, fromMatch);
+			deleteGemAtPositionInternal(position, fromMatch, explode);
 		}
 	}
 
-	private void deleteGemAtPositionInternal(Vector2 position, bool fromMatch)
+	private void deleteGemAtPositionInternal(Vector2 position, bool fromMatch, bool explode)
 	{
 		Optional<Tile> tileMaybe = getTileOptional(position);
 		if (tileMaybe.HasValue)
@@ -583,13 +608,16 @@ public partial class MatchBoard : Node
 				{
 					tile.Gem.startDyingMatch();
 				}
+				else if (explode) {
+					EmitSignal(SignalName.ingredientDestroyed, tile.Gem);
+					tile.Gem.startDyingExplode();
+				}
 				else
 				{
 					EmitSignal(SignalName.ingredientDestroyed, tile.Gem);
 					tile.Gem.startDying();
-
 				}
-				tile.Gem.startDying();
+				//tile.Gem.startDying();
 				tileMaybe.GetValue().Gem = null;
 			}
 		}
@@ -774,7 +802,7 @@ public partial class MatchBoard : Node
 		{
 			foreach (HashSet<Tile> match in matches)
 			{
-				changeGemsColorAtPosition(match.First().getTilePosition(), GemTypeHelper.getRandomColor());
+				changeGemsColorAtPosition(match.First().getTilePosition(), GemTypeHelper.getRandomColor(), false);
 			}
 			matches = getMatches();
 		}
@@ -882,14 +910,14 @@ public partial class MatchBoard : Node
 		return tileSet;
 	}
 
-	public void deleteGemAtPositions(IEnumerable<Vector2> positions)
+	public void deleteGemAtPositions(IEnumerable<Vector2> positions, bool explode = false)
 	{
-		deleteGemAtPositions(positions, false);
+		deleteGemAtPositions(positions, false, explode);
 	}
 
 	public void deleteGemAtPositionsWithScoringForEach(IEnumerable<Vector2> positions, int points)
 	{
-		deleteGemAtPositions(positions, true, Optional.Some(points)); 
+		deleteGemAtPositions(positions, true, false, Optional.Some(points)); 
 	}
 
 	public void checkManuallyForMatchOrDelete(IEnumerable<Vector2> positions)
@@ -943,9 +971,9 @@ public partial class MatchBoard : Node
 		return directions.SelectMany(direction => getTilesInDirectionOfSameGemType(startingPosition, direction, Optional.None<GemType>(), range)).ToHashSet();
 	}
 
-	public void changeGemsColorAtPosition(Vector2 position, GemType gemType)
+	public void changeGemsColorAtPosition(Vector2 position, GemType gemType, bool explode = true)
 	{
-		changeGemsColorAtPosition(filterOutInvalidPosition(new HashSet<Vector2> { position }), gemType);
+		changeGemsColorAtPosition(filterOutInvalidPosition(new HashSet<Vector2> { position }), gemType, explode);
 	}
 
 	public List<Tile> getRandomNonBlackTile(int count = int.MaxValue)
@@ -980,8 +1008,11 @@ public partial class MatchBoard : Node
 		});
 	}
 
-	public List<Tile> getRandomNonBlackNonAddonTiles(int count)
+	public List<Tile> getRandomNonBlackNonAddonTiles(int count, HashSet<Vector2> excludePositions = null)
 	{
+		if (excludePositions == null) {
+			excludePositions = new HashSet<Vector2>();
+		}
 		return getRandomTilesWithCondition(count, tile =>
 		{
 			if (tile.Gem == null)
@@ -993,6 +1024,10 @@ public partial class MatchBoard : Node
 				return false;
 			}
 			if (tile.Gem.AddonType != GemAddonType.None)
+			{
+				return false;
+			}
+			if (excludePositions.Contains(tile.getTilePosition()))
 			{
 				return false;
 			}
@@ -1025,11 +1060,20 @@ public partial class MatchBoard : Node
 			if (tile.Gem != null)
 			{
 				tile.Gem.setAddonType(gemAddonType);
+				tile.Gem.explode();
 			}
 		}
 	}
 
-	public void changeGemsColorAtPosition(IEnumerable<Vector2> positions, GemType gemType)
+	public void clearMatchActions() {
+		foreach(Tile tile in getAllTiles()) { 
+			if(tile.Gem != null) {
+				tile.Gem.clearMatchActions();
+			}
+		}
+	}
+
+	public void changeGemsColorAtPosition(IEnumerable<Vector2> positions, GemType gemType, bool explode = true)
 	{
 		positions = filterOutInvalidPosition(positions);
 		foreach (Vector2 position in positions)
@@ -1038,6 +1082,9 @@ public partial class MatchBoard : Node
 			if (tile.HasValue)
 			{
 				tile.GetValue().Gem.setType(gemType);
+				if (explode) {
+					tile.GetValue().Gem.explode();
+				}
 			}
 		}
 		if (gemType == GemType.Black)
@@ -1047,6 +1094,20 @@ public partial class MatchBoard : Node
 		}
 		thingsAreMoving = true;
 	}
+
+	public void addMatchActionsOnPositions(IEnumerable<Vector2> positions, Action<List<Gem>> action)
+	{
+		positions = filterOutInvalidPosition(positions);
+		foreach (Vector2 position in positions)
+		{
+			Tile tile = getTile(position);
+			if (tile.Gem != null)
+			{
+				tile.Gem.addMatchActions(action);
+			}
+		}
+	}
+
 
 	public void switchGemsInPositions(Vector2 position1, Vector2 position2, bool teleport = false)
 	{

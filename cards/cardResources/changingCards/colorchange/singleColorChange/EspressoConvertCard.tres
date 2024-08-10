@@ -1,8 +1,20 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c0t40mre00w4j"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://c0t40mre00w4j"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_fj0od"]
 [ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_nnae3"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_2cywm"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_2hfyw"]
+
+[sub_resource type="Resource" id="Resource_dnhsy"]
+script = ExtResource("2_2cywm")
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 1
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_mklkk"]
 script = ExtResource("1_fj0od")
@@ -13,17 +25,22 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = [SubResource("Resource_dnhsy")]
+matchEffectsMin = 4
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 4
 consume = false
 retain = false
-effectGemType = 4
+matchy = false
 
 [resource]
 script = ExtResource("2_2hfyw")
 Title = "Espresso Shot"
-Description = "Change selected ingredient to coffee"
+Description = "Change selected ingredient to coffee. If this makes a 4+ match gain an energy"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_nnae3")

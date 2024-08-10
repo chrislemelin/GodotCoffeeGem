@@ -1,8 +1,19 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dsr6hgn8djewp"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://dsr6hgn8djewp"]
 
 [ext_resource type="Texture2D" uid="uid://ihpj4yrdbig8" path="res://cards/cardResources/cardArt/popCol.png" id="1_o76cr"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/PopColCardEffect.cs" id="2_345e7"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="2_qw0g5"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_4sq0s"]
+
+[sub_resource type="Resource" id="Resource_pw3pk"]
+script = ExtResource("2_qw0g5")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = -1
+valueModification = 0
+manaGemsModification = 0
+cardGemsModification = 0
 
 [sub_resource type="Resource" id="Resource_igk4d"]
 script = ExtResource("2_345e7")
@@ -13,17 +24,20 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = [SubResource("Resource_pw3pk")]
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = true
 
 [resource]
 script = ExtResource("3_4sq0s")
 Title = "Pop Column"
-Description = "Destroy all ingredients of a selected column. If this destroys 3 or more of the same type count it as a match"
+Description = "Destroy all ingredients of a selected column. -1 cost if a milk match has been made this turn"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_o76cr")

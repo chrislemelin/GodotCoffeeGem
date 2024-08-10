@@ -9,7 +9,7 @@ public partial class NewTurnButton : CustomToolTipButton
 	[Signal] public delegate void StartNewTurnEventHandler();
 
 	[Export] public PlayableCardsUI playableCardsUI;
-	bool hasShownPlayableCardsUI = false;
+	bool hasShownPlayableCardsUI = true;
 
 	//[Signal] public delegate void SetUpNewTurnEventHandler();
 	//[Signal] public delegate void StartNewTurnEventHandler();
@@ -40,7 +40,7 @@ public partial class NewTurnButton : CustomToolTipButton
 
 	private bool shouldShowPlayableCardsUI() {
 		if (!hasShownPlayableCardsUI && !playableCardsUI.showUI.ButtonPressed && !FindObjectHelper.getScore(this).scoreReached()) {
-			return true;
+			return false;
 		}
 		return false;
 	}

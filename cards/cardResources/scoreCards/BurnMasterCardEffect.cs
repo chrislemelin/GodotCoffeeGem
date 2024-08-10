@@ -19,7 +19,7 @@ public partial class BurnMasterCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		Score score = FindObjectHelper.getScore(matchBoard);
-		score.addScore(50 * getValue());
+		score.addScoreFromNode(50 * getValue(), node);
 	}
 	public override int getValue() {
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);

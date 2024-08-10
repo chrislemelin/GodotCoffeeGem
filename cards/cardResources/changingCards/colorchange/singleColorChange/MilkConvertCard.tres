@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dem6i4eb31m22"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://dem6i4eb31m22"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_fo6fs"]
 [ext_resource type="Texture2D" uid="uid://xqk1jrhdags6" path="res://cards/cardResources/cardArt/milk.png" id="1_h41v4"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_bf3qq"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_c0jlh"]
+
+[sub_resource type="Resource" id="Resource_v6jc5"]
+script = ExtResource("2_c0jlh")
+value = 0
+BurnGems = 1
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 1
+GainCoins = 0
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_mklkk"]
 script = ExtResource("1_fo6fs")
@@ -13,17 +26,22 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = [SubResource("Resource_v6jc5")]
+matchEffectsMin = 4
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 1
 consume = false
 retain = false
-effectGemType = 1
+matchy = false
 
 [resource]
 script = ExtResource("2_bf3qq")
 Title = "Milky Splash"
-Description = "Change selected ingredient to milk"
+Description = "Change selected ingredient to milk. If this makes a 4+ match draw a card gain an energy and burn 1 ingredient"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_h41v4")

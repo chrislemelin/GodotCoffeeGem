@@ -10,7 +10,7 @@ public partial class MaxHealthUpgradeEffect : EffectResource
 
 	}
 
-	public override void execute(Node node)
+	protected override void executeEffect(Node node)
 	{
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(node);
 		gameManagerIF.setMaxHealth(gameManagerIF.getMaxHealth() + value);

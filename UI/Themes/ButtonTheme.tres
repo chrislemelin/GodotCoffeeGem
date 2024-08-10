@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://3d6t3ubetydb"]
 
-[ext_resource type="StyleBox" uid="uid://bwc2d0age3pc3" path="res://UI/Themes/PanelBackground.tres" id="1_ahnws"]
+[ext_resource type="StyleBox" uid="uid://bwc2d0age3pc3" path="res://UI/Themes/StyleBoxes/PanelBackground.tres" id="1_x15o2"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_q7xkx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
@@ -69,7 +69,7 @@ Button/styles/focus = SubResource("StyleBoxEmpty_uudkw")
 Button/styles/hover = SubResource("StyleBoxFlat_8sv2r")
 Button/styles/normal = SubResource("StyleBoxFlat_wrlob")
 Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
-Panel/styles/panel = ExtResource("1_ahnws")
+Panel/styles/panel = ExtResource("1_x15o2")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
 RichTextLabel/font_sizes/normal_font_size = 46
 TooltipLabel/colors/font_color = Color(0, 0, 0, 1)

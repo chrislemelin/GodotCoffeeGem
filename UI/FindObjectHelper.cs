@@ -5,22 +5,27 @@ using System.Xml.Serialization;
 public partial class FindObjectHelper
 {
 
-	public static readonly String NEW_BUTTON_NAME = "%NewTurnButton";
-	public static readonly String SCORE_NAME = "%Score";
-	public static readonly String MATCH_BOARD_NAME = "MatchBoard";
-	public static readonly String DECK_VIEW_NAME = "DeckView";
-	public static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
-	public static readonly String RELIC_SELECTION_NAME = "RelicSelection";
-	public static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
-	public static readonly String SETTINGS_MENU_NAME = "SettingsMenu";
-	public static readonly String RELIC_HOLDER_UI_NAME = "RelicHolder";
-	public static readonly String CARD_LIBRARY_NAME = "CardLibrary";
-
+	private static readonly String NEW_BUTTON_NAME = "NewTurnButton";
+	private static readonly String SCORE_NAME = "%Score";
+	private static readonly String MATCH_BOARD_NAME = "MatchBoard";
+	private static readonly String DECK_VIEW_NAME = "DeckView";
+	private static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
+	private static readonly String RELIC_SELECTION_NAME = "RelicSelection";
+	private static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
+	private static readonly String SETTINGS_MENU_NAME = "SettingsMenu";
+	private static readonly String RELIC_HOLDER_UI_NAME = "RelicHolder";
+	private static readonly String CARD_LIBRARY_NAME = "CardLibrary";
+	private static readonly String CAMERA_NAME = "Camera";
 
 
 	public static Hand getHand(Node node)
 	{
 		return (Hand)node.GetTree().GetFirstNodeInGroup("Hand");
+	}
+
+	public static GameCamera getCamera(Node node)
+	{
+		return (GameCamera)node.GetTree().GetFirstNodeInGroup(CAMERA_NAME);
 	}
 	public static Mana getMana(Node node)
 	{
@@ -37,7 +42,7 @@ public partial class FindObjectHelper
 
 	public static NewTurnButton getNewTurnButton(Node node)
 	{
-		return node.GetNode<NewTurnButton>(FindObjectHelper.NEW_BUTTON_NAME);
+		return (NewTurnButton)node.GetTree().GetFirstNodeInGroup(NEW_BUTTON_NAME);
 	}
 	public static Score getScore(Node node)
 	{

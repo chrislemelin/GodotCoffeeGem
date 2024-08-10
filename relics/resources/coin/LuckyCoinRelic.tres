@@ -7,6 +7,14 @@
 [sub_resource type="Resource" id="Resource_f846d"]
 script = ExtResource("2_d1p0k")
 value = 10
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_3t5l4")

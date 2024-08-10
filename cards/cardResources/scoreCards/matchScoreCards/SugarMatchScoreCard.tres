@@ -13,17 +13,20 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 5
 consume = false
 retain = false
-effectGemType = 5
+matchy = false
 
 [resource]
 script = ExtResource("2_ynhbm")
 Title = "Sugar Score"
-Description = "Gain 75 points for match of sugar made this level. ($value)"
+Description = "Gain 75 points for each match of sugar made this level. ($value)"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_pbbsc")

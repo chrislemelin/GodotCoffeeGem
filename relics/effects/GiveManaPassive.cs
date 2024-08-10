@@ -9,7 +9,7 @@ public partial class GiveManaPassive : EffectResource
 
 	}
 
-	public override void execute(Node node)
+	protected override void executeEffect(Node node)
 	{
 		FindObjectHelper.getMana(node).modifyMana(value);
 	}

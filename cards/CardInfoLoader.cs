@@ -93,14 +93,7 @@ public partial class CardInfoLoader : Control
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		coinCostText.Text = cardResource.getCoinCost().ToString();
-		if (cardResource.cardEffect.consume)
-		{
-			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
-		}
-		if (cardResource.cardEffect.retain)
-		{
-			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of the turn";
-		}
+		highlightOnHover.TooltipText = cardResource.getToolTip();
 	}
 
 	public void setShowCoinCost(bool visible)

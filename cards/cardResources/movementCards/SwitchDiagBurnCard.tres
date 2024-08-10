@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d0q3mttuyfd0d"]
+
+[ext_resource type="Texture2D" uid="uid://bcq17llxnxjfl" path="res://cards/cardResources/cardArt/switchPlus.png" id="1_bgxg7"]
+[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="2_wliny"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_eyaln"]
+
+[sub_resource type="Resource" id="Resource_n6fnt"]
+script = ExtResource("2_wliny")
+Range = 1.8
+Value = 0
+BlackGems = 2
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainMana = 0
+bonusPassives = []
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+consume = false
+retain = false
+matchy = false
+
+[resource]
+script = ExtResource("3_eyaln")
+Title = "Switch Burn + "
+Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients. Draw a card. Burn 2 ingredients"
+Cost = 1
+rarity = 0
+Picture = ExtResource("1_bgxg7")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_n6fnt")

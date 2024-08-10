@@ -19,6 +19,6 @@ public partial class CardEffectManaSpend : CardEffectIF
 	{
 		int manaValue = mana.manaValue;
 		mana.modifyMana(-1 * manaValue);
-		FindObjectHelper.getScore(matchBoard).addScore(100 * manaValue);
+		FindObjectHelper.getScore(matchBoard).addScoreFromNode(100 * manaValue, node);
 	}
 }

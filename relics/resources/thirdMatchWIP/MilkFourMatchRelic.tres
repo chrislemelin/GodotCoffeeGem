@@ -7,6 +7,14 @@
 [sub_resource type="Resource" id="Resource_i16ow"]
 script = ExtResource("1_cxtbg")
 value = 5
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_x1ylq")
@@ -16,13 +24,18 @@ title = "Milk 4 Matcher"
 description = "Gain 5 coins when you a match of 4 or more milk"
 image = ExtResource("2_dcpwg")
 cost = 50
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_i16ow")]
+matchEffects = []
 counterMax = 0
 customCounter = false
-counterDown = false
 counterResetOnLevelStart = false
+counterResetOnTurnStart = false
 resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

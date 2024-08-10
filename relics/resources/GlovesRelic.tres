@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="RelicResource" load_steps=5 format=3 uid="uid://ckldfchg1chol"]
+[gd_resource type="Resource" script_class="RelicResource" load_steps=5 format=3 uid="uid://ll3jkfgwfmii"]
 
 [ext_resource type="Texture2D" uid="uid://c8s2niff1othe" path="res://relics/sprites/Icon.5_92.png" id="1_idk2t"]
 [ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="2_m7uiy"]
 [ext_resource type="Script" path="res://relics/effects/GiveCardPassive.cs" id="3_i8evw"]
 
-[sub_resource type="Resource" id="Resource_esr6y"]
+[sub_resource type="Resource" id="Resource_6i3hb"]
 script = ExtResource("3_i8evw")
 value = 1
 value = 1
@@ -19,7 +19,7 @@ hidden = false
 lastForOneTurn = false
 lastForOneLevel = false
 gameStartEffects = []
-turnStartEffects = [SubResource("Resource_esr6y")]
+turnStartEffects = [SubResource("Resource_6i3hb")]
 addToInvEffects = []
 levelOverEffects = []
 effects = []

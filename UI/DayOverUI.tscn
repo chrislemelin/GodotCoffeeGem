@@ -280,9 +280,9 @@ cost = 20
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("11_37gdu")
-text = "Recover a heart  (Costs 30 coins)"
+text = "Recover a heart  (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
-cost = 30
+cost = 40
 
 [node name="Gem upgrade" type="Button" parent="VBoxContainer"]
 visible = false
@@ -312,9 +312,9 @@ cost = 30
 [node name="Relic" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("11_37gdu")
-text = "Buy a relic (passive ability) (60 coins)"
+text = "Buy a relic (passive ability) (100 coins)"
 script = ExtResource("2_x4g5w")
-cost = 60
+cost = 100
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -346,14 +346,12 @@ visible = false
 custom_minimum_size = Vector2(60, 100)
 layout_mode = 2
 
-[node name="Control2" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel") instance=ExtResource("5_6xr0x")]
+[node name="Control2" parent="PassiveShop" node_paths=PackedStringArray("picture") instance=ExtResource("5_6xr0x")]
 visible = false
 layout_mode = 2
 picture = NodePath("../Control/RelicUI/TextureRect")
-counterLabel = NodePath("../Control/TextEdit")
 
-[node name="Control3" parent="PassiveShop" node_paths=PackedStringArray("picture", "counterLabel") instance=ExtResource("5_6xr0x")]
+[node name="Control3" parent="PassiveShop" node_paths=PackedStringArray("picture") instance=ExtResource("5_6xr0x")]
 visible = false
 layout_mode = 2
 picture = NodePath("../Control/RelicUI/TextureRect")
-counterLabel = NodePath("../Control/TextEdit")

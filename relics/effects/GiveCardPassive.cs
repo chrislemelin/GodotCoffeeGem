@@ -10,7 +10,7 @@ public partial class GiveCardPassive : EffectResource
 		 
 	}
 	
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		FindObjectHelper.getHand(node).drawCards(value);
 	}
 }

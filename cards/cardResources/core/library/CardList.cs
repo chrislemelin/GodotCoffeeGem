@@ -12,7 +12,6 @@ public partial class CardList : Resource
 
 
 	public CardList () {
-	
 	}
 
 	public void setCards(Godot.Collections.Array<CardResource> allCards) {
@@ -26,9 +25,19 @@ public partial class CardList : Resource
 	public List<CardResource> getCards() {
 		List<CardResource> returnCards = allCards.ToList().Where(card => card != null).ToList();
 		if (removeDuplicates) {
-			List<CardResource> returnCardsNoDups = returnCards.GroupBy(x => x.Title).Select(y => y.First()).ToList();
-			if (!returnCardsNoDups.Equals(returnCards)) {
-				GD.Print(returnCards.Except(returnCardsNoDups).ToList());
+			List<CardResource> dups = returnCards.GroupBy(x => x.Title)
+			.Where(g => g.Count() > 1)
+			.Select(y => y.First())
+			.ToList();
+			List<CardResource> returnCardsNoDups = returnCards.GroupBy(x => x.Title).Select(
+				y => {
+					return y.First();
+			}).ToList();
+			if (dups.Count > 0) {
+				GD.Print("found dups: ");
+				foreach(CardResource cardResource in dups) {
+					GD.Print(cardResource.Title);
+				}
 			}
 			returnCards = returnCardsNoDups;
 		}

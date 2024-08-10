@@ -1,8 +1,19 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d1nggr211uac1"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://d1nggr211uac1"]
 
 [ext_resource type="Texture2D" uid="uid://bluufnw16b2pi" path="res://cards/cardResources/cardArt/popRow.png" id="1_bt0gg"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRow.cs" id="1_hsegb"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="2_dvftv"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_v1prq"]
+
+[sub_resource type="Resource" id="Resource_bmv0b"]
+script = ExtResource("2_dvftv")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = -1
+valueModification = 0
+manaGemsModification = 0
+cardGemsModification = 0
 
 [sub_resource type="Resource" id="Resource_nsl5v"]
 script = ExtResource("1_hsegb")
@@ -13,17 +24,20 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = [SubResource("Resource_bmv0b")]
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = true
 
 [resource]
 script = ExtResource("2_v1prq")
 Title = "Pop Row"
-Description = "Destroy all ingredients of a selected row. If this destroys 3 or more of the same type count it as a match"
+Description = "Destroy all ingredients of a selected row. -1 cost if a milk match has been made this turn"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_bt0gg")

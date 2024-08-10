@@ -20,7 +20,7 @@ public partial class RainbowScoreCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		Score score = FindObjectHelper.getScore(matchBoard);
-		score.addScore(100 * getValue());
+		score.addScoreFromNode(100 * getValue(), node);
 	}
 	public override int getValue()
 	{

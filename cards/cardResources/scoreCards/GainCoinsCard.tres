@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_7kxq4"]
 script = ExtResource("1_kxe18")
+bonusCoins = 5
 Range = 1.0
 Value = 5
 BlackGems = 0
@@ -13,17 +14,20 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [resource]
 script = ExtResource("2_damhv")
 Title = "Loose Change"
-Description = "Gain 5 coins."
+Description = "Gain 5 coins. If you have matched a sugar this turn gain another 5 coins. $customText"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_ngwwr")

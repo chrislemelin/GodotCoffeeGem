@@ -29,9 +29,9 @@ static class MapEventTypeHelper
             case MapEventType.UpgradeCard:
                 return "Upgrade Card";
             case MapEventType.Mechanic:
-                return "Mechanic \n(40 Coins)";
+                return "Mechanic \n(50 Coins)";
             case MapEventType.RelicShop:
-                return "Relics \n(20 Coins)";
+                return "Relics \n(40 Coins)";
             case MapEventType.Heal:
                 return "Heal a Heart";                
             case MapEventType.Home:

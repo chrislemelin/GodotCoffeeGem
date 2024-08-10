@@ -8,21 +8,33 @@
 script = ExtResource("1_to12x")
 multIncrease = 1.0
 value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("2_adqd8")
 title = "Destruction"
-description = "Gain +1 mult every turn, but only activates afer 10 ingredients are destroyed"
+description = "Gain +1 mult every turn, but only activates afer 10 ingredients are destroyed this level"
 image = ExtResource("2_ewjlv")
 cost = 40
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_tifok")]
+matchEffects = []
 counterMax = 10
 customCounter = true
-counterDown = false
 counterResetOnLevelStart = true
+counterResetOnTurnStart = false
 resetCounterAfterReachingMax = false
 doEffectsOnTurnStartIfCounterAtMax = true

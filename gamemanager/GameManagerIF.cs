@@ -27,17 +27,17 @@ public partial class GameManagerIF : Node2D
 		return global.deckCardList != null;
 	}
 	public List<CardResource> getDeckList()
-	{
+{
 		loadGlobalAndSetDeckToDefault();
 		return new List<CardResource>(global.deckCardList.getCards());
 	}
 
 	public List<CardResource> getCardPool() {
 		List<CardResource> cards = getDefaultCardPool();
-		GD.Print(cards.Count + " cards in the default pool");
+		//GD.Print(cards.Count + " cards in the default pool");
 
 		cards.AddRange(getCardsUnlocked());
-		GD.Print(cards.Count + " cards in the pool");
+		//GD.Print(cards.Count + " cards in the pool");
 		return cards;
 	}
 
@@ -202,7 +202,7 @@ public partial class GameManagerIF : Node2D
 
 		if (getGlobal().deckCardList == null || getGlobal().deckCardList.getCards().Count == 0)
 		{
-			Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(getCardLibrary().defaultCardList.getCards());
+			Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(getCardLibrary().getDefaultCardPool().getCards());
 			CardList newCardList = new CardList();
 			newCardList.setCards(cardList);
 			getGlobal().deckCardList = newCardList;
@@ -236,7 +236,7 @@ public partial class GameManagerIF : Node2D
 
 	public List<RelicResource> getRelicPool()
 	{
-		return relicList.allRelics.Duplicate().ToList();
+		return relicList.getRelics().ToList();
 	}
 
 	public virtual void advanceLevel()
@@ -381,7 +381,9 @@ public partial class GameManagerIF : Node2D
 		{
 			getGlobal().allCoinsGained += coinValue;
 		}
-		EmitSignal(SignalName.coinsChanged, global.currentCoins);
+		if (coinValue!= 0) {
+			EmitSignal(SignalName.coinsChanged, global.currentCoins);
+		}
 	}
 
 	public void addColorUpgrade(ColorUpgrade colorUpgrade)

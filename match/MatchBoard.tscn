@@ -1,31 +1,34 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=17 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
 [ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/Gem.tscn" id="3_xdias"]
 [ext_resource type="AudioStream" uid="uid://dwqygn7djg1yx" path="res://sound/MatchBoard/fireball-whoosh-1-179125.mp3" id="4_prplw"]
+[ext_resource type="AudioStream" uid="uid://woe62785lit4" path="res://sound/MatchBoard/NewCardSelection.mp3" id="4_xadm7"]
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
 [ext_resource type="Texture2D" uid="uid://c07w41hdxnn7t" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-machine.png" id="7_pc7t1"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="7_y00am"]
 [ext_resource type="Texture2D" uid="uid://dl1ln57tsw13r" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-under.png" id="8_gtf6h"]
 [ext_resource type="Texture2D" uid="uid://d2p1r3oe3jbwq" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-over-3.png" id="9_rr4cj"]
+[ext_resource type="AudioStream" uid="uid://d2eypcf71h7dg" path="res://sound/Score/pour.mp3" id="9_tkeaj"]
 [ext_resource type="Texture2D" uid="uid://cupvxc45baixk" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-coffee.png" id="10_imxj2"]
 [ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://placeholders/bg-square-round-49.png" id="12_g4i3p"]
 [ext_resource type="FontFile" uid="uid://b3enwhg2wydrp" path="res://fonts/Technology.ttf" id="13_83ke4"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="14_symjt"]
 
-[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "boardHolder", "progressBar", "levelLabel", "scoreLabel", "multLabel")]
+[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "audioPourStreamPlayer2D", "boardHolder", "progressBar", "levelLabel", "scoreLabel", "multLabel")]
 script = ExtResource("1_4r3i0")
 sizeX = 6
 sizeY = 6
 tileTemplate = ExtResource("2_hppa1")
 gemScene = ExtResource("3_xdias")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+audioPourStreamPlayer2D = NodePath("AudioPourStreamPlayer2D2")
 boardHolder = NodePath("BoardPoint")
 progressBar = NodePath("TextureProgressBar")
 progressStep = 2.0
-matchAudioStream = ExtResource("4_prplw")
+matchAudioStream = ExtResource("4_xadm7")
 popAudioStream = ExtResource("5_wfbn1")
 switchAudioStream = ExtResource("6_iim20")
 levelLabel = NodePath("LevelText/RichTextLabel2")
@@ -34,6 +37,12 @@ multLabel = NodePath("MultText/RichTextLabel2")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_prplw")
+volume_db = -15.0
+script = ExtResource("7_y00am")
+soundEffect = true
+
+[node name="AudioPourStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_tkeaj")
 volume_db = -15.0
 script = ExtResource("7_y00am")
 soundEffect = true
@@ -70,14 +79,14 @@ scale = Vector2(0.472, 0.2385)
 texture = ExtResource("12_g4i3p")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MultText"]
-modulate = Color(0.811765, 0, 0, 1)
-offset_left = 94.0
-offset_top = -3.37502
-offset_right = 225.0
-offset_bottom = 59.625
+offset_left = 91.0
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 61.0
 theme_override_fonts/normal_font = ExtResource("13_83ke4")
 theme_override_font_sizes/normal_font_size = 60
-text = "10.25"
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=6.0 connected=1][rainbow freq=.5 sat=0.8 val=0.8]10.25"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MultText"]
 modulate = Color(0.701961, 0.701961, 0.701961, 1)

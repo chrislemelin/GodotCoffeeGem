@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b62fbck1s7la"]
+
+[ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="1_cd5yw"]
+[ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="2_27vk6"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_cd5yw")
+script = ExtResource("2_27vk6")
+soundEffect = true

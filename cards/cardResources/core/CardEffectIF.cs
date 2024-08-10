@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ public partial class CardEffectIF : Resource
 	[Export] public int CardGems { get; private set; } = 0;
 	[Export] public int CoinGems { get; private set; } = 0;
 	[Export] public int DrawCards { get; private set; } = 0;
+	[Export] public int GainMana { get; private set; } = 0;
+
+	[Export] public Array<CardPassive> bonusPassives = new Array<CardPassive>();
+	[Export] public Array<EffectResource> matchEffects = new Array<EffectResource>();
+	[Export] public int matchEffectsMin = 3;
 
 	[Export] public RelicResource relicResource = null;
 
@@ -20,15 +26,16 @@ public partial class CardEffectIF : Resource
 
 	[Export] private int CardsToDiscard = 0;
 	[Export] public bool canTargetBlackGems = true;
-	[Export] public bool consume = false;
-	[Export] public bool retain = false;
 	[Export] public CardEffectGemType effectGemType { get; set; }
 	[Export] public CardPassive cardPassiveToApplyToHand;
 	[Signal] public delegate void CardPassivesChangedEventHandler();
 	[Signal] public delegate void ValueChangedEventHandler();
 	[Signal] public delegate void CustomTextChangedEventHandler();
 
-
+	// KEYWORDS
+	[Export] public bool consume = false;
+	[Export] public bool retain = false;
+	[Export] public bool matchy = false;
 
 	public Node node;
 
@@ -43,6 +50,8 @@ public partial class CardEffectIF : Resource
 
 	public virtual void init()
 	{
+		FindObjectHelper.getMatchBoard(node).ingredientMatched += (match) => EmitSignal(SignalName.CustomTextChanged);
+		FindObjectHelper.getNewTurnButton(node).TurnCleanUp += () => EmitSignal(SignalName.CustomTextChanged);
 	}
 
 
@@ -53,12 +62,14 @@ public partial class CardEffectIF : Resource
 
 	public void doEffect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles, Optional<CardIF> cardMaybe)
 	{
-		createBlackGems(matchBoard);
+		createBlackGems(matchBoard, selectedTiles);
+		addMatchEffects(matchBoard, selectedTiles);
 		effect(matchBoard, hand, mana, selectedTiles);
 		createAddonGems(matchBoard, GemAddonType.Mana, getManaGems());
 		createAddonGems(matchBoard, GemAddonType.Card, getCardGems());
 		createAddonGems(matchBoard, GemAddonType.Money, getCoinGems());
 		hand.drawCards(DrawCards);
+		mana.modifyMana(GainMana);
 
 		if (cardMaybe.HasValue)
 		{
@@ -70,6 +81,19 @@ public partial class CardEffectIF : Resource
 			FindObjectHelper.getRelicHolderUI(node).addRelic(relicResource);
 		}
 	}
+	
+	private void addMatchEffects(MatchBoard matchBoard, List<Vector2> selectedTiles) {
+		bool hasDoneAction = false;
+		matchBoard.addMatchActionsOnPositions(selectedTiles, (list) => {
+			if (list.Count >= matchEffectsMin && hasDoneAction == false) {
+				foreach(EffectResource effect in matchEffects) {
+					effect.execute(matchBoard);
+				}
+				hasDoneAction = true;
+			} 
+		});
+	}
+	
 
 	protected virtual void doEffectOnTargetedCard(CardIF card)
 	{
@@ -79,7 +103,11 @@ public partial class CardEffectIF : Resource
 
 	public virtual String getCustomText()
 	{
-		return "";
+		if (bonusActive()) {
+			return "[color=#2c8518]✓[/color]";
+		} else {
+			return "";
+		}
 	}
 
 
@@ -91,7 +119,11 @@ public partial class CardEffectIF : Resource
 
 	public List<CardPassive> getPassives()
 	{
-		return cardPassives;
+		if (bonusActive()) {
+			return cardPassives.Concat(bonusPassives.ToList()).ToList();
+		} else {
+			return cardPassives;
+		}
 	}
 
 
@@ -111,12 +143,12 @@ public partial class CardEffectIF : Resource
 		}
 	}
 
-	private void createBlackGems(MatchBoard matchBoard)
+	private void createBlackGems(MatchBoard matchBoard, List<Vector2> selectedTiles)
 	{
 		List<Tile> tiles = matchBoard.getRandomNonBlackNonAddonTiles(BlackGems);
 		if (tiles.Count != BlackGems)
 		{
-			tiles = matchBoard.getRandomNonBlackTile(BlackGems);
+			tiles = matchBoard.getRandomNonBlackNonAddonTiles(BlackGems, selectedTiles.ToHashSet());
 		}
 		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
 	}
@@ -130,6 +162,11 @@ public partial class CardEffectIF : Resource
 	public virtual void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 
+	}
+
+	protected virtual bool bonusActive()
+	{
+		return false;
 	}
 
 	public virtual SelectionType getSelectionType()

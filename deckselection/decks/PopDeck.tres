@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=3 format=3 uid="uid://dy7h4rshc1ou"]
 
-[ext_resource type="Resource" uid="uid://dgysh3qmbxhsa" path="res://cards/cardResources/cardLists/DestroyCardList.tres" id="1_1ypj5"]
+[ext_resource type="Resource" uid="uid://dgysh3qmbxhsa" path="res://cards/cardResources/cardLists/DestroyCardList.tres" id="1_ou4vo"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_g41px"]
 
 [resource]
 script = ExtResource("2_g41px")
-cardList = ExtResource("1_1ypj5")
+cardList = ExtResource("1_ou4vo")
 relics = Array[Object]([])
 title = "Destoy Deck"
 description = "This is the deck for those who love desctruction."

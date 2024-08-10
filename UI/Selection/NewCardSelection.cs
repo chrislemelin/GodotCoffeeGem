@@ -19,7 +19,9 @@ public partial class NewCardSelection : Control
 	[Signal] public delegate void windowClosedEventHandler(CardResource cardResource);
 	[Export] AnimationPlayer animationPlayer;
 	[Export] Array<CardResource> cardsToTest = new Array<CardResource>();
+	[Export] AudioPlayer audioPlayer;
 	[Export] ButtonWithCoinCost refreshSelectionButton;
+	Action callback = null;
 
 	private GameManagerIF gameManagerIF;
 
@@ -32,18 +34,23 @@ public partial class NewCardSelection : Control
 		skipButton.Pressed += () => advance();
 		gameManagerIF = FindObjectHelper.getGameManager(this);
 		viewDeckButton.Pressed += () => deckViewUI.setUp(gameManagerIF.getDeckList());
-		refreshSelectionButton.Pressed += () =>  {
-			gameManagerIF.addCoins(- refreshSelectionButton.cost);
+		refreshSelectionButton.Pressed += () =>
+		{
+			gameManagerIF.addCoins(-refreshSelectionButton.cost);
 			getRandomCardsToSelectFrom();
 		};
 		gameManagerIF.coinsChanged += (int value) => checkIfButtonIsActivated();
 		checkIfButtonIsActivated();
 	}
 
-	public void checkIfButtonIsActivated() {
-		if (gameManagerIF.getCoins() >= refreshSelectionButton.cost) {
+	public void checkIfButtonIsActivated()
+	{
+		if (gameManagerIF.getCoins() >= refreshSelectionButton.cost)
+		{
 			refreshSelectionButton.Disabled = false;
-		} else {
+		}
+		else
+		{
 			refreshSelectionButton.Disabled = true;
 		}
 	}
@@ -52,6 +59,11 @@ public partial class NewCardSelection : Control
 	{
 		this.coinsGained = coinsGained;
 		renderCoins();
+	}
+
+	public void setCallBack(Action callback)
+	{
+		this.callback = callback;
 	}
 
 	private void renderCoins()
@@ -84,6 +96,11 @@ public partial class NewCardSelection : Control
 	{
 		cards = new Array<CardResource>(cardResources);
 		cards.AddRange(cardsToTest);
+		GetTree().CreateTimer(.40f).Timeout += () =>
+		{
+			audioPlayer.Play();
+		};
+
 		renderCards();
 	}
 	private void renderCards()
@@ -119,23 +136,35 @@ public partial class NewCardSelection : Control
 			CardResource cardResource = cardInfoLoader.cardResource;
 			FindObjectHelper.getGameManager(this).addCardToDeckList(cardResource);
 			GetTree().CreateTimer(.75).Timeout += () => advance(cardResource);
-			foreach(CardInfoLoader currentCardInfoLoader in cardInfoLoaders) {
-				if (currentCardInfoLoader != cardInfoLoader) {
+			foreach (CardInfoLoader currentCardInfoLoader in cardInfoLoaders)
+			{
+				if (currentCardInfoLoader != cardInfoLoader)
+				{
 					currentCardInfoLoader.destroyCard();
 				}
 			}
 		};
-}
+	}
 
 	private void advance(CardResource cardResource)
 	{
 		Visible = false;
+		if (callback != null)
+		{
+			callback.Invoke();
+			callback = null;
+		}
 		EmitSignal(SignalName.windowClosed, cardResource);
 	}
 
 	private void advance()
 	{
 		Visible = false;
+		if (callback != null)
+		{
+			callback.Invoke();
+			callback = null;
+		}
 		EmitSignal(SignalName.windowClosed, new CardResource());
 	}
 }

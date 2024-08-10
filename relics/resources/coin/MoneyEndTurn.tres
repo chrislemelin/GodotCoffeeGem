@@ -7,13 +7,13 @@
 [sub_resource type="Resource" id="Resource_yti5y"]
 script = ExtResource("1_mklpc")
 type = 7
-value = 8
+value = 4
 
 [resource]
 script = ExtResource("2_0e6wb")
-manaValue = 3
+manaValue = 1
 title = "Money Gems"
-description = "If you end your turn with 3 energy. Create 8 coin ingredients"
+description = "If you end your turn with at least 1 energy. Create 4 coin ingredients"
 image = ExtResource("2_roax6")
 cost = 40
 hidden = false

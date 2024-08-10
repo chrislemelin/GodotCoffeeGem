@@ -57,7 +57,7 @@ public partial class RelicHolderUI : Control
 			relicUI.showPrice = false;
 			relicUIs.Add(relicUI);
 			relicUI.setRelic(relicResource);
-			relicResource.node = this;
+			relicResource.node = relicUI;
 			relicControlHolder.AddChild(relicUI);
 		}
 	}
@@ -68,7 +68,7 @@ public partial class RelicHolderUI : Control
 		{
 			foreach (EffectResource executablePassive in relicUI.relicResource.getGameStartExePassives())
 			{
-				executablePassive.execute(this);
+				executablePassive.execute(relicUI);
 				relicUI.activateAnimation();
 			}
 			relicUI.relicResource.startLevel();
@@ -87,7 +87,7 @@ public partial class RelicHolderUI : Control
 			List<EffectResource> executablePassives = relicUI.relicResource.getTurnStartEffects();
 			foreach (EffectResource executablePassive in executablePassives)
 			{
-				executablePassive.execute(this);
+				executablePassive.execute(relicUI);
 			}
 			if (executablePassives.Count != 0)
 			{

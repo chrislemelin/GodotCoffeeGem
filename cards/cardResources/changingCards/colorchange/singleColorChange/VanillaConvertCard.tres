@@ -1,8 +1,20 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://liaexlmjhrer"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://liaexlmjhrer"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_1pux1"]
 [ext_resource type="Texture2D" uid="uid://2k3qe88tbrv1" path="res://cards/cardResources/cardArt/vanilla.png" id="1_wkidi"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_6ct6l"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_f4jeq"]
+
+[sub_resource type="Resource" id="Resource_gmlmf"]
+script = ExtResource("2_f4jeq")
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainMult = 0.25
 
 [sub_resource type="Resource" id="Resource_mklkk"]
 script = ExtResource("1_1pux1")
@@ -13,17 +25,22 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = [SubResource("Resource_gmlmf")]
+matchEffectsMin = 4
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 2
 consume = false
 retain = false
-effectGemType = 2
+matchy = false
 
 [resource]
 script = ExtResource("2_6ct6l")
 Title = "Vanilla Convert"
-Description = "Changes selected ingredients to vanilla"
+Description = "Changes selected ingredients to vanilla. If this makes a 4+ match gain .25 mult"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_wkidi")

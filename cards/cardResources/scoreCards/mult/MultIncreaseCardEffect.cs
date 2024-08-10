@@ -18,6 +18,21 @@ public partial class MultIncreaseCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		FindObjectHelper.getScore(matchBoard).addMult(multIncrease);
-		hand.drawCards(1);
+		if (bonusActive()) {
+			hand.drawCards(1);
+		}
 	}
+
+	protected override bool bonusActive() {
+		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
+		if (matchBoard == null)
+		{
+			return false;
+		}
+		if (matchBoard.getMatchesThisTurn(GemType.Vanilla).Count >= 1)
+			return true;
+		return false;
+	}
+
+
 }

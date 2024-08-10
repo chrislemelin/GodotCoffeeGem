@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=4 format=3 uid="uid://chj73go1oottc"]
 
-[ext_resource type="Resource" uid="uid://b10m4yin3co4p" path="res://cards/cardResources/cardLists/AdvancedCardList.tres" id="1_un7c6"]
+[ext_resource type="Resource" uid="uid://b10m4yin3co4p" path="res://cards/cardResources/cardLists/AdvancedCardList.tres" id="1_ki3uq"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_ipckt"]
 [ext_resource type="Resource" uid="uid://dhtqi0mvscf8u" path="res://relics/resources/CardChoiceRelic.tres" id="2_qucnp"]
 
 [resource]
 script = ExtResource("2_ipckt")
-cardList = ExtResource("1_un7c6")
+cardList = ExtResource("1_ki3uq")
 relics = Array[Object]([ExtResource("2_qucnp")])
 title = "Advanced Deck"
 description = "For more advanced players.

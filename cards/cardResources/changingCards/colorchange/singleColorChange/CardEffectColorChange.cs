@@ -18,5 +18,12 @@ public partial class CardEffectColorChange : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		matchBoard.changeGemsColorAtPosition(selectedTiles, effectGemType.GetGemType());
+		// bool hasDrawnCard = false;
+		// matchBoard.addMatchActionsOnPositions(selectedTiles, (list) => {
+		// 	if (list.Count >= 4 && hasDrawnCard == false) {
+		// 		hand.drawCards(1);
+		// 		hasDrawnCard = true;
+		// 	} 
+		// });
 	}
 }

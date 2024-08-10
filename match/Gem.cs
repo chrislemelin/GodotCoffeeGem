@@ -20,10 +20,13 @@ public partial class Gem : lerp
 	[Export] public Control control;
 	[Export] AnimationPlayer animationPlayer;
 	[Export] PackedScene explosion;
+	[Export] PackedScene shimmer;
 
+
+	List<Action<List<Gem>>> matchActions = new List<Action<List<Gem>>>();
 	[Export] Texture2D questionMark;
 
-	List<Tuple<Action<List<GemType>>, Boolean>> matchCallBacks = new List<Tuple<Action<List<GemType>>, Boolean>>();
+	//List<Tuple<Action<List<GemType>>, Boolean>> matchCallBacks = new List<Tuple<Action<List<GemType>>, Boolean>>();
 
 	private int comboValue = 1;
 
@@ -36,6 +39,20 @@ public partial class Gem : lerp
 	{
 		get;
 		private set;
+	}
+
+	public void clearMatchActions() {
+		matchActions.Clear();
+	}
+
+	public void addMatchActions(Action<List<Gem>> action) {
+		matchActions.Add(action);
+	}
+
+	public void executeMatchActions(List<Gem> gems) {
+		foreach(Action<List<Gem>> action in matchActions) {
+			action.Invoke(gems);
+		}
 	}
 
 	public GemAddonType AddonType
@@ -105,6 +122,11 @@ public partial class Gem : lerp
 		}
 	}
 
+	public void doMatchEffects(List<Gem> gems) {
+		doAddonEffect();
+		executeMatchActions(gems);
+	}
+
 	public void doAddonEffect()
 	{
 		switch (AddonType)
@@ -127,15 +149,27 @@ public partial class Gem : lerp
 	public void startDyingMatch()
 	{
 		animationPlayer.Play("PopAnimation");
+		Node shimmerNode = shimmer.Instantiate();
+		shimmerNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
+		this.AddChild(shimmerNode);
+	}
+
+	public void explode() {
 		Node explode = explosion.Instantiate();
 		this.AddChild(explode);
-
 	}
 
 	public void startDying()
 	{
 		animationPlayer.Play("PopAnimation");
 	}
+
+	public void startDyingExplode()
+	{
+		animationPlayer.Play("PopAnimation");
+		explode();
+	}
+
 
 	public void doneDying()
 	{

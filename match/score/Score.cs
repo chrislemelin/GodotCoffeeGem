@@ -21,7 +21,6 @@ public partial class Score : Node2D
 	[Export] Color turnColor;
 	[Export] Color heartColor;
 	[Export] AudioStreamPlayer2D audioStreamPlayer2D;
-	[Export] AudioStream victoryAudio;
 	[Export] AudioStream oofAudio;
 	[Export] AudioStream coinAudio;
 	[Export] PackedScene matchScoreTextPackedScene;
@@ -44,7 +43,7 @@ public partial class Score : Node2D
 	public delegate void scoreChangeEventHandler(int score, int maxScore);
 
 	[Signal]
-	public delegate void multChangeEventHandler(float muilt);
+	public delegate void multChangeEventHandler(float mult);
 
 	private float muiltResetValue = 1.0f;
 	private int score;
@@ -64,14 +63,16 @@ public partial class Score : Node2D
 	public override void _Ready()
 	{
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-		gameManagerIF.coinsChanged += (int coins) => {
+		gameManagerIF.coinsChanged += (int coins) =>
+		{
 			setCoins(coins);
 			audioStreamPlayer2D.Stream = coinAudio;
 			audioStreamPlayer2D.Play();
 		};
-		gameManagerIF.metaCoinsChanged += (int coins) => {
+		gameManagerIF.metaCoinsChanged += (int coins) =>
+		{
 			setMetaCoins(coins);
- 			audioStreamPlayer2D.Stream = coinAudio;
+			audioStreamPlayer2D.Stream = coinAudio;
 			audioStreamPlayer2D.Play();
 		};
 		gameManagerIF.healthChanged += (int value) => setHeartsRemaining(value);
@@ -88,7 +89,7 @@ public partial class Score : Node2D
 
 		maxHearts = gameManager.getMaxHealth();
 		initHeartsContainer();
-		setHeartsRemaining(2);
+		setHeartsRemaining(gameManagerIF.getHealth());
 	}
 
 	public void newturn()
@@ -97,8 +98,6 @@ public partial class Score : Node2D
 		if (scoreReached())
 		{
 			setTurnsRemaining(turnsRemaining - 1);
-			audioStreamPlayer2D.Stream = victoryAudio;
-			audioStreamPlayer2D.Play();
 			gameManager.evaluateLevel();
 			return;
 		}
@@ -123,7 +122,8 @@ public partial class Score : Node2D
 		return score >= scoreNeeded;
 	}
 
-	public int getScoreNeeded() {
+	public int getScoreNeeded()
+	{
 		return scoreNeeded;
 	}
 
@@ -177,7 +177,8 @@ public partial class Score : Node2D
 		}
 	}
 
-	public void addHearts(int value) {
+	public void addHearts(int value)
+	{
 		setHeartsRemaining(heartsRemaining + value);
 	}
 
@@ -197,7 +198,7 @@ public partial class Score : Node2D
 				((TextureRect)nodes[count]).Texture = heartEmpty;
 			}
 		}
-		if(heartsRemaining <= 0)
+		if (heartsRemaining <= 0)
 		{
 			gameManager.evaluateLevel();
 		}
@@ -266,7 +267,7 @@ public partial class Score : Node2D
 		coinsLabel.Text = newValue.ToString();
 	}
 
-	
+
 	public void setMetaCoins(int value)
 	{
 		metaCoinsLabel.Text = value.ToString();
@@ -359,17 +360,33 @@ public partial class Score : Node2D
 		}
 	}
 
-	public void addScore(int scoreValue)
+
+	public void addScoreFromNode(int scoreValue, Node node)
 	{
 		int pointValue = (int)(scoreValue * mult);
+		MatchBoard board = FindObjectHelper.getMatchBoard(this);
+		board.playMatchSound();
+		if (node is Control control) {
+			makeMatchText(control.GetScreenPosition(), scoreValue, pointValue);
+		} else if (node is Node2D node2D) {
+			makeMatchText(node2D.GlobalPosition, scoreValue, pointValue);
+		}
 		setScore(score + pointValue);
 	}
 
-	public void checkForLevelOver(){
+	// public void addScoreFromNode(int scoreValue, Node2D card)
+	// {
+	// 	int pointValue = (int)(scoreValue * mult);
+	// 	MatchBoard board = FindObjectHelper.getMatchBoard(this);
+	// 	board.playMatchSound();
+	// 	makeMatchText(card.GlobalPosition, scoreValue, pointValue);
+	// 	setScore(score + pointValue);
+	// }
+
+	public void checkForLevelOver()
+	{
 		if (scoreReached() && levelCleared == false)
 		{
-			audioStreamPlayer2D.Stream = victoryAudio;
-			audioStreamPlayer2D.Play();
 			gameManager.evaluateLevel();
 			levelCleared = true;
 		}
@@ -392,26 +409,31 @@ public partial class Score : Node2D
 				pointValueAfterMult = (int)(pointValue * mult);
 				newMultValue += evaluateMultIncrease(gemType);
 				setMult(newMultValue);
-				if (bossRecipeUI.Visible && !bossRecipeUI.complete()) {
+				if (bossRecipeUI.Visible && !bossRecipeUI.complete())
+				{
 					pointValueAfterMult = 0;
 				}
 			}
-			if (pointValueOverride.HasValue) {
+			if (pointValueOverride.HasValue)
+			{
 				pointValueAfterMult = pointValueOverride.GetValue();
 			}
 			totalPoints += pointValueAfterMult;
 
-			MatchScoreText matchScore = (MatchScoreText)matchScoreTextPackedScene.Instantiate();
-			AddChild(matchScore);
-
 			if (match.Count > 0)
 			{
-				matchScore.GlobalPosition = match.First().GlobalPosition;
-				//matchScore.setText(pointValueAfterMult.ToString());
-				matchScore.init(pointValue, pointValueAfterMult);
+				makeMatchText(match.First().GlobalPosition, pointValue, pointValueAfterMult);
 			}
 		}
 		setScore(score + totalPoints);
+	}
+
+	private void makeMatchText(Vector2 position, int pointValue, int pointValueAfterMult)
+	{
+		MatchScoreText matchScore = (MatchScoreText)matchScoreTextPackedScene.Instantiate();
+		AddChild(matchScore);
+		matchScore.GlobalPosition = position;
+		matchScore.init(pointValue, pointValueAfterMult);
 	}
 
 
@@ -488,7 +510,7 @@ public partial class Score : Node2D
 	{
 		if (@event.IsActionPressed("space"))
 		{
-			//addMult(.25f);
+			addMult(.25f);
 			//GetTree().Paused = true;
 		}
 	}

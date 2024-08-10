@@ -12,18 +12,21 @@ BlackGems = 0
 ManaGems = 0
 CardGems = 0
 CoinGems = 0
-DrawCards = 0
+DrawCards = 3
+GainMana = 2
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [resource]
 script = ExtResource("2_ts768")
 Title = "Side Hustle"
-Description = "Lose a turn (this can kill you) and then gain $value coins"
+Description = "Lose a turn (this can kill you) and then gain $value coins, draw 3 cards and gain 2 energy"
 Cost = 0
 rarity = 1
 Picture = ExtResource("1_2ly8k")

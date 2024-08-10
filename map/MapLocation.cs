@@ -19,7 +19,10 @@ public partial class MapLocation : Control
 	[Export] CardResource vertSwitchCard;
 	[Export] CardResource horizSwitchCard;
 	[Export] CardResource upgradedSwitchCard;
+	[Export] public MapLocation pairMapLocation;
 	private bool done = false;
+	private bool callbackDone = false;
+
 	//private GameManagerIF gameManager;
 
 	public override void _Ready()
@@ -28,6 +31,19 @@ public partial class MapLocation : Control
 		setEventType(type);
 		setActive(active);
 		FindObjectHelper.getGameManager(this);
+		MouseEntered += () => {
+			if (pairMapLocation!=null) {
+				pairMapLocation.highlight.setForceHighlight(true);
+			}
+		};
+		MouseExited += () => {
+			if (pairMapLocation!=null) {
+				pairMapLocation.highlight.setForceHighlight(false);
+			}};
+	}
+
+	public void setPair(MapLocation mapLocation) {
+		pairMapLocation = mapLocation;
 	}
 
 	public void setEventType(MapEventType eventType)
@@ -63,12 +79,12 @@ public partial class MapLocation : Control
 		}
 	}
 
-	public void resolveEvent(MapEventResolveUI mapEventResolveUI)
+	public void resolveEvent(MapEventResolveUI mapEventResolveUI, Action callback)
 	{
 		if (type == MapEventType.Money)
 		{
-			mapEventResolveUI.setUp("Found Money", "You found some money on the ground! Its almost as much as a full days work. Gain 15 coins");
-			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(() => FindObjectHelper.getGameManager(this).addCoins(15));
+			mapEventResolveUI.setUp("Found Money", "You found some money on the ground! It's almost as much as a full days work. Gain 15 coins");
+			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(() => FindObjectHelper.getGameManager(this).addCoins(15),callback);
 		}
 		else if (type == MapEventType.UpgradeCard)
 		{
@@ -76,25 +92,31 @@ public partial class MapLocation : Control
 			"A random horizontal or vertical switch card has been upgraded!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				upgradeCard()
-			);
+			,callback);
 		}
 		else if (type == MapEventType.GainCard)
 		{
 			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street and stop to say hello. " +
-			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");
-			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
-				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom()
-			);
+			"They have really risen up the corporate ladder since the last time you saw them. They give you a few tips to help you out!");
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => {
+				NewCardSelection cardSelection = FindObjectHelper.getCardSelection(this);
+				cardSelection.windowClosed += (card) => addCallBackAction(callback);
+				cardSelection.getRandomCardsToSelectFrom();
+			}
+			,null);
 		}
 		else if (type == MapEventType.RemoveCard)
 		{
-			mapEventResolveUI.setUp("Remove a Card", "You decide to stop at the bar on the way from home to drown out your sorrows. " +
-			"You can feel the trama leaving your soul as you take your first sip. Remove a card from your Deck!");
+			mapEventResolveUI.setUp("Remove a Card", "You decide to stop at the bar on the way home for a quick drink." +
+			"You drank a bit too much and end up losing something, although you can't remember what it was. Remove a card from your Deck!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				FindObjectHelper.getDeckView(this).setUp(FindObjectHelper.getGameManager(this).getDeckList(),
-				 (CardResource cardResource) => FindObjectHelper.getGameManager(this).removeCardFromDeckList(cardResource),
+				 (CardResource cardResource) =>  {
+					FindObjectHelper.getGameManager(this).removeCardFromDeckList(cardResource);
+					callback.Invoke();
+				 },
 				 TextHelper.centered("Remove Card From Deck"), true
-			));
+			), null);
 		}
 		else if (type == MapEventType.Heal)
 		{
@@ -103,31 +125,31 @@ public partial class MapLocation : Control
 			"You wait about 3 hours before the doctor sees you for about 5 minutes. She writes you a prescription and sends you on your way. Heal 1 heart!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				gameManagerIF.setHealth(gameManagerIF.getHealth() + 1)
-			);
+			,callback);
 		}
 		else if (type == MapEventType.Mechanic)
 		{
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-			if (gameManagerIF.getCoins() >= 40)
+			if (gameManagerIF.getCoins() >= 50)
 			{
 				bool currentBoardGooed = gameManagerIF.getGooRightRow();
-				gameManagerIF.addCoins(-40);
+				gameManagerIF.addCoins(-50);
 				if (currentBoardGooed)
 				{
-					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he removes the starting Goo from the machine");
+					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine and tweaks a few things. Goo has been removed from the new column of the machine");
 					mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 						gameManagerIF.setGooRightRow(false)
-					);
+					,callback);
 				}
 				else
 				{
-					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine, he adds an additional row to the machine, " +
-						"but that row will start with Goo");
+					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine. He adds an additional column to the machine, " +
+						"but that column will start with Goo");
 					mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 					{
 						gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1, 0));
 						gameManagerIF.setGooRightRow(true);
-					});
+					},callback);
 				}
 			}
 			else
@@ -138,10 +160,10 @@ public partial class MapLocation : Control
 		else if (type == MapEventType.RelicShop)
 		{
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-			if (gameManagerIF.getCoins() >= 20)
+			if (gameManagerIF.getCoins() >= 40)
 			{
-				gameManagerIF.addCoins(-20);
-				mapEventResolveUI.setUp("Relic shop", "You stumble into a the relic shop, they have items that should help your run");
+				gameManagerIF.addCoins(-40);
+				mapEventResolveUI.setUp("Relic shop", "You stumble into the relic shop to see what mysterious new artifacts they've gathered");
 				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				{
 					List<RelicResource> relicResources = gameManagerIF.getRelicPool();
@@ -149,7 +171,8 @@ public partial class MapLocation : Control
 					List<RelicResource> relicsInSelection = relicResources.GetRange(0, Math.Min(3, relicResources.Count));
 					RelicSelection relicSelection = FindObjectHelper.getRelicSelection(this);
 					relicSelection.setRelics(relicsInSelection);
-				});
+					relicSelection.WindowClosed += () => addCallBackAction(callback);
+				},null);
 
 
 			}
@@ -160,21 +183,31 @@ public partial class MapLocation : Control
 		}
 		else if (type == MapEventType.Home)
 		{
-			mapEventResolveUI.setUp("Gain a New Card", "You see an old friend on the street right before you are about to head home. " +
-			"They have really risen up the corporate ladder since you last time you saw them. They give you a few tips to help you out!");
+			mapEventResolveUI.setUp("Gain a New Card", "The wizened old downstairs neighbor offers you one of his signature pieces of wisdom as you return home." +
+			"It may have come from a guy yelling from his porch, but you feel like you could put this to use!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
-				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom()
+				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom(),callback
 			);
 			FindObjectHelper.getCardSelection(this).windowClosed += (card) => FindObjectHelper.getGameManager(this).advanceLevel();
 		}
 	}
 
-	private void addActionToContinueButton(Action action)
+	private void addActionToContinueButton(Action action, Action callback)
 	{
 		if (!done)
 		{
 			done = true;
 			action.Invoke();
+			callback.Invoke();
+		}
+	}
+
+	private void addCallBackAction(Action callback)
+	{
+		if (!callbackDone)
+		{
+			callbackDone = true;
+			callback.Invoke();
 		}
 	}
 

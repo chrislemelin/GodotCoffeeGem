@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=4 format=3 uid="uid://dm1n28elr0awu"]
+[gd_resource type="Resource" script_class="CardList" load_steps=7 format=3 uid="uid://dm1n28elr0awu"]
 
-[ext_resource type="Resource" uid="uid://c7fw01b7y86oy" path="res://cards/cardResources/deletingCards/RagnarokCard.tres" id="1_qr8ey"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_va40e"]
-[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="2_byhc5"]
+[ext_resource type="Resource" uid="uid://dha7jg80nudyy" path="res://cards/cardResources/movementCards/SwitchCardDiag.tres" id="4_03bjj"]
+[ext_resource type="Resource" uid="uid://c0t40mre00w4j" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/EspressoConvertCard.tres" id="4_7udk2"]
+[ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="4_uj0y7"]
+[ext_resource type="Resource" uid="uid://bndjvymr0xra3" path="res://cards/cardResources/deletingCards/PopBurnCard.tres" id="6_fr7m8"]
+[ext_resource type="Resource" uid="uid://b8nqlwbtu4tcd" path="res://cards/cardResources/scoreCards/GainCoinsCard.tres" id="7_7h3rc"]
 
 [resource]
 script = ExtResource("1_va40e")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("1_qr8ey"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5"), ExtResource("2_byhc5")])
+allCards = Array[Object]([ExtResource("6_fr7m8"), ExtResource("4_uj0y7"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_7udk2"), ExtResource("7_7h3rc")])

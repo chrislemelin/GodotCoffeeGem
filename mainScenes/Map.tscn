@@ -41,12 +41,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_bsuud"]
 resource_local_to_scene = true
@@ -69,12 +74,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_cy0ua"]
 resource_local_to_scene = true
@@ -98,12 +108,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_oyaui"]
 resource_local_to_scene = true
@@ -150,12 +165,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_t1exg"]
 resource_local_to_scene = true
@@ -202,12 +222,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_vuu47"]
 resource_local_to_scene = true
@@ -254,12 +279,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_imnlm"]
 resource_local_to_scene = true
@@ -306,12 +336,17 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [sub_resource type="Resource" id="Resource_wb2ak"]
 resource_local_to_scene = true
@@ -504,10 +539,10 @@ horizSwitchCard = SubResource("Resource_ahjpb")
 upgradedSwitchCard = SubResource("Resource_imnlm")
 
 [node name="Home" parent="Map/MapLocations" instance=ExtResource("4_pfyjt")]
-offset_left = 1396.0
-offset_top = 619.0
-offset_right = 1396.0
-offset_bottom = 619.0
+offset_left = 1389.0
+offset_top = 615.0
+offset_right = 1389.0
+offset_bottom = 615.0
 type = 7
 vertSwitchCard = SubResource("Resource_ilocs")
 horizSwitchCard = SubResource("Resource_7a0hk")
@@ -597,7 +632,8 @@ texture_filter = 1
 position = Vector2(-0.5, -13.5)
 texture = ExtResource("17_718sm")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="HelperText" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 619.0
 offset_top = 479.0
 offset_right = 970.0

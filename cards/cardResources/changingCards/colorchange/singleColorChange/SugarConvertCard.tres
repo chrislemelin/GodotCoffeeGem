@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bea3d4p3qbvtr"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://bea3d4p3qbvtr"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_3ajai"]
 [ext_resource type="Texture2D" uid="uid://pts4w3vk8d2i" path="res://cards/cardResources/cardArt/sugar.png" id="1_w3upp"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_2qvkn"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_pg4e1"]
+
+[sub_resource type="Resource" id="Resource_pn8yr"]
+script = ExtResource("2_pg4e1")
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 5
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_mklkk"]
 script = ExtResource("1_3ajai")
@@ -13,17 +26,22 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = [SubResource("Resource_pn8yr")]
+matchEffectsMin = 4
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 5
 consume = false
 retain = false
-effectGemType = 5
+matchy = false
 
 [resource]
 script = ExtResource("2_2qvkn")
 Title = "Sugar Rush"
-Description = "Change selected ingredient to sugar"
+Description = "Change selected ingredient to sugar. If this makes a 4+ match gain 5 coins"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_w3upp")

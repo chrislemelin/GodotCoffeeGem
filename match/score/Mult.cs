@@ -6,6 +6,8 @@ public partial class Mult : Control
 	[Export] RichTextLabel richTextLabel;
 
 	public void setMult(float mult) {
+	}
+	public static string getMultString(float mult) {
 		String waveText = "";
 		if (mult >= 1.5) {
 			waveText = "[wave amp=25.0 freq=2.0 connected=1]";
@@ -21,6 +23,13 @@ public partial class Mult : Control
 		if (mult >= 3) {
 			rainbowText = "[rainbow freq=.5 sat=0.8 val=0.8]";
 		}
-		richTextLabel.Text = waveText + rainbowText +"x" + mult;
+		return waveText + rainbowText + mult;
+	}
+	public static Color getMultColor(float mult) {
+		if(mult >= 2) {
+			return Color.FromHtml("#ffffff");
+		} else {
+			return Color.FromHtml("#ff0000");
+		}
 	}
 }

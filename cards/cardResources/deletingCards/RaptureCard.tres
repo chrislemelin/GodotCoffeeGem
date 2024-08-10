@@ -12,17 +12,20 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [resource]
 script = ExtResource("2_4ergt")
 Title = "Rapture"
-Description = "Destroy all ingredients except for selected type"
+Description = "Select an ingredient. Destroy all ingredients except for selected ingredient's type"
 Cost = 3
 rarity = 2
 coinCost = 0

@@ -14,12 +14,15 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 3
 DrawCards = 1
+GainMana = 0
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [resource]
 script = ExtResource("3_s78f5")

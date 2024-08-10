@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://budo5dofendqy"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://budo5dofendqy"]
 
+[ext_resource type="Resource" uid="uid://bfvusjnvsr0e6" path="res://cards/cardResources/scoreCards/mult/RetainMultRelic.tres" id="1_gql7l"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardEffectIF.cs" id="2_erf4i"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_0acrh"]
 
@@ -12,18 +13,22 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
+relicResource = ExtResource("1_gql7l")
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 0
 consume = false
 retain = false
-effectGemType = 0
+matchy = false
 
 [resource]
 script = ExtResource("3_0acrh")
 Title = "Retain Mult"
 Description = "Keep your multiplier at the end of the turn"
-Cost = 2
+Cost = 1
 rarity = 1
 coinCost = 0
 playable = false

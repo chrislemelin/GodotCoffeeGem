@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxavdfi52bnxv"]
+[gd_scene load_steps=9 format=3 uid="uid://cxavdfi52bnxv"]
 
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_aegw7"]
 [ext_resource type="Script" path="res://UI/Selection/NewCardSelection.cs" id="1_pv1p8"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="4_0dujr"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_50y77"]
 [ext_resource type="Script" path="res://UI/ButtonWithCoinCost.cs" id="5_rhody"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="7_kwax0"]
+[ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/rewards/Rise01.mp3" id="8_3q6cu"]
 
-[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText", "viewDeckButton", "refreshSelectionButton")]
+[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText", "viewDeckButton", "audioPlayer", "refreshSelectionButton")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -26,10 +28,11 @@ coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel"
 levelPassedText = [NodePath("Control/VBoxContainer/HBoxContainer2"), NodePath("Control/VBoxContainer/RichTextLabel")]
 viewDeckButton = NodePath("Control/Button")
 cards = [null]
+audioPlayer = NodePath("Control/AudioStreamPlayer2D")
 refreshSelectionButton = NodePath("Control/MarginContainer2/RefreshSelection")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.39, 0.39, 0.39, 1)
+modulate = Color(0.388235, 0.388235, 0.388235, 0.584314)
 layout_mode = 2
 offset_right = 1919.0
 offset_bottom = 1080.0
@@ -155,3 +158,7 @@ offset_bottom = 919.0
 theme = ExtResource("4_50y77")
 theme_override_font_sizes/font_size = 30
 text = "View Deck"
+
+[node name="AudioStreamPlayer2D" parent="Control" instance=ExtResource("7_kwax0")]
+position = Vector2(-42, 69)
+stream = ExtResource("8_3q6cu")

@@ -75,7 +75,7 @@ offset_bottom = 719.0
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
-text = "Quick Start (First time playing)"
+text = "Play"
 
 [node name="zenMode" type="Button" parent="VBoxContainer2"]
 visible = false
@@ -85,6 +85,7 @@ theme = ExtResource("5_y52an")
 text = "Zen Mode"
 
 [node name="deckSelection" type="Button" parent="VBoxContainer2"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")

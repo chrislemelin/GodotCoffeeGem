@@ -13,17 +13,20 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
+effectGemType = 2
 consume = false
 retain = false
-effectGemType = 2
+matchy = false
 
 [resource]
 script = ExtResource("2_ag7td")
 Title = "Vanilla Score"
-Description = "Gain 75 points for match of vanilla made this level. ($value)"
+Description = "Gain 75 points for each match of vanilla made this turn. ($value)"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_8g37x")

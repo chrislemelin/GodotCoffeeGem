@@ -10,7 +10,7 @@ public partial class GambleEffect : EffectResource
 		 
 	}
 	
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		Score score = FindObjectHelper.getScore(node);
 		List<GemType> gemTypes = GemTypeHelper.getRandomColors(2);
 

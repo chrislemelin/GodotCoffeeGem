@@ -5,7 +5,7 @@ using System;
 public partial class GiveMultPassive : EffectResource
 {	
 	[Export] float multIncrease;
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		FindObjectHelper.getScore(node).addMult(multIncrease);
 	}
 }

@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=7 format=3 uid="uid://bqm1enm1moeal"]
+[gd_resource type="Resource" script_class="CardList" load_steps=10 format=3 uid="uid://bqm1enm1moeal"]
 
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="1_3keqh"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_cnb7r"]
-[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_g83be"]
-[ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="5_hctx3"]
-[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="6_pl0eo"]
-[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="7_urlfj"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_i6hjb"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_1idt1"]
+[ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="4_ar1aj"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="6_0vf0l"]
+[ext_resource type="Resource" uid="uid://c7fw01b7y86oy" path="res://cards/cardResources/deletingCards/RagnarokCard.tres" id="6_ppk4u"]
+[ext_resource type="Resource" uid="uid://bndjvymr0xra3" path="res://cards/cardResources/deletingCards/PopBurnCard.tres" id="7_tcvo8"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="7_wubij"]
+[ext_resource type="Resource" uid="uid://d0q3mttuyfd0d" path="res://cards/cardResources/movementCards/SwitchDiagBurnCard.tres" id="8_e3k2f"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="8_k4nfe"]
 
 [resource]
-script = ExtResource("7_urlfj")
+script = ExtResource("1_i6hjb")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("1_3keqh"), ExtResource("1_3keqh"), ExtResource("1_3keqh"), ExtResource("2_cnb7r"), ExtResource("2_cnb7r"), ExtResource("2_cnb7r"), ExtResource("4_g83be"), ExtResource("6_pl0eo"), ExtResource("4_g83be"), ExtResource("5_hctx3")])
+allCards = Array[Object]([ExtResource("6_0vf0l"), ExtResource("4_1idt1"), ExtResource("4_ar1aj"), ExtResource("6_ppk4u"), ExtResource("8_k4nfe"), ExtResource("8_k4nfe"), ExtResource("7_wubij"), ExtResource("7_wubij"), ExtResource("7_tcvo8"), ExtResource("8_e3k2f")])

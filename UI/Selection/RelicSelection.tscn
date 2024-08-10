@@ -20,12 +20,12 @@ theme = ExtResource("1_kmfb8")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 653.0
-offset_top = 248.0
-offset_right = 1163.0
-offset_bottom = 305.0
+offset_left = 651.0
+offset_top = 226.0
+offset_right = 1161.0
+offset_bottom = 298.0
 theme = ExtResource("1_kmfb8")
-theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center]Choose a relic"
 
@@ -37,15 +37,15 @@ offset_right = 1372.0
 offset_bottom = 410.0
 theme = ExtResource("1_kmfb8")
 bbcode_enabled = true
-text = "[center]relics give you passive affects that will enhance your run. Hover over each relic to see what it does."
+text = "Relics give you passive affects that will enhance your run. Hover over each relic to see what it does."
 
 [node name="PassiveShop" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 0
-offset_left = 394.0
-offset_top = 425.0
-offset_right = 747.0
-offset_bottom = 567.0
+offset_left = 400.0
+offset_top = 478.0
+offset_right = 753.0
+offset_bottom = 620.0
 scale = Vector2(3, 3)
 size_flags_horizontal = 4
 alignment = 1
@@ -65,9 +65,9 @@ layout_mode = 2
 
 [node name="SkipSelection" type="Button" parent="."]
 layout_mode = 0
-offset_left = 816.0
-offset_top = 749.0
-offset_right = 1056.0
-offset_bottom = 798.0
+offset_left = 836.0
+offset_top = 836.0
+offset_right = 1076.0
+offset_bottom = 885.0
 theme = ExtResource("1_kmfb8")
 text = "Skip Selection"

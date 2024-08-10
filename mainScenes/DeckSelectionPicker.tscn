@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="5_wai7x"]
 [ext_resource type="Resource" uid="uid://cr1bg7cjxlymo" path="res://deckselection/decks/MoneyDeck.tres" id="6_o4igf"]
 [ext_resource type="Resource" uid="uid://bb2orrhuvkgpk" path="res://deckselection/decks/TimeLordDeck.tres" id="7_f5fi5"]
-[ext_resource type="Resource" path="res://deckselection/decks/PopDeck.tres" id="8_yqyph"]
+[ext_resource type="Resource" uid="uid://dy7h4rshc1ou" path="res://deckselection/decks/PopDeck.tres" id="8_yqyph"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="13_rhxi4"]
 
 [node name="DeckSelectionPicker" type="Node2D" node_paths=PackedStringArray("deckViewUI", "deckSelectionUIParent", "continueButton", "viewDeckButton")]

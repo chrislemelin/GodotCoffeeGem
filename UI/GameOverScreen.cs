@@ -3,7 +3,7 @@ using System;
 
 public partial class GameOverScreen : Control
 {
-	[Export] Button restartButton;
+	[Export] public Button restartButton;
 	[Export] public RichTextLabel label;
 	[Export] public RichTextLabel metaCoinLabel;
 	[Export] public RichTextLabel debtLabel;
@@ -11,6 +11,9 @@ public partial class GameOverScreen : Control
 
 	public override void _Ready()
 	{
+	}
+
+	public void setUpMainMenu() {
 		restartButton.Pressed += () => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn");
 	}
 

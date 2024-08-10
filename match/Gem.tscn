@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=23 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
 [ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_835wl"]
@@ -9,11 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://placeholders/ingredients/bean-pixel-300px.png" id="6_14v2q"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="6_kq7p0"]
 [ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="6_rwy76"]
-[ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://effects/explosion.tscn" id="8_o6p5a"]
+[ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="9_kwgje"]
+[ext_resource type="PackedScene" uid="uid://dfcbd3bluulqg" path="res://particalEffects/sparkle.tscn" id="10_gl1us"]
 [ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="10_pd7po"]
 [ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://placeholders/ingredients/final/Bean-pixel2.png" id="11_1wsfr"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="11_3xbkf"]
-[ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/ComboStyleBox.tres" id="12_bexrd"]
+[ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/StyleBoxes/ComboStyleBox.tres" id="12_bexrd"]
 [ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="14_jq5a0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
@@ -92,7 +93,8 @@ orbTexture = ExtResource("5_qlodo")
 useSprites = true
 control = NodePath("Control")
 animationPlayer = NodePath("AnimationPlayer")
-explosion = ExtResource("8_o6p5a")
+explosion = ExtResource("9_kwgje")
+shimmer = ExtResource("10_gl1us")
 questionMark = ExtResource("6_rwy76")
 speed = 1500.0
 
@@ -162,5 +164,5 @@ anchors_preset = 0
 offset_right = 253.0
 offset_bottom = 250.0
 
-[node name="Explosion" parent="." instance=ExtResource("8_o6p5a")]
+[node name="Explosion" parent="." instance=ExtResource("9_kwgje")]
 visible = false

@@ -11,14 +11,14 @@ public partial class DestroyBurntEffect : EffectResource
 		 
 	}
 	
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
 
 		List<Tile> tiles = matchBoard.getTilesWithColorOfGem(GemType.Black, value);
 		if (tiles.Count > 0) {
 			matchBoard.deleteGemAtPositions(tiles.Select(tile => tile.getTilePosition()).ToList());
-			FindObjectHelper.getScore(node).addScore(scoreGained);
+			FindObjectHelper.getScore(node).addScoreFromNode(scoreGained, (Control) node);
 		}
 	}
 }

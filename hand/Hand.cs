@@ -17,11 +17,17 @@ public partial class Hand : Node
 	[Export] HandLine handLine;
 	[Export] Mana mana;
 	[Export] AudioStreamPlayer2D audioStreamPlayer2D;
+	[Export] AudioStreamPlayer2D cardSelectedaudioStreamPlayer2D;
+
 	[Export] AudioStream newHandSoundEffect;
 	[Export] AudioStream cardPlayedSoundEffect;
+	[Export] AudioStream cardSelectedSoundEffect;
+
 	[Export] GameManager gameManager;
 	[Export] RelicResource relicResource;
 	[Signal] public delegate void cardDrawnEventHandler(CardResource cardResource);
+	[Signal] public delegate void cardPlayedEventHandler(CardResource cardResource);
+
 	List<CardIF> cards = new List<CardIF>();
 	List<CardResource> cardsPlayedThisTurn = new List<CardResource>();
 	List<HandPassive> handPassives = new List<HandPassive>();
@@ -34,6 +40,10 @@ public partial class Hand : Node
 
 	[Export]
 	int width = 400;
+
+	public void modifyNewCardsDrawnOnNewTurn(int value) {
+		cardsDrawnOnNewTurn += value;
+	}
 
 	public Optional<CardIF> getCardSelected()
 	{
@@ -48,7 +58,6 @@ public partial class Hand : Node
 	// Called when the node enters the scene tree for the first time
 	public override void _Ready()
 	{
-		//gameManager.addRelic(relicResource);
 		//handPassives = gameManager.getRelics().SelectMany(passive => passive.getStartPassives<HandPassive>()).ToList();
 		gameManager.levelStart += () => startLevel();
 		mana.ManaChanged += () => checkCardsForDisabeling();
@@ -81,13 +90,14 @@ public partial class Hand : Node
 	{
 		if (mana.manaValue >= card.getCardResource().getEnergyCost())
 		{
+			EmitSignal(SignalName.cardPlayed, card.getCardResource());
+			discardCard(card, true);
 			card.playCard(matchBoard, this, mana, positions);
 			cardsPlayedThisTurn.Add(card.getCardResource());
 			audioStreamPlayer2D.Stream = cardPlayedSoundEffect;
 			audioStreamPlayer2D.Play();
 			mana.modifyMana(card.getCardResource().getEnergyCost() * -1);
 			clearSelectedCard();
-			discardCard(card, true);
 			card.getCardResource().cardEffect.turnOver();
 			checkCardsForDisabeling();
 		}
@@ -158,6 +168,7 @@ public partial class Hand : Node
 	{
 		if (mana.manaValue >= card.getCardResource().getEnergyCost())
 		{
+			playCardSelectedSound();
 			clearSelectedCard();
 			handLine.turnOn(card.Position);
 			cardSelected = Optional.Some<CardIF>(card);
@@ -320,6 +331,7 @@ public partial class Hand : Node
 		audioStreamPlayer2D.Play();
 	}
 
+
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("right click"))
@@ -336,5 +348,9 @@ public partial class Hand : Node
 		{
 			//deck.drawCards(1);
 		}
+	}
+
+	private void playCardSelectedSound() {
+		cardSelectedaudioStreamPlayer2D.Play();
 	}
 }

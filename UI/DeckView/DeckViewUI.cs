@@ -27,7 +27,11 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 					cardSelected.destroyCard();
 					GetTree().CreateTimer(.5f).Timeout += () => cardCallBack(cardSelected.cardResource);
 				} else {
-					cardCallBack(cardSelected.cardResource);
+					if (cardSelected == null) {
+						cardCallBack(null);
+					} else {
+						cardCallBack(cardSelected.cardResource);
+					}
 				}
 			}
 		};
@@ -61,15 +65,21 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 		};
 	}
 
-	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title) {
+	// public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title) {
 		
-		setUp(cards, cardCallBack, title, false);
+	// 	setUp(cards, cardCallBack, title);
+	// }
+
+	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title, bool deleting = false) {
+		
+		setUp(cards, cardCallBack, title, deleting, cardCallBack != null);
 	}
 
-	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title, bool deleting) {
+
+	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title, bool deleting, bool needToSelectCard) {
 		
 		this.cardCallBack = cardCallBack;
-		if (cardCallBack == null) {
+		if (!needToSelectCard) {
 			button.Text = "close";
 			button.Disabled = false;
 		} else {

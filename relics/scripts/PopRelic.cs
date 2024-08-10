@@ -11,9 +11,6 @@ public partial class PopRelic : RelicResource
 	{
 		if (counter != counterMax){
 			incrementCounter();
-			if (counter == counterMax) {
-				executeEffects();
-			}
 		}
 	}
 

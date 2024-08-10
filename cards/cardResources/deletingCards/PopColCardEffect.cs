@@ -26,4 +26,14 @@ public partial class PopColCardEffect : CardEffectIF
 		tilesToClear.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Down));
 		return tilesToClear.Select(x => x.getTilePosition()).ToList();
 	}
+	protected override bool bonusActive() {
+		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
+		if (matchBoard == null)
+		{
+			return false;
+		}
+		if (matchBoard.getMatchesThisTurn(GemType.Milk).Count >= 1)
+			return true;
+		return false;
+	}
 }

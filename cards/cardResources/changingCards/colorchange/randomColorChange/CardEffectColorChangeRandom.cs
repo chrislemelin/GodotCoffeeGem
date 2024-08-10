@@ -21,5 +21,12 @@ public partial class CardEffectColorChangeRandom : CardEffectIF
 	{
 		List<Vector2> tilePositions = matchBoard.getRandomNonBlackNotOfTypeTiles(getValue(), effectGemType.GetGemType()).Select((tile) => tile.getTilePosition()).ToList();
 		matchBoard.changeGemsColorAtPosition(tilePositions, effectGemType.GetGemType());
+		bool hasDrawnCard = false;
+		matchBoard.addMatchActionsOnPositions(tilePositions, (list) =>  {
+			if (hasDrawnCard == false){
+				hand.drawCards(1);
+				hasDrawnCard = true;
+			}
+		});
 	}
 }

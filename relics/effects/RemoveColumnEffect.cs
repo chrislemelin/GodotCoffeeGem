@@ -10,7 +10,7 @@ public partial class RemoveColumnEffect : EffectResource
 		 
 	}
 	
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
 		matchBoard.removeColumn();
 	}

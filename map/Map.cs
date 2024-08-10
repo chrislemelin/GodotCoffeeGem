@@ -42,22 +42,25 @@ public partial class Map : Node
 			control.AddChild(mapLocation);
 			topPath.AddRange(new List<MapLocation>{mapLocation});
 		}
+		topPath[0].setPair(topPath[1]);
+		topPath[1].setPair(topPath[0]);
 		foreach(Control control in botPathControls) {
 			MapLocation mapLocation = createMapLocation(map[1][botCount++]);
 			control.AddChild(mapLocation);
 			botPath.AddRange(new List<MapLocation>{mapLocation});
 		}
+		botPath[0].setPair(botPath[1]);
+		botPath[1].setPair(botPath[0]);
 		home.GuiInput += (inputEvent) => {
 			if (inputEvent.IsActionPressed("click")) {
 				locationClicked(home);
 		}};
 		character.doneMovingSignal += () => nodeVisited();
-		setOnlyFirstLocationInPathToBeActive();
+		//setOnlyFirstLocationInPathToBeActive();
 	}
 
 	private List<List<MapEventType>> generateRandomMap() {
-		bool usedMechanicSpot = false;
-		bool usedRelicSpot = false;
+		bool createdShop = false;
 
 		List<List<MapEventType>> map = new List<List<MapEventType>>();
 		for(int pathCount = 0; pathCount < 2; pathCount++) {
@@ -65,26 +68,13 @@ public partial class Map : Node
 			for(int pathLength = 0; pathLength < 2; pathLength++) 
 			{
 				MapEventType mapEventType = MapEventTypeHelper.getRandom();
-				if (mapEventType == MapEventType.Mechanic) 
+				if (mapEventType == MapEventType.Mechanic || mapEventType == MapEventType.RelicShop) 
 				{
-					if (!usedMechanicSpot) 
+					if (!createdShop) 
 					{
-						usedMechanicSpot = true;
-					} else 
-					{
-						while(mapEventType == MapEventType.Mechanic) {
-							mapEventType = MapEventTypeHelper.getRandom();
-						}
-					}
-				}
-				if (mapEventType == MapEventType.RelicShop) 
-				{
-					if (!usedRelicSpot) 
-					{
-						usedRelicSpot = true;
-					} else 
-					{
-						while(mapEventType == MapEventType.RelicShop) {
+						createdShop = true;
+					} else {
+						while(mapEventType == MapEventType.Mechanic || mapEventType == MapEventType.RelicShop) {
 							mapEventType = MapEventTypeHelper.getRandom();
 						}
 					}
@@ -103,7 +93,7 @@ public partial class Map : Node
 			if (inputEvent.IsActionPressed("click")) {
 				locationClicked(mapLocation);
 			}};
-	mapLocation.setEventType(eventType);
+		mapLocation.setEventType(eventType);
 		return mapLocation;
 	}
 
@@ -153,13 +143,17 @@ public partial class Map : Node
 			}
 		}
 
+		MapLocation nextLocation = null;
+
 		for(int index = 0; index < topPath.Count; index++) {
 			topPath[index].setActive(false);
 			if(topPath[index] == mapLocation){
 				if (index == topPath.Count -1) {
-					home.setActive(true);
+					nextLocation = home;
+					//home.setActive(true);
 				} else {
-					topPath[++index].setActive(true);
+					nextLocation = topPath[++index];
+					//nextLocation.setActive(true);
 				}
 			}
 		}
@@ -167,14 +161,19 @@ public partial class Map : Node
 			botPath[index].setActive(false);
 			if(botPath[index] == mapLocation){
 				if (index == botPath.Count -1) {
-					home.setActive(true);
+					nextLocation = home;
 				} else {
-					botPath[++index].setActive(true);
+					nextLocation = botPath[++index];
 				}
 			}
 		}
-		mapLocation.resolveEvent(mapEventResolveUI);
-		mapLocation.setActive(false);
+		mapLocation.resolveEvent(mapEventResolveUI, () => { 
+			if(nextLocation != null) {
+				locationClicked(nextLocation);}
+			}
+		);
+		//mapLocation.
+		//mapLocation.setActive(false);
 	}
 
 	private void nodeVisited() {

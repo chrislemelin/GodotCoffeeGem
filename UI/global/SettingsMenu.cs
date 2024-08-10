@@ -53,6 +53,7 @@ public partial class SettingsMenu : Node
 		};
 
 		resolutionsOptionButton.ItemSelected += (value) => DisplayServer.WindowSetSize((Vector2I)resolutionDictionary[resolutionsOptionButton.GetItemText((int)value)]);
+		resolutionsOptionButton.Selected = 2;
 
 		dataCollectionCheckBox.ButtonPressed = gameManagerIF.getCollectData();
 		dataCollectionCheckBox.Pressed += () => gameManagerIF.setCollectData(dataCollectionCheckBox.ButtonPressed);

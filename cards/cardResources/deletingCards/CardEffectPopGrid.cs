@@ -35,4 +35,15 @@ public partial class CardEffectPopGrid : CardEffectIF
 
 		return tilesToClear;
 	}
+
+	protected override bool bonusActive() {
+		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
+		if (matchBoard == null)
+		{
+			return false;
+		}
+		if (matchBoard.getMatchesThisTurn(GemType.Milk).Count >= 1)
+			return true;
+		return false;
+	}
 }

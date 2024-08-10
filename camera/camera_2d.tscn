@@ -94,15 +94,17 @@ _data = {
 "Shake": SubResource("Animation_cvo3k")
 }
 
-[node name="Camera2D" type="Camera2D" node_paths=PackedStringArray("animationPlayer")]
+[node name="Camera2D" type="Camera2D" node_paths=PackedStringArray("animationPlayer") groups=["Camera"]]
 position = Vector2(963, 540)
 rotation_smoothing_enabled = true
 script = ExtResource("1_nwkrc")
 animationPlayer = NodePath("AnimationPlayer")
 noise = SubResource("NoiseTexture2D_xa8fb")
-shakeIntensity = 40.0
+shakeIntensity = 50.0
 shakeDecay = 10.0
 shakeSpeed = 200.0
+shakeIntensityMult = 10.0
+shakeIntensityMax = 80.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

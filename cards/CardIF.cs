@@ -67,10 +67,6 @@ public partial class CardIF : lerp
 	{
 		cardResource.node = this;
 		cardResource.cardEffect.node = this;
-		// if (cardResource.cardEffect.effectGemType != CardEffectGemType.None);
-		// {
-		// 	picture.Modulate = cardResource.cardEffect.effectGemType.GetGemType().GetColor();
-		// }
 		if (cardResource.Picture != null)
 		{
 			picture.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -81,14 +77,7 @@ public partial class CardIF : lerp
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
-		if (cardResource.cardEffect.consume)
-		{
-			highlightOnHover.TooltipText += "Consume cards will go away when played untill the end of the level";
-		}
-		if (cardResource.cardEffect.retain)
-		{
-			highlightOnHover.TooltipText += "Retain cards dont get discard at the end of turn";
-		}
+		highlightOnHover.TooltipText = cardResource.getToolTip();
 		cardResource.init();
 	}
 

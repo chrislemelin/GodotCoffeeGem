@@ -24,13 +24,16 @@ ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
+GainMana = 0
+bonusPassives = []
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
-consume = false
-retain = false
 effectGemType = 0
 cardPassiveToApplyToHand = SubResource("Resource_qv0ad")
+consume = false
+retain = false
+matchy = false
 
 [resource]
 resource_local_to_scene = true

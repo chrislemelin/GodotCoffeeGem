@@ -86,7 +86,28 @@ public partial class CardResource : Resource
 		{
 			newDescription += " " + TextHelper.toolTip("Retain.", "Retain cards arn't discarded at the end of the turn");
 		}
+		if (cardEffect.matchy)
+		{
+			newDescription += " " + TextHelper.toolTip("Matchy.", "If this card destroys 3+ ingredients of the same type count it as a match");
+		}
 		return newDescription;
+	}
+
+	public String getToolTip() {
+		String returnString = "";
+		if (cardEffect.consume)
+		{
+			returnString += "Consume cards are trashed untill the next level\n";
+		}
+		if (cardEffect.retain)
+		{
+			returnString += "Retain cards arn't discarded at the end of the turn\n";
+		}
+		if (cardEffect.matchy)
+		{
+			returnString += "Matchy - If this card destroys 3+ ingredients of the same type count it as a match\n";
+		}
+		return returnString;
 	}
 
 

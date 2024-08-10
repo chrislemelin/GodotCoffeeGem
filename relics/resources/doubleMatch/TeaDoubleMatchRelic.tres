@@ -28,6 +28,6 @@ matchEffects = []
 counterMax = 2
 customCounter = true
 counterResetOnLevelStart = true
-counterResetOnTurnStart = false
+counterResetOnTurnStart = true
 resetCounterAfterReachingMax = true
 doEffectsOnTurnStartIfCounterAtMax = false

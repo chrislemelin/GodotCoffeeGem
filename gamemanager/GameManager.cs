@@ -11,7 +11,6 @@ public partial class GameManager : GameManagerIF
 	[Export] public NewCardSelection newCardSelection;
 	[Export] public RecipeUI recipeUI;
 	[Export] Control UICover;
-
 	[Export] public GameOverScreen gameOverScreen;
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
@@ -25,13 +24,13 @@ public partial class GameManager : GameManagerIF
 	[Export] public RelicList bossRelics;
 	[Export] public LevelCompleteUI levelComplete;
 	[Export] public ToggleVisibilityOnButtonPress debtDisplay;
+	[Export] public AudioPlayer levelCompleteAudioPlayer;
 	[Signal] public delegate void levelOverEventHandler();
 	[Signal] public delegate void levelStartEventHandler();
 	[Export] private bool debugMode;
 	[Export] private bool endlessMode;
 	[Export] private bool skipFirstLevel;
 	[Export] private Godot.Collections.Dictionary<int, Resource> dialougeDict = new Godot.Collections.Dictionary<int, Resource>();
-
 	[Export] Resource dialougeResource;
 
 	private int currentLevel;
@@ -102,8 +101,8 @@ public partial class GameManager : GameManagerIF
 			bossRelicTutorial.richTextLabel.Text += bossRelic.description;
 			bossRelicTutorial.Visible = true;
 		}
-		EmitSignal(SignalName.levelStart);
 		relicHolderUI.startUpRelics();
+		EmitSignal(SignalName.levelStart);
 		debtDisplay.richTextLabel.Text += "$" + getDebt();
 
 		//EmitSignal(SignalName.levelStart);
@@ -134,15 +133,25 @@ public partial class GameManager : GameManagerIF
 		if (score.getScore() < scoreNeededToPass)
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
-			unlockNewCards();
-
-			// its joever
+			Optional<UnlockableCardPack> unlockableCardPack = getNewCardPack();
 			resetGlobals();
 			int metaCoins = evaluateMetaCoins();
 			changeDebt(-metaCoins);
 			gameOverScreen.setMetaCoins(metaCoins);
 			addMetaCoins(metaCoins);
+			if (unlockableCardPack.HasValue) {
+				gameOverScreen.restartButton.Pressed+= () => {
+					FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
+					unlockCardPack(unlockableCardPack.GetValue());
+				};
+			} else {
+				gameOverScreen.setUpMainMenu();
+			}
 			gameOverScreen.Visible = true;
+
+			// its joever
+	
+			
 		}
 		else
 		{
@@ -150,14 +159,15 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 	
-	private void unlockNewCards() {
+	private Optional<UnlockableCardPack> getNewCardPack() {
 		List<UnlockableCardPack> lockedPacks = getLockedCardPacks().ToList();
 		if (lockedPacks.Count > 0) {
 			UnlockableCardPack unlockedPack = lockedPacks[0];
-			GD.Print(unlockedPack.title);
-			FindObjectHelper.getDeckView(this).setUp(unlockedPack.getCards(), null, TextHelper.centered("New Cards Unlocked"));
-			unlockCardPack(unlockedPack);
+			return Optional.Some<UnlockableCardPack>(unlockedPack);
+			//FindObjectHelper.getDeckView(this).setUp(unlockedPack.getCards(), null, TextHelper.centered("New Cards Unlocked"));
+			//unlockCardPack(unlockedPack);
 		}
+		return Optional.None<UnlockableCardPack>();
 	}
 
 	private int evaluateMetaCoins()
@@ -171,32 +181,34 @@ public partial class GameManager : GameManagerIF
 
 	public void nextLevel()
 	{
-		EmitSignal(SignalName.levelOver);
-		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
-		//newCardSelection.windowClosed += (CardResource) => advanceLevel();
-		if (currentLevel == levelList.levelResources.Count)
-		{
-			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
-			resetGlobals();
-			gameOverScreen.label.Text = "You win!!!";
-			int metaCoins = evaluateMetaCoins();
-			gameOverScreen.setMetaCoins(metaCoins);
-			addMetaCoins(metaCoins);
-			gameOverScreen.Visible = true;
-			return;
-		}
+		GetTree().CreateTimer(.5f).Timeout += () => {
+			levelCompleteAudioPlayer.Play();
+			EmitSignal(SignalName.levelOver);
+			setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
+			if (currentLevel == levelList.levelResources.Count)
+			{
+				FindObjectHelper.getFormSubmitter(this).submitData("win", this);
+				resetGlobals();
+				gameOverScreen.label.Text = "You win!!!";
+				int metaCoins = evaluateMetaCoins();
+				gameOverScreen.setMetaCoins(metaCoins);
+				addMetaCoins(metaCoins);
+				gameOverScreen.Visible = true;
+				return;
+			}
 
-		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe)
-		{
-			levelComplete.WindowClosedSignal += () => selectRandomRelic();
-		}
-		else
-		{
-			levelComplete.WindowClosedSignal += () => advanceLevel();
-		}
-		int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
-		levelComplete.setCoinsGained(coinsGained);
-		addCoins(coinsGained);
+			if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe)
+			{
+				levelComplete.WindowClosedSignal += () => selectRandomRelic();
+			}
+			else
+			{
+				levelComplete.WindowClosedSignal += () => advanceLevel();
+			}
+			int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
+			levelComplete.setCoinsGained(coinsGained);
+			addCoins(coinsGained);
+		};
 	}
 
 	private RelicResource getRandomBossRelic()

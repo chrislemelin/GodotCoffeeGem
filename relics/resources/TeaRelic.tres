@@ -11,7 +11,7 @@ value = 1
 [resource]
 script = ExtResource("2_mlxe6")
 title = "Tea"
-description = "+1 mana on every 3 hands"
+description = "+1 energy on every 2 hands"
 image = ExtResource("1_yqcqd")
 cost = 30
 hidden = false
@@ -23,7 +23,7 @@ addToInvEffects = []
 levelOverEffects = []
 effects = []
 matchEffects = []
-counterMax = 3
+counterMax = 2
 customCounter = false
 counterResetOnLevelStart = false
 counterResetOnTurnStart = false

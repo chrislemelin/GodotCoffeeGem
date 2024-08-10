@@ -7,6 +7,8 @@ public partial class HighlightOnHover : TextureRect
 	[Export] bool forceHighlightOn = false;
 	[Export] bool forceHighlightOff = false;
 	[Export] bool highlightOnSelf = true;
+	[Export] Color forceHighlightColor;
+	private Color normalHighlightColor;
 
 	[Export] Node2D makeBigger;
 	[Export] Control makeBiggerControl;
@@ -24,6 +26,7 @@ public partial class HighlightOnHover : TextureRect
 	public override void _Ready()
 	{
 		Material = (Material)Material.Duplicate();
+		normalHighlightColor = (Color)Material.Get("shader_parameter/line_color");
 		if (highlightOnSelf) {
 			MouseEntered += () =>  setHighlightFromMouse(true);
 			MouseExited += () =>  setHighlightFromMouse(false);
@@ -65,6 +68,13 @@ public partial class HighlightOnHover : TextureRect
 	public void setForceHighlight(bool forceHighlightValue)
 	{
 		forceHighlightOn = forceHighlightValue;
+		if (forceHighlightValue) {
+			if (forceHighlightColor.A != 0.0f) {
+				Material.Set("shader_parameter/line_color", forceHighlightColor);
+			}
+		} else {
+			Material.Set("shader_parameter/line_color", normalHighlightColor);
+		}
 		renderHighlight();
 	}
 

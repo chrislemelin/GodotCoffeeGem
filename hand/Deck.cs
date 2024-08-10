@@ -45,7 +45,7 @@ public partial class Deck : Node
 		addCardsToDeck();
 		RandomHelper.Shuffle(cards);
 		updateCount();
-		GetNode<Button>(FindObjectHelper.NEW_BUTTON_NAME).Pressed += () => turnOver();
+		FindObjectHelper.getNewTurnButton(this).Pressed += () => turnOver();
 	}
 
 	private void addCardsToDeck()
@@ -92,6 +92,9 @@ public partial class Deck : Node
 		{
 			cards.RemoveAt(0);
 			updateCount();
+		} else {
+			cards.RemoveAt(0);
+			discard.addCard(nextCard);
 		}
 
 	}

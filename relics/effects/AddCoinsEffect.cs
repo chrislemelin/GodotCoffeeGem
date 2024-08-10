@@ -5,7 +5,7 @@ using System.Linq;
 [GlobalClass, Tool]
 public partial class AddCoinsEffect : EffectResource
 {	
-	public override void execute(Node node) {
+	protected override void executeEffect(Node node) {
 		FindObjectHelper.getGameManager(node).addCoins(value);
 	}
 }

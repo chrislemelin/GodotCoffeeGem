@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://c3mx6eec1nqpk"]
 
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="1_t5b3j"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_0xw13"]
-[ext_resource type="Resource" uid="uid://b8nqlwbtu4tcd" path="res://cards/cardResources/scoreCards/GainCoinsCard.tres" id="2_sqqdc"]
-[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="3_kayto"]
-[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_owigb"]
-[ext_resource type="Resource" uid="uid://bfn60jdh2miwr" path="res://cards/cardResources/changingCards/MoneyGemsCard.tres" id="5_e4v10"]
-[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="6_1l64i"]
+[ext_resource type="Resource" uid="uid://bfn60jdh2miwr" path="res://cards/cardResources/changingCards/MoneyGemsCard.tres" id="1_5xvgd"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_u1lhq"]
+[ext_resource type="Resource" uid="uid://b8nqlwbtu4tcd" path="res://cards/cardResources/scoreCards/GainCoinsCard.tres" id="2_a5o73"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="3_nounr"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="4_0kute"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="5_6lw3c"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="6_s6p7j"]
 
 [resource]
-script = ExtResource("6_1l64i")
+script = ExtResource("1_u1lhq")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("5_e4v10"), ExtResource("2_sqqdc"), ExtResource("1_t5b3j"), ExtResource("1_t5b3j"), ExtResource("1_t5b3j"), ExtResource("2_0xw13"), ExtResource("2_0xw13"), ExtResource("2_0xw13"), ExtResource("3_kayto"), ExtResource("4_owigb")])
+allCards = Array[Object]([ExtResource("1_5xvgd"), ExtResource("2_a5o73"), ExtResource("3_nounr"), ExtResource("4_0kute"), ExtResource("5_6lw3c"), ExtResource("5_6lw3c"), ExtResource("5_6lw3c"), ExtResource("6_s6p7j"), ExtResource("6_s6p7j"), ExtResource("6_s6p7j")])
