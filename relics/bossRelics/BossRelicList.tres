@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=9 format=3 uid="uid://bewp1ndgxw4gx"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=10 format=3 uid="uid://bewp1ndgxw4gx"]
 
 [ext_resource type="Resource" uid="uid://bka7weqlx0yjg" path="res://relics/bossRelics/ingredientDecreaseRelic/CoffeeDecreaseRelic.tres" id="1_dujwa"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_m8nvf"]
@@ -8,7 +8,9 @@
 [ext_resource type="Resource" uid="uid://drrpskuhacw01" path="res://relics/bossRelics/ingredientDecreaseRelic/VanillaDecreaseRelic.tres" id="5_hs2tv"]
 [ext_resource type="Resource" uid="uid://bcn5rtffkqmwv" path="res://relics/bossRelics/RemoveColumnRelic.tres" id="6_5wd28"]
 [ext_resource type="Resource" uid="uid://cdwbwyd03jka" path="res://relics/bossRelics/SmallerHandRelic.tres" id="7_yk0xr"]
+[ext_resource type="Resource" uid="uid://dk5dg2lxk2jae" path="res://relics/bossRelics/GooColumnsRelic.tres" id="8_4o6d4"]
 
 [resource]
 script = ExtResource("1_m8nvf")
-allRelics = [ExtResource("1_dujwa"), ExtResource("2_kpv8v"), ExtResource("3_puu18"), ExtResource("4_lx68o"), ExtResource("5_hs2tv"), ExtResource("6_5wd28"), ExtResource("7_yk0xr")]
+removeDuplicates = true
+allRelics = [ExtResource("1_dujwa"), ExtResource("2_kpv8v"), ExtResource("3_puu18"), ExtResource("4_lx68o"), ExtResource("5_hs2tv"), ExtResource("6_5wd28"), ExtResource("7_yk0xr"), ExtResource("8_4o6d4")]

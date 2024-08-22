@@ -14,13 +14,15 @@ public partial class Score : Node2D
 	[Export] RichTextLabel levelLabel;
 	[Export] RichTextLabel coinsLabel;
 	[Export] RichTextLabel metaCoinsLabel;
+	
+	[Export] PackedScene explosion;
 
 	[Export] HBoxContainer colorUpgradePreviewBox;
 	[Export] Node2D progressBarLocation;
 	[Export] Mult multUI;
 	[Export] Color turnColor;
 	[Export] Color heartColor;
-	[Export] AudioStreamPlayer2D audioStreamPlayer2D;
+	[Export] AudioPlayer audioStreamPlayer2D;
 	[Export] AudioStream oofAudio;
 	[Export] AudioStream coinAudio;
 	[Export] PackedScene matchScoreTextPackedScene;
@@ -44,6 +46,8 @@ public partial class Score : Node2D
 
 	[Signal]
 	public delegate void multChangeEventHandler(float mult);
+	[Signal]
+	public delegate void multGainedEventHandler(float mult);
 
 	private float muiltResetValue = 1.0f;
 	private int score;
@@ -59,6 +63,8 @@ public partial class Score : Node2D
 	private Dictionary<GemType, ColorUpgrade> colorUpgradesCompressed = new Dictionary<GemType, ColorUpgrade>();
 
 	private bool levelCleared = false;
+	private bool levelLost = false;
+
 
 	public override void _Ready()
 	{
@@ -66,14 +72,12 @@ public partial class Score : Node2D
 		gameManagerIF.coinsChanged += (int coins) =>
 		{
 			setCoins(coins);
-			audioStreamPlayer2D.Stream = coinAudio;
-			audioStreamPlayer2D.Play();
+			playCoinSound();
 		};
 		gameManagerIF.metaCoinsChanged += (int coins) =>
 		{
 			setMetaCoins(coins);
-			audioStreamPlayer2D.Stream = coinAudio;
-			audioStreamPlayer2D.Play();
+			playCoinSound();
 		};
 		gameManagerIF.healthChanged += (int value) => setHeartsRemaining(value);
 
@@ -110,10 +114,8 @@ public partial class Score : Node2D
 		}
 		else
 		{
-			setHeartsRemaining(heartsRemaining - 1);
-			audioStreamPlayer2D.Stream = oofAudio;
-			audioStreamPlayer2D.Play();
-			gameManager.setHealth(heartsRemaining);
+			gameManager.setHealth(heartsRemaining - 1);
+			playOofSound();
 		}
 	}
 
@@ -147,8 +149,7 @@ public partial class Score : Node2D
 			else
 			{
 				setHeartsRemaining(heartsRemaining - 1);
-				audioStreamPlayer2D.Stream = oofAudio;
-				audioStreamPlayer2D.Play();
+				playOofSound();
 			}
 			if (turnsRemaining == 0 && heartsRemaining == 0)
 			{
@@ -157,18 +158,40 @@ public partial class Score : Node2D
 		}
 	}
 
+	public void playOofSound() {
+		audioStreamPlayer2D.Stream = oofAudio;
+		audioStreamPlayer2D.setBaseVolumeMult(.5f);
+		audioStreamPlayer2D.Play();
+	}
+
+	public void playCoinSound() {
+		audioStreamPlayer2D.Stream = coinAudio;
+		audioStreamPlayer2D.setBaseVolumeMult(1.0f);
+		audioStreamPlayer2D.Play();
+	}
+
 
 	public void setTurnsRemaining(int newValue)
-	{
+	{		
+		int indexTurnBlowUp = -1;
+		if (newValue < turnsRemaining) {
+			indexTurnBlowUp = turnsRemaining -1;
+		}
 		turnsRemaining = newValue;
 		turnsRemainingLabel.Text = "TURNS REMAINING:" + newValue;
 		Godot.Collections.Array<Node> nodes = turnsContainer.GetChildren();
 		for (int count = 0; count < nodes.Count; count++)
 		{
+			if (count == indexTurnBlowUp) {
+				Explosion explosionNode = (Explosion)explosion.Instantiate();
+				explosionNode.Position = new Vector2(20,20);
+				explosionNode.Scale = new Vector2(.25f,.25f);
+				explosionNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
+				nodes[count].AddChild(explosionNode);
+			}
 			if (count + 1 <= turnsRemaining)
 			{
 				((TextureRect)nodes[count]).Texture = turnFull;
-
 			}
 			else
 			{
@@ -177,18 +200,23 @@ public partial class Score : Node2D
 		}
 	}
 
-	public void addHearts(int value)
-	{
-		setHeartsRemaining(heartsRemaining + value);
-	}
-
 	public void setHeartsRemaining(int newValue)
 	{
+		int indexHeartBlowUp = -1;
+		if (newValue < heartsRemaining) {
+			indexHeartBlowUp = heartsRemaining -1;
+		}
 		heartsRemaining = Math.Min(newValue, maxHearts);
-		//gameManager.setHealth(heartsRemaining);
 		Godot.Collections.Array<Node> nodes = heartsContainer.GetChildren();
 		for (int count = 0; count < nodes.Count; count++)
 		{
+			if (count == indexHeartBlowUp) {
+				Explosion explosionNode = (Explosion)explosion.Instantiate();
+				explosionNode.Position = new Vector2(20,20);
+				explosionNode.Scale = new Vector2(.25f,.25f);
+				explosionNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
+				nodes[count].AddChild(explosionNode);
+			}
 			if (count + 1 <= heartsRemaining)
 			{
 				((TextureRect)nodes[count]).Texture = heartFull;
@@ -200,6 +228,7 @@ public partial class Score : Node2D
 		}
 		if (heartsRemaining <= 0)
 		{
+			levelLost = true;
 			gameManager.evaluateLevel();
 		}
 	}
@@ -211,7 +240,6 @@ public partial class Score : Node2D
 		{
 			heartsContainer.RemoveChild(node);
 			node.QueueFree();
-
 		}
 
 		for (int a = 0; a < maxHearts; a++)
@@ -277,7 +305,7 @@ public partial class Score : Node2D
 	public void setLevel(int newValue)
 	{
 		level = newValue;
-		levelLabel.Text = "Level:" + newValue;
+		levelLabel.Text = "Level:" + newValue + "/10";
 	}
 
 	public void setScore(int newScore)
@@ -286,16 +314,20 @@ public partial class Score : Node2D
 		scoreLabel.Text = "Score: " + score + "/" + scoreNeeded;
 		progressBar.Value = (float)score / scoreNeeded * 100;
 		EmitSignal(SignalName.scoreChange, score, scoreNeeded);
-		checkForLevelOver();
+		checkForLevelCleared();
 	}
 
 	public void setMult(float newMult)
 	{
+		float difference = newMult - mult;
 		mult = newMult;
 		multLabel.Text = "Score Multiplier: " + getMultText(newMult);
 		if (multUI != null)
 		{
 			multUI.setMult(newMult);
+		}
+		if (difference > 0 ){
+			EmitSignal(SignalName.multGained, difference);
 		}
 		EmitSignal(SignalName.multChange, mult);
 	}
@@ -383,13 +415,20 @@ public partial class Score : Node2D
 	// 	setScore(score + pointValue);
 	// }
 
-	public void checkForLevelOver()
+	public void checkForLevelCleared()
 	{
 		if (scoreReached() && levelCleared == false)
 		{
 			gameManager.evaluateLevel();
 			levelCleared = true;
 		}
+	}
+
+	public bool isLevelOver() {
+		if(levelCleared || levelLost){
+			return true;
+		}
+		return false;
 	}
 
 	public void scoreMatchesWithPointOverride(HashSet<HashSet<Tile>> matches, Optional<int> pointValueOverride)

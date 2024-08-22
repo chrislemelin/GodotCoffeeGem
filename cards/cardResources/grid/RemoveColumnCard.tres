@@ -14,6 +14,8 @@ CoinGems = 0
 DrawCards = 3
 GainMana = 2
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -24,7 +26,7 @@ matchy = false
 
 [resource]
 script = ExtResource("2_ebewn")
-Title = "Remove Column"
+Title = "Stripped 4 Parts"
 Description = "Remove a column from the match board for this level. Draw 3 cards and gain 2 energy"
 Cost = 0
 rarity = 1

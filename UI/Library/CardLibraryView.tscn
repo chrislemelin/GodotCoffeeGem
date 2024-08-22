@@ -1,0 +1,161 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsfty3o7345tf"]
+
+[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="1_3au4k"]
+[ext_resource type="Script" path="res://UI/Library/CardLibraryView.cs" id="1_cdj4j"]
+[ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="3_a8jev"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_gyfse"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("gridContainer", "scrollContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gyfse")
+script = ExtResource("1_cdj4j")
+cardScene = ExtResource("1_3au4k")
+marginContainerScene = ExtResource("3_a8jev")
+gridContainer = NodePath("ScrollContainer/GridContainer")
+scrollContainer = NodePath("ScrollContainer")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 92.0
+offset_right = 1556.0
+offset_bottom = 883.0
+theme = ExtResource("4_gyfse")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." groups=["CardScrollContainer"]]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 174.0
+offset_right = 3266.0
+offset_bottom = 1942.0
+scale = Vector2(0.4, 0.4)
+follow_focus = true
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+columns = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer2" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer3" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer4" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer5" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer6" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer7" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer8" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer9" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer10" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer10" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer11" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer11" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="MarginContainer12" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer12" instance=ExtResource("1_3au4k")]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 755.0
+offset_top = 95.0
+offset_right = 1261.0
+offset_bottom = 181.0
+theme_override_font_sizes/normal_font_size = 100
+text = "Card Library"

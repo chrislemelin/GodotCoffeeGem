@@ -14,6 +14,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -24,8 +26,8 @@ matchy = false
 
 [resource]
 script = ExtResource("2_d61q8")
-Title = "Enhance"
-Description = "Select an ingredient, increase the points gained from that ingredient for the turn"
+Title = "Improved Recipe"
+Description = "Increase the points gained from the selected ingredient type for the turn"
 Cost = 0
 rarity = 1
 coinCost = 0

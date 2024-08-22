@@ -28,14 +28,16 @@ public partial class EffectResource : Resource
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(node);
 
 		
-		createAddonGems(matchBoard, GemAddonType.Mana, EnergyGems);
-		createAddonGems(matchBoard, GemAddonType.Card, CardGems);
-		createAddonGems(matchBoard, GemAddonType.Money, CoinGems);
-		createBlackGems(matchBoard, new List<Vector2>(), BurnGems);
-		hand.drawCards(DrawCards);
-		mana.modifyMana(GainEnergy);
-		score.addMult(GainMult);
-		score.addCoins(GainCoins);
+		if (matchBoard != null) {
+			createAddonGems(matchBoard, GemAddonType.Mana, EnergyGems);
+			createAddonGems(matchBoard, GemAddonType.Card, CardGems);
+			createAddonGems(matchBoard, GemAddonType.Money, CoinGems);
+			createBlackGems(matchBoard, new List<Vector2>(), BurnGems);
+			hand.drawCards(DrawCards);
+			mana.modifyMana(GainEnergy);
+			score.addMult(GainMult);
+			score.addCoins(GainCoins);
+		}
 	}
 
 	protected virtual void executeEffect(Node node) {

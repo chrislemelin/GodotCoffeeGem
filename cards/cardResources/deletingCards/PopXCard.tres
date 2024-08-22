@@ -15,18 +15,20 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 consume = false
 retain = false
-matchy = false
+matchy = true
 
 [resource]
 script = ExtResource("3_r5svq")
 Title = "Pop X"
-Description = "Destroy ingredients in an X shape. If this destroys 3 or more of the same type count it as a match"
+Description = "Destroy ingredients in an X shape"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_gqql4")

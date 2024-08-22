@@ -16,6 +16,8 @@ CoinGems = 3
 DrawCards = 1
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -27,7 +29,7 @@ matchy = false
 [resource]
 script = ExtResource("3_s78f5")
 Title = "Coin Infusion"
-Description = "Randomly create $moneyGems coin ingredient(s) and draw one card"
+Description = "Randomly create $moneyGems coin-infused ingredient(s) and draw one card"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_6q71o")

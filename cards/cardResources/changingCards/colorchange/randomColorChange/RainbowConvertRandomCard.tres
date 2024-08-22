@@ -14,6 +14,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,7 +27,7 @@ matchy = false
 [resource]
 script = ExtResource("3_kjq10")
 Title = "Rainbow Spray"
-Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type. If this creates a match draw a card"
+Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type. If this creates a match, draw a card"
 Cost = 0
 rarity = 2
 coinCost = 0

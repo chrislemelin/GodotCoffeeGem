@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class Hand : Node
+public partial class Hand : ControllerInput
 {
 
 	[Export] PackedScene cardTemplate;
@@ -18,6 +18,7 @@ public partial class Hand : Node
 	[Export] Mana mana;
 	[Export] AudioStreamPlayer2D audioStreamPlayer2D;
 	[Export] AudioStreamPlayer2D cardSelectedaudioStreamPlayer2D;
+	[Export] AudioStreamPlayer2D cardHoveraudioStreamPlayer2D;
 
 	[Export] AudioStream newHandSoundEffect;
 	[Export] AudioStream cardPlayedSoundEffect;
@@ -26,12 +27,17 @@ public partial class Hand : Node
 	[Export] GameManager gameManager;
 	[Export] RelicResource relicResource;
 	[Signal] public delegate void cardDrawnEventHandler(CardResource cardResource);
+	[Signal] public delegate void cardDrawnNotFromNewTurnEventHandler(CardResource cardResource);
 	[Signal] public delegate void cardPlayedEventHandler(CardResource cardResource);
 
 	List<CardIF> cards = new List<CardIF>();
 	List<CardResource> cardsPlayedThisTurn = new List<CardResource>();
 	List<HandPassive> handPassives = new List<HandPassive>();
 	Optional<CardIF> cardSelected = Optional.None<CardIF>();
+	private int hoveredCardIndex = 0;
+	[Export] private bool hasUIFocus = true;
+	[Export] Godot.Collections.Array<Control> windowsInFrontOf;
+	private bool hitDeadZone = true;
 	Optional<CardIF> cardHovered = Optional.None<CardIF>();
 
 	int handSize = 10;
@@ -58,14 +64,18 @@ public partial class Hand : Node
 	// Called when the node enters the scene tree for the first time
 	public override void _Ready()
 	{
-		//handPassives = gameManager.getRelics().SelectMany(passive => passive.getStartPassives<HandPassive>()).ToList();
+		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
+		hasUIFocus = controllerHelper.isUsingController();
+		controllerHelper.UsingControllerChanged += setUIFocus;
+		FindObjectHelper.getSettingsMenu(this).windowOpened += () => setUIFocus(false);
 		gameManager.levelStart += () => startLevel();
+		gameManager.levelOver += () => setUIFocus(false);
 		mana.ManaChanged += () => checkCardsForDisabeling();
 		handLine.turnOff();
 	}
 
 	private void startLevel(){
-		cleanUpOldTurn();
+		//cleanUpOldTurn();
 		startNewTurn();
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += () => cleanUpOldTurn();
 		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => startNewTurn();
@@ -74,6 +84,9 @@ public partial class Hand : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// if(hasUIFocus) {
+
+		// }
 	}
 
 	private int getCardsDrawnOnTurnStart()
@@ -100,6 +113,7 @@ public partial class Hand : Node
 			clearSelectedCard();
 			card.getCardResource().cardEffect.turnOver();
 			checkCardsForDisabeling();
+			changeHoveredCard(0);
 		}
 	}
 
@@ -118,7 +132,7 @@ public partial class Hand : Node
 		return cards.Count < handSize;
 	}
 
-	public bool addNewCardToHand(CardResource cardResource)
+	public bool addNewCardToHand(CardResource cardResource, bool fromNewTurn)
 	{
 		if (cards.Count == handSize)
 		{
@@ -138,6 +152,9 @@ public partial class Hand : Node
 		repositionCards();
 		checkCardsForDisabeling();
 		EmitSignal(SignalName.cardDrawn, cardResource);
+		if (!fromNewTurn){
+			EmitSignal(SignalName.cardDrawnNotFromNewTurn, cardResource);
+		}
 		return true;
 	}
 
@@ -172,7 +189,7 @@ public partial class Hand : Node
 			clearSelectedCard();
 			handLine.turnOn(card.Position);
 			cardSelected = Optional.Some<CardIF>(card);
-			card.highlightOnHover.setForceHighlight(true);
+			card.highlightOnHover.setForceHighlightAltColor(true);
 		}
 	}
 
@@ -210,6 +227,7 @@ public partial class Hand : Node
 	private void setCardHovered(CardIF card)
 	{
 		setCardHovered(Optional.Some<CardIF>(card));
+		cardHoveraudioStreamPlayer2D.Play();
 	}
 
 	private void clearCardHovered()
@@ -232,12 +250,14 @@ public partial class Hand : Node
 		if (cardHovered.HasValue && IsInstanceValid(cardHovered.GetValue()))
 		{
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()));
+			cardHovered.GetValue().highlightOnHover.setForceHighlight(false);
 		}
 		cardHovered = card;
 		if (cardHovered.HasValue)
 		{
+			cardHovered.GetValue().highlightOnHover.setForceHighlight(true);
 			cardContainer.MoveChild(cardHovered.GetValue(), cards.Count);
-			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * 25);
+			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * 55);
 		}
 		else
 		{
@@ -245,6 +265,7 @@ public partial class Hand : Node
 			foreach (CardIF currentCard in cards)
 			{
 				cardContainer.MoveChild(currentCard, count);
+				currentCard.highlightOnHover.setForceHighlight(false);
 				count++;
 			}
 		}
@@ -260,9 +281,28 @@ public partial class Hand : Node
 
 	public void startNewTurn()
 	{
-		drawCards(getCardsDrawnOnTurnStart());
+		drawCardsFromNewTurn(getCardsDrawnOnTurnStart());
 		audioStreamPlayer2D.Stream = newHandSoundEffect;
 		audioStreamPlayer2D.Play();
+		if (hasUIFocus) {
+			setCardHovered(cards[0]);
+		}
+		setUIFocus(true);
+	}
+	public void setUIFocus(bool value) {
+		GD.Print("setting focus for hand" + value);
+		if(FindObjectHelper.getControllerHelper(this).isUsingController() && !FindObjectHelper.getScore(this).isLevelOver() && !windowsInFrontOf.Where(control => control.IsVisibleInTree()).Any() && !FindObjectHelper.getSettingsMenu(this).isVisible()) {
+			hasUIFocus = value;
+			if (hasUIFocus) {
+				changeHoveredCard(0);
+			} else {
+				clearCardHovered();
+			}
+		} else {
+			hasUIFocus = false;
+			clearCardHovered();
+		}
+		
 	}
 
 	public void discardCard(CardIF card, bool playingCard)
@@ -326,11 +366,19 @@ public partial class Hand : Node
 
 	public void drawCards(int count)
 	{
-		deck.drawCards(count);
+		drawCards(count, false);
+	}
+
+	private void drawCards(int count, bool fromNewTurn)
+	{
+		deck.drawCards(count, fromNewTurn);
 		audioStreamPlayer2D.Stream = newHandSoundEffect;
 		audioStreamPlayer2D.Play();
 	}
 
+	private void drawCardsFromNewTurn(int count) {
+		drawCards(count, true);
+	}
 
 	public override void _Input(InputEvent @event)
 	{
@@ -348,9 +396,60 @@ public partial class Hand : Node
 		{
 			//deck.drawCards(1);
 		}
+
+		if(@event.IsActionPressed("ui_accept") && hasUIFocus)
+		{
+			if(cardHovered.HasValue) {
+				CardIF card = cardHovered.GetValue();
+				switch (card.getCardResource().getSelectionType())
+				{
+					case SelectionType.Single:
+					case SelectionType.Double:
+						setSelectedCard(card);
+						GetTree().CreateTimer(.1f).Timeout+= () => matchBoard.setUIFocus(true);
+						hasUIFocus = false;
+						break;
+					case SelectionType.None:
+						playCard(card, new List<Vector2>());
+						clearSelectedCard();
+						break;
+				}
+			}
+		}
+		if(@event.IsActionPressed("ui_cancel") && !hasUIFocus && matchBoard.getUIFocus())
+		{
+			clearSelectedCard();
+			matchBoard.setUIFocus(false);
+			this.setUIFocus(true);
+		}
+		base._Input(@event);
+	}
+
+
+	protected override void controllerLeft() {
+		if(hasUIFocus) {
+			changeHoveredCard(-1);
+		}
+	}
+	protected override void controllerRight() {
+		if(hasUIFocus) {
+			changeHoveredCard(1);
+		}
+	}
+
+	private void changeHoveredCard(int value) {
+		if (hasUIFocus) {
+			hoveredCardIndex = Math.Clamp(value + hoveredCardIndex, 0, cards.Count-1);
+			setCardHovered(cards[hoveredCardIndex]);
+		}
 	}
 
 	private void playCardSelectedSound() {
 		cardSelectedaudioStreamPlayer2D.Play();
+	}
+
+	public override void _ExitTree()
+	{
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= setUIFocus;
 	}
 }

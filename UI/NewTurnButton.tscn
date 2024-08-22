@@ -1,12 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://bil345m4mcmmj"]
+[gd_scene load_steps=10 format=3 uid="uid://bil345m4mcmmj"]
 
 [ext_resource type="Script" path="res://UI/NewTurnButton.cs" id="1_i2mqn"]
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_i8v1p"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="2_wepah"]
+[ext_resource type="AudioStream" uid="uid://i4hbljontvta" path="res://sound/UI/drop_002.ogg" id="3_hymw0"]
+[ext_resource type="AudioStream" uid="uid://c81df5y1lxjan" path="res://sound/UI/click1.ogg" id="4_24pan"]
+[ext_resource type="Texture2D" uid="uid://cn5bhwcx2ulhd" path="res://placeholders/UI/XboxYControl.tres" id="6_uwthl"]
 
-[node name="NewTurnButton" type="Button"]
-offset_left = 1576.0
+[sub_resource type="Animation" id="Animation_si3mj"]
+resource_name = "Hover"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.03, 1.03), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3nkhp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jw2s4"]
+_data = {
+"Hover": SubResource("Animation_si3mj"),
+"RESET": SubResource("Animation_3nkhp")
+}
+
+[node name="NewTurnButton" type="Button" node_paths=PackedStringArray("controllerTexture", "animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
+anchors_preset = -1
+offset_left = 1507.0
 offset_top = 792.0
-offset_right = 1576.0
-offset_bottom = 792.0
+offset_right = 1678.0
+offset_bottom = 827.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(85, 37)
+theme = ExtResource("1_i8v1p")
 theme_override_font_sizes/font_size = 35
 text = "END TURN"
 script = ExtResource("1_i2mqn")
+controllerTexture = NodePath("TextureRect")
+animationPlayer = NodePath("AnimationPlayer")
+hoverAudioplayer = NodePath("HoverAudioPlayer")
+clickAudioplayer = NodePath("ClickAudioPlayer")
+
+[node name="HoverAudioPlayer" parent="." instance=ExtResource("2_wepah")]
+stream = ExtResource("3_hymw0")
+maxValue = 20.0
+
+[node name="ClickAudioPlayer" parent="." instance=ExtResource("2_wepah")]
+stream = ExtResource("4_24pan")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 53.0
+offset_top = -77.0
+offset_right = 120.0
+offset_bottom = -8.0
+texture = ExtResource("6_uwthl")
+expand_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jw2s4")
+}

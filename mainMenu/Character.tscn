@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://lq1f2kjihhfp"]
+
+[ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://placeholders/Map/guy.png" id="1_2xf58"]
+[ext_resource type="Script" path="res://util/lerp.cs" id="1_4rujf"]
+
+[node name="Character" type="Node2D"]
+scale = Vector2(3.5, 3.5)
+script = ExtResource("1_4rujf")
+speed = 100.0
+
+[node name="Guy" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -18)
+scale = Vector2(1.4375, 1.4375)
+texture = ExtResource("1_2xf58")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://2av55t0yxy4e"]
+[gd_scene load_steps=16 format=3 uid="uid://2av55t0yxy4e"]
 
 [ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
 [ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
-[ext_resource type="Script" path="res://UI/ButtonWithCoinCost.cs" id="2_x4g5w"]
+[ext_resource type="Script" path="res://UI/core/ButtonWithCoinCost.cs" id="2_x4g5w"]
 [ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_yvkph"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="5_6xr0x"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="5_by2ub"]
@@ -12,6 +12,8 @@
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="10_6qdhe"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
+[ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="13_60jrt"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="13_x8pug"]
 
 [sub_resource type="Resource" id="Resource_ioiih"]
 script = ExtResource("2_ahm5c")
@@ -21,7 +23,7 @@ gemType = 0
 finalMult = 1.0
 temporary = false
 
-[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "upgradeCardButton", "removeCardFromDeckButton", "relicShop", "advanceLevelButton", "confirmationText", "cardShop")]
+[node name="DayOverUI" type="Control" node_paths=PackedStringArray("sideHustleButton", "shoppingTherapyButton", "gemUpgradeButton", "moreCardsButton", "relicButton", "upgradeCardButton", "removeCardFromDeckButton", "relicShop", "advanceLevelCustomButton", "confirmationText", "cardShop")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,15 +37,15 @@ grow_vertical = 2
 pivot_offset = Vector2(900, 600)
 script = ExtResource("1_ibp0t")
 sideHustleButton = NodePath("VBoxContainer/Side hustle")
-shoppingTherapyButton = NodePath("VBoxContainer/Shopping Therapy")
+shoppingTherapyButton = NodePath("VBoxContainer/HealButton")
 gemUpgradeButton = NodePath("VBoxContainer/Gem upgrade")
 moreCardsButton = NodePath("VBoxContainer/Moare cards")
-relicButton = NodePath("VBoxContainer/Relic")
+relicButton = NodePath("VBoxContainer/RelicButton")
 upgradeCardButton = NodePath("VBoxContainer/CardUpgrade")
 removeCardFromDeckButton = NodePath("VBoxContainer/RemoveCard")
 relicShop = NodePath("PassiveShop")
 relicUIPackedScene = ExtResource("5_6xr0x")
-advanceLevelButton = NodePath("VBoxContainer/MarginContainer/AdvanceButton")
+advanceLevelCustomButton = NodePath("VBoxContainer/MarginContainer/AdvanceButton")
 confirmationText = NodePath("VBoxContainer/RichTextLabel")
 colorUpgrade = SubResource("Resource_ioiih")
 upgradedSwitchCard = ExtResource("4_yvkph")
@@ -276,13 +278,12 @@ text = "Gain an extra card (Costs 20 coins)"
 script = ExtResource("2_x4g5w")
 cost = 20
 
-[node name="Shopping Therapy" type="Button" parent="VBoxContainer"]
+[node name="HealButton" parent="VBoxContainer" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("13_60jrt")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("11_37gdu")
-text = "Recover a heart  (Costs 40 coins)"
-script = ExtResource("2_x4g5w")
-cost = 40
+text = "Recover a heart (40 coins)"
+cost = 30
+hoverAudioplayer = NodePath("../RelicButton/HoverAudioPlayer")
+clickAudioplayer = NodePath("../RelicButton/ClickAudioPlayer")
 
 [node name="Gem upgrade" type="Button" parent="VBoxContainer"]
 visible = false
@@ -309,21 +310,18 @@ text = "Upgrade one of your switch cards (Costs 30 coins)"
 script = ExtResource("2_x4g5w")
 cost = 30
 
-[node name="Relic" type="Button" parent="VBoxContainer"]
+[node name="RelicButton" parent="VBoxContainer" instance=ExtResource("13_60jrt")]
 layout_mode = 2
-theme = ExtResource("11_37gdu")
-text = "Buy a relic (passive ability) (100 coins)"
-script = ExtResource("2_x4g5w")
-cost = 100
+text = "Browse Relic Shop"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 30
 
-[node name="AdvanceButton" type="Button" parent="VBoxContainer/MarginContainer"]
+[node name="AdvanceButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("13_x8pug")]
 layout_mode = 2
-theme = ExtResource("11_37gdu")
-text = "Advance "
+text = "Advance"
+grabFocus = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2

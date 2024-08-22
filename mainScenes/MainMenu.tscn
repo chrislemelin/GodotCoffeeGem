@@ -1,39 +1,46 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=15 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
 [ext_resource type="PackedScene" uid="uid://c1vcw8het36xd" path="res://mainScenes/DeckSelectionPicker.tscn" id="3_3ea2j"]
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_qt6ch"]
+[ext_resource type="PackedScene" uid="uid://c50may7by4dag" path="res://mainScenes/MetaProgressionUI.tscn" id="4_mltja"]
+[ext_resource type="PackedScene" uid="uid://bwhgrydhls7ol" path="res://mainScenes/Credits.tscn" id="5_7ewrx"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="5_y52an"]
-[ext_resource type="Script" path="res://UI/SceneLoaderButton.cs" id="7_mbdpe"]
+[ext_resource type="PackedScene" uid="uid://cyqjkruf5yn4n" path="res://mainMenu/MapBackground.tscn" id="7_61k3c"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="7_bodv0"]
+[ext_resource type="PackedScene" uid="uid://dlslfluiohaff" path="res://mainMenu/Background.tscn" id="7_fjbjo"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
+[ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="10_cqmeh"]
+[ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="10_kkka7"]
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "quitButton", "beanHolder")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "quitButton", "metaProgressionButton", "creditsButton", "beanHolder")]
 script = ExtResource("1_ro6go")
-quickPlayButton = NodePath("VBoxContainer2/quickstart")
-deckSelectionButton = NodePath("VBoxContainer2/deckSelection")
-zenModButton = NodePath("VBoxContainer2/zenMode")
-quitButton = NodePath("VBoxContainer2/QuitButton")
+quickPlayButton = NodePath("VBoxContainer2/play")
+deckSelectionButton = NodePath("VBoxContainer2/MarginContainer3/deckSelection")
+zenModButton = NodePath("VBoxContainer2/MarginContainer2/zenMode")
+quitButton = NodePath("VBoxContainer2/GridContainer/MarginContainer7/quit")
+metaProgressionButton = NodePath("VBoxContainer2/MarginContainer4/metaProgression")
+creditsButton = NodePath("VBoxContainer2/GridContainer/MarginContainer5/credits")
 gameScene = ExtResource("2_g2ipy")
 deckSelectionScene = ExtResource("3_3ea2j")
+metaProgressionScene = ExtResource("4_mltja")
+creditsScene = ExtResource("5_7ewrx")
 beanScene = ExtResource("3_3tqas")
 numberOfBeans = 50
 beanHolder = NodePath("BeanHolder")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.156863, 0.172549, 0.2, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -5.0
-offset_top = 1.0
-offset_right = 1925.0
-offset_bottom = 1079.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_qt6ch")
+[node name="Map2" parent="." instance=ExtResource("7_61k3c")]
+visible = false
+position = Vector2(212, 275)
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect2" parent="." instance=ExtResource("7_fjbjo")]
+
+[node name="TextureRect" parent="." instance=ExtResource("7_fjbjo")]
+modulate = Color(0.105882, 0.2, 0.203922, 1)
+script = null
 
 [node name="BeanHolder" type="Node2D" parent="."]
 
@@ -51,7 +58,7 @@ anchor_bottom = 0.5
 offset_left = 482.0
 offset_top = 143.0
 offset_right = 1508.0
-offset_bottom = 473.0
+offset_bottom = 284.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
@@ -66,50 +73,113 @@ fit_content = true
 scroll_active = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-offset_left = 658.0
-offset_top = 492.0
-offset_right = 1360.0
-offset_bottom = 719.0
+offset_left = 666.0
+offset_top = 436.0
+offset_right = 1368.0
+offset_bottom = 776.0
 
-[node name="quickstart" type="Button" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(0, 50)
+[node name="play" parent="VBoxContainer2" instance=ExtResource("7_bodv0")]
 layout_mode = 2
-theme = ExtResource("5_y52an")
 text = "Play"
+grabFocus = true
 
-[node name="zenMode" type="Button" parent="VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="zenMode" type="Button" parent="VBoxContainer2/MarginContainer2"]
 visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Zen Mode"
 
-[node name="deckSelection" type="Button" parent="VBoxContainer2"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="deckSelection" type="Button" parent="VBoxContainer2/MarginContainer3"]
 visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("5_y52an")
 text = "Advanced Mode"
 
-[node name="MetaProgression" type="Button" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(0, 50)
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("5_y52an")
-text = "Meta Progression"
-script = ExtResource("7_mbdpe")
-sceneString = "res://mainScenes/MetaProgressionUI.tscn"
+theme_override_constants/margin_top = 10
 
-[node name="QuitButton" type="Button" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(0, 50)
+[node name="metaProgression" parent="VBoxContainer2/MarginContainer4" instance=ExtResource("7_bodv0")]
 layout_mode = 2
-theme = ExtResource("5_y52an")
+text = "Upgrade Store"
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Button" parent="VBoxContainer2/MarginContainer5" instance=ExtResource("10_cqmeh")]
+layout_mode = 2
+text = "Card Library"
+sceneString = "res://mainScenes/Library.tscn"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer2"]
+layout_mode = 2
+columns = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="Button" parent="VBoxContainer2/GridContainer/MarginContainer6" instance=ExtResource("10_kkka7")]
+layout_mode = 2
+text = "Join the Discord"
+icon_alignment = 1
+
+[node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+
+[node name="Button" parent="VBoxContainer2/GridContainer/MarginContainer8" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("10_kkka7")]
+layout_mode = 2
+text = "Wishlist the game!"
+url = "https://store.steampowered.com/app/2944280/Beans_Of_Production/"
+hoverAudioplayer = NodePath("../../MarginContainer6/Button/HoverAudioPlayer")
+clickAudioplayer = NodePath("../../MarginContainer6/Button/ClickAudioPlayer")
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="credits" parent="VBoxContainer2/GridContainer/MarginContainer5" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("7_bodv0")]
+layout_mode = 2
+text = "Credits
+"
+hoverAudioplayer = NodePath("../../../MarginContainer4/metaProgression/HoverAudioPlayer")
+clickAudioplayer = NodePath("../../../MarginContainer4/metaProgression/ClickAudioPlayer")
+
+[node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="quit" parent="VBoxContainer2/GridContainer/MarginContainer7" instance=ExtResource("7_bodv0")]
+layout_mode = 2
 text = "Quit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 711.0
-offset_top = 757.0
-offset_right = 1308.0
-offset_bottom = 868.0
+offset_left = 721.0
+offset_top = 795.0
+offset_right = 1318.0
+offset_bottom = 906.0
 theme = ExtResource("8_e2q8p")
 text = "This game collects game play data. This data is anonymous and its very helpful to balance the game, but it can be disabled in the settings menu if desired"
 

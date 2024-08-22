@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public partial class Gem : lerp
 {
 	[Export] public Sprite2D sprite2D;
-
 	[Export] public Sprite2D addonSprite;
 	[Export] public RichTextLabel comboTextLabel;
 	[Export] public Texture2D manaAddonTexture;
@@ -15,6 +14,7 @@ public partial class Gem : lerp
 	[Export] public Texture2D coinAddonTexture;
 	[Export] public Texture2D metaCoinAddonTexture;
 	[Export] public ShaderMaterial rainbowMaterial;
+	[Export] public AudioPlayer audioPlayer;
 	[Export] public Texture2D orbTexture;
 	[Export] public bool useSprites;
 	[Export] public Control control;
@@ -75,6 +75,7 @@ public partial class Gem : lerp
 	}
 
 	private void updateSprite() {
+		sprite2D.Material = (Material)sprite2D.Material.Duplicate();
 		if (AddonType == GemAddonType.Hidden) {
 			sprite2D.Texture = questionMark;
 			sprite2D.Scale = new Vector2(.55f,.55f);
@@ -99,11 +100,6 @@ public partial class Gem : lerp
 		{
 			sprite2D.Material = rainbowMaterial;
 		}
-		else
-		{
-			sprite2D.Material = null;
-		}
-		
 	}
 
 	private Texture2D getTexture(GemType type)
@@ -155,13 +151,25 @@ public partial class Gem : lerp
 	}
 
 	public void explode() {
-		Node explode = explosion.Instantiate();
+		Explosion explode = (Explosion)explosion.Instantiate();
+		explode.Position = new Vector2(125,125);
 		this.AddChild(explode);
 	}
 
 	public void startDying()
 	{
 		animationPlayer.Play("PopAnimation");
+	}
+
+	public void shine()
+	{
+		animationPlayer.Play("Shine");
+	}
+
+	public void shake()
+	{
+		audioPlayer.Play();
+		animationPlayer.Play("Shake");
 	}
 
 	public void startDyingExplode()
@@ -173,7 +181,7 @@ public partial class Gem : lerp
 
 	public void doneDying()
 	{
-		GetTree().CreateTimer(5).Timeout += () => QueueFree();
+		GetTree().CreateTimer(1).Timeout += () => QueueFree();
 		EmitSignal(SignalName.doneDyingSignal, this);
 	}
 

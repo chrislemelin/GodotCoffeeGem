@@ -26,6 +26,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -38,7 +40,7 @@ matchy = false
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_34r48")
-Title = "Reduce Cost"
+Title = "Teamwork"
 Description = "Reduce the cost of each card in hand by 1 for this turn"
 Cost = 3
 rarity = 1

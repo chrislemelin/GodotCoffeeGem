@@ -22,6 +22,9 @@ public partial class ToggleVisibilityOnButtonPress : Control
 			if (value) {
 				animationPlayer.Play("FadeIn");
 				Visible = value;
+				if (button is CustomButton) {
+					((CustomButton)button).checkForFocus();
+				}
 			}
 			else {
 				GetTree().CreateTimer(fadeOutDelay).Timeout += () =>  {
@@ -29,12 +32,18 @@ public partial class ToggleVisibilityOnButtonPress : Control
 				};
 
 				GetTree().CreateTimer(.25f + fadeOutDelay).Timeout += () =>  {
-					EmitSignal(SignalName.WindowClosedSignal);
 					Visible = value;
+					EmitSignal(SignalName.WindowClosedSignal);
 				};
 			}
 		} else {
 			Visible = value;
+			if (button is CustomButton) {
+				((CustomButton)button).checkForFocus();
+			}
+			if (!Visible) {
+				EmitSignal(SignalName.WindowClosedSignal);
+			}
 		}
 	}
 

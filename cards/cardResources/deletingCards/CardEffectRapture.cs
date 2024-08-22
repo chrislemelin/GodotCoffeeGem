@@ -27,7 +27,7 @@ public partial class CardEffectRapture : CardEffectIF
 	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile)
 	{
 		GemType gemType = tile.Gem.Type;
-		List<Tile> tiles = matchBoard.getTilesWithCondition(tile => tile.Gem.Type != gemType);
+		List<Tile> tiles = matchBoard.getTilesWithCondition(tile => tile.Gem != null && tile.Gem.Type != gemType);
 		return tiles.Select(x => x.getTilePosition()).ToList();
 	}
 }

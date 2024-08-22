@@ -83,6 +83,9 @@ public partial class Tile : Node2D
 
 	public void mouseEnter() {
 		isHovered = true;
+		if(Gem != null) {
+			Gem.shake();
+		}
 		sprite2D.Modulate = getCurrentColor();
 
 	}

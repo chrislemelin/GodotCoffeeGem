@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm6smnkgl28wr"]
+[gd_scene load_steps=6 format=3 uid="uid://bm6smnkgl28wr"]
 
 [ext_resource type="Script" path="res://hand/Mana.cs" id="1_x7nhu"]
 [ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="2_akfqu"]
+[ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="2_bvmhr"]
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="3_tj302"]
 [ext_resource type="AudioStream" uid="uid://2v0ksk6rso4g" path="res://sound/mana/magical_1.ogg" id="3_xufqt"]
 
@@ -9,6 +10,7 @@
 script = ExtResource("1_x7nhu")
 costText = NodePath("RichTextLabel")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+explosion = ExtResource("2_bvmhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9, -25)
@@ -48,3 +50,6 @@ offset_left = -60.0
 offset_top = -99.0
 offset_right = 51.0
 offset_bottom = 63.0
+
+[node name="Explosion" parent="." instance=ExtResource("2_bvmhr")]
+visible = false

@@ -9,6 +9,11 @@ public partial class Mana : Node2D
 	public AudioStreamPlayer2D audioStreamPlayer2D;
 	[Signal]
 	public delegate void ManaChangedEventHandler();
+	[Signal]
+	public delegate void ManaGainedEventHandler(int value);
+
+	[Export] PackedScene explosion;
+
 
 
 
@@ -21,6 +26,11 @@ public partial class Mana : Node2D
 	public void modifyMana(int value){
 		if (value >= 1) {
 			audioStreamPlayer2D.Play();
+			Node explosionNode = explosion.Instantiate();
+			explosionNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
+			AddChild(explosionNode);
+			MoveChild(explosionNode, GetChildCount()-1);
+			EmitSignal(SignalName.ManaGained, value);
 		}
 		int newManaValue  = manaValue + value;
 		setManaValue(Math.Clamp(newManaValue, 0, 99));

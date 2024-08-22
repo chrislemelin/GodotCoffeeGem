@@ -43,6 +43,7 @@ static class MapEventTypeHelper
 
     public static MapEventType getRandom()
 	{
+        //return MapEventType.RelicShop;
 		return (MapEventType)random.Next(6);
         //return MapEventType.RemoveCard;
 	}

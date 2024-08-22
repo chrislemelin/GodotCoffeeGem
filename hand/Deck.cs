@@ -61,11 +61,11 @@ public partial class Deck : Node
 		}
 	}
 
-	public void drawCards(int count)
+	public void drawCards(int count, bool fromNewTurn)
 	{
 		for (int a = 0; a < count; a++)
 		{
-			drawCard();
+			drawCard(fromNewTurn);
 		}
 	}
 
@@ -74,7 +74,7 @@ public partial class Deck : Node
 		countLabel.Text = TextHelper.centered(cards.Count.ToString());
 	}
 
-	private void drawCard()
+	private void drawCard(bool fromNewTurn)
 	{
 		if (cards.Count == 0)
 		{
@@ -87,7 +87,7 @@ public partial class Deck : Node
 
 		}
 		CardResource nextCard = cards[0];
-		bool cardAddedToHand = hand.addNewCardToHand(nextCard);
+		bool cardAddedToHand = hand.addNewCardToHand(nextCard, fromNewTurn);
 		if (cardAddedToHand)
 		{
 			cards.RemoveAt(0);

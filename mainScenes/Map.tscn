@@ -1,27 +1,19 @@
-[gd_scene load_steps=57 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=50 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
-[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_6g8vu"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
-[ext_resource type="Resource" uid="uid://xe62kwq1lrrg" path="res://cards/cardResources/cardLists/unlockableCardPacks/DeleteCardPack.tres" id="3_b783o"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
-[ext_resource type="Resource" uid="uid://dehp68dxia78h" path="res://cards/cardResources/cardLists/unlockableCardPacks/SpendCardPack.tres" id="3_ou8qp"]
-[ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_86n8f"]
-[ext_resource type="Resource" uid="uid://chocekvyfot6p" path="res://cards/cardResources/cardLists/unlockableCardPacks/MatchScoreCardPack.tres" id="4_nmvjh"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
 [ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
-[ext_resource type="Resource" uid="uid://br3mqyckepxh3" path="res://cards/cardResources/cardLists/unlockableCardPacks/MoneyCardPack.tres" id="5_rqdmq"]
-[ext_resource type="Resource" uid="uid://bi0son5almaow" path="res://cards/cardResources/cardLists/unlockableCardPacks/RandomCardPack.tres" id="6_a1ipc"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
 [ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://placeholders/Map/map-07-08-2024.png" id="7_v8p8x"]
-[ext_resource type="Resource" uid="uid://dh65of2731mau" path="res://cards/cardResources/cardLists/unlockableCardPacks/XCardPack.tres" id="8_nxl4l"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
 [ext_resource type="Script" path="res://util/lerp.cs" id="11_8ihbg"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="11_fn4xu"]
-[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="11_rx5ww"]
+[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/NewCardSelection.tscn" id="11_rx5ww"]
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
@@ -31,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="24_1i55l"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="24_a84c2"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="29_8180u"]
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
 script = ExtResource("10_ujm25")
@@ -425,10 +418,7 @@ _data = {
 script = ExtResource("1_sas1p")
 newCardSelection = NodePath("CardSelectionUI")
 deckViewUI = NodePath("DeckViewUI")
-defaultCardPool = ExtResource("2_6g8vu")
-cardPacks = Array[Object]([ExtResource("4_nmvjh"), ExtResource("5_rqdmq"), ExtResource("6_a1ipc"), ExtResource("8_nxl4l"), ExtResource("3_b783o"), ExtResource("3_ou8qp")])
 relicList = ExtResource("3_mpj51")
-defaultCardList = ExtResource("4_86n8f")
 
 [node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("home", "mapEventResolveUI", "topPathControls", "botPathControls", "character", "topPathNodes", "botPathNodes", "topLines", "botlines")]
 script = ExtResource("1_vwohc")
@@ -633,7 +623,6 @@ position = Vector2(-0.5, -13.5)
 texture = ExtResource("17_718sm")
 
 [node name="HelperText" type="RichTextLabel" parent="."]
-visible = false
 offset_left = 619.0
 offset_top = 479.0
 offset_right = 970.0
@@ -659,7 +648,7 @@ offset_bottom = 40.0
 script = ExtResource("7_7gh4s")
 title = NodePath("Forground/Control/title")
 description = NodePath("Forground/Control/description")
-button = NodePath("Forground/Control/Continue")
+button = NodePath("Forground/Control/Continue2")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Background" type="TextureRect" parent="MapEventText"]
@@ -710,16 +699,17 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Title Description"
 
-[node name="Continue" type="Button" parent="MapEventText/Forground/Control"]
-use_parent_material = true
+[node name="Continue2" parent="MapEventText/Forground/Control" instance=ExtResource("29_8180u")]
 layout_mode = 0
-offset_left = 888.0
-offset_top = 748.0
-offset_right = 1052.0
-offset_bottom = 797.0
-theme = ExtResource("22_epuo7")
-text = "Continue
-"
+anchors_preset = 0
+offset_left = 892.0
+offset_top = 742.5
+offset_right = 1046.0
+offset_bottom = 794.5
+grow_horizontal = 1
+grow_vertical = 1
+text = "Continue"
+grabFocus = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MapEventText"]
 libraries = {
@@ -733,7 +723,7 @@ offset_right = 1764.0
 offset_bottom = 69.0
 gameManager = NodePath("..")
 
-[node name="SettingsMenu" parent="." instance=ExtResource("24_a84c2")]
-
 [node name="RelicSelection" parent="." instance=ExtResource("24_1i55l")]
 visible = false
+
+[node name="SettingsMenu" parent="." instance=ExtResource("24_a84c2")]

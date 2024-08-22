@@ -8,9 +8,14 @@ public partial class RelicUI : CustomToolTip
 	[Export] RichTextLabel titleLabel;
 	[Export] RichTextLabel counterLabel;
 	[Export] RichTextLabel costValueLabel;
+	[Export] HighlightOnHover highlightOnHover;
 	[Export] public bool showPrice = false;
 	[Export] public bool showTitle = false;
 	[Export] public Control hitBox;
+	[Export] protected Color disabledColor;
+	private bool disabled = false;
+	//[Export] public RichTextLabel toolTipText;
+
 
 	[Export] Vector2 minSizeWithCost;
 	[Export] private Control costControl;
@@ -28,6 +33,25 @@ public partial class RelicUI : CustomToolTip
 		{
 			Visible = false;
 		}
+		FocusEntered += () => {
+			highlightOnHover.setForceHighlight(true);
+		};
+		FocusExited += () => {
+			highlightOnHover.setForceHighlight(false);
+		};
+	}
+
+	public void setDisable(bool disabled) {
+		this.disabled = disabled;
+		if(disabled) {
+			picture.Modulate = disabledColor;
+		} else {
+			//Modulate = new Color(255,255,255);
+		}
+	}
+
+	public bool getDisabled() {
+		return disabled;
 	}
 
 	public void setShowPrice(bool value)
@@ -42,7 +66,8 @@ public partial class RelicUI : CustomToolTip
 		if (relicResource.image != null) {
 			picture.Texture = relicResource.image;
 		}
-		hitBox.TooltipText = relicResource.description;
+		//hitBox.TooltipText = relicResource.description;
+		toolTipText.Text = relicResource.description;
 		renderCost();
 		renderCounter(0);
 	}
@@ -63,10 +88,10 @@ public partial class RelicUI : CustomToolTip
 	{
 		costValueLabel.Text = relicResource.cost.ToString();
 		costControl.Visible = showPrice;
-		if (showPrice)
-		{
-			CustomMinimumSize = minSizeWithCost;
-		}
+		// if (showPrice)
+		// {
+		// 	CustomMinimumSize = minSizeWithCost;
+		// }
 	}
 
 	private void renderCounter(int count)

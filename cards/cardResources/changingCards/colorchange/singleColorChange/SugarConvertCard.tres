@@ -41,7 +41,7 @@ matchy = false
 [resource]
 script = ExtResource("2_2qvkn")
 Title = "Sugar Rush"
-Description = "Change selected ingredient to sugar. If this makes a 4+ match gain 5 coins"
+Description = "Change selected ingredient to sugar. If this makes a 4+ match, gain 5 coins"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_w3upp")

@@ -8,6 +8,14 @@
 script = ExtResource("1_dpuf6")
 scoreGained = 100
 value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_cqsgw")
@@ -17,13 +25,19 @@ title = "Sugar 4 Matcher"
 description = "When you make a match of 4 sugar or more destroy one burnt ingredient and gain 100 points if a ingredient was destroyed"
 image = ExtResource("2_e8wcn")
 cost = 50
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_0cr4t")]
+matchEffects = []
 counterMax = 0
 customCounter = false
-counterDown = false
 counterResetOnLevelStart = false
+counterResetOnTurnStart = false
 resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

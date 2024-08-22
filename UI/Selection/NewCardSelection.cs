@@ -12,7 +12,7 @@ public partial class NewCardSelection : Control
 	[Export] RichTextLabel coinsGainedLabel;
 	[Export] Array<Control> levelPassedText = new Array<Control>();
 	[Export] DeckViewUI deckViewUI;
-	[Export] Button viewDeckButton;
+	[Export] CustomButton viewDeckButton;
 	[Export] Array<CardResource> cards = new Array<CardResource>();
 	[Export] int coinsGained = 0;
 	List<CardInfoLoader> cardInfoLoaders = new List<CardInfoLoader>();
@@ -26,18 +26,29 @@ public partial class NewCardSelection : Control
 	private GameManagerIF gameManagerIF;
 
 	private bool cardSelected = false;
+	private bool otherWindowOpen = false;
 
 	public override void _Ready()
 	{
 		// renderCards();
+		Visible = false;
 		renderCoins();
 		skipButton.Pressed += () => advance();
 		gameManagerIF = FindObjectHelper.getGameManager(this);
-		viewDeckButton.Pressed += () => deckViewUI.setUp(gameManagerIF.getDeckList());
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += setUIFocus;
+
+		viewDeckButton.Pressed += () =>  {
+			otherWindowOpen = true;
+			deckViewUI.setUp(gameManagerIF.getDeckList());
+		};
+		deckViewUI.WindowClosedSignal += () => {
+			otherWindowOpen = false;
+			setUIFocus();
+		};
 		refreshSelectionButton.Pressed += () =>
 		{
 			gameManagerIF.addCoins(-refreshSelectionButton.cost);
-			getRandomCardsToSelectFrom();
+			getRandomCardsToSelectFromInternal();
 		};
 		gameManagerIF.coinsChanged += (int value) => checkIfButtonIsActivated();
 		checkIfButtonIsActivated();
@@ -87,6 +98,11 @@ public partial class NewCardSelection : Control
 
 	public void getRandomCardsToSelectFrom()
 	{
+		getRandomCardsToSelectFromInternal();
+		setUIFocus();
+	}
+	private void getRandomCardsToSelectFromInternal()
+	{
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
 		int numberOfCardsToChoose = gameManager.getNumberOfCardToChoose();
 		setCardsToSelectFrom(CardRarityHelper.getRandomCards(numberOfCardsToChoose, gameManager.getCardPool()));
@@ -102,6 +118,26 @@ public partial class NewCardSelection : Control
 		};
 
 		renderCards();
+	}
+
+	private void setUIFocus() {
+		setUIFocus(true);
+	}
+
+	private void setUIFocus(bool focused) {
+		if(otherWindowOpen){
+			return;
+		}
+		if(focused && IsVisibleInTree() && FindObjectHelper.getControllerHelper(this).isUsingController()) {
+			if(cardInfoLoaders.Count > 0) {
+				GD.Print("----grabbing focus card selection----");
+				cardInfoLoaders[0].GrabFocus();
+			}
+		} else {
+			foreach (CardInfoLoader cardInfoLoader in cardInfoLoaders){
+				cardInfoLoader.ReleaseFocus();
+			}
+		}
 	}
 	private void renderCards()
 	{
@@ -125,12 +161,13 @@ public partial class NewCardSelection : Control
 				GetTree().CreateTimer(.25).Timeout += () => cardInfoLoader.setForceHighlightOff(false);
 				cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardInfoLoader);
 			}
+			//setUIFocus();
 		}
 	}
 
 	private void cardClicked(InputEvent inputEvent, CardInfoLoader cardInfoLoader)
 	{
-		if (inputEvent.IsActionPressed("click") && !cardSelected)
+		if (InputHelper.isSelectedAction(inputEvent) && !cardSelected)
 		{
 			cardSelected = true;
 			CardResource cardResource = cardInfoLoader.cardResource;
@@ -166,5 +203,9 @@ public partial class NewCardSelection : Control
 			callback = null;
 		}
 		EmitSignal(SignalName.windowClosed, new CardResource());
+	}
+	public override void _ExitTree()
+	{
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= setUIFocus;
 	}
 }

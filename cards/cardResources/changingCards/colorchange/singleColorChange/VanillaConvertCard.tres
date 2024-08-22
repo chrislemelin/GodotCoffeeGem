@@ -14,6 +14,7 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainEnergy = 0
+GainCoins = 0
 GainMult = 0.25
 
 [sub_resource type="Resource" id="Resource_mklkk"]
@@ -39,8 +40,8 @@ matchy = false
 
 [resource]
 script = ExtResource("2_6ct6l")
-Title = "Vanilla Convert"
-Description = "Changes selected ingredients to vanilla. If this makes a 4+ match gain .25 mult"
+Title = "Vanilla Shot"
+Description = "Changes selected ingredients to vanilla. If this makes a 4+ match, gain 0.25 mult"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_wkidi")

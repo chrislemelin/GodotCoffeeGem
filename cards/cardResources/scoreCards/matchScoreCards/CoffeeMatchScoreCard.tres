@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,8 +27,8 @@ matchy = false
 
 [resource]
 script = ExtResource("2_lw0vr")
-Title = "Coffee Score"
-Description = "Gain 75 points for each match of coffee made this turn. ($value)"
+Title = "Coffee Snob"
+Description = "Gain 75 points for each coffee match made this turn. ($value)"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_v8ehh")

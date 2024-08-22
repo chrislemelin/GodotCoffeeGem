@@ -1,0 +1,155 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxavdfi52bnxv"]
+
+[ext_resource type="Script" path="res://UI/Selection/NewCardSelection.cs" id="1_ey31r"]
+[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_wj53c"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_hkya8"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_tow0o"]
+[ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="5_65464"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="6_33su1"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="7_6nsr1"]
+[ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/rewards/Rise01.mp3" id="8_p82pv"]
+
+[node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText", "viewDeckButton", "audioPlayer", "refreshSelectionButton")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ey31r")
+cardUIPackagedScene = ExtResource("2_wj53c")
+cardContainer = NodePath("Control/HBoxContainer")
+skipButton = NodePath("Control/VBoxContainer2/MarginContainer/SkipSelection")
+coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")
+levelPassedText = [NodePath("Control/VBoxContainer/HBoxContainer2"), NodePath("Control/VBoxContainer/RichTextLabel")]
+viewDeckButton = NodePath("Control/VBoxContainer2/MarginContainer3/ViewDeckButton")
+cards = [null]
+audioPlayer = NodePath("Control/AudioStreamPlayer2D")
+refreshSelectionButton = NodePath("Control/VBoxContainer2/MarginContainer2/RefreshSelection")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.388235, 0.388235, 0.388235, 0.584314)
+layout_mode = 2
+offset_right = 1919.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_hkya8")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 42.0
+offset_top = -69.0
+offset_right = 42.0
+offset_bottom = -69.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 483.0
+offset_top = 240.0
+offset_right = 1328.0
+offset_bottom = 398.0
+alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Level Passed!"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 7.9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "You gained"
+fit_content = true
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("6_33su1")
+expand_mode = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(845, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Pick a new card to add to your deck to continue"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(900, 400)
+layout_mode = 2
+offset_left = 435.0
+offset_top = 433.0
+offset_right = 2508.0
+offset_bottom = 1233.0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 3
+alignment = 1
+
+[node name="UI" parent="Control/HBoxContainer" instance=ExtResource("2_wj53c")]
+visible = false
+layout_mode = 2
+
+[node name="UI2" parent="Control/HBoxContainer" instance=ExtResource("2_wj53c")]
+visible = false
+layout_mode = 2
+
+[node name="UI3" parent="Control/HBoxContainer" instance=ExtResource("2_wj53c")]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 853.0
+offset_right = 1479.0
+offset_bottom = 993.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="SkipSelection" parent="Control/VBoxContainer2/MarginContainer" instance=ExtResource("4_tow0o")]
+layout_mode = 2
+text = "Skip Selection"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="RefreshSelection" parent="Control/VBoxContainer2/MarginContainer2" instance=ExtResource("5_65464")]
+layout_mode = 2
+text = "Refresh Selection (5 coins)"
+cost = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="ViewDeckButton" parent="Control/VBoxContainer2/MarginContainer3" instance=ExtResource("4_tow0o")]
+layout_mode = 2
+text = "View Deck"
+
+[node name="AudioStreamPlayer2D" parent="Control" instance=ExtResource("7_6nsr1")]
+position = Vector2(-42, 69)
+stream = ExtResource("8_p82pv")

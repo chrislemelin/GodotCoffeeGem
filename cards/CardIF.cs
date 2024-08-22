@@ -13,6 +13,7 @@ public partial class CardIF : lerp
 	[Export] protected CardResource cardResource;
 	[Export] protected Color disabledColor;
 	[Export] protected TextureRect titleSprite;
+	[Export] RichTextLabel toolTipText;
 
 	private bool enabled = true;
 
@@ -61,6 +62,7 @@ public partial class CardIF : lerp
 		cardResource.cardEffect.CardPassivesChanged += setUpCard;
 		cardResource.cardEffect.ValueChanged += setUpCard;
 		cardResource.cardEffect.CustomTextChanged += setUpCard;
+		cardResource.init();
 	}
 
 	private void setUpCard()
@@ -77,8 +79,8 @@ public partial class CardIF : lerp
 		descriptionLabel.Text = cardResource.getDescription();
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
-		highlightOnHover.TooltipText = cardResource.getToolTip();
-		cardResource.init();
+		//highlightOnHover.TooltipText = cardResource.getToolTip();
+		toolTipText.Text = cardResource.getToolTip();
 	}
 
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)

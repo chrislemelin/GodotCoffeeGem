@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RelicList" load_steps=5 format=3 uid="uid://c8v84lki04u4"]
+
+[ext_resource type="Resource" uid="uid://wa8x0n1ft1f6" path="res://relics/resources/other/AppleRelic.tres" id="5_yuddi"]
+[ext_resource type="Resource" uid="uid://ct255qdbd3wie" path="res://relics/resources/doubleMatch/VanillaDoubleMatchRelic.tres" id="17_evcqt"]
+[ext_resource type="Resource" uid="uid://boppuad2fl8xd" path="res://relics/resources/other/DestroyTenRelic.tres" id="18_xu2oq"]
+[ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="19_22g17"]
+
+[resource]
+script = ExtResource("19_22g17")
+removeDuplicates = true
+allRelics = [ExtResource("5_yuddi"), ExtResource("17_evcqt"), ExtResource("18_xu2oq")]

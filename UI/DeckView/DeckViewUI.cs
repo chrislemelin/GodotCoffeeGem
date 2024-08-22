@@ -7,6 +7,7 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 	[Export] PackedScene cardScene;
 	[Export] PackedScene marginContainerScene;
 	[Export] GridContainer gridContainer;
+	[Export] ScrollContainer scrollContainer;
 	[Export] RichTextLabel title;
 	[Export] float deletingFadeOutDelay = .25f;
 
@@ -21,20 +22,27 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 	{
 		base._Ready();
 		resetAnimation();
-		button.Pressed += () => {
-			if (cardCallBack != null) {
-				if (deleting) {
-					cardSelected.destroyCard();
-					GetTree().CreateTimer(.5f).Timeout += () => cardCallBack(cardSelected.cardResource);
+		button.Pressed += () => closeWindow();
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += checkForFocus;
+	}
+
+
+	private void closeWindow() {
+		if (cardCallBack != null) {
+			if (deleting && cardSelected != null) {
+				cardSelected.destroyCard();
+				GetTree().CreateTimer(.5f).Timeout += () => cardCallBack(cardSelected.cardResource);
+			} else {
+				fadeOutDelay = 0.0f;
+				if (cardSelected == null) {
+					cardCallBack(null);
 				} else {
-					if (cardSelected == null) {
-						cardCallBack(null);
-					} else {
-						cardCallBack(cardSelected.cardResource);
-					}
+					cardCallBack(cardSelected.cardResource);
 				}
 			}
-		};
+		}
+		setVisible(false);
+
 	}
 
 	private void setUpInternal(List<CardResource> cards) {
@@ -51,18 +59,37 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
 			marginContainer.AddChild(cardInfoLoader);
 			gridContainer.AddChild(marginContainer);
-			cardInfoLoaders.Add(cardInfoLoader);
 			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader);
 			cardInfoLoader.setForceHighlightOff(true);
 			cardInfoLoader.setUpCard(cardResource);
-			
+			cardInfoLoader.cardScrollContainer = scrollContainer;
+			cardInfoLoaders.Add(cardInfoLoader);
 		}
+
+
 		setVisible(true);
 		GetTree().CreateTimer(.25f).Timeout += () => {
 			foreach(CardInfoLoader cardInfoLoader in cardInfoLoaders) {
 				cardInfoLoader.setForceHighlightOff(false);
 			}
+			checkForFocus();
 		};
+	}
+
+	private void checkForFocus(bool value) {
+		if (value) {
+			checkForFocus();
+		}
+	}
+
+	private void checkForFocus() {
+		if (FindObjectHelper.getControllerHelper(this).isUsingController() && cardInfoLoaders.Count > 0 && IsVisibleInTree()) {
+			SettingsMenu settingsMenu = FindObjectHelper.getSettingsMenu(this);
+			if (settingsMenu == null || !settingsMenu.isVisible()) {
+				cardInfoLoaders[0].GrabFocus();
+			}
+
+		}
 	}
 
 	// public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title) {
@@ -80,12 +107,13 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 		
 		this.cardCallBack = cardCallBack;
 		if (!needToSelectCard) {
-			button.Text = "close";
+			button.Text = "Close";
 			button.Disabled = false;
 		} else {
-			button.Text = "confirm";
+			button.Text = "Confirm";
 			button.Disabled = true;
 		}
+		
 		this.title.Text = title;
 		this.deleting = deleting;
 		if (deleting) {
@@ -102,7 +130,7 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 	}
 
 	private void cardClicked(InputEvent inputEvent, CardResource cardResource, CardInfoLoader cardInfoLoader) {
-		if (inputEvent.IsActionPressed("click"))
+		if (InputHelper.isClick(inputEvent))
 		{
 			if(cardCallBack != null) {
 				cardSelected = cardInfoLoader;
@@ -115,7 +143,29 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 					}
 				}
 			}
+
 		};
+		if (InputHelper.isControllerAccept(inputEvent))
+		{
+			if(cardCallBack != null) {
+				cardSelected = cardInfoLoader;
+				closeWindow();
+			}
+		}
+	}
+	public override void _ExitTree()
+	{
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= checkForFocus;
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_cancel"))
+		{
+			if (Visible) {
+				closeWindow();
+			}
+		}
 	}
 
 }

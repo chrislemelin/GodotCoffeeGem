@@ -9,4 +9,4 @@
 stream = ExtResource("1_lf50q")
 autoplay = true
 script = ExtResource("2_o3n0h")
-minValue = -50.0
+minValue = -40.0

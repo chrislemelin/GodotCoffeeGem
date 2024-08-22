@@ -26,6 +26,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = [SubResource("Resource_bmv0b")]
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -37,7 +39,7 @@ matchy = true
 [resource]
 script = ExtResource("2_v1prq")
 Title = "Pop Row"
-Description = "Destroy all ingredients of a selected row. -1 cost if a milk match has been made this turn"
+Description = "Destroy all ingredients in a selected row. -1 cost if a milk match has been made this turn"
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_bt0gg")

@@ -1,16 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://ts55nghwgqu3"]
+[gd_scene load_steps=5 format=3 uid="uid://ts55nghwgqu3"]
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_kmfb8"]
 [ext_resource type="Script" path="res://UI/Selection/RelicSelection.cs" id="1_wta24"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_gpnmu"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_hhfiq"]
 
 [node name="RelicSelection" type="Control" node_paths=PackedStringArray("relicHolder", "skipButton") groups=["RelicSelection"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_wta24")
-relicHolder = NodePath("PassiveShop")
+relicHolder = NodePath("Control/PassiveShop")
 relicUIPackedScene = ExtResource("2_gpnmu")
-skipButton = NodePath("SkipSelection")
+skipButton = NodePath("Control/VBoxContainer/SkipSelection")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -20,10 +21,10 @@ theme = ExtResource("1_kmfb8")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 651.0
-offset_top = 226.0
-offset_right = 1161.0
-offset_bottom = 298.0
+offset_left = 665.0
+offset_top = 149.0
+offset_right = 1175.0
+offset_bottom = 221.0
 theme = ExtResource("1_kmfb8")
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
@@ -31,43 +32,51 @@ text = "[center]Choose a relic"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 572.0
-offset_top = 314.0
-offset_right = 1372.0
-offset_bottom = 410.0
+offset_left = 586.0
+offset_top = 237.0
+offset_right = 1386.0
+offset_bottom = 333.0
 theme = ExtResource("1_kmfb8")
 bbcode_enabled = true
 text = "Relics give you passive affects that will enhance your run. Hover over each relic to see what it does."
 
-[node name="PassiveShop" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 120)
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 14.0
+offset_top = -77.0
+offset_right = 54.0
+offset_bottom = -37.0
+
+[node name="PassiveShop" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 0
-offset_left = 400.0
-offset_top = 478.0
-offset_right = 753.0
-offset_bottom = 620.0
+offset_left = 414.0
+offset_top = 469.0
+offset_right = 767.0
+offset_bottom = 569.0
 scale = Vector2(3, 3)
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="Control" parent="PassiveShop" instance=ExtResource("2_gpnmu")]
-visible = false
+[node name="Control" parent="Control/PassiveShop" instance=ExtResource("2_gpnmu")]
 custom_minimum_size = Vector2(60, 100)
 layout_mode = 2
 
-[node name="Control2" parent="PassiveShop" instance=ExtResource("2_gpnmu")]
-visible = false
+[node name="Control2" parent="Control/PassiveShop" instance=ExtResource("2_gpnmu")]
 layout_mode = 2
 
-[node name="Control3" parent="PassiveShop" instance=ExtResource("2_gpnmu")]
-visible = false
+[node name="Control3" parent="Control/PassiveShop" instance=ExtResource("2_gpnmu")]
 layout_mode = 2
 
-[node name="SkipSelection" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = 836.0
-offset_top = 836.0
-offset_right = 1076.0
-offset_bottom = 885.0
-theme = ExtResource("1_kmfb8")
+offset_left = 797.0
+offset_top = 959.0
+offset_right = 1166.0
+offset_bottom = 1011.0
+
+[node name="SkipSelection" parent="Control/VBoxContainer" instance=ExtResource("4_hhfiq")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 0
 text = "Skip Selection"
+grabFocus = true

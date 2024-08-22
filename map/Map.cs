@@ -27,14 +27,18 @@ public partial class Map : Node
 	[Export] private Godot.Collections.Array<Line2D> botlines = new Godot.Collections.Array<Line2D>();
 	private int pathTaken = 0;
 	private bool manMoving = false;
+	private bool topPathSelected = true;
+	private bool hasUIFocus = true;
 	private MapLocation locationMovingTo;
 
 	public override void _Ready()
 	{
 		base._Ready();
 
-		List<List<MapEventType>> map = generateRandomMap();
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += setUIFocus;
+		setUIFocus(FindObjectHelper.getControllerHelper(this).isUsingController());
 
+		List<List<MapEventType>> map = generateRandomMap();
 		int topCount = 0;
 		int botCount = 0;
 		foreach(Control control in topPathControls) {
@@ -51,10 +55,10 @@ public partial class Map : Node
 		}
 		botPath[0].setPair(botPath[1]);
 		botPath[1].setPair(botPath[0]);
-		home.GuiInput += (inputEvent) => {
-			if (inputEvent.IsActionPressed("click")) {
-				locationClicked(home);
-		}};
+		// home.GuiInput += (inputEvent) => {
+		// 	if (inputEvent.IsActionPressed("click")) {
+		// 		locationClicked(home);
+		// }};
 		character.doneMovingSignal += () => nodeVisited();
 		//setOnlyFirstLocationInPathToBeActive();
 	}
@@ -190,4 +194,47 @@ public partial class Map : Node
 			character.moveToGlobalPostion(((Node2D)path[indexMovingTo++]).GlobalPosition);
 		}
 	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (!hasUIFocus) {
+			return;
+		}
+		if (@event.IsActionPressed("ui_down"))
+		{
+			setTopPathSelected(false);
+		}
+		if (@event.IsActionPressed("ui_up"))
+		{
+			setTopPathSelected(true);
+		}
+		if(@event.IsActionPressed("ui_accept"))
+		{
+			pathSelected();
+		}
+	}
+
+	private void setTopPathSelected(bool value) {
+		topPathSelected = value;
+		highlightPaths(); 
+	}
+
+	private void highlightPaths() {
+		topPath.ForEach(mapLocation => mapLocation.setHighlight(topPathSelected));
+		botPath.ForEach(mapLocation => mapLocation.setHighlight(!topPathSelected));
+	}
+
+	private void setUIFocus(bool focus) {
+		hasUIFocus = focus;
+	}
+
+	private void pathSelected() {
+		hasUIFocus = false;
+		if (topPathSelected) {
+			locationClicked(topPath[0]);
+		} else {
+			locationClicked(botPath[0]);
+		}
+	}
+
 }

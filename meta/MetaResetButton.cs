@@ -10,7 +10,7 @@ public partial class MetaResetButton : Button
 	public override void  _Ready() {
 		Pressed += () =>  {
 			gameManagerIF.resetMetaProgression();
-			gameManagerIF.addMetaCoins(metaCoinModifyValue);
+			gameManagerIF.addMetaCoins(-gameManagerIF.getMetaCoins());
 
 			foreach(IngredientUpgradeButton ingredientUpgradeButton in ingredientUpgradeButtons) {
 				//ingredientUpgradeButton.updateLabels();

@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://mplh7y2efw3m"]
+[gd_scene load_steps=7 format=3 uid="uid://mplh7y2efw3m"]
 
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="3_1mwae"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_32t71"]
-[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_cepm3"]
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_ijhti"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="5_wh5ve"]
+[ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="6_fg1ur"]
 
 [node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel", "debtLabel")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_dub5d")
-restartButton = NodePath("Button")
+restartButton = NodePath("Restart")
 label = NodePath("VBoxContainer/RichTextLabel")
 metaCoinLabel = NodePath("VBoxContainer/MetaCoinDisplay/RichTextLabel")
 debtLabel = NodePath("VBoxContainer/DebtDisplay/RichTextLabel")
@@ -87,17 +89,45 @@ offset_top = -1.0
 offset_right = 830.0
 offset_bottom = 46.0
 theme_override_font_sizes/normal_font_size = 50
-text = "Debt was reduce by 100$"
+text = "Debt was reduced by 100$"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Button" type="Button" parent="."]
+[node name="Restart" parent="." instance=ExtResource("5_wh5ve")]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 651.0
+offset_right = 1213.0
+offset_bottom = 703.0
+text = "Main Menu
+"
+grabFocus = true
+
+[node name="MarginContainer6" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 655.0
+offset_top = 563.0
+offset_right = 994.0
+offset_bottom = 617.0
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="Button" parent="MarginContainer6" instance=ExtResource("6_fg1ur")]
 layout_mode = 2
-offset_left = 788.0
-offset_top = 572.0
-offset_right = 1218.0
-offset_bottom = 624.0
-theme = ExtResource("4_cepm3")
-theme_override_font_sizes/font_size = 50
-text = "Restart"
+text = "Join the Discord!"
+
+[node name="MarginContainer8" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 1015.0
+offset_top = 564.0
+offset_right = 1354.0
+offset_bottom = 618.0
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+
+[node name="Button" parent="MarginContainer8" instance=ExtResource("6_fg1ur")]
+layout_mode = 2
+text = "Wishlist the game!"
+url = "https://store.steampowered.com/app/2944280/Beans_Of_Production/"

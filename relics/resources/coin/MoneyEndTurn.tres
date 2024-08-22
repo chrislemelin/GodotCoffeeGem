@@ -8,19 +8,28 @@
 script = ExtResource("1_mklpc")
 type = 7
 value = 4
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("2_0e6wb")
 manaValue = 1
 title = "Money Gems"
-description = "If you end your turn with at least 1 energy. Create 4 coin ingredients"
+description = "If you end your turn with at least 1 energy, create 4 coin-infused ingredients"
 image = ExtResource("2_roax6")
-cost = 40
+cost = 100
 hidden = false
 lastForOneTurn = false
 lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_yti5y")]

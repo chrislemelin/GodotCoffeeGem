@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 1
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -26,7 +28,7 @@ matchy = false
 [resource]
 script = ExtResource("3_eyaln")
 Title = "Switch Burn + "
-Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients. Draw a card. Burn 2 ingredients"
+Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients. Draw a card and burn 2 ingredients"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_bgxg7")

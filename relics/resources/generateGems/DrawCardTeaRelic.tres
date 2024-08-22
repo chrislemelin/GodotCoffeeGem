@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DrawCardsRelic" load_steps=4 format=3 uid="uid://bua23mhuicd0r"]
+
+[ext_resource type="Script" path="res://relics/effects/CreateRandomGemsEffects.cs" id="1_404ei"]
+[ext_resource type="Script" path="res://relics/scripts/DrawCardsRelic.cs" id="1_frd47"]
+
+[sub_resource type="Resource" id="Resource_x74jd"]
+script = ExtResource("1_404ei")
+type = 4
+value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("1_frd47")
+title = "Yerba Mate"
+description = "When you draw a card, convert a random ingredient to tea"
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_x74jd")]
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

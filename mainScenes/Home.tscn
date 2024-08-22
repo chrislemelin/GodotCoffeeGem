@@ -1,28 +1,20 @@
-[gd_scene load_steps=30 format=3 uid="uid://dgfos0wevjgpv"]
+[gd_scene load_steps=22 format=3 uid="uid://dgfos0wevjgpv"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_8wsnh"]
 [ext_resource type="PackedScene" uid="uid://2av55t0yxy4e" path="res://UI/DayOverUI.tscn" id="1_xjb1y"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="2_eaxi2"]
-[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_hntlq"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5vuys"]
-[ext_resource type="Resource" uid="uid://xe62kwq1lrrg" path="res://cards/cardResources/cardLists/unlockableCardPacks/DeleteCardPack.tres" id="3_028kp"]
-[ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="3_31lnn"]
-[ext_resource type="Resource" uid="uid://chocekvyfot6p" path="res://cards/cardResources/cardLists/unlockableCardPacks/MatchScoreCardPack.tres" id="4_a5u5p"]
-[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/CardSelectionUI.tscn" id="4_v1i61"]
-[ext_resource type="Resource" uid="uid://br3mqyckepxh3" path="res://cards/cardResources/cardLists/unlockableCardPacks/MoneyCardPack.tres" id="5_5w6eo"]
+[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/NewCardSelection.tscn" id="4_v1i61"]
 [ext_resource type="Texture2D" uid="uid://banirrb6y866k" path="res://placeholders/home/Common Room.png" id="5_7y1oa"]
-[ext_resource type="Resource" uid="uid://bi0son5almaow" path="res://cards/cardResources/cardLists/unlockableCardPacks/RandomCardPack.tres" id="6_f7bhy"]
-[ext_resource type="Resource" uid="uid://dehp68dxia78h" path="res://cards/cardResources/cardLists/unlockableCardPacks/SpendCardPack.tres" id="7_3hgxu"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="7_e5l0a"]
-[ext_resource type="Resource" uid="uid://dh65of2731mau" path="res://cards/cardResources/cardLists/unlockableCardPacks/XCardPack.tres" id="8_eu4gr"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="8_n1ouh"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="9_hebao"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="10_k3anh"]
 [ext_resource type="Texture2D" uid="uid://j3ybt36fv2yv" path="res://cards/cardResources/cardArt/Switch-horizontal.png" id="10_qx4mo"]
-[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="14_ap4t7"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="14_ujune"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="16_v1rpc"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="17_orjqr"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="20_6lkxk"]
 
 [sub_resource type="Resource" id="Resource_pbwlf"]
 resource_local_to_scene = true
@@ -36,6 +28,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -66,6 +60,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -96,6 +92,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -121,12 +119,9 @@ script = ExtResource("1_8wsnh")
 status = NodePath("Status")
 dayOver = NodePath("DayOverUI")
 newCardSelection = NodePath("CardSelectionUI")
-button = NodePath("Button")
+button = NodePath("ViewDeck")
 deckViewUI = NodePath("DeckView")
-defaultCardPool = ExtResource("2_hntlq")
-cardPacks = Array[Object]([ExtResource("4_a5u5p"), ExtResource("5_5w6eo"), ExtResource("6_f7bhy"), ExtResource("8_eu4gr"), ExtResource("3_028kp"), ExtResource("7_3hgxu")])
 relicList = ExtResource("3_5vuys")
-defaultCardList = ExtResource("3_31lnn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 1.0
@@ -136,7 +131,7 @@ offset_bottom = 2481.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_7y1oa")
 
-[node name="DayOverUI" parent="." node_paths=PackedStringArray("gameManager", "relicSelection", "deckListUI") instance=ExtResource("1_xjb1y")]
+[node name="DayOverUI" parent="." node_paths=PackedStringArray("gameManager", "relicSelection", "deckViewUI") instance=ExtResource("1_xjb1y")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -152,7 +147,23 @@ upgradedSwitchCard = SubResource("Resource_d7xqc")
 vertSwitchCard = SubResource("Resource_uahnf")
 horizSwitchCard = SubResource("Resource_erse6")
 relicSelection = NodePath("../RelicSelection")
-deckListUI = NodePath("../DeckView")
+deckViewUI = NodePath("../DeckView")
+
+[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") instance=ExtResource("4_v1i61")]
+deckViewUI = NodePath("../DeckView")
+
+[node name="ViewDeck" parent="." instance=ExtResource("20_6lkxk")]
+offset_left = 118.0
+offset_top = 531.0
+offset_right = 305.0
+offset_bottom = 583.0
+text = "View Deck"
+
+[node name="DeckView" parent="." groups=["DeckView"] instance=ExtResource("14_ujune")]
+visible = false
+
+[node name="RelicSelection" parent="." instance=ExtResource("16_v1rpc")]
+visible = false
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("2_eaxi2")]
 anchors_preset = 1
@@ -164,23 +175,5 @@ offset_right = 1771.0
 offset_bottom = 66.0
 grow_horizontal = 0
 gameManager = NodePath("..")
-
-[node name="CardSelectionUI" parent="." node_paths=PackedStringArray("deckViewUI") instance=ExtResource("4_v1i61")]
-deckViewUI = NodePath("../DeckView")
-
-[node name="Button" type="Button" parent="."]
-offset_left = 86.0
-offset_top = 519.0
-offset_right = 342.0
-offset_bottom = 596.0
-theme = ExtResource("14_ap4t7")
-theme_override_font_sizes/font_size = 50
-text = "View Deck"
-
-[node name="DeckView" parent="." groups=["DeckView"] instance=ExtResource("14_ujune")]
-visible = false
-
-[node name="RelicSelection" parent="." instance=ExtResource("16_v1rpc")]
-visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("17_orjqr")]

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=4 format=3 uid="uid://wa8x0n1ft1f6"]
+
+[ext_resource type="Texture2D" uid="uid://ddptylhymisuj" path="res://relics/sprites/Icon.2_15.png" id="1_3kawx"]
+[ext_resource type="Resource" uid="uid://b73mt2xa6yki8" path="res://relics/effects/MaxHealthUpgardeEffect.tres" id="1_tgg4k"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="3_1drbo"]
+
+[resource]
+script = ExtResource("3_1drbo")
+title = "Apple"
+description = "+1 Max health"
+image = ExtResource("1_3kawx")
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = [ExtResource("1_tgg4k")]
+levelOverEffects = []
+effects = []
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

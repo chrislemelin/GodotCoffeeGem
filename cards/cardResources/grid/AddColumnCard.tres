@@ -14,6 +14,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -24,7 +26,7 @@ matchy = false
 
 [resource]
 script = ExtResource("3_jpbe3")
-Title = "Add Column"
+Title = "Spare Parts"
 Description = "Add a column to the match board for this level"
 Cost = 2
 rarity = 2

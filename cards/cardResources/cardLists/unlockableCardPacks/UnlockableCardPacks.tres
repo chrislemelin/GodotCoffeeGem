@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="UnlockableCardPackList" load_steps=8 format=3 uid="uid://ki4a6y81wwqm"]
+[gd_resource type="Resource" script_class="UnlockableCardPackList" load_steps=7 format=3 uid="uid://ki4a6y81wwqm"]
 
 [ext_resource type="Resource" uid="uid://xe62kwq1lrrg" path="res://cards/cardResources/cardLists/unlockableCardPacks/DeleteCardPack.tres" id="1_f4n4a"]
 [ext_resource type="Resource" uid="uid://chocekvyfot6p" path="res://cards/cardResources/cardLists/unlockableCardPacks/MatchScoreCardPack.tres" id="2_idju3"]
 [ext_resource type="Resource" uid="uid://br3mqyckepxh3" path="res://cards/cardResources/cardLists/unlockableCardPacks/MoneyCardPack.tres" id="3_c4r1q"]
-[ext_resource type="Resource" uid="uid://bi0son5almaow" path="res://cards/cardResources/cardLists/unlockableCardPacks/RandomCardPack.tres" id="4_gw27g"]
 [ext_resource type="Resource" uid="uid://dehp68dxia78h" path="res://cards/cardResources/cardLists/unlockableCardPacks/SpendCardPack.tres" id="5_d4uky"]
 [ext_resource type="Resource" uid="uid://dh65of2731mau" path="res://cards/cardResources/cardLists/unlockableCardPacks/XCardPack.tres" id="6_fruvj"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/UnlockableCardPackList.cs" id="7_0eeo1"]
 
 [resource]
 script = ExtResource("7_0eeo1")
-packs = Array[Object]([ExtResource("1_f4n4a"), ExtResource("2_idju3"), ExtResource("3_c4r1q"), ExtResource("4_gw27g"), ExtResource("5_d4uky"), ExtResource("6_fruvj")])
+packs = Array[Object]([ExtResource("1_f4n4a"), ExtResource("2_idju3"), ExtResource("3_c4r1q"), ExtResource("5_d4uky"), ExtResource("6_fruvj")])

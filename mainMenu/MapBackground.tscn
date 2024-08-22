@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://cyqjkruf5yn4n"]
+
+[ext_resource type="Shader" path="res://cards/shaders/Transition.gdshader" id="1_0emfo"]
+[ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://placeholders/Map/map-07-08-2024.png" id="2_si30l"]
+[ext_resource type="Script" path="res://mainMenu/MapBackground.cs" id="3_yprxf"]
+[ext_resource type="PackedScene" uid="uid://lq1f2kjihhfp" path="res://mainMenu/Character.tscn" id="4_qb6jp"]
+[ext_resource type="Texture2D" uid="uid://kbf0scsm15wd" path="res://placeholders/Map/buildings/PlantHouse2.png" id="4_vra8d"]
+[ext_resource type="Texture2D" uid="uid://cu1wkob0mu81w" path="res://placeholders/Map/buildings/Park.png" id="5_2it3h"]
+[ext_resource type="Texture2D" uid="uid://cqijgyupcn7ia" path="res://placeholders/Map/buildings/SignBuilding_standard.png" id="6_raram"]
+[ext_resource type="Texture2D" uid="uid://bucfaofsbgqyk" path="res://placeholders/Map/buildings/RandomBuilding-Awning.png" id="7_1a368"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_es18f"]
+shader = ExtResource("1_0emfo")
+shader_parameter/progress = 1.0
+shader_parameter/diamondPixelSize = 40.0
+
+[sub_resource type="Animation" id="Animation_1bw08"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_2el82"]
+resource_name = "Transition"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpnii"]
+_data = {
+"RESET": SubResource("Animation_1bw08"),
+"Transition": SubResource("Animation_2el82")
+}
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("characterHolder", "paths")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_es18f")
+script = ExtResource("3_yprxf")
+character = ExtResource("4_qb6jp")
+characterHolder = NodePath("CharacterHolder")
+paths = NodePath("Paths")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-130, -587)
+scale = Vector2(1.4, 1.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(1047, 816)
+scale = Vector2(4, 4)
+texture = ExtResource("2_si30l")
+
+[node name="PlantHouse2" type="Sprite2D" parent="Node2D"]
+position = Vector2(515, 887)
+scale = Vector2(4, 4)
+texture = ExtResource("4_vra8d")
+
+[node name="Park" type="Sprite2D" parent="Node2D"]
+position = Vector2(703, 1125)
+scale = Vector2(4, 4)
+texture = ExtResource("5_2it3h")
+
+[node name="SignBuildingStandard" type="Sprite2D" parent="Node2D"]
+position = Vector2(1147, 251)
+scale = Vector2(4, 4)
+texture = ExtResource("6_raram")
+
+[node name="RandomBuilding-awning" type="Sprite2D" parent="Node2D"]
+position = Vector2(1338, 523)
+scale = Vector2(4, 4)
+texture = ExtResource("7_1a368")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lpnii")
+}
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path1" type="Node2D" parent="Paths"]
+
+[node name="node" type="Node2D" parent="Paths/Path1"]
+position = Vector2(1181, -167)
+
+[node name="node2" type="Node2D" parent="Paths/Path1"]
+position = Vector2(15, 954)
+
+[node name="CharacterHolder" type="Node2D" parent="."]

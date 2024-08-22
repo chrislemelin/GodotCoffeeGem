@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=18 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
 [ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/Gem.tscn" id="3_xdias"]
+[ext_resource type="PackedScene" uid="uid://c7p7r57evc88c" path="res://particalEffects/sparkleCoffee.tscn" id="4_genem"]
 [ext_resource type="AudioStream" uid="uid://dwqygn7djg1yx" path="res://sound/MatchBoard/fireball-whoosh-1-179125.mp3" id="4_prplw"]
 [ext_resource type="AudioStream" uid="uid://woe62785lit4" path="res://sound/MatchBoard/NewCardSelection.mp3" id="4_xadm7"]
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
@@ -17,7 +18,7 @@
 [ext_resource type="FontFile" uid="uid://b3enwhg2wydrp" path="res://fonts/Technology.ttf" id="13_83ke4"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="14_symjt"]
 
-[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "audioPourStreamPlayer2D", "boardHolder", "progressBar", "levelLabel", "scoreLabel", "multLabel")]
+[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "audioPourStreamPlayer2D", "boardHolder", "progressBar", "sparkleArea", "levelLabel", "scoreLabel", "multLabel")]
 script = ExtResource("1_4r3i0")
 sizeX = 6
 sizeY = 6
@@ -28,6 +29,8 @@ audioPourStreamPlayer2D = NodePath("AudioPourStreamPlayer2D2")
 boardHolder = NodePath("BoardPoint")
 progressBar = NodePath("TextureProgressBar")
 progressStep = 2.0
+sparkleEffect = ExtResource("4_genem")
+sparkleArea = NodePath("TextureProgressBar/ReferenceRect")
 matchAudioStream = ExtResource("4_xadm7")
 popAudioStream = ExtResource("5_wfbn1")
 switchAudioStream = ExtResource("6_iim20")
@@ -55,7 +58,7 @@ texture = ExtResource("7_pc7t1")
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_left = -452.0
 offset_top = 7.0
-offset_right = 620.0
+offset_right = 250.0
 offset_bottom = 863.0
 scale = Vector2(0.6, 0.6)
 max_value = 154.0
@@ -64,6 +67,19 @@ fill_mode = 3
 texture_under = ExtResource("8_gtf6h")
 texture_over = ExtResource("9_rr4cj")
 texture_progress = ExtResource("10_imxj2")
+
+[node name="Node2D" type="Node2D" parent="TextureProgressBar"]
+position = Vector2(193.333, 350)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="TextureProgressBar"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 312.0
+offset_right = 542.0
+offset_bottom = 840.0
+border_color = Color(1, 0, 0, 0)
+
+[node name="Node2D" type="Node2D" parent="TextureProgressBar/ReferenceRect"]
 
 [node name="BoardPoint" type="Node2D" parent="."]
 position = Vector2(9, -146)
@@ -139,12 +155,12 @@ texture = ExtResource("12_g4i3p")
 [node name="RichTextLabel2" type="RichTextLabel" parent="LevelText"]
 modulate = Color(0.811765, 0, 0, 1)
 offset_left = 149.0
-offset_top = -1.37502
+offset_top = -20.0
 offset_right = 280.0
-offset_bottom = 61.625
+offset_bottom = 62.0
 theme_override_fonts/normal_font = ExtResource("13_83ke4")
 theme_override_font_sizes/normal_font_size = 60
-text = "10.25"
+text = "10/10"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LevelText"]
 modulate = Color(0, 0, 0, 1)

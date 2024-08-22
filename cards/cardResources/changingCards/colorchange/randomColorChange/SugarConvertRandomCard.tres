@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -26,7 +28,7 @@ matchy = false
 [resource]
 script = ExtResource("3_vkrsl")
 Title = "Sugar Spray"
-Description = "Change $value random ingredient(s) to sugar. If this creates a match draw a card"
+Description = "Change $value random ingredient(s) to sugar. If this creates a match, draw a card"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_3mefo")

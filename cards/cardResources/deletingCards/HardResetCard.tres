@@ -27,7 +27,7 @@ matchy = false
 
 [resource]
 script = ExtResource("3_rrq7w")
-Title = "Hard Reset"
+Title = "Spring Cleaning"
 Description = "Destroy all non-burnt ingredients"
 Cost = 1
 rarity = 1

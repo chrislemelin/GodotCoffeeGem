@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmj3k4irtmxwc"]
+[gd_scene load_steps=5 format=3 uid="uid://cmj3k4irtmxwc"]
 
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_lqokj"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_muhxp"]
 [ext_resource type="Script" path="res://relics/RelicHolderUI.cs" id="1_xfp3o"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_2scfp"]
@@ -9,25 +10,52 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1426.0
+offset_bottom = -889.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_lqokj")
 script = ExtResource("1_xfp3o")
 relicUIPackedScene = ExtResource("2_2scfp")
-relicControlHolder = NodePath("HBoxContainer")
+relicControlHolder = NodePath("Control/Control7")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -162.0
+offset_top = -2.0
+offset_right = -162.0
+offset_bottom = -2.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(0.333333, 0.333333, 0.333333, 0.678431)
-layout_mode = 0
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 1922.0
-offset_bottom = 58.0
+layout_mode = 2
+offset_left = 173.0
+offset_top = 65.0
+offset_right = 639.0
+offset_bottom = 185.0
 texture = ExtResource("1_muhxp")
 expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Control7" type="GridContainer" parent="Control"]
 layout_mode = 0
-offset_top = 4.0
-offset_right = 1920.0
-offset_bottom = 54.0
-alignment = 1
+offset_left = 183.0
+offset_top = 53.0
+offset_right = 627.0
+offset_bottom = 182.0
+columns = 7
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 20.0
+offset_right = 298.0
+offset_bottom = 39.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 99.0
+offset_bottom = 28.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Relics"

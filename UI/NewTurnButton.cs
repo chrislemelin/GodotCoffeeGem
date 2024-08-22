@@ -1,12 +1,13 @@
 using Godot;
 using System;
 
-public partial class NewTurnButton : CustomToolTipButton
+public partial class NewTurnButton : CustomButton
 {
 	[Signal] public delegate void BeforeTurnCleanUpEventHandler();
 	[Signal] public delegate void TurnCleanUpEventHandler();
 	[Signal] public delegate void AfterTurnCleanUpEventHandler();
 	[Signal] public delegate void StartNewTurnEventHandler();
+	[Export] private TextureRect controllerTexture;
 
 	[Export] public PlayableCardsUI playableCardsUI;
 	bool hasShownPlayableCardsUI = true;
@@ -18,6 +19,9 @@ public partial class NewTurnButton : CustomToolTipButton
 	public override void _Ready()
 	{
 		base._Ready();
+		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
+		setVisibilityOnControllerTexture(controllerHelper.isUsingController());
+		controllerHelper.UsingControllerChanged += setVisibilityOnControllerTexture;
 		Pressed += () => {
 			Hand hand = FindObjectHelper.getHand(this);
 			if (hand.hasPlayableCards() && shouldShowPlayableCardsUI()) {
@@ -25,17 +29,35 @@ public partial class NewTurnButton : CustomToolTipButton
 				playableCardsUI.Visible = true;
 				return;
 			} else {
-				hasShownPlayableCardsUI = false;
-				if (!FindObjectHelper.getScore(this).scoreReached()) {
-					EmitSignal(SignalName.BeforeTurnCleanUp);
-					EmitSignal(SignalName.TurnCleanUp);
-					EmitSignal(SignalName.AfterTurnCleanUp);
-					EmitSignal(SignalName.StartNewTurn);
-				} else {
-					FindObjectHelper.getScore(this).newturn();
-				}
+				newTurn();
 			}
 		};
+	}
+
+	private void setVisibilityOnControllerTexture(bool usingController){
+		controllerTexture.Visible = FindObjectHelper.getControllerHelper(this).isUsingController();
+	}
+
+	private void newTurn() {
+		if (!FindObjectHelper.getScore(this).scoreReached()) {
+			EmitSignal(SignalName.BeforeTurnCleanUp);
+			EmitSignal(SignalName.TurnCleanUp);
+			EmitSignal(SignalName.AfterTurnCleanUp);
+			Score score = FindObjectHelper.getScore(this);
+			if (!score.isLevelOver()) {
+				EmitSignal(SignalName.StartNewTurn);
+			}
+		} else {
+			FindObjectHelper.getScore(this).newturn();
+		}
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_new_turn") && !FindObjectHelper.getScore(this).isLevelOver())
+		{
+			newTurn();
+		}
 	}
 
 	private bool shouldShowPlayableCardsUI() {
@@ -43,5 +65,12 @@ public partial class NewTurnButton : CustomToolTipButton
 			return false;
 		}
 		return false;
+	}
+
+	
+	public override void _ExitTree()
+	{
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= setVisibilityOnControllerTexture;
+		base._ExitTree();
 	}
 }

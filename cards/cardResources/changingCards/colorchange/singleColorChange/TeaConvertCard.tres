@@ -14,6 +14,7 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 1
 GainEnergy = 0
+GainCoins = 0
 GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_mklkk"]
@@ -39,8 +40,8 @@ matchy = false
 
 [resource]
 script = ExtResource("2_1klox")
-Title = "Tea blend"
-Description = "Change selected ingredient to tea. If this makes a 4+ match draw a card"
+Title = "Tea Blend"
+Description = "Change selected ingredient to tea. If this makes a 4+ match, draw a card"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_eog86")

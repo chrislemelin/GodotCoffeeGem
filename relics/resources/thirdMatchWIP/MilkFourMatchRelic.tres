@@ -29,6 +29,7 @@ lastForOneTurn = false
 lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_i16ow")]

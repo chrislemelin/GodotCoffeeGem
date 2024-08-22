@@ -6,12 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cutq1errphe15" path="res://meta/metaUpgrades/MetaCoinRateUpgradeButton.tscn" id="4_0nf7l"]
 [ext_resource type="PackedScene" uid="uid://bmxj58cuk6vsf" path="res://meta/metaUpgrades/CoinRateUpgradeButton.tscn" id="4_vf33e"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="5_f45i0"]
+[ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="7_sde1r"]
 [ext_resource type="Script" path="res://meta/MetaResetButton.cs" id="10_7wrwg"]
-[ext_resource type="Script" path="res://UI/SceneLoaderButton.cs" id="11_iao6h"]
 [ext_resource type="Script" path="res://meta/MetaCoinDisplay.cs" id="12_y7lb1"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="13_qcguh"]
 
 [node name="MetaProgressionUi" type="Node2D"]
+position = Vector2(0, -1)
 script = ExtResource("1_whacg")
 
 [node name="Menu" type="Control" parent="."]
@@ -118,7 +119,6 @@ offset_bottom = 921.0
 text = "Reset Progression"
 script = ExtResource("10_7wrwg")
 gameManagerIF = NodePath("../..")
-metaCoinModifyValue = 50
 
 [node name="NewCard" type="Button" parent="Menu"]
 visible = false
@@ -138,15 +138,14 @@ offset_right = 1225.0
 offset_bottom = 791.0
 text = "Unlock New Relic"
 
-[node name="MainMenuButton" type="Button" parent="Menu"]
+[node name="MainMenuButton" parent="Menu" instance=ExtResource("7_sde1r")]
 layout_mode = 0
-offset_left = 757.0
-offset_top = 942.0
-offset_right = 944.0
-offset_bottom = 999.0
+offset_left = 770.0
+offset_top = 940.0
+offset_right = 962.0
+offset_bottom = 992.0
 text = "Main Menu"
-script = ExtResource("11_iao6h")
-sceneString = "res://mainScenes/MainMenu.tscn"
+grabFocus = true
 
 [node name="MetaCoinsDisplay" type="Control" parent="." node_paths=PackedStringArray("richTextLabel", "gameManagerIF")]
 layout_mode = 3

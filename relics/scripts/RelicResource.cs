@@ -21,6 +21,7 @@ public partial class RelicResource : Resource
 
 	[Export] private Array<EffectResource> gameStartEffects = new Array<EffectResource>();
 	[Export] private Array<EffectResource> turnStartEffects = new Array<EffectResource>();
+	[Export] private Array<EffectResource> turnStartEffectsAfterCleanUp = new Array<EffectResource>();
 	[Export] private Array<EffectResource> addToInvEffects = new Array<EffectResource>();
 	[Export] private Array<EffectResource> levelOverEffects = new Array<EffectResource>();
 	[Export] private Array<EffectResource> effects = new Array<EffectResource>();
@@ -147,6 +148,10 @@ public partial class RelicResource : Resource
 	}
 	public virtual void afterTurnCleanUp()
 	{
+		foreach (EffectResource executablePassive in turnStartEffectsAfterCleanUp)
+		{
+			executablePassive.execute(node);
+		}
 
 	}
 	public virtual void beforeTurnCleanUp()
@@ -204,6 +209,10 @@ public partial class RelicResource : Resource
 			executeEffects();
 		}
 		return new List<EffectResource>();
+	}
+
+	public virtual void setUp(){
+		
 	}
 
 }

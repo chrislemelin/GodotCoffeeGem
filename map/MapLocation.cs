@@ -79,6 +79,12 @@ public partial class MapLocation : Control
 		}
 	}
 
+	
+	public void setHighlight(bool value)
+	{
+		highlight.setForceHighlight(value);
+	}
+
 	public void resolveEvent(MapEventResolveUI mapEventResolveUI, Action callback)
 	{
 		if (type == MapEventType.Money)
@@ -154,6 +160,7 @@ public partial class MapLocation : Control
 			}
 			else
 			{
+				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => { }, callback);
 				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the mechanic. RIP BROKIE");
 			}
 		}
@@ -170,7 +177,7 @@ public partial class MapLocation : Control
 					RandomHelper.Shuffle(relicResources);
 					List<RelicResource> relicsInSelection = relicResources.GetRange(0, Math.Min(3, relicResources.Count));
 					RelicSelection relicSelection = FindObjectHelper.getRelicSelection(this);
-					relicSelection.setRelics(relicsInSelection);
+					relicSelection.setRelics(relicsInSelection, true);
 					relicSelection.WindowClosed += () => addCallBackAction(callback);
 				},null);
 
@@ -178,12 +185,13 @@ public partial class MapLocation : Control
 			}
 			else
 			{
+				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => { }, callback);
 				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the relic shop. RIP BROKIE");
 			}
 		}
 		else if (type == MapEventType.Home)
 		{
-			mapEventResolveUI.setUp("Gain a New Card", "The wizened old downstairs neighbor offers you one of his signature pieces of wisdom as you return home." +
+			mapEventResolveUI.setUp("Gain a New Card", "The wizened old downstairs neighbor offers you one of his signature pieces of wisdom as you return home. " +
 			"It may have come from a guy yelling from his porch, but you feel like you could put this to use!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				FindObjectHelper.getCardSelection(this).getRandomCardsToSelectFrom(),callback
@@ -198,7 +206,7 @@ public partial class MapLocation : Control
 		{
 			done = true;
 			action.Invoke();
-			callback.Invoke();
+			callback?.Invoke();
 		}
 	}
 

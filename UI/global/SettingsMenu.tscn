@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk057h7ksmnub"]
+[gd_scene load_steps=7 format=3 uid="uid://bk057h7ksmnub"]
 
 [ext_resource type="Script" path="res://UI/global/SettingsMenu.cs" id="1_0lkxj"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_kbkdg"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="2_5y2ms"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_nhw1p"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="4_6wc46"]
+[ext_resource type="Texture2D" uid="uid://dttel37o7wg87" path="res://placeholders/UI/XboxSettingsIcon.tres" id="6_i4wfn"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "fullScreenCheckBox", "resolutionsOptionButton", "panel") groups=["SettingsMenu"]]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "fullScreenCheckBox", "resolutionsOptionButton", "panel", "controllerTexture") groups=["SettingsMenu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,22 +25,33 @@ visibleButton = NodePath("Button")
 fullScreenCheckBox = NodePath("Panel/VBoxContainer/FullScreen/CheckBox")
 resolutionsOptionButton = NodePath("Panel/VBoxContainer/Resolutions/VBoxContainer/OptionButton")
 panel = NodePath("Panel")
+controllerTexture = NodePath("TextureRect")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" parent="." instance=ExtResource("2_5y2ms")]
 layout_mode = 0
-offset_left = 1759.0
-offset_top = 21.0
-offset_right = 1901.0
-offset_bottom = 71.0
-theme = ExtResource("1_kbkdg")
+offset_left = 1754.0
+offset_top = 17.0
+offset_right = 1908.0
+offset_bottom = 69.0
+focus_mode = 1
 text = "Settings"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 1807.0
+offset_top = 80.0
+offset_right = 1847.0
+offset_bottom = 120.0
+texture = ExtResource("6_i4wfn")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 637.0
+offset_left = 636.0
 offset_top = 274.0
-offset_right = 1253.0
+offset_right = 1252.0
 offset_bottom = 868.0
 theme = ExtResource("1_kbkdg")
 
@@ -117,6 +130,7 @@ theme_override_constants/margin_right = 150
 [node name="CheckBox" type="CheckBox" parent="Panel/VBoxContainer/Data Collection"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_6wc46")
 theme_override_font_sizes/font_size = 36
 text = "Enable game play data collection"
@@ -130,13 +144,14 @@ theme_override_constants/margin_right = 150
 [node name="CheckBox" type="CheckBox" parent="Panel/VBoxContainer/FullScreen"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_6wc46")
 theme_override_font_sizes/font_size = 36
 text = "FullScreen"
 
 [node name="Resolutions" type="MarginContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_nhw1p")
+theme = ExtResource("1_kbkdg")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
@@ -158,10 +173,9 @@ theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/QuitButton"]
+[node name="Button" parent="Panel/VBoxContainer/QuitButton" instance=ExtResource("2_5y2ms")]
 layout_mode = 2
-theme = ExtResource("1_kbkdg")
-text = "Quit Game"
+text = "Quit"
 
 [node name="MainMenuButton" type="MarginContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -169,9 +183,8 @@ theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/MainMenuButton"]
+[node name="Button" parent="Panel/VBoxContainer/MainMenuButton" instance=ExtResource("2_5y2ms")]
 layout_mode = 2
-theme = ExtResource("1_kbkdg")
 text = "Main Menu"
 
 [node name="CloseButton" type="MarginContainer" parent="Panel/VBoxContainer"]
@@ -180,7 +193,8 @@ theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/CloseButton"]
+[node name="Button" parent="Panel/VBoxContainer/CloseButton" instance=ExtResource("2_5y2ms")]
 layout_mode = 2
-theme = ExtResource("1_kbkdg")
-text = "Resume"
+text = "Close Settings Menu"
+grabFocus = true
+isInSettingsMenu = true

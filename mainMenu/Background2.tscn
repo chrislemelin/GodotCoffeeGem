@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt8jni8olmx3r"]
+
+[ext_resource type="Shader" path="res://cards/shaders/Circles.gdshader" id="1_bw2no"]
+[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://placeholders/ingredients/final/Bean-pixel2.png" id="2_5rq32"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_grp6i"]
+frequency = 0.0065
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3p7qh"]
+noise = SubResource("FastNoiseLite_grp6i")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_es18f"]
+shader = ExtResource("1_bw2no")
+shader_parameter/separation = 0.045
+shader_parameter/radius = 0.021
+shader_parameter/min_thick = 0.756
+shader_parameter/speed = 0.02
+shader_parameter/tilt_45 = true
+shader_parameter/direction = -128.953
+shader_parameter/color1 = Color(0.372549, 0.14902, 1, 1)
+shader_parameter/color2 = Color(0.670588, 0.8, 0.4, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_3p7qh")
+
+[sub_resource type="Animation" id="Animation_1bw08"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_2el82"]
+resource_name = "Transition"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpnii"]
+_data = {
+"RESET": SubResource("Animation_1bw08"),
+"Transition": SubResource("Animation_2el82")
+}
+
+[node name="TextureRect" type="TextureRect"]
+modulate = Color(0.156863, 0.172549, 0.2, 1)
+material = SubResource("ShaderMaterial_es18f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5rq32")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lpnii")
+}

@@ -8,10 +8,10 @@ public partial class GameManagerIF : Node2D
 	protected Global global;
 	protected MetaGlobal metaGlobal;
 	protected CardLibrary cardLibrary;
-	[Export] public CardList defaultCardPool;
-	[Export] private Godot.Collections.Array<UnlockableCardPack> cardPacks;
+	//[Export] public CardList defaultCardPool;
+	//[Export] private Godot.Collections.Array<UnlockableCardPack> cardPacks;
 	[Export] public RelicList relicList;
-	[Export] public CardList defaultCardList;
+	//[Export] public CardList defaultCardList;
 
 	[Signal]
 	public delegate void healthChangedEventHandler(int newHealth);
@@ -21,6 +21,8 @@ public partial class GameManagerIF : Node2D
 
 	[Signal]
 	public delegate void coinsChangedEventHandler(int newCoins);
+	[Signal]
+	public delegate void coinsGainedEventHandler(int newCoins);
 
 	public bool isIntialized()
 	{
@@ -38,6 +40,15 @@ public partial class GameManagerIF : Node2D
 
 		cards.AddRange(getCardsUnlocked());
 		//GD.Print(cards.Count + " cards in the pool");
+		return cards;
+	}
+
+	public List<CardResource> getLockedCards() {
+		List<CardResource> cards = new List<CardResource>();
+		List<UnlockableCardPack> lockedCardPacks = getLockedCardPacks();
+		foreach(UnlockableCardPack unlockableCardPack in lockedCardPacks) {
+			cards.AddRange(unlockableCardPack.getCards());
+		}
 		return cards;
 	}
 
@@ -278,6 +289,7 @@ public partial class GameManagerIF : Node2D
 	public void setHealth(int newHealth)
 	{
 		getGlobal().currentHealth = Math.Clamp(newHealth, 0, getGlobal().maxHealth);
+		GD.Print("health set to " + getGlobal().currentHealth);
 		EmitSignal(SignalName.healthChanged, getGlobal().currentHealth);
 	}
 
@@ -380,6 +392,9 @@ public partial class GameManagerIF : Node2D
 		if (coinValue > 0)
 		{
 			getGlobal().allCoinsGained += coinValue;
+		}
+		if (coinValue > 0) {
+			EmitSignal(SignalName.coinsGained, coinValue);
 		}
 		if (coinValue!= 0) {
 			EmitSignal(SignalName.coinsChanged, global.currentCoins);

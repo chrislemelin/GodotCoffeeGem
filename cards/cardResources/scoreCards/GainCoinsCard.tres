@@ -16,6 +16,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -27,7 +29,7 @@ matchy = false
 [resource]
 script = ExtResource("2_damhv")
 Title = "Loose Change"
-Description = "Gain 5 coins. If you have matched a sugar this turn gain another 5 coins. $customText"
+Description = "Gain 5 coins. If you have matched a sugar this turn, gain another 5 coins. $customText"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_ngwwr")

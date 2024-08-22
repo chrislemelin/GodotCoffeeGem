@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwhgrydhls7ol"]
+
+[ext_resource type="Script" path="res://gamemanager/GameManagerIF.cs" id="1_0bx2e"]
+[ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="5_cipw2"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="6_vnesb"]
+[ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="8_63yb2"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="10_nt2jr"]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_0bx2e")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.156863, 0.172549, 0.2, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 1925.0
+offset_bottom = 1079.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_vnesb")
+
+[node name="BeanHolder" type="Node2D" parent="."]
+
+[node name="CoffeeBean" parent="BeanHolder" instance=ExtResource("5_cipw2")]
+visible = false
+rotation = -0.575959
+rotateSpeed = 20.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 482.0
+offset_top = 143.0
+offset_right = 1508.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "[center]Credits[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 482.0
+offset_top = 268.0
+offset_right = 1508.0
+offset_bottom = 808.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Art Container" type="VBoxContainer" parent="ScrollContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Art Title" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 75
+text = "ART"
+fit_content = true
+
+[node name="Pixel Art" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Original Pixel Art .............................................................. H. A. Petersen"
+fit_content = true
+
+[node name="CardBack" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Card Back .................................................................................... yuidust"
+fit_content = true
+
+[node name="Backgrounds" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Painted Backgrounds ...................................................... lornn"
+fit_content = true
+
+[node name="Relic Icons" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Relic Icons ............................................................................... Lorc"
+fit_content = true
+
+[node name="Music Container" type="VBoxContainer" parent="ScrollContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Music Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 75
+text = "Music and Sound"
+fit_content = true
+
+[node name="Background Music" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Music Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Background Music ............................................................... Mike Sheldon"
+fit_content = true
+
+[node name="Sound effects" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Music Container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Sound Effects ......................................................................... kenny.nl"
+fit_content = true
+
+[node name="Button" parent="." instance=ExtResource("8_63yb2")]
+offset_left = 799.0
+offset_top = 842.0
+offset_right = 1047.0
+offset_bottom = 912.0
+text = "Main Menu"
+grabFocus = true
+
+[node name="SettingsMenu" parent="." instance=ExtResource("10_nt2jr")]

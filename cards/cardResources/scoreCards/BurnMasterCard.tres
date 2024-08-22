@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,7 +27,7 @@ matchy = false
 
 [resource]
 script = ExtResource("2_g2oql")
-Title = "BurnMaster"
+Title = "Burnt Master"
 Description = "Gain 50 points for each ingredient burnt this turn ($value)"
 Cost = 1
 rarity = 1

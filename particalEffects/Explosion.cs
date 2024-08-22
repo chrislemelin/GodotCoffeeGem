@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Explosion : Node
+public partial class Explosion : Node2D
 {
 	[Export] GpuParticles2D particles2D;
 	[Export] float timeEmiting;
@@ -11,7 +11,7 @@ public partial class Explosion : Node
 	{
 		base._Ready();
 		GetTree().CreateTimer(timeEmiting).Timeout += () => particles2D.Emitting = false;
-		GetTree().CreateTimer(timeEmiting).Timeout += () => QueueFree();
+		GetTree().CreateTimer(timeAlive).Timeout += () => QueueFree();
 
 
 	}

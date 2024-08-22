@@ -15,8 +15,20 @@ public partial class FindObjectHelper
 	private static readonly String SETTINGS_MENU_NAME = "SettingsMenu";
 	private static readonly String RELIC_HOLDER_UI_NAME = "RelicHolder";
 	private static readonly String CARD_LIBRARY_NAME = "CardLibrary";
+	private static readonly String CONTROLLER_HELPER_NAME = "ControllerHelper";
 	private static readonly String CAMERA_NAME = "Camera";
+	private static readonly String HAND_LINE_NAME = "HandLine";
 
+	public static HandLine getHandLine(Node node)
+	{
+		return (HandLine)node.GetTree().GetFirstNodeInGroup(HAND_LINE_NAME);
+	}
+
+	
+	public static ControllerHelper getControllerHelper(Node node)
+	{
+		return (ControllerHelper)node.GetTree().GetFirstNodeInGroup(CONTROLLER_HELPER_NAME);
+	}
 
 	public static Hand getHand(Node node)
 	{

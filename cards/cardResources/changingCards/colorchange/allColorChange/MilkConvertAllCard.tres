@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cdv1ymdnukphw"]
+
+[ext_resource type="Texture2D" uid="uid://xqk1jrhdags6" path="res://cards/cardResources/cardArt/milk.png" id="1_4mrtq"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/allColorChange/CardEffectAllConvert.cs" id="2_5w8nq"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_exc2y"]
+
+[sub_resource type="Resource" id="Resource_ijpbj"]
+script = ExtResource("2_5w8nq")
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = false
+effectGemType = 1
+consume = false
+retain = false
+matchy = false
+
+[resource]
+script = ExtResource("3_exc2y")
+Title = "Milk Blast"
+Description = "Select an ingredient, change all ingredients of that type to milk"
+Cost = 2
+rarity = 1
+Picture = ExtResource("1_4mrtq")
+coinCost = 0
+playable = false
+cardEffect = SubResource("Resource_ijpbj")

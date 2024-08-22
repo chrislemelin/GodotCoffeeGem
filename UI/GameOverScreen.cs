@@ -3,7 +3,7 @@ using System;
 
 public partial class GameOverScreen : Control
 {
-	[Export] public Button restartButton;
+	[Export] public CustomButton restartButton;
 	[Export] public RichTextLabel label;
 	[Export] public RichTextLabel metaCoinLabel;
 	[Export] public RichTextLabel debtLabel;
@@ -13,12 +13,19 @@ public partial class GameOverScreen : Control
 	{
 	}
 
+	public void setVisible(bool value) {
+		Visible = value;
+		if(Visible) {
+			restartButton.checkForFocus();
+		}
+	}
+
 	public void setUpMainMenu() {
 		restartButton.Pressed += () => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn");
 	}
 
 	public void setMetaCoins (int metaCoins) {
 		metaCoinLabel.Text = "Gained " + metaCoins;
-		debtLabel.Text = "Debt reduced by $"+ metaCoins;
+		debtLabel.Text = "Debt reduced by $"+ metaCoins * 10;
 	}
 }

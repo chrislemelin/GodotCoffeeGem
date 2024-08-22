@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,7 +27,7 @@ matchy = false
 
 [resource]
 script = ExtResource("1_q6px8")
-Title = "Teleport"
+Title = "Switcharoo"
 Description = "Swap the positions of 2 ingredients in the same row or column"
 Cost = 1
 rarity = 1

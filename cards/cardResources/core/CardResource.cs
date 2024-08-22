@@ -77,10 +77,26 @@ public partial class CardResource : Resource
 		newDescription = newDescription.Replace("$moneyGems", cardEffect.getCoinGems().ToString());
 		newDescription = newDescription.Replace("$customText", cardEffect.getCustomText().ToString());
 
+		//var values = Enum.GetValues(typeof(Foos));
+		foreach(GemType gemType in Enum.GetValues(typeof(GemType))) {
+			newDescription = newDescription.Replace(gemType.getString(), TextHelper.colorText(gemType.getString(), gemType.GetColor()));
+		}
+
+		// newDescription = newDescription.Replace("coffee", TextHelper.colorText("coffee", "brown"));
+		// newDescription = newDescription.Replace("leaf", TextHelper.colorText("leaf", "green"));
+		// newDescription = newDescription.Replace("tea", TextHelper.colorText("tea", "green"));
+		// newDescription = newDescription.Replace("vanilla", TextHelper.colorText("vanilla", "yellow"));
+		// newDescription = newDescription.Replace("sugar", TextHelper.colorText("sugar", "white"));
+		// newDescription = newDescription.Replace("milk", TextHelper.colorText("milk", "purple"));
+
+		// newDescription = newDescription.Replace("burnt", TextHelper.colorText("burnt", "grey"));
+
+
+
 
 		if (cardEffect.consume)
 		{
-			newDescription += " " + TextHelper.toolTip("Consume.", "Consume cards are trashed untill the next level");
+			newDescription += " " + TextHelper.toolTip("Consume.", "Consume cards are trashed until the next level");
 		}
 		if (cardEffect.retain)
 		{
@@ -97,7 +113,7 @@ public partial class CardResource : Resource
 		String returnString = "";
 		if (cardEffect.consume)
 		{
-			returnString += "Consume cards are trashed untill the next level\n";
+			returnString += "Consume cards are trashed until the next level\n";
 		}
 		if (cardEffect.retain)
 		{

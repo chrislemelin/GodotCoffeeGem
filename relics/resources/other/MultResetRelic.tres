@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="MultRelic" load_steps=7 format=3 uid="uid://bnj8vvvotpxaj"]
+
+[ext_resource type="Script" path="res://relics/scripts/MultRelic.cs" id="1_d42s0"]
+[ext_resource type="Script" path="res://relics/effects/GiveManaPassive.cs" id="1_h7syu"]
+[ext_resource type="Script" path="res://relics/effects/GiveCardPassive.cs" id="2_6wwge"]
+[ext_resource type="Texture2D" uid="uid://c8s2niff1othe" path="res://relics/sprites/Icon.5_92.png" id="3_8pi28"]
+
+[sub_resource type="Resource" id="Resource_cv85o"]
+script = ExtResource("1_h7syu")
+value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_s7km8"]
+script = ExtResource("2_6wwge")
+value = 1
+value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("1_d42s0")
+targetMult = 3.0
+title = "Mult Master"
+description = "Gain +1 energy and +1 card if you end your turn with 3 or more mult"
+image = ExtResource("3_8pi28")
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_cv85o"), SubResource("Resource_s7km8")]
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

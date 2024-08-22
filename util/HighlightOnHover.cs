@@ -38,6 +38,11 @@ public partial class HighlightOnHover : TextureRect
 	}
 
 	private void setHighlightFromMouse(bool value) {
+		isHovered = value;
+		renderEnlarge();
+		renderHighlight();
+	}
+	private void renderEnlarge() {
 		if (startingSize == null) {
 			if (makeBigger != null) {
 				startingSize = makeBigger.Scale;
@@ -47,25 +52,31 @@ public partial class HighlightOnHover : TextureRect
 			}
 		}
 
-		isHovered = value;
 		if (makeBigger != null) {
-			if (isHovered) {
+			if (isHighlighted()) {
 				makeBigger.Scale = (Vector2)startingSize * makeBiggerScale;
 			} else {
 				makeBigger.Scale = (Vector2)startingSize;
 			}
 		}
 		if (makeBiggerControl != null) {
-			if (isHovered) {
+			if (isHighlighted()) {
 				makeBiggerControl.Scale = (Vector2)startingSize * makeBiggerScale;
 			} else {
 				makeBiggerControl.Scale = (Vector2)startingSize;
 			}
 		}
+	}
+	
+
+	public void setForceHighlight(bool forceHighlightValue)
+	{
+		forceHighlightOn = forceHighlightValue;
+		Material.Set("shader_parameter/line_color", normalHighlightColor);
 		renderHighlight();
 	}
 
-	public void setForceHighlight(bool forceHighlightValue)
+	public void setForceHighlightAltColor(bool forceHighlightValue)
 	{
 		forceHighlightOn = forceHighlightValue;
 		if (forceHighlightValue) {
@@ -90,18 +101,27 @@ public partial class HighlightOnHover : TextureRect
 	public override void _Process(double delta)
 	{
 		renderHighlight();
+		renderEnlarge();
+	}
+
+	private bool isHighlighted() {
+		if(forceHighlightOn) {
+			return true;
+		} else if (forceHighlightOff) {
+			return false;	
+		}
+		else if (isHovered) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private void renderHighlight() {
-		if(forceHighlightOn) {
-			setHighlightOn();
-		} else if (forceHighlightOff) {
-			setHighlightOff();	
-		}
-		else if (isHovered) {
+		if(isHighlighted()) {
 			setHighlightOn();
 		} else {
-			setHighlightOff();
+			setHighlightOff();	
 		}
 	}
 

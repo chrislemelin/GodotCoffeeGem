@@ -41,7 +41,7 @@ matchy = false
 [resource]
 script = ExtResource("2_bf3qq")
 Title = "Milky Splash"
-Description = "Change selected ingredient to milk. If this makes a 4+ match draw a card gain an energy and burn 1 ingredient"
+Description = "Change selected ingredient to milk. If this makes a 4+ match, draw a card, gain an energy, and burn 1 ingredient"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_h41v4")

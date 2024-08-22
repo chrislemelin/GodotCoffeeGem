@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=33 format=3 uid="uid://dicb3wwg7ecmd"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_16axm"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="11_kkerm"]
 [ext_resource type="Texture2D" uid="uid://d3hvm7mjrstbo" path="res://placeholders/cards/RedCardBack.png" id="13_hn8m8"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="14_5dyd3"]
+[ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="16_2oxoi"]
+[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="16_sfgf4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjn8"]
 
@@ -51,7 +53,7 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_7oja6")
 
 [sub_resource type="Animation" id="Animation_jdv37"]
 resource_name = "CardFlip"
-length = 0.5
+length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,6 +78,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 1.25), Vector2(1.25, 1.25)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"resetAnimation"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7d1ed"]
@@ -243,7 +259,7 @@ shader_parameter/shine_size = 0.09
 shader_parameter/shine_angle = 37.5
 shader_parameter/shine_on = 1.0
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer")]
+[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText")]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_7pfgj")
 custom_minimum_size = Vector2(530, 800)
@@ -262,6 +278,7 @@ grow_vertical = 2
 pivot_offset = Vector2(250, 400)
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 mouse_filter = 1
 theme = ExtResource("3_34kys")
 script = ExtResource("1_qnag5")
@@ -274,7 +291,9 @@ highlightOnHover = NodePath("Center/Background")
 coinCostControl = NodePath("CoinCost")
 coinCostText = NodePath("CoinCost/HBoxContainer/RichTextLabel")
 disabledColor = Color(0.501961, 0.501961, 0.501961, 1)
+lockedColor = Color(0.0235294, 0.0235294, 0.0235294, 1)
 animationPlayer = NodePath("AnimationPlayer")
+toolTipText = NodePath("Tooltip")
 
 [node name="Center" type="Control" parent="."]
 use_parent_material = true
@@ -325,16 +344,16 @@ texture = ExtResource("6_4xx5d")
 use_parent_material = true
 layout_mode = 0
 offset_left = 34.0
-offset_top = 439.0
+offset_top = 439.2
 offset_right = 360.0
-offset_bottom = 681.0
+offset_bottom = 681.2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_jkbfx")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "This is a test tooltip 
-sfaesfasef [hint={tooltip text displayed on hover}]{text}[/hint]"
+text = "this is a test tooltip
+[color=#ba951a]beep sdfsdf[/color]"
 
 [node name="Picture" type="Control" parent="Center"]
 use_parent_material = true
@@ -493,3 +512,29 @@ offset_right = 558.0
 offset_bottom = 793.0
 mouse_filter = 2
 texture = ExtResource("7_jrfr0")
+
+[node name="Lock" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 174.0
+offset_top = 200.0
+offset_right = 403.0
+offset_bottom = 429.0
+texture = ExtResource("16_sfgf4")
+expand_mode = 1
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 570.0
+offset_top = 18.0
+offset_right = 944.0
+offset_bottom = 120.0
+theme_override_font_sizes/normal_font_size = 50
+theme_override_styles/normal = ExtResource("16_2oxoi")
+text = "this is a test tooltip
+[outline_color={code/name}]
+beep
+[/outline_color]"
+fit_content = true

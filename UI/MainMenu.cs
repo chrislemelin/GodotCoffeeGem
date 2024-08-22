@@ -8,9 +8,15 @@ public partial class MainMenu : GameManagerIF
 
 	[Export] Button zenModButton;
 	[Export] Button quitButton;
+	[Export] Button metaProgressionButton;
+	[Export] Button creditsButton;
+
 
 	[Export] PackedScene gameScene;
 	[Export] PackedScene deckSelectionScene;
+	[Export] PackedScene metaProgressionScene;
+	[Export] PackedScene creditsScene;
+
 
 	[Export] PackedScene beanScene;
 	[Export] int numberOfBeans;
@@ -20,6 +26,8 @@ public partial class MainMenu : GameManagerIF
 	{
 		quickPlayButton.Pressed += () => GetTree().ChangeSceneToPacked(gameScene);
 		deckSelectionButton.Pressed += () => GetTree().ChangeSceneToPacked(deckSelectionScene);
+		metaProgressionButton.Pressed += () => GetTree().ChangeSceneToPacked(metaProgressionScene);
+		creditsButton.Pressed += () => GetTree().ChangeSceneToPacked(creditsScene);
 		zenModButton.Pressed += () =>
 		{
 			setZenMode(true);

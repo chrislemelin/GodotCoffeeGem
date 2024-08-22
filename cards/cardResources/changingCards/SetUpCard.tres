@@ -14,6 +14,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -24,8 +26,8 @@ matchy = false
 
 [resource]
 script = ExtResource("3_mgvwa")
-Title = "SetUp"
-Description = "Randomly create $cardGems draw ingredients(s) and and $manaGems energy ingredient(s)"
+Title = "Setup"
+Description = "Randomly create $cardGems draw ingredient(s) and $manaGems energy ingredient(s)"
 Cost = 2
 rarity = 2
 coinCost = 0

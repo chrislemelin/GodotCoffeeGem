@@ -11,7 +11,6 @@ public partial class RelicHolderUI : Control
 	List<RelicResource> relicResources = new List<RelicResource>();
 	List<RelicUI> relicUIs = new List<RelicUI>();
 
-
 	public void setRelicList(List<RelicResource> relicResources)
 	{
 		this.relicResources = relicResources;
@@ -23,6 +22,7 @@ public partial class RelicHolderUI : Control
 	public void addRelic(RelicResource relicResource)
 	{
 		relicResources.Add(relicResource);
+		relicResource.setUp();
 		deleteRelics();
 		setUpRelics();
 	}
@@ -71,10 +71,11 @@ public partial class RelicHolderUI : Control
 				executablePassive.execute(relicUI);
 				relicUI.activateAnimation();
 			}
+			relicUI.relicResource.setUp();
 			relicUI.relicResource.startLevel();
-
-			startNewTurn();
 		}
+		startNewTurn();
+
 	}
 
 
@@ -173,6 +174,7 @@ public partial class RelicHolderUI : Control
 		FindObjectHelper.getHand(this).cardDrawn += (card) => cardDrawn(card);
 		FindObjectHelper.getScore(this).multChange += (mult) => multChanged(mult);
 	}
+	
 
 
 }

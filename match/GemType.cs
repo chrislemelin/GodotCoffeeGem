@@ -31,22 +31,47 @@ static class GemTypeHelper
 		switch (gemType)
 		{
 			case GemType.Coffee:
-				return new Color("#ff6e8b");
+				return new Color("#633700");
 			case GemType.Sugar:
-				return new Color("#72fafc");
+				return new Color("#008692");
 			case GemType.Leaf:
-				return new Color("#94ff9d");
+				return new Color("#2b9434");
 			case GemType.Vanilla:
-				return new Color("#ffda91");
+				return new Color("#ba951a");
 			case GemType.Milk:
-				return new Color("#fc9dec");
+				return new Color("#8943a1");
 			case GemType.Rainbow:
-				return newColor(255, 255, 255);
+				return newColor(0, 0, 0);
 			case GemType.Black:
+				return new Color("#505050");
 			default:
 				return newColor(0, 0, 0);
 		}
 	}
+
+	public static String getString(this GemType gemType)
+	{
+		switch (gemType)
+		{
+			case GemType.Coffee:
+				return "coffee";
+			case GemType.Sugar:
+				return "sugar";
+			case GemType.Leaf:
+				return "tea";
+			case GemType.Vanilla:
+				return "vanilla";
+			case GemType.Milk:
+				return "milk";
+			case GemType.Black:
+				return "burnt";
+			case GemType.Rainbow:
+				return "rainbow";
+			default:
+				return "burnt";
+		}
+	}
+
 	public static Texture2D getTexture2D(this GemType gemType) {
 		switch (gemType)
 		{

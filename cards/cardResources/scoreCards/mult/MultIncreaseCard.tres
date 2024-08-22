@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,8 +27,8 @@ matchy = false
 
 [resource]
 script = ExtResource("2_f5w21")
-Title = "Compliment"
-Description = "Add .25 to the multiplier. If you have made at least 1 vanilla match this turn draw a card $customText"
+Title = "Witty Joke"
+Description = "Add 0.25 to the multiplier. If you have made at least 1 vanilla match this turn, draw a card $customText"
 Cost = 0
 rarity = 0
 coinCost = 0

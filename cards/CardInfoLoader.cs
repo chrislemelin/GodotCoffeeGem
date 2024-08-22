@@ -1,8 +1,9 @@
 using Godot;
 using System;
 
-public partial class CardInfoLoader : Control
+public partial class CardInfoLoader : CustomToolTip
 {
+	[Export] public ScrollContainer cardScrollContainer;
 	[Export] protected RichTextLabel titleLabel;
 	[Export] protected RichTextLabel descriptionLabel;
 	[Export] protected RichTextLabel costLabel;
@@ -13,16 +14,29 @@ public partial class CardInfoLoader : Control
 	[Export] protected Control coinCostControl;
 	[Export] protected RichTextLabel coinCostText;
 	[Export] protected Color disabledColor;
+	[Export] protected Color lockedColor;
+
 	private bool disabled = false;
 	public bool wiggleEnabled { get; private set; } = true;
 	[Export] AnimationPlayer animationPlayer;
 
+	private bool isLocked = false;
 
+
+	
 
 	public override void _Ready()
 	{
 		base._Ready();
 		Material = (Material)Material.Duplicate();
+
+		FocusEntered += () => highlightOnHover.setForceHighlight(true);
+		FocusEntered += () => {
+			if (cardScrollContainer != null) {
+				cardScrollContainer.EnsureControlVisible(this);
+			}
+		};
+		FocusExited += () => highlightOnHover.setForceHighlight(false);	
 
 		GrowHorizontal = GrowDirection.Both;
 		GrowVertical = GrowDirection.Both;
@@ -71,9 +85,24 @@ public partial class CardInfoLoader : Control
 		animationPlayer.Play("RESET");
 	}
 
-	public void setUpCard(CardResource cardResource)
+	public void setUpLockedCard(){
+		animationPlayer.Play("RESET");
+		
+		titleLabel.Text = "";
+		descriptionLabel.Text = "";
+		costLabel.Text = TextHelper.centered("");
+		titleSprite.Modulate = CardRarity.Common.getColor();
+		coinCostText.Text = "";
+		isLocked = true;
+		Modulate = lockedColor;
+		toolTipText.Text = "This card is locked, play the game to unlock";
+		return;
+	}
+
+	public void setUpCard(CardResource cardResource, bool locked = false)
 	{
 		animationPlayer.Play("RESET");
+
 		this.cardResource = cardResource;
 		this.cardResource.node = this;
 		this.cardResource.cardEffect.node = this;
@@ -93,7 +122,8 @@ public partial class CardInfoLoader : Control
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		coinCostText.Text = cardResource.getCoinCost().ToString();
-		highlightOnHover.TooltipText = cardResource.getToolTip();
+		//highlightOnHover.TooltipText = cardResource.getToolTip();
+		toolTipText.Text = cardResource.getToolTip();
 	}
 
 	public void setShowCoinCost(bool visible)

@@ -8,6 +8,14 @@
 script = ExtResource("1_mao5e")
 value = 1
 value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_4mlo1")
@@ -17,13 +25,19 @@ title = "Tea 4 Matcher"
 description = "Draw one card when you a match of 4 or more tea"
 image = ExtResource("2_iiadi")
 cost = 50
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
 gameStartEffects = []
 turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
 levelOverEffects = []
 effects = [SubResource("Resource_j2ldj")]
+matchEffects = []
 counterMax = 0
 customCounter = false
-counterDown = false
 counterResetOnLevelStart = false
+counterResetOnTurnStart = false
 resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

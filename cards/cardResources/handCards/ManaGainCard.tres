@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,8 +27,8 @@ matchy = false
 
 [resource]
 script = ExtResource("1_cdmb4")
-Title = "Energy Gain"
-Description = "Gain $value energy and burns 2 ingredients. If you have made at least 1 coffee match this turn gain another energy $customText"
+Title = "Adrenaline Burst"
+Description = "Gain $value energy and burn 2 ingredients. If you have made at least 1 coffee match this turn, gain another energy $customText"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_jphwy")

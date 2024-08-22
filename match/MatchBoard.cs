@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 
-public partial class MatchBoard : Node
+public partial class MatchBoard : ControllerInput
 {
 	[Export] public int sizeX;
 	[Export] public int sizeY;
@@ -24,7 +24,11 @@ public partial class MatchBoard : Node
 	[Export] public Node2D boardHolder;
 	[Export] public TextureProgressBar progressBar;
 	private double progressValue = 0;
+	private bool movedBarLastStep = false;
 	[Export] private double progressStep;
+	[Export] public PackedScene sparkleEffect;
+	[Export] public ReferenceRect sparkleArea;
+
 	[Export] public AudioStream matchAudioStream;
 	[Export] public AudioStream popAudioStream;
 	[Export] public AudioStream switchAudioStream;
@@ -54,6 +58,11 @@ public partial class MatchBoard : Node
 	private Vector2 tileSize;
 	private Vector2 tileSizeUnScaled;
 
+	[Export] private bool hasUIFocus = false;
+
+	private Vector2 tileHoveredPosition = new Vector2(0,0);
+	Optional<Tile> tileHovered = Optional.None<Tile>();
+
 
 	//stats
 	public HashSet<Match> matchesThisTurn = new HashSet<Match>();
@@ -63,48 +72,125 @@ public partial class MatchBoard : Node
 	[Signal]
 	public delegate void blackGemsCreatedThisTurnChangedEventHandler();
 
-
-	private void tileClicked(Tile tile, InputEvent inputEvent)
-	{
-		if (inputEvent.IsActionPressed("click"))
+	private void tileClicked(Tile tile, InputEvent inputEvent) {
+		if (InputHelper.isSelectedAction(inputEvent))
 		{
-			Optional<CardIF> cardSelectedInHand = hand.getCardSelected();
-			if (cardSelectedInHand.HasValue)
+			tileSelected(tile);
+		}
+	} 
+
+	private void tileSelected(Tile tile)
+	{
+		Optional<CardIF> cardSelectedInHand = hand.getCardSelected();
+		if (cardSelectedInHand.HasValue)
+		{
+			CardIF card = cardSelectedInHand.GetValue();
+			if (!canSelectTile(tile, card))
 			{
-				CardIF card = cardSelectedInHand.GetValue();
-				if (!canSelectTile(tile, card))
+				return;
+			}
+			SelectionType selectionType = cardSelectedInHand.GetValue().getCardResource().getSelectionType();
+			if (selectionType == SelectionType.Single)
+			{
+				hand.tilesSelectedForCard(this, new List<Vector2> { tile.getTilePosition() });
+				hasUIFocus = false;
+				hand.setUIFocus(true);
+			}
+			if (selectionType == SelectionType.Double)
+			{
+				if (tilesAvailibleToBeSelected.Count == 0)
 				{
-					return;
+					setTilesAvailibleToBeSelectedFromCard(card, tile);
 				}
-				SelectionType selectionType = cardSelectedInHand.GetValue().getCardResource().getSelectionType();
-				if (selectionType == SelectionType.Single)
+				else
 				{
-					hand.tilesSelectedForCard(this, new List<Vector2> { tile.getTilePosition() });
-				}
-				if (selectionType == SelectionType.Double)
-				{
-					if (tilesAvailibleToBeSelected.Count == 0)
+					if (!tilesAvailibleToBeSelected.Contains(tile))
 					{
-						setTilesAvailibleToBeSelectedFromCard(card, tile);
-					}
-					else
-					{
-						if (!tilesAvailibleToBeSelected.Contains(tile))
-						{
-							clearTilesSelected();
-							return;
-						}
-					}
-					addTileToSelectedList(tile);
-					if (tilesSelected.Count == 2)
-					{
-						hand.tilesSelectedForCard(this, tilesSelected.Select(tile => tile.getTilePosition()).ToList());
 						clearTilesSelected();
+						return;
 					}
+				}
+				addTileToSelectedList(tile);
+				if (tilesSelected.Count == 2)
+				{
+					hand.tilesSelectedForCard(this, tilesSelected.Select(tile => tile.getTilePosition()).ToList());
+					clearTilesSelected();
+					setUIFocus(false);
+					hand.setUIFocus(true);
 				}
 			}
 		}
 	}
+
+	public void clearUIFocus(){
+		setUIFocus(false);
+	}
+
+	public void clearUIFocus(bool value){
+		setUIFocus(false);
+	}
+
+	public void setUIFocus(bool value) {
+		if(FindObjectHelper.getControllerHelper(this).isUsingController()) {
+			hasUIFocus = value;
+			GD.Print("setting focus for board" + value);
+			if (hasUIFocus) {
+				changeHoveredTile(new Vector2(0,0));
+			} else {
+				clearTilesHovered();
+			}
+		}
+	}
+
+	public bool getUIFocus() {
+		return hasUIFocus;
+	}
+
+
+	public override void _Input(InputEvent @event)
+	{
+		if(@event.IsActionPressed("ui_accept") && hasUIFocus)
+		{
+			if(tileHovered.HasValue) {
+				tileSelected(tileHovered.GetValue());
+			}
+		}
+		base._Input(@event);
+	}
+
+	protected override void controllerLeft() {
+		if(hasUIFocus) {
+			changeHoveredTile(Vector2.Left);
+		}
+	}
+	protected override void controllerRight() {
+		if(hasUIFocus) {
+			changeHoveredTile(Vector2.Right);
+		}
+	}
+	protected override void controllerUp() {
+		if(hasUIFocus) {
+			changeHoveredTile(Vector2.Up);
+		}
+	}
+	protected override void controllerDown() {
+		if(hasUIFocus) {
+			changeHoveredTile(Vector2.Down);
+		}
+	}
+
+	private void changeHoveredTile(Vector2 newVector) {
+		GD.Print("moving tile" + newVector);
+		int newX = Math.Clamp((int)newVector.X + (int)tileHoveredPosition.X, 0, sizeX-1);
+		int newY = Math.Clamp((int)newVector.Y + (int)tileHoveredPosition.Y, 0, sizeY-1);
+		tileHoveredPosition = new Vector2(newX, newY);
+		Tile tile = getTile(tileHoveredPosition);
+		FindObjectHelper.getHandLine(this).setPosition(tile.GlobalPosition + (tileSize/2));
+		setTileHovered(getTile(tileHoveredPosition));
+	}
+
+
+
 
 	public void clearTilesSelected()
 	{
@@ -112,9 +198,20 @@ public partial class MatchBoard : Node
 		{
 			tile.turnHighlightOff();
 			tile.turnSelectedOff();
+			//tile.mouseExit();
 		}
 		tilesSelected.Clear();
 		tilesAvailibleToBeSelected.Clear();
+	}
+
+	public void clearTilesHovered()
+	{
+		foreach (Tile tile in tileSet)
+		{
+			tile.mouseExit();
+			tile.turnHighlightOff();
+			tile.turnSelectedOff();
+		}
 	}
 
 	public void addTileToSelectedList(Tile tile)
@@ -228,7 +325,7 @@ public partial class MatchBoard : Node
 
 	public void addRandomBlockedTiles(int numberOfTiles)
 	{
-		List<Tile> tiles = getRandomTiles(numberOfTiles);
+		List<Tile> tiles = getRandomTilesWithCondition(numberOfTiles, (tile) => !tile.getIsBlocked());
 		blockTiles(tiles);
 	}
 
@@ -253,14 +350,31 @@ public partial class MatchBoard : Node
 
 	private void updateScoreChanged()
 	{
+		 
 		double currentProgress = progressBar.Value;
 		if (Math.Abs(currentProgress - progressValue) > progressStep)
 		{
 			progressBar.Value = currentProgress + progressStep;
+			movedBarLastStep = true;
 		}
 		else
 		{
+			if (movedBarLastStep) {
+				//Vector2 offset = new Vector2(210, 312);
+				Node2D shimmerNode = (Node2D)sparkleEffect.Instantiate();
+				shimmerNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
+				sparkleArea.AddChild(shimmerNode);
+				//progressBar.TextureProgress.DrawRect
+				double x =  GD.RandRange(0, sparkleArea.GetRect().Size.X);
+				double y =  GD.RandRange(sparkleArea.GetRect().Size.Y - sparkleArea.GetRect().Size.Y * (progressValue/100), sparkleArea.GetRect().Size.Y );
+				shimmerNode.Position = new Vector2((float)x,(float)y);
+
+				//progressBar.progress
+
+				//progressBar.TextureProgress.addChild(shimmerNode);
+			}
 			progressBar.Value = progressValue;
+			movedBarLastStep = false;
 		}
 
 	}
@@ -275,14 +389,28 @@ public partial class MatchBoard : Node
 	public override void _Ready()
 	{
 		//GetNode<Button>("%NewTurnButton").Pressed += () => checkForMatches();
+		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
+		controllerHelper.UsingControllerChanged += clearUIFocus;
+
+		Timer timer = new();
+		AddChild(timer);
+		timer.WaitTime = 3.5f;
+		timer.OneShot = false;
+		timer.Timeout += shineRandomIngredientType;
+		timer.Start();
+
+
+		FindObjectHelper.getSettingsMenu(this).windowOpened += clearUIFocus;
+
 		Vector2 gridSize = FindObjectHelper.getGameManager(this).getGridSize();
 		sizeX = (int)gridSize.X;
 		sizeY = (int)gridSize.Y;
 		progressBar.Value = 0;
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
+		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => setUIFocus(false);
 
-		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel();
+		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel() + "/10";
 
 		score.scoreChange += scoreChanged;
 		score.multChange += (value) =>  {
@@ -356,22 +484,28 @@ public partial class MatchBoard : Node
 				newTile.y = newY;
 
 				newTile.Position = new Vector2(newX * tileSize.X, newY * tileSize.Y);
-				newTile.control.MouseEntered += () => tileHovered(newTile);
+				newTile.control.MouseEntered += () => setTileHovered(newTile);
 				newTile.control.MouseExited += () => clearHover(newTile);
 			}
 		}
 	}
-	private void tileHovered(Tile tile)
+	private void setTileHovered(Tile tile)
 	{
+		tile.mouseEnter();
 		bool tileIsDisabled = checkForTilesToDisable(tile);
 		if (!tileIsDisabled)
 		{
 			checkForExtraHighlightsOnTileHover(tile);
 		}
+		if(tileHovered.HasValue && tileHovered.GetValue() != tile) {
+			tileHovered.GetValue().mouseExit();
+		}
+		tileHovered = Optional.Some(tile);
 	}
 
 	private void clearHover(Tile tile)
 	{
+		tile.turnSelectedOff();
 		tile.setDisabled(false);
 	}
 
@@ -403,10 +537,11 @@ public partial class MatchBoard : Node
 		{
 			return false;
 		}
-		if (tile.Gem != null && !card.getCardResource().cardEffect.canTargetBlackGems && tile.Gem.Type == GemType.Black)
-		{
-			return false;
-		}
+		// letting all cards target burnt ingredients
+		// if (tile.Gem != null && !card.getCardResource().cardEffect.canTargetBlackGems && tile.Gem.Type == GemType.Black)
+		// {
+		// 	return false;
+		// }
 		return true;
 	}
 
@@ -464,6 +599,14 @@ public partial class MatchBoard : Node
 		return scoreMatches(matches);
 	}
 
+	private void shineRandomIngredientType() {
+		GemType type = GemTypeHelper.getRandomColor();
+		List<Gem> gems = getTilesWithColorOfGem(type).Select(tile => tile.Gem).ToList();
+		foreach(Gem gem in gems){
+			gem.shine();
+		}
+	}
+
 	private bool scoreMatches(HashSet<HashSet<Tile>> matches)
 	{
 		HashSet<Vector2> tilesToDeleteGem = new HashSet<Vector2>();
@@ -501,6 +644,8 @@ public partial class MatchBoard : Node
 			EmitSignal(SignalName.ingredientMatched, currentMatch);
 
 		}
+		// if (matches.Count > 0) {
+		// }
 		deleteGemAtPositionsFromMatches(matches);
 		return matches.Count > 0;
 	}
@@ -508,7 +653,7 @@ public partial class MatchBoard : Node
 	public void playMatchSound() {
 		audioStreamPlayer2D.Stream = matchAudioStream;
 		audioStreamPlayer2D.PitchScale = 1.0f + Math.Min(score.getMult() * scorePitchMult, scorePitchMax);
-		audioStreamPlayer2D.setBaseVolumeMult(.60f);
+		audioStreamPlayer2D.setBaseVolumeMult(1f);
 		audioStreamPlayer2D.Play();
 	}
 
@@ -527,7 +672,7 @@ public partial class MatchBoard : Node
 			checkGemsForDrops();
 			thingsAreMoving = true;
 		}
-	}
+}
 
 
 	private void deleteGemAtPosition(Vector2 position, bool playSound)
@@ -761,15 +906,28 @@ public partial class MatchBoard : Node
 	private void gooIntialTiles() {
 		if (FindObjectHelper.getGameManager(this).getGooRightRow())
 		{
-			List<Tile> tilesToBlock = new List<Tile>();
-			for (int y = 0; y < sizeY; y++)
-			{
-				Vector2 currentPosition = new Vector2(sizeX - 1, y);
-				tilesToBlock.Add(getTile(currentPosition));
-
-			}
-			blockTiles(tilesToBlock);
+			gooColumn(sizeX - 1);
 		}
+	}
+
+	public void gooRightMostColumn() {
+		if (FindObjectHelper.getGameManager(this).getGooRightRow())	
+		{
+			gooColumn(sizeX - 2);
+		} else {
+			gooColumn(sizeX - 1);
+		}
+	}
+
+	public void gooColumn(int col) {
+		List<Tile> tilesToBlock = new List<Tile>();
+		for (int y = 0; y < sizeY; y++)
+		{
+			Vector2 currentPosition = new Vector2(col, y);
+			tilesToBlock.Add(getTile(currentPosition));
+
+		}
+		blockTiles(tilesToBlock);
 	}
 
 	private void populateBoard()
@@ -1137,5 +1295,10 @@ public partial class MatchBoard : Node
 	public static explicit operator MatchBoard(Godot.Collections.Array<Node> v)
 	{
 		throw new NotImplementedException();
+	}
+
+	public override void _ExitTree()
+	{
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= clearUIFocus;
 	}
 }

@@ -7,6 +7,7 @@ using System.Linq;
 public partial class GameManager : GameManagerIF
 {
 	int scoreNeededToPass;
+	[Export] RelicResource testRelic;
 
 	[Export] public NewCardSelection newCardSelection;
 	[Export] public RecipeUI recipeUI;
@@ -16,8 +17,8 @@ public partial class GameManager : GameManagerIF
 	[Export] public RelicHolderUI relicHolderUI;
 	[Export] public Array<RelicResource> relicTestResources = new Array<RelicResource>();
 	[Export] public ToggleVisibilityOnButtonPress bossRelicTutorial;
-	[Export] public Control bossRecipeTutorial;
-	[Export] public Control gooTutorial;
+	[Export] public ToggleVisibilityOnButtonPress bossRecipeTutorial;
+	[Export] public ToggleVisibilityOnButtonPress gooTutorial;
 	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public RelicSelection relicSelection;
 	[Export] public LevelListResource levelList;
@@ -39,6 +40,10 @@ public partial class GameManager : GameManagerIF
 	public override void _Ready()
 	{
 		base._Ready();
+		MatchBoard matchboard = FindObjectHelper.getMatchBoard(this);
+		Hand hand = FindObjectHelper.getHand(this);
+
+
 		currentLevel = global.currentLevel;
 		currentLevelResource = levelList.levelResources[currentLevel - 1];
 		if (currentLevel == 1)
@@ -49,7 +54,7 @@ public partial class GameManager : GameManagerIF
 		if (bossRecipe != null)
 		{
 			recipeUI.loadRecipe(bossRecipe);
-			bossRecipeTutorial.Visible = true;
+			bossRecipeTutorial.setVisible(true);
 
 		}
 		if (!getGlobal().shownWelcomeTutorial && !debugMode)
@@ -58,14 +63,16 @@ public partial class GameManager : GameManagerIF
 			getGlobal().shownWelcomeTutorial = true;
 			getGlobal().save();
 		}
-		if (!getGlobal().shownGooTutorial && currentLevelResource.blockedTiles > 0 && !debugMode)
+		if (!getGlobal().shownGooTutorial && currentLevelResource.blockedTiles > 0)
 		{
-			gooTutorial.Visible = true;
+			gooTutorial.setVisible(true);
 			getGlobal().shownGooTutorial = true;
+			hand.setUIFocus(false);
+			gooTutorial.WindowClosedSignal += () => hand.setUIFocus(true);
 		}
 
 		scoreNeededToPass = currentLevelResource.score;
-		if (debugMode)
+		if (debugMode && currentLevel != 10)
 		{
 			scoreNeededToPass = 50;
 			addCoins(100);
@@ -84,23 +91,27 @@ public partial class GameManager : GameManagerIF
 		//score.setHeartsRemaining(global.currentHealth);
 		score.setCoins(getCoins());
 		score.setColorUpgrades(getColorUpgrades().ToList());
-		if (relicTestResources.Count != 0)
+		if (relicTestResources.Count != 0 && getRelics().Count == 0)
 		{
 			foreach (RelicResource relicResource in relicTestResources)
 			{
+				//GD.Print("added relic");
 				addRelic(relicResource);
 			}
 		}
 		FindObjectHelper.getMatchBoard(this).addRandomBlockedTiles(currentLevelResource.blockedTiles);
-		relicHolderUI.setRelicList(getRelics());
 
 		if (currentLevelResource.generateRandomBossRelic)
 		{
 			RelicResource bossRelic = getRandomBossRelic();
-			relicHolderUI.addRelic(bossRelic);
+			addRelic(bossRelic);
+			bossRelicTutorial.WindowClosedSignal += () => hand.setUIFocus(true);
 			bossRelicTutorial.richTextLabel.Text += bossRelic.description;
-			bossRelicTutorial.Visible = true;
+			bossRelicTutorial.setVisible(true);
+			hand.setUIFocus(false);
 		}
+
+		relicHolderUI.setRelicList(getRelics());
 		relicHolderUI.startUpRelics();
 		EmitSignal(SignalName.levelStart);
 		debtDisplay.richTextLabel.Text += "$" + getDebt();
@@ -147,11 +158,7 @@ public partial class GameManager : GameManagerIF
 			} else {
 				gameOverScreen.setUpMainMenu();
 			}
-			gameOverScreen.Visible = true;
-
-			// its joever
-	
-			
+			gameOverScreen.setVisible(true);	
 		}
 		else
 		{
@@ -190,6 +197,7 @@ public partial class GameManager : GameManagerIF
 				FindObjectHelper.getFormSubmitter(this).submitData("win", this);
 				resetGlobals();
 				gameOverScreen.label.Text = "You win!!!";
+				gameOverScreen.setUpMainMenu();
 				int metaCoins = evaluateMetaCoins();
 				gameOverScreen.setMetaCoins(metaCoins);
 				addMetaCoins(metaCoins);
@@ -223,7 +231,8 @@ public partial class GameManager : GameManagerIF
 		List<RelicResource> relicResources = getRelicPool();
 		RandomHelper.Shuffle(relicResources);
 		List<RelicResource> relicsInSelection = relicResources.GetRange(0, Math.Min(3, relicResources.Count));
-		relicSelection.setRelics(relicsInSelection);
+		relicsInSelection.Add(testRelic);
+		relicSelection.setRelics(relicsInSelection, true);
 		relicSelection.WindowClosed += () => advanceLevel();
 		relicSelection.Visible = true;
 	}

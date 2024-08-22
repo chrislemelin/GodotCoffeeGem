@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwrjqabf6g4kj"]
+
+[ext_resource type="Script" path="res://UI/core/ControllerHelper.cs" id="1_bbcmm"]
+
+[node name="ControllerHelper" type="Node" groups=["ControllerHelper"]]
+script = ExtResource("1_bbcmm")

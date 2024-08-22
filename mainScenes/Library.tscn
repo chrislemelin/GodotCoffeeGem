@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://c02hcjop8lqdi"]
+
+[ext_resource type="Script" path="res://UI/Library/LibraryView.cs" id="1_ij17l"]
+[ext_resource type="PackedScene" uid="uid://bsfty3o7345tf" path="res://UI/Library/CardLibraryView.tscn" id="2_0sxlk"]
+[ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="2_27bup"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="2_ayag5"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="3_4haa3"]
+[ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="3_cpy2c"]
+[ext_resource type="PackedScene" uid="uid://daaydajovyobn" path="res://UI/Library/RelicLibraryView.tscn" id="4_8up18"]
+
+[node name="Library" type="Node2D" node_paths=PackedStringArray("cardLibraryView", "relicLibraryView", "showCardLibraryButton", "showRelicLibraryButton")]
+script = ExtResource("1_ij17l")
+showAllCards = true
+cardLibraryView = NodePath("CardLibraryView")
+relicLibraryView = NodePath("RelicLibraryView")
+showCardLibraryButton = NodePath("VBoxContainer/MarginContainer/Cards")
+showRelicLibraryButton = NodePath("VBoxContainer/MarginContainer2/Relics")
+relicList = ExtResource("2_27bup")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 72.0
+offset_top = 471.0
+offset_right = 273.0
+offset_bottom = 603.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Cards" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_ayag5")]
+layout_mode = 2
+text = "Cards"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="Relics" parent="VBoxContainer/MarginContainer2" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("2_ayag5")]
+layout_mode = 2
+text = "Relics"
+hoverAudioplayer = NodePath("../../MarginContainer/Cards/HoverAudioPlayer")
+clickAudioplayer = NodePath("../../MarginContainer/Cards/ClickAudioPlayer")
+
+[node name="CardLibraryView" parent="." instance=ExtResource("2_0sxlk")]
+offset_left = -11.0
+offset_top = 26.0
+offset_right = -11.0
+offset_bottom = 26.0
+
+[node name="RelicLibraryView" parent="." instance=ExtResource("4_8up18")]
+offset_left = -11.0
+offset_top = 25.0
+offset_right = -11.0
+offset_bottom = 25.0
+
+[node name="Button" parent="." instance=ExtResource("3_cpy2c")]
+offset_left = 859.0
+offset_top = 965.0
+offset_right = 1047.0
+offset_bottom = 1017.0
+text = "Main Menu"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_4haa3")]

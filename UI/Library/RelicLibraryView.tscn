@@ -1,0 +1,183 @@
+[gd_scene load_steps=5 format=3 uid="uid://daaydajovyobn"]
+
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_72v6y"]
+[ext_resource type="Script" path="res://UI/Library/RelicLibraryView.cs" id="2_lsqy6"]
+[ext_resource type="PackedScene" uid="uid://bstd7oopim5hb" path="res://UI/Library/RelicMarginContainer.tscn" id="5_kiskl"]
+[ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="6_s2a2i"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("gridContainer", "scrollContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_72v6y")
+script = ExtResource("2_lsqy6")
+relicUIScene = ExtResource("6_s2a2i")
+marginContainerScene = ExtResource("5_kiskl")
+gridContainer = NodePath("ScrollContainer/GridContainer")
+scrollContainer = NodePath("ScrollContainer")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 92.0
+offset_right = 1556.0
+offset_bottom = 883.0
+theme = ExtResource("1_72v6y")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." groups=["CardScrollContainer"]]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 172.0
+offset_right = 759.0
+offset_bottom = 400.0
+scale = Vector2(3, 3)
+follow_focus = true
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+columns = 5
+
+[node name="RelicMarginContainer8" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer8" instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+
+[node name="RelicMarginContainer9" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer9" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RelicMarginContainer10" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer10" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RelicMarginContainer11" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer11" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RelicMarginContainer12" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer12" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RelicMarginContainer13" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer13" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RelicMarginContainer14" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer14" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RelicMarginContainer15" parent="ScrollContainer/GridContainer" instance=ExtResource("5_kiskl")]
+layout_mode = 2
+
+[node name="Control" parent="ScrollContainer/GridContainer/RelicMarginContainer15" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("6_s2a2i")]
+layout_mode = 2
+picture = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+titleLabel = NodePath("../../RelicMarginContainer8/Control/Title")
+counterLabel = NodePath("../../RelicMarginContainer8/Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../../RelicMarginContainer8/Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../../RelicMarginContainer8/Control/RelicUI/TextureRect")
+hitBox = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+costControl = NodePath("../../RelicMarginContainer8/Control/Control")
+buyButton = NodePath("../../RelicMarginContainer8/Control/Control/Button")
+animationPlayer = NodePath("../../RelicMarginContainer8/Control/AnimationPlayer")
+audio = NodePath("../../RelicMarginContainer8/Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../../RelicMarginContainer8/Control/Tooltip")
+target = NodePath("../../RelicMarginContainer8/Control/HoverHitBox")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 755.0
+offset_top = 95.0
+offset_right = 1261.0
+offset_bottom = 181.0
+theme_override_font_sizes/normal_font_size = 100
+text = "Relics Library"

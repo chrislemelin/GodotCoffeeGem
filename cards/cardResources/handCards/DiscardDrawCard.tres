@@ -15,6 +15,8 @@ CoinGems = 0
 DrawCards = 0
 GainMana = 0
 bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
@@ -25,7 +27,7 @@ matchy = false
 
 [resource]
 script = ExtResource("3_e3ayx")
-Title = "Hand Refresh"
+Title = "New Ideas"
 Description = "Discard your hand, then draw a card for each card discarded"
 Cost = 1
 rarity = 0

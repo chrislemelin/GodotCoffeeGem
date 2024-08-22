@@ -16,6 +16,14 @@ temporary = false
 script = ExtResource("2_vj608")
 colorUpgrade = SubResource("Resource_bdpyi")
 value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_b743k")
@@ -27,6 +35,7 @@ lastForOneTurn = false
 lastForOneLevel = true
 gameStartEffects = [SubResource("Resource_wirus")]
 turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
 levelOverEffects = []
 effects = []

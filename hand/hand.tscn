@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=15 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="2_3nowl"]
@@ -11,12 +11,14 @@
 [ext_resource type="AudioStream" uid="uid://balvwdak4qrgk" path="res://sound/Hand/mouseclick1.ogg" id="5_o7eqj"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="9_nslao"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="10_o673s"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="12_dvm32"]
+[ext_resource type="AudioStream" uid="uid://bluw6sm0urufj" path="res://sound/Hand/maximize_008.ogg" id="13_4abvi"]
 
 [sub_resource type="Gradient" id="Gradient_s4lcq"]
 offsets = PackedFloat32Array(0, 0.98503)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
-[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "cardSelectionUI", "sprite2D", "handLine", "audioStreamPlayer2D", "cardSelectedaudioStreamPlayer2D")]
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "cardSelectionUI", "sprite2D", "handLine", "audioStreamPlayer2D", "cardSelectedaudioStreamPlayer2D", "cardHoveraudioStreamPlayer2D", "windowsInFrontOf")]
 position = Vector2(881, 1096)
 scale = Vector2(0.895, 0.895)
 script = ExtResource("1_erkbb")
@@ -27,9 +29,11 @@ sprite2D = NodePath("Node2D")
 handLine = NodePath("Line2D")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 cardSelectedaudioStreamPlayer2D = NodePath("CardSelectedAudioPlayer")
+cardHoveraudioStreamPlayer2D = NodePath("HoverAudioPlayer")
 newHandSoundEffect = ExtResource("3_7bv56")
 cardPlayedSoundEffect = ExtResource("4_hbmsc")
 cardSelectedSoundEffect = ExtResource("5_o7eqj")
+windowsInFrontOf = []
 width = 800
 
 [node name="CardSelectionUI" type="Control" parent="."]
@@ -90,7 +94,7 @@ position = Vector2(1.11731, -6.70384)
 scale = Vector2(3, 1.20864)
 texture = ExtResource("3_sa2h8")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." groups=["HandLine"]]
 texture_filter = 2
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 0, 0, 0, 100)
@@ -111,3 +115,7 @@ script = ExtResource("9_nslao")
 soundEffect = true
 
 [node name="CardContainer" type="Node2D" parent="."]
+
+[node name="HoverAudioPlayer" parent="." instance=ExtResource("12_dvm32")]
+stream = ExtResource("13_4abvi")
+maxValue = 0.0

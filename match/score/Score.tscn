@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=21 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
+[ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="2_yuj2t"]
 [ext_resource type="AudioStream" uid="uid://eufccuj6xdo3" path="res://sound/Score/Voice_Male_V2_Pain_Mono_01.wav" id="3_77qsr"]
 [ext_resource type="PackedScene" uid="uid://b118tqgwxreh4" path="res://match/MatchScoreText.tscn" id="4_q1bh3"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="5_lvyy0"]
@@ -29,6 +30,7 @@ moneyNeededLabel = NodePath("VBoxContainer/Level Progress")
 levelLabel = NodePath("VBoxContainer/Level Label")
 coinsLabel = NodePath("VBoxContainer/CoinsContainer/RichTextLabel")
 metaCoinsLabel = NodePath("VBoxContainer/CoinsContainer2/RichTextLabel")
+explosion = ExtResource("2_yuj2t")
 colorUpgradePreviewBox = NodePath("VBoxContainer/MarginContainer/UpgradeContainer")
 turnColor = Color(0, 1, 0.0509804, 1)
 heartColor = Color(1, 0, 1, 1)

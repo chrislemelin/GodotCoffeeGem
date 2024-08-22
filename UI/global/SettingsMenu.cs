@@ -8,12 +8,17 @@ public partial class SettingsMenu : Node
 	[Export] public HSlider musicSlider;
 	[Export] CheckBox dataCollectionCheckBox;
 	[Export] Button quitButton;
-	[Export] Button closeButton;
+	[Export] CustomButton closeButton;
 	[Export] Button mainMenuButton;
 	[Export] Button visibleButton;
 	[Export] CheckBox fullScreenCheckBox;
 	[Export] OptionButton resolutionsOptionButton;
 	[Export] Panel panel;
+	[Signal] public delegate void windowClosedEventHandler();
+	[Signal] public delegate void windowOpenedEventHandler();
+	[Export] private TextureRect controllerTexture;
+
+
 
 	private Dictionary<String, Vector2> resolutionDictionary =  new Dictionary<String, Vector2> () {
 		{"1366 × 768", new Vector2(1366,768)},
@@ -26,12 +31,17 @@ public partial class SettingsMenu : Node
 	public override void _Ready()
 	{
 		base._Ready();
+		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
+		setVisibilityOnControllerTexture(controllerHelper.isUsingController());
+		controllerHelper.UsingControllerChanged += setVisibilityOnControllerTexture;
+
+
 		setUpResolutions();
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 		panel.Visible = false;
 		quitButton.Pressed += () => quitGame();
-		visibleButton.Pressed += () => panel.Visible = !panel.Visible;
-		closeButton.Pressed += () => panel.Visible = !panel.Visible;
+		visibleButton.Pressed += () => openWindow();
+		closeButton.Pressed += () => closeWindow();
 		
 		sfxSlider.Value = gameManagerIF.getSFXVolume();
 		sfxSlider.ValueChanged += (value) => gameManagerIF.setSFXVolume((float)value); 
@@ -65,7 +75,46 @@ public partial class SettingsMenu : Node
 		}
 	}
 
+	private void setVisibilityOnControllerTexture(bool usingController){
+		controllerTexture.Visible = FindObjectHelper.getControllerHelper(this).isUsingController();
+	}
+
 	private void quitGame () {
 		FindObjectHelper.getFormSubmitter(this).submitData("quit", FindObjectHelper.getGameManager(this), () =>  GetTree().Quit());
+	}
+
+	public bool isVisible() {
+		return panel.Visible;
+	}
+
+
+	private void openWindow() {
+		panel.Visible = true;
+		EmitSignal(SignalName.windowOpened);
+		FindObjectHelper.getControllerHelper(this).forceDeselection();
+
+	}
+	private void closeWindow() {
+		panel.Visible = false;
+		EmitSignal(SignalName.windowOpened);
+		FindObjectHelper.getControllerHelper(this).refreshFocus();
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("ui_settings"))
+		{
+			if(!panel.Visible) {
+				openWindow();
+				closeButton.checkForFocus();
+			} else {
+				closeWindow();
+			}
+		}
+	}
+	public override void _ExitTree()
+	{
+		FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= setVisibilityOnControllerTexture;
+		base._ExitTree();
 	}
 }

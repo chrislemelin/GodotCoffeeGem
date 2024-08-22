@@ -21,4 +21,14 @@ public static class TextHelper
 	public static string spliceText(string text, int lineLength) {
 		return Regex.Replace(text, "(.{" + lineLength + "})", "$1" + System.Environment.NewLine);
 	}
+	public static string colorText(string text, string color) {
+		return "[color=" + color + "]" + text + "[/color]";
+		//[color=blue]blue[/color]
+	}
+
+	public static string colorText(string text, Color color) {
+		return "[color=" + color.ToHtml() + "]" + text + "[/color]";
+		//[color=blue]blue[/color]
+	}
+
 }

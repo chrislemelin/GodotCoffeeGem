@@ -16,8 +16,8 @@ public partial class DayOver : Control
 	[Export] Control relicShop;
 	[Export] PackedScene relicUIPackedScene;
 
+	[Export] CustomButton advanceLevelCustomButton;
 
-	[Export] Button advanceLevelButton;
 	[Export] HomeGameManager gameManager;
 
 	[Export] RichTextLabel confirmationText;
@@ -42,7 +42,7 @@ public partial class DayOver : Control
 
 	private CardResource? cardToReplace;
 
-	[Export] DeckViewUI deckListUI;
+	[Export] DeckViewUI deckViewUI;
 
 
 	public override void _Ready()
@@ -57,6 +57,7 @@ public partial class DayOver : Control
 		buttonWithCoinCost.Add(upgradeCardButton);
 		buttons.AddRange(buttonWithCoinCost);
 
+		//
 
 		foreach(ButtonWithCoinCost buttonWithCoinCost in buttonWithCoinCost) {
 			buttonWithCoinCost.setCurrentCoin(gameManager.getCoins());
@@ -85,7 +86,7 @@ public partial class DayOver : Control
 		}
 
 		removeCardFromDeckButton.Pressed += () => {
-			deckListUI.setUp(gameManager.getDeckList(), removeCardFromDeck, TextHelper.centered("Remove Card From Deck"));
+			deckViewUI.setUp(gameManager.getDeckList(), removeCardFromDeck, TextHelper.centered("Remove Card From Deck"));
 			confirmationText.Text = "Removed Card from Deck";
 		};
 
@@ -110,7 +111,7 @@ public partial class DayOver : Control
 			((HomeGameManager)gameManager).selectNewCard();
 		};
 		relicButton.Pressed += addRelic;
-		advanceLevelButton.Pressed += () => gameManager.advanceLevel();
+		advanceLevelCustomButton.Pressed += () => gameManager.advanceLevel();
 		coinsChanged(gameManager.getCoins());
 	}
 
@@ -131,11 +132,16 @@ public partial class DayOver : Control
 	}
 
 	private void addRelic() {
-		List<RelicResource> relicResources = gameManager.getRelicPool();
-		RandomHelper.Shuffle(relicResources);
-		List<RelicResource> relicsInSelection = relicResources.GetRange(0,Math.Min(3,relicResources.Count));
-		relicSelection.setRelics(relicsInSelection);
-		relicSelection.Visible = true;
+		if (relicSelection.hasSetUpRelics) {
+			relicSelection.setToVisible();
+		} else {
+			List<RelicResource> relicResources = gameManager.getRelicPool();
+			RandomHelper.Shuffle(relicResources);
+			List<RelicResource> relicsInSelection = relicResources.GetRange(0,Math.Min(3,relicResources.Count));
+			relicSelection.setRelics(relicsInSelection, false);
+			relicSelection.Visible = true;
+			relicSelection.WindowClosed += () => advanceLevelCustomButton.checkForFocus();
+		}
 	}
 
 	private void upgradeCard() {
@@ -178,7 +184,7 @@ public partial class DayOver : Control
 			relicUI.buyButton.Pressed += () => {
 
 				subtractCoins(relicResource);
-				advanceLevelButton.Disabled = false;
+				advanceLevelCustomButton.Disabled = false;
 				confirmationText.Text = "Purchased " + relicResource.title;
 				gameManager.addRelic(relicResource);
 				relicUI.QueueFree();
@@ -203,7 +209,7 @@ public partial class DayOver : Control
 	}
 
 	private void cardClicked(InputEvent inputEvent, CardResource cardResource, CardInfoLoader cardInfoLoader, MarginContainer marginContainer) {
-		if (inputEvent.IsActionPressed("click"))
+		if (InputHelper.isSelectedAction(inputEvent))
 		{
 			if (gameManager.getCoins() >= cardResource.getCoinCost() && cardsInShop.Contains(cardInfoLoader)) {
 				gameManager.addCoins(-1 * cardResource.getCoinCost());
