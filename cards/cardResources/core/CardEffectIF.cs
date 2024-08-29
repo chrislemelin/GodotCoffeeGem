@@ -28,14 +28,21 @@ public partial class CardEffectIF : Resource
 	[Export] public bool canTargetBlackGems = true;
 	[Export] public CardEffectGemType effectGemType { get; set; }
 	[Export] public CardPassive cardPassiveToApplyToHand;
+	[Export] public Array<GemType> cannotSelectGemTypes = new Array<GemType>();
+
+
 	[Signal] public delegate void CardPassivesChangedEventHandler();
 	[Signal] public delegate void ValueChangedEventHandler();
 	[Signal] public delegate void CustomTextChangedEventHandler();
+
+	public Optional<Gem> firstSelectedGem = Optional.None<Gem>();
 
 	// KEYWORDS
 	[Export] public bool consume = false;
 	[Export] public bool retain = false;
 	[Export] public bool matchy = false;
+	[Export] public bool spendX = false;
+	public int spendXValue = 0;
 
 	public Node node;
 
@@ -58,6 +65,15 @@ public partial class CardEffectIF : Resource
 	public void turnOver()
 	{
 		cardPassives.RemoveAll(passive => passive.expireAfterTurnEnd);
+	}
+
+	public virtual bool canTargetTile(Tile tile) {
+		if (tile.Gem == null) {
+			return true;
+		} if (cannotSelectGemTypes.Contains(tile.Gem.Type)) {
+			return false;
+		}
+		return true;
 	}
 
 	public void doEffect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles, Optional<CardIF> cardMaybe)
@@ -120,7 +136,11 @@ public partial class CardEffectIF : Resource
 	public List<CardPassive> getPassives()
 	{
 		if (bonusActive()) {
-			return cardPassives.Concat(bonusPassives.ToList()).ToList();
+			List<CardPassive> bonusCardPassives = new List<CardPassive>();
+			for (int a = 0; a < bonusValue(); a++) {
+				bonusCardPassives.AddRange(bonusPassives.ToList());
+			}
+			return cardPassives.Concat(bonusCardPassives).ToList();
 		} else {
 			return cardPassives;
 		}
@@ -168,6 +188,12 @@ public partial class CardEffectIF : Resource
 	{
 		return false;
 	}
+
+	protected virtual int bonusValue()
+	{
+		return 1;
+	}
+
 
 	public virtual SelectionType getSelectionType()
 	{

@@ -29,6 +29,8 @@ public partial class Hand : ControllerInput
 	[Signal] public delegate void cardDrawnEventHandler(CardResource cardResource);
 	[Signal] public delegate void cardDrawnNotFromNewTurnEventHandler(CardResource cardResource);
 	[Signal] public delegate void cardPlayedEventHandler(CardResource cardResource);
+	[Signal] public delegate void handChangedEventHandler();
+
 
 	List<CardIF> cards = new List<CardIF>();
 	List<CardResource> cardsPlayedThisTurn = new List<CardResource>();
@@ -46,6 +48,7 @@ public partial class Hand : ControllerInput
 
 	[Export]
 	int width = 400;
+	[Export] float hoverUpDistance = 90;
 
 	public void modifyNewCardsDrawnOnNewTurn(int value) {
 		cardsDrawnOnNewTurn += value;
@@ -101,19 +104,27 @@ public partial class Hand : ControllerInput
 
 	private void playCard(CardIF card, List<Vector2> positions)
 	{
-		if (mana.manaValue >= card.getCardResource().getEnergyCost())
+		if (mana.manaValue >= card.getCardResource().getEnergyCost() && card.getEnabled())
 		{
 			EmitSignal(SignalName.cardPlayed, card.getCardResource());
 			discardCard(card, true);
+			int manaCost = card.getCardResource().getEnergyCost();
+			if (card.getCardResource().cardEffect.spendX) {
+				manaCost = mana.manaValue;
+				card.getCardResource().cardEffect.spendXValue = manaCost;
+			}
+
 			card.playCard(matchBoard, this, mana, positions);
 			cardsPlayedThisTurn.Add(card.getCardResource());
 			audioStreamPlayer2D.Stream = cardPlayedSoundEffect;
 			audioStreamPlayer2D.Play();
-			mana.modifyMana(card.getCardResource().getEnergyCost() * -1);
+
+			mana.modifyMana(manaCost* -1);
 			clearSelectedCard();
 			card.getCardResource().cardEffect.turnOver();
 			checkCardsForDisabeling();
 			changeHoveredCard(0);
+			EmitSignal(SignalName.handChanged);
 		}
 	}
 
@@ -146,7 +157,7 @@ public partial class Hand : ControllerInput
 		newcard.listenToMouseExit(() => clearCardHovered());
 		cards.Add(newcard);
 
-		Vector2 startingPosition = getPositionForCard(cards.Count - 1);
+		Vector2 startingPosition = getPositionForCardV2(cards.Count - 1);
 		newcard.Position = startingPosition + new Vector2(0, 200);
 
 		repositionCards();
@@ -154,6 +165,7 @@ public partial class Hand : ControllerInput
 		EmitSignal(SignalName.cardDrawn, cardResource);
 		if (!fromNewTurn){
 			EmitSignal(SignalName.cardDrawnNotFromNewTurn, cardResource);
+			EmitSignal(SignalName.handChanged);
 		}
 		return true;
 	}
@@ -183,7 +195,7 @@ public partial class Hand : ControllerInput
 
 	private void setSelectedCard(CardIF card)
 	{
-		if (mana.manaValue >= card.getCardResource().getEnergyCost())
+		if (mana.manaValue >= card.getCardResource().getEnergyCost() && card.getEnabled())
 		{
 			playCardSelectedSound();
 			clearSelectedCard();
@@ -213,7 +225,7 @@ public partial class Hand : ControllerInput
 	{
 		foreach (CardIF card in cards)
 		{
-			if (card.getCardResource().getEnergyCost() > mana.manaValue)
+			if (card.getCardResource().getEnergyCost() > mana.manaValue || !card.getCardResource().canPlayCard())
 			{
 				card.setDisabled();
 			}
@@ -247,17 +259,19 @@ public partial class Hand : ControllerInput
 
 	private void setCardHovered(Optional<CardIF> card)
 	{
+		if(card.HasValue && cardHovered.HasValue && card.GetValue() == cardHovered.GetValue()) {
+			return;
+		} 
+
 		if (cardHovered.HasValue && IsInstanceValid(cardHovered.GetValue()))
 		{
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()));
-			cardHovered.GetValue().highlightOnHover.setForceHighlight(false);
 		}
 		cardHovered = card;
 		if (cardHovered.HasValue)
 		{
-			cardHovered.GetValue().highlightOnHover.setForceHighlight(true);
 			cardContainer.MoveChild(cardHovered.GetValue(), cards.Count);
-			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * 55);
+			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * hoverUpDistance);
 		}
 		else
 		{
@@ -265,7 +279,6 @@ public partial class Hand : ControllerInput
 			foreach (CardIF currentCard in cards)
 			{
 				cardContainer.MoveChild(currentCard, count);
-				currentCard.highlightOnHover.setForceHighlight(false);
 				count++;
 			}
 		}
@@ -305,23 +318,23 @@ public partial class Hand : ControllerInput
 		
 	}
 
-	public void discardCard(CardIF card, bool playingCard)
+	public void discardCard(CardIF card, bool playingCard, bool keepRetain = true)
 	{
-		if (!card.getCardResource().cardEffect.retain || playingCard) {
+		if (!card.getCardResource().cardEffect.retain || playingCard || !keepRetain) {
 			cards.Remove(card);
 			card.delete();
-			if (!card.getCardResource().cardEffect.consume) {
+			if (!card.getCardResource().cardEffect.consume || !playingCard) {
 				discard.addCard(card.getCardResource());
 			}
 			repositionCards();
 		}
 	}
 
-	public void discardHand()
+	public void discardHand(bool keepRetain = true)
 	{
 		foreach (CardIF card in cards.ToList())
 		{
-			discardCard(card, false);
+			discardCard(card, false, keepRetain);
 			// discard.addCard(card.getCardResource());
 			// card.delete();
 		}
@@ -394,7 +407,7 @@ public partial class Hand : ControllerInput
 		}
 		if (@event.IsActionPressed("space"))
 		{
-			//deck.drawCards(1);
+			//deck.drawCards(1, false);
 		}
 
 		if(@event.IsActionPressed("ui_accept") && hasUIFocus)

@@ -48,6 +48,8 @@ public partial class Score : Node2D
 	public delegate void multChangeEventHandler(float mult);
 	[Signal]
 	public delegate void multGainedEventHandler(float mult);
+	[Signal]
+	public delegate void levelPassedEventHandler();
 
 	private float muiltResetValue = 1.0f;
 	private int score;
@@ -96,12 +98,22 @@ public partial class Score : Node2D
 		setHeartsRemaining(gameManagerIF.getHealth());
 	}
 
+	public int calculateCoinsGained () {
+		if(score > scoreNeeded*2) {
+			return 50;
+		}
+		if (score >= scoreNeeded * 1.5) {
+			return 35;
+		}
+		return 20;
+	}
+
 	public void newturn()
 	{
 		setMult(muiltResetValue);
-		if (scoreReached())
+		if (scoreReached() && getTurnsRemaining() == 0)
 		{
-			setTurnsRemaining(turnsRemaining - 1);
+			//setTurnsRemaining(turnsRemaining - 1);
 			gameManager.evaluateLevel();
 			return;
 		}
@@ -156,6 +168,10 @@ public partial class Score : Node2D
 				gameManager.evaluateLevel();
 			}
 		}
+	}
+
+	public void evaluateLevel() {
+		gameManager.evaluateLevel();
 	}
 
 	public void playOofSound() {
@@ -419,7 +435,8 @@ public partial class Score : Node2D
 	{
 		if (scoreReached() && levelCleared == false)
 		{
-			gameManager.evaluateLevel();
+			EmitSignal(SignalName.levelPassed);
+			//gameManager.evaluateLevel();
 			levelCleared = true;
 		}
 	}
@@ -549,7 +566,7 @@ public partial class Score : Node2D
 	{
 		if (@event.IsActionPressed("space"))
 		{
-			addMult(.25f);
+			//addMult(.25f);
 			//GetTree().Paused = true;
 		}
 	}

@@ -9,7 +9,9 @@ public partial class CardResource : Resource
 	[Export] public CardRarity rarity = CardRarity.Common;
 	[Export] public Texture2D Picture { get; private set; }
 	[Export] private int coinCost { get; set; }
-	[Export] public bool playable { get; set; }
+	//[Export] public bool playable { get; set; } = true; 
+	[Export] public int coinPlayRequirement { get; set; } = 0;
+	[Export] public int coinPlayCost { get; set; } = 0;
 	public Node node;
 
 	[Export] public CardEffectIF cardEffect { get; set; }
@@ -39,9 +41,26 @@ public partial class CardResource : Resource
 		return Math.Max(cost, 0);
 	}
 
+	public bool canPlayCard() {
+		// if(!playable) {
+		// 	return false;
+		// }
+		GameManagerIF gameManager = FindObjectHelper.getGameManager(node);
+		if (coinPlayRequirement > gameManager.getCoins()) {
+			return false;
+		}
+		if (coinPlayCost > gameManager.getCoins()) {
+			return false;
+		}
+		return true;
+	}
+
 	public string getEnergyCostString()
 	{
 		int cost = getEnergyCost();
+		if (cardEffect.spendX){
+			return "X";
+		}
 		if (cost != Cost)
 		{
 			return "[color=#2c8518]" + cost.ToString() + "[/color]";
@@ -79,8 +98,14 @@ public partial class CardResource : Resource
 
 		//var values = Enum.GetValues(typeof(Foos));
 		foreach(GemType gemType in Enum.GetValues(typeof(GemType))) {
-			newDescription = newDescription.Replace(gemType.getString(), TextHelper.colorText(gemType.getString(), gemType.GetColor()));
+			newDescription = newDescription.Replace(gemType.getString(), TextHelper.getIngredientImage(gemType));
 		}
+		newDescription = newDescription.Replace("$energy", TextHelper.getEnergyImage());
+		newDescription = newDescription.Replace("$draw", TextHelper.getCardImage());
+		//newDescription = newDescription.Replace("card", TextHelper.getCardImage());
+
+		newDescription = newDescription.Replace("$coin", TextHelper.getCoinImage());
+
 
 		// newDescription = newDescription.Replace("coffee", TextHelper.colorText("coffee", "brown"));
 		// newDescription = newDescription.Replace("leaf", TextHelper.colorText("leaf", "green"));

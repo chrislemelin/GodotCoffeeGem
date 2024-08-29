@@ -12,7 +12,7 @@ public partial class SmallerBoardCardEffect : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		//FindObjectHelper.getScore(node).addMult(matchBoard.getColumnsRemoved() * multIncrease);
+		FindObjectHelper.getScore(node).addMult(matchBoard.getColumnsRemoved() * multIncrease);
 	}
 
 	public override string getValueString()
@@ -22,13 +22,12 @@ public partial class SmallerBoardCardEffect : CardEffectIF
 		{
 			return "";
 		}
-		return"";
-		//return matchBoard.getColumnsRemoved() + "";
+		return matchBoard.getColumnsRemoved() + "";
 	}
 
 	public override void init (){
 		base.init();
-		//FindObjectHelper.getMatchBoard(node).boardSizeChanged += () => EmitSignal(SignalName.CustomTextChanged);
+		FindObjectHelper.getMatchBoard(node).boardSizeChanged += () => EmitSignal(SignalName.CustomTextChanged);
 
 	}
 

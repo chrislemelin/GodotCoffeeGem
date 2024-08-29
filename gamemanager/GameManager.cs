@@ -15,10 +15,13 @@ public partial class GameManager : GameManagerIF
 	[Export] public GameOverScreen gameOverScreen;
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
+	[Export] public HighScoreDisplay highScoreDisplay;
 	[Export] public Array<RelicResource> relicTestResources = new Array<RelicResource>();
 	[Export] public ToggleVisibilityOnButtonPress bossRelicTutorial;
 	[Export] public ToggleVisibilityOnButtonPress bossRecipeTutorial;
+	[Export] public ToggleVisibilityOnButtonPress overTimeTutorial;
 	[Export] public ToggleVisibilityOnButtonPress gooTutorial;
+	[Export] public ToggleVisibilityOnButtonPress gameBeatenTutorial;
 	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public RelicSelection relicSelection;
 	[Export] public LevelListResource levelList;
@@ -75,7 +78,7 @@ public partial class GameManager : GameManagerIF
 		if (debugMode && currentLevel != 10)
 		{
 			scoreNeededToPass = 50;
-			addCoins(100);
+			addCoins(200);
 		}
 		if (endlessMode || getGlobal().zenMode)
 		{
@@ -116,9 +119,25 @@ public partial class GameManager : GameManagerIF
 		EmitSignal(SignalName.levelStart);
 		debtDisplay.richTextLabel.Text += "$" + getDebt();
 
+		score.levelPassed += checkForOverTimeTutorial;
+
 		//EmitSignal(SignalName.levelStart);
 		//startDialouge(dialougeResource);
 
+	}
+
+	private void checkForOverTimeTutorial () {
+		if (currentLevel == 1 && !getGlobal().shownOvertimeTutorial && false) {
+			overTimeTutorial.setVisible(true);
+			getGlobal().shownOvertimeTutorial = true;
+			getGlobal().save();
+		}
+	}
+
+	private void checkForGameOver () {
+		if (gameBeaten()) {
+			gameBeatenTutorial.setVisible(true);
+		}
 	}
 
 	private Optional<Resource> getDialouge()
@@ -134,9 +153,14 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 
-	public void startDialouge(Resource dialougeResource)
-	{
-		DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
+	// public void startDialouge(Resource dialougeResource)
+	// {
+	// 	DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
+	// }
+
+	public bool gameBeaten() {
+		return true;
+		//return currentLevel == levelList.levelResources.Count;
 	}
 
 	public void evaluateLevel()
@@ -148,8 +172,8 @@ public partial class GameManager : GameManagerIF
 			resetGlobals();
 			int metaCoins = evaluateMetaCoins();
 			changeDebt(-metaCoins);
-			gameOverScreen.setMetaCoins(metaCoins);
-			addMetaCoins(metaCoins);
+			
+
 			if (unlockableCardPack.HasValue) {
 				gameOverScreen.restartButton.Pressed+= () => {
 					FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
@@ -188,35 +212,37 @@ public partial class GameManager : GameManagerIF
 
 	public void nextLevel()
 	{
-		GetTree().CreateTimer(.5f).Timeout += () => {
-			levelCompleteAudioPlayer.Play();
-			EmitSignal(SignalName.levelOver);
-			setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
-			if (currentLevel == levelList.levelResources.Count)
-			{
-				FindObjectHelper.getFormSubmitter(this).submitData("win", this);
-				resetGlobals();
-				gameOverScreen.label.Text = "You win!!!";
-				gameOverScreen.setUpMainMenu();
-				int metaCoins = evaluateMetaCoins();
-				gameOverScreen.setMetaCoins(metaCoins);
-				addMetaCoins(metaCoins);
-				gameOverScreen.Visible = true;
-				return;
-			}
+		levelCompleteAudioPlayer.Play();
+		EmitSignal(SignalName.levelOver);
+		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
+		getGlobal().totalScore += score.getScore();
+		if (currentLevel == levelList.levelResources.Count)
+		{
+			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
+			resetGlobals();
+			gameOverScreen.label.Text = "You win!!!";
+			gameOverScreen.setUpMainMenu();
+			int metaCoins = evaluateMetaCoins();
+			gameOverScreen.setMetaCoins(metaCoins);
+			addMetaCoins(metaCoins);
+			gameOverScreen.Visible = true;
 
-			if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe)
-			{
-				levelComplete.WindowClosedSignal += () => selectRandomRelic();
-			}
-			else
-			{
-				levelComplete.WindowClosedSignal += () => advanceLevel();
-			}
-			int coinsGained = 20 + Math.Max(0, score.getTurnsRemaining()) * 10;
-			levelComplete.setCoinsGained(coinsGained);
-			addCoins(coinsGained);
-		};
+			highScoreDisplay.Visible = true;
+			highScoreDisplay.addHighScore(getGlobal().totalScore);
+			return;
+		}
+
+		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe)
+		{
+			levelComplete.WindowClosedSignal += () => selectRandomRelic();
+		}
+		else
+		{
+			levelComplete.WindowClosedSignal += () => advanceLevel();
+		}
+		int coinsGained = score.calculateCoinsGained();
+		levelComplete.setCoinsGained(coinsGained);
+		addCoins(coinsGained);
 	}
 
 	private RelicResource getRandomBossRelic()

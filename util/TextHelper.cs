@@ -30,5 +30,45 @@ public static class TextHelper
 		return "[color=" + color.ToHtml() + "]" + text + "[/color]";
 		//[color=blue]blue[/color]
 	}
+	public static string justify(string text) {
+		return "[fill]" + text + "[/fill]";
+	}
+
+	public static string getIngredientImage(GemType gemType) {
+		if (gemType.Equals(GemType.Coffee)) {
+			return imgStarter()+"res://placeholders/cards/icons/bean-icon.png[/img]";
+		}
+		if (gemType.Equals(GemType.Leaf)) {
+			return imgStarter()+"res://placeholders/cards/icons/leaf-icon.png[/img]";
+		}
+		if (gemType.Equals(GemType.Sugar)) {
+			return imgStarter()+"res://placeholders/cards/icons/sugar-icon.png[/img]";
+		}
+		if (gemType.Equals(GemType.Milk)) {
+			return imgStarter()+"res://placeholders/cards/icons/milk-icon.png[/img]";
+		}
+		if (gemType.Equals(GemType.Vanilla)) {
+			return imgStarter()+"res://placeholders/cards/icons/vanilla-icon.png[/img]";
+		}
+		if (gemType.Equals(GemType.Black)) {
+			return imgStarter()+"res://placeholders/cards/icons/burn-icon.png[/img]";
+		}
+		return "";
+	}
+
+	public static string imgStarter(){
+		return "[img with=22 height=22]";
+	}
+
+	public static string getEnergyImage() {
+		return imgStarter()+"res://placeholders/cards/icons/energy-icon.png[/img]";
+	}
+
+	public static string getCardImage() {
+		return imgStarter()+"res://placeholders/cards/icons/card-icon.png[/img]";
+	}
+	public static string getCoinImage() {
+		return imgStarter()+"res://placeholders/cards/icons/coin-icon.png[/img]";
+	}
 
 }

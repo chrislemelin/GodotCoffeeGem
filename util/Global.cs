@@ -15,7 +15,10 @@ public partial class Global : Node
 	private const String SFX_VOLUME_SAVE_NAME = "sfxVolume";
 	private const String DEBT_SAVE_NAME = "debt";
 	private const String TUTORIAL_SAVE_NAME = "seenTutorial";
+	private const String TUTORIAL_OVERTIME_SAVE_NAME = "seenOvertimeTutorial";
+
 	private const String NUMBER_OF_LEVELS_PLAYED = "numberOfLevelsPlayed";
+	private const String LEADER_BOARD_SCORE = "leaderboardScore";
 
 	public CardList deckCardList = null;
 	public Array<ColorUpgrade> colorUpgrades = new Array<ColorUpgrade>();
@@ -32,15 +35,20 @@ public partial class Global : Node
 	public int currentCoins = 0;
 	public int currentMetaCoins = 0;
 	public int allCoinsGained = 0;
+	public int totalScore = 0;
 	public int numberOfCardsToChoose = 3;
 	public bool shownBossTutorial = false;
 	public bool shownWelcomeTutorial = false;
+	public bool shownOvertimeTutorial = false;
 	public bool shownGooTutorial = false;
 	public bool gooRightRow = false;
 	public bool collectData = true;
 	public int userId = -1;
 	public float musicVolume = .5f;
 	public float sfXvolume = .5f;
+
+	private int highScoreMax = 8;
+	private List<Tuple<String,int>> highScores = new List<Tuple<string, int>>() {new Tuple<string, int>("chris L", 100), new Tuple<string, int>("your mom", 1)};
 
 	public Vector2 gridSize = new Vector2(6, 5);
 
@@ -59,6 +67,7 @@ public partial class Global : Node
 		maxHealth = 2;
 		currentCoins = 0;
 		allCoinsGained = 0;
+		totalScore = 0;
 		numberOfCardsToChoose = 3;
 		shownBossTutorial = false;
 		shownGooTutorial = false;
@@ -76,6 +85,7 @@ public partial class Global : Node
 		{
 			load();
 		}
+		addNewHighScore(new Tuple<string, int>("your mom", 1));
 	}
 
 	public void save()
@@ -93,12 +103,16 @@ public partial class Global : Node
 		saveDict.Add(DEBT_SAVE_NAME, debt.ToString());
 		saveDict.Add(TUTORIAL_SAVE_NAME, shownWelcomeTutorial.ToString());
 		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfCardsToChoose.ToString());
+		saveDict.Add(TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial.ToString());
+		for(int scoreCount = 0; scoreCount < highScores.Count; scoreCount++) {
+			saveDict.Add(LEADER_BOARD_SCORE + scoreCount,getScoreString(highScores[scoreCount]));
+		} 
 
 		var jsonString = Json.Stringify(saveDict);
 		// Store the save dictionary as a new line in the save file.
 		userIdSave.StoreLine(jsonString);
-
 	}
+
 
 	private void load()
 	{
@@ -123,7 +137,50 @@ public partial class Global : Node
 		musicVolume = tryLoadFloat(nodeData, MUSIC_VOLUME_SAVE_NAME, musicVolume);
 		debt = tryLoadInt(nodeData, DEBT_SAVE_NAME, debt);
 		shownWelcomeTutorial = tryLoadBool(nodeData, TUTORIAL_SAVE_NAME, shownWelcomeTutorial);
+		shownOvertimeTutorial = tryLoadBool(nodeData, TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial);
 		numberOfLevelsPlayed = tryLoadInt(nodeData, NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed);
+		
+		int scoreCount = 0;
+		highScores.Clear();
+		while (true) {
+			String key = LEADER_BOARD_SCORE + scoreCount++;
+			if (nodeData.ContainsKey(key)){
+				highScores.Add(loadScoreFromString(nodeData[key]));
+			} else {
+				break;
+			}
+		} 
+	}
+
+	public void addNewHighScore(Tuple<String, int> newHighScore) {
+		bool addedToScore = false;
+		for(int scoreCount = 0; scoreCount < highScores.Count; scoreCount++) {
+			if (newHighScore.Item2 > highScores[scoreCount].Item2) {
+				highScores.Insert(scoreCount, newHighScore);
+				addedToScore = true;
+				break;
+			}
+		}
+		if (!addedToScore) {
+			highScores.Add(newHighScore);
+		}
+		if (highScores.Count > highScoreMax) {
+			highScores.RemoveAt(highScores.Count -1);
+		}
+		save(); 
+	}
+
+	public List<Tuple<String,int>> getHighScores() {
+		return highScores;
+	}
+	
+	private String getScoreString(Tuple<String, int> value) {
+		return value.Item1 +","+ value.Item2.ToString();
+	}
+
+	private Tuple<String,int> loadScoreFromString(String value) {
+		String [] stringArray = value.Split(",");
+		return new Tuple<String, int>(stringArray[0], int.Parse(stringArray[1]));
 	}
 
 	private float tryLoadFloat(Godot.Collections.Dictionary<String, String> nodeData, String name, float defaultValue) {

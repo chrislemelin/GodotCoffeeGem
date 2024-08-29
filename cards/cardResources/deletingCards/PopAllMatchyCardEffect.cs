@@ -32,12 +32,12 @@ public partial class PopAllMatchyCardEffect : CardEffectIF
 		return false;
 	}
 
-	//protected override int bonusValue() {
-		//MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
-		//if (matchBoard == null)
-		//{
-			//return 1;
-		//}
-		//return matchBoard.getMatchesThisTurn(GemType.Milk).Count;
-	//}
+	protected override int bonusValue() {
+		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
+		if (matchBoard == null)
+		{
+			return 1;
+		}
+		return matchBoard.getMatchesThisTurn(GemType.Milk).Count;
+	}
 }

@@ -17,6 +17,6 @@ public partial class GenerateSugarFromMoneyCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		int totalValue = FindObjectHelper.getGameManager(node).getCoins() / coinValue;
-		//matchBoard.changeGemsColorAtRandomPositions(GemType.Sugar, totalValue);
+		matchBoard.changeGemsColorAtRandomPositions(GemType.Sugar, totalValue);
 	}
 }
