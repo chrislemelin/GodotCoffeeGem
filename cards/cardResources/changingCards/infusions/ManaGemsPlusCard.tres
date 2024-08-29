@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ilwedgxbjrlf"]
 
-[ext_resource type="Texture2D" uid="uid://doomwu3hv0d03" path="res://cards/cardResources/cardArt/EnergyInfusion2.png" id="1_5px0i"]
+[ext_resource type="Texture2D" uid="uid://ds87yedysf6hg" path="res://cards/cardResources/cardArt/final/CardArtEnergyInfusion.png" id="1_fen4k"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/CardEffectAddAddonGems.cs" id="1_qr4sx"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_yasco"]
 
@@ -36,7 +36,7 @@ Title = "Energy Infusion +"
 Description = "Generate $manaGems$energy infusion and +1burnt"
 Cost = 0
 rarity = 1
-Picture = ExtResource("1_5px0i")
+Picture = ExtResource("1_fen4k")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

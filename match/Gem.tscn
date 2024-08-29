@@ -1,7 +1,8 @@
 [gd_scene load_steps=29 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
-[ext_resource type="Texture2D" uid="uid://b6peubx0dryva" path="res://placeholders/cards/card_back_background.png" id="3_835wl"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="2_s4a32"]
+[ext_resource type="Texture2D" uid="uid://dql1c2i3xlnlg" path="res://placeholders/cards/icons/card-icon.png" id="3_6ufkm"]
 [ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="5_0i62a"]
 [ext_resource type="Shader" path="res://cards/shaders/rainbowSmooth.gdshader" id="5_2oikk"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="5_qlodo"]
@@ -16,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="11_3xbkf"]
 [ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/StyleBoxes/ComboStyleBox.tres" id="12_bexrd"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShaderGem.gdshader" id="12_tqi6i"]
-[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="14_jq5a0"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="18_uiucv"]
 [ext_resource type="AudioStream" uid="uid://berjxlmfkhik0" path="res://sound/MatchBoard/bong_001.ogg" id="19_ohci2"]
 
@@ -190,8 +190,8 @@ script = ExtResource("2_5yd20")
 sprite2D = NodePath("CanvasGroup/GemSprite")
 addonSprite = NodePath("CanvasGroup/AddonParent/GemAddon")
 comboTextLabel = NodePath("CanvasGroup/AddonParent/ComboLabel")
-manaAddonTexture = ExtResource("14_jq5a0")
-cardAddonTexture = ExtResource("3_835wl")
+manaAddonTexture = ExtResource("2_s4a32")
+cardAddonTexture = ExtResource("3_6ufkm")
 lockAddonTexture = ExtResource("10_pd7po")
 coinAddonTexture = ExtResource("11_3xbkf")
 metaCoinAddonTexture = ExtResource("6_kq7p0")
@@ -251,8 +251,9 @@ position = Vector2(204, 189)
 scale = Vector2(0.3, 0.3)
 
 [node name="GemAddon" type="Sprite2D" parent="CanvasGroup/AddonParent"]
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("14_jq5a0")
+texture_filter = 1
+scale = Vector2(13, 13)
+texture = ExtResource("2_s4a32")
 
 [node name="ComboLabel" type="RichTextLabel" parent="CanvasGroup/AddonParent"]
 visible = false

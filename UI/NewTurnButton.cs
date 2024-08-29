@@ -39,21 +39,30 @@ public partial class NewTurnButton : CustomButton
 	}
 
 	private void newTurn() {
-		if (!FindObjectHelper.getScore(this).scoreReached() || ((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten()) {
+		Score score = FindObjectHelper.getScore(this);
+		if (!score.isLevelOver()) {
+			if (goingToLoseHeart()) {
+				Disabled = true;
+				TooltipText = "You will lose a heart if you end the turn, its time to go home";
+				return;
+			}
+
 			EmitSignal(SignalName.BeforeTurnCleanUp);
 			EmitSignal(SignalName.TurnCleanUp);
 			EmitSignal(SignalName.AfterTurnCleanUp);
-			Score score = FindObjectHelper.getScore(this);
-			//if (!score.isLevelOver()) {
-				EmitSignal(SignalName.StartNewTurn);
-			//}
-			if (score.scoreReached() && score.getTurnsRemaining() == 0 && !((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten()) {
+			EmitSignal(SignalName.StartNewTurn);
+			if (goingToLoseHeart()) {
 				Disabled = true;
 				TooltipText = "You will lose a heart if you end the turn, its time to go home";
 			}
 		} else {
 			FindObjectHelper.getScore(this).newturn();
 		}
+	}
+
+	private bool goingToLoseHeart() {
+		Score score = FindObjectHelper.getScore(this);
+		return  score.scoreReached() && score.getTurnsRemaining() == 0 && !((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten();
 	}
 
 	public override void _Input(InputEvent @event)

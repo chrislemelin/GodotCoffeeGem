@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c6ylqsiiiroao"]
 
-[ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_38l2n"]
+[ext_resource type="Texture2D" uid="uid://bvw14mko0a4p1" path="res://cards/cardResources/cardArt/final/CardArtBean.png" id="1_u1dr0"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/generateX/CardEffectManaSpend.cs" id="2_d1qqf"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_vr5jf"]
 
@@ -33,7 +33,7 @@ Title = "Big Bean Blast"
 Description = "Spend all energy, create 3X coffee where X is equal to the total energy spent"
 Cost = 1
 rarity = 2
-Picture = ExtResource("1_38l2n")
+Picture = ExtResource("1_u1dr0")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

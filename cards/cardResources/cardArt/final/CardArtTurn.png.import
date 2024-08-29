@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clb24jhbqxgqx"
-path="res://.godot/imported/PopX.png-d869bd8f47ef43d38503c4d62df2bb75.ctex"
+uid="uid://d4cb2brlcsvl8"
+path="res://.godot/imported/CardArtTurn.png-fc888f2204902baa3e9f2d71b9313fa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cards/cardResources/cardArt/PopX.png"
-dest_files=["res://.godot/imported/PopX.png-d869bd8f47ef43d38503c4d62df2bb75.ctex"]
+source_file="res://cards/cardResources/cardArt/final/CardArtTurn.png"
+dest_files=["res://.godot/imported/CardArtTurn.png-fc888f2204902baa3e9f2d71b9313fa9.ctex"]
 
 [params]
 

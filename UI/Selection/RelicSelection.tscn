@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ts55nghwgqu3"]
+[gd_scene load_steps=6 format=3 uid="uid://ts55nghwgqu3"]
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_kmfb8"]
 [ext_resource type="Script" path="res://UI/Selection/RelicSelection.cs" id="1_wta24"]
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_wwgpp"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_gpnmu"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_hhfiq"]
 
 [node name="RelicSelection" type="Control" node_paths=PackedStringArray("relicHolder", "skipButton") groups=["RelicSelection"]]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_wwgpp")
 script = ExtResource("1_wta24")
 relicHolder = NodePath("Control/PassiveShop")
 relicUIPackedScene = ExtResource("2_gpnmu")
@@ -17,7 +19,6 @@ skipButton = NodePath("Control/VBoxContainer/SkipSelection")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1082.0
-theme = ExtResource("1_kmfb8")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0

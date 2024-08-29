@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ep23i25f2iax"]
 
-[ext_resource type="Texture2D" uid="uid://5j0gjjus280f" path="res://cards/cardResources/cardArt/coin.png" id="1_8m5mi"]
+[ext_resource type="Texture2D" uid="uid://b4qmqdkvoinsw" path="res://cards/cardResources/cardArt/final/CardArtCoin.png" id="1_2fu8l"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/SugarCoinGemsCardEffect.cs" id="2_u1f7r"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_r7hle"]
 
@@ -33,7 +33,7 @@ Title = "Sweet Money"
 Description = "Give all sugar a $coin infusion"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_8m5mi")
+Picture = ExtResource("1_2fu8l")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

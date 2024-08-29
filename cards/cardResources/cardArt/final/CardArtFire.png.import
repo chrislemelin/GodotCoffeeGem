@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqlndcj4w4oiq"
-path="res://.godot/imported/SugarX.png-55b15781753dcdb6caef0f8647597edc.ctex"
+uid="uid://0kcc4ss3d2fa"
+path="res://.godot/imported/CardArtFire.png-3b254033ce72da710d1a3b28da31975c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cards/cardResources/cardArt/SugarX.png"
-dest_files=["res://.godot/imported/SugarX.png-55b15781753dcdb6caef0f8647597edc.ctex"]
+source_file="res://cards/cardResources/cardArt/final/CardArtFire.png"
+dest_files=["res://.godot/imported/CardArtFire.png-3b254033ce72da710d1a3b28da31975c.ctex"]
 
 [params]
 

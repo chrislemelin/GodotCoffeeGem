@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=50 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
@@ -20,7 +20,6 @@
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="16_vds2c"]
 [ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://placeholders/Map/guy.png" id="17_718sm"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="17_tyewm"]
-[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="24_1i55l"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="24_a84c2"]
@@ -653,16 +652,17 @@ position = Vector2(-0.5, -13.5)
 texture = ExtResource("17_718sm")
 
 [node name="Tutorial" type="Panel" parent="."]
-offset_left = 615.0
-offset_top = 391.0
+offset_left = 596.0
+offset_top = 385.0
 offset_right = 999.0
-offset_bottom = 551.0
+offset_bottom = 536.0
 theme = ExtResource("16_vds2c")
 
 [node name="HelperText" type="RichTextLabel" parent="Tutorial"]
 layout_mode = 0
-offset_right = 381.0
-offset_bottom = 154.0
+offset_top = 4.0
+offset_right = 399.0
+offset_bottom = 158.0
 theme_override_fonts/normal_font = ExtResource("17_tyewm")
 theme_override_font_sizes/normal_font_size = 36
 text = "Click top or bottom buildings to choose a path to get back home"
@@ -681,6 +681,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("16_vds2c")
 script = ExtResource("7_7gh4s")
 title = NodePath("Forground/Control/title")
 description = NodePath("Forground/Control/description")
@@ -700,9 +701,8 @@ use_parent_material = true
 layout_mode = 0
 offset_left = 551.0
 offset_top = 1200.0
-offset_right = 1420.0
-offset_bottom = 1769.0
-theme = ExtResource("22_epuo7")
+offset_right = 1205.0
+offset_bottom = 1671.0
 
 [node name="Control" type="Control" parent="MapEventText/Forground"]
 use_parent_material = true
@@ -715,10 +715,10 @@ offset_bottom = -257.0
 [node name="title" type="RichTextLabel" parent="MapEventText/Forground/Control"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 675.0
-offset_top = 287.0
-offset_right = 1288.0
-offset_bottom = 363.0
+offset_left = 538.0
+offset_top = 279.0
+offset_right = 1151.0
+offset_bottom = 355.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
@@ -727,10 +727,10 @@ text = "[center]TITLE TEXT"
 [node name="description" type="RichTextLabel" parent="MapEventText/Forground/Control"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 678.0
-offset_top = 367.0
-offset_right = 1291.0
-offset_bottom = 730.0
+offset_left = 534.0
+offset_top = 368.0
+offset_right = 1147.0
+offset_bottom = 621.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Title Description"
@@ -738,10 +738,10 @@ text = "Title Description"
 [node name="Continue2" parent="MapEventText/Forground/Control" instance=ExtResource("29_8180u")]
 layout_mode = 0
 anchors_preset = 0
-offset_left = 892.0
-offset_top = 742.5
-offset_right = 1046.0
-offset_bottom = 794.5
+offset_left = 754.0
+offset_top = 665.0
+offset_right = 908.0
+offset_bottom = 717.0
 grow_horizontal = 1
 grow_vertical = 1
 text = "Continue"

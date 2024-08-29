@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bfn60jdh2miwr"]
 
-[ext_resource type="Texture2D" uid="uid://5j0gjjus280f" path="res://cards/cardResources/cardArt/coin.png" id="1_6q71o"]
+[ext_resource type="Texture2D" uid="uid://b4qmqdkvoinsw" path="res://cards/cardResources/cardArt/final/CardArtCoin.png" id="1_2bevi"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/CardEffectAddAddonGems.cs" id="2_th7u6"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_s78f5"]
 
@@ -34,7 +34,7 @@ Title = "Coin Infusion"
 Description = "Generate $moneyGems$coin infusions and +1$draw"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_6q71o")
+Picture = ExtResource("1_2bevi")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

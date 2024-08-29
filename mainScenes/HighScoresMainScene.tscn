@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpb146sg4gsn"]
+
+[ext_resource type="Script" path="res://gamemanager/GameManagerIF.cs" id="1_5il4t"]
+[ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="1_ed3gs"]
+[ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="2_qaswr"]
+[ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="3_63mu1"]
+
+[node name="HighScoresMainScene" type="Node2D"]
+script = ExtResource("1_5il4t")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("1_ed3gs")]
+
+[node name="HighScoreDisplay" parent="." instance=ExtResource("2_qaswr")]
+
+[node name="Button" parent="." instance=ExtResource("3_63mu1")]
+offset_left = 855.0
+offset_top = 919.0
+offset_right = 1055.0
+offset_bottom = 963.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "Main Menu"

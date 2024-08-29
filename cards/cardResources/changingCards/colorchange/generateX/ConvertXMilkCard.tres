@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cg102gasldtb2"]
 
-[ext_resource type="Texture2D" uid="uid://xqk1jrhdags6" path="res://cards/cardResources/cardArt/milk.png" id="1_1rgai"]
+[ext_resource type="Texture2D" uid="uid://cgod0p7dca388" path="res://cards/cardResources/cardArt/final/CardArtMilk.png" id="1_o48gu"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/generateX/GenerateMilkFromBurntCardEffect.cs" id="2_kis5s"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_05knp"]
 
@@ -33,7 +33,7 @@ Title = "Milk Delivery"
 Description = "Generate a milk for each burnt"
 Cost = 1
 rarity = 2
-Picture = ExtResource("1_1rgai")
+Picture = ExtResource("1_o48gu")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

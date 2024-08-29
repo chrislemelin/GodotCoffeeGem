@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxavdfi52bnxv"]
+[gd_scene load_steps=10 format=3 uid="uid://cxavdfi52bnxv"]
 
 [ext_resource type="Script" path="res://UI/Selection/NewCardSelection.cs" id="1_ey31r"]
-[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_wj53c"]
+[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="2_wj53c"]
+[ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="2_ymanv"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_hkya8"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_tow0o"]
 [ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="5_65464"]
@@ -21,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_ey31r")
-cardUIPackagedScene = ExtResource("2_wj53c")
+cardUIPackagedScene = ExtResource("2_ymanv")
 cardContainer = NodePath("Control/HBoxContainer")
 skipButton = NodePath("Control/VBoxContainer2/MarginContainer/SkipSelection")
 coinsGainedLabel = NodePath("Control/VBoxContainer/HBoxContainer2/RichTextLabel")

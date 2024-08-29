@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://70kmw430310t"]
 
-[ext_resource type="Texture2D" uid="uid://b1wkforncfw8s" path="res://cards/cardResources/cardArt/turnOrb.png" id="1_dnpda"]
+[ext_resource type="Texture2D" uid="uid://d4cb2brlcsvl8" path="res://cards/cardResources/cardArt/final/CardArtTurn.png" id="1_in72k"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/CardEffectAddTurn.cs" id="1_u6y8r"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_ux33c"]
 
@@ -33,7 +33,7 @@ Title = "Time Management"
 Description = "Gain an additional turn. You must have 150$coin to play and and costs 50$coin."
 Cost = 1
 rarity = 2
-Picture = ExtResource("1_dnpda")
+Picture = ExtResource("1_in72k")
 coinCost = 50
 coinPlayRequirement = 150
 coinPlayCost = 0

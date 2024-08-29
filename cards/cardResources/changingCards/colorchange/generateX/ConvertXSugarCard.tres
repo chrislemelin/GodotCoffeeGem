@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cocohmastewkl"]
 
-[ext_resource type="Texture2D" uid="uid://pts4w3vk8d2i" path="res://cards/cardResources/cardArt/sugar.png" id="1_utdov"]
+[ext_resource type="Texture2D" uid="uid://bh5oqf0o5616l" path="res://cards/cardResources/cardArt/final/CardArtSugar.png" id="1_w7cbs"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/generateX/GenerateSugarFromMoneyCardEffect.cs" id="2_6wrjn"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_lbu72"]
 
@@ -34,7 +34,7 @@ Title = "Expensive Treat"
 Description = "Generate sugar for each 25 $coin you have."
 Cost = 2
 rarity = 2
-Picture = ExtResource("1_utdov")
+Picture = ExtResource("1_w7cbs")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

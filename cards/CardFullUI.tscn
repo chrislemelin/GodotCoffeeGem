@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dicb3wwg7ecmd"]
+[gd_scene load_steps=33 format=3 uid="uid://xqowqlr2ls21"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_16axm"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]

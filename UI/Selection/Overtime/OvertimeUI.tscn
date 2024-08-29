@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bt53pbibh6p76"]
 
-[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_1k324"]
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_4ppjq"]
 [ext_resource type="Script" path="res://UI/Selection/Overtime/OvertimeUI.cs" id="1_w76rk"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="3_x7tya"]
 [ext_resource type="AudioStream" uid="uid://d2eypcf71h7dg" path="res://sound/Score/pour.mp3" id="4_t5us1"]
@@ -70,6 +70,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_top = -500.0
 offset_bottom = -500.0
+theme = ExtResource("1_4ppjq")
 script = ExtResource("1_w76rk")
 animationPlayer = NodePath("Control/AnimationPlayer")
 
@@ -85,7 +86,6 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 305.0
 offset_bottom = 114.0
-theme = ExtResource("1_1k324")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0

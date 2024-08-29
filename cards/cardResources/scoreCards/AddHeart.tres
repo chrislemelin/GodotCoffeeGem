@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://wmstccurf1xr"]
 
-[ext_resource type="Texture2D" uid="uid://dfp1fpahwaslh" path="res://cards/cardResources/cardArt/heart.png" id="1_88206"]
+[ext_resource type="Texture2D" uid="uid://cg62plfgimspm" path="res://cards/cardResources/cardArt/final/CardArtHeart.png" id="1_254yl"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/CardEffectAddHeart.cs" id="1_uq515"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_qyj6d"]
 
@@ -33,7 +33,7 @@ Title = "Lunch Break"
 Description = "Gain a heart and draw a card. Costs 10$coin to play"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_88206")
+Picture = ExtResource("1_254yl")
 coinCost = 10
 coinPlayRequirement = 0
 coinPlayCost = 0

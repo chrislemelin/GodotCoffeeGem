@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://liaexlmjhrer"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_1pux1"]
-[ext_resource type="Texture2D" uid="uid://2k3qe88tbrv1" path="res://cards/cardResources/cardArt/vanilla.png" id="1_wkidi"]
+[ext_resource type="Texture2D" uid="uid://b2vdud8hw60hv" path="res://cards/cardResources/cardArt/final/CardArtVanilla.png" id="1_fdx55"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_6ct6l"]
 [ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_f4jeq"]
 
@@ -46,7 +46,7 @@ Title = "Vanilla Shot"
 Description = "Change selection to vanilla. If this makes a 4+ match, gain 0.25 mult"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_wkidi")
+Picture = ExtResource("1_fdx55")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

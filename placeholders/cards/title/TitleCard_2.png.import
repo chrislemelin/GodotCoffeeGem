@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0j2i7s3ing3b"
-path="res://.godot/imported/PixelGradient-bean-example.png-1bc2b52feb3936e11cb7763f2a4c8f9c.ctex"
+uid="uid://d2s5varkshtoj"
+path="res://.godot/imported/TitleCard_2.png-be088ad8256aaaf7a018a6fcde5ca040.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cards/cardResources/cardArt/final/PixelGradient-bean-example.png"
-dest_files=["res://.godot/imported/PixelGradient-bean-example.png-1bc2b52feb3936e11cb7763f2a4c8f9c.ctex"]
+source_file="res://placeholders/cards/title/TitleCard_2.png"
+dest_files=["res://.godot/imported/TitleCard_2.png-be088ad8256aaaf7a018a6fcde5ca040.ctex"]
 
 [params]
 

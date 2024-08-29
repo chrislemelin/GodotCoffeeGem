@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://dem6i4eb31m22"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_fo6fs"]
-[ext_resource type="Texture2D" uid="uid://xqk1jrhdags6" path="res://cards/cardResources/cardArt/milk.png" id="1_h41v4"]
+[ext_resource type="Texture2D" uid="uid://cgod0p7dca388" path="res://cards/cardResources/cardArt/final/CardArtMilk.png" id="1_y7k5k"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_bf3qq"]
 [ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_c0jlh"]
 
@@ -46,7 +46,7 @@ Title = "Milky Splash"
 Description = "Change selection to milk. If this makes a 4+ match, +1$draw, +1$energy, +1burnt"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_h41v4")
+Picture = ExtResource("1_y7k5k")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

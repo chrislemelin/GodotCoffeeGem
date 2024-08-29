@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://dyreny5skf6al"]
 
-[ext_resource type="Texture2D" uid="uid://3ifn8i2rt7bp" path="res://cards/cardResources/cardArt/leaf.png" id="1_eog86"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_ttigb"]
+[ext_resource type="Texture2D" uid="uid://cobvl40uaorkx" path="res://cards/cardResources/cardArt/final/CardArtTea.png" id="1_yx221"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_1klox"]
 [ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_k0r8f"]
 
@@ -46,7 +46,7 @@ Title = "Tea Blend"
 Description = "Change selection to tea. If this makes a 4+ match, +1$draw"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_eog86")
+Picture = ExtResource("1_yx221")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

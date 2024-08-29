@@ -445,8 +445,8 @@ public partial class Score : Node2D
 		if (((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten()) {
 			return false;
 		}
-		if(levelCleared || levelLost){
-			return true;
+		if(levelLost){
+		 	return true;
 		}
 		return false;
 	}

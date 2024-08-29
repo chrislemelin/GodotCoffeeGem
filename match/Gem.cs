@@ -215,13 +215,13 @@ public partial class Gem : lerp
 			case GemAddonType.Mana:
 				addonSprite.Visible = true;
 				addonSprite.Texture = manaAddonTexture;
-				addonSprite.Scale = new Vector2(1.3f, 1.3f);
+				addonSprite.Scale = new Vector2(13f, 13f);
 				control.TooltipText = "Gain a mana when this ingredient is matched";
 				break;
 			case GemAddonType.Card:
 				addonSprite.Visible = true;
 				addonSprite.Texture = cardAddonTexture;
-				addonSprite.Scale = new Vector2(.5f, .5f);
+				addonSprite.Scale = new Vector2(10f, 10f);
 				control.TooltipText = "Draw a card when this ingredient is matched";
 				break;
 			case GemAddonType.Combo:

@@ -17,12 +17,11 @@
 offsets = PackedFloat32Array(0, 0.98503)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
-[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "cardSelectionUI", "sprite2D", "handLine", "audioStreamPlayer2D", "cardSelectedaudioStreamPlayer2D", "cardHoveraudioStreamPlayer2D", "windowsInFrontOf")]
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "sprite2D", "handLine", "audioStreamPlayer2D", "cardSelectedaudioStreamPlayer2D", "cardHoveraudioStreamPlayer2D", "windowsInFrontOf")]
 position = Vector2(881, 1096)
 script = ExtResource("1_erkbb")
 cardTemplate = ExtResource("2_oq25s")
 cardContainer = NodePath("CardContainer")
-cardSelectionUI = NodePath("")
 sprite2D = NodePath("Node2D")
 handLine = NodePath("Line2D")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")

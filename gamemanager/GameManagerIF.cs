@@ -332,6 +332,11 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().gridSize;
 	}
 
+	public int getTotalScore()
+	{
+		return getGlobal().totalScore;
+	}
+
 	public void changeGridSize(Vector2 newSize)
 	{
 		getGlobal().gridSize = newSize;

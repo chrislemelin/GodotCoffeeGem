@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://eaj30vxpmibo"]
 
-[ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_v8ehh"]
+[ext_resource type="Texture2D" uid="uid://bvw14mko0a4p1" path="res://cards/cardResources/cardArt/final/CardArtBean.png" id="1_nfc86"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_lw0vr"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/matchScoreCards/MatchScoreCardEffect.cs" id="2_p8r7u"]
 
@@ -33,7 +33,7 @@ Title = "Coffee Snob"
 Description = "Gain 75 points for each coffee match made this turn. ($value)"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_v8ehh")
+Picture = ExtResource("1_nfc86")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

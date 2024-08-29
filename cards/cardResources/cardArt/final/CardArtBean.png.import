@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diyl1x5d6wtiv"
-path="res://.godot/imported/leafX.png-cc9f493a919f5a1b73bf565ed97ec206.ctex"
+uid="uid://bvw14mko0a4p1"
+path="res://.godot/imported/CardArtBean.png-478dd8a78dbf2fb1e904b1fcccf3e468.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cards/cardResources/cardArt/leafX.png"
-dest_files=["res://.godot/imported/leafX.png-cc9f493a919f5a1b73bf565ed97ec206.ctex"]
+source_file="res://cards/cardResources/cardArt/final/CardArtBean.png"
+dest_files=["res://.godot/imported/CardArtBean.png-478dd8a78dbf2fb1e904b1fcccf3e468.ctex"]
 
 [params]
 

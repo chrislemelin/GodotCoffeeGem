@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dex5w6urlnq21"]
 
-[ext_resource type="Texture2D" uid="uid://2k3qe88tbrv1" path="res://cards/cardResources/cardArt/vanilla.png" id="1_8g37x"]
+[ext_resource type="Texture2D" uid="uid://b2vdud8hw60hv" path="res://cards/cardResources/cardArt/final/CardArtVanilla.png" id="1_y3vkm"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ag7td"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/matchScoreCards/MatchScoreCardEffect.cs" id="2_aj33s"]
 
@@ -33,7 +33,7 @@ Title = "Vanilla Enjoyer"
 Description = "Gain 75 points for each vanilla match made this turn. ($value)"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_8g37x")
+Picture = ExtResource("1_y3vkm")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

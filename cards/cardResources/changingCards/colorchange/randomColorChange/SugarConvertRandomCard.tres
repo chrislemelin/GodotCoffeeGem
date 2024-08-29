@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://oov7pb8y5mml"]
 
-[ext_resource type="Texture2D" uid="uid://pts4w3vk8d2i" path="res://cards/cardResources/cardArt/sugar.png" id="1_3mefo"]
+[ext_resource type="Texture2D" uid="uid://bh5oqf0o5616l" path="res://cards/cardResources/cardArt/final/CardArtSugar.png" id="1_05cvs"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_4km1i"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_vkrsl"]
 
@@ -33,7 +33,7 @@ Title = "Sugar Spray"
 Description = "Generate $valuesugar. If this creates a match, +1$draw"
 Cost = 0
 rarity = 0
-Picture = ExtResource("1_3mefo")
+Picture = ExtResource("1_05cvs")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bjsuryep3kbde"]
 
-[ext_resource type="Texture2D" uid="uid://cytuvv870755s" path="res://cards/cardResources/cardArt/Card_card-infusion.png" id="1_m6hox"]
+[ext_resource type="Texture2D" uid="uid://d3sb80c3770q4" path="res://cards/cardResources/cardArt/final/CardArtCardInfusion.png" id="1_dplkk"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/CardEffectAddAddonGems.cs" id="1_qt74m"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_7gcs6"]
 
@@ -34,7 +34,7 @@ Title = "Draw Infusion"
 Description = "Generate $cardGems$draw infusions and +1burnt"
 Cost = 0
 rarity = 0
-Picture = ExtResource("1_m6hox")
+Picture = ExtResource("1_dplkk")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

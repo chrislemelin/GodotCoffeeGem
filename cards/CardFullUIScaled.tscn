@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://leg736b6h2y8"]
+[gd_scene load_steps=33 format=3 uid="uid://leg736b6h2y8"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_xhiom"]
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="2_7taos"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="5_d6w1h"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_lxe20"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="8_w01ue"]
+[ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="9_bx1fj"]
 [ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="9_edgwy"]
+[ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://placeholders/cards/title/TitleCard_4.png" id="9_ppdhl"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_wq4eo"]
 [ext_resource type="FontFile" uid="uid://csv4wx1x3e6nd" path="res://fonts/ZX OCR-B.ttf" id="12_dtfe5"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="13_5mymq"]
@@ -30,7 +32,7 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_4b35t")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_emh0e"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mpfsw"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lyich"]
 noise = SubResource("FastNoiseLite_emh0e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
@@ -38,16 +40,16 @@ shader = ExtResource("4_ukscn")
 shader_parameter/dissolve_value = 1.0
 shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
 shader_parameter/line_thickness = 5.0
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_mpfsw")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_lyich")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ytrd"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a0hml"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqyc8"]
 shader = ExtResource("4_ukscn")
 shader_parameter/dissolve_value = 0.623
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = null
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_8ytrd")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_a0hml")
 
 [sub_resource type="Animation" id="Animation_jdv37"]
 resource_name = "CardFlip"
@@ -372,7 +374,7 @@ offset_bottom = 12.0
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Picture"]
-modulate = Color(0.196078, 0.196078, 0.196078, 1)
+texture_filter = 1
 use_parent_material = true
 layout_mode = 0
 offset_left = -22.0
@@ -380,7 +382,7 @@ offset_top = 26.0
 offset_right = 187.0
 offset_bottom = 149.0
 mouse_filter = 2
-texture = ExtResource("9_wq4eo")
+texture = ExtResource("9_bx1fj")
 expand_mode = 1
 
 [node name="Title" type="Control" parent="Center"]
@@ -398,12 +400,21 @@ modulate = Color(0.756863, 0.607843, 0.105882, 1)
 use_parent_material = true
 layout_mode = 0
 offset_left = -45.0
-offset_top = 9.0
+offset_top = 12.0
 offset_right = 164.0
-offset_bottom = 39.0
+offset_bottom = 37.0
 mouse_filter = 2
 texture = ExtResource("9_wq4eo")
 expand_mode = 1
+
+[node name="TitleBackground" type="TextureRect" parent="Center/Title"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -48.0
+offset_top = 9.0
+offset_right = 167.0
+offset_bottom = 39.0
+texture = ExtResource("9_ppdhl")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
 texture_filter = 1
@@ -411,7 +422,7 @@ use_parent_material = true
 layout_mode = 0
 offset_left = -34.0
 offset_top = 9.0
-offset_right = 159.0
+offset_right = 158.0
 offset_bottom = 39.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -519,10 +530,10 @@ libraries = {
 [node name="ShineTexture" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_muung")
 layout_mode = 0
-offset_left = 15.0
-offset_top = 21.0
-offset_right = 277.0
-offset_bottom = 369.0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 276.0
+offset_bottom = 365.0
 mouse_filter = 2
 texture = ExtResource("9_wq4eo")
 expand_mode = 1

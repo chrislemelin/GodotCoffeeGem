@@ -45,7 +45,6 @@ _data = {
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
-anchors_preset = -1
 offset_right = 96.0
 offset_bottom = 44.0
 grow_horizontal = 2

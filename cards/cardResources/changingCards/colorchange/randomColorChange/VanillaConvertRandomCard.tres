@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ct0cmbf354u4s"]
 
-[ext_resource type="Texture2D" uid="uid://2k3qe88tbrv1" path="res://cards/cardResources/cardArt/vanilla.png" id="1_t172a"]
+[ext_resource type="Texture2D" uid="uid://b2vdud8hw60hv" path="res://cards/cardResources/cardArt/final/CardArtVanilla.png" id="1_k0v3x"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_f4atw"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_dsxvr"]
 
@@ -33,7 +33,7 @@ Title = "Vanilla Spray"
 Description = "Generate $valuevanilla. If this creates a match, +1$draw"
 Cost = 0
 rarity = 0
-Picture = ExtResource("1_t172a")
+Picture = ExtResource("1_k0v3x")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

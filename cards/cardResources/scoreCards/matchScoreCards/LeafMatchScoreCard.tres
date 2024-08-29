@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c06mdr4c6v02b"]
 
-[ext_resource type="Texture2D" uid="uid://3ifn8i2rt7bp" path="res://cards/cardResources/cardArt/leaf.png" id="1_42fix"]
+[ext_resource type="Texture2D" uid="uid://cobvl40uaorkx" path="res://cards/cardResources/cardArt/final/CardArtTea.png" id="1_p8i0h"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/matchScoreCards/MatchScoreCardEffect.cs" id="2_oq5iu"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_w81lr"]
 
@@ -33,7 +33,7 @@ Title = "Tea Snob"
 Description = "Gain 75 points for each tea match made this turn. ($value)"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_42fix")
+Picture = ExtResource("1_p8i0h")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

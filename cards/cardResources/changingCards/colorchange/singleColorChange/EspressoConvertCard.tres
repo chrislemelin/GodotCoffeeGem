@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://c0t40mre00w4j"]
 
-[ext_resource type="Texture2D" uid="uid://d0j2i7s3ing3b" path="res://cards/cardResources/cardArt/final/PixelGradient-bean-example.png" id="1_6ijym"]
+[ext_resource type="Texture2D" uid="uid://bvw14mko0a4p1" path="res://cards/cardResources/cardArt/final/CardArtBean.png" id="1_3la3f"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_fj0od"]
 [ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_2cywm"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_2hfyw"]
@@ -46,7 +46,7 @@ Title = "Espresso Shot"
 Description = "Change selection to coffee. If this makes a 4+ match, +1$energy"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_6ijym")
+Picture = ExtResource("1_3la3f")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

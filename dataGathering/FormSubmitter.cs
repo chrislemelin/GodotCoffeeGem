@@ -72,6 +72,7 @@ public partial class FormSubmitter : HttpRequest
 			data = appendData(data, "entry.1443935098", gameManager.getAllCoinsGained().ToString());
 
 			data = appendData(data, "entry.537817310", gameManager.getGridSize().ToString());
+			data = appendData(data, "entry.1063162396", gameManager.getTotalScore().ToString());
 
 			DeckSelectionResource deckSelection = gameManager.getDeckSelection();
 			if (deckSelection != null)

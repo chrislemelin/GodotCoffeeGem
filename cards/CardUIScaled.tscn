@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://l8epp33hnkdj"]
+[gd_scene load_steps=22 format=3 uid="uid://l8epp33hnkdj"]
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_o0n2r"]
 [ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="3_y8rao"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_rpy3w"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_0idb8"]
+[ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="10_mexxn"]
 [ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="11_0iboy"]
+[ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://placeholders/cards/title/TitleCard_4.png" id="11_y5hev"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="13_txhnh"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="15_cbp0x"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="16_wj50d"]
@@ -31,17 +33,38 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = null
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_0j14q")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x58mq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mpfsw"]
+noise = SubResource("FastNoiseLite_x58mq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ax7x"]
+shader = ExtResource("15_cbp0x")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
+shader_parameter/line_thickness = 5.0
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_mpfsw")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ytrd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oofnv"]
+shader = ExtResource("15_cbp0x")
+shader_parameter/dissolve_value = 0.623
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = null
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_8ytrd")
+
 [node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite", "toolTipText")]
 position = Vector2(474, 266)
 script = ExtResource("1_o0n2r")
-control = NodePath("Center2/HitBox")
-titleLabel = NodePath("Center2/Title/RichTextLabel")
-descriptionLabel = NodePath("Center2/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("Center2/EnergyCost/RichTextLabel")
-picture = NodePath("Center2/Picture/Sprite2D")
-highlightOnHover = NodePath("Center2/Background")
+control = NodePath("Center/HitBox")
+titleLabel = NodePath("Center/Title/RichTextLabel")
+descriptionLabel = NodePath("Center/Description2/VBoxContainer2/RichTextLabel")
+costLabel = NodePath("Center/EnergyCost/RichTextLabel")
+picture = NodePath("Center/Picture/Sprite2D")
+highlightOnHover = NodePath("Center/Background")
 disabledColor = Color(0.560784, 0.560784, 0.560784, 1)
-titleSprite = NodePath("Center2/Title/Sprite2D")
+titleSprite = NodePath("Center/Title/Sprite2D")
 toolTipText = NodePath("Tooltip")
 speed = 750.0
 
@@ -57,6 +80,7 @@ text = "this is a test tooltip"
 fit_content = true
 
 [node name="Center2" type="Control" parent="."]
+visible = false
 use_parent_material = true
 custom_minimum_size = Vector2(235, 296)
 layout_mode = 3
@@ -78,7 +102,7 @@ offset_bottom = 352.0
 texture = ExtResource("3_y8rao")
 expand_mode = 1
 script = ExtResource("6_rpy3w")
-area2D = NodePath("../HitBox")
+area2D = NodePath("../../Center/HitBox")
 forceHighlightColor = Color(0, 1, 0, 1)
 makeBiggerScale = 1.0
 
@@ -137,6 +161,7 @@ mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center2/Picture"]
 modulate = Color(0.196078, 0.196078, 0.196078, 1)
+texture_filter = 1
 use_parent_material = true
 layout_mode = 0
 offset_left = -22.0
@@ -231,7 +256,191 @@ text = "[center]0"
 fit_content = true
 scroll_active = false
 
-[node name="HitBox" type="Control" parent="Center2"]
+[node name="Center" type="Control" parent="."]
+use_parent_material = true
+custom_minimum_size = Vector2(235, 296)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -124.0
+offset_top = -154.0
+offset_right = 152.0
+offset_bottom = 203.0
+pivot_offset = Vector2(125, 150)
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="Center" node_paths=PackedStringArray("area2D")]
+material = SubResource("ShaderMaterial_7ax7x")
+layout_mode = 2
+offset_left = -11.0
+offset_top = -28.0
+offset_right = 274.0
+offset_bottom = 352.0
+texture = ExtResource("3_y8rao")
+expand_mode = 1
+script = ExtResource("6_rpy3w")
+area2D = NodePath("../HitBox")
+forceHighlightColor = Color(0, 1, 0, 1)
+makeBiggerScale = 1.0
+
+[node name="Description2" type="Control" parent="Center"]
+use_parent_material = true
+anchors_preset = 0
+offset_left = 34.0
+offset_top = -307.0
+offset_right = 34.0
+offset_bottom = -307.0
+mouse_filter = 1
+
+[node name="Sprite2D" type="TextureRect" parent="Center/Description2"]
+modulate = Color(0.858824, 0.788235, 0.737255, 1)
+use_parent_material = true
+layout_mode = 0
+offset_left = -14.0
+offset_top = 475.0
+offset_right = 209.0
+offset_bottom = 633.0
+mouse_filter = 2
+texture = ExtResource("9_0idb8")
+expand_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Center/Description2"]
+use_parent_material = true
+layout_mode = 0
+offset_left = -11.0
+offset_top = 479.0
+offset_right = 209.0
+offset_bottom = 629.0
+mouse_filter = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Center/Description2/VBoxContainer2"]
+z_as_relative = false
+texture_filter = 2
+use_parent_material = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("16_wj50d")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "+$valueenergy and +2burnt . \\nIf you have made at least 1 coffee match this turn, +1energy $customText"
+fit_content = true
+
+[node name="Picture" type="Control" parent="Center"]
+use_parent_material = true
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 12.0
+offset_right = 50.0
+offset_bottom = 12.0
+mouse_filter = 2
+
+[node name="Sprite2D" type="TextureRect" parent="Center/Picture"]
+texture_filter = 1
+use_parent_material = true
+layout_mode = 0
+offset_left = -22.0
+offset_top = 26.0
+offset_right = 187.0
+offset_bottom = 149.0
+mouse_filter = 2
+texture = ExtResource("10_mexxn")
+expand_mode = 1
+
+[node name="Title" type="Control" parent="Center"]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 73.0
+offset_top = -1.0
+offset_right = 73.0
+offset_bottom = -1.0
+mouse_filter = 2
+
+[node name="Sprite2D" type="TextureRect" parent="Center/Title"]
+modulate = Color(0.756863, 0.607843, 0.105882, 1)
+use_parent_material = true
+layout_mode = 0
+offset_left = -45.0
+offset_top = 12.0
+offset_right = 164.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = ExtResource("9_0idb8")
+expand_mode = 1
+
+[node name="TitleBackground" type="TextureRect" parent="Center/Title"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -48.0
+offset_top = 9.0
+offset_right = 167.0
+offset_bottom = 39.0
+texture = ExtResource("11_y5hev")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
+texture_filter = 1
+use_parent_material = true
+layout_mode = 0
+offset_left = -34.0
+offset_top = 9.0
+offset_right = 158.0
+offset_bottom = 39.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Energy Infusion +[/center]"
+scroll_active = false
+
+[node name="EnergyCost" type="Control" parent="Center"]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 62.0
+offset_top = 54.0
+offset_right = 62.0
+offset_bottom = 54.0
+mouse_filter = 2
+
+[node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_oofnv")
+use_parent_material = true
+layout_mode = 0
+offset_left = -73.4
+offset_top = -100.0
+offset_right = 616.6
+offset_bottom = 590.0
+scale = Vector2(0.1, 0.1)
+mouse_filter = 2
+texture = ExtResource("11_0iboy")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
+modulate = Color(0, 0, 0, 1)
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.4
+offset_top = -64.0
+offset_right = -21.4
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("17_kdbgc")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]0"
+fit_content = true
+scroll_active = false
+
+[node name="HitBox" type="Control" parent="Center"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = -12.0

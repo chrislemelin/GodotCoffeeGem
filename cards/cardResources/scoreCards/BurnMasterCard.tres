@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://eegpmkcrcfr5"]
 
-[ext_resource type="Texture2D" uid="uid://cm7njlsn6r8x1" path="res://cards/cardResources/cardArt/trash.png" id="1_e7v05"]
 [ext_resource type="Script" path="res://cards/cardResources/scoreCards/BurnMasterCardEffect.cs" id="1_o15dq"]
+[ext_resource type="Texture2D" uid="uid://pum0u5miqpkn" path="res://cards/cardResources/cardArt/final/CardArtBurnt.png" id="1_sjmxp"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_g2oql"]
 
 [sub_resource type="Resource" id="Resource_3jub0"]
@@ -33,7 +33,7 @@ Title = "Burnt Master"
 Description = "Gain 75 points for each burnt made this turn ($value)"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_e7v05")
+Picture = ExtResource("1_sjmxp")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

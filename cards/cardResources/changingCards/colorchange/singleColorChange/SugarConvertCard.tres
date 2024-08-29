@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://bea3d4p3qbvtr"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/singleColorChange/CardEffectColorChange.cs" id="1_3ajai"]
-[ext_resource type="Texture2D" uid="uid://pts4w3vk8d2i" path="res://cards/cardResources/cardArt/sugar.png" id="1_w3upp"]
+[ext_resource type="Texture2D" uid="uid://bh5oqf0o5616l" path="res://cards/cardResources/cardArt/final/CardArtSugar.png" id="1_dh5cg"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_2qvkn"]
 [ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_pg4e1"]
 
@@ -46,7 +46,7 @@ Title = "Sugar Rush"
 Description = "Change selection to sugar. If this makes a 4+ match, +5$coin"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_w3upp")
+Picture = ExtResource("1_dh5cg")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

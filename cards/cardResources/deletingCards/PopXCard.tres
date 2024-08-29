@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://buerc0ue7yljk"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://buerc0ue7yljk"]
 
-[ext_resource type="Texture2D" uid="uid://clb24jhbqxgqx" path="res://cards/cardResources/cardArt/PopX.png" id="1_gqql4"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopX.cs" id="2_c6063"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_r5svq"]
 
@@ -33,7 +32,6 @@ Title = "Pop X"
 Description = "Destroy ingredients in an X shape."
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_gqql4")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

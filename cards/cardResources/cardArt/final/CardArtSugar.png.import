@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwxfefhw1bw33"
-path="res://.godot/imported/CoffeeX.png-083ad0c664b7e5c2af7593243a1c8258.ctex"
+uid="uid://bh5oqf0o5616l"
+path="res://.godot/imported/CardArtSugar.png-584dc04470b697d93ac5deba693fd393.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cards/cardResources/cardArt/CoffeeX.png"
-dest_files=["res://.godot/imported/CoffeeX.png-083ad0c664b7e5c2af7593243a1c8258.ctex"]
+source_file="res://cards/cardResources/cardArt/final/CardArtSugar.png"
+dest_files=["res://.godot/imported/CardArtSugar.png-584dc04470b697d93ac5deba693fd393.ctex"]
 
 [params]
 
