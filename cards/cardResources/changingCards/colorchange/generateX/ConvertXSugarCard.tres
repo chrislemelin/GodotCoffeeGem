@@ -31,7 +31,7 @@ spendX = false
 [resource]
 script = ExtResource("3_lbu72")
 Title = "Expensive Treat"
-Description = "Generage sugar for each 25 $coin you have."
+Description = "Generate sugar for each 25 $coin you have."
 Cost = 2
 rarity = 2
 Picture = ExtResource("1_utdov")

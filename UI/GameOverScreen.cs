@@ -11,6 +11,7 @@ public partial class GameOverScreen : Control
 
 	public override void _Ready()
 	{
+		setVisible(false);
 	}
 
 	public void setVisible(bool value) {

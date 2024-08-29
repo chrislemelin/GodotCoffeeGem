@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://leg736b6h2y8"]
+[gd_scene load_steps=31 format=3 uid="uid://leg736b6h2y8"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_xhiom"]
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="2_7taos"]
@@ -6,11 +6,9 @@
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="4_ukscn"]
 [ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="5_d6w1h"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_lxe20"]
-[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="7_b4pll"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="8_w01ue"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="9_edgwy"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_wq4eo"]
-[ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="10_qtrhf"]
-[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="11_1tfq5"]
 [ext_resource type="FontFile" uid="uid://csv4wx1x3e6nd" path="res://fonts/ZX OCR-B.ttf" id="12_dtfe5"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="13_5mymq"]
 [ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="14_srknr"]
@@ -32,7 +30,7 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_4b35t")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_emh0e"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6o8t7"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mpfsw"]
 noise = SubResource("FastNoiseLite_emh0e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
@@ -40,16 +38,16 @@ shader = ExtResource("4_ukscn")
 shader_parameter/dissolve_value = 1.0
 shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
 shader_parameter/line_thickness = 5.0
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_6o8t7")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_mpfsw")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0j14q"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ytrd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqyc8"]
 shader = ExtResource("4_ukscn")
 shader_parameter/dissolve_value = 0.623
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = null
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_0j14q")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_8ytrd")
 
 [sub_resource type="Animation" id="Animation_jdv37"]
 resource_name = "CardFlip"
@@ -272,7 +270,7 @@ anchor_bottom = 0.5
 offset_left = -961.0
 offset_top = -539.0
 offset_right = -681.0
-offset_bottom = -171.0
+offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(125, 150)
@@ -302,8 +300,8 @@ layout_mode = 2
 anchors_preset = 0
 offset_left = 6.0
 offset_top = 37.0
-offset_right = 269.0
-offset_bottom = 368.0
+offset_right = 282.0
+offset_bottom = 394.0
 pivot_offset = Vector2(125, 150)
 mouse_filter = 2
 
@@ -312,8 +310,8 @@ material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 2
 offset_left = -11.0
 offset_top = -28.0
-offset_right = 282.0
-offset_bottom = 344.0
+offset_right = 274.0
+offset_bottom = 352.0
 texture = ExtResource("5_d6w1h")
 expand_mode = 1
 script = ExtResource("6_lxe20")
@@ -323,21 +321,22 @@ makeBiggerScale = 1.0
 [node name="Description2" type="Control" parent="Center"]
 use_parent_material = true
 anchors_preset = 0
-offset_left = 35.0
-offset_top = -311.0
-offset_right = 35.0
-offset_bottom = -311.0
+offset_left = 34.0
+offset_top = -307.0
+offset_right = 34.0
+offset_bottom = -307.0
 mouse_filter = 1
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Description2"]
+modulate = Color(0.858824, 0.788235, 0.737255, 1)
 use_parent_material = true
 layout_mode = 0
-offset_left = -21.0
-offset_top = 471.0
-offset_right = 222.0
-offset_bottom = 630.0
+offset_left = -14.0
+offset_top = 475.0
+offset_right = 209.0
+offset_bottom = 633.0
 mouse_filter = 2
-texture = ExtResource("7_b4pll")
+texture = ExtResource("9_wq4eo")
 expand_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Center/Description2"]
@@ -345,8 +344,8 @@ use_parent_material = true
 layout_mode = 0
 offset_left = -11.0
 offset_top = 479.0
-offset_right = 212.0
-offset_bottom = 618.0
+offset_right = 209.0
+offset_bottom = 629.0
 mouse_filter = 2
 alignment = 1
 
@@ -366,21 +365,20 @@ fit_content = true
 [node name="Picture" type="Control" parent="Center"]
 use_parent_material = true
 anchors_preset = 0
-offset_left = 55.0
-offset_top = 6.0
-offset_right = 55.0
-offset_bottom = 6.0
+offset_left = 50.0
+offset_top = 12.0
+offset_right = 50.0
+offset_bottom = 12.0
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Picture"]
 modulate = Color(0.196078, 0.196078, 0.196078, 1)
 use_parent_material = true
 layout_mode = 0
-offset_left = -12.0
-offset_top = 18.0
-offset_right = 223.0
-offset_bottom = 253.0
-scale = Vector2(0.8, 0.55)
+offset_left = -22.0
+offset_top = 26.0
+offset_right = 187.0
+offset_bottom = 149.0
 mouse_filter = 2
 texture = ExtResource("9_wq4eo")
 expand_mode = 1
@@ -389,49 +387,51 @@ expand_mode = 1
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 74.0
-offset_top = -10.0
-offset_right = 74.0
-offset_bottom = -10.0
+offset_left = 73.0
+offset_top = -1.0
+offset_right = 73.0
+offset_bottom = -1.0
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Title"]
+modulate = Color(0.756863, 0.607843, 0.105882, 1)
 use_parent_material = true
 layout_mode = 0
-offset_left = -68.0
-offset_top = -8.0
-offset_right = 191.0
-offset_bottom = 41.0
+offset_left = -45.0
+offset_top = 9.0
+offset_right = 164.0
+offset_bottom = 39.0
 mouse_filter = 2
-texture = ExtResource("10_qtrhf")
+texture = ExtResource("9_wq4eo")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
 texture_filter = 1
 use_parent_material = true
 layout_mode = 0
-offset_left = -40.0
-offset_top = 2.0
-offset_right = 176.0
-offset_bottom = 41.0
+offset_left = -34.0
+offset_top = 9.0
+offset_right = 159.0
+offset_bottom = 39.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[center]test tiple[/center]"
+text = "[center]Energy Infusion +[/center]"
 scroll_active = false
 
 [node name="EnergyCost" type="Control" parent="Center"]
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 56.4
-offset_top = 44.0
-offset_right = 56.4
-offset_bottom = 44.0
+offset_left = 62.0
+offset_top = 54.0
+offset_right = 62.0
+offset_bottom = 54.0
 mouse_filter = 2
 
 [node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
+texture_filter = 1
 material = SubResource("ShaderMaterial_bqyc8")
 use_parent_material = true
 layout_mode = 0
@@ -441,7 +441,7 @@ offset_right = 616.6
 offset_bottom = 590.0
 scale = Vector2(0.1, 0.1)
 mouse_filter = 2
-texture = ExtResource("11_1tfq5")
+texture = ExtResource("9_edgwy")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
@@ -519,10 +519,10 @@ libraries = {
 [node name="ShineTexture" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_muung")
 layout_mode = 0
-offset_left = 8.0
-offset_top = -11.0
-offset_right = 270.0
-offset_bottom = 337.0
+offset_left = 15.0
+offset_top = 21.0
+offset_right = 277.0
+offset_bottom = 369.0
 mouse_filter = 2
 texture = ExtResource("9_wq4eo")
 expand_mode = 1

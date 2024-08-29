@@ -142,7 +142,7 @@ public partial class CardResource : Resource
 		}
 		if (cardEffect.retain)
 		{
-			returnString += "Retain cards arn't discarded at the end of the turn\n";
+			returnString += "Retain cards are not discarded at the end of the turn\n";
 		}
 		if (cardEffect.matchy)
 		{

@@ -1,15 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbshug8s4ulor"]
 
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_ew5vq"]
 [ext_resource type="Script" path="res://UI/Status.cs" id="1_py4bf"]
 [ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://placeholders/UI/heart-pixel-300px.png" id="2_esjhm"]
 [ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://placeholders/UI/heart-empty-pixel-300px.png" id="4_8mf6w"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="5_topv7"]
-[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_lcxc3"]
 [ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="7_v6prk"]
 
 [node name="Status" type="Control" node_paths=PackedStringArray("coinsLabel", "levelLabel", "heartsContainer")]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_ew5vq")
 script = ExtResource("1_py4bf")
 coinsLabel = NodePath("VBoxContainer/CoinsContainer/RichTextLabel")
 levelLabel = NodePath("VBoxContainer/Level Label")
@@ -17,13 +18,12 @@ heartsContainer = NodePath("VBoxContainer/TurnsContainer/HeartsContainer")
 fullHeart = ExtResource("2_esjhm")
 emptyHeart = ExtResource("4_8mf6w")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = -161.0
-offset_top = -68.0
-offset_right = 153.0
-offset_bottom = 140.0
-texture = ExtResource("6_lcxc3")
+offset_left = -142.0
+offset_top = -43.0
+offset_right = 134.0
+offset_bottom = 91.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_v6prk")

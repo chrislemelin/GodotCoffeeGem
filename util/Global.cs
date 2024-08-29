@@ -48,7 +48,12 @@ public partial class Global : Node
 	public float sfXvolume = .5f;
 
 	private int highScoreMax = 8;
-	private List<Tuple<String,int>> highScores = new List<Tuple<string, int>>() {new Tuple<string, int>("chris L", 100), new Tuple<string, int>("your mom", 1)};
+	private List<Tuple<String,int>> highScores = new List<Tuple<string, int>>() 
+	{new Tuple<string, int>("Chris L", 10_000_000),
+	 new Tuple<string, int>("HAP", 5_000_000),
+	 new Tuple<string, int>("Casper", 1_000_000),
+	 new Tuple<string, int>("Clyde", 100_000)};
+
 
 	public Vector2 gridSize = new Vector2(6, 5);
 
@@ -77,6 +82,7 @@ public partial class Global : Node
 
 	public override void _Ready()
 	{
+		//save();
 		if (!FileAccess.FileExists(SAVE_FILE_NAME))
 		{
 			save();
@@ -85,7 +91,7 @@ public partial class Global : Node
 		{
 			load();
 		}
-		addNewHighScore(new Tuple<string, int>("your mom", 1));
+		//addNewHighScore(new Tuple<string, int>("your mom", 1));
 	}
 
 	public void save()
@@ -152,7 +158,12 @@ public partial class Global : Node
 		} 
 	}
 
+	private void saveHighScore() {
+		
+	}
+
 	public void addNewHighScore(Tuple<String, int> newHighScore) {
+		newHighScore = new Tuple<string, int>(newHighScore.Item1.Replace(",",""), newHighScore.Item2);
 		bool addedToScore = false;
 		for(int scoreCount = 0; scoreCount < highScores.Count; scoreCount++) {
 			if (newHighScore.Item2 > highScores[scoreCount].Item2) {
@@ -168,6 +179,16 @@ public partial class Global : Node
 			highScores.RemoveAt(highScores.Count -1);
 		}
 		save(); 
+	}
+
+	public bool isScoreAHighScore(int value) {
+		if (highScores.Count < highScoreMax) {
+			return true;
+		}
+		if (value > highScores[highScores.Count-1].Item2) {
+			return true;
+		}
+		return false;
 	}
 
 	public List<Tuple<String,int>> getHighScores() {

@@ -140,7 +140,6 @@ public partial class MatchBoard : ControllerInput
 	public void setUIFocus(bool value) {
 		if(FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			hasUIFocus = value;
-			GD.Print("setting focus for board" + value);
 			if (hasUIFocus) {
 				changeHoveredTile(new Vector2(0,0));
 			} else {
@@ -192,7 +191,6 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	private void changeHoveredTile(Vector2 newVector) {
-		GD.Print("moving tile" + newVector);
 		int newX = Math.Clamp((int)newVector.X + (int)tileHoveredPosition.X, 0, sizeX-1);
 		int newY = Math.Clamp((int)newVector.Y + (int)tileHoveredPosition.Y, 0, sizeY-1);
 		tileHoveredPosition = new Vector2(newX, newY);

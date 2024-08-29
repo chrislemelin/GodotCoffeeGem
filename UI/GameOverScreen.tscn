@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://mplh7y2efw3m"]
 
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="3_1mwae"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="1_tdww2"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_32t71"]
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_ijhti"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="6_fg1ur"]
 
 [node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel", "debtLabel")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_tdww2")
 script = ExtResource("4_dub5d")
 restartButton = NodePath("Restart")
 label = NodePath("VBoxContainer/RichTextLabel")
@@ -25,8 +25,10 @@ debtLabel = NodePath("VBoxContainer/DebtDisplay/RichTextLabel")
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
 layout_mode = 2
-offset_right = 1925.0
-offset_bottom = 1077.0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 1929.0
+offset_bottom = 1075.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("3_32t71")
@@ -36,22 +38,21 @@ flip_v = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 333.0
+offset_left = 612.0
 offset_top = 337.0
-offset_right = 1618.0
+offset_right = 1388.0
 offset_bottom = 748.0
-theme = ExtResource("3_1mwae")
+theme = ExtResource("1_tdww2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 378.0
+offset_left = 566.0
 offset_top = 373.0
-offset_right = 1586.0
+offset_right = 1423.0
 offset_bottom = 724.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center]GAME OVER[/center]"
@@ -60,20 +61,21 @@ fit_content = true
 [node name="MetaCoinDisplay" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MetaCoinDisplay"]
 layout_mode = 0
-offset_left = 533.0
-offset_right = 702.0
+offset_left = 330.0
+offset_right = 499.0
 offset_bottom = 47.0
 theme_override_font_sizes/normal_font_size = 50
 text = "Gained 10"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MetaCoinDisplay"]
 layout_mode = 0
-offset_left = 713.0
+offset_left = 510.0
 offset_top = -7.0
-offset_right = 767.0
+offset_right = 564.0
 offset_bottom = 47.0
 texture = ExtResource("4_ijhti")
 expand_mode = 1
@@ -84,10 +86,9 @@ layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/DebtDisplay"]
 layout_mode = 0
-offset_left = 414.0
-offset_top = -1.0
-offset_right = 830.0
-offset_bottom = 46.0
+offset_left = 225.0
+offset_right = 660.0
+offset_bottom = 47.0
 theme_override_font_sizes/normal_font_size = 50
 text = "Debt was reduced by 100$"
 fit_content = true
@@ -96,10 +97,13 @@ autowrap_mode = 0
 
 [node name="Restart" parent="." instance=ExtResource("5_wh5ve")]
 layout_mode = 0
+anchors_preset = 0
 offset_left = 784.0
 offset_top = 651.0
 offset_right = 1213.0
 offset_bottom = 703.0
+grow_horizontal = 1
+grow_vertical = 1
 text = "Main Menu
 "
 grabFocus = true

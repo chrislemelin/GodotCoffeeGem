@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=51 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
@@ -17,8 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="16_vds2c"]
 [ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://placeholders/Map/guy.png" id="17_718sm"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="18_pogo2"]
+[ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="17_tyewm"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="22_epuo7"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="24_1i55l"]
@@ -42,9 +43,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_bsuud"]
 resource_local_to_scene = true
@@ -55,7 +58,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -75,9 +79,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_cy0ua"]
 resource_local_to_scene = true
@@ -88,7 +94,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_tlj12"]
@@ -109,9 +116,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_oyaui"]
 resource_local_to_scene = true
@@ -121,7 +130,8 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_tlj12")
 
 [sub_resource type="Resource" id="Resource_lf283"]
@@ -133,7 +143,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_rsqfq"]
@@ -145,7 +156,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_l5j6y"]
@@ -166,9 +178,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_t1exg"]
 resource_local_to_scene = true
@@ -178,7 +192,8 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_l5j6y")
 
 [sub_resource type="Resource" id="Resource_32dpp"]
@@ -190,7 +205,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_8tsqs"]
@@ -202,7 +218,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_bimhj"]
@@ -223,9 +240,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_vuu47"]
 resource_local_to_scene = true
@@ -235,7 +254,8 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_bimhj")
 
 [sub_resource type="Resource" id="Resource_e3gl4"]
@@ -247,7 +267,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_ahjpb"]
@@ -259,7 +280,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_23mlu"]
@@ -280,9 +302,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_imnlm"]
 resource_local_to_scene = true
@@ -292,7 +316,8 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_23mlu")
 
 [sub_resource type="Resource" id="Resource_ilocs"]
@@ -304,7 +329,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
 
 [sub_resource type="Resource" id="Resource_7a0hk"]
@@ -316,7 +342,8 @@ Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
 
 [sub_resource type="Resource" id="Resource_smct3"]
@@ -337,9 +364,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [sub_resource type="Resource" id="Resource_wb2ak"]
 resource_local_to_scene = true
@@ -349,7 +378,8 @@ Description = "Switch the positions of two vertically or horizontally adjacent i
 Cost = 1
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_smct3")
 
 [sub_resource type="Animation" id="Animation_hbqvg"]
@@ -622,12 +652,18 @@ texture_filter = 1
 position = Vector2(-0.5, -13.5)
 texture = ExtResource("17_718sm")
 
-[node name="HelperText" type="RichTextLabel" parent="."]
-offset_left = 619.0
-offset_top = 479.0
-offset_right = 970.0
-offset_bottom = 604.0
-theme = ExtResource("18_pogo2")
+[node name="Tutorial" type="Panel" parent="."]
+offset_left = 615.0
+offset_top = 391.0
+offset_right = 999.0
+offset_bottom = 551.0
+theme = ExtResource("16_vds2c")
+
+[node name="HelperText" type="RichTextLabel" parent="Tutorial"]
+layout_mode = 0
+offset_right = 381.0
+offset_bottom = 154.0
+theme_override_fonts/normal_font = ExtResource("17_tyewm")
 theme_override_font_sizes/normal_font_size = 36
 text = "Click top or bottom buildings to choose a path to get back home"
 
@@ -717,9 +753,9 @@ libraries = {
 }
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("23_y5l24")]
-offset_left = 1764.0
+offset_left = 1761.0
 offset_top = 69.0
-offset_right = 1764.0
+offset_right = 1761.0
 offset_bottom = 69.0
 gameManager = NodePath("..")
 

@@ -35,9 +35,9 @@ windowsInFrontOf = []
 width = 900
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = -456.0
+offset_left = -419.0
 offset_top = -97.0
-offset_right = 1140.0
+offset_right = 1011.0
 offset_bottom = 246.0
 theme = ExtResource("7_4em3t")
 

@@ -303,7 +303,6 @@ public partial class Hand : ControllerInput
 		setUIFocus(true);
 	}
 	public void setUIFocus(bool value) {
-		GD.Print("setting focus for hand" + value);
 		if(FindObjectHelper.getControllerHelper(this).isUsingController() && !FindObjectHelper.getScore(this).isLevelOver() && !windowsInFrontOf.Where(control => control.IsVisibleInTree()).Any() && !FindObjectHelper.getSettingsMenu(this).isVisible()) {
 			hasUIFocus = value;
 			if (hasUIFocus) {

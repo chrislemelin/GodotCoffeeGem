@@ -155,14 +155,9 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 
-	// public void startDialouge(Resource dialougeResource)
-	// {
-	// 	DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
-	// }
-
 	public bool gameBeaten() {
-		return true;
-		//return currentLevel == levelList.levelResources.Count;
+		//return true;
+		return currentLevel == levelList.levelResources.Count;
 	}
 
 	public void evaluateLevel()
@@ -217,24 +212,25 @@ public partial class GameManager : GameManagerIF
 		levelCompleteAudioPlayer.Play();
 		EmitSignal(SignalName.levelOver);
 		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
-		GD.Print("score" + score.getScore());
 
 		getGlobal().totalScore += score.getScore();
 		if (gameBeaten())
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
-			gameOverScreen.label.Text = "You win!!!";
+			gameOverScreen.label.Text = TextHelper.centered("You win!!!");
 			gameOverScreen.setUpMainMenu();
 			int metaCoins = evaluateMetaCoins();
 			gameOverScreen.setMetaCoins(metaCoins);
 			addMetaCoins(metaCoins);
 			gameOverScreen.Visible = true;
 
-			highScoreDisplay.Visible = true;
-			GD.Print("totalscore" + getGlobal().totalScore);
-			highScoreDisplay.addHighScore(getGlobal().totalScore);
+			if (getGlobal().isScoreAHighScore(getGlobal().totalScore)) {
+				highScoreDisplay.Visible = true;
+				highScoreDisplay.addHighScore(getGlobal().totalScore);
+			}
 
 			resetGlobals();
+
 			return;
 		}
 

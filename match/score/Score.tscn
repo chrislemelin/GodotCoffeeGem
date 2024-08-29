@@ -209,9 +209,12 @@ layout_mode = 2
 size_flags_stretch_ratio = 7.9
 
 [node name="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer" instance=ExtResource("7_7t6v1")]
+texture_filter = 1
 layout_mode = 2
+stretch_mode = 0
 
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("12_i0n4t")

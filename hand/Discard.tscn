@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c563hncch4yj3"]
 
 [ext_resource type="Script" path="res://hand/Discard.cs" id="1_mc7e2"]
-[ext_resource type="Texture2D" uid="uid://d3hvm7mjrstbo" path="res://placeholders/cards/RedCardBack.png" id="2_2pet5"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="2_v7buu"]
 
 [node name="Discard" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
 script = ExtResource("1_mc7e2")
@@ -12,7 +12,7 @@ control = NodePath("Control")
 texture_filter = 1
 position = Vector2(3, 13)
 scale = Vector2(6.11765, 6.11765)
-texture = ExtResource("2_2pet5")
+texture = ExtResource("2_v7buu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -70.0

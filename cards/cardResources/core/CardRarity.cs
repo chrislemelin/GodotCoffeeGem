@@ -18,10 +18,10 @@ static class CardRarityHelper
 			case CardRarity.Common:
 				return new Color("858585");
 			case CardRarity.Uncommon:
-				return new Color("25cff5");
+				return new Color("0b9bb9");
 			case CardRarity.Rare:
 			default:
-				return new Color("fad046");
+				return new Color("c19b1b");
 		}
 	}
 

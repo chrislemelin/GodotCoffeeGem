@@ -17,7 +17,6 @@ public partial class CustomButton : Button
 	public override void _Ready()
 	{
 		if (grabFocus) {
-			GD.Print("trying to grab focus for "+ Text);
 			checkForFocus(true);
 			FindObjectHelper.getSettingsMenu(this).windowClosed+= () => checkForFocus(true);	
 		}
@@ -29,7 +28,6 @@ public partial class CustomButton : Button
 				animationPlayer.Play("Hover");
 			}
 		};
-		//PivotOffset = new Vector2(Size.X/2, Size.Y);
 	}
 
 	public override void _Process(Double delta)
@@ -45,15 +43,12 @@ public partial class CustomButton : Button
 	}
 
 	public void checkForFocus(bool value) {
-		GD.Print("trying to grab focus for "+ Text);
 		if (grabFocus && IsVisibleInTree() && FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			SettingsMenu settingsMenu = FindObjectHelper.getSettingsMenu(this);
 			if (settingsMenu == null || !settingsMenu.isVisible() || isInSettingsMenu) {
 				GrabFocus();
-				GD.Print("grabing focus for "+ Text);
 			}	
 		} else {
-			GD.Print("relasing focus for "+ Text);
 			ReleaseFocus();
 		}
 	}

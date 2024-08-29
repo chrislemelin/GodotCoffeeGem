@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccu0jen0fteje"]
 
 [ext_resource type="Script" path="res://hand/Deck.cs" id="1_j31f6"]
-[ext_resource type="Texture2D" uid="uid://d3hvm7mjrstbo" path="res://placeholders/cards/RedCardBack.png" id="2_bs2jf"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="2_6jv68"]
 
 [node name="Deck" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
 script = ExtResource("1_j31f6")
@@ -13,7 +13,7 @@ y_sort_enabled = true
 texture_filter = 1
 position = Vector2(3, 13)
 scale = Vector2(6.11765, 6.11765)
-texture = ExtResource("2_bs2jf")
+texture = ExtResource("2_6jv68")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -67.0

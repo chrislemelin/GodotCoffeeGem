@@ -130,7 +130,6 @@ public partial class NewCardSelection : Control
 		}
 		if(focused && IsVisibleInTree() && FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			if(cardInfoLoaders.Count > 0) {
-				GD.Print("----grabbing focus card selection----");
 				cardInfoLoaders[0].GrabFocus();
 			}
 		} else {

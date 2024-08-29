@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=55 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="32_otpbl"]
 [ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="33_tua3q"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="35_smw5c"]
 [ext_resource type="Script" path="res://UI/Game/PlayableCardsUI.cs" id="37_635hs"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
 [ext_resource type="PackedScene" uid="uid://dul64fgsaye3s" path="res://camera/camera_2d.tscn" id="39_3yyxa"]
@@ -274,7 +275,7 @@ recipeUI = NodePath("BossRecipeUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
-highScoreDisplay = NodePath("HighScoreDisplay")
+highScoreDisplay = NodePath("UIOverLays/HighScoreDisplay")
 bossRelicTutorial = NodePath("UIOverLays/BossRelicDisplay")
 bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 overTimeTutorial = NodePath("UIOverLays/OverTimeTutorial")
@@ -352,7 +353,7 @@ deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager", "windowsInFrontOf") groups=["Hand"] instance=ExtResource("8_m8idd")]
 unique_name_in_owner = true
-position = Vector2(661, 826)
+position = Vector2(669, 799)
 discard = NodePath("../Discard")
 matchBoard = NodePath("../MatchBoard")
 deck = NodePath("../Deck")
@@ -443,9 +444,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="OvertimeUI" parent="UIOverLays" instance=ExtResource("42_osxvy")]
 offset_left = 479.0
-offset_top = 101.0
+offset_top = 139.0
 offset_right = 799.0
-offset_bottom = 230.0
+offset_bottom = 268.0
 
 [node name="WelcomeScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens", "textureButton")]
 visible = false
@@ -1270,14 +1271,30 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="Text" type="RichTextLabel" parent="UIOverLays/GameBeaten"]
+[node name="Boss" type="TextureRect" parent="UIOverLays/GameBeaten"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 543.0
+offset_top = 241.0
+offset_right = 863.0
+offset_bottom = 561.0
+texture = ExtResource("43_eeut1")
+
+[node name="Text2" type="Panel" parent="UIOverLays/GameBeaten"]
+layout_mode = 0
+offset_left = 865.0
+offset_top = 283.0
+offset_right = 1273.0
+offset_bottom = 513.0
+theme = ExtResource("35_smw5c")
+
+[node name="Text" type="RichTextLabel" parent="UIOverLays/GameBeaten/Text2"]
 layout_mode = 2
-offset_left = 906.0
-offset_top = 328.0
-offset_right = 1243.0
-offset_bottom = 503.0
-theme = ExtResource("18_y5ido")
-text = "Congrats beating the game! You can keep on playing the game to hit a highscore for the leader board. Thanks for playing the demo!"
+offset_left = 4.0
+offset_right = 408.0
+offset_bottom = 259.0
+text = "Congrats beating the game! You can keep on playing to hit a highscore for the leader board. Thanks for playing the demo!"
 fit_content = true
 
 [node name="ContinueButton" parent="UIOverLays/GameBeaten" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("33_tua3q")]
@@ -1294,15 +1311,6 @@ animationPlayer = NodePath("../../BossRelicDisplay/ContinueButton/AnimationPlaye
 hoverAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/ClickAudioPlayer")
 grabFocus = true
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/GameBeaten"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 543.0
-offset_top = 241.0
-offset_right = 863.0
-offset_bottom = 561.0
-texture = ExtResource("43_eeut1")
 
 [node name="TutorialButton" type="TextureButton" parent="UIOverLays"]
 layout_mode = 0
@@ -1326,7 +1334,12 @@ deckViewUI = NodePath("../DeckView")
 cards = []
 
 [node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
+visible = false
 layout_mode = 1
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = 2.0
 
 [node name="DeckView" parent="UIOverLays" groups=["DeckView"] instance=ExtResource("32_fnn8m")]
 visible = false
@@ -1490,15 +1503,16 @@ offset_bottom = 606.0
 theme_override_font_sizes/font_size = 30
 text = "Dont show me this again"
 
+[node name="HighScoreDisplay" parent="UIOverLays" instance=ExtResource("48_ckeue")]
+visible = false
+layout_mode = 1
+offset_left = -21.0
+offset_top = 12.0
+offset_right = -21.0
+offset_bottom = 12.0
+
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]
 visible = false
-
-[node name="HighScoreDisplay" parent="." instance=ExtResource("48_ckeue")]
-visible = false
-offset_left = -154.0
-offset_top = 19.0
-offset_right = -154.0
-offset_bottom = 19.0
 
 [node name="SettingsMenu" parent="." instance=ExtResource("39_btpum")]
 metadata/_edit_use_anchors_ = true
