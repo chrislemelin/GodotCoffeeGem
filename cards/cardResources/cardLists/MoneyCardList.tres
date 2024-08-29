@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://c3mx6eec1nqpk"]
 
-[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/MoneyGemsCard.tres" id="1_5xvgd"]
+[ext_resource type="Resource" uid="uid://bfn60jdh2miwr" path="res://cards/cardResources/changingCards/infusions/MoneyGemsCard.tres" id="1_5xvgd"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_u1lhq"]
 [ext_resource type="Resource" uid="uid://b8nqlwbtu4tcd" path="res://cards/cardResources/scoreCards/GainCoinsCard.tres" id="2_a5o73"]
-[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="3_nounr"]
-[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="4_0kute"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="3_nounr"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="4_0kute"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="5_6lw3c"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="6_s6p7j"]
 

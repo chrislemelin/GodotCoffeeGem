@@ -6,12 +6,12 @@ public partial class EndDayButton : CustomButton
 	public override void _Ready()
 	{
 		Visible = false;
-		FindObjectHelper.getScore(this).levelPassed += () => {
+		//FindObjectHelper.getScore(this).levelPassed += () => {
 			//if(!((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten()) {
-				Visible = true;
+		//		Visible = true;
 			//}
-		};
-		Pressed += () => FindObjectHelper.getScore(this).evaluateLevel();
+		//};
+		//Pressed += () => FindObjectHelper.getScore(this).evaluateLevel();
 	}
 
 

@@ -5,8 +5,8 @@
 [ext_resource type="Resource" uid="uid://dsr6hgn8djewp" path="res://cards/cardResources/deletingCards/PopColCard.tres" id="2_l245c"]
 [ext_resource type="Resource" uid="uid://d1nggr211uac1" path="res://cards/cardResources/deletingCards/PopRowCard.tres" id="3_wtd8m"]
 [ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_nybon"]
-[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="5_fj5a8"]
-[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="6_outap"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="5_fj5a8"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="6_outap"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="7_gui57"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="8_sq2g6"]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_i6hjb"]
 [ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_1idt1"]
 [ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="4_ar1aj"]
-[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="6_0vf0l"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="6_0vf0l"]
 [ext_resource type="Resource" uid="uid://c7fw01b7y86oy" path="res://cards/cardResources/deletingCards/RagnarokCard.tres" id="6_ppk4u"]
 [ext_resource type="Resource" uid="uid://bndjvymr0xra3" path="res://cards/cardResources/deletingCards/PopBurnCard.tres" id="7_tcvo8"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="7_wubij"]

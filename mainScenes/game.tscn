@@ -44,7 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://bt53pbibh6p76" path="res://UI/Selection/Overtime/OvertimeUI.tscn" id="42_osxvy"]
 [ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://placeholders/character/Boss.png" id="43_eeut1"]
 [ext_resource type="AudioStream" uid="uid://b6otkupkutor3" path="res://sound/rewards/Coin01.mp3" id="46_uq45g"]
-[ext_resource type="PackedScene" path="res://UI/EndDayButton.tscn" id="47_oc5ta"]
+[ext_resource type="PackedScene" uid="uid://df73hn4mndwnd" path="res://UI/EndDayButton.tscn" id="47_oc5ta"]
 [ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="48_ckeue"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="51_n61nv"]
 
@@ -267,7 +267,7 @@ _data = {
 "RESET": SubResource("Animation_rp5ce")
 }
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRelicTutorial", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay", "levelCompleteAudioPlayer")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "gameOverScreen", "score", "relicHolderUI", "bossRelicTutorial", "bossRecipeTutorial", "gooTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay", "levelCompleteAudioPlayer") groups=["Camera"]]
 position = Vector2(-3, -1)
 script = ExtResource("1_5jnm2")
 recipeUI = NodePath("BossRecipeUI")
@@ -305,14 +305,14 @@ texture = ExtResource("9_hiq7b")
 
 [node name="Portrait2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(378, 568)
+position = Vector2(815, 213)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_bn8a0")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") groups=["MatchBoard"] instance=ExtResource("5_4m14m")]
-unique_name_in_owner = true
-position = Vector2(815, 213)
+position = Vector2(875, 338)
 scale = Vector2(0.75, 0.75)
-sizeY = 5
+sizeX = 5
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
@@ -375,11 +375,10 @@ offset_right = 1903.0
 offset_bottom = 541.0
 grow_horizontal = 1
 grow_vertical = 1
-grabFocus = null
-isInSettingsMenu = null
 
 [node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") groups=["NewTurnButton"] instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
+anchors_preset = 0
 offset_left = 1709.0
 offset_top = 571.0
 offset_right = 1900.0
@@ -450,7 +449,6 @@ offset_left = 479.0
 offset_top = 101.0
 offset_right = 799.0
 offset_bottom = 230.0
-fadeOutDelay = null
 
 [node name="WelcomeScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens", "textureButton")]
 visible = false

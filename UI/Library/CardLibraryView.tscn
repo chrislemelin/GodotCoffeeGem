@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsfty3o7345tf"]
+[gd_scene load_steps=6 format=3 uid="uid://bsfty3o7345tf"]
 
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="1_3au4k"]
 [ext_resource type="Script" path="res://UI/Library/CardLibraryView.cs" id="1_cdj4j"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="3_a8jev"]
+[ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="3_vg3tw"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="4_gyfse"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("gridContainer", "scrollContainer")]
@@ -14,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_gyfse")
 script = ExtResource("1_cdj4j")
-cardScene = ExtResource("1_3au4k")
+cardScene = ExtResource("3_vg3tw")
 marginContainerScene = ExtResource("3_a8jev")
 gridContainer = NodePath("ScrollContainer/GridContainer")
 scrollContainer = NodePath("ScrollContainer")

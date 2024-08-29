@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://match/Tile.cs" id="1_3ldum"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_3n662"]
 [ext_resource type="Texture2D" uid="uid://dpud1f3hee7ou" path="res://placeholders/x.png" id="3_crh8v"]
-[ext_resource type="Texture2D" path="res://match/goo2.png" id="3_pns2i"]
+[ext_resource type="Texture2D" uid="uid://qgpnxmyp2ogk" path="res://match/goo2.png" id="3_pns2i"]
 [ext_resource type="Texture2D" uid="uid://dkwc52qkv7pr6" path="res://placeholders/tileborder.png" id="4_leexa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]

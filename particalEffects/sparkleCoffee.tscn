@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7p7r57evc88c"]
+[gd_scene load_steps=5 format=3 uid="uid://c7p7r57evc88c"]
 
 [ext_resource type="Script" path="res://particalEffects/Explosion.cs" id="1_id0a4"]
 [ext_resource type="Texture2D" uid="uid://cy4q8r85fkpln" path="res://particalEffects/sparkle-Sheet2.png" id="2_nfoqv"]
-[ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="3_2n1yg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i1ktd"]
 particles_animation = true
@@ -31,9 +30,6 @@ script = ExtResource("1_id0a4")
 particles2D = NodePath("GPUParticles2D")
 timeEmiting = 3.0
 timeAlive = 3.0
-
-[node name="MatchBoard" parent="." instance=ExtResource("3_2n1yg")]
-visible = false
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0.721569, 0.513726, 1)

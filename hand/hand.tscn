@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
-[ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="2_3nowl"]
+[ext_resource type="PackedScene" uid="uid://l8epp33hnkdj" path="res://cards/CardUIScaled.tscn" id="2_oq25s"]
 [ext_resource type="AudioStream" uid="uid://bs2ejr086nvnc" path="res://sound/Hand/cardFan1.wav" id="3_7bv56"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="3_sa2h8"]
 [ext_resource type="AudioStream" uid="uid://ns746kwxu5v7" path="res://sound/Hand/cardPlace1.wav" id="4_hbmsc"]
@@ -22,7 +22,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 position = Vector2(881, 1096)
 scale = Vector2(0.895, 0.895)
 script = ExtResource("1_erkbb")
-cardTemplate = ExtResource("2_3nowl")
+cardTemplate = ExtResource("2_oq25s")
 cardContainer = NodePath("CardContainer")
 cardSelectionUI = NodePath("CardSelectionUI")
 sprite2D = NodePath("Node2D")

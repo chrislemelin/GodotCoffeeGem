@@ -14,7 +14,7 @@ public partial class ZeroCardEnergyRelic : RelicResource
 	{
 		base.setUp();
 		FindObjectHelper.getMana(node).ManaChanged += checkManaAndCards;
-		FindObjectHelper.getHand(node).handChanged += checkManaAndCards;
+		//FindObjectHelper.getHand(node).handChanged += checkManaAndCards;
 
 	}
 
@@ -29,10 +29,10 @@ public partial class ZeroCardEnergyRelic : RelicResource
 	private void checkManaAndCards() {
 		Hand hand = FindObjectHelper.getHand(node);
 		Mana mana = FindObjectHelper.getMana(node);
-		if (hand.getAllCards().Count == 0 && mana.getMana() == 0 && !executedThisTurn) {
-			executeEffects();
-			executedThisTurn = true;
-		}
+		//if (hand.getAllCards().Count == 0 && mana.getMana() == 0 && !executedThisTurn) {
+		//	executeEffects();
+		//	executedThisTurn = true;
+		//}
 	}
 
 }

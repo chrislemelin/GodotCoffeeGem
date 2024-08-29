@@ -18,7 +18,7 @@ public partial class CardEffectCardSpend : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		int handValue = hand.getAllCards().Count;
-		hand.discardHand(false);
-		matchBoard.changeGemsColorAtRandomPositions(effectGemType.GetGemType(), handValue * getValue());
+//		hand.discardHand(false);
+		//matchBoard.changeGemsColorAtRandomPositions(effectGemType.GetGemType(), handValue * getValue());
 	}
 }

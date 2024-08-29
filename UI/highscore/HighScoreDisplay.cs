@@ -15,7 +15,7 @@ public partial class HighScoreDisplay : Control
 
 
 	public override void _Ready() {
-		scores = FindObjectHelper.getGameManager(this).getHighScores();
+	//	scores = FindObjectHelper.getGameManager(this).getHighScores();
 		renderScore();
 		addHighScore(100);
 	}
@@ -50,7 +50,7 @@ public partial class HighScoreDisplay : Control
 	}
 
 	public void enteredName(String text) {
-		FindObjectHelper.getGameManager(this).submitScore(new Tuple<string, int>(text, scoreNaming));
+		//FindObjectHelper.getGameManager(this).submitScore(new Tuple<string, int>(text, scoreNaming));
 		renderScore();
 		GetTree().CreateTimer(3).Timeout += () =>  Visible = false;
 	}

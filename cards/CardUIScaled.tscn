@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://l8epp33hnkdj"]
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_o0n2r"]
-[ext_resource type="Texture2D" path="res://placeholders/cards/Cardfront2red.png" id="3_y8rao"]
+[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="3_y8rao"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_rpy3w"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="7_lcv1w"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_0idb8"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="11_wgnfi"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="13_txhnh"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="15_cbp0x"]
-[ext_resource type="FontFile" path="res://fonts/DePixelKlein.ttf" id="16_wj50d"]
-[ext_resource type="FontFile" path="res://fonts/ZX OCR-B.ttf" id="17_kdbgc"]
+[ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="16_wj50d"]
+[ext_resource type="FontFile" uid="uid://csv4wx1x3e6nd" path="res://fonts/ZX OCR-B.ttf" id="17_kdbgc"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_26tna"]
 
