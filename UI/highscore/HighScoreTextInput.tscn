@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bnlmy7qcw27j4"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Insert Name Here"
+max_length = 30
+expand_to_text_length = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5000"
+fit_content = true
+scroll_active = false

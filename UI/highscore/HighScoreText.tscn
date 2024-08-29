@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dc4pdbkklu81h"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Chris L"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5000"
+fit_content = true
+scroll_active = false

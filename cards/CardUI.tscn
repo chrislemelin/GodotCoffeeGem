@@ -1,16 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxshhmv8s75ky"]
+[gd_scene load_steps=18 format=3 uid="uid://bxshhmv8s75ky"]
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_tb7xr"]
 [ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="2_663k4"]
 [ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="2_lklcc"]
+[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_o3jpl"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_a0ard"]
-[ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="3_hibfg"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="3_y21xb"]
-[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="6_2kaga"]
+[ext_resource type="Texture2D" path="res://placeholders/cards/cardbackblank.png" id="5_0kcsm"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="6_w0vkw"]
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="6_yrfys"]
+[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="7_5gcun"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_8y700"]
 [ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="8_hyiww"]
+[ext_resource type="FontFile" path="res://fonts/PixelOperator-Bold.ttf" id="8_k3q0k"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="12_aety0"]
 
 [sub_resource type="Theme" id="Theme_kwco5"]
@@ -26,11 +28,11 @@ size = Vector2(420, 603.333)
 
 [node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite", "toolTipText")]
 position = Vector2(474, 266)
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_tb7xr")
-control = NodePath("UI")
+control = NodePath("UI/HitBox")
 titleLabel = NodePath("UI/Title/RichTextLabel")
-descriptionLabel = NodePath("UI/Description/RichTextLabel")
+descriptionLabel = NodePath("UI/Description/VBoxContainer2/RichTextLabel2")
 costLabel = NodePath("UI/Cost/RichTextLabel")
 picture = NodePath("UI/Picture/Sprite2D")
 highlightOnHover = NodePath("UI/Background")
@@ -39,32 +41,35 @@ titleSprite = NodePath("UI/Title/Sprite2D")
 toolTipText = NodePath("Tooltip")
 speed = 500.0
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("toolTipText")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("toolTipText", "target")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -220.0
 offset_top = -313.333
 offset_right = -220.0
 offset_bottom = -313.333
+pivot_offset = Vector2(200, 300)
 theme = SubResource("Theme_kwco5")
 script = ExtResource("2_lklcc")
 toolTipText = NodePath("../Tooltip")
+target = NodePath("HitBox")
 
-[node name="Background" type="TextureRect" parent="UI" node_paths=PackedStringArray("makeBiggerControl")]
+[node name="Background" type="TextureRect" parent="UI" node_paths=PackedStringArray("area2D", "makeBiggerControl")]
 modulate = Color(0.239216, 0, 0.00392157, 1)
 material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 0
-offset_left = -20.0
-offset_top = -30.0003
-offset_right = 400.0
-offset_bottom = 570.0
-scale = Vector2(1.1, 1.1)
+offset_left = -26.0
+offset_top = -30.0
+offset_right = 460.0
+offset_bottom = 630.0
 theme = ExtResource("3_y21xb")
-texture = ExtResource("3_hibfg")
+texture = ExtResource("5_0kcsm")
 script = ExtResource("3_a0ard")
+area2D = NodePath("../HitBox")
+highlightOnSelf = false
 forceHighlightColor = Color(0, 1, 0, 1)
 makeBiggerControl = NodePath("..")
-makeBiggerScale = 1.3
+makeBiggerScale = 1.4
 
 [node name="Description" type="Control" parent="UI"]
 anchors_preset = 0
@@ -79,40 +84,46 @@ metadata/_edit_use_anchors_ = true
 [node name="Sprite2D" type="TextureRect" parent="UI/Description"]
 layout_mode = 0
 offset_left = -5.0
-offset_right = 307.0
-offset_bottom = 214.0
+offset_top = -8.0
+offset_right = 321.0
+offset_bottom = 209.0
 mouse_filter = 2
-texture = ExtResource("7_8y700")
+texture = ExtResource("7_5gcun")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Description"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Description"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 300.0
-offset_bottom = 207.0
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 302.0
+offset_bottom = 181.0
+alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Description/VBoxContainer2"]
+layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_2kaga")
-theme_override_font_sizes/normal_font_size = 36
+theme_override_fonts/normal_font = ExtResource("8_k3q0k")
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
-text = "[hint={test}]blah blah blah[/hint]"
+text = "+$valueenergy and +2burnt . If you have made at least 1 coffee match this turn, +1energy $customText"
+fit_content = true
 
 [node name="Picture" type="Control" parent="UI"]
 anchors_preset = 0
-offset_left = 63.0
-offset_top = 97.0
-offset_right = 63.0
-offset_bottom = 97.0
+offset_left = 77.1429
+offset_top = 93.333
+offset_right = 77.1429
+offset_bottom = 93.333
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Picture"]
 modulate = Color(0.196078, 0.196078, 0.196078, 1)
 layout_mode = 0
-offset_left = -25.8571
-offset_top = -3.66699
-offset_right = 374.143
-offset_bottom = 396.333
+offset_left = -34.2857
+offset_top = -2.85714
+offset_right = 395.714
+offset_bottom = 397.143
 scale = Vector2(0.8, 0.55)
 mouse_filter = 2
 texture = ExtResource("7_8y700")
@@ -120,10 +131,10 @@ texture = ExtResource("7_8y700")
 [node name="Title" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 36.6667
-offset_top = -0.000305176
-offset_right = 36.6667
-offset_bottom = -0.000305176
+offset_left = 45.7143
+offset_top = -0.952715
+offset_right = 45.7143
+offset_bottom = -0.952715
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="UI/Title"]
@@ -190,24 +201,36 @@ text = "[center]0"
 fit_content = true
 scroll_active = false
 
+[node name="HitBox" type="Control" parent="UI"]
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 420.0
+offset_bottom = 608.0
+
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2(-9.99999, -15)
 shape = SubResource("RectangleShape2D_4w66s")
 
 [node name="Tooltip" type="RichTextLabel" parent="."]
 visible = false
-offset_left = 368.571
-offset_top = -297.143
-offset_right = 742.571
-offset_bottom = -195.143
-scale = Vector2(2, 2)
+offset_left = 334.0
+offset_top = -306.0
+offset_right = 700.0
+offset_bottom = -160.0
 theme_override_font_sizes/normal_font_size = 50
 theme_override_styles/normal = ExtResource("12_aety0")
 text = "this is a test tooltip"
 fit_content = true
+
+[node name="UI2" parent="." instance=ExtResource("2_o3jpl")]
+visible = false
+offset_left = 177.143
+offset_top = -402.857
+offset_right = 812.143
+offset_bottom = 397.143
+scale = Vector2(0.75, 0.75)
 
 [node name="Node" type="Node" parent="."]

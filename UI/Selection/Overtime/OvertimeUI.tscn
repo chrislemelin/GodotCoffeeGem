@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt53pbibh6p76"]
+
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_1k324"]
+[ext_resource type="Script" path="res://UI/Selection/Overtime/OvertimeUI.cs" id="1_w76rk"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="3_x7tya"]
+[ext_resource type="AudioStream" uid="uid://d2eypcf71h7dg" path="res://sound/Score/pour.mp3" id="4_t5us1"]
+
+[sub_resource type="Animation" id="Animation_i8x2e"]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -300), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nwmgx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v7ht1"]
+_data = {
+"FadeIn": SubResource("Animation_i8x2e"),
+"RESET": SubResource("Animation_nwmgx")
+}
+
+[node name="OvertimeUI" type="Control" node_paths=PackedStringArray("animationPlayer")]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -500.0
+offset_bottom = -500.0
+script = ExtResource("1_w76rk")
+animationPlayer = NodePath("Control/AnimationPlayer")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -300.0
+offset_right = 315.0
+offset_bottom = -177.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 305.0
+offset_bottom = 114.0
+theme = ExtResource("1_1k324")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 331.0
+offset_bottom = 117.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Quota Reached
+[wave amp=50.0 freq=6.0 connected=1][rainbow freq=.5 sat=0.8 val=0.8]OverTime!
+"
+
+[node name="AudioStreamPlayer2D" parent="Control" instance=ExtResource("3_x7tya")]
+position = Vector2(-1, 0)
+stream = ExtResource("4_t5us1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_v7ht1")
+}

@@ -1,0 +1,17 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://ddaqeo5lmpqsm"]
+
+[ext_resource type="Texture2D" uid="uid://dokibaeefiklq" path="res://UI/Themes/textures/Woodborder_rescale.png" id="1_xrfb6"]
+
+[resource]
+texture = ExtResource("1_xrfb6")
+texture_margin_left = 76.0684
+texture_margin_top = 76.1342
+texture_margin_right = 80.1358
+texture_margin_bottom = 76.1687
+expand_margin_left = 30.0
+expand_margin_top = 30.0
+expand_margin_right = 30.0
+expand_margin_bottom = 30.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(4, 4, 476, 476)

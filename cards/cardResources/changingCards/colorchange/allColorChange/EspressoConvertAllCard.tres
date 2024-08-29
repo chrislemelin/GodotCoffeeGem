@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dfgbefftv4inb"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://beqwrwfmu2ky5"]
 
 [ext_resource type="Texture2D" uid="uid://cfjlns4rqdy4r" path="res://cards/cardResources/cardArt/coffee.png" id="1_hrlql"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/allColorChange/CardEffectAllConvert.cs" id="2_g7lq8"]

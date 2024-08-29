@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://n47nvuio53df"]
+[gd_scene load_steps=7 format=3 uid="uid://n47nvuio53df"]
 
 [ext_resource type="Script" path="res://match/Tile.cs" id="1_3ldum"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_3n662"]
 [ext_resource type="Texture2D" uid="uid://dpud1f3hee7ou" path="res://placeholders/x.png" id="3_crh8v"]
+[ext_resource type="Texture2D" path="res://match/goo2.png" id="3_pns2i"]
 [ext_resource type="Texture2D" uid="uid://dkwc52qkv7pr6" path="res://placeholders/tileborder.png" id="4_leexa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]
@@ -18,7 +19,7 @@ gemParent = NodePath("GemParent")
 highlightColor = Color(1, 0, 0, 0.235294)
 hoverColor = Color(1, 1, 0, 0.666667)
 selectColor = Color(0.183333, 0, 1, 0.505882)
-blockedColor = Color(1, 0, 0.933333, 0.788235)
+blockedColor = Color(0.341176, 0.00784314, 0.290196, 0.517647)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -36,6 +37,27 @@ position = Vector2(125, 125)
 shape = SubResource("RectangleShape2D_v70ys")
 
 [node name="GemParent" type="Node2D" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(0.129412, 0.129412, 0.129412, 0.235294)
+offset_left = 4.99999
+offset_top = 3.0
+offset_right = 247.0
+offset_bottom = 248.0
+texture = ExtResource("2_3n662")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -9.99999
+offset_top = -7.99999
+offset_right = 250.0
+offset_bottom = 252.0
+mouse_filter = 2
+texture = ExtResource("3_pns2i")
+expand_mode = 1
 
 [node name="DisableSprite" type="Sprite2D" parent="."]
 visible = false

@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://ct0cmbf354u4s" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/VanillaConvertRandomCard.tres" id="5_ctrix"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_3fhnv"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="7_es3ik"]
-[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="8_xliq1"]
+[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="8_xliq1"]
 
 [resource]
 script = ExtResource("1_pu38p")

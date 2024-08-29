@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ZeroCardEnergyRelic" load_steps=4 format=3 uid="uid://bd6ql16571ymt"]
+
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="1_fbxa6"]
+[ext_resource type="Script" path="res://relics/scripts/ZeroCardEnergyRelic.cs" id="2_x4oon"]
+
+[sub_resource type="Resource" id="Resource_icnpl"]
+script = ExtResource("1_fbxa6")
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 3
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("2_x4oon")
+title = "Energy Bar"
+description = "+3 card if  you have 0 energy and 0 cards in hand. Can only trigger once per turn"
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_icnpl")]
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

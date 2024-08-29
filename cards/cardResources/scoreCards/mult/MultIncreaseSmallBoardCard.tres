@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://wcyd0xos28xb"]
+
+[ext_resource type="Script" path="res://cards/cardResources/scoreCards/mult/SmallerBoardCardEffect.cs" id="1_1su2w"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_xmimk"]
+
+[sub_resource type="Resource" id="Resource_7u8le"]
+script = ExtResource("1_1su2w")
+multIncrease = 1.0
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+consume = false
+retain = false
+matchy = false
+spendX = false
+
+[resource]
+script = ExtResource("2_xmimk")
+Title = "In a Corner"
+Description = "Add 1.0 to the multiplier for each column you are missing from the match board $value"
+Cost = 1
+rarity = 0
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_7u8le")

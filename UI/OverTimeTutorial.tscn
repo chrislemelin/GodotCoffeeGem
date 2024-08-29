@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1fr7cyepf8ha"]
+
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_j5hjr"]
+[ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://placeholders/character/Boss.png" id="2_eidhs"]
+
+[node name="OverTimeTutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.196078, 0.196078, 0.196078, 0.427451)
+position = Vector2(966, 541)
+scale = Vector2(4.89, 2.775)
+texture = ExtResource("1_j5hjr")
+
+[node name="Boss" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(728, 534)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("2_eidhs")

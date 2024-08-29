@@ -1,14 +1,11 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [GlobalClass, Tool]
-public partial class CardEffectManaSpend : CardEffectIF
+public partial class SugarCoinGemsCardEffect : CardEffectIF
 {
-	public CardEffectManaSpend() {
-		 
-	}
-
 	public override SelectionType getSelectionType()
 	{
 		return SelectionType.None;
@@ -17,8 +14,7 @@ public partial class CardEffectManaSpend : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		int manaValue = mana.manaValue;
-		mana.modifyMana(-1 * manaValue);
-		FindObjectHelper.getScore(matchBoard).addScoreFromNode(100 * manaValue, node);
+		List<Tile> tilesToEffect = matchBoard.getTilesWithColorOfGem(effectGemType.GetGemType());
+		matchBoard.addGemAddons(tilesToEffect.Select(x => x.getTilePosition()).ToList(), GemAddonType.Money);
 	}
 }

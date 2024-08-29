@@ -4,17 +4,17 @@
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="1_qnag5"]
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="3_34kys"]
-[ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="4_1yqfg"]
+[ext_resource type="Texture2D" path="res://placeholders/cards/cardbackblank.png" id="5_jomlt"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="5_qjawy"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_4xx5d"]
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="7_8gbvv"]
-[ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="7_jkbfx"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_jrfr0"]
 [ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
+[ext_resource type="FontFile" path="res://fonts/PixelOperator-Bold.ttf" id="8_unlcy"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="9_w4arf"]
 [ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="11_kkerm"]
-[ext_resource type="Texture2D" uid="uid://d3hvm7mjrstbo" path="res://placeholders/cards/RedCardBack.png" id="13_hn8m8"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="14_5dyd3"]
+[ext_resource type="Texture2D" path="res://placeholders/cards/CardBackRealFinal.png" id="14_xpk7t"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="16_2oxoi"]
 [ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="16_sfgf4"]
 
@@ -38,7 +38,7 @@ noise = SubResource("FastNoiseLite_emh0e")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
 shader = ExtResource("1_idfrd")
 shader_parameter/dissolve_value = 1.0
-shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
+shader_parameter/line_color = Color(1, 0, 0, 1)
 shader_parameter/line_thickness = 5.0
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_xyswb")
 
@@ -259,10 +259,10 @@ shader_parameter/shine_size = 0.09
 shader_parameter/shine_angle = 37.5
 shader_parameter/shine_on = 1.0
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText")]
+[node name="UI2" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText")]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_7pfgj")
-custom_minimum_size = Vector2(530, 800)
+custom_minimum_size = Vector2(635, 800)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -270,9 +270,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -966.0
-offset_top = -545.0
-offset_right = -436.0
-offset_bottom = 255.0
+offset_top = -575.0
+offset_right = -331.0
+offset_bottom = 295.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(250, 400)
@@ -283,7 +283,7 @@ mouse_filter = 1
 theme = ExtResource("3_34kys")
 script = ExtResource("1_qnag5")
 titleLabel = NodePath("Center/Title/RichTextLabel")
-descriptionLabel = NodePath("Center/Description2/RichTextLabel")
+descriptionLabel = NodePath("Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
 titleSprite = NodePath("Center/Title/Sprite2D")
@@ -300,10 +300,10 @@ use_parent_material = true
 custom_minimum_size = Vector2(420, 600)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 62.0
-offset_top = 80.0
-offset_right = 482.0
-offset_bottom = 680.0
+offset_left = 61.0
+offset_top = 151.0
+offset_right = 481.0
+offset_bottom = 751.0
 scale = Vector2(1.25, 1.25)
 pivot_offset = Vector2(210, 300)
 mouse_filter = 2
@@ -312,55 +312,63 @@ mouse_filter = 2
 modulate = Color(0.239216, 0, 0.00392157, 1)
 material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 2
-offset_left = -8.39999
+offset_left = -8.0
 offset_top = -28.0
-offset_right = 459.6
+offset_right = 504.0
 offset_bottom = 650.0
-texture = ExtResource("4_1yqfg")
+texture = ExtResource("5_jomlt")
 expand_mode = 1
 script = ExtResource("5_qjawy")
+forceHighlightColor = Color(0, 1, 0, 0.968627)
 makeBiggerScale = 1.0
 
 [node name="Description2" type="Control" parent="Center"]
 use_parent_material = true
 anchors_preset = 0
-offset_left = 28.8
+offset_left = 52.4
 offset_top = -100.0
-offset_right = 28.8
+offset_right = 52.4
 offset_bottom = -100.0
 mouse_filter = 1
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Description2"]
 use_parent_material = true
 layout_mode = 0
-offset_left = 18.0
+offset_left = -6.0
 offset_top = 426.0
-offset_right = 373.0
+offset_right = 401.0
 offset_bottom = 696.0
 mouse_filter = 2
 texture = ExtResource("6_4xx5d")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Center/Description2"]
-use_parent_material = true
+[node name="VBoxContainer2" type="VBoxContainer" parent="Center/Description2"]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 439.2
-offset_right = 360.0
-offset_bottom = 681.2
+offset_left = 18.0
+offset_top = 446.0
+offset_right = 382.0
+offset_bottom = 655.0
+mouse_filter = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Center/Description2/VBoxContainer2"]
+z_as_relative = false
+texture_filter = 1
+use_parent_material = true
+layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_jkbfx")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_fonts/normal_font = ExtResource("8_unlcy")
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "this is a test tooltip
-[color=#ba951a]beep sdfsdf[/color]"
+text = "+$valueenergy and +2burnt . \\nIf you have made at least 1 coffee match this turn, +1energy $customText"
+fit_content = true
 
 [node name="Picture" type="Control" parent="Center"]
 use_parent_material = true
 anchors_preset = 0
-offset_left = 63.0
+offset_left = 86.6
 offset_top = 97.0
-offset_right = 63.0
+offset_right = 86.6
 offset_bottom = 97.0
 mouse_filter = 2
 
@@ -381,17 +389,17 @@ expand_mode = 1
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 53.6
+offset_left = 77.2
 offset_top = -0.8
-offset_right = 53.6
+offset_right = 77.2
 offset_bottom = -0.8
 mouse_filter = 2
 
 [node name="Sprite2D" type="TextureRect" parent="Center/Title"]
 use_parent_material = true
 layout_mode = 0
-offset_left = -20.0
-offset_right = 366.0
+offset_left = -48.0
+offset_right = 398.0
 offset_bottom = 90.0
 mouse_filter = 2
 texture = ExtResource("8_coj1d")
@@ -459,10 +467,10 @@ scroll_active = false
 [node name="CoinCost" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_left = 147.0
-offset_top = 801.0
-offset_right = 419.0
-offset_bottom = 865.0
+offset_left = 160.0
+offset_top = 862.0
+offset_right = 432.0
+offset_bottom = 926.0
 mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CoinCost"]
@@ -497,7 +505,7 @@ offset_right = 559.0
 offset_bottom = 777.0
 scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(285, 400)
-texture = ExtResource("13_hn8m8")
+texture = ExtResource("14_xpk7t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -508,7 +516,7 @@ libraries = {
 material = SubResource("ShaderMaterial_muung")
 layout_mode = 0
 offset_left = 25.0
-offset_right = 558.0
+offset_right = 610.0
 offset_bottom = 793.0
 mouse_filter = 2
 texture = ExtResource("7_jrfr0")

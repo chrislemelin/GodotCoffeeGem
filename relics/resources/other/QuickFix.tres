@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=7 format=3 uid="uid://rem81l6vu31j"]
+
+[ext_resource type="Script" path="res://relics/effects/RemoveColumnEffect.cs" id="1_abqmw"]
+[ext_resource type="Texture2D" uid="uid://y3ivqvrg7cxs" path="res://relics/sprites/Icon.6_93.png" id="1_tldtd"]
+[ext_resource type="Script" path="res://relics/effects/AddNewColPassive.cs" id="2_e6ns4"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="2_s3huf"]
+
+[sub_resource type="Resource" id="Resource_nby0v"]
+script = ExtResource("2_e6ns4")
+value = 1
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_n1fa7"]
+script = ExtResource("1_abqmw")
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("2_s3huf")
+title = "Quick Fix"
+description = "+1 match board column. -1 match board column on every turn after the second turn"
+image = ExtResource("1_tldtd")
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = [SubResource("Resource_nby0v")]
+turnStartEffects = [SubResource("Resource_n1fa7")]
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = []
+matchEffects = []
+counterMax = 3
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = false
+doEffectsOnTurnStartIfCounterAtMax = true

@@ -4,8 +4,8 @@
 [ext_resource type="Resource" uid="uid://70kmw430310t" path="res://cards/cardResources/scoreCards/AddTurn.tres" id="1_tsnfh"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="2_mipxg"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="3_8laqv"]
-[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="4_wfj88"]
-[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="5_yy61i"]
+[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="4_wfj88"]
+[ext_resource type="Resource" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="5_yy61i"]
 
 [resource]
 script = ExtResource("1_sshhq")

@@ -53,6 +53,7 @@ offset_right = -11.0
 offset_bottom = 25.0
 
 [node name="Button" parent="." instance=ExtResource("3_cpy2c")]
+anchors_preset = 0
 offset_left = 859.0
 offset_top = 965.0
 offset_right = 1047.0

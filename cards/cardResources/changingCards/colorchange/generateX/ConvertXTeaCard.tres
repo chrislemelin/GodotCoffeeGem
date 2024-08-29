@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d4nq48ubtbeuu"]
+
+[ext_resource type="Texture2D" uid="uid://3ifn8i2rt7bp" path="res://cards/cardResources/cardArt/leaf.png" id="1_d82g0"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/generateX/CardEffectCardSpend.cs" id="2_krkpa"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_cg0f3"]
+
+[sub_resource type="Resource" id="Resource_ckupm"]
+script = ExtResource("2_krkpa")
+Range = 1.0
+Value = 2
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 3
+cannotSelectGemTypes = []
+consume = false
+retain = false
+matchy = false
+spendX = false
+
+[resource]
+script = ExtResource("3_cg0f3")
+Title = "Big T Energy"
+Description = "Discard your hand, create 2X tea where X is equal to the total number of cards discarded"
+Cost = 2
+rarity = 2
+Picture = ExtResource("1_d82g0")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_ckupm")
