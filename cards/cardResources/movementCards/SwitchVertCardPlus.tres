@@ -21,18 +21,21 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("3_54fl3")
 Title = "Switch Vertical +"
-Description = "Switch the positions of two ingredients in the same column"
+Description = "Swap two vertically adjacent ingredients. If the first selection is vanilla gain unlimited range on the swap."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_oechv")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")

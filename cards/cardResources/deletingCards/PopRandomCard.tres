@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("1_sbuvw")
 Title = "Pop Random"
-Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type draw a card and gain an energy"
+Description = "Destroy $value random ingredients of a selected type. If there are exactly $value ingredients of that type +1$draw and +1$energy"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_yq4np")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_i6k8f")

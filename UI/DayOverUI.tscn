@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2av55t0yxy4e"]
+[gd_scene load_steps=17 format=3 uid="uid://2av55t0yxy4e"]
 
 [ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
 [ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="5_6xr0x"]
 [ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="5_by2ub"]
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_fr8b3"]
+[ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="7_s7rm1"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="8_8qiu1"]
 [ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
@@ -52,7 +53,7 @@ upgradedSwitchCard = ExtResource("4_yvkph")
 vertSwitchCard = ExtResource("5_by2ub")
 horizSwitchCard = ExtResource("6_fr8b3")
 cardShop = NodePath("CardShop")
-cardScene = ExtResource("8_jclpp")
+cardScene = ExtResource("7_s7rm1")
 marginContainerScene = ExtResource("8_8qiu1")
 
 [node name="Panel" type="Panel" parent="."]

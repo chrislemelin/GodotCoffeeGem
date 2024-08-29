@@ -8,7 +8,7 @@
 script = ExtResource("1_jfsnc")
 gemAddonType = 1
 Range = 1.0
-Value = 1
+Value = 0
 BlackGems = 1
 ManaGems = 1
 CardGems = 0
@@ -22,9 +22,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("1_ybbs8")
@@ -34,5 +36,6 @@ Cost = 0
 rarity = 0
 Picture = ExtResource("1_k713s")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_m0v28")

@@ -114,8 +114,8 @@ public partial class Score : Node2D
 		if (scoreReached() && getTurnsRemaining() == 0)
 		{
 			//setTurnsRemaining(turnsRemaining - 1);
-			gameManager.evaluateLevel();
-			return;
+			//gameManager.evaluateLevel();
+			//return;
 		}
 		colorUpgrades = colorUpgrades.Where(colorUpgrade => !colorUpgrade.temporary).ToList();
 		renderColorUpgradePreviews();
@@ -442,6 +442,9 @@ public partial class Score : Node2D
 	}
 
 	public bool isLevelOver() {
+		if (((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten()) {
+			return false;
+		}
 		if(levelCleared || levelLost){
 			return true;
 		}

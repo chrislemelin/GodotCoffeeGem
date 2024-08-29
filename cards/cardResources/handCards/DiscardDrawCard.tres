@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_e3ayx")
 Title = "New Ideas"
-Description = "Discard your hand, then draw a card for each card discarded"
+Description = "Discard your hand, then +1$draw for each card discarded"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_la2n2")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_j5w02")

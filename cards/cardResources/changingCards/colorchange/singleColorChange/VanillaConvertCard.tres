@@ -34,17 +34,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 2
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_6ct6l")
 Title = "Vanilla Shot"
-Description = "Changes selected ingredients to vanilla. If this makes a 4+ match, gain 0.25 mult"
+Description = "Change selection to vanilla. If this makes a 4+ match, gain 0.25 mult"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_wkidi")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_mklkk")

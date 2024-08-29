@@ -76,7 +76,7 @@ public partial class CardIF : lerp
 		}
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
-		descriptionLabel.Text = cardResource.getDescription();
+		descriptionLabel.Text = TextHelper.centered(cardResource.getDescription());
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		//highlightOnHover.TooltipText = cardResource.getToolTip();

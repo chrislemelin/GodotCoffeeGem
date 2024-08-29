@@ -20,9 +20,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("1_w3f4l")
@@ -31,5 +33,6 @@ Description = "Gain 100 points for each unique type of ingredient matched this t
 Cost = 1
 rarity = 1
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_h4t0i")

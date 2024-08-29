@@ -332,9 +332,9 @@ mouse_filter = 1
 [node name="Sprite2D" type="TextureRect" parent="Center/Description2"]
 use_parent_material = true
 layout_mode = 0
-offset_left = -17.0
+offset_left = -21.0
 offset_top = 471.0
-offset_right = 218.0
+offset_right = 222.0
 offset_bottom = 630.0
 mouse_filter = 2
 texture = ExtResource("7_b4pll")
@@ -343,9 +343,9 @@ expand_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="Center/Description2"]
 use_parent_material = true
 layout_mode = 0
-offset_left = -7.0
+offset_left = -11.0
 offset_top = 479.0
-offset_right = 207.0
+offset_right = 212.0
 offset_bottom = 618.0
 mouse_filter = 2
 alignment = 1

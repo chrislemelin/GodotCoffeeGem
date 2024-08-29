@@ -144,7 +144,7 @@ public partial class Global : Node
 		highScores.Clear();
 		while (true) {
 			String key = LEADER_BOARD_SCORE + scoreCount++;
-			if (nodeData.ContainsKey(key)){
+			if (nodeData.ContainsKey(key)) {
 				highScores.Add(loadScoreFromString(nodeData[key]));
 			} else {
 				break;

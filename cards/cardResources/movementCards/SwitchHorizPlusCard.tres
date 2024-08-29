@@ -21,18 +21,21 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("3_l0imo")
 Title = "Switch Horiz +"
-Description = "Switch the positions of two ingredients in the same row"
+Description = "Swap two horizontally adjacent ingredients. If the first selection is vanilla gain unlimited range on the swap."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_ij3iv")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")

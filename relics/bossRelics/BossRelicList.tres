@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://d2a71fk4odeoo" path="res://relics/bossRelics/ingredientDecreaseRelic/SugarDecreaseRelic.tres" id="3_puu18"]
 [ext_resource type="Resource" uid="uid://bxrit1hj2gm1b" path="res://relics/bossRelics/ingredientDecreaseRelic/TeaDecreaseRelic.tres" id="4_lx68o"]
 [ext_resource type="Resource" uid="uid://drrpskuhacw01" path="res://relics/bossRelics/ingredientDecreaseRelic/VanillaDecreaseRelic.tres" id="5_hs2tv"]
-[ext_resource type="Resource" uid="uid://bcn5rtffkqmwv" path="res://relics/bossRelics/RemoveColumnBossRelic.tres" id="6_5wd28"]
+[ext_resource type="Resource" uid="uid://bcn5rtffkqmwv" path="res://relics/bossRelics/RemoveColumnRelic.tres" id="6_5wd28"]
 [ext_resource type="Resource" uid="uid://cdwbwyd03jka" path="res://relics/bossRelics/SmallerHandRelic.tres" id="7_yk0xr"]
 [ext_resource type="Resource" uid="uid://dk5dg2lxk2jae" path="res://relics/bossRelics/GooColumnsRelic.tres" id="8_4o6d4"]
 

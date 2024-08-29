@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 1
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_2sn8u")
 Title = "Milk Spray"
-Description = "Change $value random ingredients to milk. If this creates a match, draw a card"
+Description = "Generate $valuemilk. If this creates a match, +1$draw"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_5x4gi")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_hjtya")

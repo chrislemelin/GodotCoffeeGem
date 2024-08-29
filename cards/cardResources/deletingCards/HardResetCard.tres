@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = true
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_rrq7w")
 Title = "Spring Cleaning"
-Description = "Destroy all non-burnt ingredients"
-Cost = 1
+Description = "Destroy all non-burnt ingredients."
+Cost = 2
 rarity = 1
 Picture = ExtResource("1_6ngj0")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_6w1sj")

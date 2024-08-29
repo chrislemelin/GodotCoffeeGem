@@ -17,8 +17,8 @@ public partial class HighScoreDisplay : Control
 	public override void _Ready() {
 		scores = FindObjectHelper.getGameManager(this).getHighScores();
 		renderScore();
-		addHighScore(100);
-	}
+		//addHighScore(100);
+	}	
 
 	private void renderScore() {
 		foreach(Node node in scoreHolder.GetChildren()) {
@@ -52,6 +52,6 @@ public partial class HighScoreDisplay : Control
 	public void enteredName(String text) {
 		FindObjectHelper.getGameManager(this).submitScore(new Tuple<string, int>(text, scoreNaming));
 		renderScore();
-		GetTree().CreateTimer(3).Timeout += () =>  Visible = false;
+		GetTree().CreateTimer(1).Timeout += () =>  Visible = false;
 	}
 }

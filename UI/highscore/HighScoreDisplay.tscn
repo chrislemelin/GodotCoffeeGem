@@ -16,7 +16,7 @@ theme = ExtResource("1_mj7ar")
 script = ExtResource("2_1ubr2")
 scoreText = ExtResource("3_fv8w8")
 scoreInput = ExtResource("4_rey7p")
-scoreHolder = NodePath("")
+scoreHolder = NodePath("Panel/VBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0

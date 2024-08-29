@@ -20,9 +20,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_4ergt")
@@ -31,5 +33,6 @@ Description = "Select an ingredient. Destroy all ingredients except for selected
 Cost = 3
 rarity = 2
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_dwgfk")

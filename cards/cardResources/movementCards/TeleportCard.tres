@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("1_q6px8")
 Title = "Switcharoo"
-Description = "Swap the positions of 2 ingredients in the same row or column"
+Description = "Swap 2 ingredients in the same row or column"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_72u2q")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lmv24")

@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_8m17l")
 Title = "Pop Burn"
-Description = "Destroy selected ingredient. Draw a card and burn an ingredient"
+Description = "Destroy selected ingredient. +1$draw and +1burnt"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_qvwan")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_yu3xx")

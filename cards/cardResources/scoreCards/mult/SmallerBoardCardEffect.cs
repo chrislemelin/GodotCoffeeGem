@@ -30,6 +30,4 @@ public partial class SmallerBoardCardEffect : CardEffectIF
 		FindObjectHelper.getMatchBoard(node).boardSizeChanged += () => EmitSignal(SignalName.CustomTextChanged);
 
 	}
-
-
 }

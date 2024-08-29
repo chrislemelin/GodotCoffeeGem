@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=14 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
 [ext_resource type="PackedScene" uid="uid://l8epp33hnkdj" path="res://cards/CardUIScaled.tscn" id="2_oq25s"]
@@ -7,10 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://ns746kwxu5v7" path="res://sound/Hand/cardPlace1.wav" id="4_hbmsc"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="4_jlt7i"]
 [ext_resource type="Script" path="res://hand/HandLine.cs" id="4_lebxv"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="5_lbql7"]
 [ext_resource type="AudioStream" uid="uid://balvwdak4qrgk" path="res://sound/Hand/mouseclick1.ogg" id="5_o7eqj"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="7_4em3t"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="9_nslao"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="10_o673s"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="12_dvm32"]
 [ext_resource type="AudioStream" uid="uid://bluw6sm0urufj" path="res://sound/Hand/maximize_008.ogg" id="13_4abvi"]
 
@@ -20,11 +19,10 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
 [node name="Hand" type="Node2D" node_paths=PackedStringArray("cardContainer", "cardSelectionUI", "sprite2D", "handLine", "audioStreamPlayer2D", "cardSelectedaudioStreamPlayer2D", "cardHoveraudioStreamPlayer2D", "windowsInFrontOf")]
 position = Vector2(881, 1096)
-scale = Vector2(0.895, 0.895)
 script = ExtResource("1_erkbb")
 cardTemplate = ExtResource("2_oq25s")
 cardContainer = NodePath("CardContainer")
-cardSelectionUI = NodePath("CardSelectionUI")
+cardSelectionUI = NodePath("")
 sprite2D = NodePath("Node2D")
 handLine = NodePath("Line2D")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
@@ -34,58 +32,14 @@ newHandSoundEffect = ExtResource("3_7bv56")
 cardPlayedSoundEffect = ExtResource("4_hbmsc")
 cardSelectedSoundEffect = ExtResource("5_o7eqj")
 windowsInFrontOf = []
-width = 800
-
-[node name="CardSelectionUI" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -4.46927
-offset_bottom = -4.46927
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CardSelectionUI"]
-modulate = Color(1, 1, 1, 0.34902)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1006.7
-offset_top = -1263.69
-offset_right = 1093.3
-offset_bottom = 136.313
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_lbql7")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CardSelectionUI"]
-layout_mode = 0
-offset_left = -280.447
-offset_top = -882.682
-offset_right = 281.553
-offset_bottom = -608.682
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CardSelectionUI/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 45
-bbcode_enabled = true
-text = "[center]Select a card to discard[/center]"
-fit_content = true
-
-[node name="Button" type="Button" parent="CardSelectionUI/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Confirm "
+width = 900
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = -450.0
-offset_top = -130.0
-offset_right = 452.0
-offset_bottom = 116.0
-theme = ExtResource("10_o673s")
+offset_left = -456.0
+offset_top = -97.0
+offset_right = 1140.0
+offset_bottom = 246.0
+theme = ExtResource("7_4em3t")
 
 [node name="Node2D" type="Sprite2D" parent="."]
 visible = false
@@ -97,11 +51,15 @@ texture = ExtResource("3_sa2h8")
 [node name="Line2D" type="Line2D" parent="." groups=["HandLine"]]
 texture_filter = 2
 texture_repeat = 2
+position = Vector2(338.492, 68.1005)
 points = PackedVector2Array(0, 0, 0, 0, 0, 100)
 gradient = SubResource("Gradient_s4lcq")
 texture = ExtResource("4_jlt7i")
 texture_mode = 1
 script = ExtResource("4_lebxv")
+
+[node name="CardContainer" type="Node2D" parent="."]
+position = Vector2(340.726, 66.9833)
 
 [node name="CardSelectedAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_o7eqj")
@@ -113,8 +71,6 @@ maxValue = 20.0
 stream = ExtResource("3_7bv56")
 script = ExtResource("9_nslao")
 soundEffect = true
-
-[node name="CardContainer" type="Node2D" parent="."]
 
 [node name="HoverAudioPlayer" parent="." instance=ExtResource("12_dvm32")]
 stream = ExtResource("13_4abvi")

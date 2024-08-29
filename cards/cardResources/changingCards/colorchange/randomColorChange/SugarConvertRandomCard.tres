@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 5
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_vkrsl")
 Title = "Sugar Spray"
-Description = "Change $value random ingredient(s) to sugar. If this creates a match, draw a card"
+Description = "Generate $valuesugar. If this creates a match, +1$draw"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_3mefo")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_dplym")

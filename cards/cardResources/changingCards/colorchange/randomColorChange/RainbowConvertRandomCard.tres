@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_3tx3t"]
 script = ExtResource("2_a8o7s")
 Range = 1.0
-Value = 3
+Value = 2
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
@@ -20,16 +20,19 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_kjq10")
 Title = "Rainbow Spray"
-Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type. If this creates a match, draw a card"
+Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type. If this creates a match, +1$draw"
 Cost = 0
 rarity = 2
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_3tx3t")

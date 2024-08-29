@@ -20,9 +20,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_trulp")
@@ -31,5 +33,6 @@ Description = "Reset multiplier to 1 and gain a card and an energy for each whol
 Cost = 0
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_davew")

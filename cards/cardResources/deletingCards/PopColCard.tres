@@ -32,17 +32,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = true
+spendX = false
 
 [resource]
 script = ExtResource("3_4sq0s")
 Title = "Pop Column"
-Description = "Destroy all ingredients of a selected column. -1 cost if a milk match has been made this turn"
+Description = "Destroy all ingredients of a selected column. -1 cost if a milk match has been made this turn."
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_o76cr")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_igk4d")

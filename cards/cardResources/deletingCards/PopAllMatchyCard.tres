@@ -41,7 +41,7 @@ spendX = false
 [resource]
 script = ExtResource("4_7g212")
 Title = "Blow up the World"
-Description = "Destroy all ingredients. -1 cost for each milk match made this turn"
+Description = "Destroy all ingredients. -1 cost for each milk match made this turn."
 Cost = 5
 rarity = 1
 Picture = ExtResource("1_ur2ec")

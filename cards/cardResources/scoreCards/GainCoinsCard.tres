@@ -22,17 +22,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_damhv")
 Title = "Loose Change"
-Description = "Gain 5 coins. If you have matched a sugar this turn, gain another 5 coins. $customText"
+Description = "+5$coin. If you have made a sugar match this turn, +5$coin. $customText"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_ngwwr")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_7kxq4")

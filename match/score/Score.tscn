@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://placeholders/outter2.png" id="10_i5bib"]
 [ext_resource type="Texture2D" uid="uid://c77r8vld5eive" path="res://placeholders/UI/turn-orb-pixel-300px.png" id="10_pwl7c"]
 [ext_resource type="Texture2D" uid="uid://22671e24p2wq" path="res://placeholders/UI/turn-orb-empty-pixel-300px.png" id="11_liqc3"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="11_xqdl2"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="12_5h0ob"]
 [ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://placeholders/UI/heart-pixel-300px.png" id="12_i0n4t"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="13_mxfsq"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="17_bgy2v"]
@@ -53,7 +53,7 @@ offset_left = -153.0
 offset_top = -65.0
 offset_right = 152.0
 offset_bottom = 154.0
-theme = ExtResource("11_xqdl2")
+theme = ExtResource("12_5h0ob")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

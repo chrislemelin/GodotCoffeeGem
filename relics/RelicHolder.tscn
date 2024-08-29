@@ -31,8 +31,8 @@ modulate = Color(0.333333, 0.333333, 0.333333, 0.678431)
 layout_mode = 2
 offset_left = 173.0
 offset_top = 65.0
-offset_right = 639.0
-offset_bottom = 185.0
+offset_right = 554.0
+offset_bottom = 215.0
 texture = ExtResource("1_muhxp")
 expand_mode = 1
 
@@ -42,14 +42,114 @@ offset_left = 183.0
 offset_top = 53.0
 offset_right = 627.0
 offset_bottom = 182.0
-columns = 7
+columns = 5
+
+[node name="Control" parent="Control/Control7" instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+
+[node name="Control2" parent="Control/Control7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+titleLabel = NodePath("../Control/Title")
+counterLabel = NodePath("../Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../Control/RelicUI/TextureRect")
+hitBox = NodePath("../Control/HoverHitBox")
+costControl = NodePath("../Control/Control")
+buyButton = NodePath("../Control/Control/Button")
+animationPlayer = NodePath("../Control/AnimationPlayer")
+audio = NodePath("../Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../Control/Tooltip")
+target = NodePath("../Control/HoverHitBox")
+
+[node name="Control3" parent="Control/Control7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+titleLabel = NodePath("../Control/Title")
+counterLabel = NodePath("../Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../Control/RelicUI/TextureRect")
+hitBox = NodePath("../Control/HoverHitBox")
+costControl = NodePath("../Control/Control")
+buyButton = NodePath("../Control/Control/Button")
+animationPlayer = NodePath("../Control/AnimationPlayer")
+audio = NodePath("../Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../Control/Tooltip")
+target = NodePath("../Control/HoverHitBox")
+
+[node name="Control4" parent="Control/Control7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+titleLabel = NodePath("../Control/Title")
+counterLabel = NodePath("../Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../Control/RelicUI/TextureRect")
+hitBox = NodePath("../Control/HoverHitBox")
+costControl = NodePath("../Control/Control")
+buyButton = NodePath("../Control/Control/Button")
+animationPlayer = NodePath("../Control/AnimationPlayer")
+audio = NodePath("../Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../Control/Tooltip")
+target = NodePath("../Control/HoverHitBox")
+
+[node name="Control5" parent="Control/Control7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+titleLabel = NodePath("../Control/Title")
+counterLabel = NodePath("../Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../Control/RelicUI/TextureRect")
+hitBox = NodePath("../Control/HoverHitBox")
+costControl = NodePath("../Control/Control")
+buyButton = NodePath("../Control/Control/Button")
+animationPlayer = NodePath("../Control/AnimationPlayer")
+audio = NodePath("../Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../Control/Tooltip")
+target = NodePath("../Control/HoverHitBox")
+
+[node name="Control6" parent="Control/Control7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+titleLabel = NodePath("../Control/Title")
+counterLabel = NodePath("../Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../Control/RelicUI/TextureRect")
+hitBox = NodePath("../Control/HoverHitBox")
+costControl = NodePath("../Control/Control")
+buyButton = NodePath("../Control/Control/Button")
+animationPlayer = NodePath("../Control/AnimationPlayer")
+audio = NodePath("../Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../Control/Tooltip")
+target = NodePath("../Control/HoverHitBox")
+
+[node name="Control7" parent="Control/Control7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
+visible = false
+layout_mode = 2
+picture = NodePath("../Control/RelicUI/TextureRect")
+titleLabel = NodePath("../Control/Title")
+counterLabel = NodePath("../Control/CounterContainer/TextEdit")
+costValueLabel = NodePath("../Control/Control/HBoxContainer/RichTextLabel")
+highlightOnHover = NodePath("../Control/RelicUI/TextureRect")
+hitBox = NodePath("../Control/HoverHitBox")
+costControl = NodePath("../Control/Control")
+buyButton = NodePath("../Control/Control/Button")
+animationPlayer = NodePath("../Control/AnimationPlayer")
+audio = NodePath("../Control/AudioStreamPlayer2D")
+toolTipText = NodePath("../Control/Tooltip")
+target = NodePath("../Control/HoverHitBox")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 198.0
-offset_top = 20.0
-offset_right = 298.0
-offset_bottom = 39.0
+offset_left = 154.0
+offset_top = 16.0
+offset_right = 254.0
+offset_bottom = 35.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 0

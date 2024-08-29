@@ -120,6 +120,8 @@ public partial class GameManager : GameManagerIF
 		debtDisplay.richTextLabel.Text += "$" + getDebt();
 
 		score.levelPassed += checkForOverTimeTutorial;
+		score.levelPassed += checkForGameOver;
+
 
 		//EmitSignal(SignalName.levelStart);
 		//startDialouge(dialougeResource);
@@ -215,11 +217,12 @@ public partial class GameManager : GameManagerIF
 		levelCompleteAudioPlayer.Play();
 		EmitSignal(SignalName.levelOver);
 		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
+		GD.Print("score" + score.getScore());
+
 		getGlobal().totalScore += score.getScore();
-		if (currentLevel == levelList.levelResources.Count)
+		if (gameBeaten())
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
-			resetGlobals();
 			gameOverScreen.label.Text = "You win!!!";
 			gameOverScreen.setUpMainMenu();
 			int metaCoins = evaluateMetaCoins();
@@ -228,7 +231,10 @@ public partial class GameManager : GameManagerIF
 			gameOverScreen.Visible = true;
 
 			highScoreDisplay.Visible = true;
+			GD.Print("totalscore" + getGlobal().totalScore);
 			highScoreDisplay.addHighScore(getGlobal().totalScore);
+
+			resetGlobals();
 			return;
 		}
 

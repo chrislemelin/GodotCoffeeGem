@@ -32,17 +32,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = true
+spendX = false
 
 [resource]
 script = ExtResource("3_rg42k")
 Title = "Pop Grid"
-Description = "Destroy selected ingredient and all adjacent ingredients. -1 cost if a milk match has been made this turn"
+Description = "Destroy selected ingredient and all adjacent ingredients. -1 cost if a milk match has been made this turn."
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_3j4pf")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_73qtu")

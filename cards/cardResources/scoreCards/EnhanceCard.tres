@@ -20,9 +20,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_d61q8")
@@ -31,5 +33,6 @@ Description = "Increase the points gained from the selected ingredient type for 
 Cost = 0
 rarity = 1
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_qx1wc")

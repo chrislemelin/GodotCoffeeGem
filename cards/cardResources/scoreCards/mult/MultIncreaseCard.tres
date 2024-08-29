@@ -21,9 +21,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_f5w21")
@@ -32,5 +34,6 @@ Description = "Add 0.25 to the multiplier. If you have made at least 1 vanilla m
 Cost = 0
 rarity = 0
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_yybgl")

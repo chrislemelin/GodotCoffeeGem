@@ -20,16 +20,19 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_ebewn")
 Title = "Stripped 4 Parts"
-Description = "Remove a column from the match board for this level. Draw 3 cards and gain 2 energy"
+Description = "Remove a column from the match board for this level. +3$draw and gain +2$energy"
 Cost = 0
 rarity = 1
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_iiqww")

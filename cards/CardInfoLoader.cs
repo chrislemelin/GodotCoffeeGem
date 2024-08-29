@@ -118,7 +118,7 @@ public partial class CardInfoLoader : CustomToolTip
 		}
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
-		descriptionLabel.Text = cardResource.getDescription();
+		descriptionLabel.Text = TextHelper.centered(cardResource.getDescription());
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCost().ToString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		coinCostText.Text = cardResource.getCoinCost().ToString();

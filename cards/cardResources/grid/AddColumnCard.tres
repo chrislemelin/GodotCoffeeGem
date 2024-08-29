@@ -20,9 +20,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = true
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_jpbe3")
@@ -31,5 +33,6 @@ Description = "Add a column to the match board for this level"
 Cost = 2
 rarity = 2
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_60p6m")

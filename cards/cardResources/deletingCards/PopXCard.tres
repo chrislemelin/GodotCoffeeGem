@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = true
+spendX = false
 
 [resource]
 script = ExtResource("3_r5svq")
 Title = "Pop X"
-Description = "Destroy ingredients in an X shape"
+Description = "Destroy ingredients in an X shape."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_gqql4")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_l5fnd")

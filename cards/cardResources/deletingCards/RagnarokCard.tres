@@ -21,9 +21,11 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_0wj0x")
@@ -33,5 +35,6 @@ Cost = 2
 rarity = 1
 Picture = ExtResource("1_8b7b4")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_0mlvv")

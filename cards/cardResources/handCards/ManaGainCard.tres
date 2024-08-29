@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("1_cdmb4")
 Title = "Adrenaline Burst"
-Description = "Gain $value energy and burn 2 ingredients. If you have made at least 1 coffee match this turn, gain another energy $customText"
+Description = "Gain +$value$energy and +2burnt. If you have made a coffee match this turn, +1$energy $customText"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_jphwy")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_ihb2g")

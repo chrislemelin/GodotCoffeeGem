@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=19 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
@@ -11,12 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://c07w41hdxnn7t" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-machine.png" id="7_pc7t1"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="7_y00am"]
 [ext_resource type="Texture2D" uid="uid://dl1ln57tsw13r" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-under.png" id="8_gtf6h"]
-[ext_resource type="Texture2D" uid="uid://d2p1r3oe3jbwq" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-over-3.png" id="9_rr4cj"]
 [ext_resource type="AudioStream" uid="uid://d2eypcf71h7dg" path="res://sound/Score/pour.mp3" id="9_tkeaj"]
 [ext_resource type="Texture2D" uid="uid://cupvxc45baixk" path="res://placeholders/CoffeeShop/coffeeboard-pixel-18x-2-2169px-coffee.png" id="10_imxj2"]
 [ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://placeholders/bg-square-round-49.png" id="12_g4i3p"]
 [ext_resource type="FontFile" uid="uid://b3enwhg2wydrp" path="res://fonts/Technology.ttf" id="13_83ke4"]
+[ext_resource type="Texture2D" uid="uid://dc2idj4bf2mt3" path="res://placeholders/CoffeeShop/final/coffeeboard-pixel-18x-2-2169px-over-export.png" id="13_sqphw"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="14_symjt"]
+[ext_resource type="Texture2D" uid="uid://bxug84vvxnu7a" path="res://placeholders/cards/icons/coin-icon.png" id="15_l1v61"]
 
 [node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "audioPourStreamPlayer2D", "boardHolder", "progressBar", "sparkleArea", "levelLabel", "scoreLabel", "multLabel")]
 script = ExtResource("1_4r3i0")
@@ -65,7 +66,7 @@ max_value = 154.0
 value = 100.0
 fill_mode = 3
 texture_under = ExtResource("8_gtf6h")
-texture_over = ExtResource("9_rr4cj")
+texture_over = ExtResource("13_sqphw")
 texture_progress = ExtResource("10_imxj2")
 
 [node name="Node2D" type="Node2D" parent="TextureProgressBar"]
@@ -80,6 +81,16 @@ offset_bottom = 840.0
 border_color = Color(1, 0, 0, 0)
 
 [node name="Node2D" type="Node2D" parent="TextureProgressBar/ReferenceRect"]
+
+[node name="Coin-icon" type="Sprite2D" parent="TextureProgressBar"]
+position = Vector2(655, 440)
+scale = Vector2(1.66667, 1.66667)
+texture = ExtResource("15_l1v61")
+
+[node name="Coin-icon2" type="Sprite2D" parent="TextureProgressBar"]
+position = Vector2(658.333, 308.333)
+scale = Vector2(1.66667, 1.66667)
+texture = ExtResource("15_l1v61")
 
 [node name="BoardPoint" type="Node2D" parent="."]
 position = Vector2(9, -146)

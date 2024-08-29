@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_ljjbh")
 Title = "Switch +"
-Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients"
+Description = "Swap two vertically, horizontally, or diagonally adjacent ingredients"
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_uf8cg")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_n6fnt")

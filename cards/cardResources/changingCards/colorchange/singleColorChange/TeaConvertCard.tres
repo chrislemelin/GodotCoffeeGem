@@ -34,17 +34,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 3
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("2_1klox")
 Title = "Tea Blend"
-Description = "Change selected ingredient to tea. If this makes a 4+ match, draw a card"
+Description = "Change selection to tea. If this makes a 4+ match, +1$draw"
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_eog86")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_mklkk")

@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_58thy"]
 script = ExtResource("2_p3w6v")
 Range = 1.0
-Value = 2
+Value = 1
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
@@ -21,17 +21,20 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 3
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 script = ExtResource("3_ms3if")
 Title = "Tea Spray"
-Description = "Change $value random ingredient(s) to tea. If this creates a match, draw a card"
+Description = "Generate $valuetea. If this creates a match, +1$draw"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_cuue2")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_58thy")

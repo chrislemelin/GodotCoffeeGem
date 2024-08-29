@@ -21,18 +21,21 @@ selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
+cannotSelectGemTypes = []
 consume = false
 retain = false
 matchy = false
+spendX = false
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_gf1ng")
 Title = "Switch Vertical"
-Description = "Switch the positions of two vertically adjacent ingredients"
+Description = "Swap two vertically adjacent ingredients."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_rutfs")
 coinCost = 0
-playable = false
+coinPlayRequirement = 0
+coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
