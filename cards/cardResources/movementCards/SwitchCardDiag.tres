@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dha7jg80nudyy"]
 
+[ext_resource type="Texture2D" uid="uid://bwqf3tovc4743" path="res://cards/cardResources/cardArt/final/CardArtSwitchAll.png" id="1_5864w"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="1_sd14e"]
-[ext_resource type="Texture2D" uid="uid://bcq17llxnxjfl" path="res://cards/cardResources/cardArt/switchPlus.png" id="1_uf8cg"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ljjbh"]
 
 [sub_resource type="Resource" id="Resource_n6fnt"]
@@ -33,7 +33,7 @@ Title = "Switch +"
 Description = "Swap two vertically, horizontally, or diagonally adjacent ingredients"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_uf8cg")
+Picture = ExtResource("1_5864w")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

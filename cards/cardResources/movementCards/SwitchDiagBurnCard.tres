@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://d0q3mttuyfd0d"]
 
-[ext_resource type="Texture2D" uid="uid://bcq17llxnxjfl" path="res://cards/cardResources/cardArt/switchPlus.png" id="1_bgxg7"]
+[ext_resource type="Texture2D" uid="uid://bwqf3tovc4743" path="res://cards/cardResources/cardArt/final/CardArtSwitchAll.png" id="1_11hdf"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="2_wliny"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_eyaln"]
 
@@ -33,7 +33,7 @@ Title = "Switch Burn + "
 Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients. +1$draw and+2burnt"
 Cost = 1
 rarity = 0
-Picture = ExtResource("1_bgxg7")
+Picture = ExtResource("1_11hdf")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

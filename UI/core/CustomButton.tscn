@@ -45,7 +45,6 @@ _data = {
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
-anchors_preset = -1
 offset_right = 154.0
 offset_bottom = 52.0
 grow_horizontal = 2
@@ -69,3 +68,10 @@ stream = ExtResource("5_xbrhu")
 libraries = {
 "": SubResource("AnimationLibrary_jw2s4")
 }
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 164.0
+offset_right = 88.0
+offset_bottom = 204.0

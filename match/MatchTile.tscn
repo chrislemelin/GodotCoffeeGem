@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]
 size = Vector2(250, 250)
 
-[node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "disableSprite2D", "control", "gemParent")]
+[node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "disableSprite2D", "control", "gemParent", "goo")]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_3ldum")
 sprite2D = NodePath("Sprite2D")
@@ -20,6 +20,7 @@ highlightColor = Color(1, 0, 0, 0.235294)
 hoverColor = Color(1, 1, 0, 0.666667)
 selectColor = Color(0.183333, 0, 1, 0.505882)
 blockedColor = Color(0.341176, 0.00784314, 0.290196, 0.517647)
+goo = NodePath("TextureRect2")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -39,7 +40,6 @@ shape = SubResource("RectangleShape2D_v70ys")
 [node name="GemParent" type="Node2D" parent="."]
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
 self_modulate = Color(0.129412, 0.129412, 0.129412, 0.235294)
 offset_left = 4.99999
 offset_top = 3.0

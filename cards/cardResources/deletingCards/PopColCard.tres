@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://dsr6hgn8djewp"]
 
-[ext_resource type="Texture2D" uid="uid://ihpj4yrdbig8" path="res://cards/cardResources/cardArt/popCol.png" id="1_o76cr"]
+[ext_resource type="Texture2D" uid="uid://dn5qsu2mmhgph" path="res://cards/cardResources/cardArt/final/CardArtPopCol.png" id="1_df52g"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/PopColCardEffect.cs" id="2_345e7"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="2_qw0g5"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_4sq0s"]
@@ -44,7 +44,7 @@ Title = "Pop Column"
 Description = "Destroy all ingredients of a selected column. -1 cost if a milk match has been made this turn."
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_o76cr")
+Picture = ExtResource("1_df52g")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

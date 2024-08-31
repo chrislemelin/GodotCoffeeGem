@@ -23,24 +23,25 @@ public partial class CardInfoLoader : CustomToolTip
 	private bool isLocked = false;
 
 
-	
-
 	public override void _Ready()
 	{
 		base._Ready();
 		Material = (Material)Material.Duplicate();
 
 		FocusEntered += () => highlightOnHover.setForceHighlight(true);
-		FocusEntered += () => {
-			if (cardScrollContainer != null) {
+		FocusEntered += () =>
+		{
+			if (cardScrollContainer != null)
+			{
 				cardScrollContainer.EnsureControlVisible(this);
 			}
 		};
-		FocusExited += () => highlightOnHover.setForceHighlight(false);	
+		FocusExited += () => highlightOnHover.setForceHighlight(false);
 
 		GrowHorizontal = GrowDirection.Both;
 		GrowVertical = GrowDirection.Both;
 		MouseEntered += () => wiggleCard();
+		setShowCoinCost(false);
 	}
 
 	public void wiggleCard()
@@ -55,7 +56,7 @@ public partial class CardInfoLoader : CustomToolTip
 	{
 		animationPlayer.Play("CardFlip");
 		wiggleEnabled = false;
-		GetTree().CreateTimer(.5f).Timeout += () => animationPlayer.Play("Shine");
+		GetTree().CreateTimer(.6f).Timeout += () => animationPlayer.Play("Shine");
 		GetTree().CreateTimer(1f).Timeout += () => wiggleEnabled = true;
 	}
 
@@ -85,9 +86,10 @@ public partial class CardInfoLoader : CustomToolTip
 		animationPlayer.Play("RESET");
 	}
 
-	public void setUpLockedCard(){
+	public void setUpLockedCard()
+	{
 		animationPlayer.Play("RESET");
-		
+
 		titleLabel.Text = "";
 		descriptionLabel.Text = "";
 		costLabel.Text = TextHelper.centered("");

@@ -97,7 +97,6 @@ autowrap_mode = 0
 
 [node name="Restart" parent="." instance=ExtResource("5_wh5ve")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 784.0
 offset_top = 651.0
 offset_right = 1213.0

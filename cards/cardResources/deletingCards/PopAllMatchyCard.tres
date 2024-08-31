@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://3qx3fw07c24n"]
 
-[ext_resource type="Texture2D" uid="uid://cfetltbahdrn7" path="res://cards/cardResources/cardArt/PopGrid.png" id="1_ur2ec"]
+[ext_resource type="Texture2D" uid="uid://fdqfgo7i53ia" path="res://cards/cardResources/cardArt/final/CardArtPopAll.png" id="1_kcw4w"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="2_y6u48"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/PopAllMatchyCardEffect.cs" id="3_w64to"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="4_7g212"]
@@ -44,7 +44,7 @@ Title = "Blow up the World"
 Description = "Destroy all ingredients. -1 cost for each milk match made this turn."
 Cost = 5
 rarity = 1
-Picture = ExtResource("1_ur2ec")
+Picture = ExtResource("1_kcw4w")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

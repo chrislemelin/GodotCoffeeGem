@@ -35,7 +35,7 @@ public partial class AudioPlayer : AudioStreamPlayer2D
 		if (settingsMenu != null) {
 			float settingsVolume;
 			if (soundEffect) {
-				settingsVolume = (float)(minValue + (maxValue - minValue) * (settingsMenu.sfxSlider.Value * baseVolumeMult));
+			settingsVolume = (float)(minValue + (maxValue - minValue) * (settingsMenu.sfxSlider.Value * baseVolumeMult));
 			} else {
 				settingsVolume = (float)(minValue + (maxValue - minValue) * settingsMenu.musicSlider.Value * baseVolumeMult);
 			}

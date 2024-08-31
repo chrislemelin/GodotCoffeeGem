@@ -195,7 +195,6 @@ scroll_active = false
 
 [node name="Button" parent="." instance=ExtResource("5_dr3cr")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 879.0
 offset_top = 765.0
 offset_right = 1033.0

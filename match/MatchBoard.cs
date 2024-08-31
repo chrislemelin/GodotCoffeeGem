@@ -24,6 +24,12 @@ public partial class MatchBoard : ControllerInput
 	[Export] public Node2D boardHolder;
 	[Export] public TextureProgressBar progressBar;
 	private double progressValue = 0;
+	private int scoreValue = 0;
+	private int scoreProgressStep = 20;
+	private int scoreCurrent = 0;
+	private int scoreNeeded = 0;
+	[Export] int shakeLevel = 10;
+	[Export] int shakeFreq = 20;
 	private bool movedBarLastStep = false;
 	[Export] private double progressStep;
 	[Export] public PackedScene sparkleEffect;
@@ -355,7 +361,11 @@ public partial class MatchBoard : ControllerInput
 			//GetTree().CreateTimer(1).Timeout += () => makeCoffeeSparkle();
 		}
 		progressValue = newProgressValue;
-		scoreLabel.Text = score + "/" + scoreNeeded;
+		scoreValue = score;
+		this.scoreNeeded = scoreNeeded;
+
+
+		//scoreLabel.Text = score + "/" + scoreNeeded;
 	}
 
 	private void updateScoreChanged()
@@ -375,6 +385,15 @@ public partial class MatchBoard : ControllerInput
 			progressBar.Value = progressValue;
 			movedBarLastStep = false;
 		}
+
+		scoreCurrent += scoreProgressStep;
+		if (scoreCurrent > scoreValue) {
+			scoreCurrent = scoreValue;
+			scoreLabel.Text = scoreCurrent + "/" + scoreNeeded;
+		} else {
+			scoreLabel.Text = TextHelper.shake(scoreCurrent.ToString(),shakeLevel, shakeFreq)+ "/" + scoreNeeded;
+		}
+		
 	}
 
 	private void makeCoffeeSparkle() {

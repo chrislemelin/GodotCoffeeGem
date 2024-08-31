@@ -74,9 +74,9 @@ scroll_active = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 offset_left = 666.0
-offset_top = 436.0
+offset_top = 387.0
 offset_right = 1368.0
-offset_bottom = 776.0
+offset_bottom = 727.0
 
 [node name="play" parent="VBoxContainer2" instance=ExtResource("7_bodv0")]
 layout_mode = 2

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dtt0h7sooi356"]
 
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPop.cs" id="1_56l7d"]
-[ext_resource type="Texture2D" uid="uid://b20i5li1f74i1" path="res://cards/cardResources/cardArt/pop.png" id="1_258jf"]
+[ext_resource type="Texture2D" uid="uid://b48mql4d5w6eb" path="res://cards/cardResources/cardArt/final/CardArtPop.png" id="1_lwrbk"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_nk7uw"]
 
 [sub_resource type="Resource" id="Resource_yu3xx"]
@@ -33,7 +33,7 @@ Title = "Pop"
 Description = "Destroy selected ingredient"
 Cost = 0
 rarity = 0
-Picture = ExtResource("1_258jf")
+Picture = ExtResource("1_lwrbk")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

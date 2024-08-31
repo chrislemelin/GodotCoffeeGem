@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://xba81q45hybp"]
 
-[ext_resource type="Texture2D" uid="uid://cfetltbahdrn7" path="res://cards/cardResources/cardArt/PopGrid.png" id="1_3j4pf"]
+[ext_resource type="Texture2D" uid="uid://fdqfgo7i53ia" path="res://cards/cardResources/cardArt/final/CardArtPopAll.png" id="1_o41sn"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopGrid.cs" id="2_4jw5d"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="2_xnukk"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_rg42k"]
@@ -44,7 +44,7 @@ Title = "Pop Grid"
 Description = "Destroy selected ingredient and all adjacent ingredients. -1 cost if a milk match has been made this turn."
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_3j4pf")
+Picture = ExtResource("1_o41sn")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

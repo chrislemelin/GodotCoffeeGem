@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://flvg7jdclp20"]
 
-[ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="1_oechv"]
+[ext_resource type="Texture2D" uid="uid://brflfaul50gva" path="res://cards/cardResources/cardArt/final/CardArtSwitchVertical2.png" id="1_eunq4"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="2_5qsir"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_54fl3"]
 
@@ -34,7 +34,7 @@ Title = "Switch Vertical +"
 Description = "Swap two vertically adjacent ingredients. If the first selection is vanilla gain unlimited range on the swap."
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_oechv")
+Picture = ExtResource("1_eunq4")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

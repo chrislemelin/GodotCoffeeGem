@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bwow4do4vy5l"]
 
-[ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="1_ij3iv"]
+[ext_resource type="Texture2D" uid="uid://dk0nhkf81f88" path="res://cards/cardResources/cardArt/final/CardArtSwitchHoriz.png" id="1_lh0ho"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="2_s7dra"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_l0imo"]
 
@@ -34,7 +34,7 @@ Title = "Switch Horiz +"
 Description = "Swap two horizontally adjacent ingredients. If the first selection is vanilla gain unlimited range on the swap."
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_ij3iv")
+Picture = ExtResource("1_lh0ho")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

@@ -250,7 +250,6 @@ toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="CloseButton" parent="." instance=ExtResource("6_l1bhy")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 801.0
 offset_top = 941.0
 offset_right = 955.0

@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_fr8b3"]
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="7_s7rm1"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="8_8qiu1"]
-[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
+[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="10_6qdhe"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
@@ -85,9 +85,9 @@ scroll_active = false
 layout_mode = 2
 offset_left = 571.0
 offset_top = 574.0
-offset_right = 3681.0
-offset_bottom = 1526.0
-scale = Vector2(0.25, 0.25)
+offset_right = 2103.0
+offset_bottom = 1102.0
+scale = Vector2(0.5, 0.5)
 alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="CardShop"]

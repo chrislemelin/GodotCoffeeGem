@@ -32,7 +32,6 @@ public partial class Score : Node2D
 	[Export] HBoxContainer heartsContainer;
 	[Export] GameManager gameManager;
 	[Export] PackedScene colorUpgradeUI;
-	[Export] private RecipeUI bossRecipeUI;
 
 	[Export] PackedScene heartUI;
 	[Export] Texture2D heartFull;
@@ -462,16 +461,11 @@ public partial class Score : Node2D
 			float newMultValue = mult;
 			if (gemType.matchable())
 			{
-				bossRecipeUI.evaulateMatch(gemType);
 				pointValue = evaluatePoints(match, gemType);
 
 				pointValueAfterMult = (int)(pointValue * mult);
 				newMultValue += evaluateMultIncrease(gemType);
 				setMult(newMultValue);
-				if (bossRecipeUI.Visible && !bossRecipeUI.complete())
-				{
-					pointValueAfterMult = 0;
-				}
 			}
 			if (pointValueOverride.HasValue)
 			{

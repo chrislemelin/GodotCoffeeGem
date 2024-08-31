@@ -17,7 +17,7 @@ GainMult = 0.0
 
 [resource]
 script = ExtResource("2_x4oon")
-title = "Energy Bar"
+title = "Emergency Snack"
 description = "+3 card if  you have 0 energy and 0 cards in hand. Can only trigger once per turn"
 cost = 100
 hidden = false

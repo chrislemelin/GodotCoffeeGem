@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=53 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
@@ -26,16 +26,14 @@
 [ext_resource type="Texture2D" uid="uid://br4ldam3vc7v3" path="res://placeholders/tutorial/Screenshot 2024-01-02 153911.png" id="20_2g6nx"]
 [ext_resource type="Texture2D" uid="uid://mqta6tnmb70t" path="res://placeholders/tutorial/Screenshot 2024-01-22 180542.png" id="24_d5am1"]
 [ext_resource type="Script" path="res://UI/WelcomeScreen.cs" id="26_gxqfm"]
-[ext_resource type="Texture2D" uid="uid://d4atoeb02hhv7" path="res://placeholders/tutorial/Screenshot 2024-01-14 160252.png" id="27_6giu6"]
 [ext_resource type="Script" path="res://UI/ToggleVisibilityOnButtonPress.cs" id="27_67js8"]
 [ext_resource type="Texture2D" uid="uid://cc01hsvaa3yhd" path="res://placeholders/tutorial/Screenshot 2024-05-06 221727.png" id="28_4vqb1"]
-[ext_resource type="Texture2D" uid="uid://c0npqs1omb3jo" path="res://placeholders/tutorial/Screenshot 2024-01-22 085344.png" id="29_85eqo"]
-[ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/BossRecipeUI.tscn" id="29_a8e6p"]
 [ext_resource type="Texture2D" uid="uid://b2lt3phdihruj" path="res://placeholders/tutorial/Screenshot 2024-05-06 221820.png" id="29_r1q5u"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="32_fnn8m"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="32_otpbl"]
 [ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="32_x2qxf"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="33_tua3q"]
+[ext_resource type="Texture2D" uid="uid://uxonil2hwpfc" path="res://placeholders/tutorial/Screenshot 2024-08-29 182519.png" id="34_65hmv"]
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="35_smw5c"]
 [ext_resource type="Script" path="res://UI/Game/PlayableCardsUI.cs" id="37_635hs"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
@@ -268,16 +266,14 @@ _data = {
 "RESET": SubResource("Animation_rp5ce")
 }
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("recipeUI", "gameOverScreen", "score", "relicHolderUI", "highScoreDisplay", "bossRelicTutorial", "bossRecipeTutorial", "overTimeTutorial", "gooTutorial", "gameBeatenTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay", "levelCompleteAudioPlayer") groups=["Camera"]]
+[node name="game" type="Node2D" node_paths=PackedStringArray("gameOverScreen", "score", "relicHolderUI", "highScoreDisplay", "bossRelicTutorial", "overTimeTutorial", "gooTutorial", "gameBeatenTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay", "levelCompleteAudioPlayer") groups=["Camera"]]
 position = Vector2(-3, -1)
 script = ExtResource("1_5jnm2")
-recipeUI = NodePath("BossRecipeUI")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
 relicHolderUI = NodePath("RelicHolder")
 highScoreDisplay = NodePath("UIOverLays/HighScoreDisplay")
 bossRelicTutorial = NodePath("UIOverLays/BossRelicDisplay")
-bossRecipeTutorial = NodePath("UIOverLays/BossRecipeTutorial")
 overTimeTutorial = NodePath("UIOverLays/OverTimeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 gameBeatenTutorial = NodePath("UIOverLays/GameBeaten")
@@ -288,6 +284,7 @@ bossRelics = ExtResource("3_7yc8h")
 levelComplete = NodePath("UIOverLays/LevelComplete")
 debtDisplay = NodePath("Debt")
 levelCompleteAudioPlayer = NodePath("JingleAchievementAudioPlayer")
+debugMode = true
 dialougeDict = {
 1: SubResource("Resource_qopb2"),
 2: SubResource("Resource_rcc3r")
@@ -320,6 +317,7 @@ sizeX = 5
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
+shakeLevel = 40
 gameCamera = NodePath("../Camera2D")
 
 [node name="RelicHolder" parent="." groups=["RelicHolder"] instance=ExtResource("16_qkjnw")]
@@ -366,11 +364,10 @@ width = 1500
 unique_name_in_owner = true
 position = Vector2(178, 676)
 
-[node name="Score" parent="." node_paths=PackedStringArray("gameManager", "bossRecipeUI") groups=["Score"] instance=ExtResource("11_nsha1")]
+[node name="Score" parent="." node_paths=PackedStringArray("gameManager") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
 position = Vector2(265, 151)
 gameManager = NodePath("..")
-bossRecipeUI = NodePath("../BossRecipeUI")
 
 [node name="EndDayButton" parent="." instance=ExtResource("47_oc5ta")]
 offset_left = 1708.0
@@ -382,25 +379,15 @@ grow_vertical = 1
 
 [node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") groups=["NewTurnButton"] instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
-anchors_preset = 0
 offset_left = 1709.0
 offset_top = 571.0
 offset_right = 1900.0
 offset_bottom = 632.0
-grow_horizontal = 1
-grow_vertical = 1
 theme_override_font_sizes/font_size = 45
+text = "End Turn"
 playableCardsUI = NodePath("../UIOverLays/PlayableCards")
 
-[node name="BossRecipeUI" parent="." instance=ExtResource("29_a8e6p")]
-visible = false
-offset_left = 1456.0
-offset_top = 62.0
-offset_right = 1456.0
-offset_bottom = 62.0
-tooltip_text = "This recipe must be completed before you can score any points for the level"
-
-[node name="Debt" type="Control" parent="." node_paths=PackedStringArray("button", "richTextLabel")]
+[node name="Debt" type="Control" parent="." node_paths=PackedStringArray("richTextLabel")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -414,7 +401,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("27_67js8")
-button = NodePath("../UIOverLays/BossRecipeTutorial/Button")
 richTextLabel = NodePath("RichTextLabel2")
 
 [node name="Panel" type="Panel" parent="Debt"]
@@ -482,7 +468,6 @@ flip_v = true
 
 [node name="AdvanceButton" parent="UIOverLays/WelcomeScreen" instance=ExtResource("33_tua3q")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 862.0
 offset_top = 797.0
 offset_right = 1016.0
@@ -1012,67 +997,6 @@ offset_right = -57.0
 offset_bottom = 551.0
 texture = ExtResource("43_eeut1")
 
-[node name="BossRecipeTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("27_67js8")
-button = NodePath("Button")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/BossRecipeTutorial"]
-modulate = Color(0, 0, 0, 0.568627)
-layout_mode = 2
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("18_vk04q")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="TextureRect2" type="TextureRect" parent="UIOverLays/BossRecipeTutorial"]
-layout_mode = 2
-offset_left = 709.0
-offset_top = 194.0
-offset_right = 1017.0
-offset_bottom = 330.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("27_6giu6")
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/BossRecipeTutorial"]
-layout_mode = 2
-offset_left = 601.0
-offset_top = 356.0
-offset_right = 1157.0
-offset_bottom = 688.0
-size_flags_vertical = 3
-theme = ExtResource("18_y5ido")
-text = "Oh no! Your rudest regular appears in the coffee shop, ready to ask for the manager if you don't get their order just right. You begrudgingly pull out the standard corporate recipe book.
-
-Some levels have recipes. You must make matches with the listed ingredients to complete the recipe. All matches will score 0 points until the recipe is complete.
-
-You will recieve a special reward for clearing this level!"
-fit_content = true
-
-[node name="Button" type="Button" parent="UIOverLays/BossRecipeTutorial"]
-modulate = Color(1, 0.996078, 0.996078, 1)
-layout_mode = 0
-offset_left = 777.0
-offset_top = 715.0
-offset_right = 957.0
-offset_bottom = 774.0
-theme = ExtResource("16_m0mlx")
-text = "Continue"
-
 [node name="GooTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
 visible = false
 layout_mode = 1
@@ -1087,6 +1011,7 @@ button = NodePath("Button2")
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/GooTutorial"]
 modulate = Color(0, 0, 0, 0.568627)
+texture_filter = 1
 layout_mode = 2
 offset_left = -10.0
 offset_right = 1922.0
@@ -1107,8 +1032,9 @@ offset_right = 1037.0
 offset_bottom = 791.0
 
 [node name="TextureRect2" type="TextureRect" parent="UIOverLays/GooTutorial/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("29_85eqo")
+texture = ExtResource("34_65hmv")
 expand_mode = 4
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/GooTutorial/VBoxContainer"]
@@ -1116,12 +1042,11 @@ layout_mode = 2
 theme = ExtResource("18_y5ido")
 text = "Oh no, your trusty coffee machine has started secreting some kind of strange goo. This probabaly wont pass health expection.
 
-Goo tiles take up space that ingredients could go into. You can clear them out by making matches adjacent to goo tiles!"
+Goo tile cannot be targeted by your cards. You can clear them out by making matches adjacent to goo tiles!"
 fit_content = true
 
 [node name="Button2" parent="UIOverLays/GooTutorial" instance=ExtResource("33_tua3q")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 761.0
 offset_top = 814.0
 offset_right = 915.0
@@ -1173,7 +1098,6 @@ fit_content = true
 
 [node name="ContinueButton" parent="UIOverLays/BossRelicDisplay" instance=ExtResource("33_tua3q")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 747.0
 offset_top = 674.0
 offset_right = 901.0
@@ -1222,7 +1146,6 @@ fit_content = true
 
 [node name="ContinueButton" parent="UIOverLays/OverTimeTutorial" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("33_tua3q")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 1004.0
 offset_top = 571.0
 offset_right = 1158.0
@@ -1299,7 +1222,6 @@ fit_content = true
 
 [node name="ContinueButton" parent="UIOverLays/GameBeaten" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("33_tua3q")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 1004.0
 offset_top = 571.0
 offset_right = 1158.0
@@ -1409,7 +1331,6 @@ expand_mode = 1
 
 [node name="Button2" parent="UIOverLays/LevelComplete/Panel" instance=ExtResource("33_tua3q")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 354.0
 offset_top = 162.0
 offset_right = 544.0

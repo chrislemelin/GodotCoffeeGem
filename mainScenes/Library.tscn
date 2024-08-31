@@ -10,7 +10,6 @@
 
 [node name="Library" type="Node2D" node_paths=PackedStringArray("cardLibraryView", "relicLibraryView", "showCardLibraryButton", "showRelicLibraryButton")]
 script = ExtResource("1_ij17l")
-showAllCards = true
 cardLibraryView = NodePath("CardLibraryView")
 relicLibraryView = NodePath("RelicLibraryView")
 showCardLibraryButton = NodePath("VBoxContainer/MarginContainer/Cards")
@@ -53,7 +52,6 @@ offset_right = -9.0
 offset_bottom = -38.0
 
 [node name="Button" parent="." instance=ExtResource("3_cpy2c")]
-anchors_preset = 0
 offset_left = 836.0
 offset_top = 990.0
 offset_right = 1024.0

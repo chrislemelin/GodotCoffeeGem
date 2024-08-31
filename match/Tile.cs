@@ -15,6 +15,7 @@ public partial class Tile : Node2D
 	[Export] Color hoverColor;
 	[Export] Color selectColor;
 	[Export] Color blockedColor;
+	[Export] TextureRect goo;
 
 	Color normalColor;
 
@@ -40,10 +41,12 @@ public partial class Tile : Node2D
 		normalColor = sprite2D.Modulate;
 		control.MouseEntered += () => mouseEnter();
 		control.MouseExited += () => mouseExit();
+		goo.Visible = false;
 	}
 
 	public void setBlocked(bool value) {
 		isBlocked = value;
+		goo.Visible = value;
 		sprite2D.Modulate = getCurrentColor();
 	}
 

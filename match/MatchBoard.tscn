@@ -142,6 +142,7 @@ offset_right = 508.0
 offset_bottom = 65.0
 theme_override_fonts/normal_font = ExtResource("13_83ke4")
 theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
 text = "100/500"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScoreText"]

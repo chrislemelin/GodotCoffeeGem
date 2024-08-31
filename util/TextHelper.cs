@@ -25,6 +25,14 @@ public static class TextHelper
 		return "[color=" + color + "]" + text + "[/color]";
 		//[color=blue]blue[/color]
 	}
+	public static string shake(string text, int level, int shakeRate) {
+		return "[shake rate="+shakeRate+" level="+level+" connected=1]"+text+"[/shake]";
+	}
+
+	public static string pulse(string text) {
+		return 	"[pulse freq=1.0 color=#ffffff40 ease=-2.0]"+text+"[/pulse]";
+	}
+
 
 	public static string colorText(string text, Color color) {
 		return "[color=" + color.ToHtml() + "]" + text + "[/color]";

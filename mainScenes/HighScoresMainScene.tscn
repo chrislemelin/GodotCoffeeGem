@@ -8,8 +8,6 @@
 [node name="HighScoresMainScene" type="Node2D"]
 script = ExtResource("1_5il4t")
 
-[node name="SettingsMenu" parent="." instance=ExtResource("1_ed3gs")]
-
 [node name="HighScoreDisplay" parent="." instance=ExtResource("2_qaswr")]
 
 [node name="Button" parent="." instance=ExtResource("3_63mu1")]
@@ -20,3 +18,5 @@ offset_bottom = 963.0
 grow_horizontal = 1
 grow_vertical = 1
 text = "Main Menu"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("1_ed3gs")]

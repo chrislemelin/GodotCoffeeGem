@@ -737,7 +737,6 @@ text = "Title Description"
 
 [node name="Continue2" parent="MapEventText/Forground/Control" instance=ExtResource("29_8180u")]
 layout_mode = 0
-anchors_preset = 0
 offset_left = 754.0
 offset_top = 665.0
 offset_right = 908.0

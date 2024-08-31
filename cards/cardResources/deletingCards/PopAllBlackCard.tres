@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ccn3bycf4uxbn"]
 
-[ext_resource type="Texture2D" uid="uid://wtfwmklx0mv3" path="res://cards/cardResources/cardArt/purge.png" id="1_0k3tp"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopAllBlack.cs" id="1_jxdwc"]
+[ext_resource type="Texture2D" uid="uid://b34t2vvdhqqsf" path="res://cards/cardResources/cardArt/final/CardArtPopBurnt.png" id="1_tf8c0"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_tliwj"]
 
 [sub_resource type="Resource" id="Resource_u2hw2"]
@@ -33,7 +33,7 @@ Title = "Full Clean"
 Description = "Destroy all burnt ingredients"
 Cost = 1
 rarity = 1
-Picture = ExtResource("1_0k3tp")
+Picture = ExtResource("1_tf8c0")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0

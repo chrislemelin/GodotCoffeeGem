@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c7fw01b7y86oy"]
 
-[ext_resource type="Texture2D" uid="uid://cfetltbahdrn7" path="res://cards/cardResources/cardArt/PopGrid.png" id="1_8b7b4"]
+[ext_resource type="Texture2D" uid="uid://fdqfgo7i53ia" path="res://cards/cardResources/cardArt/final/CardArtPopAll.png" id="1_lwoep"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectRagnarok.cs" id="1_pmhrm"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_0wj0x"]
 
@@ -33,7 +33,7 @@ Title = "Ragnarok"
 Description = "Destroy every ingredient and gain 50 points for each burnt ingredient destroyed"
 Cost = 2
 rarity = 1
-Picture = ExtResource("1_8b7b4")
+Picture = ExtResource("1_lwoep")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
