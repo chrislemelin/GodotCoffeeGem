@@ -8,10 +8,11 @@ public partial class HighScoreDisplay : ToggleVisibilityOnButtonPress
 	[Export] PackedScene scoreInput;
 
 	[Export] Control scoreHolder;
-	List<Tuple<String, int>> scores;
+	List<RunResource> scores;
 
 	private LineEdit nameInput;
-	private int scoreNaming;
+	private int scoreValue;
+	private bool scoreCompleted;
 
 
 	public override void _Ready() {
@@ -19,7 +20,6 @@ public partial class HighScoreDisplay : ToggleVisibilityOnButtonPress
 		button.Visible = false;
 		scores = FindObjectHelper.getGameManager(this).getHighScores();
 		renderScore();
-		//addHighScore(100);
 	}	
 
 	private void renderScore() {
@@ -27,20 +27,24 @@ public partial class HighScoreDisplay : ToggleVisibilityOnButtonPress
 			node.QueueFree();
 		}
 
-		foreach(Tuple<String, int> score in scores) {
+		foreach(RunResource score in scores) {
 			Control control = (Control)scoreText.Instantiate();
-			((RichTextLabel)control.GetChild(0)).Text = score.Item1;
-			((RichTextLabel)control.GetChild(1)).Text = score.Item2.ToString("N0");
+			((RichTextLabel)control.GetChild(0)).Text = score.name;
+			((RichTextLabel)control.GetChild(1)).Text = getScoreText(score.score, score.completed);
+
 			scoreHolder.AddChild(control);
 		}
 	}
 
-	public void addHighScore(int score) {
-		scoreNaming = score;
+
+
+	public void addHighScore(int score, bool completed) {
+		scoreValue = score;
+		scoreCompleted = completed;
    		for(int scoreCount = 0; scoreCount < scores.Count; scoreCount++) {
-			if (score > scores[scoreCount].Item2) {
+			if (score > scores[scoreCount].score) {
 				Control control = (Control)scoreInput.Instantiate();
-				((RichTextLabel)control.GetChild(1)).Text = score.ToString("N0");
+				((RichTextLabel)control.GetChild(1)).Text = getScoreText(score,completed);
 				nameInput = (LineEdit)control.GetChild(0);
 				nameInput.TextSubmitted+= enteredName;
 				scoreHolder.AddChild(control);
@@ -49,15 +53,26 @@ public partial class HighScoreDisplay : ToggleVisibilityOnButtonPress
 			}
 		}
 		Control control2 = (Control)scoreInput.Instantiate();
-		((RichTextLabel)control2.GetChild(1)).Text = score.ToString("N0");
+		((RichTextLabel)control2.GetChild(1)).Text = TextHelper.right(score.ToString("N0"));
 		nameInput = (LineEdit)control2.GetChild(0);
 		nameInput.TextSubmitted+= enteredName;
 		scoreHolder.AddChild(control2);
 	}
 
 	public void enteredName(String text) {
-		FindObjectHelper.getGameManager(this).submitScore(new Tuple<string, int>(text, scoreNaming));
+		FindObjectHelper.getGameManager(this).submitScore(new RunResource(text, scoreValue, scoreCompleted));
 		renderScore();
 		button.Visible = true;
+	}
+
+	private string getScoreText(int score, bool completed) {
+		string starText = "";
+		if (completed) {
+			starText = "[img with=32 height=32]res://UI/highscore/starSingle.png[/img]";
+		} else {
+			starText = "[img with=32 height=32]res://UI/highscore/blank32.png[/img]";
+		}
+		return TextHelper.right(score.ToString("N0")+starText);
+
 	}
 }

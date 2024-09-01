@@ -26,6 +26,8 @@ public partial class MatchBoard : ControllerInput
 	private double progressValue = 0;
 	private int scoreValue = 0;
 	private int scoreProgressStep = 20;
+	private int startingScoreProgressStep = 20;
+	private int scoreProgressStepIncrease = 10;
 	private int scoreCurrent = 0;
 	private int scoreNeeded = 0;
 	[Export] int shakeLevel = 10;
@@ -388,9 +390,11 @@ public partial class MatchBoard : ControllerInput
 
 		scoreCurrent += scoreProgressStep;
 		if (scoreCurrent > scoreValue) {
+			scoreProgressStep = startingScoreProgressStep;
 			scoreCurrent = scoreValue;
 			scoreLabel.Text = scoreCurrent + "/" + scoreNeeded;
 		} else {
+			scoreProgressStep += scoreProgressStepIncrease;
 			scoreLabel.Text = TextHelper.shake(scoreCurrent.ToString(),shakeLevel, shakeFreq)+ "/" + scoreNeeded;
 		}
 		

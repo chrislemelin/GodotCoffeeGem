@@ -13,17 +13,20 @@ public static class TextHelper
 		return "[b]" + text + "[/b]";
 	}
 
+	public static string right(string text)
+	{
+		return "[right]" + text + "[/right]";
+	}
+
 	public static string toolTip(string text, string toolTip)
 	{
 		return "[hint={" + toolTip + "}]" + text + "[/hint]";
-		// [hint={test}]blah blah blah[/hint]
 	}
 	public static string spliceText(string text, int lineLength) {
 		return Regex.Replace(text, "(.{" + lineLength + "})", "$1" + System.Environment.NewLine);
 	}
 	public static string colorText(string text, string color) {
 		return "[color=" + color + "]" + text + "[/color]";
-		//[color=blue]blue[/color]
 	}
 	public static string shake(string text, int level, int shakeRate) {
 		return "[shake rate="+shakeRate+" level="+level+" connected=1]"+text+"[/shake]";
@@ -36,7 +39,6 @@ public static class TextHelper
 
 	public static string colorText(string text, Color color) {
 		return "[color=" + color.ToHtml() + "]" + text + "[/color]";
-		//[color=blue]blue[/color]
 	}
 	public static string justify(string text) {
 		return "[fill]" + text + "[/fill]";

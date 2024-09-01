@@ -13,6 +13,7 @@ expand_to_text_length = true
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+bbcode_enabled = true
 text = "5000"
 fit_content = true
 scroll_active = false

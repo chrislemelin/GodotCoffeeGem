@@ -162,13 +162,16 @@ public partial class GameManager : GameManagerIF
 
 	public void evaluateLevel()
 	{
+		getGlobal().totalScore += score.getScore();
+
 		if (score.getScore() < scoreNeededToPass)
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
 			Optional<UnlockableCardPack> unlockableCardPack = getNewCardPack();
-			resetGlobals();
 			int metaCoins = evaluateMetaCoins();
-			changeDebt(-metaCoins);
+			changeDebt(-metaCoins * 10);
+			gameOverScreen.setMetaCoins(metaCoins);
+			addMetaCoins(metaCoins);
 			
 
 			if (unlockableCardPack.HasValue) {
@@ -179,11 +182,20 @@ public partial class GameManager : GameManagerIF
 			} else {
 				gameOverScreen.setUpMainMenu();
 			}
-			gameOverScreen.setVisible(true);	
+			checkForHighScore(false);
+			gameOverScreen.setVisible(true);
+			resetGlobals();
 		}
 		else
 		{
 			nextLevel();
+		}
+	}
+
+	private void checkForHighScore(bool gameCompleted) {
+		if (getGlobal().isScoreAHighScore(getGlobal().totalScore)) {
+			highScoreDisplay.Visible = true;
+			highScoreDisplay.addHighScore(getGlobal().totalScore, gameCompleted);
 		}
 	}
 	
@@ -213,7 +225,6 @@ public partial class GameManager : GameManagerIF
 		EmitSignal(SignalName.levelOver);
 		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
 
-		getGlobal().totalScore += score.getScore();
 		if (gameBeaten())
 		{
 			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
@@ -224,10 +235,7 @@ public partial class GameManager : GameManagerIF
 			addMetaCoins(metaCoins);
 			gameOverScreen.Visible = true;
 
-			if (getGlobal().isScoreAHighScore(getGlobal().totalScore)) {
-				highScoreDisplay.Visible = true;
-				highScoreDisplay.addHighScore(getGlobal().totalScore);
-			}
+			checkForHighScore(true);
 
 			resetGlobals();
 

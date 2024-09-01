@@ -18,7 +18,7 @@ public partial class Global : Node
 	private const String TUTORIAL_OVERTIME_SAVE_NAME = "seenOvertimeTutorial";
 
 	private const String NUMBER_OF_LEVELS_PLAYED = "numberOfLevelsPlayed";
-	private const String LEADER_BOARD_SCORE = "leaderboardScore";
+	private const String LEADER_BOARD_SCORE = "highscores";
 
 	public CardList deckCardList = null;
 	public Array<ColorUpgrade> colorUpgrades = new Array<ColorUpgrade>();
@@ -47,12 +47,19 @@ public partial class Global : Node
 	public float musicVolume = .5f;
 	public float sfXvolume = .5f;
 
-	private int highScoreMax = 8;
-	private List<Tuple<String,int>> highScores = new List<Tuple<string, int>>() 
-	{new Tuple<string, int>("Chris L", 10_000_000),
-	 new Tuple<string, int>("HAP", 5_000_000),
-	 new Tuple<string, int>("Casper", 1_000_000),
-	 new Tuple<string, int>("Clyde", 100_000)};
+	 private int highScoreMax = 8;
+	// private List<Tuple<String,int>> highScores = new List<Tuple<string, int>>() 
+	// {new Tuple<string, int>("Chris L", 10_000_000),
+	//  new Tuple<string, int>("HP", 5_000_000),
+	//  new Tuple<string, int>("Casper", 1_000_000),
+	//  new Tuple<string, int>("Clyde", 100_000)};
+
+	private List<RunResource> highScoresNew = new List<RunResource>(){
+		new RunResource("Chris L", 10_000_000, true),
+		new RunResource("HP",5_000_000, true),
+		new RunResource("Casper",1_000_000, true),
+		new RunResource("Clyde",1000_000, true)
+	};
 
 
 	public Vector2 gridSize = new Vector2(6, 5);
@@ -110,8 +117,8 @@ public partial class Global : Node
 		saveDict.Add(TUTORIAL_SAVE_NAME, shownWelcomeTutorial.ToString());
 		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfCardsToChoose.ToString());
 		saveDict.Add(TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial.ToString());
-		for(int scoreCount = 0; scoreCount < highScores.Count; scoreCount++) {
-			saveDict.Add(LEADER_BOARD_SCORE + scoreCount,getScoreString(highScores[scoreCount]));
+		for(int scoreCount = 0; scoreCount < highScoresNew.Count; scoreCount++) {
+			saveDict.Add(LEADER_BOARD_SCORE + scoreCount, highScoresNew[scoreCount].toJson());
 		} 
 
 		var jsonString = Json.Stringify(saveDict);
@@ -147,11 +154,18 @@ public partial class Global : Node
 		numberOfLevelsPlayed = tryLoadInt(nodeData, NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed);
 		
 		int scoreCount = 0;
-		highScores.Clear();
+		//highScoresNew.Clear();
 		while (true) {
 			String key = LEADER_BOARD_SCORE + scoreCount++;
 			if (nodeData.ContainsKey(key)) {
-				highScores.Add(loadScoreFromString(nodeData[key]));
+				RunResource run = loadScoreFromString(nodeData[key]);
+				if (run != null) {
+					if (scoreCount == 1)
+					{
+						highScoresNew.Clear();
+					}
+					highScoresNew.Add(loadScoreFromString(nodeData[key]));
+				}
 			} else {
 				break;
 			}
@@ -162,46 +176,52 @@ public partial class Global : Node
 		
 	}
 
-	public void addNewHighScore(Tuple<String, int> newHighScore) {
-		newHighScore = new Tuple<string, int>(newHighScore.Item1.Replace(",",""), newHighScore.Item2);
+	public void addNewHighScore(RunResource newHighScore) {
+		newHighScore = new RunResource(newHighScore.name.Replace(",",""), newHighScore.score, newHighScore.completed);
 		bool addedToScore = false;
-		for(int scoreCount = 0; scoreCount < highScores.Count; scoreCount++) {
-			if (newHighScore.Item2 > highScores[scoreCount].Item2) {
-				highScores.Insert(scoreCount, newHighScore);
+		for(int scoreCount = 0; scoreCount < highScoresNew.Count; scoreCount++) {
+			if (newHighScore.score > highScoresNew[scoreCount].score) {
+				highScoresNew.Insert(scoreCount, newHighScore);
 				addedToScore = true;
 				break;
 			}
 		}
 		if (!addedToScore) {
-			highScores.Add(newHighScore);
+			highScoresNew.Add(newHighScore);
 		}
-		if (highScores.Count > highScoreMax) {
-			highScores.RemoveAt(highScores.Count -1);
+		if (highScoresNew.Count > highScoreMax) {
+			highScoresNew.RemoveAt(highScoresNew.Count -1);
 		}
 		save(); 
 	}
 
 	public bool isScoreAHighScore(int value) {
-		if (highScores.Count < highScoreMax) {
+		if (highScoresNew.Count < highScoreMax) {
 			return true;
 		}
-		if (value > highScores[highScores.Count-1].Item2) {
+		if (value > highScoresNew[highScoresNew.Count-1].score) {
 			return true;
 		}
 		return false;
 	}
 
-	public List<Tuple<String,int>> getHighScores() {
-		return highScores;
+	public List<RunResource> getHighScores() {
+		return highScoresNew;
 	}
 	
 	private String getScoreString(Tuple<String, int> value) {
 		return value.Item1 +","+ value.Item2.ToString();
 	}
 
-	private Tuple<String,int> loadScoreFromString(String value) {
-		String [] stringArray = value.Split(",");
-		return new Tuple<String, int>(stringArray[0], int.Parse(stringArray[1]));
+	private RunResource loadScoreFromString(String value) {
+		var json = new Json();
+		var parseResult = json.Parse(value);
+		if (parseResult != Error.Ok)
+		{
+			GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {value} at line {json.GetErrorLine()}");
+			return null;
+		}
+		return RunResource.fromJson(json);
 	}
 
 	private float tryLoadFloat(Godot.Collections.Dictionary<String, String> nodeData, String name, float defaultValue) {

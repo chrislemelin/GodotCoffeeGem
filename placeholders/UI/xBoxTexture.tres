@@ -1,6 +1,0 @@
-[gd_resource type="AnimatedTexture" load_steps=2 format=3 uid="uid://c0w1nmv8gsohi"]
-
-[ext_resource type="Texture2D" uid="uid://baguit5kw5jhc" path="res://placeholders/UI/gdb-xbox-2.png" id="1_evt3p"]
-
-[resource]
-frame_0/texture = ExtResource("1_evt3p")

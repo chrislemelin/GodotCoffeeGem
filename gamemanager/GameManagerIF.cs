@@ -342,14 +342,14 @@ public partial class GameManagerIF : Node2D
 		getGlobal().gridSize = newSize;
 	}
 
-	public List<Tuple<String, int>> getHighScores()
+	public List<RunResource> getHighScores()
 	{
 		return getGlobal().getHighScores();
 	}
 
-	public void submitScore(Tuple<String, int> score)
+	public void submitScore(RunResource runResource)
 	{
-		getGlobal().addNewHighScore(score);
+		getGlobal().addNewHighScore(runResource);
 	}
 
 
@@ -431,7 +431,7 @@ public partial class GameManagerIF : Node2D
 	}
 
 
-	public void resetMetaProgression() {
+public void resetMetaProgression() {
 		getMetaGlobal().reset();
 	}
 

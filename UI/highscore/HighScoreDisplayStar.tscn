@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw5ydsha8qit3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kj4ko"]
+load_path = "res://.godot/imported/Star.png-9727377e3fa2d5f56a679ef0cbba3403.ctex"
+
+[node name="HighScoreDisplayStar" type="Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("CompressedTexture2D_kj4ko")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = SubResource("CompressedTexture2D_kj4ko")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
