@@ -7,7 +7,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
 placeholder_text = "Insert Name Here"
-max_length = 30
+max_length = 20
 expand_to_text_length = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]

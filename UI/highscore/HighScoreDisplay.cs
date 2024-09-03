@@ -53,7 +53,7 @@ public partial class HighScoreDisplay : ToggleVisibilityOnButtonPress
 			}
 		}
 		Control control2 = (Control)scoreInput.Instantiate();
-		((RichTextLabel)control2.GetChild(1)).Text = TextHelper.right(score.ToString("N0"));
+		((RichTextLabel)control2.GetChild(1)).Text = getScoreText(score,completed);
 		nameInput = (LineEdit)control2.GetChild(0);
 		nameInput.TextSubmitted+= enteredName;
 		scoreHolder.AddChild(control2);

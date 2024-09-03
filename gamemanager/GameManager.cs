@@ -18,10 +18,11 @@ public partial class GameManager : GameManagerIF
 	[Export] public HighScoreDisplay highScoreDisplay;
 	[Export] public Array<RelicResource> relicTestResources = new Array<RelicResource>();
 	[Export] public ToggleVisibilityOnButtonPress bossRelicTutorial;
-	[Export] public ToggleVisibilityOnButtonPress bossRecipeTutorial;
 	[Export] public ToggleVisibilityOnButtonPress overTimeTutorial;
 	[Export] public ToggleVisibilityOnButtonPress gooTutorial;
 	[Export] public ToggleVisibilityOnButtonPress gameBeatenTutorial;
+	[Export] public Resource gameBeatenBossDialouge;
+	[Export] public Resource gameLostBossDialouge;
 	[Export] public WelcomeScreen welcomeTutorial;
 	[Export] public RelicSelection relicSelection;
 	[Export] public LevelListResource levelList;
@@ -54,12 +55,6 @@ public partial class GameManager : GameManagerIF
 			setStartTime();
 		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
-		if (bossRecipe != null)
-		{
-			recipeUI.loadRecipe(bossRecipe);
-			bossRecipeTutorial.setVisible(true);
-
-		}
 		if (!getGlobal().shownWelcomeTutorial && !debugMode)
 		{
 			welcomeTutorial.startUp();
@@ -194,6 +189,12 @@ public partial class GameManager : GameManagerIF
 
 	private void checkForHighScore(bool gameCompleted) {
 		if (getGlobal().isScoreAHighScore(getGlobal().totalScore)) {
+			if (gameCompleted) {
+				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(gameBeatenBossDialouge);
+			} else {
+				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(gameLostBossDialouge);
+			}
+
 			highScoreDisplay.Visible = true;
 			highScoreDisplay.addHighScore(getGlobal().totalScore, gameCompleted);
 		}
@@ -279,8 +280,8 @@ public partial class GameManager : GameManagerIF
 		// Optional<Resource> dialougeMaybe = getDialouge();
 		// if (dialougeMaybe.HasValue)
 		// {
-		// 	DialogueManagerRuntime.DialogueManager.DialogueEnded += loadNewScene;
-		// 	DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeMaybe.GetValue());
+		// 	
+		// 	;
 		// }
 		// else
 		// {

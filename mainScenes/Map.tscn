@@ -468,13 +468,6 @@ position = Vector2(965, 544)
 scale = Vector2(3.7099, 3.7099)
 texture = ExtResource("7_v8p8x")
 
-[node name="Background" type="TextureRect" parent="Map"]
-visible = false
-modulate = Color(1, 1, 0.831373, 1)
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("2_g041w")
-
 [node name="MapLocations" type="Control" parent="Map"]
 layout_mode = 3
 anchors_preset = 0

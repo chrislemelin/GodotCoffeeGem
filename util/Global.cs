@@ -61,6 +61,13 @@ public partial class Global : Node
 		new RunResource("Clyde",1000_000, true)
 	};
 
+	private List<RunResource> highScoresDefault = new List<RunResource>(){
+		new RunResource("Chris L", 10_000_000, true),
+		new RunResource("HP",5_000_000, true),
+		new RunResource("Casper",1_000_000, true),
+		new RunResource("Clyde",1000_000, true)
+	};
+
 
 	public Vector2 gridSize = new Vector2(6, 5);
 
@@ -124,6 +131,12 @@ public partial class Global : Node
 		var jsonString = Json.Stringify(saveDict);
 		// Store the save dictionary as a new line in the save file.
 		userIdSave.StoreLine(jsonString);
+	}
+
+	public void resetMetaProgression(){
+		highScoresNew.Clear();
+		highScoresNew.AddRange(highScoresDefault);
+		save();
 	}
 
 

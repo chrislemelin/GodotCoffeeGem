@@ -1,11 +1,13 @@
-[gd_scene load_steps=53 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=55 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
 [ext_resource type="Resource" uid="uid://bewp1ndgxw4gx" path="res://relics/bossRelics/BossRelicList.tres" id="3_7yc8h"]
+[ext_resource type="Resource" uid="uid://j5jvqglwwmbo" path="res://dialogue/bossDialouge/HighScoreLost.dialogue" id="3_347ll"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="4_aiyqe"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="4_dls5h"]
 [ext_resource type="PackedScene" uid="uid://dtbf03ekre5ex" path="res://match/MatchBoard.tscn" id="5_4m14m"]
+[ext_resource type="Resource" uid="uid://qhphks7awow3" path="res://dialogue/bossDialouge/HighScoreWon.dialogue" id="5_voycg"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
 [ext_resource type="Texture2D" uid="uid://c1s2lxholqwbh" path="res://placeholders/CoffeeShop/Coffee 1.png" id="6_v4hji"]
 [ext_resource type="Texture2D" uid="uid://dkehgsvlvt1p4" path="res://placeholders/character/portrait2.png" id="8_bn8a0"]
@@ -277,6 +279,8 @@ bossRelicTutorial = NodePath("UIOverLays/BossRelicDisplay")
 overTimeTutorial = NodePath("UIOverLays/OverTimeTutorial")
 gooTutorial = NodePath("UIOverLays/GooTutorial")
 gameBeatenTutorial = NodePath("UIOverLays/GameBeaten")
+gameBeatenBossDialouge = ExtResource("5_voycg")
+gameLostBossDialouge = ExtResource("3_347ll")
 welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
 relicSelection = NodePath("UIOverLays/RelicSelection")
 levelList = ExtResource("2_qtucr")
@@ -288,12 +292,12 @@ dialougeDict = {
 1: SubResource("Resource_qopb2"),
 2: SubResource("Resource_rcc3r")
 }
-dialougeResource = SubResource("Resource_rcc3r")
+dialougeResource = ExtResource("5_voycg")
 relicList = ExtResource("4_dls5h")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
 modulate = Color(0.454902, 0.454902, 0.454902, 1)
-position = Vector2(965, 435)
+position = Vector2(963, 456)
 scale = Vector2(0.836182, 0.836182)
 texture = ExtResource("6_v4hji")
 
@@ -480,6 +484,7 @@ grabFocus = true
 anchors_preset = 0
 
 [node name="Screen1" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -487,9 +492,9 @@ offset_bottom = 40.0
 [node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
 layout_mode = 0
 offset_left = 625.0
-offset_top = 263.0
+offset_top = 200.0
 offset_right = 1494.0
-offset_bottom = 550.0
+offset_bottom = 598.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1"]
 layout_mode = 2
@@ -511,15 +516,16 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("18_y5ido")
-text = "My name is Bob, your AI boss. I want to welcome you to the E-Family as a barista at BeanTown coffee shop #357, a subsidiary of E-Corp. We here at E-Corp offer a generous and fulfilling bartista program for team. It will let you gain vauable experience while working off your debt at the same time! We have concluded our standard 5 minute small talk. It's time to start your training."
+text = "Hello! My name is Bob, but you can call me Boss. I'll be your AI supervisor here at BeanTown coffee shop #357, a subsidiary of Conglomerate Incorporated. We here at Conglomerate Inc. offer a generous and fulfilling barista program for our team. You'll gain valuable experience while working off your debt at the same time!
+With that, we have concluded our standard 3-minute allotment for small talk. It's time to start your training."
 
 [node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 481.0
-offset_top = 510.0
-offset_right = 801.0
-offset_bottom = 830.0
+offset_left = 236.0
+offset_top = 303.0
+offset_right = 556.0
+offset_bottom = 623.0
 texture = ExtResource("43_eeut1")
 
 [node name="Screen2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
@@ -985,7 +991,7 @@ offset_top = 317.0
 offset_right = 552.0
 offset_bottom = 464.0
 theme = ExtResource("18_y5ido")
-text = "Well, that concludes your training. I will be checking up on you to make sure you hit your quotas. You will be put on a mandatory unpaid vacation if you don't hit quotas in a timely manner. Anyway, no  pressure. I'm sure you will do fine."
+text = "That concludes your training. I will be checking up on you to make sure you hit your quotas. You will be put on a mandatory indefinite unpaid vacation if you fail to reach your quotas in a timely manner. But no pressure--I'm sure you'll do fine."
 
 [node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GoodLuck"]
 texture_filter = 1

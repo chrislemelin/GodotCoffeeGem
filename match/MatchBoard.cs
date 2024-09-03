@@ -8,7 +8,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
-
 public partial class MatchBoard : ControllerInput
 {
 	[Export] public int sizeX;
@@ -19,11 +18,8 @@ public partial class MatchBoard : ControllerInput
 	[Export] public Mana mana;
 	[Export] public Score score;
 	[Export] public AudioPlayer audioStreamPlayer2D;
-	[Export] public AudioPlayer audioPourStreamPlayer2D;
-
+	[Export] public AudioPlayer audioScoreStreamPlayer2D;
 	[Export] public Node2D boardHolder;
-	[Export] public TextureProgressBar progressBar;
-	private double progressValue = 0;
 	private int scoreValue = 0;
 	private int scoreProgressStep = 20;
 	private int startingScoreProgressStep = 20;
@@ -32,10 +28,7 @@ public partial class MatchBoard : ControllerInput
 	private int scoreNeeded = 0;
 	[Export] int shakeLevel = 10;
 	[Export] int shakeFreq = 20;
-	private bool movedBarLastStep = false;
-	[Export] private double progressStep;
-	[Export] public PackedScene sparkleEffect;
-	[Export] public ReferenceRect sparkleArea;
+
 
 	[Export] public AudioStream matchAudioStream;
 	[Export] public AudioStream popAudioStream;
@@ -357,60 +350,35 @@ public partial class MatchBoard : ControllerInput
 
 	private void scoreChanged(int score, int scoreNeeded)
 	{
-		double newProgressValue = (double)score / (scoreNeeded * 2) * 100;
-		if (newProgressValue > progressValue) {
-			//GetTree().CreateTimer(.5).Timeout += () => makeCoffeeSparkle();
-			//GetTree().CreateTimer(1).Timeout += () => makeCoffeeSparkle();
-		}
-		progressValue = newProgressValue;
 		scoreValue = score;
 		this.scoreNeeded = scoreNeeded;
 
 
-		//scoreLabel.Text = score + "/" + scoreNeeded;
 	}
+
+
 
 	private void updateScoreChanged()
 	{
-		 
-		double currentProgress = progressBar.Value;
-		if (Math.Abs(currentProgress - progressValue) > progressStep)
-		{
-			progressBar.Value = currentProgress + progressStep;
-			movedBarLastStep = true;
-		}
-		else
-		{
-			if (movedBarLastStep) {
-				//makeCoffeeSparkle();
-			}
-			progressBar.Value = progressValue;
-			movedBarLastStep = false;
-		}
-
 		scoreCurrent += scoreProgressStep;
 		if (scoreCurrent > scoreValue) {
+			audioScoreStreamPlayer2D.PitchScale = 1.0f;
+			audioScoreStreamPlayer2D.setBaseVolumeMult(1.0f);
+
 			scoreProgressStep = startingScoreProgressStep;
 			scoreCurrent = scoreValue;
 			scoreLabel.Text = scoreCurrent + "/" + scoreNeeded;
 		} else {
+			audioScoreStreamPlayer2D.PitchScale +=.2f;
+			audioScoreStreamPlayer2D.setBaseVolumeMult(audioScoreStreamPlayer2D.baseVolumeMult + .05f);
+			//audioScoreStreamPlayer2D.Play();
 			scoreProgressStep += scoreProgressStepIncrease;
-			scoreLabel.Text = TextHelper.shake(scoreCurrent.ToString(),shakeLevel, shakeFreq)+ "/" + scoreNeeded;
+			scoreLabel.Text = scoreCurrent.ToString()+ "/" + scoreNeeded;
 		}
 		
 	}
 
-	private void makeCoffeeSparkle() {
-		if (progressBar.Value > 10) {
-			Node2D shimmerNode = (Node2D)sparkleEffect.Instantiate();
-			shimmerNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
-			sparkleArea.AddChild(shimmerNode);
-			//progressBar.TextureProgress.DrawRect
-			double x =  GD.RandRange(0, sparkleArea.GetRect().Size.X);
-			double y =  GD.RandRange(sparkleArea.GetRect().Size.Y - sparkleArea.GetRect().Size.Y * ((progressBar.Value-10)/100), sparkleArea.GetRect().Size.Y );
-			shimmerNode.Position = new Vector2((float)x,(float)y);
-		}
-	}
+
 
 	private void resetTurnStats()
 	{
@@ -432,33 +400,25 @@ public partial class MatchBoard : ControllerInput
 		timer.Timeout += shineRandomIngredientType;
 		timer.Start();
 
-		Timer timer2 = new();
-		AddChild(timer2);
-		timer2.WaitTime = 10.0f;
-		timer2.OneShot = false;
-		timer2.Timeout += makeCoffeeSparkle;
-		timer2.Start();
-
 		FindObjectHelper.getSettingsMenu(this).windowOpened += clearUIFocus;
 
 		Vector2 gridSize = FindObjectHelper.getGameManager(this).getGridSize();
 		sizeX = (int)gridSize.X;
 		sizeY = (int)gridSize.Y;
-		progressBar.Value = 0;
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
 		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => setUIFocus(false);
 
 		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel() + "/9";
 
-		score.scoreChange += scoreChanged;
+		score.scoreChange += (int newScore, int oldScore) => GetTree().CreateTimer(.25f).Timeout += () => scoreChanged(newScore, oldScore);
 		score.multChange += (value) =>  {
 			multLabel.Text = Mult.getMultString(value);
 			multLabel.Modulate = Mult.getMultColor(value);
 		};
 		timer = new Timer();
 		AddChild(timer);
-		timer.WaitTime = .1;
+		timer.WaitTime = .25;
 		timer.Timeout += () => updateScoreChanged();
 		timer.Start();
 
@@ -1138,6 +1098,7 @@ public partial class MatchBoard : ControllerInput
 		HashSet<Vector2> tilesNeedToDelete = positions.ToHashSet();
 		tilesNeedToDelete.ExceptWith(tilesMatched);
 		deleteGemAtPositions(tilesNeedToDelete, false);
+		scoreMatches(matches);
 		deleteGemAtPositions(tilesMatched, true);
 	}
 
@@ -1162,7 +1123,6 @@ public partial class MatchBoard : ControllerInput
 				}
 			}
 		}
-		scoreMatches(matches);
 		return matches;
 	}
 

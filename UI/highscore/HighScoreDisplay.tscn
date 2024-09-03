@@ -22,27 +22,27 @@ button = NodePath("Button")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 457.0
+offset_left = 526.0
 offset_top = 259.0
-offset_right = 1585.0
+offset_right = 1479.0
 offset_bottom = 827.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 2
 offset_left = 20.0
 offset_top = 19.0
-offset_right = 1110.0
+offset_right = 937.0
 offset_bottom = 76.0
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "[center]High Scores"
+text = "[center]Employee Rankings"
 fit_content = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 97.0
-offset_right = 1119.0
+offset_right = 948.0
 offset_bottom = 477.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
@@ -195,10 +195,10 @@ scroll_active = false
 
 [node name="Button" parent="." instance=ExtResource("5_dr3cr")]
 layout_mode = 0
-offset_left = 879.0
-offset_top = 765.0
-offset_right = 1033.0
-offset_bottom = 817.0
+offset_left = 965.0
+offset_top = 763.0
+offset_right = 1119.0
+offset_bottom = 815.0
 grow_horizontal = 1
 grow_vertical = 1
 text = "Continue"

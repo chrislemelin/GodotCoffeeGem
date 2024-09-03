@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=13 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://addons/dialogue_manager/balloons/DialogueBalloon.cs" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="2_alq3o"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 [ext_resource type="AudioStream" uid="uid://ch0ppa30uaxtj" path="res://sound/diaoulge/sound (1).wav" id="4_x3pi3"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="5_pr71p"]
@@ -96,19 +97,21 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 21.0
-offset_top = -183.0
-offset_right = -19.0
-offset_bottom = -19.0
+offset_left = 29.0
+offset_top = -314.0
+offset_right = -29.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
+theme = ExtResource("2_alq3o")
 
 [node name="Dialogue" type="MarginContainer" parent="Balloon/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -108.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -120,6 +123,7 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -129,6 +133,7 @@ scroll_active = false
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 64
 text = "Dialogue..."
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]
@@ -138,10 +143,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -147.0
-offset_top = -558.0
-offset_right = 494.0
-offset_bottom = -154.0
+offset_left = -135.0
+offset_top = -708.0
+offset_right = 506.0
+offset_bottom = -304.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -166,10 +171,10 @@ minValue = -40.0
 [node name="TextureRect" type="TextureRect" parent="Balloon"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 40.0
-offset_top = 633.0
-offset_right = 304.0
-offset_bottom = 897.0
+offset_left = 27.0
+offset_top = 470.0
+offset_right = 291.0
+offset_bottom = 734.0
 texture = ExtResource("6_viwda")
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]

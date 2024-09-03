@@ -215,7 +215,8 @@ public partial class GameManagerIF : Node2D
 
 	public List<RelicResource> getRelicPool()
 	{
-		return relicList.getRelics().ToList();
+		List<RelicResource> currentRelics = getRelics();
+		return relicList.getRelics().ToList().Except(currentRelics).ToList();
 	}
 
 	public virtual void advanceLevel()
@@ -431,8 +432,9 @@ public partial class GameManagerIF : Node2D
 	}
 
 
-public void resetMetaProgression() {
+	public void resetMetaProgression() {
 		getMetaGlobal().reset();
+		getGlobal().resetMetaProgression();
 	}
 
 	public void addMetaCoins(int value) {

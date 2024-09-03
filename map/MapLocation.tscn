@@ -66,8 +66,7 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 46
 bbcode_enabled = true
-text = "[center]Mechanic
-(40 Coins)"
+text = "[center]Mechanic"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0

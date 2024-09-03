@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://c2us0nt6a6mvg"
+path="res://.godot/imported/HighScoreLossTalk.dialogue-fd60bf777e63c338d1033804985225fb.tres"
+
+[deps]
+
+source_file="res://dialogue/HighScoreLossTalk.dialogue"
+dest_files=["res://.godot/imported/HighScoreLossTalk.dialogue-fd60bf777e63c338d1033804985225fb.tres"]
+
+[params]
+
+defaults=true
