@@ -42,6 +42,8 @@ public partial class CardEffectIF : Resource
 	[Export] public bool retain = false;
 	[Export] public bool matchy = false;
 	[Export] public bool spendX = false;
+	[Export] public bool nuke = false;
+
 	public int spendXValue = 0;
 
 	public Node node;

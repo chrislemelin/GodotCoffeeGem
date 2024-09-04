@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://2j2tir3pgrnt"]
+
+[ext_resource type="Texture2D" uid="uid://b48mql4d5w6eb" path="res://cards/cardResources/cardArt/final/CardArtPop.png" id="1_b06o5"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_0iypi"]
+[ext_resource type="Script" path="res://cards/cardResources/grid/NukeIngredientCardEffect.cs" id="2_xiw0s"]
+
+[sub_resource type="Resource" id="Resource_iqdse"]
+script = ExtResource("2_xiw0s")
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+consume = true
+retain = false
+matchy = false
+spendX = false
+nuke = false
+
+[resource]
+script = ExtResource("2_0iypi")
+Title = "Product Recall"
+Description = "Randomly select a non-vanilla ingredient type to be nuked."
+Cost = 3
+rarity = 1
+Picture = ExtResource("1_b06o5")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_iqdse")

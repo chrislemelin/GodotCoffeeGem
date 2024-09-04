@@ -13,7 +13,7 @@ public partial class CardIF : lerp
 	[Export] protected CardResource cardResource;
 	[Export] protected Color disabledColor;
 	[Export] protected TextureRect titleSprite;
-	[Export] RichTextLabel toolTipText;
+	[Export] RichTextLabel toolTipText2;
 
 	private bool enabled = true;
 
@@ -80,7 +80,7 @@ public partial class CardIF : lerp
 		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		//highlightOnHover.TooltipText = cardResource.getToolTip();
-		toolTipText.Text = cardResource.getToolTip();
+		toolTipText2.Text = cardResource.getToolTip();
 	}
 
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)

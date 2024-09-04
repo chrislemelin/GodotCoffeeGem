@@ -65,8 +65,9 @@ public partial class MatchBoard : ControllerInput
 
 	private Vector2 tileHoveredPosition = new Vector2(0,0);
 	Optional<Tile> tileHovered = Optional.None<Tile>();
-
 	private int columnsRemoved = 0;
+
+	private HashSet<GemType> gemTypesCannotBeSpawned = new HashSet<GemType>();
 
 	//stats
 	public HashSet<Match> matchesThisTurn = new HashSet<Match>();
@@ -446,6 +447,12 @@ public partial class MatchBoard : ControllerInput
 		sizeX ++;
 		generateTiles();
 		populateBoard();
+	}
+
+	public void nukeIngredientType(GemType type) {
+		List<Tile> ingredients = getTilesWithColorOfGem(type);
+		deleteGemAtPositions(ingredients.Select(tile => tile.getTilePosition()).ToList(), true);
+		gemTypesCannotBeSpawned.Add(type);
 	}
 
 	public void removeColumn() {
@@ -982,6 +989,9 @@ public partial class MatchBoard : ControllerInput
 		Gem gem = gemScene.Instantiate() as Gem;
 		Tile tile = getTileOptional(position).GetValue();
 		GemType gemType = GemTypeHelper.getRandomColor();
+		while (gemTypesCannotBeSpawned.Contains(gemType)) {
+			gemType = GemTypeHelper.getRandomColor();
+		}
 		gem.setType(gemType);
 		tile.gemParent.AddChild(gem);
 		tile.Gem = gem;

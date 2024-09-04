@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_tb7xr"]
 [ext_resource type="Shader" path="res://cards/shaders/highlight.gdshader" id="2_663k4"]
 [ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="2_lklcc"]
-[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="2_o3jpl"]
+[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="2_o3jpl"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_a0ard"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="3_y21xb"]
 [ext_resource type="Texture2D" uid="uid://tuioy5u4m22" path="res://placeholders/cards/cardbackblank.png" id="5_0kcsm"]
@@ -26,7 +26,7 @@ shader_parameter/line_thickness = 5.009
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w66s"]
 size = Vector2(420, 603.333)
 
-[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite", "toolTipText")]
+[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite")]
 position = Vector2(474, 266)
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_tb7xr")
@@ -38,7 +38,6 @@ picture = NodePath("UI/Picture/Sprite2D")
 highlightOnHover = NodePath("UI/Background")
 disabledColor = Color(0.560784, 0.560784, 0.560784, 1)
 titleSprite = NodePath("UI/Title/Sprite2D")
-toolTipText = NodePath("Tooltip")
 speed = 500.0
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("toolTipText", "target")]

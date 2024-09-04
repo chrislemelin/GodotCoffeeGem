@@ -163,13 +163,19 @@ public partial class Gem : lerp
 
 	public void shine()
 	{
+		resetAnimation();
 		animationPlayer.Play("Shine");
 	}
 
 	public void shake()
 	{
+		resetAnimation();
 		audioPlayer.Play();
 		animationPlayer.Play("Shake");
+	}
+
+	public void resetAnimation() {
+		animationPlayer.Play("RESET");
 	}
 
 	public void startDyingExplode()

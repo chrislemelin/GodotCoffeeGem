@@ -148,6 +148,9 @@ public partial class CardResource : Resource
 		{
 			returnString += "Matchy - If this card destroys 3+ ingredients of the same type count it as a match\n";
 		}
+		if (cardEffect.nuke) {
+			returnString += "Nuke - This ingredient type is wiped from the board and cannot be spawned in anymore\n";
+		}
 		return returnString;
 	}
 

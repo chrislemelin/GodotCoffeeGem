@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://l8epp33hnkdj"]
+[gd_scene load_steps=18 format=3 uid="uid://l8epp33hnkdj"]
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_o0n2r"]
+[ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="3_to62g"]
 [ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="3_y8rao"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_rpy3w"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_0idb8"]
@@ -11,27 +12,6 @@
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="15_cbp0x"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="16_wj50d"]
 [ext_resource type="FontFile" uid="uid://csv4wx1x3e6nd" path="res://fonts/ZX OCR-B.ttf" id="17_kdbgc"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bcejr"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6o8t7"]
-noise = SubResource("FastNoiseLite_bcejr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7wkw"]
-shader = ExtResource("15_cbp0x")
-shader_parameter/dissolve_value = 1.0
-shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
-shader_parameter/line_thickness = 5.0
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_6o8t7")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0j14q"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgfh"]
-shader = ExtResource("15_cbp0x")
-shader_parameter/dissolve_value = 0.623
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = null
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_0j14q")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x58mq"]
 
@@ -54,8 +34,8 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = null
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_8ytrd")
 
-[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite", "toolTipText")]
-position = Vector2(474, 266)
+[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite", "toolTipText2")]
+position = Vector2(490, 331)
 script = ExtResource("1_o0n2r")
 control = NodePath("Center/HitBox")
 titleLabel = NodePath("Center/Title/RichTextLabel")
@@ -63,210 +43,24 @@ descriptionLabel = NodePath("Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
-disabledColor = Color(0.560784, 0.560784, 0.560784, 1)
-titleSprite = NodePath("Center/Title/Sprite2D")
-toolTipText = NodePath("Tooltip")
-speed = 750.0
+disabledColor = Color(0.266667, 0.266667, 0.266667, 1)
+titleSprite = NodePath("Center/Title/TitleBackground")
+toolTipText2 = NodePath("Tooltip")
+speed = 1000.0
 
-[node name="Tooltip" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 334.0
-offset_top = -306.0
-offset_right = 700.0
-offset_bottom = -160.0
-theme_override_font_sizes/normal_font_size = 50
-theme_override_styles/normal = ExtResource("13_txhnh")
-text = "this is a test tooltip"
-fit_content = true
-
-[node name="Center2" type="Control" parent="."]
-visible = false
+[node name="Center" type="Control" parent="." node_paths=PackedStringArray("toolTipText", "target")]
 use_parent_material = true
-custom_minimum_size = Vector2(235, 296)
 layout_mode = 3
 anchors_preset = 0
 offset_left = -124.0
 offset_top = -154.0
-offset_right = 152.0
-offset_bottom = 203.0
+offset_right = -124.0
+offset_bottom = -154.0
 pivot_offset = Vector2(125, 150)
 mouse_filter = 2
-
-[node name="Background" type="TextureRect" parent="Center2" node_paths=PackedStringArray("area2D")]
-material = SubResource("ShaderMaterial_i7wkw")
-layout_mode = 2
-offset_left = -11.0
-offset_top = -28.0
-offset_right = 274.0
-offset_bottom = 352.0
-texture = ExtResource("3_y8rao")
-expand_mode = 1
-script = ExtResource("6_rpy3w")
-area2D = NodePath("../../Center/HitBox")
-forceHighlightColor = Color(0, 1, 0, 1)
-makeBiggerScale = 1.0
-
-[node name="Description2" type="Control" parent="Center2"]
-use_parent_material = true
-anchors_preset = 0
-offset_left = 34.0
-offset_top = -307.0
-offset_right = 34.0
-offset_bottom = -307.0
-mouse_filter = 1
-
-[node name="Sprite2D" type="TextureRect" parent="Center2/Description2"]
-modulate = Color(0.858824, 0.788235, 0.737255, 1)
-use_parent_material = true
-layout_mode = 0
-offset_left = -14.0
-offset_top = 475.0
-offset_right = 209.0
-offset_bottom = 633.0
-mouse_filter = 2
-texture = ExtResource("9_0idb8")
-expand_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Center2/Description2"]
-use_parent_material = true
-layout_mode = 0
-offset_left = -11.0
-offset_top = 479.0
-offset_right = 209.0
-offset_bottom = 629.0
-mouse_filter = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Center2/Description2/VBoxContainer2"]
-z_as_relative = false
-texture_filter = 2
-use_parent_material = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("16_wj50d")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "+$valueenergy and +2burnt . \\nIf you have made at least 1 coffee match this turn, +1energy $customText"
-fit_content = true
-
-[node name="Picture" type="Control" parent="Center2"]
-use_parent_material = true
-anchors_preset = 0
-offset_left = 50.0
-offset_top = 12.0
-offset_right = 50.0
-offset_bottom = 12.0
-mouse_filter = 2
-
-[node name="Sprite2D" type="TextureRect" parent="Center2/Picture"]
-modulate = Color(0.196078, 0.196078, 0.196078, 1)
-texture_filter = 1
-use_parent_material = true
-layout_mode = 0
-offset_left = -22.0
-offset_top = 26.0
-offset_right = 187.0
-offset_bottom = 149.0
-mouse_filter = 2
-texture = ExtResource("9_0idb8")
-expand_mode = 1
-
-[node name="Title" type="Control" parent="Center2"]
-use_parent_material = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 73.0
-offset_top = -1.0
-offset_right = 73.0
-offset_bottom = -1.0
-mouse_filter = 2
-
-[node name="Sprite2D" type="TextureRect" parent="Center2/Title"]
-modulate = Color(0.858824, 0.788235, 0.737255, 1)
-use_parent_material = true
-layout_mode = 0
-offset_left = -45.0
-offset_top = 9.0
-offset_right = 164.0
-offset_bottom = 39.0
-mouse_filter = 2
-texture = ExtResource("9_0idb8")
-expand_mode = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Center2/Title"]
-texture_filter = 1
-use_parent_material = true
-layout_mode = 0
-offset_left = -34.0
-offset_top = 9.0
-offset_right = 159.0
-offset_bottom = 39.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[center]Energy Infusion +[/center]"
-scroll_active = false
-
-[node name="EnergyCost" type="Control" parent="Center2"]
-use_parent_material = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = 62.0
-offset_top = 54.0
-offset_right = 62.0
-offset_bottom = 54.0
-mouse_filter = 2
-
-[node name="Sprite2D2" type="TextureRect" parent="Center2/EnergyCost"]
-texture_filter = 1
-material = SubResource("ShaderMaterial_4rgfh")
-use_parent_material = true
-layout_mode = 0
-offset_left = -72.0
-offset_top = -100.0
-offset_right = 618.0
-offset_bottom = 590.0
-scale = Vector2(0.1, 0.1)
-mouse_filter = 2
-texture = ExtResource("11_0iboy")
-expand_mode = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Center2/EnergyCost"]
-modulate = Color(0, 0, 0, 1)
-use_parent_material = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.4
-offset_top = -64.0
-offset_right = -21.4
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("17_kdbgc")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
-text = "[center]0"
-fit_content = true
-scroll_active = false
-
-[node name="Center" type="Control" parent="."]
-use_parent_material = true
-custom_minimum_size = Vector2(235, 296)
-layout_mode = 3
-anchors_preset = 0
-offset_left = -124.0
-offset_top = -154.0
-offset_right = 152.0
-offset_bottom = 203.0
-pivot_offset = Vector2(125, 150)
-mouse_filter = 2
+script = ExtResource("3_to62g")
+toolTipText = NodePath("../Tooltip")
+target = NodePath("HitBox")
 
 [node name="Background" type="TextureRect" parent="Center" node_paths=PackedStringArray("area2D")]
 material = SubResource("ShaderMaterial_7ax7x")
@@ -408,10 +202,10 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_oofnv")
 use_parent_material = true
 layout_mode = 0
-offset_left = -73.4
+offset_left = -73.0
 offset_top = -100.0
-offset_right = 616.6
-offset_bottom = 590.0
+offset_right = 657.0
+offset_bottom = 630.0
 scale = Vector2(0.1, 0.1)
 mouse_filter = 2
 texture = ExtResource("11_0iboy")
@@ -446,3 +240,14 @@ anchors_preset = 0
 offset_top = -12.0
 offset_right = 262.0
 offset_bottom = 339.0
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 144.0
+offset_top = -153.0
+offset_right = 510.0
+offset_bottom = -7.0
+theme_override_font_sizes/normal_font_size = 50
+theme_override_styles/normal = ExtResource("13_txhnh")
+text = "this is a test tooltip"
+fit_content = true

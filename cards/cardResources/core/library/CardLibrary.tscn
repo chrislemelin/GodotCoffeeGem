@@ -8,6 +8,7 @@
 
 [node name="CardLibrary" type="Node2D" groups=["CardLibrary"]]
 script = ExtResource("1_x7xb1")
+useTestDefaultCardPool = true
 defaultCardPool = ExtResource("2_njqsx")
 cardPacks = ExtResource("3_hlaqi")
 defaultCardList = ExtResource("4_qqgwt")

@@ -23,6 +23,4 @@ public partial class CardEffectPopAllBlack : CardEffectIF
 		List<Tile> blackIngredients = matchBoard.getTilesWithColorOfGem(GemType.Black);
 		matchBoard.deleteGemAtPositions(blackIngredients.Select(tile => tile.getTilePosition()).ToList());
 	}
-
-
 }

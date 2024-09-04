@@ -215,7 +215,7 @@ public partial class Score : Node2D
 		}
 	}
 
-	public void setHeartsRemaining(int newValue)
+	private void setHeartsRemaining(int newValue)
 	{
 		int indexHeartBlowUp = -1;
 		if (newValue < heartsRemaining) {
