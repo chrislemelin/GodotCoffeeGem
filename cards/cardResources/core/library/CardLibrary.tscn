@@ -7,8 +7,8 @@
 [ext_resource type="Resource" uid="uid://dm1n28elr0awu" path="res://cards/cardResources/cardLists/TestCardList.tres" id="5_lescg"]
 
 [node name="CardLibrary" type="Node2D" groups=["CardLibrary"]]
+position = Vector2(1, 0)
 script = ExtResource("1_x7xb1")
-useTestDefaultCardPool = true
 defaultCardPool = ExtResource("2_njqsx")
 cardPacks = ExtResource("3_hlaqi")
 defaultCardList = ExtResource("4_qqgwt")

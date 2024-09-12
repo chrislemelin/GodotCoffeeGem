@@ -18,6 +18,8 @@ public partial class Gem : lerp
 	[Export] public Texture2D orbTexture;
 	[Export] public bool useSprites;
 	[Export] public Control control;
+	[Export] Node2D explosionPoint;
+
 	[Export] AnimationPlayer animationPlayer;
 	[Export] PackedScene explosion;
 	[Export] PackedScene shimmer;
@@ -145,15 +147,18 @@ public partial class Gem : lerp
 	public void startDyingMatch()
 	{
 		animationPlayer.Play("PopAnimation");
-		Node shimmerNode = shimmer.Instantiate();
+		Node2D shimmerNode = (Node2D)shimmer.Instantiate();
+		shimmerNode.Scale = new Vector2(.35f, .35f);
+		shimmerNode.Position = new Vector2(0,0);
 		shimmerNode.GetChild<GpuParticles2D>(0,false).Emitting = true;
-		this.AddChild(shimmerNode);
+		explosionPoint.AddChild(shimmerNode);
 	}
 
 	public void explode() {
 		Explosion explode = (Explosion)explosion.Instantiate();
-		explode.Position = new Vector2(125,125);
-		this.AddChild(explode);
+		explode.Position = new Vector2(0,0);
+		explode.Scale = new Vector2(.25f,.25f);
+		explosionPoint.AddChild(explode);
 	}
 
 	public void startDying()

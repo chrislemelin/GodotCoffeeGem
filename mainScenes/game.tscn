@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=58 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bog5s844e5fy5" path="res://placeholders/CoffeeShop/Wooden_Counter.png" id="9_hiq7b"]
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
+[ext_resource type="Texture2D" uid="uid://uvbobs2mcipv" path="res://placeholders/cofeeshop-lowres.png" id="10_gq41t"]
+[ext_resource type="Texture2D" uid="uid://noanl6ghu5dl" path="res://placeholders/CoffeeShop/cofeeshop.png" id="11_7vwce"]
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
 [ext_resource type="Texture2D" uid="uid://k22e2kqicd4o" path="res://placeholders/character/MainCharacter2.png" id="12_vif15"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
@@ -46,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://placeholders/character/Boss.png" id="43_eeut1"]
 [ext_resource type="AudioStream" uid="uid://b6otkupkutor3" path="res://sound/rewards/Coin01.mp3" id="46_uq45g"]
 [ext_resource type="PackedScene" uid="uid://df73hn4mndwnd" path="res://UI/EndDayButton.tscn" id="47_oc5ta"]
+[ext_resource type="PackedScene" uid="uid://28twoy1bat4t" path="res://meta/debt/DebtReward.tscn" id="48_2ib3b"]
 [ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="48_ckeue"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="51_n61nv"]
 
@@ -269,7 +272,7 @@ _data = {
 }
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("gameOverScreen", "score", "relicHolderUI", "highScoreDisplay", "bossRelicTutorial", "overTimeTutorial", "gooTutorial", "gameBeatenTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay", "levelCompleteAudioPlayer") groups=["Camera"]]
-position = Vector2(-3, -1)
+position = Vector2(1, 1)
 script = ExtResource("1_5jnm2")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
@@ -292,14 +295,29 @@ dialougeDict = {
 1: SubResource("Resource_qopb2"),
 2: SubResource("Resource_rcc3r")
 }
-dialougeResource = ExtResource("5_voycg")
 relicList = ExtResource("4_dls5h")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
 modulate = Color(0.454902, 0.454902, 0.454902, 1)
+texture_filter = 1
 position = Vector2(963, 456)
 scale = Vector2(0.836182, 0.836182)
 texture = ExtResource("6_v4hji")
+
+[node name="PixelArtShopTest" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.454902, 0.454902, 0.454902, 1)
+texture_filter = 1
+position = Vector2(959, 539)
+scale = Vector2(5, 5)
+texture = ExtResource("10_gq41t")
+
+[node name="PixelArtShopTest2" type="Sprite2D" parent="."]
+modulate = Color(0.454902, 0.454902, 0.454902, 1)
+texture_filter = 1
+position = Vector2(959, 539)
+scale = Vector2(4, 4)
+texture = ExtResource("11_7vwce")
 
 [node name="WoodenCounter" type="Sprite2D" parent="."]
 visible = false
@@ -314,9 +332,7 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_bn8a0")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") groups=["MatchBoard"] instance=ExtResource("5_4m14m")]
-position = Vector2(818, 250)
-scale = Vector2(0.75, 0.75)
-sizeX = 5
+position = Vector2(845, 212)
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
@@ -373,7 +389,7 @@ position = Vector2(265, 151)
 gameManager = NodePath("..")
 
 [node name="EndDayButton" parent="." instance=ExtResource("47_oc5ta")]
-offset_left = 1708.0
+offset_left = 1752.0
 offset_top = 479.0
 offset_right = 1903.0
 offset_bottom = 541.0
@@ -382,9 +398,9 @@ grow_vertical = 1
 
 [node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") groups=["NewTurnButton"] instance=ExtResource("13_hie55")]
 unique_name_in_owner = true
-offset_left = 1709.0
+offset_left = 1753.0
 offset_top = 571.0
-offset_right = 1900.0
+offset_right = 1905.0
 offset_bottom = 632.0
 theme_override_font_sizes/font_size = 45
 text = "End Turn"
@@ -1260,13 +1276,14 @@ scale = Vector2(1.01, 1.01)
 deckViewUI = NodePath("../DeckView")
 cards = []
 
-[node name="GameOverScreen" parent="UIOverLays" instance=ExtResource("15_ovghg")]
+[node name="GameOverScreen" parent="UIOverLays" node_paths=PackedStringArray("debtReward") instance=ExtResource("15_ovghg")]
 visible = false
 layout_mode = 1
-offset_left = 4.0
+offset_left = -3.0
 offset_top = 2.0
-offset_right = 4.0
+offset_right = -3.0
 offset_bottom = 2.0
+debtReward = NodePath("../DebtProgressBar")
 
 [node name="DeckView" parent="UIOverLays" groups=["DeckView"] instance=ExtResource("32_fnn8m")]
 visible = false
@@ -1439,6 +1456,13 @@ offset_bottom = 12.0
 
 [node name="RelicSelection" parent="UIOverLays" instance=ExtResource("37_ut3ll")]
 visible = false
+
+[node name="DebtProgressBar" parent="UIOverLays" instance=ExtResource("48_2ib3b")]
+visible = false
+offset_left = -1.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 3.0
 
 [node name="SettingsMenu" parent="." instance=ExtResource("39_btpum")]
 metadata/_edit_use_anchors_ = true

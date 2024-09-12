@@ -26,6 +26,7 @@ consume = false
 retain = true
 matchy = false
 spendX = false
+nuke = false
 
 [resource]
 script = ExtResource("3_kwm4e")

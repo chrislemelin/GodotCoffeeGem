@@ -49,7 +49,7 @@ offset_right = -27.0
 offset_bottom = -323.0
 scale = Vector2(3.71, 3.71)
 mouse_filter = 2
-texture = ExtResource("6_tsotk")
+texture = ExtResource("3_aiu7u")
 script = ExtResource("4_edqu2")
 area2D = NodePath("../Control")
 

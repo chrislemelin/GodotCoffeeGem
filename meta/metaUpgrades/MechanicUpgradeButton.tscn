@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk1vpdbc2lfaa"]
+
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_d11n2"]
+[ext_resource type="Script" path="res://meta/metaUpgrades/MechanicUpgradeButton.cs" id="2_awgy2"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_go0r4"]
+
+[node name="CoffeeUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+custom_minimum_size = Vector2(280, 110)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 280.0
+offset_bottom = 156.0
+size_flags_horizontal = 3
+theme = ExtResource("1_d11n2")
+script = ExtResource("2_awgy2")
+button = NodePath("CoffeeUpgradeButton")
+upgradeLevel = NodePath("UpgradeLabel")
+costLabel = NodePath("CostLabel")
+costBase = 50
+costIncrement = 0
+
+[node name="CoffeeUpgradeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 49.0
+offset_right = 279.0
+offset_bottom = 159.0
+tooltip_text = "Unlock the mechanic who will apear on the map. 
+Pay a nominal fee to upgrade the size of your match board when you go to see him."
+text = " Unlock Mechanic"
+
+[node name="UpgradeLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 7.0
+offset_right = 117.0
+offset_bottom = 47.0
+text = "0/5"
+
+[node name="CostLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 9.0
+offset_right = 266.0
+offset_bottom = 49.0
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 6.0
+offset_right = 204.0
+offset_bottom = 46.0
+texture = ExtResource("4_go0r4")
+expand_mode = 1
+stretch_mode = 4

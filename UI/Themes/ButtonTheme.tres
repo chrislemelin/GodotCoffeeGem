@@ -55,10 +55,10 @@ corner_radius_bottom_left = 4
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osqdc"]
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_color = Color(0.6, 0.6, 0.6, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -90,6 +90,6 @@ TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
 TooltipLabel/constants/outline_size = 0
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
-TooltipLabel/font_sizes/font_size = 32
+TooltipLabel/font_sizes/font_size = 48
 TooltipLabel/fonts/font = ExtResource("2_q7xkx")
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_osqdc")

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://rs3tikayfwfr"]
+
+[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_4qni5"]
+[ext_resource type="Script" path="res://meta/metaUpgrades/StartingMoneyUpgradeButton.cs" id="2_5s4v8"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="3_binuj"]
+[ext_resource type="Texture2D" uid="uid://dbpqs0t07rr8w" path="res://placeholders/UI/coin-pixel-100px.png" id="3_uv7e3"]
+
+[node name="CoinUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+custom_minimum_size = Vector2(449, 166)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 451.0
+offset_bottom = 163.0
+size_flags_horizontal = 3
+theme = ExtResource("1_4qni5")
+script = ExtResource("2_5s4v8")
+button = NodePath("CoffeeUpgradeButton")
+upgradeLevel = NodePath("UpgradeLabel")
+costLabel = NodePath("CostLabel")
+costBase = 30
+costIncrement = 20
+
+[node name="CoffeeUpgradeButton" type="Button" parent="."]
+layout_mode = 0
+offset_top = 49.0
+offset_right = 445.0
+offset_bottom = 159.0
+text = "+10 Starting Coins
+"
+icon = ExtResource("3_uv7e3")
+
+[node name="UpgradeLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 5.0
+offset_right = 116.0
+offset_bottom = 45.0
+text = "0/5"
+
+[node name="CostLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 7.0
+offset_right = 265.0
+offset_bottom = 47.0
+text = "10"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 4.0
+offset_right = 203.0
+offset_bottom = 44.0
+texture = ExtResource("3_binuj")
+expand_mode = 1
+stretch_mode = 4

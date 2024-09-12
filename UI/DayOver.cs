@@ -75,7 +75,7 @@ public partial class DayOver : Control
 		
 		addRelicsToShop();
 		addCardsToShop();
-		gameManager.coinsChanged += (int coins) => coinsChanged(coins);
+		gameManager.coinsChanged += (int coins, int value) => coinsChanged(coins);
 
 		if (gameManager.getHealth() == gameManager.getMaxHealth()) {
 			shoppingTherapyButton.Disabled = true;
@@ -193,7 +193,7 @@ public partial class DayOver : Control
 		}
 	}
 	private void addCardsToShop() {
-		List<CardResource> cards = CardRarityHelper.getRandomCards(4, gameManager.getCardPool());
+		List<CardResource> cards = CardRarityHelper.getRandomCards(gameManager.getCardInShop(), gameManager.getCardPool());
 			foreach(CardResource cardResource in cards) {
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
 			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();

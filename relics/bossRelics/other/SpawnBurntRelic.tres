@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=4 format=3 uid="uid://bkl8jcspk0d4u"]
+
+[ext_resource type="Script" path="res://relics/effects/SpawnBurntEffect.cs" id="1_q1id2"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="2_cgyfq"]
+
+[sub_resource type="Resource" id="Resource_i155s"]
+script = ExtResource("1_q1id2")
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("2_cgyfq")
+title = "Burnt Toast"
+description = "Burnt ingredient are randomly spawned and are now matchable, but give no points."
+cost = 0
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = true
+gameStartEffects = [SubResource("Resource_i155s")]
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = []
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

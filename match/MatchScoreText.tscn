@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://cards/shaders/highlightRainbow.gdshader" id="1_45tgh"]
 [ext_resource type="Script" path="res://match/MatchScoreText.cs" id="1_xy1kr"]
-[ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/Gem.tscn" id="3_dq4ac"]
+[ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/GemSmall.tscn" id="3_dq4ac"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2gdna"]
 shader = ExtResource("1_45tgh")

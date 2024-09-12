@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=22 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
 [ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="2_yuj2t"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b118tqgwxreh4" path="res://match/MatchScoreText.tscn" id="4_q1bh3"]
 [ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="5_lvyy0"]
 [ext_resource type="PackedScene" uid="uid://d1yewgtk7q7eh" path="res://UI/ColorUpgradePreviewUI.tscn" id="5_rxpiq"]
-[ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="6_ax4rp"]
+[ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/coins/money.wav" id="6_ax4rp"]
 [ext_resource type="PackedScene" uid="uid://60wadmikervm" path="res://match/score/HeartUI.tscn" id="7_7t6v1"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="9_a0nhy"]
 [ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://placeholders/UI/heart-empty-pixel-300px.png" id="9_nlixp"]
@@ -17,11 +17,12 @@
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="12_5h0ob"]
 [ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://placeholders/UI/heart-pixel-300px.png" id="12_i0n4t"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="13_mxfsq"]
+[ext_resource type="AudioStream" uid="uid://bxupgv52nge6g" path="res://sound/Score/coins/movement-swipe-whoosh-3-186577 (3).mp3" id="15_wb35m"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="17_bgy2v"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="17_iagpe"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="20_1df3m"]
 
-[node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "metaCoinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "progressBar", "turnsContainer", "heartsContainer")]
+[node name="Score" type="Node2D" node_paths=PackedStringArray("scoreLabel", "multLabel", "turnsRemainingLabel", "moneyNeededLabel", "levelLabel", "coinsLabel", "metaCoinsLabel", "colorUpgradePreviewBox", "audioStreamPlayer2D", "moneyLostAudioPlayer", "progressBar", "turnsContainer", "heartsContainer")]
 script = ExtResource("1_kd06i")
 scoreLabel = NodePath("VBoxContainer/Level Progress")
 multLabel = NodePath("VBoxContainer/MultLabelText")
@@ -35,6 +36,7 @@ colorUpgradePreviewBox = NodePath("VBoxContainer/MarginContainer/UpgradeContaine
 turnColor = Color(0, 1, 0.0509804, 1)
 heartColor = Color(1, 0, 1, 1)
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+moneyLostAudioPlayer = NodePath("MoneyLostAudio")
 oofAudio = ExtResource("3_77qsr")
 coinAudio = ExtResource("6_ax4rp")
 matchScoreTextPackedScene = ExtResource("4_q1bh3")
@@ -63,6 +65,11 @@ texture = ExtResource("5_lvyy0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ax4rp")
+script = ExtResource("13_mxfsq")
+soundEffect = true
+
+[node name="MoneyLostAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_wb35m")
 script = ExtResource("13_mxfsq")
 soundEffect = true
 

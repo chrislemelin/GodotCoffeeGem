@@ -37,6 +37,7 @@ consume = false
 retain = false
 matchy = true
 spendX = false
+nuke = false
 
 [resource]
 script = ExtResource("3_4sq0s")

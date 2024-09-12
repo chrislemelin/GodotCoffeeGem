@@ -50,7 +50,7 @@ public partial class NewCardSelection : Control
 			gameManagerIF.addCoins(-refreshSelectionButton.cost);
 			getRandomCardsToSelectFromInternal();
 		};
-		gameManagerIF.coinsChanged += (int value) => checkIfButtonIsActivated();
+		gameManagerIF.coinsChanged += (int coins, int coinValue) => checkIfButtonIsActivated();
 		checkIfButtonIsActivated();
 	}
 

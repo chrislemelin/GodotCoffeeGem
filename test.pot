@@ -1,0 +1,163 @@
+# LANGUAGE translation for BeansOfProduction for the following files:
+# res://dialogue/BobConvo1.dialogue
+# res://dialogue/IntroDialouge1.dialogue
+# res://dialogue/BobConvo2.dialogue
+# res://dialogue/AfterWorkTalk.dialogue
+# res://dialogue/ShopKeeper.dialogue
+# res://dialogue/HighScoreLossTalk.dialogue
+# res://dialogue/bossDialouge/HighScoreWon.dialogue
+# res://dialogue/bossDialouge/HighScoreLost.dialogue
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BeansOfProduction\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: dialogue/BobConvo1.dialogue
+#: dialogue/BobConvo2.dialogue
+#: dialogue/bossDialouge/HighScoreWon.dialogue
+#: dialogue/bossDialouge/HighScoreLost.dialogue
+msgctxt "dialogue"
+msgid "Bob"
+msgstr ""
+
+#: dialogue/BobConvo1.dialogue
+#: dialogue/IntroDialouge1.dialogue
+#: dialogue/BobConvo2.dialogue
+#: dialogue/AfterWorkTalk.dialogue
+#: dialogue/ShopKeeper.dialogue
+#: dialogue/HighScoreLossTalk.dialogue
+msgctxt "dialogue"
+msgid "Nathan"
+msgstr ""
+
+#: dialogue/BobConvo1.dialogue
+msgid "So how was your first day of work?"
+msgstr ""
+
+#: dialogue/BobConvo1.dialogue
+msgid "It wasn\'t too bad. Using this coffee machine was a bit weird at first but I think I am getting the hang of it"
+msgstr ""
+
+#: dialogue/BobConvo1.dialogue
+msgid "Good to hear! I have high hopes for you. My managerial software is telling me that you will be a hard worker."
+msgstr ""
+
+#: dialogue/BobConvo1.dialogue
+msgid "Unlike so many other past employees, no one wants to work these days."
+msgstr ""
+
+#: dialogue/BobConvo1.dialogue
+msgid "Yea im not like other employees, I\'m different."
+msgstr ""
+
+#: dialogue/IntroDialouge1.dialogue
+msgid "Hm so this is my assigned coffee shop. It\'s... way smaller than I thought it would be."
+msgstr ""
+
+#: dialogue/IntroDialouge1.dialogue
+#: dialogue/AfterWorkTalk.dialogue
+#: dialogue/HighScoreLossTalk.dialogue
+msgid "I just gotta make sure I stay on the debt forgivness track. Making coffee wasn\'t my dream but at least I got a job in this economy."
+msgstr ""
+
+#: dialogue/IntroDialouge1.dialogue
+msgid "Ok, time to start my job I guess."
+msgstr ""
+
+#: dialogue/BobConvo2.dialogue
+msgid "So your an AI? I didn\'t know it was possible to have an AI boss."
+msgstr ""
+
+#: dialogue/BobConvo2.dialogue
+msgid "Yup, I am apart of a new exiting program started by E-Corp! I am actually the first unit of my kind."
+msgstr ""
+
+#: dialogue/BobConvo2.dialogue
+msgid "Oh wow, I didn\'t realize that my coffee shop was so special."
+msgstr ""
+
+#: dialogue/BobConvo2.dialogue
+msgid "I actually manage 702 other coffee shops. While I am having this conversation with you I am also taking stock at 256 shops, making small talk at 98 shops, and firing personel at 28 shops."
+msgstr ""
+
+#: dialogue/BobConvo2.dialogue
+msgid "Uh ok cool."
+msgstr ""
+
+#: dialogue/BobConvo2.dialogue
+msgid "Yes, very it is very cool. I very much enjoyed our session of small talk."
+msgstr ""
+
+#: dialogue/AfterWorkTalk.dialogue
+#: dialogue/HighScoreLossTalk.dialogue
+msgid "As soon as I am done sweeping I can finally go home. This job just eats up sooo much of my day."
+msgstr ""
+
+#: dialogue/AfterWorkTalk.dialogue
+#: dialogue/HighScoreLossTalk.dialogue
+msgid "And then after I work of my debt I can get my dream job. Just need to figure out what the job is."
+msgstr ""
+
+#: dialogue/AfterWorkTalk.dialogue
+#: dialogue/HighScoreLossTalk.dialogue
+msgid "My dream job might just be anyone whos hiring someone with a bachelors in fine arts. And a job that pays in actual dollars."
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgctxt "dialogue"
+msgid "ShopKeeper"
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "Hey, Nathan. How are you doing?"
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "Doing well, just finished my first day of work."
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "You\'re working at that BeanTown coffee joint right? I actually used to work at a BeanTown back when I was a D level employee."
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "I got some tools in the back that you might be interested in."
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "That would be amazing, work is hard enough with these quotas I need to hit."
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "Just so you know I will need to charge you E-Bucks for these items. I also got a quota to hit."
+msgstr ""
+
+#: dialogue/ShopKeeper.dialogue
+msgid "Fair enough, not like I can just spend these E-Bucks anywhere so might as well spend them here."
+msgstr ""
+
+#: dialogue/bossDialouge/HighScoreWon.dialogue
+msgid "Congratulations! You\'ve exceeded our expectations so much that we would like to award you with this sticker as a token of our appreciation [img with=32 height=32]res://UI/highscore/starSingle.png[/img]"
+msgstr ""
+
+#: dialogue/bossDialouge/HighScoreWon.dialogue
+msgid "Unfortunately, it looks like I\'ll still have to fire you due to the end-of-demo clause in your contract."
+msgstr ""
+
+#: dialogue/bossDialouge/HighScoreWon.dialogue
+msgid "Please enter your name in the employee rankings for our records and consider working with us again in the future!"
+msgstr ""
+
+#: dialogue/bossDialouge/HighScoreLost.dialogue
+msgid "It appears you\'ve failed to reach your quota for the day. I regret to inform you that we\'ll be forced to let you go. On the bright side, you\'ve generated us quite a bit of profit during your time."
+msgstr ""
+
+#: dialogue/bossDialouge/HighScoreLost.dialogue
+msgid "Please enter your name in the employee rankings. There is a raffle at the end of the month!"
+msgstr ""

@@ -1,27 +1,27 @@
-[gd_scene load_steps=29 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=29 format=3 uid="uid://7mu0lj154f2d"]
 
-[ext_resource type="Script" path="res://match/Gem.cs" id="2_5yd20"]
-[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="2_s4a32"]
-[ext_resource type="Texture2D" uid="uid://dql1c2i3xlnlg" path="res://placeholders/cards/icons/card-icon.png" id="3_6ufkm"]
-[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="5_0i62a"]
-[ext_resource type="Shader" path="res://cards/shaders/rainbowSmooth.gdshader" id="5_2oikk"]
-[ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="5_qlodo"]
-[ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://placeholders/gem-gradient-painted.png" id="6_7pibk"]
-[ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://placeholders/ingredients/bean-pixel-300px.png" id="6_14v2q"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="6_kq7p0"]
-[ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="6_rwy76"]
-[ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="9_kwgje"]
-[ext_resource type="PackedScene" uid="uid://dfcbd3bluulqg" path="res://particalEffects/sparkle.tscn" id="10_gl1us"]
-[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="10_pd7po"]
-[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://placeholders/ingredients/final/Bean-pixel2.png" id="11_1wsfr"]
-[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="11_3xbkf"]
-[ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/StyleBoxes/ComboStyleBox.tres" id="12_bexrd"]
-[ext_resource type="Shader" path="res://cards/shaders/ShineShaderGem.gdshader" id="12_tqi6i"]
-[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="18_uiucv"]
-[ext_resource type="AudioStream" uid="uid://berjxlmfkhik0" path="res://sound/MatchBoard/bong_001.ogg" id="19_ohci2"]
+[ext_resource type="Script" path="res://match/Gem.cs" id="1_had2b"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="2_t8gfr"]
+[ext_resource type="Texture2D" uid="uid://dql1c2i3xlnlg" path="res://placeholders/cards/icons/card-icon.png" id="3_nl0c6"]
+[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="4_7gp1j"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="5_5e5i6"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="6_e8puv"]
+[ext_resource type="Shader" path="res://cards/shaders/rainbowSmooth.gdshader" id="7_gu6k0"]
+[ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="8_rvuwj"]
+[ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="9_5esfh"]
+[ext_resource type="PackedScene" uid="uid://dfcbd3bluulqg" path="res://particalEffects/sparkle.tscn" id="10_ktg3t"]
+[ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://placeholders/questionmark.png" id="11_8imei"]
+[ext_resource type="Shader" path="res://cards/shaders/ShineShaderGem.gdshader" id="12_cdrs7"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="13_136gb"]
+[ext_resource type="AudioStream" uid="uid://berjxlmfkhik0" path="res://sound/MatchBoard/bong_001.ogg" id="14_yw1c3"]
+[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://placeholders/ingredients/final/Bean-pixel2.png" id="15_8xuyp"]
+[ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://placeholders/ingredients/bean-pixel-300px.png" id="16_thcot"]
+[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://placeholders/ingredients/bean.png" id="17_6y7pa"]
+[ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://placeholders/gem-gradient-painted.png" id="18_vwu4m"]
+[ext_resource type="StyleBox" uid="uid://btqqjte31nbbb" path="res://UI/Themes/StyleBoxes/ComboStyleBox.tres" id="19_4kunf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmian"]
-shader = ExtResource("5_2oikk")
+shader = ExtResource("7_gu6k0")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
@@ -68,7 +68,7 @@ tracks/2/keys = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sms3w"]
 resource_local_to_scene = true
-shader = ExtResource("12_tqi6i")
+shader = ExtResource("12_cdrs7")
 shader_parameter/shine_color = Color(1, 1, 1, 0.196078)
 shader_parameter/line_width = 0.1
 shader_parameter/angle = 2.35619
@@ -192,31 +192,32 @@ _data = {
 }
 
 [sub_resource type="Theme" id="Theme_t1sr2"]
-RichTextLabel/styles/normal = ExtResource("12_bexrd")
+RichTextLabel/styles/normal = ExtResource("19_4kunf")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crmls"]
-size = Vector2(251, 247)
+size = Vector2(100, 100)
 
-[node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "comboTextLabel", "audioPlayer", "control", "animationPlayer")]
-script = ExtResource("2_5yd20")
+[node name="Gem" type="Node2D" node_paths=PackedStringArray("sprite2D", "addonSprite", "comboTextLabel", "audioPlayer", "control", "explosionPoint", "animationPlayer")]
+script = ExtResource("1_had2b")
 sprite2D = NodePath("CanvasGroup/GemSprite")
 addonSprite = NodePath("CanvasGroup/AddonParent/GemAddon")
 comboTextLabel = NodePath("CanvasGroup/AddonParent/ComboLabel")
-manaAddonTexture = ExtResource("2_s4a32")
-cardAddonTexture = ExtResource("3_6ufkm")
-lockAddonTexture = ExtResource("10_pd7po")
-coinAddonTexture = ExtResource("11_3xbkf")
-metaCoinAddonTexture = ExtResource("6_kq7p0")
+manaAddonTexture = ExtResource("2_t8gfr")
+cardAddonTexture = ExtResource("3_nl0c6")
+lockAddonTexture = ExtResource("4_7gp1j")
+coinAddonTexture = ExtResource("5_5e5i6")
+metaCoinAddonTexture = ExtResource("6_e8puv")
 rainbowMaterial = SubResource("ShaderMaterial_jmian")
 audioPlayer = NodePath("AudioStreamPlayer2D")
-orbTexture = ExtResource("5_qlodo")
+orbTexture = ExtResource("8_rvuwj")
 useSprites = true
 control = NodePath("Control")
+explosionPoint = NodePath("ExplosionPoint")
 animationPlayer = NodePath("AnimationPlayer")
-explosion = ExtResource("9_kwgje")
-shimmer = ExtResource("10_gl1us")
-questionMark = ExtResource("6_rwy76")
-speed = 1500.0
+explosion = ExtResource("9_5esfh")
+shimmer = ExtResource("10_ktg3t")
+questionMark = ExtResource("11_8imei")
+speed = 750.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -224,48 +225,58 @@ libraries = {
 }
 autoplay = "RESET"
 
-[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("18_uiucv")]
-stream = ExtResource("19_ohci2")
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("13_136gb")]
+stream = ExtResource("14_yw1c3")
 maxValue = 10.0
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(3, 9)
 
 [node name="GemSprite" type="Sprite2D" parent="CanvasGroup"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_sms3w")
-position = Vector2(17, 18)
-scale = Vector2(6.44118, 6.44118)
-texture = ExtResource("11_1wsfr")
+position = Vector2(-4, -11)
+scale = Vector2(3, 3)
+texture = ExtResource("15_8xuyp")
+centered = false
+
+[node name="GemSprite5" type="Sprite2D" parent="CanvasGroup"]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_sms3w")
+position = Vector2(25, 24)
+scale = Vector2(6, 6)
+texture = ExtResource("15_8xuyp")
 centered = false
 
 [node name="GemSprite4" type="Sprite2D" parent="CanvasGroup"]
 visible = false
 position = Vector2(17, 18)
 scale = Vector2(0.726667, 0.726667)
-texture = ExtResource("6_14v2q")
+texture = ExtResource("16_thcot")
 centered = false
 
 [node name="GemSprite3" type="Sprite2D" parent="CanvasGroup"]
 visible = false
 position = Vector2(35, 27)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_0i62a")
+texture = ExtResource("17_6y7pa")
 centered = false
 
 [node name="GemSprite2" type="Sprite2D" parent="CanvasGroup"]
 visible = false
 scale = Vector2(2.31193, 2.31193)
-texture = ExtResource("6_7pibk")
+texture = ExtResource("18_vwu4m")
 centered = false
 
 [node name="AddonParent" type="Node2D" parent="CanvasGroup"]
-position = Vector2(204, 189)
-scale = Vector2(0.3, 0.3)
+position = Vector2(83, 68)
+scale = Vector2(0.12, 0.12)
 
 [node name="GemAddon" type="Sprite2D" parent="CanvasGroup/AddonParent"]
 texture_filter = 1
 scale = Vector2(13, 13)
-texture = ExtResource("2_s4a32")
+texture = ExtResource("2_t8gfr")
 
 [node name="ComboLabel" type="RichTextLabel" parent="CanvasGroup/AddonParent"]
 visible = false
@@ -282,7 +293,7 @@ text = "+1"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(127, 126)
+position = Vector2(50, 50)
 shape = SubResource("RectangleShape2D_crmls")
 
 [node name="Control" type="Control" parent="."]
@@ -291,5 +302,15 @@ anchors_preset = 0
 offset_right = 253.0
 offset_bottom = 250.0
 
-[node name="Explosion" parent="." instance=ExtResource("9_kwgje")]
+[node name="ExplosionPoint" type="Node2D" parent="."]
+position = Vector2(50, 52)
+
+[node name="Explosion" parent="ExplosionPoint" instance=ExtResource("9_5esfh")]
 visible = false
+position = Vector2(50, 50)
+scale = Vector2(0.25, 0.25)
+
+[node name="Explosion2" parent="ExplosionPoint" instance=ExtResource("10_ktg3t")]
+visible = false
+position = Vector2(1, -1.19209e-07)
+scale = Vector2(0.35, 0.35)

@@ -652,6 +652,7 @@ position = Vector2(-0.5, -13.5)
 texture = ExtResource("17_718sm")
 
 [node name="Tutorial" type="Panel" parent="."]
+visible = false
 offset_left = 596.0
 offset_top = 385.0
 offset_right = 999.0
@@ -762,3 +763,7 @@ gameManager = NodePath("..")
 visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("24_a84c2")]
+offset_left = -14.0
+offset_top = 12.0
+offset_right = -14.0
+offset_bottom = 12.0

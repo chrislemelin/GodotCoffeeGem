@@ -112,6 +112,11 @@ public partial class Tile : Node2D
 		}
 		return normalColor;
 	}
+
+	public override void _ExitTree()
+	{
+		//FindObjectHelper.getControllerHelper(this).UsingControllerChanged -= clearUIFocus;
+	}
 	
 
 }

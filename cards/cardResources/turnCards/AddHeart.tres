@@ -26,6 +26,7 @@ consume = false
 retain = false
 matchy = false
 spendX = false
+nuke = false
 
 [resource]
 script = ExtResource("3_wspb4")

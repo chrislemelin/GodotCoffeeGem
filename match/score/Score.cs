@@ -23,6 +23,7 @@ public partial class Score : Node2D
 	[Export] Color turnColor;
 	[Export] Color heartColor;
 	[Export] AudioPlayer audioStreamPlayer2D;
+	[Export] AudioPlayer moneyLostAudioPlayer;
 	[Export] AudioStream oofAudio;
 	[Export] AudioStream coinAudio;
 	[Export] PackedScene matchScoreTextPackedScene;
@@ -70,10 +71,14 @@ public partial class Score : Node2D
 	public override void _Ready()
 	{
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-		gameManagerIF.coinsChanged += (int coins) =>
+		gameManagerIF.coinsChanged += (int coins, int value) =>
 		{
 			setCoins(coins);
-			playCoinSound();
+			if (value > 0) {
+				playCoinSound();
+			} else if (value < 0) {
+				playLostCoinsSound();
+			}
 		};
 		gameManagerIF.metaCoinsChanged += (int coins) =>
 		{
@@ -183,6 +188,10 @@ public partial class Score : Node2D
 		audioStreamPlayer2D.Stream = coinAudio;
 		audioStreamPlayer2D.setBaseVolumeMult(1.0f);
 		audioStreamPlayer2D.Play();
+	}
+
+	public void playLostCoinsSound(){
+		moneyLostAudioPlayer.Play();
 	}
 
 

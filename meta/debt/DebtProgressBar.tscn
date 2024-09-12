@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://hwx3hubj20fk"]
+
+[ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://placeholders/inner3.png" id="1_or543"]
+[ext_resource type="Script" path="res://meta/debt/DebtProgressBar.cs" id="1_pih5s"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="2_hnssy"]
+[ext_resource type="Texture2D" uid="uid://cjp172jnctaj3" path="res://placeholders/cards/title/TitleCard_1.png" id="3_ojov7"]
+[ext_resource type="AudioStream" uid="uid://ch0ppa30uaxtj" path="res://sound/diaoulge/sound (1).wav" id="3_whp5k"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_c4ig5"]
+[ext_resource type="AudioStream" uid="uid://b6otkupkutor3" path="res://sound/rewards/Coin01.mp3" id="7_hhaie"]
+
+[node name="DebtProgressBar" type="Control" node_paths=PackedStringArray("progressBar", "progressText", "startText", "endText", "reward", "audioStreamPlayerBlip", "audioStreamPlayerReward")]
+custom_minimum_size = Vector2(724, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 724.0
+offset_bottom = 102.0
+script = ExtResource("1_pih5s")
+progressBar = NodePath("ScoreProgressBar")
+progressText = NodePath("ScoreProgressBar/RichTextLabel")
+startText = NodePath("StartLabel")
+endText = NodePath("EndLabel")
+reward = NodePath("TextureRect")
+audioStreamPlayerBlip = NodePath("AudioStreamPlayer2D")
+audioStreamPlayerReward = NodePath("AudioStreamPlayer2D2")
+segmentValues = [200, 500]
+segmentValue = 500
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+
+[node name="ScoreProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 680.0
+offset_bottom = 96.0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("1_or543")
+texture_over = ExtResource("3_ojov7")
+texture_progress = ExtResource("1_or543")
+tint_under = Color(0.286275, 0.286275, 0.286275, 1)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.52549, 0.858824, 0.294118, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScoreProgressBar"]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]$600/$1000"
+fit_content = true
+
+[node name="EndLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 605.0
+offset_top = 5.0
+offset_right = 680.0
+offset_bottom = 33.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[right]$1000"
+
+[node name="StartLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 65.0
+offset_bottom = 33.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "$1000"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = -4.0
+offset_right = 724.0
+offset_bottom = 40.0
+texture = ExtResource("4_c4ig5")
+expand_mode = 1
+
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("2_hnssy")]
+stream = ExtResource("3_whp5k")
+
+[node name="AudioStreamPlayer2D2" parent="." instance=ExtResource("2_hnssy")]
+stream = ExtResource("7_hhaie")

@@ -153,7 +153,7 @@ public partial class MapLocation : Control
 						"but that column will start with Goo");
 					mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 					{
-						gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1, 0));
+						gameManagerIF.addGridUpgrade();
 						gameManagerIF.setGooRightRow(true);
 					},callback);
 				}

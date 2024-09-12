@@ -34,6 +34,7 @@ public partial class Map : Node
 	public override void _Ready()
 	{
 		base._Ready();
+		gameManager = FindObjectHelper.getGameManager(this);
 
 		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += setUIFocus;
 		setUIFocus(FindObjectHelper.getControllerHelper(this).isUsingController());
@@ -74,6 +75,9 @@ public partial class Map : Node
 				MapEventType mapEventType = MapEventTypeHelper.getRandom();
 				if (mapEventType == MapEventType.Mechanic || mapEventType == MapEventType.RelicShop) 
 				{
+					while(mapEventType == MapEventType.Mechanic && !gameManager.getMechanicUnlocked()) {
+						mapEventType = MapEventTypeHelper.getRandom();
+					}
 					if (!createdShop) 
 					{
 						createdShop = true;

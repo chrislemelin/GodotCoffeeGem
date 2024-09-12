@@ -38,6 +38,7 @@ consume = false
 retain = false
 matchy = false
 spendX = false
+nuke = false
 
 [resource]
 resource_local_to_scene = true

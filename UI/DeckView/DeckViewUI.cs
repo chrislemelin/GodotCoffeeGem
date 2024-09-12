@@ -66,7 +66,7 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 			cardInfoLoaders.Add(cardInfoLoader);
 		}
 
-
+		GD.Print("showing cards "+ cards.Count);
 		setVisible(true);
 		GetTree().CreateTimer(.25f).Timeout += () => {
 			foreach(CardInfoLoader cardInfoLoader in cardInfoLoaders) {

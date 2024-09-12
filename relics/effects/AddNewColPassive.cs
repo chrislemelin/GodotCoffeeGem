@@ -10,6 +10,6 @@ public partial class AddNewColPassive : EffectResource
 	
 	protected override void executeEffect(Node node) {
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(node);
-		gameManagerIF.changeGridSize(gameManagerIF.getGridSize() + new Vector2(1,0));
+		gameManagerIF.addGridUpgrade();
 	}
 }

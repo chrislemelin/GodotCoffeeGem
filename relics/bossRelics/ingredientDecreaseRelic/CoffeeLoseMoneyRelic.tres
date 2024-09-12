@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=6 format=3 uid="uid://bnren7em264hh"]
+
+[ext_resource type="Script" path="res://relics/effects/AddCoinsEffect.cs" id="3_fr1o1"]
+[ext_resource type="Script" path="res://relics/effects/MatchEffectResource.cs" id="4_07jed"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="5_cj27w"]
+
+[sub_resource type="Resource" id="Resource_hsknt"]
+script = ExtResource("3_fr1o1")
+value = -5
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_tv58i"]
+script = ExtResource("4_07jed")
+matchNumber = 3
+gemType = 0
+effect = SubResource("Resource_hsknt")
+
+[resource]
+script = ExtResource("5_cj27w")
+title = "Coffee Money Lost"
+description = "Lose 5 coins everytime a coffee match is made."
+cost = 0
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = true
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = []
+matchEffects = [SubResource("Resource_tv58i")]
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

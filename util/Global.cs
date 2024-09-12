@@ -8,7 +8,6 @@ public partial class Global : Node
 {
 	public const String LOAD_STRING = "/root/Globals/";
 	private const String SAVE_FILE_NAME = "user://userId.save";
-
 	private const String USER_ID_SAVE_NAME = "userId";
 	private const String META_COINS_SAVE_NAME = "meatCoins";
 	private const String MUSIC_VOLUME_SAVE_NAME = "musicVolum";
@@ -25,7 +24,10 @@ public partial class Global : Node
 	public List<RelicResource> relics = new List<RelicResource>();
 	public DeckSelectionResource deckSelection = null;
 
-	public int debt = 500;
+	public Vector2 gridSize = new Vector2(6, 5);
+	public int gridUpgrades = 0;
+	public int debtMax = 10_000;
+	public int debt = 10_000;
 	public int numberOfLevelsPlayed = 0;
 	public ulong timeStartedRun = 0;
 	public bool zenMode = false;
@@ -37,6 +39,7 @@ public partial class Global : Node
 	public int allCoinsGained = 0;
 	public int totalScore = 0;
 	public int numberOfCardsToChoose = 3;
+	public int numberOfCardsInShop = 2;
 	public bool shownBossTutorial = false;
 	public bool shownWelcomeTutorial = false;
 	public bool shownOvertimeTutorial = false;
@@ -69,9 +72,8 @@ public partial class Global : Node
 	};
 
 
-	public Vector2 gridSize = new Vector2(6, 5);
 
-	public void reset()
+	public void reset(MetaGlobal metaGlobal)
 	{
 		deckCardList = null;
 		colorUpgrades = new Array<ColorUpgrade>();
@@ -81,11 +83,13 @@ public partial class Global : Node
 		timeStartedRun = 0;
 		zenMode = false;
 
+		gridUpgrades = 0;
 		currentLevel = 1;
 		currentHealth = 2;
 		maxHealth = 2;
-		currentCoins = 0;
-		allCoinsGained = 0;
+		currentCoins = metaGlobal.getStartingCoinsValue();
+		allCoinsGained = metaGlobal.getStartingCoinsValue();
+		numberOfCardsInShop = 2 + metaGlobal.cardsInShopBonus;
 		totalScore = 0;
 		numberOfCardsToChoose = 3;
 		shownBossTutorial = false;
@@ -136,6 +140,8 @@ public partial class Global : Node
 	public void resetMetaProgression(){
 		highScoresNew.Clear();
 		highScoresNew.AddRange(highScoresDefault);
+		debt = debtMax;
+
 		save();
 	}
 

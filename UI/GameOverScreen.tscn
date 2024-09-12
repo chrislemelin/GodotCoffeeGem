@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://mplh7y2efw3m"]
+[gd_scene load_steps=8 format=3 uid="uid://mplh7y2efw3m"]
 
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="1_tdww2"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_32t71"]
 [ext_resource type="Script" path="res://UI/GameOverScreen.cs" id="4_dub5d"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_ijhti"]
+[ext_resource type="PackedScene" uid="uid://hwx3hubj20fk" path="res://meta/debt/DebtProgressBar.tscn" id="5_cgmrs"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="5_wh5ve"]
 [ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="6_fg1ur"]
 
-[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel", "debtLabel")]
+[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("restartButton", "label", "metaCoinLabel", "debtLabel", "debtProgressBar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,14 +22,13 @@ restartButton = NodePath("Restart")
 label = NodePath("VBoxContainer/RichTextLabel")
 metaCoinLabel = NodePath("VBoxContainer/MetaCoinDisplay/RichTextLabel")
 debtLabel = NodePath("VBoxContainer/DebtDisplay/RichTextLabel")
+debtProgressBar = NodePath("VBoxContainer/MarginContainer/DebtProgressBar")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.301961)
 layout_mode = 2
-offset_left = 4.0
-offset_top = -2.0
-offset_right = 1929.0
-offset_bottom = 1075.0
+offset_right = 1925.0
+offset_bottom = 1077.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("3_32t71")
@@ -39,17 +39,17 @@ flip_v = true
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 612.0
-offset_top = 337.0
+offset_top = 305.0
 offset_right = 1388.0
-offset_bottom = 748.0
+offset_bottom = 773.0
 theme = ExtResource("1_tdww2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 566.0
-offset_top = 373.0
+offset_top = 315.0
 offset_right = 1423.0
-offset_bottom = 724.0
+offset_bottom = 568.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
@@ -59,6 +59,7 @@ text = "[center]GAME OVER[/center]"
 fit_content = true
 
 [node name="MetaCoinDisplay" type="Control" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -95,12 +96,22 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 10
+
+[node name="DebtProgressBar" parent="VBoxContainer/MarginContainer" instance=ExtResource("5_cgmrs")]
+layout_mode = 2
+segmented = true
+
 [node name="Restart" parent="." instance=ExtResource("5_wh5ve")]
 layout_mode = 0
-offset_left = 784.0
-offset_top = 651.0
-offset_right = 1213.0
-offset_bottom = 703.0
+offset_left = 782.0
+offset_top = 680.0
+offset_right = 1211.0
+offset_bottom = 732.0
 grow_horizontal = 1
 grow_vertical = 1
 text = "Main Menu
@@ -109,10 +120,10 @@ grabFocus = true
 
 [node name="MarginContainer6" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 655.0
-offset_top = 563.0
-offset_right = 994.0
-offset_bottom = 617.0
+offset_left = 653.0
+offset_top = 592.0
+offset_right = 992.0
+offset_bottom = 646.0
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
@@ -123,10 +134,10 @@ text = "Join the Discord!"
 
 [node name="MarginContainer8" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 1015.0
-offset_top = 564.0
-offset_right = 1354.0
-offset_bottom = 618.0
+offset_left = 1013.0
+offset_top = 593.0
+offset_right = 1352.0
+offset_bottom = 647.0
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 

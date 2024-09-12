@@ -136,6 +136,12 @@ static class GemTypeHelper
 	{
 		return (GemType)random.Next(5);
 	}
+
+	//gets random gem (excluding black)
+	public static GemType getRandomColorIncludeBlack()
+	{
+		return (GemType)random.Next(6);
+	}
 	public static List<GemType> getRandomColors(int count)
 	{
 		List<int> ids = new List<int>{0,1,2,3,4};

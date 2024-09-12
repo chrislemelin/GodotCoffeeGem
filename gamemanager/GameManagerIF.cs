@@ -20,7 +20,7 @@ public partial class GameManagerIF : Node2D
 	public delegate void metaCoinsChangedEventHandler(int newCoins);
 
 	[Signal]
-	public delegate void coinsChangedEventHandler(int newCoins);
+	public delegate void coinsChangedEventHandler(int newCoins, int valueChanged);
 	[Signal]
 	public delegate void coinsGainedEventHandler(int newCoins);
 
@@ -90,8 +90,29 @@ public partial class GameManagerIF : Node2D
 		return lockedCardPackList;
 	}
 
+	public List<UnlockableCardPack> getUnlockedCardPacks() {
+		HashSet<string> cardPacksUnlocked = getMetaGlobal().cardPacksUnlocked;
+		List<UnlockableCardPack> lockedCardPackList = new List<UnlockableCardPack>();
+
+		foreach(UnlockableCardPack pack in getCardLibrary().cardPacks.packs) {
+			if(cardPacksUnlocked.Contains(pack.title)) {
+				lockedCardPackList.Add(pack);
+			}
+		}
+		return lockedCardPackList;
+	}
+
 	public void unlockCardPack(UnlockableCardPack unlockableCardPack) {
 		getMetaGlobal().addUnlockedCardPack(unlockableCardPack);
+	}
+
+	public bool getMechanicUnlocked() {
+		return getMetaGlobal().mechanicUnlocked;
+	}
+
+	public void setMechanicUnlocked(bool value) {
+		getMetaGlobal().mechanicUnlocked = value;
+		getMetaGlobal().save();
 	}
 
 	public void addCardToDeckList(CardResource cardResource)
@@ -196,7 +217,7 @@ public partial class GameManagerIF : Node2D
 
 	public void resetGlobals()
 	{
-		getGlobal().reset();
+		getGlobal().reset(getMetaGlobal());
 	}
 
 	public void setCardList(List<CardResource> cardResources)
@@ -228,9 +249,19 @@ public partial class GameManagerIF : Node2D
 		getGlobal().collectData = value;
 	}
 
+	public int getDebtMax()
+	{
+		return getGlobal().debtMax;
+	}
+
+
 	public int getDebt()
 	{
 		return getGlobal().debt;
+	}
+	public int getDebtProgress()
+	{
+		return getGlobal().debtMax - getGlobal().debt;
 	}
 
 	public void changeDebt(int value)
@@ -323,6 +354,44 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().allCoinsGained;
 	}
 
+	public int getStartingCoinsUpgradeLevel()
+	{
+		return getMetaGlobal().startingCoins;
+	}
+
+	public int getStartingCoinsUpgradeLevelMax()
+	{
+		return getMetaGlobal().startingCoinsMax;
+	}
+
+
+	public void addStartingCoins()
+	{
+		getMetaGlobal().startingCoins +=1;
+		getMetaGlobal().save();
+	}
+
+	public int getShopCardChoiceUpgradeLevel()
+	{
+		return getMetaGlobal().cardsInShopBonus;
+	}
+
+	public int getShopCardChoiceUpgradeLevelMax()
+	{
+		return getMetaGlobal().cardsInShopBonusMax;
+	}
+
+	public void addCardsInShop()
+	{
+		getMetaGlobal().cardsInShopBonus +=1;
+		getMetaGlobal().save();
+	}
+	public int getCardInShop()
+	{
+		return getGlobal().numberOfCardsInShop;
+	}
+
+
 	public int getLevel()
 	{
 		return getGlobal().currentLevel;
@@ -333,14 +402,18 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().gridSize;
 	}
 
+	public int getGridUpgrades()
+	{
+		return getGlobal().gridUpgrades;
+	}
+
+	public void addGridUpgrade() {
+		getGlobal().gridUpgrades++;
+	}
+
 	public int getTotalScore()
 	{
 		return getGlobal().totalScore;
-	}
-
-	public void changeGridSize(Vector2 newSize)
-	{
-		getGlobal().gridSize = newSize;
 	}
 
 	public List<RunResource> getHighScores()
@@ -372,7 +445,11 @@ public partial class GameManagerIF : Node2D
 
 	public void addCoins(int coinValue)
 	{
-		getGlobal().currentCoins += coinValue;
+		Global global = getGlobal();
+		global.currentCoins += coinValue;
+		if (global.currentCoins < 0) {
+			global.currentCoins = 0;
+		}
 		if (coinValue > 0)
 		{
 			getGlobal().allCoinsGained += coinValue;
@@ -381,7 +458,7 @@ public partial class GameManagerIF : Node2D
 			EmitSignal(SignalName.coinsGained, coinValue);
 		}
 		if (coinValue!= 0) {
-			EmitSignal(SignalName.coinsChanged, global.currentCoins);
+			EmitSignal(SignalName.coinsChanged, global.currentCoins, coinValue);
 		}
 	}
 
@@ -440,7 +517,9 @@ public partial class GameManagerIF : Node2D
 	public void addMetaCoins(int value) {
 		getGlobal().currentMetaCoins += value;
 		getGlobal().save();
-		EmitSignal(SignalName.metaCoinsChanged, getGlobal().currentMetaCoins);
+		if (value != 0) {
+			EmitSignal(SignalName.metaCoinsChanged, getGlobal().currentMetaCoins);
+		}
 	}
 
 	public int getMetaCoins() {

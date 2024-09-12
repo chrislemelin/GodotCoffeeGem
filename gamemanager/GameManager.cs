@@ -44,6 +44,7 @@ public partial class GameManager : GameManagerIF
 	public override void _Ready()
 	{
 		base._Ready();
+		
 		MatchBoard matchboard = FindObjectHelper.getMatchBoard(this);
 		Hand hand = FindObjectHelper.getHand(this);
 
@@ -52,6 +53,7 @@ public partial class GameManager : GameManagerIF
 		currentLevelResource = levelList.levelResources[currentLevel - 1];
 		if (currentLevel == 1)
 		{
+			resetGlobals();
 			setStartTime();
 		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
@@ -119,7 +121,9 @@ public partial class GameManager : GameManagerIF
 
 
 		//EmitSignal(SignalName.levelStart);
-		//startDialouge(dialougeResource);
+		if (dialougeResource!= null) {
+			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
+		}
 
 	}
 
@@ -161,25 +165,8 @@ public partial class GameManager : GameManagerIF
 
 		if (score.getScore() < scoreNeededToPass)
 		{
-			FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
-			Optional<UnlockableCardPack> unlockableCardPack = getNewCardPack();
-			int metaCoins = evaluateMetaCoins();
-			changeDebt(-metaCoins * 10);
-			gameOverScreen.setMetaCoins(metaCoins);
-			addMetaCoins(metaCoins);
-			
+			showGameOverScreen(false);
 
-			if (unlockableCardPack.HasValue) {
-				gameOverScreen.restartButton.Pressed+= () => {
-					FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
-					unlockCardPack(unlockableCardPack.GetValue());
-				};
-			} else {
-				gameOverScreen.setUpMainMenu();
-			}
-			checkForHighScore(false);
-			gameOverScreen.setVisible(true);
-			resetGlobals();
 		}
 		else
 		{
@@ -187,7 +174,7 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 
-	private void checkForHighScore(bool gameCompleted) {
+	private bool checkForHighScore(bool gameCompleted) {
 		if (getGlobal().isScoreAHighScore(getGlobal().totalScore)) {
 			if (gameCompleted) {
 				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(gameBeatenBossDialouge);
@@ -197,18 +184,21 @@ public partial class GameManager : GameManagerIF
 
 			highScoreDisplay.Visible = true;
 			highScoreDisplay.addHighScore(getGlobal().totalScore, gameCompleted);
+			return true;
 		}
+		return false;
 	}
 	
 	private Optional<UnlockableCardPack> getNewCardPack() {
-		List<UnlockableCardPack> lockedPacks = getLockedCardPacks().ToList();
-		if (lockedPacks.Count > 0) {
-			UnlockableCardPack unlockedPack = lockedPacks[0];
-			return Optional.Some<UnlockableCardPack>(unlockedPack);
-			//FindObjectHelper.getDeckView(this).setUp(unlockedPack.getCards(), null, TextHelper.centered("New Cards Unlocked"));
-			//unlockCardPack(unlockedPack);
-		}
 		return Optional.None<UnlockableCardPack>();
+		// List<UnlockableCardPack> lockedPacks = getLockedCardPacks().ToList();
+		// if (lockedPacks.Count > 0) {
+		// 	UnlockableCardPack unlockedPack = lockedPacks[0];
+		// 	return Optional.Some<UnlockableCardPack>(unlockedPack);
+		// 	//FindObjectHelper.getDeckView(this).setUp(unlockedPack.getCards(), null, TextHelper.centered("New Cards Unlocked"));
+		// 	//unlockCardPack(unlockedPack);
+		// }
+		// return Optional.None<UnlockableCardPack>();
 	}
 
 	private int evaluateMetaCoins()
@@ -220,6 +210,84 @@ public partial class GameManager : GameManagerIF
 		return currentLevel + Math.Max(0, currentLevel - 5);
 	}
 
+	private int evaluateDebtProgress()
+	{
+		if (currentLevel == levelList.levelResources.Count || debugMode)
+		{
+			return 500;
+		}
+		return currentLevel * 25 + Math.Max(0, currentLevel - 5) * 25;
+	}
+
+	private void showGameOverScreen(bool gameBeaten) {
+		string formSubmitterText = gameBeaten?"win":"lose";
+		FindObjectHelper.getFormSubmitter(this).submitData(formSubmitterText, this);
+
+		if (gameBeaten) {
+			gameOverScreen.label.Text = TextHelper.centered("You win!!!");
+		}
+		
+		Optional<UnlockableCardPack> unlockableCardPack = getNewCardPack();
+		if (unlockableCardPack.HasValue) {
+			gameOverScreen.restartButton.Pressed+= () => {
+			FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
+			unlockCardPack(unlockableCardPack.GetValue());
+		};
+		} else {
+			gameOverScreen.setUpMainMenu();
+		}
+
+		bool highScore = checkForHighScore(gameBeaten);
+
+		// int metaCoins = evaluateMetaCoins();
+		// gameOverScreen.setMetaCoins(metaCoins);
+		// addMetaCoins(metaCoins);
+
+		int debtProgress = evaluateDebtProgress();
+		int currentDebtProgress = getDebtProgress();
+		if (highScore) {
+			highScoreDisplay.WindowClosedSignal += () => {
+				int segementsPassed = gameOverScreen.setDebt(currentDebtProgress, debtProgress);
+				addMetaCoins(segementsPassed * 50);
+			};
+		} else {
+			int segementsPassed = gameOverScreen.setDebt(currentDebtProgress, debtProgress);
+			addMetaCoins(segementsPassed * 50);
+		}
+		changeDebt(-debtProgress);
+
+		gameOverScreen.Visible = true;
+
+		resetGlobals();
+
+		return;
+	}
+	/*
+	FindObjectHelper.getFormSubmitter(this).submitData("loss", this);
+	Optional<UnlockableCardPack> unlockableCardPack = getNewCardPack();
+
+	int metaCoins = evaluateMetaCoins();
+	changeDebt(-metaCoins * 10);
+	gameOverScreen.setMetaCoins(metaCoins);
+
+	int debtProgress = evaluateDebtProgress();
+	gameOverScreen.setDebt(getDebtProgress(), getDebtProgress());
+	addMetaCoins(metaCoins);
+	
+
+	if (unlockableCardPack.HasValue) {
+		gameOverScreen.restartButton.Pressed+= () => {
+			FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
+			unlockCardPack(unlockableCardPack.GetValue());
+		};
+	} else {
+		gameOverScreen.setUpMainMenu();
+	}
+	checkForHighScore(false);
+	gameOverScreen.setVisible(true);
+	resetGlobals();
+	*/
+
 	public void nextLevel()
 	{
 		levelCompleteAudioPlayer.Play();
@@ -228,19 +296,7 @@ public partial class GameManager : GameManagerIF
 
 		if (gameBeaten())
 		{
-			FindObjectHelper.getFormSubmitter(this).submitData("win", this);
-			gameOverScreen.label.Text = TextHelper.centered("You win!!!");
-			gameOverScreen.setUpMainMenu();
-			int metaCoins = evaluateMetaCoins();
-			gameOverScreen.setMetaCoins(metaCoins);
-			addMetaCoins(metaCoins);
-			gameOverScreen.Visible = true;
-
-			checkForHighScore(true);
-
-			resetGlobals();
-
-			return;
+			showGameOverScreen(true);
 		}
 
 		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe)

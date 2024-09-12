@@ -44,9 +44,9 @@ costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
 disabledColor = Color(0.266667, 0.266667, 0.266667, 1)
-titleSprite = NodePath("Center/Title/TitleBackground")
+titleSprite = NodePath("Center/Title/Sprite2D")
 toolTipText2 = NodePath("Tooltip")
-speed = 1000.0
+speed = 750.0
 
 [node name="Center" type="Control" parent="." node_paths=PackedStringArray("toolTipText", "target")]
 use_parent_material = true
@@ -163,7 +163,7 @@ mouse_filter = 2
 texture = ExtResource("9_0idb8")
 expand_mode = 1
 
-[node name="TitleBackground" type="TextureRect" parent="Center/Title"]
+[node name="TitleBorder" type="TextureRect" parent="Center/Title"]
 texture_filter = 1
 layout_mode = 0
 offset_left = -48.0

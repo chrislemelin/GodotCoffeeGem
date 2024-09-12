@@ -19,7 +19,7 @@ public partial class RelicSelection : Control
 			Visible = false;
 			EmitSignal(SignalName.WindowClosed);
 		};
-		FindObjectHelper.getGameManager(this).coinsChanged += (coins) => updateRelicDisabled(); 
+		FindObjectHelper.getGameManager(this).coinsChanged += (coins, coinChanged) => updateRelicDisabled(); 
 	}
 
 	public void setToVisible() {
@@ -35,7 +35,7 @@ public partial class RelicSelection : Control
 			child.QueueFree();
 		};		
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
-		gameManager.coinsChanged += (coinValue) => updatePurchasableRelicButtons(coinValue);
+		gameManager.coinsChanged += (coinValue, value) => updatePurchasableRelicButtons(coinValue);
 		foreach(RelicResource relicResource in relicResources) {
 			RelicUI relicUI = (RelicUI)relicUIPackedScene.Instantiate();
 			relicUI.showTitle = true;

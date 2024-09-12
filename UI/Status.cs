@@ -22,7 +22,7 @@ public partial class Status : Node
 		setLevel(gameManager.getLevel());
 
 		gameManager.healthChanged += (newHealth) => setHeartsRemaining(newHealth);
-		gameManager.coinsChanged += (newCoins) => setCoins(newCoins);
+		gameManager.coinsChanged += (newCoins, value) => setCoins(newCoins);
 	}
 
 	

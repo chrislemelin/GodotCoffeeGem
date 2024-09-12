@@ -19,7 +19,7 @@ GainMult = 0.0
 [resource]
 script = ExtResource("1_ns12q")
 title = "Slow Roasted Coffee"
-description = "When you gain a mana, convert a random ingredient to coffee"
+description = "When you gain an energy, convert a random ingredient to coffee"
 cost = 100
 hidden = false
 lastForOneTurn = false

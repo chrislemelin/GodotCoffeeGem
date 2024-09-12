@@ -13,13 +13,18 @@ public partial class MatchBoard : ControllerInput
 	[Export] public int sizeX;
 	[Export] public int sizeY;
 	[Export] PackedScene tileTemplate;
+	[Export] PackedScene tileTemplateSmall;
 	[Export] public PackedScene gemScene;
+	[Export] public PackedScene gemSceneSmall;
 	[Export] public Hand hand;
 	[Export] public Mana mana;
 	[Export] public Score score;
 	[Export] public AudioPlayer audioStreamPlayer2D;
 	[Export] public AudioPlayer audioScoreStreamPlayer2D;
 	[Export] public Node2D boardHolder;
+	private int columnUpgrades;
+
+	// score stats
 	private int scoreValue = 0;
 	private int scoreProgressStep = 20;
 	private int startingScoreProgressStep = 20;
@@ -28,7 +33,6 @@ public partial class MatchBoard : ControllerInput
 	private int scoreNeeded = 0;
 	[Export] int shakeLevel = 10;
 	[Export] int shakeFreq = 20;
-
 
 	[Export] public AudioStream matchAudioStream;
 	[Export] public AudioStream popAudioStream;
@@ -61,11 +65,19 @@ public partial class MatchBoard : ControllerInput
 	private Vector2 tileSize;
 	private Vector2 tileSizeUnScaled;
 
+	private Vector2 tileSizeSmall;
+	private Vector2 tileSizeUnScaledSmall;
+
 	[Export] private bool hasUIFocus = false;
 
 	private Vector2 tileHoveredPosition = new Vector2(0,0);
 	Optional<Tile> tileHovered = Optional.None<Tile>();
 	private int columnsRemoved = 0;
+
+	public bool spawnBlacks = false;
+	public bool blacksMatchable = false;
+	Dictionary<Vector2, Gem> boardResizeGemMap = new Dictionary<Vector2, Gem>();
+
 
 	private HashSet<GemType> gemTypesCannotBeSpawned = new HashSet<GemType>();
 
@@ -165,7 +177,7 @@ public partial class MatchBoard : ControllerInput
 		}
 		if (@event.IsActionPressed("space"))
 		{
-			//addColumn();
+			addColumn();
 		}
 
 		base._Input(@event);
@@ -297,9 +309,10 @@ public partial class MatchBoard : ControllerInput
 
 	private bool checkIfThingsAreDoneMoving()
 	{
-		for (int x = 0; x < sizeX; x++)
+		Vector2 gridSize = getGridSize();
+		for (int x = 0; x < gridSize.X; x++)
 		{
-			for (int y = 0; y < sizeY; y++)
+			for (int y = 0; y < gridSize.Y; y++)
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				Optional<Tile> maybeTile = getTileOptional(currentPosition);
@@ -354,7 +367,6 @@ public partial class MatchBoard : ControllerInput
 		scoreValue = score;
 		this.scoreNeeded = scoreNeeded;
 
-
 	}
 
 
@@ -403,7 +415,7 @@ public partial class MatchBoard : ControllerInput
 
 		FindObjectHelper.getSettingsMenu(this).windowOpened += clearUIFocus;
 
-		Vector2 gridSize = FindObjectHelper.getGameManager(this).getGridSize();
+		Vector2 gridSize = getGridSize();
 		sizeX = (int)gridSize.X;
 		sizeY = (int)gridSize.Y;
 
@@ -428,6 +440,10 @@ public partial class MatchBoard : ControllerInput
 		tileSize = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.Scale.X * sizeTile.sprite2D.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.Scale.Y * sizeTile.sprite2D.Scale.Y);
 		tileSizeUnScaled = new Vector2(sizeTile.sprite2D.Texture.GetWidth() * sizeTile.sprite2D.Scale.X, sizeTile.sprite2D.Texture.GetHeight() * sizeTile.sprite2D.Scale.Y);
 
+		Tile sizeTileSmall = tileTemplateSmall.Instantiate() as Tile;
+		tileSizeSmall = new Vector2(sizeTileSmall.sprite2D.Texture.GetWidth() * sizeTileSmall.Scale.X * sizeTileSmall.sprite2D.Scale.X, sizeTileSmall.sprite2D.Texture.GetHeight() * sizeTileSmall.Scale.Y * sizeTileSmall.sprite2D.Scale.Y);
+		tileSizeUnScaledSmall = new Vector2(sizeTileSmall.sprite2D.Texture.GetWidth() * sizeTileSmall.sprite2D.Scale.X, sizeTileSmall.sprite2D.Texture.GetHeight() * sizeTileSmall.sprite2D.Scale.Y);
+
 		sizeTile.QueueFree();
 
  		generateTiles();
@@ -444,10 +460,53 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	public void addColumn() {
-		sizeX ++;
+		columnUpgrades ++;
+		//sizeX ++;
 		generateTiles();
 		populateBoard();
 	}
+
+	private bool usingSmallSize() {
+		return columnUpgrades > 2;
+	}
+
+	private Vector2 getGridSize() {
+		Vector2 gridMod = new Vector2(0,0);
+		int gridUpgrades = columnUpgrades + FindObjectHelper.getGameManager(this).getGridUpgrades();
+		if (gridUpgrades-- > 0) {
+			gridMod += new Vector2(1,0);
+		}
+		if (gridUpgrades-- > 0) {
+			gridMod += new Vector2(1,0);
+		}
+		if (gridUpgrades-- > 0) {
+			gridMod += new Vector2(0,1);
+		}
+		if (gridUpgrades-- > 0) {
+			gridMod += new Vector2(1,0);
+		}
+		if (gridUpgrades-- > 0) {
+			gridMod += new Vector2(0,1);
+		}
+		return new Vector2(sizeX, sizeY) + gridMod;
+	}
+
+	private PackedScene getGemScene() {
+		return usingSmallSize() ? gemSceneSmall: gemScene;
+	}
+
+	private PackedScene getTileScene() {
+		return usingSmallSize() ? tileTemplateSmall: tileTemplate;
+	}
+
+	private Vector2 getTileSize() {
+		return usingSmallSize() ? tileSizeSmall: tileSize;
+	}
+
+	private Vector2 getTileSizeUnscaled() {
+		return usingSmallSize() ? tileSizeUnScaledSmall: tileSizeUnScaled;
+	}
+
 
 	public void nukeIngredientType(GemType type) {
 		List<Tile> ingredients = getTilesWithColorOfGem(type);
@@ -482,23 +541,38 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	private void generateTiles() {
-		for (int newX = 0; newX < sizeX; newX++)
+		PackedScene tileSceneToUse = usingSmallSize() ? tileTemplateSmall: tileTemplate;
+		clearTilesHovered();
+		tileHovered = Optional.None<Tile>();
+		clearTilesSelected();
+		tileSet.Clear();
+		//PackedScene gemSceneToUse = columnUpgrades > 2 ? gemScene: gemSceneSmall;
+
+		foreach (Node node in boardHolder.GetChildren()){
+			node.QueueFree();
+		}
+
+		Vector2 gridSize = getGridSize();
+
+		for (int newX = 0; newX < gridSize.X; newX++)
 		{
-			for (int newY = 0; newY < sizeY; newY++)
+			for (int newY = 0; newY < gridSize.Y; newY++)
 			{
 				Vector2 position = new Vector2(newX, newY);
-				if (tileMap.ContainsKey(position)) {
-					continue;
+				if (tileMap.ContainsKey(position) && tileMap[position].Gem != null) {
+					boardResizeGemMap.Add(position, tileMap[position].Gem);
+					//continue;
 				}
-				Tile newTile = tileTemplate.Instantiate() as Tile;
+				Tile newTile = tileSceneToUse.Instantiate() as Tile;
 				boardHolder.AddChild(newTile);
 				newTile.control.GuiInput += (inputEvent) => tileClicked(newTile, inputEvent);
 				tileSet.Add(newTile);
+				tileMap.Remove(new Vector2(newX, newY));
 				tileMap.Add(new Vector2(newX, newY), newTile);
 				newTile.x = newX;
 				newTile.y = newY;
 
-				newTile.Position = new Vector2(newX * tileSize.X, newY * tileSize.Y);
+				newTile.Position = new Vector2(newX * getTileSize().X, newY * getTileSize().Y);
 				newTile.control.MouseEntered += () => setTileHovered(newTile);
 				newTile.control.MouseExited += () => clearHover(newTile);
 			}
@@ -570,10 +644,11 @@ public partial class MatchBoard : ControllerInput
 
 	private HashSet<HashSet<Tile>> getMatches()
 	{
+		Vector2 gridSize = getGridSize();
 		HashSet<HashSet<Tile>> matches = new HashSet<HashSet<Tile>>(HashSet<Tile>.CreateSetComparer());
-		for (int x = 0; x < sizeX; x++)
+		for (int x = 0; x < gridSize.X; x++)
 		{
-			for (int y = 0; y < sizeY; y++)
+			for (int y = 0; y < gridSize.Y; y++)
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				HashSet<Tile> tileMatches = new HashSet<Tile>();
@@ -586,7 +661,7 @@ public partial class MatchBoard : ControllerInput
 
 				Optional<Gem> maybeGem = Optional.FromNullable(tile.Gem);
 				GemType gemType = maybeGem.GetValue().Type;
-				if (!gemType.matchable())
+				if (!gemType.matchable() && !blacksMatchable)
 				{
 					continue;
 				}
@@ -843,11 +918,13 @@ public partial class MatchBoard : ControllerInput
 	}
 	private void checkGemsForDrops()
 	{
-		for (int x = 0; x < sizeX; x++)
+		Vector2 gridSize = getGridSize();
+
+		for (int x = 0; x < gridSize.X; x++)
 		{
 			int newGemCountInRow = 0;
 
-			for (int y = sizeY - 1; y >= 0; y--)
+			for (int y = (int)gridSize.Y - 1; y >= 0; y--)
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				Tile tile = getTileOptional(currentPosition).GetValue();
@@ -863,7 +940,7 @@ public partial class MatchBoard : ControllerInput
 					else
 					{
 						upperGem = generateRandomGemForTile(currentPosition);
-						upperGem.Position = new Vector2(0, (y + 1 + newGemCountInRow) * tileSizeUnScaled.Y * -1);
+						upperGem.Position = new Vector2(0, (y + 1 + newGemCountInRow) * getTileSizeUnscaled().Y * -1);
 						upperGem.moveToPostion(Vector2.Zero);
 						newGemCountInRow++;
 					}
@@ -951,15 +1028,23 @@ public partial class MatchBoard : ControllerInput
 
 	private void populateBoard()
 	{
-		for (int x = 0; x < sizeX; x++)
+		Vector2 gridSize = getGridSize();
+		for (int x = 0; x < gridSize.X; x++)
 		{
-			for (int y = 0; y < sizeY; y++)
+			for (int y = 0; y < gridSize.Y; y++)
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				Tile tile = getTile(currentPosition);
 				if (!tile.getIsBlocked() && tile.Gem == null)
 				{
-					generateRandomGemForTile(currentPosition);
+					if (boardResizeGemMap.ContainsKey(currentPosition)) {
+						generateGemForTile(currentPosition, boardResizeGemMap[currentPosition]);
+						boardResizeGemMap.Remove(currentPosition);
+
+					} else {
+						generateRandomGemForTile(currentPosition);
+
+					}
 				}
 			}
 		}
@@ -986,15 +1071,39 @@ public partial class MatchBoard : ControllerInput
 	}
 	private Gem generateRandomGemForTile(Vector2 position)
 	{
-		Gem gem = gemScene.Instantiate() as Gem;
+		PackedScene gemSceneToUse = usingSmallSize() ? gemSceneSmall : gemScene;
+		Gem gem = gemSceneToUse.Instantiate() as Gem;
 		Tile tile = getTileOptional(position).GetValue();
-		GemType gemType = GemTypeHelper.getRandomColor();
+		
+		GemType gemType = spawnBlacks ? GemTypeHelper.getRandomColorIncludeBlack() : GemTypeHelper.getRandomColor();
 		while (gemTypesCannotBeSpawned.Contains(gemType)) {
 			gemType = GemTypeHelper.getRandomColor();
 		}
 		gem.setType(gemType);
 		tile.gemParent.AddChild(gem);
 		tile.Gem = gem;
+		gem.Position = new Vector2(0, 0);
+		if (hiddenCounter++ % 8 == 0)
+		{
+			//gem.setAddonType(GemAddonType.Lock);
+		}
+		addRandomAddon(gem);
+		return gem;
+	}
+	private Gem generateGemForTile(Vector2 position, Gem oldGem)
+	{
+		PackedScene gemSceneToUse = usingSmallSize() ? gemSceneSmall : gemScene;
+		Gem gem = gemSceneToUse.Instantiate() as Gem;
+		Tile tile = getTileOptional(position).GetValue();
+		
+		GemType gemType = oldGem.Type;
+		while (gemTypesCannotBeSpawned.Contains(gemType)) {
+			gemType = GemTypeHelper.getRandomColor();
+		}
+		gem.setType(gemType);
+		tile.gemParent.AddChild(gem);
+		tile.Gem = gem;
+		tile.Gem.setAddonType(oldGem.AddonType);
 		gem.Position = new Vector2(0, 0);
 		if (hiddenCounter++ % 8 == 0)
 		{

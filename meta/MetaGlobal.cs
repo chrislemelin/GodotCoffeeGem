@@ -19,6 +19,18 @@ public partial class MetaGlobal : Node
 	private const String CARDS_UNLOCKED_STRING = "cardPacksUnlocked";
 	public HashSet<String> cardPacksUnlocked = new HashSet<String>();
 
+	private const String MECHANIC_UNLOCKED_STRING = "mechanicUnlocked";
+	public bool mechanicUnlocked = false;
+
+	private const String CARDS_IN_SHOP_STRING = "cardsInShop";	
+	public int cardsInShopBonus = 0;
+	public int cardsInShopBonusMax = 2;
+
+	private const String STARTING_COINS_STRING = "startingCoins";	
+	public int startingCoins = 0;
+	public int startingCoinsMult = 10;
+	public int startingCoinsMax = 5;
+
 	private string saveFileName = "user://metaData.save";
 
 	public override void _Ready() {
@@ -53,10 +65,12 @@ public partial class MetaGlobal : Node
 		coinDropRate = Int32.Parse(nodeData[COIN_DROP_RATE_STRING]);
 		metaCoinDropRate = Int32.Parse(nodeData[META_COIN_DROP_RATE_STRING]);
 		cardPacksUnlocked = new HashSet<string>(nodeData[CARDS_UNLOCKED_STRING].Split(','));
-
+		mechanicUnlocked = tryLoadBool(nodeData, MECHANIC_UNLOCKED_STRING, mechanicUnlocked);
+		cardsInShopBonus = tryLoadInt(nodeData, CARDS_IN_SHOP_STRING, cardsInShopBonus);
+		startingCoins = tryLoadInt(nodeData, STARTING_COINS_STRING, startingCoins);
 	}
 
-	private void save() {
+	public void save() {
 		using var metaSave = FileAccess.Open(saveFileName, FileAccess.ModeFlags.Write);
 		Godot.Collections.Dictionary<String, String> metaDict = new Godot.Collections.Dictionary<String, String>();
 		foreach(KeyValuePair<GemType, int> entry in gemTypeToUpgradeLevel)
@@ -66,6 +80,9 @@ public partial class MetaGlobal : Node
 		metaDict[COIN_DROP_RATE_STRING] = coinDropRate.ToString();
 		metaDict[META_COIN_DROP_RATE_STRING] = metaCoinDropRate.ToString();
 		metaDict[CARDS_UNLOCKED_STRING] = string.Join(",", cardPacksUnlocked);
+		metaDict[MECHANIC_UNLOCKED_STRING] = mechanicUnlocked.ToString();
+		metaDict[CARDS_IN_SHOP_STRING] = cardsInShopBonus.ToString();
+		metaDict[STARTING_COINS_STRING] = startingCoins.ToString();
 
 		var jsonString = Json.Stringify(metaDict);
 		metaSave.StoreLine(jsonString);
@@ -95,6 +112,10 @@ public partial class MetaGlobal : Node
 		save();
 	}
 
+	public int getStartingCoinsValue() {
+		return startingCoins * startingCoinsMult;
+	}
+
 
 	public int getGemUpgrade(GemType gemType) {
 		if (gemTypeToUpgradeLevel.ContainsKey(gemType)) {
@@ -110,6 +131,10 @@ public partial class MetaGlobal : Node
 		coinDropRate = 0;
 		metaCoinDropRate = 0;
 		cardPacksUnlocked = new HashSet<string>();
+		mechanicUnlocked = false;
+		cardsInShopBonus = 0;
+		startingCoins = 0;
+
 		save();
 	}
 
@@ -135,5 +160,25 @@ public partial class MetaGlobal : Node
 			}
 		}
 		return colorUpgrades;
+	}
+
+	private float tryLoadFloat(Godot.Collections.Dictionary<String, String> nodeData, String name, float defaultValue) {
+		if (nodeData.ContainsKey(name)) {
+			return float.Parse(nodeData[name]);
+		}
+		return defaultValue;
+	}
+	private int tryLoadInt(Godot.Collections.Dictionary<String, String> nodeData, String name, int defaultValue) {
+		if (nodeData.ContainsKey(name)) {
+			return int.Parse(nodeData[name]);
+		}
+		return defaultValue;
+	}
+
+	private bool tryLoadBool(Godot.Collections.Dictionary<String, String> nodeData, String name, bool defaultValue) {
+		if (nodeData.ContainsKey(name)) {
+			return bool.Parse(nodeData[name]);
+		}
+		return defaultValue;
 	}
 }

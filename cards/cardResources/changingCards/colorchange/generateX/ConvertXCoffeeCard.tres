@@ -26,6 +26,7 @@ consume = false
 retain = false
 matchy = false
 spendX = true
+nuke = false
 
 [resource]
 script = ExtResource("3_vr5jf")

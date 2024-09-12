@@ -135,4 +135,5 @@ up={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/BobConvo1.dialogue", "res://dialogue/IntroDialouge1.dialogue", "res://dialogue/BobConvo2.dialogue", "res://dialogue/AfterWorkTalk.dialogue", "res://dialogue/ShopKeeper.dialogue", "res://dialogue/HighScoreLossTalk.dialogue", "res://dialogue/bossDialouge/HighScoreWon.dialogue", "res://dialogue/bossDialouge/HighScoreLost.dialogue")
+locale/translations=PackedStringArray("res://dialogue/conversations.en.translation")
+locale/translations_pot_files=PackedStringArray("res://dialogue/BobConvo1.dialogue", "res://dialogue/IntroDialouge1.dialogue", "res://dialogue/BobConvo2.dialogue", "res://dialogue/AfterWorkTalk.dialogue", "res://dialogue/ShopKeeper.dialogue", "res://dialogue/HighScoreLossTalk.dialogue", "res://dialogue/bossDialouge/HighScoreWon.dialogue", "res://dialogue/bossDialouge/HighScoreLost.dialogue", "res://dialogue/introDialouge/intro.dialogue")

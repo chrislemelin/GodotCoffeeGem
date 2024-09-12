@@ -27,6 +27,7 @@ consume = false
 retain = false
 matchy = false
 spendX = false
+nuke = false
 
 [resource]
 script = ExtResource("1_ybbs8")
