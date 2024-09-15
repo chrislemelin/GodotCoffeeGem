@@ -217,7 +217,7 @@ animationPlayer = NodePath("AnimationPlayer")
 explosion = ExtResource("9_5esfh")
 shimmer = ExtResource("10_ktg3t")
 questionMark = ExtResource("11_8imei")
-speed = 750.0
+speed = 600.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

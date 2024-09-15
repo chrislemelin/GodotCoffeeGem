@@ -45,7 +45,6 @@ _data = {
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
-anchors_preset = -1
 offset_right = 154.0
 offset_bottom = 52.0
 grow_horizontal = 2
@@ -60,10 +59,13 @@ clickAudioplayer = NodePath("ClickAudioPlayer")
 
 [node name="HoverAudioPlayer" parent="." instance=ExtResource("3_qwoga")]
 stream = ExtResource("4_i3ae2")
-maxValue = 20.0
+minValue = -40.0
+maxValue = 10.0
 
 [node name="ClickAudioPlayer" parent="." instance=ExtResource("3_qwoga")]
 stream = ExtResource("5_y2ebe")
+minValue = -40.0
+maxValue = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

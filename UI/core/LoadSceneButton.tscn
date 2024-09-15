@@ -59,10 +59,13 @@ clickAudioplayer = NodePath("ClickAudioPlayer")
 
 [node name="HoverAudioPlayer" parent="." instance=ExtResource("3_k4afm")]
 stream = ExtResource("4_4y7o1")
-maxValue = 20.0
+minValue = -40.0
+maxValue = 10.0
 
 [node name="ClickAudioPlayer" parent="." instance=ExtResource("3_k4afm")]
 stream = ExtResource("5_frrfs")
+minValue = -40.0
+maxValue = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

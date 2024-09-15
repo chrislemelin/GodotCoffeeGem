@@ -177,7 +177,7 @@ public partial class MatchBoard : ControllerInput
 		}
 		if (@event.IsActionPressed("space"))
 		{
-			addColumn();
+			//addColumn();
 		}
 
 		base._Input(@event);

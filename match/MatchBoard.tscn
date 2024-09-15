@@ -207,7 +207,7 @@ minValue = -40.0
 maxValue = 20.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(310, 161)
+position = Vector2(302, 159)
 texture = ExtResource("17_22l0t")
 
 [node name="BoardPoint" type="Node2D" parent="Sprite2D2"]

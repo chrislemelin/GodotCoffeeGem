@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=59 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://cbno64gc8kxnf" path="res://levels/LevelList.tres" id="2_qtucr"]
@@ -10,15 +10,16 @@
 [ext_resource type="Resource" uid="uid://qhphks7awow3" path="res://dialogue/bossDialouge/HighScoreWon.dialogue" id="5_voycg"]
 [ext_resource type="PackedScene" uid="uid://ccu0jen0fteje" path="res://hand/Deck.tscn" id="6_tl444"]
 [ext_resource type="Texture2D" uid="uid://c1s2lxholqwbh" path="res://placeholders/CoffeeShop/Coffee 1.png" id="6_v4hji"]
+[ext_resource type="Resource" uid="uid://botvj6mvhurcs" path="res://dialogue/introDialouge/intro2.dialogue" id="7_0w2tx"]
 [ext_resource type="Texture2D" uid="uid://dkehgsvlvt1p4" path="res://placeholders/character/portrait2.png" id="8_bn8a0"]
 [ext_resource type="PackedScene" uid="uid://bfp4ni22x3w6u" path="res://hand/hand.tscn" id="8_m8idd"]
 [ext_resource type="Texture2D" uid="uid://bog5s844e5fy5" path="res://placeholders/CoffeeShop/Wooden_Counter.png" id="9_hiq7b"]
 [ext_resource type="PackedScene" uid="uid://c563hncch4yj3" path="res://hand/Discard.tscn" id="9_o6m7d"]
 [ext_resource type="PackedScene" uid="uid://bm6smnkgl28wr" path="res://hand/Mana.tscn" id="10_4f0tc"]
 [ext_resource type="Texture2D" uid="uid://uvbobs2mcipv" path="res://placeholders/cofeeshop-lowres.png" id="10_gq41t"]
-[ext_resource type="Texture2D" uid="uid://noanl6ghu5dl" path="res://placeholders/CoffeeShop/cofeeshop.png" id="11_7vwce"]
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="11_nsha1"]
 [ext_resource type="Texture2D" uid="uid://k22e2kqicd4o" path="res://placeholders/character/MainCharacter2.png" id="12_vif15"]
+[ext_resource type="Texture2D" uid="uid://c8am0hncftugk" path="res://placeholders/CoffeeShop/final/cofeeshop3.png" id="13_d4fy8"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="13_hie55"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="15_ovghg"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="16_m0mlx"]
@@ -272,7 +273,7 @@ _data = {
 }
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("gameOverScreen", "score", "relicHolderUI", "highScoreDisplay", "bossRelicTutorial", "overTimeTutorial", "gooTutorial", "gameBeatenTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "debtDisplay", "levelCompleteAudioPlayer") groups=["Camera"]]
-position = Vector2(1, 1)
+position = Vector2(0, 1)
 script = ExtResource("1_5jnm2")
 gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
@@ -295,9 +296,11 @@ dialougeDict = {
 1: SubResource("Resource_qopb2"),
 2: SubResource("Resource_rcc3r")
 }
+startingDialougeResource = ExtResource("7_0w2tx")
 relicList = ExtResource("4_dls5h")
 
 [node name="MountainCoffeeShop" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.454902, 0.454902, 0.454902, 1)
 texture_filter = 1
 position = Vector2(963, 456)
@@ -312,13 +315,6 @@ position = Vector2(959, 539)
 scale = Vector2(5, 5)
 texture = ExtResource("10_gq41t")
 
-[node name="PixelArtShopTest2" type="Sprite2D" parent="."]
-modulate = Color(0.454902, 0.454902, 0.454902, 1)
-texture_filter = 1
-position = Vector2(959, 539)
-scale = Vector2(4, 4)
-texture = ExtResource("11_7vwce")
-
 [node name="WoodenCounter" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(960, 717)
@@ -331,8 +327,14 @@ position = Vector2(815, 213)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_bn8a0")
 
+[node name="PixelArtShopTest2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(740, 541)
+scale = Vector2(4, 4)
+texture = ExtResource("13_d4fy8")
+
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") groups=["MatchBoard"] instance=ExtResource("5_4m14m")]
-position = Vector2(845, 212)
+position = Vector2(809, 222)
 hand = NodePath("../Hand")
 mana = NodePath("../Mana")
 score = NodePath("../Score")
@@ -385,7 +387,7 @@ position = Vector2(178, 676)
 
 [node name="Score" parent="." node_paths=PackedStringArray("gameManager") groups=["Score"] instance=ExtResource("11_nsha1")]
 unique_name_in_owner = true
-position = Vector2(265, 151)
+position = Vector2(242, 153)
 gameManager = NodePath("..")
 
 [node name="EndDayButton" parent="." instance=ExtResource("47_oc5ta")]
@@ -695,7 +697,6 @@ offset_bottom = 726.0
 texture = ExtResource("43_eeut1")
 
 [node name="Screen4" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
 anchors_preset = 0
 
 [node name="turns remaining" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
@@ -1468,7 +1469,7 @@ offset_bottom = 3.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" parent="." instance=ExtResource("39_3yyxa")]
-position = Vector2(959, 539)
+position = Vector2(960, 539)
 
 [node name="JingleAchievementAudioPlayer" parent="." instance=ExtResource("51_n61nv")]
 stream = ExtResource("46_uq45g")

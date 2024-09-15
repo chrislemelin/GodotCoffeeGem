@@ -17,18 +17,18 @@ texture = ExtResource("2_6jv68")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -67.0
-offset_top = -426.0
+offset_top = -433.0
 offset_right = 68.0
-offset_bottom = -346.0
+offset_bottom = -353.0
 theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
 text = "[center]1"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = -90.0
-offset_top = -368.0
+offset_top = -375.0
 offset_right = 169.0
-offset_bottom = -255.0
+offset_bottom = -262.0
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
 text = "DECK"

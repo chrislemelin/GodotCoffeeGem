@@ -17,6 +17,8 @@ public partial class Global : Node
 	private const String TUTORIAL_OVERTIME_SAVE_NAME = "seenOvertimeTutorial";
 
 	private const String NUMBER_OF_LEVELS_PLAYED = "numberOfLevelsPlayed";
+	private const String NUMBER_OF_RUNS_PLAYED = "numberOfRunsPlayed";
+
 	private const String LEADER_BOARD_SCORE = "highscores";
 
 	public CardList deckCardList = null;
@@ -29,6 +31,7 @@ public partial class Global : Node
 	public int debtMax = 10_000;
 	public int debt = 10_000;
 	public int numberOfLevelsPlayed = 0;
+	public int numberOfRunsPlayed = 0;
 	public ulong timeStartedRun = 0;
 	public bool zenMode = false;
 	public int currentLevel = 1;
@@ -128,6 +131,7 @@ public partial class Global : Node
 		saveDict.Add(TUTORIAL_SAVE_NAME, shownWelcomeTutorial.ToString());
 		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfCardsToChoose.ToString());
 		saveDict.Add(TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial.ToString());
+		saveDict.Add(NUMBER_OF_RUNS_PLAYED, numberOfRunsPlayed.ToString());
 		for(int scoreCount = 0; scoreCount < highScoresNew.Count; scoreCount++) {
 			saveDict.Add(LEADER_BOARD_SCORE + scoreCount, highScoresNew[scoreCount].toJson());
 		} 
@@ -171,7 +175,8 @@ public partial class Global : Node
 		shownWelcomeTutorial = tryLoadBool(nodeData, TUTORIAL_SAVE_NAME, shownWelcomeTutorial);
 		shownOvertimeTutorial = tryLoadBool(nodeData, TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial);
 		numberOfLevelsPlayed = tryLoadInt(nodeData, NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed);
-		
+		numberOfRunsPlayed = tryLoadInt(nodeData, NUMBER_OF_RUNS_PLAYED, numberOfRunsPlayed);
+
 		int scoreCount = 0;
 		//highScoresNew.Clear();
 		while (true) {

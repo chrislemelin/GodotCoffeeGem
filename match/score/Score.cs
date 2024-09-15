@@ -83,7 +83,7 @@ public partial class Score : Node2D
 		gameManagerIF.metaCoinsChanged += (int coins) =>
 		{
 			setMetaCoins(coins);
-			playCoinSound();
+			//playCoinSound();
 		};
 		gameManagerIF.healthChanged += (int value) => setHeartsRemaining(value);
 

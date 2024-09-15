@@ -50,7 +50,7 @@ texture = ExtResource("3_sa2h8")
 [node name="Line2D" type="Line2D" parent="." groups=["HandLine"]]
 texture_filter = 2
 texture_repeat = 2
-position = Vector2(338.492, 68.1005)
+position = Vector2(284, 71)
 points = PackedVector2Array(0, 0, 0, 0, 0, 100)
 gradient = SubResource("Gradient_s4lcq")
 texture = ExtResource("4_jlt7i")
@@ -58,7 +58,7 @@ texture_mode = 1
 script = ExtResource("4_lebxv")
 
 [node name="CardContainer" type="Node2D" parent="."]
-position = Vector2(340.726, 66.9833)
+position = Vector2(286.234, 69.8828)
 
 [node name="CardSelectedAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_o7eqj")

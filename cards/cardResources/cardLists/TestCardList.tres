@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=9 format=3 uid="uid://dm1n28elr0awu"]
+[gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://dm1n28elr0awu"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_va40e"]
 [ext_resource type="Resource" uid="uid://3qx3fw07c24n" path="res://cards/cardResources/deletingCards/PopAllMatchyCard.tres" id="3_4msk4"]
 [ext_resource type="Resource" uid="uid://dha7jg80nudyy" path="res://cards/cardResources/movementCards/SwitchCardDiag.tres" id="4_03bjj"]
 [ext_resource type="Resource" uid="uid://rdwavk835p20" path="res://cards/cardResources/changingCards/infusions/DrawGemsPlusCard.tres" id="4_qffyl"]
 [ext_resource type="Resource" uid="uid://xba81q45hybp" path="res://cards/cardResources/deletingCards/PopGridCard.tres" id="5_gasvl"]
+[ext_resource type="Resource" uid="uid://clka6ebcl2f8u" path="res://cards/cardResources/deletingCards/HardResetCard.tres" id="6_b0m2m"]
 [ext_resource type="Resource" uid="uid://bndjvymr0xra3" path="res://cards/cardResources/deletingCards/PopBurnCard.tres" id="6_fr7m8"]
-[ext_resource type="Resource" uid="uid://b16yj0iahudbd" path="res://cards/cardResources/turnCards/LoseHeart.tres" id="6_s2y7f"]
-[ext_resource type="Resource" uid="uid://2j2tir3pgrnt" path="res://cards/cardResources/grid/NukeIngredientCard.tres" id="7_1d0tq"]
 
 [resource]
 script = ExtResource("1_va40e")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("6_fr7m8"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("3_4msk4"), ExtResource("4_qffyl"), ExtResource("5_gasvl"), ExtResource("6_s2y7f"), ExtResource("7_1d0tq")])
+allCards = Array[Object]([ExtResource("6_fr7m8"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("3_4msk4"), ExtResource("4_qffyl"), ExtResource("5_gasvl"), ExtResource("6_b0m2m")])

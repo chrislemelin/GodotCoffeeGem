@@ -37,6 +37,7 @@ public partial class GameManager : GameManagerIF
 	[Export] private bool skipFirstLevel;
 	[Export] private Godot.Collections.Dictionary<int, Resource> dialougeDict = new Godot.Collections.Dictionary<int, Resource>();
 	[Export] Resource dialougeResource;
+	[Export] Resource startingDialougeResource;
 
 	private int currentLevel;
 	private LevelResource currentLevelResource;
@@ -59,7 +60,13 @@ public partial class GameManager : GameManagerIF
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
 		if (!getGlobal().shownWelcomeTutorial && !debugMode)
 		{
-			welcomeTutorial.startUp();
+			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
+			
+			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
+				if (resource == startingDialougeResource) {
+					welcomeTutorial.startUp();
+				}
+			};
 			getGlobal().shownWelcomeTutorial = true;
 			getGlobal().save();
 		}
@@ -79,7 +86,7 @@ public partial class GameManager : GameManagerIF
 		}
 		if (endlessMode || getGlobal().zenMode)
 		{
-			scoreNeededToPass = 999999999;
+			scoreNeededToPass = 9999999;
 			score.setTurnsRemaining(999999999);
 		}
 		if (skipFirstLevel && currentLevel == 1)
@@ -166,7 +173,6 @@ public partial class GameManager : GameManagerIF
 		if (score.getScore() < scoreNeededToPass)
 		{
 			showGameOverScreen(false);
-
 		}
 		else
 		{

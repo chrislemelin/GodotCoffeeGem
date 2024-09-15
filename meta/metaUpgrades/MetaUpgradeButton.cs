@@ -27,7 +27,9 @@ public partial class MetaUpgradeButton : Node
 		int currentLevel = getUpgradeLevel();
 		int maxLevel = getUpgradeMaxLevel();
 		int currentMetaCoins = gameManagerIF.getMetaCoins();
-		upgradeLevel.Text =  currentLevel + "/" + maxLevel; 
+		upgradeLevel.Text =  currentLevel + "/" + maxLevel;
+		//GD.Print(currentMetaCoins);
+		button.Disabled = false;
 		if (currentLevel == maxLevel) {
 			button.Disabled = true;
 		}

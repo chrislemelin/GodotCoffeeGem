@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://hwx3hubj20fk"]
+[gd_scene load_steps=9 format=3 uid="uid://hwx3hubj20fk"]
 
 [ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://placeholders/inner3.png" id="1_or543"]
 [ext_resource type="Script" path="res://meta/debt/DebtProgressBar.cs" id="1_pih5s"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="2_hnssy"]
+[ext_resource type="Resource" uid="uid://osuhqgww4bbq" path="res://dialogue/bossDialouge/LevelUp.dialogue" id="2_i8jhw"]
 [ext_resource type="Texture2D" uid="uid://cjp172jnctaj3" path="res://placeholders/cards/title/TitleCard_1.png" id="3_ojov7"]
 [ext_resource type="AudioStream" uid="uid://ch0ppa30uaxtj" path="res://sound/diaoulge/sound (1).wav" id="3_whp5k"]
 [ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_c4ig5"]
@@ -24,6 +25,7 @@ audioStreamPlayerBlip = NodePath("AudioStreamPlayer2D")
 audioStreamPlayerReward = NodePath("AudioStreamPlayer2D2")
 segmentValues = [200, 500]
 segmentValue = 500
+firstLevelUpDialouge = ExtResource("2_i8jhw")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 visible = false

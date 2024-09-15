@@ -18,6 +18,8 @@ script = ExtResource("2_x2ag6")
 button = NodePath("CoffeeUpgradeButton")
 upgradeLevel = NodePath("UpgradeLabel")
 costLabel = NodePath("CostLabel")
+costBase = 20
+costIncrement = 20
 
 [node name="CoffeeUpgradeButton" type="Button" parent="."]
 layout_mode = 0

@@ -13,14 +13,12 @@ public partial class DebtProgressBar : Node
 	[Export] AudioPlayer audioStreamPlayerReward;
 	[Export] public ToggleVisibilityOnButtonPress debtReward;
 	[Export] public Array<int> segmentValues = new();
-
-
 	[Export] int segmentValue = 50;
 	[Export] bool segmented = false;
+	[Export] Resource firstLevelUpDialouge;
 
 	private int maxDebt;
-	[Export]
-	public int currentDebtPaid;
+	[Export] public int currentDebtPaid;
 	public int currentDebtPaidTarget = 0;
 	public int currentDebtPaidStep = 10;
 
@@ -62,6 +60,9 @@ public partial class DebtProgressBar : Node
 				audioStreamPlayerReward.Play();
 				if (debtReward != null) {
 					debtReward.setVisible(true);
+					if (currentSegments == 0) {
+						DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(firstLevelUpDialouge);
+					}
 				}
 			}
 			updateDebt();
