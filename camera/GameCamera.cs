@@ -14,6 +14,11 @@ public partial class GameCamera : Camera2D
 
 	private float shakeIntensityCurrent;
 
+	[Export] private float distortValue = 0;
+	[Export] private float distortStep;
+
+	[Export] Node2D distortNode;
+
 
 	Vector2 startPosition;
 	float currentShakeIntensity = 0 ; 
@@ -28,6 +33,13 @@ public partial class GameCamera : Camera2D
 	{
 		base._Ready();
 		startPosition = Position;
+		//playDistort();
+	}
+	
+	public void playDistort() {
+		distortValue = 0;
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "distortValue", 1.0f, 1.0f);
 	}
 
 
@@ -36,6 +48,7 @@ public partial class GameCamera : Camera2D
 		base._Process(delta);
 		currentShakeIntensity = Lerp(currentShakeIntensity, 0, (float)delta * shakeDecay);
 		Position = getPosition((float)delta);
+		distortNode.Material.Set("shader_parameter/radius", distortValue);
 	}
 
 	private Vector2 getPosition(float delta) {

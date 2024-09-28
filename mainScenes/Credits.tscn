@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://gamemanager/GameManagerIF.cs" id="1_0bx2e"]
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="5_cipw2"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="6_vnesb"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="6_vnesb"]
 [ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="8_63yb2"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="10_nt2jr"]
 

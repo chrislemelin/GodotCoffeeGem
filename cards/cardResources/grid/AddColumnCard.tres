@@ -30,7 +30,7 @@ nuke = false
 [resource]
 script = ExtResource("3_jpbe3")
 Title = "Spare Parts"
-Description = "Add a column to the match board for this level"
+Description = "Add a column to the match board for this level."
 Cost = 2
 rarity = 2
 coinCost = 0

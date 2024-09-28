@@ -86,6 +86,7 @@ public partial class CardIF : lerp
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)
 	{
 		cardResource.cardEffect.doEffect(matchboard, hand, mana, tiles, Optional.None<CardIF>());
+		FindObjectHelper.getGameManager(this).addCoins(-1 * cardResource.coinPlayCost);
 	}
 
 	public virtual void listenToMouseEnter(Action function)

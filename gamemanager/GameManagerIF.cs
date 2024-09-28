@@ -162,15 +162,32 @@ public partial class GameManagerIF : Node2D
 		return getGlobal().musicVolume;
 	}
 
+	public bool isMusicMuted() {
+		return getGlobal().musicVolume < .03;
+	}
+
 	public void setSFXVolume(float value)
 	{
 		getGlobal().sfXvolume = value;
 		getGlobal().save();
 	}
 
+	public bool isSFXMuted() {
+		return getGlobal().sfXvolume < .03;
+	}
+
 	public float getSFXVolume()
 	{
 		return getGlobal().sfXvolume;
+	}
+
+	public bool getSeenBossDialouge() {
+		return getGlobal().shownBossDialouge;
+	}
+
+	public void setSeenBossDialouge(bool value) {
+		getGlobal().shownBossDialouge = value;
+		getGlobal().save();
 	}
 
 

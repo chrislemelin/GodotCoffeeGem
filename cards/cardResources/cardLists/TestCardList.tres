@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://dm1n28elr0awu"]
+[gd_resource type="Resource" script_class="CardList" load_steps=10 format=3 uid="uid://dm1n28elr0awu"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_va40e"]
-[ext_resource type="Resource" uid="uid://3qx3fw07c24n" path="res://cards/cardResources/deletingCards/PopAllMatchyCard.tres" id="3_4msk4"]
-[ext_resource type="Resource" uid="uid://dha7jg80nudyy" path="res://cards/cardResources/movementCards/SwitchCardDiag.tres" id="4_03bjj"]
-[ext_resource type="Resource" uid="uid://rdwavk835p20" path="res://cards/cardResources/changingCards/infusions/DrawGemsPlusCard.tres" id="4_qffyl"]
-[ext_resource type="Resource" uid="uid://xba81q45hybp" path="res://cards/cardResources/deletingCards/PopGridCard.tres" id="5_gasvl"]
-[ext_resource type="Resource" uid="uid://clka6ebcl2f8u" path="res://cards/cardResources/deletingCards/HardResetCard.tres" id="6_b0m2m"]
-[ext_resource type="Resource" uid="uid://bndjvymr0xra3" path="res://cards/cardResources/deletingCards/PopBurnCard.tres" id="6_fr7m8"]
+[ext_resource type="Resource" uid="uid://chyr8eld8n0jm" path="res://cards/cardResources/changingCards/colorchange/lead/LeadGenerateCard.tres" id="5_yl327"]
+[ext_resource type="Resource" uid="uid://dha7jg80nudyy" path="res://cards/cardResources/movementCards/SwitchCardDiag.tres" id="6_w2y1u"]
+[ext_resource type="Resource" uid="uid://b6e4r3hsh7mbn" path="res://cards/cardResources/changingCards/colorchange/lead/LeadGeneratePlusCard.tres" id="7_ymxvh"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="8_5blgr"]
+[ext_resource type="Resource" uid="uid://c11v8hvfvag4p" path="res://cards/cardResources/changingCards/colorchange/lead/LeadUpgradeCard.tres" id="8_06bsy"]
+[ext_resource type="Resource" uid="uid://bp4j8xvtj40xe" path="res://cards/cardResources/changingCards/colorchange/lead/LeadSinkCard.tres" id="9_oqftk"]
+[ext_resource type="Resource" uid="uid://bxnh2f565f1mk" path="res://cards/cardResources/changingCards/colorchange/lead/LeadRiseCard.tres" id="10_qvv4v"]
+[ext_resource type="Resource" uid="uid://cacfc75vba8hp" path="res://cards/cardResources/changingCards/colorchange/lead/DeleteAllButLeadCard.tres" id="11_yppya"]
 
 [resource]
 script = ExtResource("1_va40e")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("6_fr7m8"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("4_03bjj"), ExtResource("3_4msk4"), ExtResource("4_qffyl"), ExtResource("5_gasvl"), ExtResource("6_b0m2m")])
+allCards = Array[Object]([ExtResource("5_yl327"), ExtResource("6_w2y1u"), ExtResource("6_w2y1u"), ExtResource("6_w2y1u"), ExtResource("6_w2y1u"), ExtResource("6_w2y1u"), ExtResource("7_ymxvh"), ExtResource("8_06bsy"), ExtResource("9_oqftk"), ExtResource("10_qvv4v"), ExtResource("11_yppya"), ExtResource("8_5blgr")])

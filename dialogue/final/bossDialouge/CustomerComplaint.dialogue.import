@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://c2mnm127ucxow"
+path="res://.godot/imported/CustomerComplaint.dialogue-fa33314f278f7aedcf9e45a1d6a79064.tres"
+
+[deps]
+
+source_file="res://dialogue/final/bossDialouge/CustomerComplaint.dialogue"
+dest_files=["res://.godot/imported/CustomerComplaint.dialogue-fa33314f278f7aedcf9e45a1d6a79064.tres"]
+
+[params]
+
+defaults=true

@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_e3ayx")
 Title = "New Ideas"
-Description = "Discard your hand, then +1$draw for each card discarded"
+Description = "Discard your hand, then +1$draw for each card discarded."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_bbxcs")

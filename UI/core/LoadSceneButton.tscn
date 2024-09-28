@@ -45,11 +45,11 @@ _data = {
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
+texture_filter = 1
 offset_right = 96.0
 offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 0
 pivot_offset = Vector2(48, 44)
+focus_mode = 0
 theme = ExtResource("1_aeges")
 text = "Button"
 script = ExtResource("2_efytv")

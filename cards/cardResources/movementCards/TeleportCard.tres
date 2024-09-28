@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("1_q6px8")
 Title = "Switcharoo"
-Description = "Swap 2 ingredients in the same row or column"
+Description = "Swap 2 ingredients in the same row or column."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_v0d8w")

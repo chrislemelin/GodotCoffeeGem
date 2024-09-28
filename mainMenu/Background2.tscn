@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dt8jni8olmx3r"]
 
 [ext_resource type="Shader" path="res://cards/shaders/Circles.gdshader" id="1_bw2no"]
-[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://placeholders/ingredients/final/Bean-pixel2.png" id="2_5rq32"]
+[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://sprites/ingredients/final/Bean-pixel2.png" id="2_5rq32"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_grp6i"]
 frequency = 0.0065

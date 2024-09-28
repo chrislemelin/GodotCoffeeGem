@@ -20,6 +20,7 @@ public partial class CardEffectDeleteAllButBlack : CardEffectIF
 	{
 		List<Tile> tiles = matchBoard.getRandomNonBlackTile(-1);
 		matchBoard.deleteGemAtPositions(tiles.Select(tile => tile.getTilePosition()).ToList());
+		FindObjectHelper.getCamera(node).playDistort();
 	}
 	
 }

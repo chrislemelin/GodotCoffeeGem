@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lq1f2kjihhfp"]
 
-[ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://placeholders/Map/guy.png" id="1_2xf58"]
+[ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://sprites/Map/guy.png" id="1_2xf58"]
 [ext_resource type="Script" path="res://util/lerp.cs" id="1_4rujf"]
 
 [node name="Character" type="Node2D"]

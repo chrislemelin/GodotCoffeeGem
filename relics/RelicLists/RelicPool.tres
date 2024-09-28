@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://m0rit4tghx2m" path="res://relics/resources/other/SprayUpgradeRelic.tres" id="10_cuxxa"]
 [ext_resource type="Resource" uid="uid://brurieaqruacc" path="res://relics/resources/coin/LuckyCoinRelic.tres" id="11_dykg8"]
 [ext_resource type="Resource" uid="uid://bnj8vvvotpxaj" path="res://relics/resources/other/MultResetRelic.tres" id="11_udvh7"]
-[ext_resource type="Resource" uid="uid://boppuad2fl8xd" path="res://relics/resources/other/DestroyTenRelic.tres" id="13_kk7qt"]
+[ext_resource type="Resource" uid="uid://boppuad2fl8xd" path="res://relics/resources/pop/DestroyTenRelic.tres" id="13_kk7qt"]
 [ext_resource type="Resource" uid="uid://cfpj2dschhbtn" path="res://relics/resources/coin/MoneyEndTurn.tres" id="14_n2r1g"]
 [ext_resource type="Resource" uid="uid://bhe8566hypk4s" path="res://relics/resources/doubleMatch/CoffeeDoubleMatchRelic.tres" id="15_p8b3l"]
 [ext_resource type="Resource" uid="uid://bonhebqo458w3" path="res://relics/resources/doubleMatch/MilkDoubleMatchRelic.tres" id="16_1gkeo"]

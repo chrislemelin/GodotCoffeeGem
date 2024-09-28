@@ -30,8 +30,8 @@ nuke = false
 
 [resource]
 script = ExtResource("2_tliwj")
-Title = "Full Clean"
-Description = "Destroy all burnt ingredients"
+Title = "CleanOut"
+Description = "Destroy all burnt. Generate 2 milk if this destoys over 4 burnt."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_tf8c0")

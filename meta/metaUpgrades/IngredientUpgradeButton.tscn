@@ -2,10 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_u1mnb"]
 [ext_resource type="Script" path="res://meta/metaUpgrades/IngredientUpgradeButton.cs" id="1_xqp56"]
-[ext_resource type="Texture2D" uid="uid://dviq5ad1ymrgv" path="res://placeholders/ingredients/bean-pixel-100px.png" id="2_anven"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="3_grqvk"]
+[ext_resource type="Texture2D" uid="uid://dviq5ad1ymrgv" path="res://sprites/ingredients/bean-pixel-100px.png" id="2_anven"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://sprites/UI/purple-coin-pixel-300px.png" id="3_grqvk"]
 
 [node name="CoffeeUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+texture_filter = 1
 custom_minimum_size = Vector2(280, 110)
 layout_mode = 3
 anchors_preset = 0

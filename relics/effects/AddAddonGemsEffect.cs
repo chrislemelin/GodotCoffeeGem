@@ -13,6 +13,6 @@ public partial class AddAddonGemsEffect : EffectResource
 	
 	protected override void executeEffect(Node node) {
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
-		matchBoard.addGemAddons(matchBoard.getRandomNonBlackNonAddonTiles(value).Select(tile => tile.getTilePosition()).ToList(), type);
+		matchBoard.addGemAddons(matchBoard.getRandomNonSpecialNonAddonTiles(value).Select(tile => tile.getTilePosition()).ToList(), type);
 	}
 }

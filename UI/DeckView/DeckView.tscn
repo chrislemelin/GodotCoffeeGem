@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bktkdd4va45a8"]
 
 [ext_resource type="Script" path="res://UI/DeckView/DeckViewUI.cs" id="1_7cepj"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_yl2cp"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="2_u2nuu"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="4_jyna6"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="4_lxweo"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="6_l1bhy"]
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="6_yvler"]
@@ -72,7 +72,7 @@ offset_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
-texture = ExtResource("1_yl2cp")
+texture = ExtResource("4_jyna6")
 expand_mode = 2
 flip_h = true
 flip_v = true
@@ -254,8 +254,6 @@ offset_left = 801.0
 offset_top = 941.0
 offset_right = 955.0
 offset_bottom = 993.0
-grow_horizontal = 1
-grow_vertical = 1
 text = "Close"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]

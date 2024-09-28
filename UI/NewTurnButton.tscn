@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="2_wepah"]
 [ext_resource type="AudioStream" uid="uid://i4hbljontvta" path="res://sound/UI/drop_002.ogg" id="3_hymw0"]
 [ext_resource type="AudioStream" uid="uid://c81df5y1lxjan" path="res://sound/UI/click1.ogg" id="4_24pan"]
-[ext_resource type="Texture2D" uid="uid://cn5bhwcx2ulhd" path="res://placeholders/UI/XboxYControl.tres" id="6_uwthl"]
+[ext_resource type="Texture2D" uid="uid://cn5bhwcx2ulhd" path="res://sprites/UI/controller/XboxYControl.tres" id="6_uwthl"]
 
 [sub_resource type="Animation" id="Animation_si3mj"]
 resource_name = "Hover"
@@ -46,14 +46,14 @@ _data = {
 }
 
 [node name="NewTurnButton" type="Button" node_paths=PackedStringArray("controllerTexture", "animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
+texture_filter = 1
 offset_left = 1507.0
 offset_top = 777.0
 offset_right = 1678.0
 offset_bottom = 827.0
 pivot_offset = Vector2(85, 37)
 theme = ExtResource("1_i8v1p")
-theme_override_font_sizes/font_size = 35
-text = "END TURN"
+text = "End Turn"
 script = ExtResource("1_i2mqn")
 controllerTexture = NodePath("TextureRect")
 animationPlayer = NodePath("AnimationPlayer")
@@ -62,10 +62,13 @@ clickAudioplayer = NodePath("ClickAudioPlayer")
 
 [node name="HoverAudioPlayer" parent="." instance=ExtResource("2_wepah")]
 stream = ExtResource("3_hymw0")
-maxValue = 20.0
+minValue = -40.0
+maxValue = 10.0
 
 [node name="ClickAudioPlayer" parent="." instance=ExtResource("2_wepah")]
 stream = ExtResource("4_24pan")
+minValue = -40.0
+maxValue = 20.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1

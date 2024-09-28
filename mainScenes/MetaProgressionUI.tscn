@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://tflijotfj2df" path="res://meta/metaUpgrades/IngredientUpgradeButton.tscn" id="3_r26ms"]
 [ext_resource type="PackedScene" uid="uid://cutq1errphe15" path="res://meta/metaUpgrades/MetaCoinRateUpgradeButton.tscn" id="4_0nf7l"]
 [ext_resource type="PackedScene" uid="uid://bmxj58cuk6vsf" path="res://meta/metaUpgrades/CoinRateUpgradeButton.tscn" id="4_vf33e"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="5_f45i0"]
 [ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="7_sde1r"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://sprites/UI/purple-coin-pixel-300px.png" id="9_tos5j"]
 [ext_resource type="Script" path="res://meta/MetaResetButton.cs" id="10_7wrwg"]
 [ext_resource type="Script" path="res://meta/MetaCoinDisplay.cs" id="12_y7lb1"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="13_qcguh"]
@@ -144,8 +144,6 @@ offset_left = 770.0
 offset_top = 940.0
 offset_right = 962.0
 offset_bottom = 992.0
-grow_horizontal = 1
-grow_vertical = 1
 text = "Main Menu"
 grabFocus = true
 
@@ -174,7 +172,7 @@ offset_left = -103.0
 offset_top = -5.0
 offset_right = -8.0
 offset_bottom = 90.0
-texture = ExtResource("5_f45i0")
+texture = ExtResource("9_tos5j")
 expand_mode = 1
 
 [node name="SettingsMenu" parent="." instance=ExtResource("13_qcguh")]

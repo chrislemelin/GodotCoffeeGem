@@ -32,7 +32,7 @@ nuke = false
 [resource]
 script = ExtResource("3_0acrh")
 Title = "Flow State"
-Description = "Keep your multiplier at the end of the turn"
+Description = "Keep your multiplier at the end of the turn."
 Cost = 1
 rarity = 1
 coinCost = 0

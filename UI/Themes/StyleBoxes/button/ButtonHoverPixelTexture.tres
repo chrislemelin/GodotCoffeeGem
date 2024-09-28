@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cfbppcy4xwo6d"]
+
+[ext_resource type="Texture2D" uid="uid://dfl57ld41mlij" path="res://sprites/buttonTextures/Button-hover3X.png" id="1_p5y15"]
+
+[resource]
+texture = ExtResource("1_p5y15")
+texture_margin_left = 9.05409
+texture_margin_top = 9.18922
+texture_margin_right = 9.18922
+texture_margin_bottom = 17.9727
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(0, 0, 198, 60)

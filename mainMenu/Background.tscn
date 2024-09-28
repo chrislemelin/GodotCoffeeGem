@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlslfluiohaff"]
 
 [ext_resource type="Shader" path="res://cards/shaders/Transition.gdshader" id="1_ff8kl"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_irqr8"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="2_irqr8"]
 [ext_resource type="Script" path="res://mainMenu/Background.cs" id="3_ra1qv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_es18f"]

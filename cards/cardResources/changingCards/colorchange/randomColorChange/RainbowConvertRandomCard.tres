@@ -30,7 +30,7 @@ nuke = false
 [resource]
 script = ExtResource("3_kjq10")
 Title = "Rainbow Spray"
-Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type. If this creates a match, +1$draw"
+Description = "Select an ingredient. Change $value random ingredient(s) to the selected ingredient's type. If this creates a match, +1$draw."
 Cost = 0
 rarity = 2
 coinCost = 0

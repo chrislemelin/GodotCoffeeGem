@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1fr7cyepf8ha"]
 
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_j5hjr"]
-[ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://placeholders/character/Boss.png" id="2_eidhs"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="1_j5hjr"]
+[ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://sprites/character/Boss.png" id="2_eidhs"]
 
 [node name="OverTimeTutorial" type="Control"]
 layout_mode = 3

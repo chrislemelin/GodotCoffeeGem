@@ -1,0 +1,18 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://byf2u3j4f421e"]
+
+[ext_resource type="Texture2D" uid="uid://dr6orioxd05sj" path="res://UI/Themes/textures/Border3X.png" id="1_gxqk6"]
+
+[resource]
+texture = ExtResource("1_gxqk6")
+texture_margin_left = 4.05409
+texture_margin_top = 4.0
+texture_margin_right = 4.05409
+texture_margin_bottom = 3.78382
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 64, 64)
+modulate_color = Color(0.584314, 0.584314, 0.584314, 1)

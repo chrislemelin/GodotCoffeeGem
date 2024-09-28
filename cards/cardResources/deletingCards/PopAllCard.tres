@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("2_tikbk")
 Title = "86'd"
-Description = "Destroy all ingredients of a selected type"
+Description = "Destroy all ingredients of a selected type. If this destroys 6+ ingredients generate 3milk."
 Cost = 2
 rarity = 0
 Picture = ExtResource("1_icycn")

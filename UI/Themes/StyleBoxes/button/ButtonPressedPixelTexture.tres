@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://eatpmwrn3ln5"]
+
+[ext_resource type="Texture2D" uid="uid://c07cmnfot3vgr" path="res://sprites/buttonTextures/Button-pushed3X.png" id="1_sfrw0"]
+
+[resource]
+texture = ExtResource("1_sfrw0")
+texture_margin_left = 8.91896
+texture_margin_top = 12.1624
+texture_margin_right = 9.05409
+texture_margin_bottom = 14.865
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(0, 0, 198, 60)

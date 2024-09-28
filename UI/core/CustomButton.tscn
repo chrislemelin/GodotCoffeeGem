@@ -45,11 +45,12 @@ _data = {
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
-offset_right = 154.0
-offset_bottom = 52.0
-grow_horizontal = 2
-grow_vertical = 0
+texture_filter = 1
+offset_left = 1.0
+offset_right = 424.0
+offset_bottom = 68.0
 pivot_offset = Vector2(76, 52)
+focus_mode = 0
 theme = ExtResource("1_hnyfj")
 text = "Button"
 script = ExtResource("2_bbinw")

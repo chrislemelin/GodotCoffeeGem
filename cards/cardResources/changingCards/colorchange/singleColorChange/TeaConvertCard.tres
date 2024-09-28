@@ -44,7 +44,7 @@ nuke = false
 [resource]
 script = ExtResource("2_1klox")
 Title = "Tea Blend"
-Description = "Change selection to tea. If this makes a 4+ match, +1$draw"
+Description = "Change selection to tea. If this makes a 4+ match, +1$draw."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_yx221")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmj3k4irtmxwc"]
+[gd_scene load_steps=6 format=3 uid="uid://cmj3k4irtmxwc"]
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_lqokj"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_muhxp"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="1_muhxp"]
 [ext_resource type="Script" path="res://relics/RelicHolderUI.cs" id="1_xfp3o"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="2_2scfp"]
+[ext_resource type="StyleBox" uid="uid://byf2u3j4f421e" path="res://UI/Themes/StyleBoxes/PixelBorderBackground.tres" id="5_cs2e6"]
 
 [node name="RelicHolder" type="Control" node_paths=PackedStringArray("relicControlHolder")]
 layout_mode = 3
@@ -145,17 +146,21 @@ toolTipText = NodePath("../Control/Tooltip")
 target = NodePath("../Control/HoverHitBox")
 
 [node name="Panel" type="Panel" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 154.0
+offset_left = 138.0
 offset_top = 16.0
-offset_right = 254.0
-offset_bottom = 35.0
+offset_right = 281.0
+offset_bottom = 50.0
+theme_override_styles/panel = ExtResource("5_cs2e6")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = -8.0
-offset_right = 99.0
-offset_bottom = 28.0
-theme_override_font_sizes/normal_font_size = 40
+offset_left = 18.0
+offset_top = -4.0
+offset_right = 170.0
+offset_bottom = 47.0
+theme_override_font_sizes/normal_font_size = 48
 text = "Relics"
+fit_content = true

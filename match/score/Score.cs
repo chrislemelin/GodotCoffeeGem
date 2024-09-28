@@ -191,7 +191,7 @@ public partial class Score : Node2D
 	}
 
 	public void playLostCoinsSound(){
-		moneyLostAudioPlayer.Play();
+		//moneyLostAudioPlayer.Play();
 	}
 
 
@@ -468,7 +468,7 @@ public partial class Score : Node2D
 			int pointValue = 0;
 			int pointValueAfterMult = 0;
 			float newMultValue = mult;
-			if (gemType.matchable())
+			if (!gemType.Equals(GemType.Black))
 			{
 				pointValue = evaluatePoints(match, gemType);
 
@@ -521,6 +521,9 @@ public partial class Score : Node2D
 		// List<ColorUpgrade> upgradesForCurrentColor = colorUpgrades.Where(colorUpgrade => colorUpgrade.gemType == gemType).ToList();
 		// int pointUpgrade = upgradesForCurrentColor.Sum(colorUpgrade => colorUpgrade.baseIncrease);
 		// float finalMult = upgradesForCurrentColor.Sum (colorUpgrade => colorUpgrade.baseIncrease);
+		if (gemType.Equals(GemType.Lead)) {
+			return 100 + match.First().Gem.leadLevel * 100;
+		}
 		int combo = 0;
 		foreach (Tile tile in match)
 		{

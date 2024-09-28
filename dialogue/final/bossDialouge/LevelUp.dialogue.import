@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://osuhqgww4bbq"
+path="res://.godot/imported/LevelUp.dialogue-728a4a75d64de070598d48e3489cd9a8.tres"
+
+[deps]
+
+source_file="res://dialogue/final/bossDialouge/LevelUp.dialogue"
+dest_files=["res://.godot/imported/LevelUp.dialogue-728a4a75d64de070598d48e3489cd9a8.tres"]
+
+[params]
+
+defaults=true

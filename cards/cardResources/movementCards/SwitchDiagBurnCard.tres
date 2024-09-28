@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_eyaln")
 Title = "Switch Burn + "
-Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients. +1$draw and+2burnt"
+Description = "Switch the positions of two vertically, horizontally, or diagonally adjacent ingredients. +1$draw and+2burnt."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_11hdf")

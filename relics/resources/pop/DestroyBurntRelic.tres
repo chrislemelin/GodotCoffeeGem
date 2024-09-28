@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=5 format=3 uid="uid://c3wsgfob51pbr"]
+
+[ext_resource type="Script" path="res://relics/effects/GiveScorePassive.cs" id="1_dnt0r"]
+[ext_resource type="Texture2D" uid="uid://mkrq8xtnnki2" path="res://relics/sprites/Icon.5_35.png" id="2_6jp0f"]
+[ext_resource type="Script" path="res://relics/scripts/RelicResourceBurntDestroyCount.cs" id="3_bvpoc"]
+
+[sub_resource type="Resource" id="Resource_o064v"]
+script = ExtResource("1_dnt0r")
+value = 200
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("3_bvpoc")
+title = "Burnt Cookie"
+description = "Gain 200 points whenever you destroy 4 burnt ingredients"
+image = ExtResource("2_6jp0f")
+cost = 60
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_o064v")]
+matchEffects = []
+counterMax = 4
+customCounter = true
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

@@ -179,6 +179,10 @@ public partial class MatchBoard : ControllerInput
 		{
 			//addColumn();
 		}
+		if (@event.IsActionPressed("right click"))
+		{
+			//removeColumn();
+		}
 
 		base._Input(@event);
 	}
@@ -467,28 +471,37 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	private bool usingSmallSize() {
-		return columnUpgrades > 2;
+		return getGridSize().Y != sizeY;
 	}
 
-	private Vector2 getGridSize() {
-		Vector2 gridMod = new Vector2(0,0);
-		int gridUpgrades = columnUpgrades + FindObjectHelper.getGameManager(this).getGridUpgrades();
-		if (gridUpgrades-- > 0) {
-			gridMod += new Vector2(1,0);
+	private Vector2I getGridSize() {
+		Vector2I gridMod = new Vector2I(0,0);
+		int gridUpgrades = columnUpgrades - columnsRemoved + FindObjectHelper.getGameManager(this).getGridUpgrades();
+		if (gridUpgrades < 0) {
+			gridMod = new Vector2I(gridUpgrades, 0);
+		} else {
+			if (gridUpgrades-- > 0) {
+				gridMod += new Vector2I(1,0);
+			}
+			if (gridUpgrades-- > 0) {
+				gridMod += new Vector2I(1,0);
+			}
+			if (gridUpgrades-- > 0) {
+				gridMod += new Vector2I(0,1);
+			}
+			if (gridUpgrades-- > 0) {
+				gridMod += new Vector2I(1,0);
+			}
+			if (gridUpgrades-- > 0) {
+				gridMod += new Vector2I(0,1);
+			}
 		}
-		if (gridUpgrades-- > 0) {
-			gridMod += new Vector2(1,0);
+
+		Vector2I returnVector = new Vector2I(sizeX, sizeY) + gridMod;
+		if (returnVector.X < 1) {
+			return new Vector2I(1, returnVector.Y);
 		}
-		if (gridUpgrades-- > 0) {
-			gridMod += new Vector2(0,1);
-		}
-		if (gridUpgrades-- > 0) {
-			gridMod += new Vector2(1,0);
-		}
-		if (gridUpgrades-- > 0) {
-			gridMod += new Vector2(0,1);
-		}
-		return new Vector2(sizeX, sizeY) + gridMod;
+		return returnVector;
 	}
 
 	private PackedScene getGemScene() {
@@ -515,14 +528,16 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	public void removeColumn() {
-		if (sizeX == 1) {
-			return;
-		}
-		for (int newY = 0; newY < sizeY; newY++) {
-			deleteTile(new Vector2(sizeX-1, newY));
-		}
-		sizeX --;
+		// if (sizeX == 1) {
+		// 	return;
+		// }
+		// for (int newY = 0; newY < sizeY; newY++) {
+		// 	deleteTile(new Vector2(sizeX-1, newY));
+		// }
+		// sizeX --;
 		columnsRemoved++;
+		generateTiles();
+		populateBoard();
 		EmitSignal(SignalName.boardSizeChanged);
 	}
 
@@ -631,6 +646,9 @@ public partial class MatchBoard : ControllerInput
 		if (tile.getIsBlocked()){
 			return false;
 		}
+		if (!tile.Gem.Type.selectable()) {
+			return false;
+		}
 		if (!card.getCardResource().cardEffect.canTargetTile(tile)) {
 			return false;
 		}
@@ -644,7 +662,7 @@ public partial class MatchBoard : ControllerInput
 
 	private HashSet<HashSet<Tile>> getMatches()
 	{
-		Vector2 gridSize = getGridSize();
+		Vector2I gridSize = getGridSize();
 		HashSet<HashSet<Tile>> matches = new HashSet<HashSet<Tile>>(HashSet<Tile>.CreateSetComparer());
 		for (int x = 0; x < gridSize.X; x++)
 		{
@@ -688,6 +706,15 @@ public partial class MatchBoard : ControllerInput
 				}
 			}
 		}
+		//check for lead
+		for (int x = 0; x < gridSize.X; x++) {
+			int y = gridSize.Y -1;
+			Tile tile = getTile(new Vector2(x,y));
+			if(tile.Gem.Type.Equals(GemType.Lead)){
+				matches.Add(new HashSet<Tile>(){tile});
+			}
+		}
+
 		return matches;
 	}
 
@@ -1265,6 +1292,14 @@ public partial class MatchBoard : ControllerInput
 		changeGemsColorAtPosition(filterOutInvalidPosition(new HashSet<Vector2> { position }), gemType, explode);
 	}
 
+	public void generateRandomLead(int count)
+	{
+		List<Tile> tiles = getRandomTilesWithCondition(count,  tile => tile.getTilePosition().Y == 0 && tile.Gem.Type!= GemType.Lead);
+		if (tiles.Count >= 1) {
+			changeGemsColorAtPosition(filterOutInvalidPosition(tiles.Select(tile=>tile.getTilePosition()).ToHashSet()), GemType.Lead);
+		}
+	}
+
 	public List<Tile> getRandomNonBlackTile(int count = int.MaxValue)
 	{
 		return getRandomTilesWithCondition(count, tile =>
@@ -1277,7 +1312,19 @@ public partial class MatchBoard : ControllerInput
 		});
 	}
 
-	public List<Tile> getRandomNonBlackNotOfTypeTiles(int count, GemType gemType)
+	public List<Tile> getRandomNonLeadTile(int count = int.MaxValue)
+	{
+		return getRandomTilesWithCondition(count, tile =>
+		{
+			if (tile.Gem == null)
+			{
+				return false;
+			}
+			return tile.Gem.Type != GemType.Lead;
+		});
+	}
+
+	public List<Tile> getRandomNonSpecialNotOfTypeTiles(int count, GemType gemType)
 	{
 		return getRandomTilesWithCondition(count, tile =>
 		{
@@ -1286,6 +1333,10 @@ public partial class MatchBoard : ControllerInput
 				return false;
 			}
 			if (tile.Gem.Type == GemType.Black)
+			{
+				return false;
+			}
+			if (tile.Gem.Type == GemType.Lead)
 			{
 				return false;
 			}
@@ -1297,7 +1348,7 @@ public partial class MatchBoard : ControllerInput
 		});
 	}
 
-	public List<Tile> getRandomNonBlackNonAddonTiles(int count, HashSet<Vector2> excludePositions = null)
+	public List<Tile> getRandomNonSpecialNonAddonTiles(int count, HashSet<Vector2> excludePositions = null)
 	{
 		if (excludePositions == null) {
 			excludePositions = new HashSet<Vector2>();
@@ -1309,6 +1360,10 @@ public partial class MatchBoard : ControllerInput
 				return false;
 			}
 			if (tile.Gem.Type == GemType.Black)
+			{
+				return false;
+			}
+			if (tile.Gem.Type == GemType.Lead)
 			{
 				return false;
 			}
@@ -1364,7 +1419,7 @@ public partial class MatchBoard : ControllerInput
 
 	public void changeGemsColorAtRandomPositions(GemType gemType, int value)
 	{
-		List<Vector2> tilePositions = getRandomNonBlackNotOfTypeTiles(value, gemType).Select((tile) => tile.getTilePosition()).ToList();
+		List<Vector2> tilePositions = getRandomNonSpecialNotOfTypeTiles(value, gemType).Select((tile) => tile.getTilePosition()).ToList();
 		changeGemsColorAtPosition(tilePositions, gemType);
 	}
 
@@ -1406,9 +1461,15 @@ public partial class MatchBoard : ControllerInput
 
 	public void switchGemsInPositions(Vector2 position1, Vector2 position2, bool teleport = false)
 	{
-		Tile tile1 = tileMap[position1];
-		Tile tile2 = tileMap[position2];
-		Optional<Gem> gem1 = Optional.FromNullable(tile1.Gem);
+		
+		Optional<Tile> tile1Optional = getTileOptional(position1);
+		Optional<Tile> tile2Optional = getTileOptional(position2);
+		if (!tile1Optional.HasValue || !tile2Optional.HasValue) {
+			return;
+		}
+		Tile tile1 = tile1Optional.GetValue();
+		Tile tile2 = tile2Optional.GetValue();
+ 		Optional<Gem> gem1 = Optional.FromNullable(tile1.Gem);
 		Optional<Gem> gem2 = Optional.FromNullable(tile2.Gem);
 		audioStreamPlayer2D.Stream = switchAudioStream;
 		audioStreamPlayer2D.setBaseVolumeMult(1.0f);

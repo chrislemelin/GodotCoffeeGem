@@ -21,7 +21,12 @@ public partial class CustomButton : Button
 			FindObjectHelper.getSettingsMenu(this).windowClosed+= () => checkForFocus(true);	
 		}
 		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += checkForFocus;
-		ButtonDown += () => clickAudioplayer.Play();
+		ButtonDown += () =>  {
+			clickAudioplayer.Play();
+			if (FindObjectHelper.getControllerHelper(this).isUsingController()!) {
+				ReleaseFocus();
+			}
+		};
 		MouseEntered += () => {
 			if (!Disabled) {
 				hoverAudioplayer.Play();
@@ -43,6 +48,12 @@ public partial class CustomButton : Button
 	}
 
 	public void checkForFocus(bool value) {
+		if (FindObjectHelper.getControllerHelper(this).isUsingController()) {
+			FocusMode = FocusModeEnum.All;
+		} else {
+			FocusMode = FocusModeEnum.None;
+		}
+
 		if (grabFocus && IsVisibleInTree() && FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			SettingsMenu settingsMenu = FindObjectHelper.getSettingsMenu(this);
 			if (settingsMenu == null || !settingsMenu.isVisible() || isInSettingsMenu) {

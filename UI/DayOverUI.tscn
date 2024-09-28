@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="7_s7rm1"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="8_8qiu1"]
 [ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="9_m8ehy"]
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="9_t8a86"]
 [ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="10_6qdhe"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
 [ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="13_60jrt"]
@@ -32,7 +32,7 @@ anchor_bottom = 1.0
 offset_left = -4.0
 offset_top = -135.0
 offset_right = -4.0
-offset_bottom = -135.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(900, 600)
@@ -60,9 +60,9 @@ marginContainerScene = ExtResource("8_8qiu1")
 layout_mode = 0
 offset_left = 564.0
 offset_top = 492.0
-offset_right = 1360.0
-offset_bottom = 1068.0
-theme = ExtResource("9_m8ehy")
+offset_right = 1366.0
+offset_bottom = 1110.0
+theme = ExtResource("9_t8a86")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

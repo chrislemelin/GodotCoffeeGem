@@ -9,6 +9,9 @@ public partial class CustomToolTip : Control
 	private Vector2 toolTipOffset;
 	private bool toolTipOn = false;
 	[Export] private bool followBase = true;
+	[Export] private Control toolTipLeftSide;
+	[Export] private Control toolTipRightSide;
+	[Export] private VisibleOnScreenNotifier2D rightSideVisibleCheck;
 
 
 
@@ -39,15 +42,30 @@ public partial class CustomToolTip : Control
 		if(toolTipOn && followBase) {
 			toolTipText.GlobalPosition = GlobalPosition - toolTipOffset;
 		}
+	
+	}
+
+	private void checkForLeftOrRight() {
+		if (rightSideVisibleCheck == null) {
+			return;
+		}
+		toolTipText.GetParent().RemoveChild(toolTipText);
+		if (rightSideVisibleCheck.IsOnScreen()) {
+			toolTipRightSide.AddChild(toolTipText);
+		} else{
+			toolTipLeftSide.AddChild(toolTipText);
+		}
+		toolTipText.Position = new Vector2(0,0);
 	}
 
 	private void makeToolTip() {
-		if (toolTipText.Text.Length > 0) {
+		checkForLeftOrRight();
+		if (toolTipText.Text.Length > 0 && !GetTree().Root.GetChildren().Contains(toolTipText)) {
 			toolTipOn = true;
 			toolTipOffset = GlobalPosition + (PivotOffset * (Scale - Vector2.One)) - toolTipText.GlobalPosition;
 			
 			Vector2 position = toolTipText.GlobalPosition;
-			RemoveChild(toolTipText);
+			toolTipText.GetParent().RemoveChild(toolTipText);
 			GetTree().Root.AddChild(toolTipText);
 			GetTree().Root.MoveChild(toolTipText, GetTree().Root.GetChildCount()-1);
 			toolTipText.GlobalPosition = position;
@@ -56,7 +74,7 @@ public partial class CustomToolTip : Control
 	}
 
 	private void deleteToolTip() {
-		if (toolTipText.Text.Length > 0) {
+		if (toolTipText.Text.Length > 0 && GetTree().Root.GetChildren().Contains(toolTipText)) {
 			toolTipText.Visible = false;
 			toolTipOn = false;
 			

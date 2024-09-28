@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://c1vcw8het36xd"]
 
 [ext_resource type="Script" path="res://gamemanager/DeckSelectionGameManager.cs" id="1_wvgmj"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="1_ydtrs"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="1_ydtrs"]
 [ext_resource type="PackedScene" uid="uid://pjf6f8g0iacc" path="res://deckselection/DeckSelectionUI.tscn" id="2_sfky1"]
 [ext_resource type="Resource" uid="uid://b2vcn6wnju7y3" path="res://deckselection/decks/StarterDeck.tres" id="2_un8pl"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="3_2aryu"]

@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_8m17l")
 Title = "Pop Burn"
-Description = "Destroy selected ingredient. +1$draw and +1burnt"
+Description = "Destroy selected ingredient. +1$draw and +1burnt."
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_3qlbj")

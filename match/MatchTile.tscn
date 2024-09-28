@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://n47nvuio53df"]
 
 [ext_resource type="Script" path="res://match/Tile.cs" id="1_3ldum"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_3n662"]
-[ext_resource type="Texture2D" uid="uid://dpud1f3hee7ou" path="res://placeholders/x.png" id="3_crh8v"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="2_yq4x4"]
+[ext_resource type="PackedScene" uid="uid://7mu0lj154f2d" path="res://match/gems/Gem.tscn" id="3_6do2x"]
 [ext_resource type="Texture2D" uid="uid://qgpnxmyp2ogk" path="res://match/goo2.png" id="3_pns2i"]
-[ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/GemSmall.tscn" id="3_qwp1d"]
-[ext_resource type="Texture2D" uid="uid://dkwc52qkv7pr6" path="res://placeholders/tileborder.png" id="4_leexa"]
+[ext_resource type="Texture2D" uid="uid://dpud1f3hee7ou" path="res://sprites/x.png" id="5_p7g3d"]
+[ext_resource type="Texture2D" uid="uid://dkwc52qkv7pr6" path="res://sprites/tileborder.png" id="6_7apkk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]
 size = Vector2(250, 250)
@@ -24,10 +24,9 @@ goo = NodePath("TextureRect2")
 metadata/_edit_group_ = true
 
 [node name="tile" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.341176)
-self_modulate = Color(1, 1, 1, 0.827451)
-scale = Vector2(0.28, 0.28)
-texture = ExtResource("2_3n662")
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("2_yq4x4")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -38,9 +37,9 @@ position = Vector2(125, 125)
 shape = SubResource("RectangleShape2D_v70ys")
 
 [node name="GemParent" type="Node2D" parent="."]
-position = Vector2(8, 9)
+position = Vector2(7, 7)
 
-[node name="Gem" parent="GemParent" instance=ExtResource("3_qwp1d")]
+[node name="Gem" parent="GemParent" instance=ExtResource("3_6do2x")]
 visible = false
 
 [node name="TextureRect2" type="TextureRect" parent="."]
@@ -50,7 +49,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 112.0
 offset_bottom = 112.0
-texture = ExtResource("2_3n662")
+texture = ExtResource("2_yq4x4")
 expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect2"]
@@ -68,7 +67,7 @@ expand_mode = 1
 visible = false
 position = Vector2(56.5, 56.5)
 scale = Vector2(0.14125, 0.14125)
-texture = ExtResource("3_crh8v")
+texture = ExtResource("5_p7g3d")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -82,4 +81,4 @@ offset_bottom = 112.0
 modulate = Color(0.270588, 0.270588, 0.270588, 1)
 position = Vector2(57, 57)
 scale = Vector2(0.285, 0.285)
-texture = ExtResource("4_leexa")
+texture = ExtResource("6_7apkk")

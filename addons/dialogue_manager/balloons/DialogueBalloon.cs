@@ -137,17 +137,18 @@ namespace DialogueManagerRuntime
 
 	private async void UpdateDialogue()
 	{
-	  if (!IsNodeReady())
+	if (!IsNodeReady())
 	  {		await ToSignal(this, SignalName.Ready);
 	  }
 
 	  // Set up the character name
 	  characterLabel.Visible = !string.IsNullOrEmpty(dialogueLine.Character);
 	  characterLabel.Text = Tr(dialogueLine.Character, "dialogue");
-		string portraitPath = string.Format("res://placeholders/character/{0}.png" , dialogueLine.Character);
-		if(FileAccess.FileExists(portraitPath)) {
-			portrait.Texture = (Texture2D)ResourceLoader.Load(portraitPath);
-		}
+	  	//(Texture2D)GD.Load("res://sprites/ingredients/final/Bean-pixel2.png");
+		string portraitPath = string.Format("res://sprites/character/{0}.png" , dialogueLine.Character);
+		//if(FileAccess.FileExists(portraitPath)) {
+		portrait.Texture = (Texture2D)GD.Load(portraitPath);
+		//}P
  
 	  // Set up the dialogue
 	  dialogueLabel.Hide();

@@ -30,7 +30,11 @@ public partial class CardEffectPopRandom : CardEffectIF
 		if(positions.Count > getValue()) {
 			positions = positions.GetRange(0, getValue());
 		}
+		//this should only be for the pop-call card, should move into its own card at some point
 		matchBoard.deleteGemAtPositions(positions, true);
+		if (positions.Count >= 6) {
+			matchBoard.changeGemsColorAtRandomPositions(GemType.Milk,3);
+		}
 	}
 
 	public override List<Vector2> getAllTilesToEffect(MatchBoard matchBoard, Tile tile) {

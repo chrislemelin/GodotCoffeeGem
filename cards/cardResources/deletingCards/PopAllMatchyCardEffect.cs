@@ -9,6 +9,7 @@ public partial class PopAllMatchyCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		matchBoard.checkManuallyForMatchOrDelete(getAllTilesToEffect(matchBoard, null));
+		FindObjectHelper.getCamera(node).playDistort();
 	}
 
 	public override SelectionType getSelectionType()

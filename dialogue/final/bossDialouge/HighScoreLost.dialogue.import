@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://j5jvqglwwmbo"
+path="res://.godot/imported/HighScoreLost.dialogue-14a238b89b6c7fe0ab5efe1d1f5e2de4.tres"
+
+[deps]
+
+source_file="res://dialogue/final/bossDialouge/HighScoreLost.dialogue"
+dest_files=["res://.godot/imported/HighScoreLost.dialogue-14a238b89b6c7fe0ab5efe1d1f5e2de4.tres"]
+
+[params]
+
+defaults=true

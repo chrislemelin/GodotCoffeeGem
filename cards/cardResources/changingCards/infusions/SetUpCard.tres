@@ -30,7 +30,7 @@ nuke = false
 [resource]
 script = ExtResource("3_mgvwa")
 Title = "Setup"
-Description = "Generate +$cardGems$draw infusions and +$manaGems$energy infusions"
+Description = "Generate +$cardGems$draw infusions and +$manaGems$energy infusions."
 Cost = 2
 rarity = 2
 coinCost = 0

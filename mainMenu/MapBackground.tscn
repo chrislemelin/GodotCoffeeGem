@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://cyqjkruf5yn4n"]
 
 [ext_resource type="Shader" path="res://cards/shaders/Transition.gdshader" id="1_0emfo"]
-[ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://placeholders/Map/map-07-08-2024.png" id="2_si30l"]
+[ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://sprites/Map/map-07-08-2024.png" id="2_si30l"]
 [ext_resource type="Script" path="res://mainMenu/MapBackground.cs" id="3_yprxf"]
 [ext_resource type="PackedScene" uid="uid://lq1f2kjihhfp" path="res://mainMenu/Character.tscn" id="4_qb6jp"]
-[ext_resource type="Texture2D" uid="uid://kbf0scsm15wd" path="res://placeholders/Map/buildings/PlantHouse2.png" id="4_vra8d"]
-[ext_resource type="Texture2D" uid="uid://cu1wkob0mu81w" path="res://placeholders/Map/buildings/Park.png" id="5_2it3h"]
-[ext_resource type="Texture2D" uid="uid://cqijgyupcn7ia" path="res://placeholders/Map/buildings/SignBuilding_standard.png" id="6_raram"]
-[ext_resource type="Texture2D" uid="uid://bucfaofsbgqyk" path="res://placeholders/Map/buildings/RandomBuilding-Awning.png" id="7_1a368"]
+[ext_resource type="Texture2D" uid="uid://kbf0scsm15wd" path="res://sprites/Map/buildings/PlantHouse2.png" id="4_vra8d"]
+[ext_resource type="Texture2D" uid="uid://cu1wkob0mu81w" path="res://sprites/Map/buildings/Park.png" id="5_2it3h"]
+[ext_resource type="Texture2D" uid="uid://cqijgyupcn7ia" path="res://sprites/Map/buildings/SignBuilding_standard.png" id="6_raram"]
+[ext_resource type="Texture2D" uid="uid://bucfaofsbgqyk" path="res://sprites/Map/buildings/RandomBuilding-Awning.png" id="7_1a368"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_es18f"]
 shader = ExtResource("1_0emfo")

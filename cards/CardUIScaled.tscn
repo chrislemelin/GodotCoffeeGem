@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_o0n2r"]
 [ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="3_to62g"]
-[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="3_y8rao"]
+[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/Cardfront2red.png" id="3_y8rao"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_rpy3w"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_0idb8"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="9_0idb8"]
 [ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="10_mexxn"]
-[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="11_0iboy"]
-[ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://placeholders/cards/title/TitleCard_4.png" id="11_y5hev"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/fire-updated.png" id="11_0iboy"]
+[ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://sprites/cards/title/TitleCard_4.png" id="11_y5hev"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="13_txhnh"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="15_cbp0x"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="16_wj50d"]
@@ -45,10 +45,10 @@ picture = NodePath("Center/Picture/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
 disabledColor = Color(0.266667, 0.266667, 0.266667, 1)
 titleSprite = NodePath("Center/Title/Sprite2D")
-toolTipText2 = NodePath("Tooltip")
+toolTipText2 = NodePath("Center/ToolTipRightSide/Tooltip")
 speed = 750.0
 
-[node name="Center" type="Control" parent="." node_paths=PackedStringArray("toolTipText", "target")]
+[node name="Center" type="Control" parent="." node_paths=PackedStringArray("toolTipText", "target", "toolTipLeftSide", "toolTipRightSide", "rightSideVisibleCheck")]
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
@@ -59,8 +59,11 @@ offset_bottom = -154.0
 pivot_offset = Vector2(125, 150)
 mouse_filter = 2
 script = ExtResource("3_to62g")
-toolTipText = NodePath("../Tooltip")
+toolTipText = NodePath("ToolTipRightSide/Tooltip")
 target = NodePath("HitBox")
+toolTipLeftSide = NodePath("ToolTipLeftSide")
+toolTipRightSide = NodePath("ToolTipRightSide")
+rightSideVisibleCheck = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="Background" type="TextureRect" parent="Center" node_paths=PackedStringArray("area2D")]
 material = SubResource("ShaderMaterial_7ax7x")
@@ -241,13 +244,31 @@ offset_top = -12.0
 offset_right = 262.0
 offset_bottom = 339.0
 
-[node name="Tooltip" type="RichTextLabel" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Center"]
+position = Vector2(672.5, 49)
+scale = Vector2(0.850001, 5.2)
+
+[node name="ToolTipRightSide" type="Control" parent="Center"]
+anchors_preset = 0
+offset_left = 274.0
+offset_top = -3.0
+offset_right = 274.0
+offset_bottom = -3.0
+
+[node name="Tooltip" type="RichTextLabel" parent="Center/ToolTipRightSide"]
 visible = false
-offset_left = 144.0
-offset_top = -153.0
-offset_right = 510.0
-offset_bottom = -7.0
-theme_override_font_sizes/normal_font_size = 50
+layout_mode = 0
+offset_right = 366.0
+offset_bottom = 102.0
+theme_override_font_sizes/normal_font_size = 48
 theme_override_styles/normal = ExtResource("13_txhnh")
+bbcode_enabled = true
 text = "this is a test tooltip"
 fit_content = true
+
+[node name="ToolTipLeftSide" type="Control" parent="Center"]
+anchors_preset = 0
+offset_left = -368.0
+offset_top = -14.0
+offset_right = -368.0
+offset_bottom = -14.0

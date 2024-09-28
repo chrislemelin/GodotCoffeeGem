@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("2_0wj0x")
 Title = "Ragnarok"
-Description = "Destroy every ingredient and gain 50 points for each burnt ingredient destroyed"
+Description = "Destroy every ingredient and gain 50 points for each burnt ingredient destroyed."
 Cost = 2
 rarity = 1
 Picture = ExtResource("1_lwoep")

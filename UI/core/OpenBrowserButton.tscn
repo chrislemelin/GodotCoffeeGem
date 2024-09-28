@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
+texture_filter = 1
 offset_right = 154.0
 offset_bottom = 52.0
 grow_horizontal = 2

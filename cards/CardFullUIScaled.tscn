@@ -4,18 +4,18 @@
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="2_7taos"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="3_6elk7"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="4_ukscn"]
-[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://placeholders/cards/Cardfront2red.png" id="5_d6w1h"]
+[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/Cardfront2red.png" id="5_d6w1h"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_lxe20"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="8_w01ue"]
 [ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="9_bx1fj"]
-[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://placeholders/cards/fire-updated.png" id="9_edgwy"]
-[ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://placeholders/cards/title/TitleCard_4.png" id="9_ppdhl"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="9_wq4eo"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/fire-updated.png" id="9_edgwy"]
+[ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://sprites/cards/title/TitleCard_4.png" id="9_ppdhl"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="9_wq4eo"]
 [ext_resource type="FontFile" uid="uid://csv4wx1x3e6nd" path="res://fonts/ZX OCR-B.ttf" id="12_dtfe5"]
-[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="13_5mymq"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="14_srknr"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="13_5mymq"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/CardBackRealFinal.png" id="14_srknr"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="15_k7rma"]
-[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="16_75uip"]
+[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://sprites/lock.png" id="16_75uip"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="17_fa4uy"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjn8"]
@@ -555,11 +555,10 @@ layout_mode = 0
 offset_left = 286.0
 offset_top = 25.0
 offset_right = 660.0
-offset_bottom = 250.0
-theme_override_font_sizes/normal_font_size = 50
+offset_bottom = 86.0
+theme_override_font_sizes/normal_font_size = 48
 theme_override_styles/normal = ExtResource("17_fa4uy")
+bbcode_enabled = true
 text = "this is a test tooltip
-[outline_color={code/name}]
-beep
-[/outline_color]"
+"
 fit_content = true

@@ -47,15 +47,15 @@ public partial class EffectResource : Resource
 
 	private void createAddonGems(MatchBoard matchBoard, GemAddonType type, int count)
 	{
-		List<Tile> tiles = matchBoard.getRandomNonBlackNonAddonTiles(count);
+		List<Tile> tiles = matchBoard.getRandomNonSpecialNonAddonTiles(count);
 		matchBoard.addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), type);
 	}
 	private void createBlackGems(MatchBoard matchBoard, List<Vector2> selectedTiles, int value)
 	{
-		List<Tile> tiles = matchBoard.getRandomNonBlackNonAddonTiles(value);
+		List<Tile> tiles = matchBoard.getRandomNonSpecialNonAddonTiles(value);
 		if (tiles.Count != value)
 		{
-			tiles = matchBoard.getRandomNonBlackNonAddonTiles(value, selectedTiles.ToHashSet());
+			tiles = matchBoard.getRandomNonSpecialNonAddonTiles(value, selectedTiles.ToHashSet());
 		}
 		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
 	}

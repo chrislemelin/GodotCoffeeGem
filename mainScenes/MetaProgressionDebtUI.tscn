@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://meta/MetaResetButton.cs" id="6_fn0cl"]
 [ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="7_bjvvo"]
 [ext_resource type="Script" path="res://meta/MetaCoinDisplay.cs" id="8_hhdpq"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="9_f1j0d"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://sprites/UI/purple-coin-pixel-300px.png" id="9_f1j0d"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="10_spw4h"]
 [ext_resource type="PackedScene" uid="uid://dk1vpdbc2lfaa" path="res://meta/metaUpgrades/MechanicUpgradeButton.tscn" id="11_l16td"]
 [ext_resource type="Script" path="res://meta/metaUpgrades/StartingMoneyUpgradeButton.cs" id="12_e2gv2"]
@@ -261,8 +261,6 @@ offset_left = 770.0
 offset_top = 940.0
 offset_right = 962.0
 offset_bottom = 992.0
-grow_horizontal = 1
-grow_vertical = 1
 text = "Main Menu"
 grabFocus = true
 
@@ -310,8 +308,6 @@ offset_left = 874.0
 offset_top = 946.0
 offset_right = 1066.0
 offset_bottom = 998.0
-grow_horizontal = 1
-grow_vertical = 1
 text = "Main Menu"
 grabFocus = true
 

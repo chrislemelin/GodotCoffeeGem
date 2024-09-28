@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu53i2w7x5pwc"]
 
 [ext_resource type="Script" path="res://match/score/Mult.cs" id="1_5uf2f"]
-[ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://placeholders/bg-square-round-49.png" id="2_dpjlv"]
+[ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://sprites/bg-square-round-49.png" id="2_dpjlv"]
 
 [node name="Mult" type="Control" node_paths=PackedStringArray("richTextLabel")]
 layout_mode = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccu0jen0fteje"]
 
 [ext_resource type="Script" path="res://hand/Deck.cs" id="1_j31f6"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="2_6jv68"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/CardBackRealFinal.png" id="2_6jv68"]
 
 [node name="Deck" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
 script = ExtResource("1_j31f6")
@@ -12,31 +12,33 @@ control = NodePath("Control")
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(3, 13)
-scale = Vector2(6.11765, 6.11765)
+scale = Vector2(3, 3)
 texture = ExtResource("2_6jv68")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -67.0
-offset_top = -433.0
-offset_right = 68.0
-offset_bottom = -353.0
-theme_override_font_sizes/normal_font_size = 96
+texture_filter = 1
+offset_left = -62.0
+offset_top = -203.0
+offset_right = 70.0
+offset_bottom = -163.0
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[center]1"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = -90.0
-offset_top = -375.0
-offset_right = 169.0
-offset_bottom = -262.0
-theme_override_font_sizes/normal_font_size = 120
+texture_filter = 1
+offset_left = -83.0
+offset_top = -173.0
+offset_right = 97.0
+offset_bottom = -125.0
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "DECK"
+text = "[center]DECK"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -209.0
-offset_top = -301.0
-offset_right = 213.0
-offset_bottom = 299.0
+offset_left = -98.0
+offset_top = -130.0
+offset_right = 103.0
+offset_bottom = 159.0

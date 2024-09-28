@@ -13,7 +13,7 @@ public partial class CardEffectAddRainbow : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		List<Tile> tilesToEffect = matchBoard.getRandomNonBlackNonAddonTiles(getValue());
+		List<Tile> tilesToEffect = matchBoard.getRandomNonSpecialNonAddonTiles(getValue());
 		tilesToEffect.ForEach((tile) => matchBoard.changeGemsColorAtPosition(tile.getTilePosition(), GemType.Rainbow));
 	}
 }

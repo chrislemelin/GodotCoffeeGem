@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("2_g2oql")
 Title = "Burnt Master"
-Description = "Gain 75 points for each burnt made this turn ($value)"
+Description = "Gain 75 points for each burnt made this turn ($value)."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_sjmxp")

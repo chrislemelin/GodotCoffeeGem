@@ -21,11 +21,10 @@ public partial class SettingsMenu : Node
 
 
 	private Dictionary<String, Vector2> resolutionDictionary =  new Dictionary<String, Vector2> () {
-		{"1366 × 768", new Vector2(1366,768)},
-		{"1440 × 900", new Vector2(1440,900)},
-		{"1920 × 1080", new Vector2(1920,1080)},
+		{"1280 × 720", new Vector2(1280,720)},
+		{"1920 × 1080 (Recommended)", new Vector2(1920,1080)},
+		{"2560 x 1440", new Vector2(2560,1440)},
 		{"3840 × 2160", new Vector2(3840,2160)}
-
 	};
 
 	public override void _Ready()
@@ -48,6 +47,8 @@ public partial class SettingsMenu : Node
 		musicSlider.Value = gameManagerIF.getMusicVolume();
 		musicSlider.ValueChanged += (value) => gameManagerIF.setMusicVolume((float)value); 
 
+		FindObjectHelper.GetMusicPlayer(this).setUp();
+
 		mainMenuButton.Pressed += () => FindObjectHelper.getFormSubmitter(this).submitData("quit to main menu", gameManagerIF,() => {
 			gameManagerIF.resetGlobals();
 			GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn");
@@ -63,7 +64,7 @@ public partial class SettingsMenu : Node
 		};
 
 		resolutionsOptionButton.ItemSelected += (value) => DisplayServer.WindowSetSize((Vector2I)resolutionDictionary[resolutionsOptionButton.GetItemText((int)value)]);
-		resolutionsOptionButton.Selected = 2;
+		resolutionsOptionButton.Selected = 1;
 
 		dataCollectionCheckBox.ButtonPressed = gameManagerIF.getCollectData();
 		dataCollectionCheckBox.Pressed += () => gameManagerIF.setCollectData(dataCollectionCheckBox.ButtonPressed);

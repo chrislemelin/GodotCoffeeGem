@@ -13,9 +13,9 @@ config_version=5
 config/name="BeansOfProduction"
 run/main_scene="res://mainScenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-boot_splash/image="res://placeholders/Map/map-07-08-2024.png"
+boot_splash/image="res://sprites/splashScreens/MapNewTitle.png"
 boot_splash/use_filter=false
-config/icon="res://placeholders/ingredients/final/Bean-pixel2.png"
+config/icon="res://sprites/ingredients/final/Bean-pixel2.png"
 
 [autoload]
 
@@ -138,4 +138,4 @@ up={
 [internationalization]
 
 locale/translations=PackedStringArray("res://dialogue/conversations.en.translation")
-locale/translations_pot_files=PackedStringArray("res://dialogue/BobConvo1.dialogue", "res://dialogue/IntroDialouge1.dialogue", "res://dialogue/BobConvo2.dialogue", "res://dialogue/AfterWorkTalk.dialogue", "res://dialogue/ShopKeeper.dialogue", "res://dialogue/HighScoreLossTalk.dialogue", "res://dialogue/bossDialouge/HighScoreWon.dialogue", "res://dialogue/bossDialouge/HighScoreLost.dialogue", "res://dialogue/introDialouge/intro.dialogue", "res://dialogue/introDialouge/intro2.dialogue", "res://dialogue/bossDialouge/LevelUp.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/BobConvo1.dialogue", "res://dialogue/IntroDialouge1.dialogue", "res://dialogue/BobConvo2.dialogue", "res://dialogue/AfterWorkTalk.dialogue", "res://dialogue/ShopKeeper.dialogue", "res://dialogue/HighScoreLossTalk.dialogue", "res://dialogue/final/bossDialouge/HighScoreLost.dialogue", "res://dialogue/final/bossDialouge/HighScoreWon.dialogue", "res://dialogue/final/bossDialouge/LevelUp.dialogue", "res://dialogue/final/introDialouge/intro2.dialogue", "res://dialogue/final/bossDialouge/CustomerComplaint.dialogue")

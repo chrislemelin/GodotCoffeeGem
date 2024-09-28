@@ -73,7 +73,7 @@ public partial class MapLocation : Control
 			highlight.setForceHighlightOff(false);
 		}
 		else
-		{
+	{
 			Modulate = inActiveColor;
 			highlight.setForceHighlightOff(true);
 		}
@@ -89,7 +89,7 @@ public partial class MapLocation : Control
 	{
 		if (type == MapEventType.Money)
 		{
-			mapEventResolveUI.setUp("Found Money", "You found some money on the ground! It's almost as much as a full days work. Gain 15 coins");
+			mapEventResolveUI.setUp("Found Money", "You found some money on the ground! It's almost as much as a full day's work. Gain 15 coins.");
 			mapEventResolveUI.button.Pressed += () => addActionToContinueButton(() => FindObjectHelper.getGameManager(this).addCoins(15),callback);
 		}
 		else if (type == MapEventType.UpgradeCard)
@@ -161,7 +161,7 @@ public partial class MapLocation : Control
 			else
 			{
 				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => { }, callback);
-				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the mechanic. RIP BROKIE");
+				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the mechanic.");
 			}
 		}
 		else if (type == MapEventType.RelicShop)
@@ -186,7 +186,7 @@ public partial class MapLocation : Control
 			else
 			{
 				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => { }, callback);
-				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the relic shop. RIP BROKIE");
+				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the relic shop.");
 			}
 		}
 		else if (type == MapEventType.Home)

@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_vkrsl")
 Title = "Sugar Spray"
-Description = "Generate $valuesugar. If this creates a match, +1$draw"
+Description = "Generate $valuesugar. If this creates a match, +1$draw."
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_05cvs")

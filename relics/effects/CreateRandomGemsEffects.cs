@@ -13,6 +13,6 @@ public partial class CreateRandomGemsEffects : EffectResource
 	
 	protected override void executeEffect(Node node) {
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
-		matchBoard.changeGemsColorAtPosition(matchBoard.getRandomNonBlackNotOfTypeTiles(value, type).Select(tile => tile.getTilePosition()).ToList(), type, true);
+		matchBoard.changeGemsColorAtPosition(matchBoard.getRandomNonSpecialNotOfTypeTiles(value, type).Select(tile => tile.getTilePosition()).ToList(), type, true);
 	}
 }

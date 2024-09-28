@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("2_ljjbh")
 Title = "Switch +"
-Description = "Swap two vertically, horizontally, or diagonally adjacent ingredients"
+Description = "Swap two vertically, horizontally, or diagonally adjacent ingredients."
 Cost = 1
 rarity = 1
 Picture = ExtResource("1_5864w")

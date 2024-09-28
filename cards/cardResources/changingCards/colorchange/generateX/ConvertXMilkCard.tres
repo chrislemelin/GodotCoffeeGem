@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_05knp")
 Title = "Milk Delivery"
-Description = "Generate a milk for each burnt"
+Description = "Generate a milk for each burnt."
 Cost = 1
 rarity = 2
 Picture = ExtResource("1_o48gu")

@@ -2,9 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_c60pr"]
 [ext_resource type="Script" path="res://meta/metaUpgrades/ShopCardChoiceUpgradeButton.cs" id="2_x2ag6"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_18ycf"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://sprites/UI/purple-coin-pixel-300px.png" id="4_18ycf"]
 
 [node name="CoinUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+texture_filter = 1
 custom_minimum_size = Vector2(449, 110)
 layout_mode = 3
 anchors_preset = 0
@@ -26,7 +27,7 @@ layout_mode = 0
 offset_top = 49.0
 offset_right = 445.0
 offset_bottom = 159.0
-tooltip_text = "Increase rate of random ingredients giving meta coins when matched"
+tooltip_text = " "
 text = "+1 Card Choice in Shop
 "
 

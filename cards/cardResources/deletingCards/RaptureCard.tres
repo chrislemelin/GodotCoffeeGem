@@ -30,7 +30,7 @@ nuke = false
 [resource]
 script = ExtResource("2_4ergt")
 Title = "Rapture"
-Description = "Select an ingredient. Destroy all ingredients except for selected ingredient's type"
+Description = "Select an ingredient. Destroy all ingredients except for selected ingredient's type."
 Cost = 3
 rarity = 2
 coinCost = 0

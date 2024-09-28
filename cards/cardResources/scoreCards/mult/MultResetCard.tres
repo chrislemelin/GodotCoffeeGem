@@ -30,7 +30,7 @@ nuke = false
 [resource]
 script = ExtResource("2_trulp")
 Title = "Second Wind"
-Description = "Reset multiplier to 1 and gain a card and an energy for each whole number of mult lost (max 3)"
+Description = "Reset multiplier to 1 and gain a card and an energy for each whole number of mult lost (max 3)."
 Cost = 0
 rarity = 0
 coinCost = 0

@@ -10,20 +10,27 @@ public partial class AudioPlayer : AudioStreamPlayer2D
 
 	public override void _Ready()
 	{
+		if (!(soundEffect)) {
+			GD.Print("music ready");
+		}
 		base._Ready();
 		setUp();
 	}
 
 	public void setUp () {
 		SettingsMenu settingsMenu = FindObjectHelper.getSettingsMenu(this);
-		if (settingsMenu != null) {
+		if (settingsMenu == null &&!(soundEffect)) {
+			GD.Print("cannot find settings menu");
+		}
+		 if (settingsMenu != null) {
 			if (soundEffect) {
 				settingsMenu.sfxSlider.ValueChanged += (double value) => {
-					VolumeDb = (float)(minValue + (maxValue - minValue) * settingsMenu.sfxSlider.Value);
+					recalculateVolume();
 				};
 			} else {
+				GD.Print("setting up music control");
 				settingsMenu.musicSlider.ValueChanged += (double value) => {
-					VolumeDb = (float)(minValue + (maxValue - minValue) * value);
+					recalculateVolume();
 				};
 			}
 		recalculateVolume();
@@ -32,12 +39,19 @@ public partial class AudioPlayer : AudioStreamPlayer2D
 
 	private void recalculateVolume() {
 		SettingsMenu settingsMenu = FindObjectHelper.getSettingsMenu(this);
+		GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
 		if (settingsMenu != null) {
 			float settingsVolume;
 			if (soundEffect) {
-			settingsVolume = (float)(minValue + (maxValue - minValue) * (settingsMenu.sfxSlider.Value * baseVolumeMult));
+				settingsVolume = (float)(minValue + (maxValue - minValue) * (settingsMenu.sfxSlider.Value * baseVolumeMult));
+				if (gameManager.isSFXMuted()){
+					settingsVolume = float.MinValue;
+				}
 			} else {
 				settingsVolume = (float)(minValue + (maxValue - minValue) * settingsMenu.musicSlider.Value * baseVolumeMult);
+				if (gameManager.isMusicMuted()){
+					settingsVolume = float.MinValue;
+				}
 			}
 			VolumeDb = settingsVolume;
 		}

@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_oj1bp")
 Title = "Sweet tooth"
-Description = "Lose a heart (this can kill you). +1 $card +1$energy, +50$coins and generate 4sugar."
+Description = "Lose a heart (this can kill you). +50$coin and generate 4sugar."
 Cost = 0
 rarity = 1
 Picture = ExtResource("1_uwb7o")

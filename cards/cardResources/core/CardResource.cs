@@ -113,7 +113,6 @@ public partial class CardResource : Resource
 		// newDescription = newDescription.Replace("vanilla", TextHelper.colorText("vanilla", "yellow"));
 		// newDescription = newDescription.Replace("sugar", TextHelper.colorText("sugar", "white"));
 		// newDescription = newDescription.Replace("milk", TextHelper.colorText("milk", "purple"));
-
 		// newDescription = newDescription.Replace("burnt", TextHelper.colorText("burnt", "grey"));
 
 
@@ -150,6 +149,9 @@ public partial class CardResource : Resource
 		}
 		if (cardEffect.nuke) {
 			returnString += "Nuke - This ingredient type is wiped from the board and cannot be spawned in anymore\n";
+		}
+		if (Description.Contains("lead")) {
+			returnString += TextHelper.getIngredientImage(GemType.Lead)+" cannot be matched or selected. Scores 200 points plus 100 points for each upgrade level when it reaches the bottom\n";
 		}
 		return returnString;
 	}

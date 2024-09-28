@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c81df5y1lxjan" path="res://sound/UI/click1.ogg" id="5_f48di"]
 
 [node name="ButtonWithCost" type="Button" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer")]
+texture_filter = 1
 offset_right = 154.0
 offset_bottom = 52.0
 theme = ExtResource("1_dj47p")

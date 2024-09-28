@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("1_cdmb4")
 Title = "Adrenaline Burst"
-Description = "Gain +$value$energy and +2burnt. If you have made a coffee match this turn, +1$energy $customText"
+Description = "Gain +$value$energy and +2burnt. If you have made a coffee match this turn, +1$energy. $customText"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_jqdqi")

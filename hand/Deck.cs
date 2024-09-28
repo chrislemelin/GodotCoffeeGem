@@ -79,6 +79,7 @@ public partial class Deck : Node
 		if (cards.Count == 0)
 		{
 			cards.AddRange(discard.getAllCardsAndReset());
+			RandomHelper.Shuffle(cards);
 			updateCount();
 			if (cards.Count == 0)
 			{

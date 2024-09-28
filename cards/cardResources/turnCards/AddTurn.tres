@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("1_ux33c")
 Title = "Time Management"
-Description = "Gain an additional turn. You must have 150$coin to play and and costs 50$coin."
+Description = "Gain an additional turn. You must have 150$coin to play and costs 50$coin."
 Cost = 1
 rarity = 2
 Picture = ExtResource("1_in72k")

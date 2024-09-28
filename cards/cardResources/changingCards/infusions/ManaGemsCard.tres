@@ -32,7 +32,7 @@ nuke = false
 [resource]
 script = ExtResource("1_ybbs8")
 Title = "Energy Infusion"
-Description = "Generate $manaGems$energy infusions and +1burnt"
+Description = "Generate $manaGems$energy infusion and +1burnt."
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_0yjft")

@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="2_g041w"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="2_g041w"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
-[ext_resource type="Texture2D" uid="uid://rjd6y8xiofd3" path="res://placeholders/soft-gem.png" id="4_rxy0n"]
 [ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
-[ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://placeholders/Map/map-07-08-2024.png" id="7_v8p8x"]
+[ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://sprites/Map/map-07-08-2024.png" id="7_v8p8x"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
@@ -18,7 +17,7 @@
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
 [ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="16_vds2c"]
-[ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://placeholders/Map/guy.png" id="17_718sm"]
+[ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://sprites/Map/guy.png" id="17_718sm"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="17_tyewm"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="24_1i55l"]
@@ -388,6 +387,8 @@ coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_smct3")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jqxju"]
+
 [sub_resource type="Animation" id="Animation_hbqvg"]
 resource_name = "FadeIn"
 length = 0.25
@@ -540,10 +541,10 @@ upgradedSwitchCard = SubResource("Resource_vuu47")
 [node name="Control3" type="Control" parent="Map/MapLocations/BotPath"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 597.0
-offset_top = 948.0
-offset_right = 597.0
-offset_bottom = 948.0
+offset_left = 600.0
+offset_top = 959.0
+offset_right = 600.0
+offset_bottom = 959.0
 
 [node name="MapLocation" parent="Map/MapLocations/BotPath/Control3" node_paths=PackedStringArray("image", "label") instance=ExtResource("4_pfyjt")]
 visible = false
@@ -573,37 +574,37 @@ visible = false
 [node name="Line2D" type="Line2D" parent="Map/Paths"]
 position = Vector2(259.01, 842.908)
 points = PackedVector2Array(-32.0101, -178.908, 282.99, -32.9084)
-texture = ExtResource("4_rxy0n")
+texture = SubResource("CompressedTexture2D_jqxju")
 texture_mode = 1
 
 [node name="Line2D2" type="Line2D" parent="Map/Paths"]
 position = Vector2(259.01, 842.908)
 points = PackedVector2Array(526.99, -43.9084, 944.99, -35.9084)
-texture = ExtResource("4_rxy0n")
+texture = SubResource("CompressedTexture2D_jqxju")
 texture_mode = 1
 
 [node name="Line2D3" type="Line2D" parent="Map/Paths"]
 position = Vector2(776, 706)
 points = PackedVector2Array(668, 71.9999, 903, -157)
-texture = ExtResource("4_rxy0n")
+texture = SubResource("CompressedTexture2D_jqxju")
 texture_mode = 1
 
 [node name="Line2D4" type="Line2D" parent="Map/Paths"]
 position = Vector2(776, 706)
 points = PackedVector2Array(609, -459, 838, -298)
-texture = ExtResource("4_rxy0n")
+texture = SubResource("CompressedTexture2D_jqxju")
 texture_mode = 1
 
 [node name="Line2D5" type="Line2D" parent="Map/Paths"]
 position = Vector2(776, 706)
 points = PackedVector2Array(-27.9999, -477, 371, -500)
-texture = ExtResource("4_rxy0n")
+texture = SubResource("CompressedTexture2D_jqxju")
 texture_mode = 1
 
 [node name="Line2D6" type="Line2D" parent="Map/Paths"]
 position = Vector2(776, 706)
 points = PackedVector2Array(-477, -196, -253, -467)
-texture = ExtResource("4_rxy0n")
+texture = SubResource("CompressedTexture2D_jqxju")
 texture_mode = 1
 
 [node name="TopPath" type="Node2D" parent="Map"]
@@ -652,7 +653,6 @@ position = Vector2(-0.5, -13.5)
 texture = ExtResource("17_718sm")
 
 [node name="Tutorial" type="Panel" parent="."]
-visible = false
 offset_left = 596.0
 offset_top = 385.0
 offset_right = 999.0
@@ -660,9 +660,11 @@ offset_bottom = 536.0
 theme = ExtResource("16_vds2c")
 
 [node name="HelperText" type="RichTextLabel" parent="Tutorial"]
+texture_filter = 1
 layout_mode = 0
+offset_left = 3.0
 offset_top = 4.0
-offset_right = 399.0
+offset_right = 402.0
 offset_bottom = 158.0
 theme_override_fonts/normal_font = ExtResource("17_tyewm")
 theme_override_font_sizes/normal_font_size = 36
@@ -698,11 +700,12 @@ texture = ExtResource("2_g041w")
 
 [node name="Forground" type="Panel" parent="MapEventText"]
 modulate = Color(0.831373, 0.933333, 0.921569, 1)
+texture_filter = 1
 use_parent_material = true
 layout_mode = 0
 offset_left = 551.0
 offset_top = 1200.0
-offset_right = 1205.0
+offset_right = 1376.0
 offset_bottom = 1671.0
 
 [node name="Control" type="Control" parent="MapEventText/Forground"]
@@ -714,36 +717,37 @@ offset_right = -512.0
 offset_bottom = -257.0
 
 [node name="title" type="RichTextLabel" parent="MapEventText/Forground/Control"]
+texture_filter = 1
 use_parent_material = true
 layout_mode = 0
 offset_left = 538.0
 offset_top = 279.0
-offset_right = 1151.0
+offset_right = 1317.0
 offset_bottom = 355.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[center]TITLE TEXT"
 
 [node name="description" type="RichTextLabel" parent="MapEventText/Forground/Control"]
+texture_filter = 1
 use_parent_material = true
 layout_mode = 0
 offset_left = 534.0
 offset_top = 368.0
-offset_right = 1147.0
+offset_right = 1306.0
 offset_bottom = 621.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Title Description"
 
 [node name="Continue2" parent="MapEventText/Forground/Control" instance=ExtResource("29_8180u")]
 layout_mode = 0
-offset_left = 754.0
-offset_top = 665.0
-offset_right = 908.0
-offset_bottom = 717.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 856.0
+offset_top = 641.0
+offset_right = 1010.0
+offset_bottom = 709.0
 text = "Continue"
 grabFocus = true
 
@@ -753,17 +757,17 @@ libraries = {
 }
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("23_y5l24")]
-offset_left = 1761.0
-offset_top = 69.0
-offset_right = 1761.0
-offset_bottom = 69.0
+offset_left = 172.0
+offset_top = 76.0
+offset_right = 172.0
+offset_bottom = 76.0
 gameManager = NodePath("..")
 
 [node name="RelicSelection" parent="." instance=ExtResource("24_1i55l")]
 visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("24_a84c2")]
-offset_left = -14.0
-offset_top = 12.0
-offset_right = -14.0
-offset_bottom = 12.0
+offset_left = -36.0
+offset_top = -6.0
+offset_right = -36.0
+offset_bottom = -6.0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://qhphks7awow3"
+path="res://.godot/imported/HighScoreWon.dialogue-c750537e1937e44988ade8397be89ff9.tres"
+
+[deps]
+
+source_file="res://dialogue/final/bossDialouge/HighScoreWon.dialogue"
+dest_files=["res://.godot/imported/HighScoreWon.dialogue-c750537e1937e44988ade8397be89ff9.tres"]
+
+[params]
+
+defaults=true

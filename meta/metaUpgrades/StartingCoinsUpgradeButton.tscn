@@ -2,10 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_4qni5"]
 [ext_resource type="Script" path="res://meta/metaUpgrades/StartingMoneyUpgradeButton.cs" id="2_5s4v8"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="3_binuj"]
-[ext_resource type="Texture2D" uid="uid://dbpqs0t07rr8w" path="res://placeholders/UI/coin-pixel-100px.png" id="3_uv7e3"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://sprites/UI/purple-coin-pixel-300px.png" id="3_binuj"]
+[ext_resource type="Texture2D" uid="uid://dbpqs0t07rr8w" path="res://sprites/UI/coin-pixel-100px.png" id="3_uv7e3"]
 
 [node name="CoinUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+texture_filter = 1
 custom_minimum_size = Vector2(449, 166)
 layout_mode = 3
 anchors_preset = 0

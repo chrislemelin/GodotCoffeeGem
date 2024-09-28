@@ -20,7 +20,7 @@ public partial class CardEffectAddAddonGems : CardEffectIF
 
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
-		 List<Tile> tilesToEffect = matchBoard.getRandomNonBlackNonAddonTiles(getValue());
+		 List<Tile> tilesToEffect = matchBoard.getRandomNonSpecialNonAddonTiles(getValue());
 		 matchBoard.addGemAddons(tilesToEffect.Select(x => x.getTilePosition()).ToList(), gemAddonType);
 	}
 

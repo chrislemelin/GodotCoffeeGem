@@ -9,7 +9,7 @@ public partial class Background : Node
 	public override void _Ready()
 	{
 		base._Ready();
-		playTransitionDelayed();
+		//playTransitionDelayed();
 	}
 
 	private void playTransitionDelayed() {

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c563hncch4yj3"]
 
 [ext_resource type="Script" path="res://hand/Discard.cs" id="1_mc7e2"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="2_v7buu"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/CardBackRealFinal.png" id="2_v7buu"]
 
 [node name="Discard" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
 script = ExtResource("1_mc7e2")
@@ -11,15 +11,16 @@ control = NodePath("Control")
 [node name="CardBack" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(3, 13)
-scale = Vector2(6.11765, 6.11765)
+scale = Vector2(3, 3)
 texture = ExtResource("2_v7buu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -70.0
-offset_top = -437.0
-offset_right = 85.0
-offset_bottom = -360.0
-theme_override_font_sizes/normal_font_size = 96
+texture_filter = 1
+offset_left = -75.0
+offset_top = -209.0
+offset_right = 80.0
+offset_bottom = -167.0
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[center]1"
 
@@ -32,10 +33,11 @@ offset_right = 211.0
 offset_bottom = 301.0
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = -155.0
-offset_top = -377.0
-offset_right = 193.0
-offset_bottom = -264.0
-theme_override_font_sizes/normal_font_size = 120
+texture_filter = 1
+offset_left = -55.0
+offset_top = -178.0
+offset_right = 83.0
+offset_bottom = -135.0
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "DISCARD"

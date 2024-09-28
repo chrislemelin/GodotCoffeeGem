@@ -2,10 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_vj2aw"]
 [ext_resource type="Script" path="res://meta/metaUpgrades/CoinRateUpgradeButton.cs" id="2_28rci"]
-[ext_resource type="Texture2D" uid="uid://dbpqs0t07rr8w" path="res://placeholders/UI/coin-pixel-100px.png" id="3_mftap"]
-[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://placeholders/UI/purple-coin-pixel-300px.png" id="4_wtq8t"]
+[ext_resource type="Texture2D" uid="uid://dbpqs0t07rr8w" path="res://sprites/UI/coin-pixel-100px.png" id="3_4kkvp"]
+[ext_resource type="Texture2D" uid="uid://3rgdji476auv" path="res://sprites/UI/purple-coin-pixel-300px.png" id="4_4rmsq"]
 
 [node name="CoinUpgradeButton" type="Control" node_paths=PackedStringArray("button", "upgradeLevel", "costLabel")]
+texture_filter = 1
 custom_minimum_size = Vector2(280, 110)
 layout_mode = 3
 anchors_preset = 0
@@ -21,7 +22,7 @@ layout_mode = 0
 offset_right = 278.0
 offset_bottom = 110.0
 text = " Upgrade"
-icon = ExtResource("3_mftap")
+icon = ExtResource("3_4kkvp")
 
 [node name="UpgradeLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -44,6 +45,6 @@ offset_left = 163.0
 offset_top = -43.0
 offset_right = 203.0
 offset_bottom = -3.0
-texture = ExtResource("4_wtq8t")
+texture = ExtResource("4_4rmsq")
 expand_mode = 1
 stretch_mode = 4

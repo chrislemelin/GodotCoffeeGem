@@ -1,11 +1,7 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=11 format=3 uid="uid://bewp1ndgxw4gx"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=7 format=3 uid="uid://bewp1ndgxw4gx"]
 
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_m8nvf"]
-[ext_resource type="Resource" uid="uid://baborfwmqxmsy" path="res://relics/bossRelics/ingredientDecreaseRelic/MilkDecreaseRelic.tres" id="2_kpv8v"]
-[ext_resource type="Resource" uid="uid://d2a71fk4odeoo" path="res://relics/bossRelics/ingredientDecreaseRelic/SugarDecreaseRelic.tres" id="3_puu18"]
-[ext_resource type="Resource" uid="uid://bxrit1hj2gm1b" path="res://relics/bossRelics/ingredientDecreaseRelic/TeaDecreaseRelic.tres" id="4_lx68o"]
 [ext_resource type="Resource" uid="uid://bcn5rtffkqmwv" path="res://relics/bossRelics/other/RemoveColumnRelic.tres" id="5_7ndsu"]
-[ext_resource type="Resource" uid="uid://drrpskuhacw01" path="res://relics/bossRelics/ingredientDecreaseRelic/VanillaDecreaseRelic.tres" id="5_hs2tv"]
 [ext_resource type="Resource" uid="uid://cdwbwyd03jka" path="res://relics/bossRelics/other/SmallerHandRelic.tres" id="6_jejv2"]
 [ext_resource type="Resource" uid="uid://dk5dg2lxk2jae" path="res://relics/bossRelics/other/GooColumnsRelic.tres" id="7_l5jel"]
 [ext_resource type="Resource" uid="uid://bnren7em264hh" path="res://relics/bossRelics/ingredientDecreaseRelic/CoffeeLoseMoneyRelic.tres" id="8_qogck"]
@@ -14,4 +10,4 @@
 [resource]
 script = ExtResource("1_m8nvf")
 removeDuplicates = true
-allRelics = [ExtResource("2_kpv8v"), ExtResource("3_puu18"), ExtResource("4_lx68o"), ExtResource("5_hs2tv"), ExtResource("5_7ndsu"), ExtResource("6_jejv2"), ExtResource("7_l5jel"), ExtResource("8_qogck"), ExtResource("9_pryc3")]
+allRelics = [ExtResource("5_7ndsu"), ExtResource("6_jejv2"), ExtResource("7_l5jel"), ExtResource("8_qogck"), ExtResource("9_pryc3")]

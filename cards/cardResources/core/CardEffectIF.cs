@@ -167,17 +167,17 @@ public partial class CardEffectIF : Resource
 
 	private void createBlackGems(MatchBoard matchBoard, List<Vector2> selectedTiles)
 	{
-		List<Tile> tiles = matchBoard.getRandomNonBlackNonAddonTiles(BlackGems);
+		List<Tile> tiles = matchBoard.getRandomNonSpecialNonAddonTiles(BlackGems);
 		if (tiles.Count != BlackGems)
 		{
-			tiles = matchBoard.getRandomNonBlackNonAddonTiles(BlackGems, selectedTiles.ToHashSet());
+			tiles = matchBoard.getRandomNonSpecialNonAddonTiles(BlackGems, selectedTiles.ToHashSet());
 		}
 		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
 	}
 
 	private void createAddonGems(MatchBoard matchBoard, GemAddonType type, int count)
 	{
-		List<Tile> tiles = matchBoard.getRandomNonBlackNonAddonTiles(count);
+		List<Tile> tiles = matchBoard.getRandomNonSpecialNonAddonTiles(count);
 		matchBoard.addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), type);
 	}
 

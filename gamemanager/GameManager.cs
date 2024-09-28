@@ -38,6 +38,8 @@ public partial class GameManager : GameManagerIF
 	[Export] private Godot.Collections.Dictionary<int, Resource> dialougeDict = new Godot.Collections.Dictionary<int, Resource>();
 	[Export] Resource dialougeResource;
 	[Export] Resource startingDialougeResource;
+	[Export] Resource bossLevelDialougeResource;
+
 
 	private int currentLevel;
 	private LevelResource currentLevelResource;
@@ -114,8 +116,20 @@ public partial class GameManager : GameManagerIF
 			addRelic(bossRelic);
 			bossRelicTutorial.WindowClosedSignal += () => hand.setUIFocus(true);
 			bossRelicTutorial.richTextLabel.Text += bossRelic.description;
-			bossRelicTutorial.setVisible(true);
 			hand.setUIFocus(false);
+			if (!getSeenBossDialouge()) {
+				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(bossLevelDialougeResource);
+				DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
+				if (resource == bossLevelDialougeResource) {
+					bossRelicTutorial.setVisible(true);
+				}
+				setSeenBossDialouge(true);
+			};
+			} else {
+				bossRelicTutorial.setVisible(true);
+
+			}
+
 		}
 
 		relicHolderUI.setRelicList(getRelics());
@@ -135,7 +149,7 @@ public partial class GameManager : GameManagerIF
 	}
 
 	private void checkForOverTimeTutorial () {
-		if (currentLevel == 1 && !getGlobal().shownOvertimeTutorial && false) {
+		if (currentLevel == 1 && !getGlobal().shownOvertimeTutorial) {
 			overTimeTutorial.setVisible(true);
 			getGlobal().shownOvertimeTutorial = true;
 			getGlobal().save();

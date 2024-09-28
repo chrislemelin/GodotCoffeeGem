@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 [ext_resource type="AudioStream" uid="uid://ch0ppa30uaxtj" path="res://sound/diaoulge/sound (1).wav" id="4_x3pi3"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="5_pr71p"]
-[ext_resource type="Texture2D" uid="uid://bo6401bbjf5pa" path="res://placeholders/character/Nathan.png" id="6_viwda"]
+[ext_resource type="Texture2D" uid="uid://dt5iqlf20tvvj" path="res://sprites/character/Nathan.png" id="7_swunq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -87,7 +87,9 @@ theme = SubResource("Theme_qq3yp")
 [node name="Panel2" type="Panel" parent="Balloon"]
 modulate = Color(1, 1, 1, 0.521569)
 layout_mode = 0
-offset_right = 1924.0
+offset_left = -9.0
+offset_top = -20.0
+offset_right = 1954.0
 offset_bottom = 1082.0
 
 [node name="Panel" type="Panel" parent="Balloon"]
@@ -174,10 +176,12 @@ minValue = -40.0
 texture_filter = 1
 layout_mode = 0
 offset_left = 27.0
-offset_top = 470.0
+offset_top = 450.0
 offset_right = 291.0
-offset_bottom = 734.0
-texture = ExtResource("6_viwda")
+offset_bottom = 714.0
+rotation = -0.000883864
+texture = ExtResource("7_swunq")
+stretch_mode = 4
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

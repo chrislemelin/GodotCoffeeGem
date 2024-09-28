@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=19 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
@@ -12,8 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://dlslfluiohaff" path="res://mainMenu/Background.tscn" id="7_fjbjo"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
+[ext_resource type="Texture2D" uid="uid://c3e1dsfm28tlr" path="res://sprites/splashScreens/SmallCapsule_Logo_09-22-2024.png" id="9_82ehf"]
+[ext_resource type="Texture2D" uid="uid://ysm57d5bn0j8" path="res://sprites/splashScreens/Title.png" id="9_omoh0"]
+[ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://sprites/ingredients/gem-gradient-painted.png" id="10_4r0i4"]
 [ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="10_cqmeh"]
 [ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="10_kkka7"]
+[ext_resource type="Texture2D" uid="uid://buijri2tdekaf" path="res://sprites/CoffeeShop/board/CoffeeFillTexture_withtop_09-21-2024.png" id="11_hvj1m"]
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "quitButton", "metaProgressionButton", "creditsButton", "beanHolder")]
 script = ExtResource("1_ro6go")
@@ -37,10 +41,8 @@ position = Vector2(212, 275)
 scale = Vector2(0.5, 0.5)
 
 [node name="TextureRect2" parent="." instance=ExtResource("7_fjbjo")]
-
-[node name="TextureRect" parent="." instance=ExtResource("7_fjbjo")]
-modulate = Color(0.105882, 0.2, 0.203922, 1)
-script = null
+modulate = Color(0.294118, 0.298039, 0.45098, 1)
+scale = Vector2(2, 2)
 
 [node name="BeanHolder" type="Node2D" parent="."]
 
@@ -49,7 +51,34 @@ visible = false
 rotation = -0.575959
 rotateSpeed = 20.0
 
+[node name="SmallCapsuleLogo09-22-2024" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(974, 216)
+scale = Vector2(3, 3)
+texture = ExtResource("9_82ehf")
+
+[node name="Title" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(976, 209)
+scale = Vector2(3, 3)
+texture = ExtResource("9_omoh0")
+
+[node name="CoffeeCup" type="Sprite2D" parent="."]
+visible = false
+clip_children = 1
+position = Vector2(341, 729)
+scale = Vector2(2.56422, 2.56422)
+texture = ExtResource("10_4r0i4")
+
+[node name="Sprite2D" type="Sprite2D" parent="CoffeeCup"]
+texture_filter = 3
+position = Vector2(1.55993, -42.1181)
+scale = Vector2(2.28723, 2.28723)
+texture = ExtResource("11_hvj1m")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -73,10 +102,10 @@ fit_content = true
 scroll_active = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-offset_left = 666.0
-offset_top = 387.0
-offset_right = 1368.0
-offset_bottom = 727.0
+offset_left = 630.0
+offset_top = 394.0
+offset_right = 1332.0
+offset_bottom = 837.0
 
 [node name="play" parent="VBoxContainer2" instance=ExtResource("7_bodv0")]
 layout_mode = 2
@@ -84,6 +113,7 @@ text = "Play"
 grabFocus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 0
 
@@ -122,7 +152,6 @@ text = "Upgrade Store"
 
 [node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
 
 [node name="Button" parent="VBoxContainer2/MarginContainer7" instance=ExtResource("10_cqmeh")]
 layout_mode = 2
@@ -131,7 +160,6 @@ sceneString = "res://mainScenes/MetaProgressionDebtUI.tscn"
 
 [node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
 
 [node name="Button" parent="VBoxContainer2/MarginContainer5" instance=ExtResource("10_cqmeh")]
 layout_mode = 2
@@ -140,14 +168,12 @@ sceneString = "res://mainScenes/Library.tscn"
 
 [node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
 
-[node name="high scores" parent="VBoxContainer2/MarginContainer6" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("10_cqmeh")]
+[node name="high scores" parent="VBoxContainer2/MarginContainer6" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("10_cqmeh")]
 layout_mode = 2
 text = "High Scores
 "
 sceneString = "res://mainScenes/HighScoresMainScene.tscn"
-animationPlayer = NodePath("../../MarginContainer5/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../MarginContainer5/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../MarginContainer5/Button/ClickAudioPlayer")
 
@@ -158,7 +184,6 @@ columns = 2
 [node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 
 [node name="Button" parent="VBoxContainer2/GridContainer/MarginContainer6" instance=ExtResource("10_kkka7")]
@@ -169,7 +194,6 @@ icon_alignment = 1
 [node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 10
 
 [node name="Button" parent="VBoxContainer2/GridContainer/MarginContainer8" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("10_kkka7")]
 layout_mode = 2
@@ -180,7 +204,6 @@ clickAudioplayer = NodePath("../../MarginContainer6/Button/ClickAudioPlayer")
 
 [node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 
 [node name="credits" parent="VBoxContainer2/GridContainer/MarginContainer5" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("7_bodv0")]
@@ -192,18 +215,20 @@ clickAudioplayer = NodePath("../../../MarginContainer4/metaProgression/ClickAudi
 
 [node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
 
 [node name="quit" parent="VBoxContainer2/GridContainer/MarginContainer7" instance=ExtResource("7_bodv0")]
 layout_mode = 2
 text = "Quit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 721.0
-offset_top = 795.0
-offset_right = 1318.0
-offset_bottom = 906.0
+texture_filter = 1
+offset_left = 630.0
+offset_top = 839.0
+offset_right = 1338.0
+offset_bottom = 1003.0
 theme = ExtResource("8_e2q8p")
-text = "This game collects game play data. This data is anonymous and its very helpful to balance the game, but it can be disabled in the settings menu if desired"
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[fill]This game collects game play data. This data is anonymous and is very helpful to balance the game, but it can be disabled in the settings menu if desired."
 
 [node name="SettingsMenu" parent="." instance=ExtResource("7_vbbet")]

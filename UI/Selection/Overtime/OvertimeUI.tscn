@@ -40,6 +40,7 @@ _data = {
 }
 
 [node name="OvertimeUI" type="Control" node_paths=PackedStringArray("animationPlayer")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 offset_top = -500.0
@@ -59,15 +60,15 @@ layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 305.0
-offset_bottom = 114.0
+offset_bottom = 108.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 10.0
-offset_right = 331.0
-offset_bottom = 117.0
-theme_override_font_sizes/normal_font_size = 60
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 298.0
+offset_bottom = 124.0
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Quota Reached
 [wave amp=50.0 freq=6.0 connected=1][rainbow freq=.5 sat=0.8 val=0.8]OverTime!

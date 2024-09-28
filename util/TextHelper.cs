@@ -46,22 +46,25 @@ public static class TextHelper
 
 	public static string getIngredientImage(GemType gemType) {
 		if (gemType.Equals(GemType.Coffee)) {
-			return imgStarter()+"res://placeholders/cards/icons/bean-icon.png[/img]";
+			return imgStarter()+"res://sprites/cards/icons/bean-icon.png[/img]";
 		}
 		if (gemType.Equals(GemType.Leaf)) {
-			return imgStarter()+"res://placeholders/cards/icons/leaf-icon.png[/img]";
+			return imgStarter()+"res://sprites/cards/icons/leaf-icon.png[/img]";
 		}
 		if (gemType.Equals(GemType.Sugar)) {
-			return imgStarter()+"res://placeholders/cards/icons/sugar-icon.png[/img]";
+			return imgStarter()+"res://sprites/cards/icons/sugar-icon.png[/img]";
 		}
 		if (gemType.Equals(GemType.Milk)) {
-			return imgStarter()+"res://placeholders/cards/icons/milk-icon.png[/img]";
+			return imgStarter()+"res://sprites/cards/icons/milk-icon.png[/img]";
 		}
 		if (gemType.Equals(GemType.Vanilla)) {
-			return imgStarter()+"res://placeholders/cards/icons/vanilla-icon.png[/img]";
+			return imgStarter()+"res://sprites/cards/icons/vanilla-icon.png[/img]";
 		}
 		if (gemType.Equals(GemType.Black)) {
-			return imgStarter()+"res://placeholders/cards/icons/burn-icon.png[/img]";
+			return imgStarter()+"res://sprites/cards/icons/burn-icon.png[/img]";
+		}
+		if (gemType.Equals(GemType.Lead)) {
+			return imgStarter()+"res://sprites/ingredients/final/Lead-placeholder.png[/img]";
 		}
 		return "";
 	}
@@ -71,14 +74,14 @@ public static class TextHelper
 	}
 
 	public static string getEnergyImage() {
-		return imgStarter()+"res://placeholders/cards/icons/energy-icon.png[/img]";
+		return imgStarter()+"res://sprites/cards/icons/energy-icon.png[/img]";
 	}
 
 	public static string getCardImage() {
-		return imgStarter()+"res://placeholders/cards/icons/card-icon.png[/img]";
+		return imgStarter()+"res://sprites/cards/icons/card-icon.png[/img]";
 	}
 	public static string getCoinImage() {
-		return imgStarter()+"res://placeholders/cards/icons/coin-icon.png[/img]";
+		return imgStarter()+"res://sprites/cards/icons/coin-icon.png[/img]";
 	}
 
 }

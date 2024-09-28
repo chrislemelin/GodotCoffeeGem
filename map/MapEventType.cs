@@ -18,26 +18,50 @@ static class MapEventTypeHelper
 	static Random random = new Random();
 
 	public static string getString(this MapEventType type){
+		int cost = type.getCost();
+		string returnString = "";
 		switch (type)
 		{
 			case MapEventType.Money:
-				return "Money";
+				returnString = "Money";
+				break;
 			case MapEventType.RemoveCard:
-				return "Remove Card";
+				returnString = "Remove Card";
+				break;
 			case MapEventType.GainCard:
-				return "Gain Card";
+				returnString = "Gain Card";
+				break;
 			case MapEventType.UpgradeCard:
-				return "Upgrade Card";
+				returnString = "Upgrade Card";
+				break;
 			case MapEventType.Mechanic:
-				return "Mechanic \n(50 Coins)";
+				returnString = "Mechanic";
+				break;
 			case MapEventType.RelicShop:
-				return "Relics \n(40 Coins)";
+				returnString = "Relics";
+				break;
 			case MapEventType.Heal:
-				return "Heal a Heart";                
+				returnString = "Heal a Heart";
+				break;
 			case MapEventType.Home:
-				return "Home";                
+				returnString = "Home";
+				break;
+		}
+		if (cost > 0) {
+			returnString +="\n("+cost+" Coins)";
+		}
+		return returnString;
+	}
+
+	public static int getCost(this MapEventType type) {
+		switch (type)
+		{
+			case MapEventType.Mechanic:
+				return 50;
+			case MapEventType.RelicShop:
+				return 40;             
 			default:
-				return "";
+				return 0;
 		}
 	}
 

@@ -44,7 +44,7 @@ nuke = false
 [resource]
 script = ExtResource("2_6ct6l")
 Title = "Vanilla Shot"
-Description = "Change selection to vanilla. If this makes a 4+ match, gain 0.25 mult"
+Description = "Change selection to vanilla. If this makes a 4+ match, gain 0.25 mult."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_fdx55")

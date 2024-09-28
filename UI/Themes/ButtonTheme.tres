@@ -1,55 +1,11 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://3d6t3ubetydb"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://3d6t3ubetydb"]
 
+[ext_resource type="StyleBox" uid="uid://dxvonrjwk5xwp" path="res://UI/Themes/StyleBoxes/button/ButtonDisabledPixelTexture.tres" id="1_qmywo"]
 [ext_resource type="StyleBox" uid="uid://bwc2d0age3pc3" path="res://UI/Themes/StyleBoxes/PanelBackground.tres" id="1_x15o2"]
+[ext_resource type="StyleBox" uid="uid://cfbppcy4xwo6d" path="res://UI/Themes/StyleBoxes/button/ButtonHoverPixelTexture.tres" id="2_72bwj"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_q7xkx"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
-bg_color = Color(0.529412, 0.666667, 0.894118, 1)
-border_width_top = 6
-border_color = Color(0.231373, 0.380392, 0.631373, 0)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5skd"]
-bg_color = Color(0.560784, 0.713726, 0.968627, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sv2r"]
-bg_color = Color(0.235294, 0.462745, 1, 1)
-border_width_bottom = 6
-border_color = Color(0.231373, 0.380392, 0.631373, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrlob"]
-bg_color = Color(0.560784, 0.713726, 0.968627, 1)
-border_width_bottom = 6
-border_color = Color(0.231373, 0.380392, 0.631373, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwdd0"]
-bg_color = Color(0.231373, 0.380392, 0.631373, 1)
-border_width_top = 6
-border_color = Color(0.231373, 0.380392, 0.631373, 0)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource type="StyleBox" uid="uid://b07eiddimyskk" path="res://UI/Themes/StyleBoxes/button/ButtonPixelTexture.tres" id="3_gi0cm"]
+[ext_resource type="StyleBox" uid="uid://eatpmwrn3ln5" path="res://UI/Themes/StyleBoxes/button/ButtonPressedPixelTexture.tres" id="4_j07fw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xodmf"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -74,16 +30,15 @@ Button/colors/font_outline_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/font_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/font_sizes/font_size = 48
-Button/styles/disabled = SubResource("StyleBoxFlat_2a2oj")
-Button/styles/focus = SubResource("StyleBoxFlat_g5skd")
-Button/styles/hover = SubResource("StyleBoxFlat_8sv2r")
-Button/styles/normal = SubResource("StyleBoxFlat_wrlob")
-Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
+Button/styles/disabled = ExtResource("1_qmywo")
+Button/styles/hover = ExtResource("2_72bwj")
+Button/styles/normal = ExtResource("3_gi0cm")
+Button/styles/pressed = ExtResource("4_j07fw")
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
 Panel/styles/panel = ExtResource("1_x15o2")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
-RichTextLabel/font_sizes/normal_font_size = 46
+RichTextLabel/font_sizes/normal_font_size = 48
 TooltipLabel/colors/font_color = Color(0, 0, 0, 1)
 TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 0)
 TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0)

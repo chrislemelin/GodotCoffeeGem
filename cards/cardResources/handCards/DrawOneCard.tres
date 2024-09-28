@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("3_kwm4e")
 Title = "Quick Draw"
-Description = "+$value$draw. If you have made at least 1 tea match this turn, +1$draw $customText"
+Description = "+$value$draw. If you have made at least 1 tea match this turn, +1$draw. $customText"
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_m06y1")

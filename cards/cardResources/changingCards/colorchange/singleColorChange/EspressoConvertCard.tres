@@ -44,7 +44,7 @@ nuke = false
 [resource]
 script = ExtResource("2_2hfyw")
 Title = "Espresso Shot"
-Description = "Change selection to coffee. If this makes a 4+ match, +1$energy"
+Description = "Change selection to coffee. If this makes a 4+ match, +1$energy."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_3la3f")

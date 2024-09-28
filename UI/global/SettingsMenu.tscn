@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="2_5y2ms"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_nhw1p"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="4_6wc46"]
-[ext_resource type="Texture2D" uid="uid://dttel37o7wg87" path="res://placeholders/UI/XboxSettingsIcon.tres" id="6_i4wfn"]
+[ext_resource type="Texture2D" uid="uid://dttel37o7wg87" path="res://sprites/UI/controller/XboxSettingsIcon.tres" id="6_i4wfn"]
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "fullScreenCheckBox", "resolutionsOptionButton", "panel", "controllerTexture") groups=["SettingsMenu"]]
 layout_mode = 3
@@ -29,12 +29,10 @@ controllerTexture = NodePath("TextureRect")
 
 [node name="Button" parent="." instance=ExtResource("2_5y2ms")]
 layout_mode = 0
-offset_left = 1754.0
-offset_top = 17.0
-offset_right = 1908.0
-offset_bottom = 69.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 1756.0
+offset_top = 14.0
+offset_right = 1904.0
+offset_bottom = 84.0
 focus_mode = 1
 text = "Settings"
 
@@ -166,6 +164,7 @@ text = "Resolutions"
 fit_content = true
 
 [node name="OptionButton" type="OptionButton" parent="Panel/VBoxContainer/Resolutions/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 
 [node name="QuitButton" type="MarginContainer" parent="Panel/VBoxContainer"]

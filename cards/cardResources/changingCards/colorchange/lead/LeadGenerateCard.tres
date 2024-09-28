@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://chyr8eld8n0jm"]
+
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/lead/LeadGenerateCardEffect.cs" id="1_i4jp2"]
+[ext_resource type="Texture2D" uid="uid://crqkdblt2e684" path="res://cards/cardResources/cardArt/final/CardArtLead.png" id="1_v23yn"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_glmh1"]
+
+[sub_resource type="Resource" id="Resource_cem3n"]
+script = ExtResource("1_i4jp2")
+Range = 1.0
+Value = 1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusPassives = []
+matchEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+consume = false
+retain = false
+matchy = false
+spendX = false
+nuke = false
+
+[resource]
+script = ExtResource("3_glmh1")
+Title = "Lead"
+Description = "Generate a lead."
+Cost = 0
+rarity = 0
+Picture = ExtResource("1_v23yn")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_cem3n")

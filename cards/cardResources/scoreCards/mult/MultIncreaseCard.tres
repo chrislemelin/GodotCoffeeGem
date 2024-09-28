@@ -31,7 +31,7 @@ nuke = false
 [resource]
 script = ExtResource("2_f5w21")
 Title = "Witty Joke"
-Description = "Add 0.25 to the multiplier. If you have made at least 1 vanilla match this turn, draw a card $customText"
+Description = "Add 0.25 to the multiplier. If you have made at least 1 vanilla match this turn, +1$draw. $customText"
 Cost = 0
 rarity = 0
 coinCost = 0

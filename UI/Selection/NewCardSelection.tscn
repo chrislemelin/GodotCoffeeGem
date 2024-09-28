@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://UI/Selection/NewCardSelection.cs" id="1_ey31r"]
 [ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="2_wj53c"]
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="2_ymanv"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="3_hkya8"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="3_hkya8"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_tow0o"]
 [ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="5_65464"]
-[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="6_33su1"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="6_33su1"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="7_6nsr1"]
 [ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/rewards/Rise01.mp3" id="8_p82pv"]
 
@@ -88,7 +88,7 @@ expand_mode = 1
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(845, 50)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Pick a new card to add to your deck to continue"
 fit_content = true

@@ -30,7 +30,7 @@ nuke = false
 [resource]
 script = ExtResource("2_ebewn")
 Title = "Stripped 4 Parts"
-Description = "Remove a column from the match board for this level. +3$draw and gain +2$energy"
+Description = "Remove a column from the match board for this level. +3$draw and gain +2$energy."
 Cost = 0
 rarity = 1
 coinCost = 0

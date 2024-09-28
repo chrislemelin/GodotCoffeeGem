@@ -44,7 +44,7 @@ nuke = false
 [resource]
 script = ExtResource("2_2qvkn")
 Title = "Sugar Rush"
-Description = "Change selection to sugar. If this makes a 4+ match, +5$coin"
+Description = "Change selection to sugar. If this makes a 4+ match, +5$coin."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_dh5cg")

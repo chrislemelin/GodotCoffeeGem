@@ -44,7 +44,7 @@ nuke = false
 [resource]
 script = ExtResource("2_bf3qq")
 Title = "Milky Splash"
-Description = "Change selection to milk. If this makes a 4+ match, +1$draw, +1$energy, +1burnt"
+Description = "Change selection to milk. If this makes a 4+ match, +1$draw, +1$energy, +1burnt."
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_y7k5k")
