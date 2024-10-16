@@ -47,6 +47,11 @@ public partial class GameManager : GameManagerIF
 	public override void _Ready()
 	{
 		base._Ready();
+
+		GetViewport().GuiFocusChanged += (thing) => {
+			GD.Print(thing.GetPath());
+		};
+
 		
 		MatchBoard matchboard = FindObjectHelper.getMatchBoard(this);
 		Hand hand = FindObjectHelper.getHand(this);
@@ -60,17 +65,14 @@ public partial class GameManager : GameManagerIF
 			setStartTime();
 		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
-		if (!getGlobal().shownWelcomeTutorial && !debugMode)
-		{
+		if (getNumberOfLevelsPlayed() == 0 && startingDialougeResource != null) {
+			hand.forceNotHaveUIFocus = true;
 			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
-			
 			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
-				if (resource == startingDialougeResource) {
-					welcomeTutorial.startUp();
-				}
+				hand.forceNotHaveUIFocus = false;
+				hand.setUIFocus(true);
 			};
-			getGlobal().shownWelcomeTutorial = true;
-			getGlobal().save();
+			//DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
 		}
 		if (!getGlobal().shownGooTutorial && currentLevelResource.blockedTiles > 0)
 		{
@@ -135,7 +137,6 @@ public partial class GameManager : GameManagerIF
 		relicHolderUI.setRelicList(getRelics());
 		relicHolderUI.startUpRelics();
 		EmitSignal(SignalName.levelStart);
-		debtDisplay.richTextLabel.Text += "$" + getDebt();
 
 		score.levelPassed += checkForOverTimeTutorial;
 		score.levelPassed += checkForGameOver;
@@ -143,7 +144,12 @@ public partial class GameManager : GameManagerIF
 
 		//EmitSignal(SignalName.levelStart);
 		if (dialougeResource!= null) {
+			hand.forceNotHaveUIFocus = true;
 			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
+			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
+				hand.forceNotHaveUIFocus = true;
+				hand.setUIFocus(true);
+			};
 		}
 
 	}

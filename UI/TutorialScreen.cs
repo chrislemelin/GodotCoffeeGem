@@ -5,6 +5,7 @@ public partial class TutorialScreen : Control
 {
 	[Export] private TextureButton textureButton;
 	[Export] private Button button2;
+	
 
 	public override void _Ready()
 	{

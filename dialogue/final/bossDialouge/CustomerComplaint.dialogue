@@ -1,8 +1,8 @@
-Bob: Hey Nick, we had a customer complaint on that last drink you made, so you going to have to remake that one.
+Bob: We've received a customer complaint regarding that last drink you made. We're going to need you to remake it.
 Nick: What was wrong with it?
-Bob: Oh, I didnt ask. So when you make it this time just make it [wave amp=50.0 freq=4.0 connected=1]better[/wave].
+Bob: Oh, I didn't ask. Just make sure you're keeping up to company standards. When you make it this time, just make it [wave amp=50.0 freq=4.0 connected=1]better[/wave].
 Nick: ...
-Bob: They also wanted me to relay to you that you are the worst barista they have ever seen.
-Bob: Remember, the customer is always right!
-Nick: Got it boss
+Bob: They also requested that we relay a comment: You are the worst barista they have ever seen.
+Bob: Remember, the customer is always right. Please be sure to incorporate this helpful feedback.
+Nick: Right... Got it, boss.
 => END

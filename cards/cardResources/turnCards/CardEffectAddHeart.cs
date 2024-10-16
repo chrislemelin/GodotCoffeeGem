@@ -20,5 +20,6 @@ public partial class CardEffectAddHeart : CardEffectIF
 	{
 		GameManagerIF gameManager = FindObjectHelper.getGameManager(matchBoard);
 		gameManager.setHealth(gameManager.getHealth() + 1);
+		matchBoard.removeColumn();
 	}
 }

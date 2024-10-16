@@ -199,6 +199,5 @@ offset_left = 965.0
 offset_top = 763.0
 offset_right = 1119.0
 offset_bottom = 815.0
-grow_horizontal = 1
-grow_vertical = 1
 text = "Continue"
+grabFocus = true

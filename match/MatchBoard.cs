@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
-public partial class MatchBoard : ControllerInput
+public partial class MatchBoard : MatchBoardTutorial
 {
 	[Export] public int sizeX;
 	[Export] public int sizeY;
@@ -22,7 +22,7 @@ public partial class MatchBoard : ControllerInput
 	[Export] public AudioPlayer audioStreamPlayer2D;
 	[Export] public AudioPlayer audioScoreStreamPlayer2D;
 	[Export] public Node2D boardHolder;
-	private int columnUpgrades;
+	private int columnUpgrades = 0;
 
 	// score stats
 	private int scoreValue = 0;
@@ -48,6 +48,8 @@ public partial class MatchBoard : ControllerInput
 
 	[Signal]
 	public delegate void ingredientDestroyedEventHandler(Gem gem);
+	[Signal]
+	public delegate void doneMatchingEventHandler();
 	[Signal]
 	public delegate void ingredientMatchedEventHandler(Match match);
 	[Signal]
@@ -143,6 +145,16 @@ public partial class MatchBoard : ControllerInput
 		}
 	}
 
+	public void setTutorialTiles(HashSet<Vector2I> tiles) {
+		foreach(Tile tile in tileSet) {
+			if(tiles.Contains((Vector2I)tile.getTilePosition())) {
+				tile.setTutorialColor(true);
+			}else {
+				tile.setTutorialColor(false);
+			}
+		}
+	}
+
 	public void clearUIFocus(){
 		setUIFocus(false);
 	}
@@ -158,7 +170,9 @@ public partial class MatchBoard : ControllerInput
 				changeHoveredTile(new Vector2(0,0));
 			} else {
 				clearTilesHovered();
+
 			}
+			//clear
 		}
 	}
 
@@ -209,8 +223,8 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	private void changeHoveredTile(Vector2 newVector) {
-		int newX = Math.Clamp((int)newVector.X + (int)tileHoveredPosition.X, 0, sizeX-1);
-		int newY = Math.Clamp((int)newVector.Y + (int)tileHoveredPosition.Y, 0, sizeY-1);
+		int newX = Math.Clamp((int)newVector.X + (int)tileHoveredPosition.X, 0, getGridSize().X-1);
+		int newY = Math.Clamp((int)newVector.Y + (int)tileHoveredPosition.Y, 0, getGridSize().Y-1);
 		tileHoveredPosition = new Vector2(newX, newY);
 		Tile tile = getTile(tileHoveredPosition);
 		FindObjectHelper.getHandLine(this).setPosition(tile.GlobalPosition + (tileSize/2));
@@ -239,6 +253,7 @@ public partial class MatchBoard : ControllerInput
 			tile.mouseExit();
 			tile.turnHighlightOff();
 			tile.turnSelectedOff();
+			tile.setDisabled(false);
 		}
 	}
 
@@ -264,6 +279,7 @@ public partial class MatchBoard : ControllerInput
 				HashSet<Tile> tilesInRange = getTilesInRange(center.getTilePosition(), card.getCardResource().cardEffect.getRange());
 				foreach (Tile tile in tilesInRange)
 				{
+					//if (card.getCardResource().cardEffect.canTargetTile(tile))
 					addTileToAvailibleToSelectList(tile);
 				}
 			}
@@ -307,8 +323,15 @@ public partial class MatchBoard : ControllerInput
 			if (thingsAreDoneMoving)
 			{
 				thingsAreMoving = checkForMatches();
+				if (!thingsAreMoving) {
+					EmitSignal(SignalName.doneMatching);
+				}
 			}
 		}
+		if (!thingsAreMoving) {
+			EmitSignal(SignalName.doneMatching);
+		}
+	
 	}
 
 	private bool checkIfThingsAreDoneMoving()
@@ -419,9 +442,9 @@ public partial class MatchBoard : ControllerInput
 
 		FindObjectHelper.getSettingsMenu(this).windowOpened += clearUIFocus;
 
-		Vector2 gridSize = getGridSize();
-		sizeX = (int)gridSize.X;
-		sizeY = (int)gridSize.Y;
+		//Vector2 gridSize = getGridSize();
+		//sizeX = (int)gridSize.X;
+		//sizeY = (int)gridSize.Y;
 
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
 		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => setUIFocus(false);
@@ -477,6 +500,7 @@ public partial class MatchBoard : ControllerInput
 	private Vector2I getGridSize() {
 		Vector2I gridMod = new Vector2I(0,0);
 		int gridUpgrades = columnUpgrades - columnsRemoved + FindObjectHelper.getGameManager(this).getGridUpgrades();
+
 		if (gridUpgrades < 0) {
 			gridMod = new Vector2I(gridUpgrades, 0);
 		} else {
@@ -498,9 +522,12 @@ public partial class MatchBoard : ControllerInput
 		}
 
 		Vector2I returnVector = new Vector2I(sizeX, sizeY) + gridMod;
+
 		if (returnVector.X < 1) {
+
 			return new Vector2I(1, returnVector.Y);
 		}
+
 		return returnVector;
 	}
 
@@ -528,10 +555,11 @@ public partial class MatchBoard : ControllerInput
 	}
 
 	public void removeColumn() {
-		// if (sizeX == 1) {
+		// Vector2 getCurrentSize = getGridSize();
+		// if (getCurrentSize.X == 1) {
 		// 	return;
 		// }
-		// for (int newY = 0; newY < sizeY; newY++) {
+		// for (int newY = 0; newY < getCurrentSize.Y; newY++) {
 		// 	deleteTile(new Vector2(sizeX-1, newY));
 		// }
 		// sizeX --;
@@ -568,6 +596,7 @@ public partial class MatchBoard : ControllerInput
 		}
 
 		Vector2 gridSize = getGridSize();
+		HashSet<Vector2> gridPositions = new HashSet<Vector2>();
 
 		for (int newX = 0; newX < gridSize.X; newX++)
 		{
@@ -590,6 +619,12 @@ public partial class MatchBoard : ControllerInput
 				newTile.Position = new Vector2(newX * getTileSize().X, newY * getTileSize().Y);
 				newTile.control.MouseEntered += () => setTileHovered(newTile);
 				newTile.control.MouseExited += () => clearHover(newTile);
+				gridPositions.Add(position);
+			}
+		}
+		foreach (Vector2 mapPosition in tileMap.Keys) {
+			if (!gridPositions.Contains(mapPosition)){
+				tileMap.Remove(mapPosition);
 			}
 		}
 	}
@@ -601,7 +636,7 @@ public partial class MatchBoard : ControllerInput
 		{
 			checkForExtraHighlightsOnTileHover(tile);
 		} else{
-			clearTilesSelected();
+			//clearTilesSelected();
 		}
 		if(tileHovered.HasValue && tileHovered.GetValue() != tile) {
 			tileHovered.GetValue().mouseExit();
@@ -611,7 +646,7 @@ public partial class MatchBoard : ControllerInput
 
 	private void clearHover(Tile tile)
 	{
-		tile.turnSelectedOff();
+		tile.mouseExit();
 		tile.setDisabled(false);
 	}
 
@@ -663,6 +698,7 @@ public partial class MatchBoard : ControllerInput
 	private HashSet<HashSet<Tile>> getMatches()
 	{
 		Vector2I gridSize = getGridSize();
+		//GD.Print(gridSize);
 		HashSet<HashSet<Tile>> matches = new HashSet<HashSet<Tile>>(HashSet<Tile>.CreateSetComparer());
 		for (int x = 0; x < gridSize.X; x++)
 		{
@@ -966,7 +1002,7 @@ public partial class MatchBoard : ControllerInput
 					}
 					else
 					{
-						upperGem = generateRandomGemForTile(currentPosition);
+						upperGem = generateRandomGemForTile(currentPosition, true);
 						upperGem.Position = new Vector2(0, (y + 1 + newGemCountInRow) * getTileSizeUnscaled().Y * -1);
 						upperGem.moveToPostion(Vector2.Zero);
 						newGemCountInRow++;
@@ -1029,22 +1065,22 @@ public partial class MatchBoard : ControllerInput
 	private void gooIntialTiles() {
 		if (FindObjectHelper.getGameManager(this).getGooRightRow())
 		{
-			gooColumn(sizeX - 1);
+			gooColumn(getGridSize().X - 1);
 		}
 	}
 
 	public void gooRightMostColumn() {
 		if (FindObjectHelper.getGameManager(this).getGooRightRow())	
 		{
-			gooColumn(sizeX - 2);
+			gooColumn(getGridSize().X - 2);
 		} else {
-			gooColumn(sizeX - 1);
+			gooColumn(getGridSize().X - 1);
 		}
 	}
 
 	public void gooColumn(int col) {
 		List<Tile> tilesToBlock = new List<Tile>();
-		for (int y = 0; y < sizeY; y++)
+		for (int y = 0; y < getGridSize().Y; y++)
 		{
 			Vector2 currentPosition = new Vector2(col, y);
 			tilesToBlock.Add(getTile(currentPosition));
@@ -1096,7 +1132,7 @@ public partial class MatchBoard : ControllerInput
 			matches = getMatches();
 		}
 	}
-	private Gem generateRandomGemForTile(Vector2 position)
+	private Gem generateRandomGemForTile(Vector2 position, bool drop = false)
 	{
 		PackedScene gemSceneToUse = usingSmallSize() ? gemSceneSmall : gemScene;
 		Gem gem = gemSceneToUse.Instantiate() as Gem;
@@ -1105,6 +1141,16 @@ public partial class MatchBoard : ControllerInput
 		GemType gemType = spawnBlacks ? GemTypeHelper.getRandomColorIncludeBlack() : GemTypeHelper.getRandomColor();
 		while (gemTypesCannotBeSpawned.Contains(gemType)) {
 			gemType = GemTypeHelper.getRandomColor();
+		}
+		if (tutorial) {
+			if (drop) {
+				if (tutorialGemSpawns.Count > 0) {
+					gemType = tutorialGemSpawns[0];
+					tutorialGemSpawns.RemoveAt(0);
+				}
+			} else {
+				gemType = tutorialStartingBoard[new Vector2I((int)position.X, (int)position.Y)];
+			}
 		}
 		gem.setType(gemType);
 		tile.gemParent.AddChild(gem);

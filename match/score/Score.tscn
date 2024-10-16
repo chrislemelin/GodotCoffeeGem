@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://1l7l6f7wv6gr"]
+[gd_scene load_steps=23 format=3 uid="uid://1l7l6f7wv6gr"]
 
 [ext_resource type="Script" path="res://match/score/Score.cs" id="1_kd06i"]
 [ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="2_yuj2t"]
@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://d1yewgtk7q7eh" path="res://UI/ColorUpgradePreviewUI.tscn" id="5_rxpiq"]
 [ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/coins/money.wav" id="6_ax4rp"]
 [ext_resource type="PackedScene" uid="uid://60wadmikervm" path="res://match/score/HeartUI.tscn" id="7_7t6v1"]
+[ext_resource type="Texture2D" uid="uid://tyt3epp7xjnn" path="res://sprites/UI/Heart3x.png" id="8_6bpkm"]
 [ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://sprites/UI/heart-pixel-300px.png" id="8_7hyy0"]
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="9_a0nhy"]
-[ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://sprites/UI/heart-empty-pixel-300px.png" id="9_p15ya"]
-[ext_resource type="Texture2D" uid="uid://c77r8vld5eive" path="res://sprites/UI/turn-orb-pixel-300px.png" id="10_leong"]
+[ext_resource type="Texture2D" uid="uid://dkljd46l1jawq" path="res://sprites/UI/HeartBroken.png" id="9_sq4d6"]
+[ext_resource type="Texture2D" uid="uid://dw8lx418hvkki" path="res://sprites/UI/EnergyOrb3x.png" id="10_k8wif"]
 [ext_resource type="Texture2D" uid="uid://22671e24p2wq" path="res://sprites/UI/turn-orb-empty-pixel-300px.png" id="11_g3qrj"]
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="12_5h0ob"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="13_mxfsq"]
@@ -46,15 +47,15 @@ turnsContainer = NodePath("VBoxContainer/TurnsContainer/TurnsContainer")
 heartsContainer = NodePath("VBoxContainer/TurnsContainer/HeartsContainer")
 colorUpgradeUI = ExtResource("5_rxpiq")
 heartUI = ExtResource("7_7t6v1")
-heartFull = ExtResource("8_7hyy0")
-heartEmpty = ExtResource("9_p15ya")
-turnFull = ExtResource("10_leong")
+heartFull = ExtResource("8_6bpkm")
+heartEmpty = ExtResource("9_sq4d6")
+turnFull = ExtResource("10_k8wif")
 turnEmpty = ExtResource("11_g3qrj")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -153.0
 offset_top = -49.0
-offset_right = 114.0
+offset_right = 165.0
 offset_bottom = 93.0
 theme = ExtResource("12_5h0ob")
 
@@ -220,6 +221,7 @@ size_flags_stretch_ratio = 7.9
 [node name="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer" instance=ExtResource("7_7t6v1")]
 texture_filter = 1
 layout_mode = 2
+texture = ExtResource("8_6bpkm")
 stretch_mode = 0
 
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer"]
@@ -237,7 +239,7 @@ size_flags_stretch_ratio = 7.9
 [node name="TextureRect3" type="TextureRect" parent="VBoxContainer/TurnsContainer/TurnsContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("9_a0nhy")
+texture = ExtResource("10_k8wif")
 expand_mode = 1
 stretch_mode = 4
 

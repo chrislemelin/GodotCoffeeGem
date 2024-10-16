@@ -30,7 +30,7 @@ public partial class CardIF : lerp
 
 	public bool getEnabled()
 	{
-		return enabled || cardResource.canPlayCard();
+		return enabled && cardResource.canPlayCard();
 	}
 
 	public void setDisabled()

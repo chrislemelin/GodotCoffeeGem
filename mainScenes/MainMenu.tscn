@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=20 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c5lhdf87xxt55" path="res://mainMenu/CoffeeBean.tscn" id="3_3tqas"]
 [ext_resource type="PackedScene" uid="uid://c50may7by4dag" path="res://mainScenes/MetaProgressionUI.tscn" id="4_mltja"]
 [ext_resource type="PackedScene" uid="uid://bwhgrydhls7ol" path="res://mainScenes/Credits.tscn" id="5_7ewrx"]
-[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="5_y52an"]
 [ext_resource type="PackedScene" uid="uid://cyqjkruf5yn4n" path="res://mainMenu/MapBackground.tscn" id="7_61k3c"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="7_bodv0"]
 [ext_resource type="PackedScene" uid="uid://dlslfluiohaff" path="res://mainMenu/Background.tscn" id="7_fjbjo"]
@@ -18,19 +17,21 @@
 [ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="10_cqmeh"]
 [ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="10_kkka7"]
 [ext_resource type="Texture2D" uid="uid://buijri2tdekaf" path="res://sprites/CoffeeShop/board/CoffeeFillTexture_withtop_09-21-2024.png" id="11_hvj1m"]
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="18_q8uys"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="19_0btbp"]
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "deckSelectionButton", "zenModButton", "quitButton", "metaProgressionButton", "creditsButton", "beanHolder")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "quitButton", "creditsButton", "tryTutorialUI", "settingsMenu", "settingsMenuButton", "beanHolder")]
 script = ExtResource("1_ro6go")
 quickPlayButton = NodePath("VBoxContainer2/play")
-deckSelectionButton = NodePath("VBoxContainer2/MarginContainer3/deckSelection")
-zenModButton = NodePath("VBoxContainer2/MarginContainer2/zenMode")
 quitButton = NodePath("VBoxContainer2/GridContainer/MarginContainer7/quit")
-metaProgressionButton = NodePath("VBoxContainer2/MarginContainer4/metaProgression")
 creditsButton = NodePath("VBoxContainer2/GridContainer/MarginContainer5/credits")
+tryTutorialUI = NodePath("TryTutorial")
 gameScene = ExtResource("2_g2ipy")
 deckSelectionScene = ExtResource("3_3ea2j")
 metaProgressionScene = ExtResource("4_mltja")
 creditsScene = ExtResource("5_7ewrx")
+settingsMenu = NodePath("SettingsMenu")
+settingsMenuButton = NodePath("VBoxContainer2/Settings/Button")
 beanScene = ExtResource("3_3tqas")
 numberOfBeans = 50
 beanHolder = NodePath("BeanHolder")
@@ -53,7 +54,7 @@ rotateSpeed = 20.0
 
 [node name="SmallCapsuleLogo09-22-2024" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(974, 216)
+position = Vector2(972, 184)
 scale = Vector2(3, 3)
 texture = ExtResource("9_82ehf")
 
@@ -77,105 +78,60 @@ position = Vector2(1.55993, -42.1181)
 scale = Vector2(2.28723, 2.28723)
 texture = ExtResource("11_hvj1m")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 482.0
-offset_top = 143.0
-offset_right = 1508.0
-offset_bottom = 284.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 25
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 120
-bbcode_enabled = true
-text = "[center]Beans of Production[/center]"
-fit_content = true
-scroll_active = false
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-offset_left = 630.0
-offset_top = 394.0
-offset_right = 1332.0
-offset_bottom = 837.0
+offset_left = 638.0
+offset_top = 321.0
+offset_right = 1340.0
+offset_bottom = 888.0
+theme_override_constants/separation = 1
 
 [node name="play" parent="VBoxContainer2" instance=ExtResource("7_bodv0")]
 layout_mode = 2
 text = "Play"
 grabFocus = true
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_top = 0
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_top = 10
-
-[node name="zenMode" type="Button" parent="VBoxContainer2/MarginContainer2"]
-visible = false
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme = ExtResource("5_y52an")
-text = "Zen Mode"
-
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer2"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_top = 20
-
-[node name="deckSelection" type="Button" parent="VBoxContainer2/MarginContainer3"]
-visible = false
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme = ExtResource("5_y52an")
-text = "Advanced Mode"
-
-[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer2"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_top = 10
-
-[node name="metaProgression" parent="VBoxContainer2/MarginContainer4" instance=ExtResource("7_bodv0")]
-layout_mode = 2
-text = "Upgrade Store"
-
-[node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer2"]
+[node name="UpgradeStore" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
-[node name="Button" parent="VBoxContainer2/MarginContainer7" instance=ExtResource("10_cqmeh")]
+[node name="Button" parent="VBoxContainer2/UpgradeStore" instance=ExtResource("10_cqmeh")]
 layout_mode = 2
-text = "Upgrade Store"
+text = "Upgrade Store
+"
 sceneString = "res://mainScenes/MetaProgressionDebtUI.tscn"
 
-[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer2"]
+[node name="CardLibrary" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
-[node name="Button" parent="VBoxContainer2/MarginContainer5" instance=ExtResource("10_cqmeh")]
+[node name="Button" parent="VBoxContainer2/CardLibrary" instance=ExtResource("10_cqmeh")]
 layout_mode = 2
 text = "Card Library"
 sceneString = "res://mainScenes/Library.tscn"
 
-[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer2"]
+[node name="HighScore" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
-[node name="high scores" parent="VBoxContainer2/MarginContainer6" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("10_cqmeh")]
+[node name="high scores" parent="VBoxContainer2/HighScore" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("10_cqmeh")]
 layout_mode = 2
 text = "High Scores
 "
 sceneString = "res://mainScenes/HighScoresMainScene.tscn"
-hoverAudioplayer = NodePath("../../MarginContainer5/Button/HoverAudioPlayer")
-clickAudioplayer = NodePath("../../MarginContainer5/Button/ClickAudioPlayer")
+hoverAudioplayer = NodePath("../../CardLibrary/Button/HoverAudioPlayer")
+clickAudioplayer = NodePath("../../CardLibrary/Button/ClickAudioPlayer")
+
+[node name="TutorialButton" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer2/TutorialButton" instance=ExtResource("10_cqmeh")]
+layout_mode = 2
+text = "Tutorial"
+sceneString = "res://mainScenes/tutorial.tscn"
+
+[node name="Settings" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+
+[node name="Button" parent="VBoxContainer2/Settings" instance=ExtResource("7_bodv0")]
+layout_mode = 2
+text = "Settings"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer2"]
 layout_mode = 2
@@ -206,12 +162,10 @@ clickAudioplayer = NodePath("../../MarginContainer6/Button/ClickAudioPlayer")
 layout_mode = 2
 theme_override_constants/margin_right = 20
 
-[node name="credits" parent="VBoxContainer2/GridContainer/MarginContainer5" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("7_bodv0")]
+[node name="credits" parent="VBoxContainer2/GridContainer/MarginContainer5" instance=ExtResource("7_bodv0")]
 layout_mode = 2
 text = "Credits
 "
-hoverAudioplayer = NodePath("../../../MarginContainer4/metaProgression/HoverAudioPlayer")
-clickAudioplayer = NodePath("../../../MarginContainer4/metaProgression/ClickAudioPlayer")
 
 [node name="MarginContainer7" type="MarginContainer" parent="VBoxContainer2/GridContainer"]
 layout_mode = 2
@@ -222,13 +176,73 @@ text = "Quit"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 texture_filter = 1
-offset_left = 630.0
-offset_top = 839.0
-offset_right = 1338.0
-offset_bottom = 1003.0
+offset_left = 637.0
+offset_top = 863.0
+offset_right = 1345.0
+offset_bottom = 1027.0
 theme = ExtResource("8_e2q8p")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[fill]This game collects game play data. This data is anonymous and is very helpful to balance the game, but it can be disabled in the settings menu if desired."
 
 [node name="SettingsMenu" parent="." instance=ExtResource("7_vbbet")]
+showButton = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TryTutorial" type="Control" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("18_q8uys")
+
+[node name="TextureRect" type="TextureRect" parent="TryTutorial"]
+modulate = Color(0.396078, 0.396078, 0.396078, 0.513726)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1091.0
+texture = ExtResource("19_0btbp")
+
+[node name="Panel" type="Panel" parent="TryTutorial"]
+layout_mode = 0
+offset_left = 633.0
+offset_top = 377.0
+offset_right = 1348.0
+offset_bottom = 601.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TryTutorial/Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 700.0
+offset_bottom = 87.0
+bbcode_enabled = true
+text = "[center]This is your first time playing the game, would you like to try the tutorial first?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TryTutorial/Panel"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 122.0
+offset_right = 606.0
+offset_bottom = 186.0
+
+[node name="MarginContainer" type="MarginContainer" parent="TryTutorial/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 20
+
+[node name="Button2" parent="TryTutorial/Panel/HBoxContainer/MarginContainer" instance=ExtResource("10_cqmeh")]
+layout_mode = 2
+text = "Yes Please"
+sceneString = "res://mainScenes/tutorial.tscn"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TryTutorial/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+
+[node name="Button" parent="TryTutorial/Panel/HBoxContainer/MarginContainer2" instance=ExtResource("10_cqmeh")]
+layout_mode = 2
+text = "Naw"
+sceneString = "res://mainScenes/game.tscn"

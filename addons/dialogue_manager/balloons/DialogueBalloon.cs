@@ -42,7 +42,6 @@ namespace DialogueManagerRuntime
 	  }
 	}
 
-
 	public override void _Ready()
 	{
 	  balloon = GetNode<Control>("%Balloon");

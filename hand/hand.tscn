@@ -32,7 +32,7 @@ cardPlayedSoundEffect = ExtResource("4_hbmsc")
 cardSelectedSoundEffect = ExtResource("5_o7eqj")
 windowsInFrontOf = []
 width = 900
-hoverUpDistance = 50.0
+hoverUpDistance = 30.0
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -419.0

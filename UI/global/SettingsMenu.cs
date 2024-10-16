@@ -13,10 +13,11 @@ public partial class SettingsMenu : Node
 	[Export] Button visibleButton;
 	[Export] CheckBox fullScreenCheckBox;
 	[Export] OptionButton resolutionsOptionButton;
-	[Export] Panel panel;
+	[Export] Control panel;
 	[Signal] public delegate void windowClosedEventHandler();
 	[Signal] public delegate void windowOpenedEventHandler();
 	[Export] private TextureRect controllerTexture;
+	[Export] private bool showButton = true;
 
 
 
@@ -33,6 +34,7 @@ public partial class SettingsMenu : Node
 		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
 		setVisibilityOnControllerTexture(controllerHelper.isUsingController());
 		controllerHelper.UsingControllerChanged += setVisibilityOnControllerTexture;
+		visibleButton.Visible = showButton;
 
 
 		setUpResolutions();
@@ -89,11 +91,10 @@ public partial class SettingsMenu : Node
 	}
 
 
-	private void openWindow() {
+	public void openWindow() {
 		panel.Visible = true;
 		EmitSignal(SignalName.windowOpened);
 		FindObjectHelper.getControllerHelper(this).forceDeselection();
-
 	}
 	private void closeWindow() {
 		panel.Visible = false;

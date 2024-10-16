@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://coujnmnth3xr5"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://coujnmnth3xr5"]
 
 [ext_resource type="StyleBox" uid="uid://ddaqeo5lmpqsm" path="res://UI/Themes/StyleBoxes/UIPanelWood.tres" id="1_y8cul"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_oys7b"]
@@ -7,18 +7,6 @@
 bg_color = Color(0.529412, 0.666667, 0.894118, 1)
 border_width_top = 6
 border_color = Color(0.231373, 0.380392, 0.631373, 0)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5skd"]
-bg_color = Color(0.560784, 0.713726, 0.968627, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -75,7 +63,6 @@ Button/colors/font_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/font_sizes/font_size = 48
 Button/styles/disabled = SubResource("StyleBoxFlat_2a2oj")
-Button/styles/focus = SubResource("StyleBoxFlat_g5skd")
 Button/styles/hover = SubResource("StyleBoxFlat_8sv2r")
 Button/styles/normal = SubResource("StyleBoxFlat_wrlob")
 Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")

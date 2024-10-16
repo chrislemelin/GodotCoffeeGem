@@ -10,13 +10,16 @@ public partial class MainMenu : GameManagerIF
 	[Export] Button quitButton;
 	[Export] Button metaProgressionButton;
 	[Export] Button creditsButton;
+	[Export] Control tryTutorialUI;
 
 
 	[Export] PackedScene gameScene;
 	[Export] PackedScene deckSelectionScene;
 	[Export] PackedScene metaProgressionScene;
 	[Export] PackedScene creditsScene;
-
+	
+	[Export] SettingsMenu settingsMenu;
+	[Export] Button settingsMenuButton;
 
 	[Export] PackedScene beanScene;
 	[Export] int numberOfBeans;
@@ -24,15 +27,23 @@ public partial class MainMenu : GameManagerIF
 
 	public override void _Ready()
 	{
-		quickPlayButton.Pressed += () => GetTree().ChangeSceneToPacked(gameScene);
-		deckSelectionButton.Pressed += () => GetTree().ChangeSceneToPacked(deckSelectionScene);
-		metaProgressionButton.Pressed += () => GetTree().ChangeSceneToPacked(metaProgressionScene);
-		creditsButton.Pressed += () => GetTree().ChangeSceneToPacked(creditsScene);
-		zenModButton.Pressed += () =>
-		{
-			setZenMode(true);
-			GetTree().ChangeSceneToPacked(gameScene);
+		quickPlayButton.Pressed += () => {
+			if (!getGlobal().shownWelcomeTutorial) {
+				tryTutorialUI.Visible = true;
+				setShownWelcomeTutorial(true);
+			} else {
+				GetTree().ChangeSceneToPacked(gameScene);
+			}
 		};
+		//deckSelectionButton.Pressed += () => GetTree().ChangeSceneToPacked(deckSelectionScene);
+		//metaProgressionButton.Pressed += () => GetTree().ChangeSceneToPacked(metaProgressionScene);
+		creditsButton.Pressed += () => GetTree().ChangeSceneToPacked(creditsScene);
+		settingsMenuButton.Pressed += () => settingsMenu.openWindow();
+		// zenModButton.Pressed += () =>
+		// {
+		// 	setZenMode(true);
+		// 	GetTree().ChangeSceneToPacked(gameScene);
+		// };
 
 
 		for (int a = 0; a < numberOfBeans; a++)

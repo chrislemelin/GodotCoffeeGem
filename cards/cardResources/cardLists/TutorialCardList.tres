@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardList" load_steps=7 format=3 uid="uid://xevyux1urwxw"]
+
+[ext_resource type="Resource" uid="uid://ba3r5csjrlkmt" path="res://cards/cardResources/tutorialCards/SwitchVertTutCard.tres" id="1_bsrbm"]
+[ext_resource type="Resource" uid="uid://cp3pe46jfulny" path="res://cards/cardResources/tutorialCards/SwitchHorizTutCard.tres" id="1_mhikr"]
+[ext_resource type="Resource" uid="uid://u77mg6byvolb" path="res://cards/cardResources/tutorialCards/ManaGemsTutCard.tres" id="2_wnpdk"]
+[ext_resource type="Resource" uid="uid://dgdt44mg7dcwg" path="res://cards/cardResources/tutorialCards/DrawGemsTutCard.tres" id="3_08jnk"]
+[ext_resource type="Resource" uid="uid://c6ylqsiiiroao" path="res://cards/cardResources/changingCards/colorchange/generateX/ConvertXCoffeeCard.tres" id="4_dd7oa"]
+[ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="7_rltt8"]
+
+[resource]
+script = ExtResource("7_rltt8")
+removeDuplicates = false
+allCards = [ExtResource("1_mhikr"), ExtResource("1_bsrbm"), ExtResource("2_wnpdk"), ExtResource("3_08jnk"), ExtResource("1_bsrbm"), ExtResource("1_bsrbm"), ExtResource("4_dd7oa")]

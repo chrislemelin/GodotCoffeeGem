@@ -29,7 +29,13 @@ public partial class CardEffectIF : Resource
 	[Export] public CardEffectGemType effectGemType { get; set; }
 	[Export] public CardPassive cardPassiveToApplyToHand;
 	[Export] public Array<GemType> cannotSelectGemTypes = new Array<GemType>();
+	[Export] public bool tutorialCard;
+	// [Export] public Vector2I firstPositionTutorial;
+	// [Export] public Vector2I secondPositionTutorial;
+	[Export] public Array<Vector2I> canOnlySelectTutorial;
 
+	[Export] public Vector2I burntPositionTutorial;
+	[Export] public Vector2I addonPositionTutorial;
 
 	[Signal] public delegate void CardPassivesChangedEventHandler();
 	[Signal] public delegate void ValueChangedEventHandler();
@@ -75,6 +81,12 @@ public partial class CardEffectIF : Resource
 		} if (cannotSelectGemTypes.Contains(tile.Gem.Type)) {
 			return false;
 		}
+		if (tutorialCard) {
+			return canOnlySelectTutorial.Contains((Vector2I)tile.getTilePosition());
+		}
+		// if (tutorialCard && selectedTiles.Count > 1) {
+		// 	return (Vector2I)tile.getTilePosition() == secondPositionTutorial;
+		// }
 		return true;
 	}
 
@@ -172,12 +184,18 @@ public partial class CardEffectIF : Resource
 		{
 			tiles = matchBoard.getRandomNonSpecialNonAddonTiles(BlackGems, selectedTiles.ToHashSet());
 		}
+		if (tutorialCard && BlackGems > 0) {
+			tiles = matchBoard.getTiles(new List<Vector2>{burntPositionTutorial});
+		}
 		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
 	}
 
 	private void createAddonGems(MatchBoard matchBoard, GemAddonType type, int count)
 	{
 		List<Tile> tiles = matchBoard.getRandomNonSpecialNonAddonTiles(count);
+		if (tutorialCard && count > 0) {
+			tiles = matchBoard.getTiles(new List<Vector2>{addonPositionTutorial});
+		}
 		matchBoard.addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), type);
 	}
 
@@ -201,7 +219,6 @@ public partial class CardEffectIF : Resource
 	{
 		return selectionType;
 	}
-
 	public float getRange()
 	{
 		float range = Range;
@@ -250,7 +267,6 @@ public partial class CardEffectIF : Resource
 		}
 		return value.ToString();
 	}
-
 
 	/// <summary>
 	///  Get all tiles that can be selected after the first tile selection. This can be manually set if the range value wont cut it.

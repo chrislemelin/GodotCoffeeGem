@@ -72,7 +72,7 @@ public partial class Map : Node
 			List<MapEventType> path = new List<MapEventType>();
 			for(int pathLength = 0; pathLength < 2; pathLength++) 
 			{
-				MapEventType mapEventType = MapEventTypeHelper.getRandom();	
+				MapEventType mapEventType = MapEventType.Mechanic;	
 				while(mapEventType == MapEventType.Mechanic && !gameManager.getMechanicUnlocked()) {
 					mapEventType = MapEventTypeHelper.getRandom();
 				}

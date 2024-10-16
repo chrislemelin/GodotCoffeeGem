@@ -11,10 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="7_y00am"]
-[ext_resource type="Texture2D" uid="uid://ccclomm6af1lx" path="res://sprites/CoffeeShop/board/Board-09-20-2024.png" id="9_j3fiq"]
+[ext_resource type="Texture2D" uid="uid://b74401cboh66g" path="res://sprites/CoffeeShop/final/Board-09-20-2024.png" id="9_hn6v7"]
 [ext_resource type="AudioStream" uid="uid://cdipaaqingbkm" path="res://sound/Score/water-pouring-80316.wav" id="10_54sqs"]
-[ext_resource type="Texture2D" uid="uid://bhfpqg7xd1qri" path="res://sprites/CoffeeShop/board/CoffeePot_09-21-2024.png" id="10_mm5ha"]
-[ext_resource type="Texture2D" uid="uid://buijri2tdekaf" path="res://sprites/CoffeeShop/board/CoffeeFillTexture_withtop_09-21-2024.png" id="11_4pkue"]
+[ext_resource type="Texture2D" uid="uid://npbic2m8dq1k" path="res://sprites/CoffeeShop/final/CoffeePot_09-21-2024.png" id="10_gmlox"]
+[ext_resource type="Texture2D" uid="uid://b0yctqgv5i2ps" path="res://sprites/CoffeeShop/final/CoffeeFillTexture_withtop_09-21-2024.png" id="11_5jbtk"]
 [ext_resource type="AudioStream" uid="uid://b2ps3qbjetreq" path="res://sound/MatchBoard/maximize_008.ogg" id="11_7746k"]
 [ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://sprites/bg-square-round-49.png" id="12_g4i3p"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="14_symjt"]
@@ -43,23 +43,22 @@ multLabel = NodePath("MultText/RichTextLabel2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(139, 130)
-scale = Vector2(4, 4)
-texture = ExtResource("9_j3fiq")
+scale = Vector2(3, 3)
+texture = ExtResource("9_hn6v7")
 
 [node name="Node2D" type="Node2D" parent="."]
-scale = Vector2(0.8, 0.8)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Node2D" node_paths=PackedStringArray("audioPourStreamPlayer2D", "scoreRewards", "progressBar", "sparkleArea")]
 texture_filter = 1
-offset_left = -480.0
-offset_top = 5.0
-offset_right = -386.0
-offset_bottom = 113.0
-scale = Vector2(5, 5)
+offset_left = -392.0
+offset_top = 8.0
+offset_right = -279.0
+offset_bottom = 153.0
+scale = Vector2(3, 3)
 max_value = 154.0
 fill_mode = 3
-texture_over = ExtResource("10_mm5ha")
-texture_progress = ExtResource("11_4pkue")
+texture_over = ExtResource("10_gmlox")
+texture_progress = ExtResource("11_5jbtk")
 script = ExtResource("15_r3ujc")
 audioPourStreamPlayer2D = NodePath("../../AudioPourStreamPlayer2D2")
 scoreRewards = NodePath("Node2D2")
@@ -84,11 +83,11 @@ border_color = Color(1, 0, 0, 0)
 
 [node name="Node2D2" type="Node2D" parent="Node2D/TextureProgressBar"]
 visible = false
-position = Vector2(-48.5, -21.25)
-scale = Vector2(0.2, 0.2)
+position = Vector2(-84.3333, -39)
+scale = Vector2(0.3, 0.3)
 
 [node name="Coin-icon" type="Sprite2D" parent="Node2D/TextureProgressBar/Node2D2"]
-position = Vector2(657.25, 472.25)
+position = Vector2(656.667, 445.556)
 texture = ExtResource("15_l1v61")
 
 [node name="Coin-icon2" type="Sprite2D" parent="Node2D/TextureProgressBar/Node2D2"]
@@ -119,52 +118,52 @@ maxValue = 20.0
 
 [node name="MultText" type="Node2D" parent="."]
 texture_filter = 1
-position = Vector2(-311.2, -178.6)
+position = Vector2(-312, -183)
 
 [node name="Sprite2D" type="Sprite2D" parent="MultText"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(106.7, 15.6)
-scale = Vector2(0.508, 0.208)
+position = Vector2(106.7, 20.6)
+scale = Vector2(0.508, 0.168)
 texture = ExtResource("12_g4i3p")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MultText"]
 offset_left = 47.0
-offset_top = -9.0
+offset_top = 1.0
 offset_right = 167.0
 offset_bottom = 42.0
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[rainbow freq=.5 sat=0.8 val=0.8]10.25"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MultText"]
 modulate = Color(0.701961, 0.701961, 0.701961, 1)
 texture_filter = 1
-offset_left = -47.8
-offset_top = -9.39999
-offset_right = 48.2
-offset_bottom = 49.6
+offset_left = -46.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 46.0
 theme_override_fonts/normal_font = ExtResource("14_symjt")
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 48
 text = "Mult"
 
 [node name="ScoreText" type="Node2D" parent="."]
 texture_filter = 1
-position = Vector2(-105, -185)
+position = Vector2(-105, -177)
 
 [node name="Sprite2D" type="Sprite2D" parent="ScoreText"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(283.5, 24.5)
-scale = Vector2(1.468, 0.196)
+position = Vector2(283.5, 16)
+scale = Vector2(1.468, 0.16)
 texture = ExtResource("12_g4i3p")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="ScoreText"]
 modulate = Color(0.811765, 0, 0, 1)
-texture_filter = 2
+texture_filter = 1
 offset_left = 105.0
 offset_top = -2.0
 offset_right = 470.0
 offset_bottom = 51.0
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "100[font_size=18] [/font_size]/[font_size=18] [/font_size]500"
 
@@ -172,21 +171,21 @@ text = "100[font_size=18] [/font_size]/[font_size=18] [/font_size]500"
 modulate = Color(0.701961, 0.701961, 0.701961, 1)
 texture_filter = 1
 offset_left = -18.0
-offset_top = -2.0
+offset_top = 1.0
 offset_right = 160.0
-offset_bottom = 49.0
+offset_bottom = 52.0
 theme_override_fonts/normal_font = ExtResource("14_symjt")
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 48
 text = "Score"
 
 [node name="LevelText" type="Node2D" parent="."]
 texture_filter = 1
-position = Vector2(454.4, -180)
+position = Vector2(455, -172)
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelText"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(114.6, 17.5)
-scale = Vector2(0.472, 0.212)
+position = Vector2(114.6, 11)
+scale = Vector2(0.472, 0.16)
 texture = ExtResource("12_g4i3p")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="LevelText"]
@@ -195,7 +194,7 @@ offset_left = 58.6
 offset_top = -7.0
 offset_right = 181.6
 offset_bottom = 47.0
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 48
 text = "10/10"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LevelText"]
@@ -205,7 +204,7 @@ offset_top = -7.0
 offset_right = 77.6
 offset_bottom = 48.0
 theme_override_fonts/normal_font = ExtResource("14_symjt")
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 48
 text = "Level"
 
 [node name="BoardPoint" type="Node2D" parent="."]

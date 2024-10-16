@@ -26,10 +26,10 @@ public partial class GameManagerIF : Node2D
 
 	public bool isIntialized()
 	{
-		return global.deckCardList != null;
+		return getGlobal().totalScore > 0 && getGlobal().deckCardList != null;
 	}
 	public List<CardResource> getDeckList()
-{
+	{
 		loadGlobalAndSetDeckToDefault();
 		return new List<CardResource>(global.deckCardList.getCards());
 	}
@@ -107,7 +107,8 @@ public partial class GameManagerIF : Node2D
 	}
 
 	public bool getMechanicUnlocked() {
-		return getMetaGlobal().mechanicUnlocked;
+		return true;
+		//return getMetaGlobal().mechanicUnlocked;
 	}
 
 	public void setMechanicUnlocked(bool value) {
@@ -295,6 +296,7 @@ public partial class GameManagerIF : Node2D
 	public void incrementNumberOfLevelsPlayed()
 	{
 		getGlobal().numberOfLevelsPlayed += 1;
+		getGlobal().save();
 	}	
 
 
@@ -358,6 +360,12 @@ public partial class GameManagerIF : Node2D
 	public void setGooRightRow(bool value)
 	{
 		getGlobal().gooRightRow = value;
+	}
+
+	public void setShownWelcomeTutorial(bool value)
+	{
+		getGlobal().shownWelcomeTutorial = value;
+		getGlobal().save();
 	}
 
 

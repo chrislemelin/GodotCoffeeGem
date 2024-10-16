@@ -292,7 +292,6 @@ bossRelics = ExtResource("3_7yc8h")
 levelComplete = NodePath("UIOverLays/LevelComplete")
 debtDisplay = NodePath("Debt")
 levelCompleteAudioPlayer = NodePath("JingleAchievementAudioPlayer")
-debugMode = true
 dialougeDict = {
 1: SubResource("Resource_qopb2"),
 2: SubResource("Resource_rcc3r")
@@ -1473,6 +1472,16 @@ offset_left = -1.0
 offset_top = 3.0
 offset_right = -1.0
 offset_bottom = 3.0
+
+[node name="Tutorial2" type="Control" parent="UIOverLays"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="UIOverLays/Tutorial2"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="SettingsMenu" parent="." instance=ExtResource("39_btpum")]
 metadata/_edit_use_anchors_ = true

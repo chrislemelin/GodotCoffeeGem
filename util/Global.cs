@@ -37,8 +37,8 @@ public partial class Global : Node
 	public ulong timeStartedRun = 0;
 	public bool zenMode = false;
 	public int currentLevel = 1;
-	public int currentHealth = 2;
-	public int maxHealth = 2;
+	public int currentHealth = 3;
+	public int maxHealth = 3;
 	public int currentCoins = 0;
 	public int currentMetaCoins = 0;
 	public int allCoinsGained = 0;
@@ -64,23 +64,28 @@ public partial class Global : Node
 	//  new Tuple<string, int>("Clyde", 100_000)};
 
 	private List<RunResource> highScoresNew = new List<RunResource>(){
-		new RunResource("Chris L", 10_000_000, true),
-		new RunResource("HP",5_000_000, true),
-		new RunResource("Casper",1_000_000, true),
-		new RunResource("Clyde",1000_000, true)
+		new RunResource("Chris L", 1_000_000, true),
+		new RunResource("HP",500_000, true),
+		new RunResource("Casper",100_000, true),
+		new RunResource("Clyde",50_000, true),
+		new RunResource("Bob",25_000, true),
+		new RunResource("Joe",10_000, true)
+
 	};
 
 	private List<RunResource> highScoresDefault = new List<RunResource>(){
-		new RunResource("Chris L", 10_000_000, true),
-		new RunResource("HP",5_000_000, true),
-		new RunResource("Casper",1_000_000, true),
-		new RunResource("Clyde",1000_000, true)
+		new RunResource("Chris L", 1_000_000, true),
+		new RunResource("HP",500_000, true),
+		new RunResource("Casper",100_000, true),
+		new RunResource("Clyde",50_000, true),
+		new RunResource("Bob",25_000, true),
+		new RunResource("Joe",10_000, true)
 	};
-
 
 
 	public void reset(MetaGlobal metaGlobal)
 	{
+		GD.Print("reset");
 		deckCardList = null;
 		colorUpgrades = new Array<ColorUpgrade>();
 		relics = new List<RelicResource>();
@@ -91,8 +96,8 @@ public partial class Global : Node
 
 		gridUpgrades = 0;
 		currentLevel = 1;
-		currentHealth = 2;
-		maxHealth = 2;
+		currentHealth = 3;
+		maxHealth = 3;
 		currentCoins = metaGlobal.getStartingCoinsValue();
 		allCoinsGained = metaGlobal.getStartingCoinsValue();
 		numberOfCardsInShop = 2 + metaGlobal.cardsInShopBonus;
@@ -115,7 +120,6 @@ public partial class Global : Node
 		{
 			load();
 		}
-		//addNewHighScore(new Tuple<string, int>("your mom", 1));
 	}
 
 	public void save()
@@ -132,7 +136,7 @@ public partial class Global : Node
 		saveDict.Add(MUSIC_VOLUME_SAVE_NAME, musicVolume.ToString());
 		saveDict.Add(DEBT_SAVE_NAME, debt.ToString());
 		saveDict.Add(TUTORIAL_SAVE_NAME, shownWelcomeTutorial.ToString());
-		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfCardsToChoose.ToString());
+		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed.ToString());
 		saveDict.Add(TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial.ToString());
 		saveDict.Add(NUMBER_OF_RUNS_PLAYED, numberOfRunsPlayed.ToString());
 		saveDict.Add(SEEN_BOSS_DIALOUGE_SAVE_NAME, shownBossDialouge.ToString());

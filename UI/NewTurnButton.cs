@@ -69,7 +69,9 @@ public partial class NewTurnButton : CustomButton
 	{
 		if (@event.IsActionPressed("ui_new_turn") && !FindObjectHelper.getScore(this).isLevelOver())
 		{
-			newTurn();
+			if (!Disabled) {
+				newTurn();
+			}
 		}
 	}
 

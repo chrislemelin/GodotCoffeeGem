@@ -55,7 +55,7 @@ namespace DialogueManagerRuntime
         if ((bool)dialogueLabel.Get("is_typing"))
         {
           bool mouseWasClicked = @event is InputEventMouseButton && (@event as InputEventMouseButton).ButtonIndex == MouseButton.Left && @event.IsPressed();
-          bool skipButtonWasPressed = @event.IsActionPressed(SkipAction);
+          bool skipButtonWasPressed = @event.IsActionPressed(NextAction);
           if (mouseWasClicked || skipButtonWasPressed)
           {
             GetViewport().SetInputAsHandled();

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class Deck : Node
+public partial class Deck : DeckTutorial
 {
 	[Export] RichTextLabel countLabel;
 	[Export] Hand hand;
@@ -15,6 +15,7 @@ public partial class Deck : Node
 	[Export] DeckViewUI deckView;
 	[Export] Control control;
 	List<CardResource> cards = new List<CardResource>();
+	private int cardDrawsTutorial = 0;
 
 
 	public override void _Ready()
@@ -23,6 +24,9 @@ public partial class Deck : Node
 		{
 			allCards.Clear();
 			List<CardResource> deckCardList = gameManager.getDeckList();
+			if (tutorial) {
+				deckCardList = tutorialCards.getCards();
+			} 
 			if (deckCardList.Count != 0)
 			{
 				foreach (CardResource cardResource in deckCardList)
@@ -43,7 +47,9 @@ public partial class Deck : Node
 		};
 
 		addCardsToDeck();
-		RandomHelper.Shuffle(cards);
+		if (!tutorial) {
+			RandomHelper.Shuffle(cards);
+		}
 		updateCount();
 		FindObjectHelper.getNewTurnButton(this).Pressed += () => turnOver();
 	}
@@ -63,6 +69,14 @@ public partial class Deck : Node
 
 	public void drawCards(int count, bool fromNewTurn)
 	{
+		if (tutorial && fromNewTurn) {
+			cardDrawsTutorial ++;
+			if (cardDrawsTutorial == 1) {
+				count = 1;
+			} if (cardDrawsTutorial == 2) {
+				count = 5;
+			}
+		}
 		for (int a = 0; a < count; a++)
 		{
 			drawCard(fromNewTurn);

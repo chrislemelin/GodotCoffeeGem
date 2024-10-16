@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbshug8s4ulor"]
+[gd_scene load_steps=8 format=3 uid="uid://bbshug8s4ulor"]
 
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_ew5vq"]
 [ext_resource type="Script" path="res://UI/Status.cs" id="1_py4bf"]
-[ext_resource type="Texture2D" uid="uid://b16mvnrsguu66" path="res://placeholders/UI/heart-pixel-300px.png" id="2_esjhm"]
-[ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://placeholders/UI/heart-empty-pixel-300px.png" id="4_8mf6w"]
-[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="5_topv7"]
-[ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/money.wav" id="7_v6prk"]
+[ext_resource type="Texture2D" uid="uid://tyt3epp7xjnn" path="res://sprites/UI/Heart3x.png" id="3_kldbt"]
+[ext_resource type="Texture2D" uid="uid://dkljd46l1jawq" path="res://sprites/UI/HeartBroken.png" id="4_0eokc"]
+[ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://sprites/UI/heart-empty-pixel-300px.png" id="4_8mf6w"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="5_topv7"]
+[ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/coins/money.wav" id="7_v6prk"]
 
 [node name="Status" type="Control" node_paths=PackedStringArray("coinsLabel", "levelLabel", "heartsContainer")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_ew5vq")
@@ -15,14 +17,14 @@ script = ExtResource("1_py4bf")
 coinsLabel = NodePath("VBoxContainer/CoinsContainer/RichTextLabel")
 levelLabel = NodePath("VBoxContainer/Level Label")
 heartsContainer = NodePath("VBoxContainer/TurnsContainer/HeartsContainer")
-fullHeart = ExtResource("2_esjhm")
-emptyHeart = ExtResource("4_8mf6w")
+fullHeart = ExtResource("3_kldbt")
+emptyHeart = ExtResource("4_0eokc")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = -142.0
 offset_top = -43.0
-offset_right = 134.0
+offset_right = 63.0
 offset_bottom = 91.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -31,9 +33,9 @@ stream = ExtResource("7_v6prk")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = -140.0
-offset_top = -52.0
-offset_right = 142.0
-offset_bottom = 229.0
+offset_top = -50.0
+offset_right = 65.0
+offset_bottom = 99.0
 
 [node name="Level Label" type="RichTextLabel" parent="VBoxContainer"]
 modulate = Color(0, 0, 0, 1)
@@ -67,6 +69,13 @@ texture = ExtResource("4_8mf6w")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/TurnsContainer/HeartsContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_8mf6w")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="CoinsContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_stretch_ratio = 7.9
@@ -82,6 +91,6 @@ modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 48
-text = "10"
+text = "100"
 fit_content = true
 scroll_active = false

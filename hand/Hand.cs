@@ -38,9 +38,12 @@ public partial class Hand : ControllerInput
 	Optional<CardIF> cardSelected = Optional.None<CardIF>();
 	private int hoveredCardIndex = 0;
 	[Export] private bool hasUIFocus = true;
+	[Export] public bool forceNotHaveUIFocus = false;
+
 	[Export] Godot.Collections.Array<Control> windowsInFrontOf;
 	private bool hitDeadZone = true;
 	Optional<CardIF> cardHovered = Optional.None<CardIF>();
+	Optional<int> tutorialCardMustPlay = Optional.None<int>();
 
 	int handSize = 10;
 	int cardsDrawnOnNewTurn = 5;
@@ -106,7 +109,6 @@ public partial class Hand : ControllerInput
 	{
 		if (mana.manaValue >= card.getCardResource().getEnergyCost() && card.getEnabled())
 		{
-			EmitSignal(SignalName.cardPlayed, card.getCardResource());
 			discardCard(card, true);
 			int manaCost = card.getCardResource().getEnergyCost();
 			if (card.getCardResource().cardEffect.spendX) {
@@ -115,6 +117,8 @@ public partial class Hand : ControllerInput
 			}
 
 			card.playCard(matchBoard, this, mana, positions);
+			tutorialCardMustPlay = Optional.None<int>();
+			EmitSignal(SignalName.cardPlayed, card.getCardResource());
 			cardsPlayedThisTurn.Add(card.getCardResource());
 			audioStreamPlayer2D.Stream = cardPlayedSoundEffect;
 			audioStreamPlayer2D.Play();
@@ -193,7 +197,7 @@ public partial class Hand : ControllerInput
 		};
 	}
 
-	private void setSelectedCard(CardIF card)
+	private bool setSelectedCard(CardIF card)
 	{
 		if (mana.manaValue >= card.getCardResource().getEnergyCost() && card.getEnabled())
 		{
@@ -202,7 +206,9 @@ public partial class Hand : ControllerInput
 			handLine.turnOn(card.Position);
 			cardSelected = Optional.Some<CardIF>(card);
 			card.highlightOnHover.setForceHighlightAltColor(true);
+			return true;
 		}
+		return false;
 	}
 
 	public List<CardIF> getAllCards()
@@ -223,6 +229,7 @@ public partial class Hand : ControllerInput
 
 	public void checkCardsForDisabeling()
 	{
+		int index = 0;
 		foreach (CardIF card in cards)
 		{
 			if (card.getCardResource().getEnergyCost() > mana.manaValue || !card.getCardResource().canPlayCard())
@@ -233,7 +240,20 @@ public partial class Hand : ControllerInput
 			{
 				card.setEnabled();
 			}
+			if (tutorialCardMustPlay.HasValue) {
+				if (index == tutorialCardMustPlay.GetValue()) {
+					card.setEnabled();
+				} else {
+					card.setDisabled();
+				}
+			}
+			index++;
 		}
+	}
+
+	public void disableAllCardsBut(int index) {
+		tutorialCardMustPlay = Optional.Some<int>(index);
+		checkCardsForDisabeling();
 	}
 
 	private void setCardHovered(CardIF card)
@@ -266,12 +286,14 @@ public partial class Hand : ControllerInput
 		if (cardHovered.HasValue && IsInstanceValid(cardHovered.GetValue()))
 		{
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()));
+			cardHovered.GetValue().highlightOnHover.setForceHighlight(false);
 		}
 		cardHovered = card;
 		if (cardHovered.HasValue)
 		{
 			cardContainer.MoveChild(cardHovered.GetValue(), cards.Count);
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * hoverUpDistance);
+			cardHovered.GetValue().highlightOnHover.setForceHighlight(true);
 		}
 		else
 		{
@@ -302,8 +324,16 @@ public partial class Hand : ControllerInput
 		}
 		setUIFocus(true);
 	}
+
+	public void addWindowInFrontOf(Control control) {
+		windowsInFrontOf.Add(control);
+	}
 	public void setUIFocus(bool value) {
-		if(FindObjectHelper.getControllerHelper(this).isUsingController() && !FindObjectHelper.getScore(this).isLevelOver() && !windowsInFrontOf.Where(control => control.IsVisibleInTree()).Any() && !FindObjectHelper.getSettingsMenu(this).isVisible()) {
+		if(FindObjectHelper.getControllerHelper(this).isUsingController() 
+			&& !FindObjectHelper.getScore(this).isLevelOver() 
+			&& !windowsInFrontOf.Where(control => control.IsVisibleInTree()).Any() 
+			&& !FindObjectHelper.getSettingsMenu(this).isVisible() 
+			&& !forceNotHaveUIFocus) {
 			hasUIFocus = value;
 			if (hasUIFocus) {
 				changeHoveredCard(0);
@@ -417,9 +447,11 @@ public partial class Hand : ControllerInput
 				{
 					case SelectionType.Single:
 					case SelectionType.Double:
-						setSelectedCard(card);
-						GetTree().CreateTimer(.1f).Timeout+= () => matchBoard.setUIFocus(true);
-						hasUIFocus = false;
+						bool selected = setSelectedCard(card);
+						if (selected) {
+							GetTree().CreateTimer(.1f).Timeout+= () => matchBoard.setUIFocus(true);
+							hasUIFocus = false;
+						}
 						break;
 					case SelectionType.None:
 						playCard(card, new List<Vector2>());

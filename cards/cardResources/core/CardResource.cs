@@ -98,7 +98,7 @@ public partial class CardResource : Resource
 
 		//var values = Enum.GetValues(typeof(Foos));
 		foreach(GemType gemType in Enum.GetValues(typeof(GemType))) {
-			newDescription = newDescription.Replace(gemType.getString(), TextHelper.getIngredientImage(gemType));
+			newDescription = newDescription.Replace("$"+gemType.getString(), TextHelper.getIngredientImage(gemType));
 		}
 		newDescription = newDescription.Replace("$energy", TextHelper.getEnergyImage());
 		newDescription = newDescription.Replace("$draw", TextHelper.getCardImage());

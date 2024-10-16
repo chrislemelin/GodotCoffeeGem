@@ -276,8 +276,8 @@ cost = 20
 
 [node name="HealButton" parent="VBoxContainer" node_paths=PackedStringArray("hoverAudioplayer", "clickAudioplayer") instance=ExtResource("13_60jrt")]
 layout_mode = 2
-text = "Recover a heart (40 coins)"
-cost = 40
+text = "Recover a heart (20 coins)"
+cost = 20
 hoverAudioplayer = NodePath("../RelicButton/HoverAudioPlayer")
 clickAudioplayer = NodePath("../RelicButton/ClickAudioPlayer")
 

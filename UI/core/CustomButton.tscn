@@ -72,10 +72,3 @@ maxValue = 20.0
 libraries = {
 "": SubResource("AnimationLibrary_jw2s4")
 }
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 164.0
-offset_right = 88.0
-offset_bottom = 204.0

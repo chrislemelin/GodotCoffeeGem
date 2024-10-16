@@ -104,12 +104,12 @@ public partial class Score : Node2D
 
 	public int calculateCoinsGained () {
 		if(score > scoreNeeded*2) {
-			return 50;
+			return 60;
 		}
 		if (score >= scoreNeeded * 1.5) {
-			return 35;
+			return 45;
 		}
-		return 20;
+		return 30;
 	}
 
 	public void newturn()

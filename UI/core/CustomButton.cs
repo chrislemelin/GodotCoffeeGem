@@ -6,7 +6,7 @@ public partial class CustomButton : Button
 	[Export] AnimationPlayer animationPlayer;
 	[Export] AudioPlayer hoverAudioplayer;
 	[Export] AudioPlayer clickAudioplayer;
-	[Export] bool grabFocus = false;
+	[Export] public bool grabFocus = false;
 	[Export] bool isInSettingsMenu = false;
 
 
@@ -16,15 +16,16 @@ public partial class CustomButton : Button
 
 	public override void _Ready()
 	{
+		setFocusMode();
 		if (grabFocus) {
 			checkForFocus(true);
-			FindObjectHelper.getSettingsMenu(this).windowClosed+= () => checkForFocus(true);	
+			FindObjectHelper.getSettingsMenu(this).windowClosed+= () => checkForFocus(true);
 		}
 		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += checkForFocus;
 		ButtonDown += () =>  {
 			clickAudioplayer.Play();
-			if (FindObjectHelper.getControllerHelper(this).isUsingController()!) {
-				ReleaseFocus();
+			if (!FindObjectHelper.getControllerHelper(this).isUsingController()) {
+				//ReleaseFocus();
 			}
 		};
 		MouseEntered += () => {
@@ -47,13 +48,17 @@ public partial class CustomButton : Button
 		checkForFocus(true);
 	}
 
-	public void checkForFocus(bool value) {
+	private void setFocusMode() {
 		if (FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			FocusMode = FocusModeEnum.All;
 		} else {
 			FocusMode = FocusModeEnum.None;
 		}
+	}
 
+	public void checkForFocus(bool value) {
+
+		setFocusMode();
 		if (grabFocus && IsVisibleInTree() && FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			SettingsMenu settingsMenu = FindObjectHelper.getSettingsMenu(this);
 			if (settingsMenu == null || !settingsMenu.isVisible() || isInSettingsMenu) {

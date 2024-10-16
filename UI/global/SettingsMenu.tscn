@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk057h7ksmnub"]
+[gd_scene load_steps=8 format=3 uid="uid://bk057h7ksmnub"]
 
 [ext_resource type="Script" path="res://UI/global/SettingsMenu.cs" id="1_0lkxj"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_kbkdg"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="2_5y2ms"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_nhw1p"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="4_6wc46"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="5_t1gxu"]
 [ext_resource type="Texture2D" uid="uid://dttel37o7wg87" path="res://sprites/UI/controller/XboxSettingsIcon.tres" id="6_i4wfn"]
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("sfxSlider", "musicSlider", "dataCollectionCheckBox", "quitButton", "closeButton", "mainMenuButton", "visibleButton", "fullScreenCheckBox", "resolutionsOptionButton", "panel", "controllerTexture") groups=["SettingsMenu"]]
@@ -15,16 +16,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0lkxj")
-sfxSlider = NodePath("Panel/VBoxContainer/SFX Slider/HSlider")
-musicSlider = NodePath("Panel/VBoxContainer/Music Slider/HSlider")
-dataCollectionCheckBox = NodePath("Panel/VBoxContainer/Data Collection/CheckBox")
-quitButton = NodePath("Panel/VBoxContainer/QuitButton/Button")
-closeButton = NodePath("Panel/VBoxContainer/CloseButton/Button")
-mainMenuButton = NodePath("Panel/VBoxContainer/MainMenuButton/Button")
+sfxSlider = NodePath("SettingsMenu/Panel/VBoxContainer/SFX Slider/HSlider")
+musicSlider = NodePath("SettingsMenu/Panel/VBoxContainer/Music Slider/HSlider")
+dataCollectionCheckBox = NodePath("SettingsMenu/Panel/VBoxContainer/Data Collection/CheckBox")
+quitButton = NodePath("SettingsMenu/Panel/VBoxContainer/QuitButton/Button")
+closeButton = NodePath("SettingsMenu/Panel/VBoxContainer/CloseButton/Button")
+mainMenuButton = NodePath("SettingsMenu/Panel/VBoxContainer/MainMenuButton/Button")
 visibleButton = NodePath("Button")
-fullScreenCheckBox = NodePath("Panel/VBoxContainer/FullScreen/CheckBox")
-resolutionsOptionButton = NodePath("Panel/VBoxContainer/Resolutions/VBoxContainer/OptionButton")
-panel = NodePath("Panel")
+fullScreenCheckBox = NodePath("SettingsMenu/Panel/VBoxContainer/FullScreen/CheckBox")
+resolutionsOptionButton = NodePath("SettingsMenu/Panel/VBoxContainer/Resolutions/VBoxContainer/OptionButton")
+panel = NodePath("SettingsMenu")
 controllerTexture = NodePath("TextureRect")
 
 [node name="Button" parent="." instance=ExtResource("2_5y2ms")]
@@ -46,88 +47,94 @@ offset_right = 1847.0
 offset_bottom = 120.0
 texture = ExtResource("6_i4wfn")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="SettingsMenu" type="Control" parent="."]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Panel" parent="SettingsMenu"]
+modulate = Color(1, 1, 1, 0.337255)
 layout_mode = 0
-offset_left = 636.0
+offset_left = -4.0
+offset_top = -3.0
+offset_right = 1919.0
+offset_bottom = 1082.0
+theme = ExtResource("1_kbkdg")
+
+[node name="Panel" type="Panel" parent="SettingsMenu"]
+layout_mode = 0
+offset_left = 622.0
 offset_top = 274.0
 offset_right = 1252.0
 offset_bottom = 868.0
-theme = ExtResource("1_kbkdg")
+theme = ExtResource("5_t1gxu")
 
-[node name="Background" type="Panel" parent="Panel"]
-modulate = Color(1, 1, 1, 0.337255)
-layout_mode = 0
-offset_left = -640.0
-offset_top = -277.0
-offset_right = 1283.0
-offset_bottom = 808.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/Panel"]
 layout_mode = 0
 offset_left = -48.0
 offset_top = 32.0
 offset_right = 681.0
-offset_bottom = 427.0
+offset_bottom = 522.0
 
-[node name="Settings Title" type="RichTextLabel" parent="Panel/VBoxContainer"]
+[node name="Settings Title" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]Settings"
 fit_content = true
 
-[node name="Spacing" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="Spacing" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_top = 30
 
-[node name="Music Title" type="RichTextLabel" parent="Panel/VBoxContainer"]
+[node name="Music Title" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]Music Slider"
 fit_content = true
 
-[node name="Music Slider" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="Music Slider" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/Music Slider"]
+[node name="HSlider" type="HSlider" parent="SettingsMenu/Panel/VBoxContainer/Music Slider"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="SFX Slider2" type="RichTextLabel" parent="Panel/VBoxContainer"]
+[node name="SFX Slider2" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]SFX Slider"
 fit_content = true
 
-[node name="SFX Slider" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="SFX Slider" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/SFX Slider"]
+[node name="HSlider" type="HSlider" parent="SettingsMenu/Panel/VBoxContainer/SFX Slider"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 0.5
 tick_count = 1
 
-[node name="Data Collection" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="Data Collection" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="CheckBox" type="CheckBox" parent="Panel/VBoxContainer/Data Collection"]
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/Panel/VBoxContainer/Data Collection"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -135,13 +142,13 @@ theme_override_fonts/font = ExtResource("4_6wc46")
 theme_override_font_sizes/font_size = 36
 text = "Enable game play data collection"
 
-[node name="FullScreen" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="FullScreen" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="CheckBox" type="CheckBox" parent="Panel/VBoxContainer/FullScreen"]
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/Panel/VBoxContainer/FullScreen"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -149,53 +156,53 @@ theme_override_fonts/font = ExtResource("4_6wc46")
 theme_override_font_sizes/font_size = 36
 text = "FullScreen"
 
-[node name="Resolutions" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="Resolutions" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_kbkdg")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Resolutions"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/Panel/VBoxContainer/Resolutions"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Resolutions/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer/Resolutions/VBoxContainer"]
 layout_mode = 2
 text = "Resolutions"
 fit_content = true
 
-[node name="OptionButton" type="OptionButton" parent="Panel/VBoxContainer/Resolutions/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/Panel/VBoxContainer/Resolutions/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 
-[node name="QuitButton" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="QuitButton" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="Button" parent="Panel/VBoxContainer/QuitButton" instance=ExtResource("2_5y2ms")]
+[node name="Button" parent="SettingsMenu/Panel/VBoxContainer/QuitButton" instance=ExtResource("2_5y2ms")]
 layout_mode = 2
 text = "Quit"
 
-[node name="MainMenuButton" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="MainMenuButton" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="Button" parent="Panel/VBoxContainer/MainMenuButton" instance=ExtResource("2_5y2ms")]
+[node name="Button" parent="SettingsMenu/Panel/VBoxContainer/MainMenuButton" instance=ExtResource("2_5y2ms")]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="CloseButton" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="CloseButton" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
-[node name="Button" parent="Panel/VBoxContainer/CloseButton" instance=ExtResource("2_5y2ms")]
+[node name="Button" parent="SettingsMenu/Panel/VBoxContainer/CloseButton" instance=ExtResource("2_5y2ms")]
 layout_mode = 2
-text = "Close Settings Menu"
+text = "Close"
 grabFocus = true
 isInSettingsMenu = true

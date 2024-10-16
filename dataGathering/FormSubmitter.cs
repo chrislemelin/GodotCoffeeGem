@@ -31,6 +31,7 @@ public partial class FormSubmitter : HttpRequest
 
 	public void submitData(String reasonQuiting, GameManagerIF gameManager, Action callBack)
 	{
+		GD.Print("data collection tried allowed " + gameManager.getCollectData() + " intialized  " + gameManager.isIntialized());
 		if (OS.HasFeature("standalone") && gameManager.getCollectData() && gameManager.isIntialized())
 		{
 			GD.Print("data collection allowed " + gameManager.getCollectData() + "userId " + gameManager.getUserId());

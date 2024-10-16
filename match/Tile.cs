@@ -15,6 +15,7 @@ public partial class Tile : Node2D
 	[Export] Color hoverColor;
 	[Export] Color selectColor;
 	[Export] Color blockedColor;
+	[Export] Color tutorialColor;
 	[Export] TextureRect goo;
 
 	Color normalColor;
@@ -23,6 +24,7 @@ public partial class Tile : Node2D
 	bool isSelected = false;
 	bool isHovered = false;
 	bool isDisabled = false;
+	bool isTutorial = false;
 	bool isBlocked = false;
 
 	public Gem Gem
@@ -84,11 +86,18 @@ public partial class Tile : Node2D
 		sprite2D.Modulate = getCurrentColor();
 	}
 
+	public void setTutorialColor(bool value) {
+		isTutorial = value;
+		sprite2D.Modulate = getCurrentColor();
+	}
+
+
 	public void mouseEnter() {
 		isHovered = true;
 		if(Gem != null) {
 			Gem.shake();
 		}
+		
 		sprite2D.Modulate = getCurrentColor();
 
 	}
@@ -98,17 +107,20 @@ public partial class Tile : Node2D
 	}
 
 	private Color getCurrentColor() {
-		if(isSelected) {
-			return selectColor;
-		}
 		if (isHovered) {
 			return hoverColor;
+		}
+		if(isSelected) {
+			return selectColor;
 		}
 		if (isHighlighted) {
 			return highlightColor;
 		}
 		if (isBlocked) {
 			return blockedColor;
+		}
+		if (isTutorial) {
+			return tutorialColor;
 		}
 		return normalColor;
 	}

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://3d6t3ubetydb"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://3d6t3ubetydb"]
 
 [ext_resource type="StyleBox" uid="uid://dxvonrjwk5xwp" path="res://UI/Themes/StyleBoxes/button/ButtonDisabledPixelTexture.tres" id="1_qmywo"]
 [ext_resource type="StyleBox" uid="uid://bwc2d0age3pc3" path="res://UI/Themes/StyleBoxes/PanelBackground.tres" id="1_x15o2"]
@@ -6,6 +6,13 @@
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_q7xkx"]
 [ext_resource type="StyleBox" uid="uid://b07eiddimyskk" path="res://UI/Themes/StyleBoxes/button/ButtonPixelTexture.tres" id="3_gi0cm"]
 [ext_resource type="StyleBox" uid="uid://eatpmwrn3ln5" path="res://UI/Themes/StyleBoxes/button/ButtonPressedPixelTexture.tres" id="4_j07fw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kujyh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xodmf"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -31,6 +38,7 @@ Button/colors/font_pressed_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
 Button/font_sizes/font_size = 48
 Button/styles/disabled = ExtResource("1_qmywo")
+Button/styles/focus = SubResource("StyleBoxFlat_kujyh")
 Button/styles/hover = ExtResource("2_72bwj")
 Button/styles/normal = ExtResource("3_gi0cm")
 Button/styles/pressed = ExtResource("4_j07fw")
