@@ -57,14 +57,14 @@ offset_bottom = -177.0
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 305.0
-offset_bottom = 108.0
+offset_left = 9.0
+offset_top = 15.0
+offset_right = 268.0
+offset_bottom = 113.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 22.0
 offset_top = 17.0
 offset_right = 298.0
 offset_bottom = 124.0

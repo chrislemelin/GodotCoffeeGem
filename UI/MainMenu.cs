@@ -32,7 +32,7 @@ public partial class MainMenu : GameManagerIF
 				tryTutorialUI.Visible = true;
 				setShownWelcomeTutorial(true);
 			} else {
-				GetTree().ChangeSceneToPacked(gameScene);
+				GetTree().ChangeSceneToFile("res://mainScenes/DeckSelectionPicker.tscn");
 			}
 		};
 		//deckSelectionButton.Pressed += () => GetTree().ChangeSceneToPacked(deckSelectionScene);

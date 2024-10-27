@@ -13,7 +13,7 @@ public partial class DeckSelectionUI : Control
 		this.deckSelection = deckSelection;
 		TooltipText = deckSelection.description;
 		title.Text = TextHelper.centered(deckSelection.title);
-		picture.Modulate = deckSelection.color;
+		picture.Texture = deckSelection.faceCard;
 	}
 
 }

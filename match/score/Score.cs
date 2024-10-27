@@ -522,7 +522,7 @@ public partial class Score : Node2D
 		// int pointUpgrade = upgradesForCurrentColor.Sum(colorUpgrade => colorUpgrade.baseIncrease);
 		// float finalMult = upgradesForCurrentColor.Sum (colorUpgrade => colorUpgrade.baseIncrease);
 		if (gemType.Equals(GemType.Lead)) {
-			return 100 + match.First().Gem.leadLevel * 100;
+			return 200 + match.First().Gem.leadLevel * 200;
 		}
 		int combo = 0;
 		foreach (Tile tile in match)
@@ -539,13 +539,21 @@ public partial class Score : Node2D
 			finalMult = colorUpgrade.GetValue().finalMult;
 		}
 
-		if (match.Count == 3)
+		if (match.Count <= 3)
 		{
-			return (int)((100 + pointUpgrade + combo * 50) * finalMult);
+			return (int)((100 + pointUpgrade + (combo * 50)) * finalMult);
+		}
+		if (match.Count == 4)
+		{
+			return (int)((200 + pointUpgrade + (combo * 50)) * finalMult);
+		}
+		if (match.Count == 5)
+		{
+			return (int)((400 + pointUpgrade + (combo * 50)) * finalMult);
 		}
 		else
 		{
-			return (int)((100 + (match.Count - 3 + combo) * 50 + pointUpgrade) * finalMult);
+			return (int)((400  + (Math.Max(match.Count - 5 , 0)  * 200) + pointUpgrade + (combo * 50)) * finalMult);
 		}
 	}
 

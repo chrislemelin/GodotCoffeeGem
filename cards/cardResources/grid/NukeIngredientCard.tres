@@ -30,7 +30,7 @@ consume = true
 retain = false
 matchy = false
 spendX = false
-nuke = false
+nuke = true
 
 [resource]
 script = ExtResource("2_0iypi")

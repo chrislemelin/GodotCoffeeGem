@@ -9,7 +9,7 @@ script = ExtResource("1_jfsnc")
 gemAddonType = 1
 Range = 1.0
 Value = 0
-BlackGems = 1
+BlackGems = 0
 ManaGems = 1
 CardGems = 0
 CoinGems = 0
@@ -36,7 +36,7 @@ nuke = false
 [resource]
 script = ExtResource("1_ybbs8")
 Title = "Energy Infusion"
-Description = "Generate $manaGems$energy infusion and +1$burnt."
+Description = "Generate $manaGems$energy infusion."
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_0yjft")

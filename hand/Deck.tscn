@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccu0jen0fteje"]
 
 [ext_resource type="Script" path="res://hand/Deck.cs" id="1_j31f6"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/CardBackRealFinal.png" id="2_6jv68"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/final/CardBackRealFinal.png" id="2_6jv68"]
 [ext_resource type="Resource" uid="uid://xevyux1urwxw" path="res://cards/cardResources/cardLists/TutorialCardList.tres" id="2_kjt1m"]
 
-[node name="Deck" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
+[node name="Deck" type="Node2D" node_paths=PackedStringArray("countLabel", "control", "background")]
 script = ExtResource("1_j31f6")
 countLabel = NodePath("RichTextLabel")
 control = NodePath("Control")
+background = NodePath("CardBack")
 tutorialCards = ExtResource("2_kjt1m")
 
 [node name="CardBack" type="Sprite2D" parent="."]

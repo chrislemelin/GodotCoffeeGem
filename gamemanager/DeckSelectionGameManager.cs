@@ -29,36 +29,48 @@ public partial class DeckSelectionGameManager : GameManagerIF
 	}
 
 	private void setUpDeckSelections() {
+		bool firstDeckSelected = false;
 		foreach(DeckSelectionResource deckSelectionResource in deckSelections) {
 			DeckSelectionUI deckSelectionUI = (DeckSelectionUI)deckSelectionUIPackedScene.Instantiate();
 			deckSelectionUI.setDeckSelection(deckSelectionResource);
 			deckSelectionUIParent.AddChild(deckSelectionUI);
 			deckSelectionUI.GuiInput += (inputEvent) => deckSelectionClicked(inputEvent, deckSelectionResource);
 			deckSelectionUIs.Add(deckSelectionUI);
+			if (!firstDeckSelected){
+				firstDeckSelected = true;
+				setSelectedDeck(deckSelectionResource);
+			}
 		}
 	}
 
 	public void deckSelectionClicked(InputEvent inputEvent, DeckSelectionResource deckSelectionResource) {
 		if (inputEvent.IsActionPressed("click"))
 		{
-			continueButton.Disabled = false;
-			viewDeckButton.Disabled = false;
-
-			this.deckSelectionResource = deckSelectionResource;
-			foreach(DeckSelectionUI deckSelectionUI in deckSelectionUIs) {
-				if (deckSelectionUI.deckSelection != deckSelectionResource) {
-					deckSelectionUI.highlightOnHover.setForceHighlight(false);
-				} else {
-					deckSelectionUI.highlightOnHover.setForceHighlight(true);
-				}
-			}	
+			setSelectedDeck(deckSelectionResource);
 		}
+	}
 
+	private void setSelectedDeck(DeckSelectionResource deckSelectionResource) {
+		continueButton.Disabled = false;
+		viewDeckButton.Disabled = false;
+
+		this.deckSelectionResource = deckSelectionResource;
+		foreach(DeckSelectionUI deckSelectionUI in deckSelectionUIs) {
+			if (deckSelectionUI.deckSelection != deckSelectionResource) {
+				deckSelectionUI.highlightOnHover.setForceHighlight(false);
+			} else {
+				deckSelectionUI.highlightOnHover.setForceHighlight(true);
+			}
+		}
+		setDeckSelection(deckSelectionResource);
 	}
 
 	public void continueButtonClicked() {
 		List<CardResource> cards = deckSelectionResource.cardList.getCards();
 		setCardList(deckSelectionResource.cardList.getCards());
+		if (deckSelectionResource.cardPool != null) {
+			setCardPool(deckSelectionResource.cardPool);
+		}
 		foreach(RelicResource relicResource in deckSelectionResource.relics) {
 			addRelic(relicResource);
 		}

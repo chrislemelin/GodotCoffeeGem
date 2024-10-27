@@ -18,6 +18,7 @@ public partial class SettingsMenu : Node
 	[Signal] public delegate void windowOpenedEventHandler();
 	[Export] private TextureRect controllerTexture;
 	[Export] private bool showButton = true;
+	public bool musicSliderSetUp = false;
 
 
 
@@ -59,14 +60,19 @@ public partial class SettingsMenu : Node
 
 		fullScreenCheckBox.Pressed += () =>  {
 			if (fullScreenCheckBox.ButtonPressed) {
-				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
 			} else {
 				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-			} 
+				DisplayServer.WindowSetSize((Vector2I)resolutionDictionary[resolutionsOptionButton.GetItemText(resolutionsOptionButton.Selected)]);
+			}
+			resolutionsOptionButton.Disabled = fullScreenCheckBox.ButtonPressed;
 		};
+		fullScreenCheckBox.ButtonPressed = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+	
 
 		resolutionsOptionButton.ItemSelected += (value) => DisplayServer.WindowSetSize((Vector2I)resolutionDictionary[resolutionsOptionButton.GetItemText((int)value)]);
 		resolutionsOptionButton.Selected = 1;
+		resolutionsOptionButton.Disabled = fullScreenCheckBox.ButtonPressed;
 
 		dataCollectionCheckBox.ButtonPressed = gameManagerIF.getCollectData();
 		dataCollectionCheckBox.Pressed += () => gameManagerIF.setCollectData(dataCollectionCheckBox.ButtonPressed);
@@ -89,7 +95,6 @@ public partial class SettingsMenu : Node
 	public bool isVisible() {
 		return panel.Visible;
 	}
-
 
 	public void openWindow() {
 		panel.Visible = true;

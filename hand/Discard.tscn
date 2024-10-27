@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c563hncch4yj3"]
 
 [ext_resource type="Script" path="res://hand/Discard.cs" id="1_mc7e2"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/CardBackRealFinal.png" id="2_v7buu"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/final/CardBackRealFinal.png" id="2_v7buu"]
 
-[node name="Discard" type="Node2D" node_paths=PackedStringArray("countLabel", "control")]
+[node name="Discard" type="Node2D" node_paths=PackedStringArray("countLabel", "control", "background")]
 script = ExtResource("1_mc7e2")
 countLabel = NodePath("RichTextLabel")
 control = NodePath("Control")
+background = NodePath("CardBack")
 
 [node name="CardBack" type="Sprite2D" parent="."]
 texture_filter = 1

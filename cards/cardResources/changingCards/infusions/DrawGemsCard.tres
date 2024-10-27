@@ -9,7 +9,7 @@ script = ExtResource("1_qt74m")
 gemAddonType = 2
 Range = 1.0
 Value = 0
-BlackGems = 1
+BlackGems = 0
 ManaGems = 0
 CardGems = 2
 CoinGems = 0
@@ -36,7 +36,7 @@ nuke = false
 [resource]
 script = ExtResource("2_7gcs6")
 Title = "Draw Infusion"
-Description = "Generate $cardGems$draw infusions and +1$burnt."
+Description = "Generate $cardGems$draw infusions."
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_dplkk")

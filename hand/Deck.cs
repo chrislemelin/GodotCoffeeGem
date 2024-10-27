@@ -14,6 +14,8 @@ public partial class Deck : DeckTutorial
 	[Export] GameManager gameManager;
 	[Export] DeckViewUI deckView;
 	[Export] Control control;
+	[Export] Sprite2D background;
+
 	List<CardResource> cards = new List<CardResource>();
 	private int cardDrawsTutorial = 0;
 
@@ -52,6 +54,11 @@ public partial class Deck : DeckTutorial
 		}
 		updateCount();
 		FindObjectHelper.getNewTurnButton(this).Pressed += () => turnOver();
+
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		if (gameManagerIF.getDeckSelection() != null) {
+			background.Texture = gameManagerIF.getDeckSelection().faceCard;
+		}
 	}
 
 	private void addCardsToDeck()
@@ -66,6 +73,25 @@ public partial class Deck : DeckTutorial
 			cardResource.cardEffect.turnOver();
 		}
 	}
+
+	public int drawInnateCards(int count, bool fromNewTurn)
+	{
+		List<CardResource> innateCards = getInnateCards();
+		int cardsAdded = 0;
+		foreach(CardResource cardResource in innateCards) {
+			if (cardsAdded == count) {
+				return cardsAdded;
+			}
+			drawSpecificCard(cardResource, fromNewTurn);
+			cardsAdded ++;
+		}
+		return cardsAdded;
+	}
+
+	private List<CardResource> getInnateCards() {
+		return cards.Where(card => card.cardEffect.innate).ToList();
+	}
+
 
 	public void drawCards(int count, bool fromNewTurn)
 	{
@@ -112,6 +138,11 @@ public partial class Deck : DeckTutorial
 			discard.addCard(nextCard);
 		}
 
+	}
+
+	private void drawSpecificCard(CardResource cardResource, bool fromNewTurn) {
+		cards.Remove(cardResource);
+		hand.addNewCardToHand(cardResource, fromNewTurn);
 	}
 	public override void _Input(InputEvent @event)
 	{ }

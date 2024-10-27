@@ -29,6 +29,7 @@ public partial class Hand : ControllerInput
 	[Signal] public delegate void cardDrawnEventHandler(CardResource cardResource);
 	[Signal] public delegate void cardDrawnNotFromNewTurnEventHandler(CardResource cardResource);
 	[Signal] public delegate void cardPlayedEventHandler(CardResource cardResource);
+	[Signal] public delegate void cardAboutToPlayEventHandler(CardResource cardResource);
 	[Signal] public delegate void handChangedEventHandler();
 
 
@@ -44,6 +45,7 @@ public partial class Hand : ControllerInput
 	private bool hitDeadZone = true;
 	Optional<CardIF> cardHovered = Optional.None<CardIF>();
 	Optional<int> tutorialCardMustPlay = Optional.None<int>();
+	private bool drawnFirstHand = false;
 
 	int handSize = 10;
 	int cardsDrawnOnNewTurn = 5;
@@ -78,6 +80,7 @@ public partial class Hand : ControllerInput
 		gameManager.levelOver += () => setUIFocus(false);
 		mana.ManaChanged += () => checkCardsForDisabeling();
 		handLine.turnOff();
+		matchBoard.ingredientMatched += (match) => checkCardsForDisabeling();
 	}
 
 	private void startLevel(){
@@ -90,9 +93,7 @@ public partial class Hand : ControllerInput
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// if(hasUIFocus) {
-
-		// }
+		
 	}
 
 	private int getCardsDrawnOnTurnStart()
@@ -109,6 +110,7 @@ public partial class Hand : ControllerInput
 	{
 		if (mana.manaValue >= card.getCardResource().getEnergyCost() && card.getEnabled())
 		{
+			EmitSignal(SignalName.cardAboutToPlay, card.getCardResource());
 			discardCard(card, true);
 			int manaCost = card.getCardResource().getEnergyCost();
 			if (card.getCardResource().cardEffect.spendX) {
@@ -232,19 +234,19 @@ public partial class Hand : ControllerInput
 		int index = 0;
 		foreach (CardIF card in cards)
 		{
-			if (card.getCardResource().getEnergyCost() > mana.manaValue || !card.getCardResource().canPlayCard())
-			{
-				card.setDisabled();
-			}
-			else
-			{
-				card.setEnabled();
-			}
+			// if (card.getCardResource().getEnergyCost() > mana.manaValue || !card.getCardResource().canPlayCard())
+			// {
+			// 	card.setDisabled();
+			// }
+			// else
+			// {
+			// 	card.setEnabled();
+			// }
 			if (tutorialCardMustPlay.HasValue) {
 				if (index == tutorialCardMustPlay.GetValue()) {
 					card.setEnabled();
 				} else {
-					card.setDisabled();
+					card.setDisabledForTutorial();
 				}
 			}
 			index++;
@@ -300,7 +302,7 @@ public partial class Hand : ControllerInput
 			int count = 0;
 			foreach (CardIF currentCard in cards)
 			{
-				cardContainer.MoveChild(currentCard, count);
+				Callable.From(() => cardContainer.MoveChild(currentCard, count)).CallDeferred();
 				count++;
 			}
 		}
@@ -413,6 +415,10 @@ public partial class Hand : ControllerInput
 
 	private void drawCards(int count, bool fromNewTurn)
 	{
+		if (!drawnFirstHand) {
+			int cardsDrawn = deck.drawInnateCards(count, fromNewTurn);
+			count -= cardsDrawn;
+		}
 		deck.drawCards(count, fromNewTurn);
 		audioStreamPlayer2D.Stream = newHandSoundEffect;
 		audioStreamPlayer2D.Play();
@@ -425,7 +431,7 @@ public partial class Hand : ControllerInput
 	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("right click"))
-		{
+		{ 
 			if (@event is InputEventMouseButton eventMouseButton)
 			{
 				if (cardSelected.HasValue)

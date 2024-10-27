@@ -31,10 +31,11 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
 
 [resource]
 script = ExtResource("3_cg0f3")
-Title = "Big T Energy"
+Title = "Tea Time"
 Description = "Discard your hand, create 2X $tea where X is equal to the total number of cards discarded."
 Cost = 2
 rarity = 2

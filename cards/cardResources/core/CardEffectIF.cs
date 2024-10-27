@@ -49,6 +49,7 @@ public partial class CardEffectIF : Resource
 	[Export] public bool matchy = false;
 	[Export] public bool spendX = false;
 	[Export] public bool nuke = false;
+	[Export] public bool innate = false;
 
 	public int spendXValue = 0;
 
@@ -84,9 +85,6 @@ public partial class CardEffectIF : Resource
 		if (tutorialCard) {
 			return canOnlySelectTutorial.Contains((Vector2I)tile.getTilePosition());
 		}
-		// if (tutorialCard && selectedTiles.Count > 1) {
-		// 	return (Vector2I)tile.getTilePosition() == secondPositionTutorial;
-		// }
 		return true;
 	}
 

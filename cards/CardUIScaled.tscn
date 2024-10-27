@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://cards/CardUI.cs" id="1_o0n2r"]
 [ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="3_to62g"]
-[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/Cardfront2red.png" id="3_y8rao"]
+[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/final/Cardfront2red.png" id="3_y8rao"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_rpy3w"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="9_0idb8"]
 [ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="10_mexxn"]
-[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/fire-updated.png" id="11_0iboy"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/final/fire-updated.png" id="11_0iboy"]
 [ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://sprites/cards/title/TitleCard_4.png" id="11_y5hev"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="13_txhnh"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="15_cbp0x"]
@@ -34,7 +34,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = null
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_8ytrd")
 
-[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "highlightOnHover", "titleSprite", "toolTipText2")]
+[node name="card2" type="Node2D" node_paths=PackedStringArray("control", "titleLabel", "descriptionLabel", "costLabel", "picture", "background", "highlightOnHover", "titleSprite", "toolTipText2")]
 position = Vector2(490, 331)
 script = ExtResource("1_o0n2r")
 control = NodePath("Center/HitBox")
@@ -42,6 +42,7 @@ titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
+background = NodePath("Center/Background")
 highlightOnHover = NodePath("Center/Background")
 disabledColor = Color(0.266667, 0.266667, 0.266667, 1)
 titleSprite = NodePath("Center/Title/Sprite2D")
@@ -215,7 +216,7 @@ texture = ExtResource("11_0iboy")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
-modulate = Color(0, 0, 0, 1)
+texture_filter = 1
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
@@ -223,13 +224,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.4
-offset_top = -64.0
-offset_right = -21.4
-offset_bottom = -16.0
+offset_left = -55.0
+offset_top = -60.0
+offset_right = -20.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("17_kdbgc")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true

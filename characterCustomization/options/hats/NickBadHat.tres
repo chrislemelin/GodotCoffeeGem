@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterPortraitResource" load_steps=3 format=3 uid="uid://dle261utkvto"]
+
+[ext_resource type="Texture2D" uid="uid://ccmft6kkdcncl" path="res://characterCustomization/sprites/NickBadHat.png" id="1_lo0f0"]
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitResource.cs" id="1_ybkfi"]
+
+[resource]
+script = ExtResource("1_ybkfi")
+name = "Bad Hat"
+color = Color(0, 0, 0, 0)
+image = ExtResource("1_lo0f0")

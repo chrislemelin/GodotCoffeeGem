@@ -73,7 +73,7 @@ public partial class FormSubmitter : HttpRequest
 			data = appendData(data, "entry.1443935098", gameManager.getAllCoinsGained().ToString());
 
 			data = appendData(data, "entry.537817310", "grid upgrades: " + gameManager.getGridUpgrades().ToString());
-			data = appendData(data, "entry.1063162396", gameManager.getTotalScore().ToString());
+		data = appendData(data, "entry.1063162396", gameManager.getTotalScore().ToString());
 
 			DeckSelectionResource deckSelection = gameManager.getDeckSelection();
 			if (deckSelection != null)
@@ -81,6 +81,10 @@ public partial class FormSubmitter : HttpRequest
 				data = appendData(data, "entry.1435208426", deckSelection.title);
 			}
 			data = appendData(data, "entry.687983885", Version.version);
+
+			if(gameManager.getDeckSelection() != null) {
+				data = appendData(data, "entry.1194317277" , gameManager.getDeckSelection().title);
+			}
 			this.callBack = callBack;
 
 			GetTree().CreateTimer(.1f).Timeout += () => Request(urlform, headers, HttpClient.Method.Post, data);
@@ -131,6 +135,7 @@ public partial class FormSubmitter : HttpRequest
 	entry.1814658543: run duration
 	entry.687983885: version
 	entry.537817310: board size
+	entry.1194317277: deck list
 	*/
 
 }

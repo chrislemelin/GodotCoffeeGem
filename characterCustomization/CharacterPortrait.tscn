@@ -1,0 +1,62 @@
+[gd_scene load_steps=15 format=3 uid="uid://ff2wbvpyhygk"]
+
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="1_1n87o"]
+[ext_resource type="Script" path="res://characterCustomization/CharacterPortrait.cs" id="1_xyyl1"]
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitLayer.cs" id="2_2ltm5"]
+[ext_resource type="Texture2D" uid="uid://cch20qmjadcig" path="res://characterCustomization/sprites/CharacterBase.png" id="2_42lx1"]
+[ext_resource type="Resource" uid="uid://l6nlsw58vft" path="res://characterCustomization/options/backgrounds/BlackCharacterBackground.tres" id="2_ll5o7"]
+[ext_resource type="Texture2D" uid="uid://c7kth651mkh1a" path="res://characterCustomization/sprites/PortraitBase.png" id="3_hl2js"]
+[ext_resource type="Resource" uid="uid://di3uyo614wp7g" path="res://characterCustomization/options/backgrounds/GreenCharacterBackground.tres" id="3_r450u"]
+[ext_resource type="Resource" uid="uid://dsoruv3ko8be3" path="res://characterCustomization/options/backgrounds/PurpleCharacterBackground.tres" id="4_h7ncv"]
+[ext_resource type="Resource" uid="uid://wyhcopbfv0ba" path="res://characterCustomization/options/backgrounds/WhiteCharacterBackground.tres" id="5_n1nxi"]
+[ext_resource type="Resource" uid="uid://bdyfndn8rn4gj" path="res://characterCustomization/options/baseCharacters/NickBaseCharacter.tres" id="9_lf17m"]
+[ext_resource type="Resource" uid="uid://dodevxpqm5r2g" path="res://characterCustomization/options/NoneCharacterPortrait.tres" id="10_ixfb4"]
+[ext_resource type="Resource" uid="uid://d1j3lkw3nyc57" path="res://characterCustomization/options/clothes/NickAltClothesResource.tres" id="11_dt5eh"]
+[ext_resource type="Resource" uid="uid://dle261utkvto" path="res://characterCustomization/options/hats/NickBadHat.tres" id="12_hn6db"]
+[ext_resource type="Resource" uid="uid://c1gtxuy7fjrvy" path="res://characterCustomization/options/misc/NickBadGlasses.tres" id="13_wovvc"]
+
+[node name="CharacterPortrait" type="Node2D" node_paths=PackedStringArray("background", "baseCharacter", "clothes", "hat", "misc")]
+position = Vector2(233, 250)
+scale = Vector2(3, 3)
+script = ExtResource("1_xyyl1")
+background = NodePath("Background")
+baseCharacter = NodePath("CharacterBase")
+clothes = NodePath("Clothes")
+hat = NodePath("Hat")
+misc = NodePath("Misc")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(7.62939e-06, -0.5)
+scale = Vector2(0.145, 0.2125)
+texture = ExtResource("1_1n87o")
+script = ExtResource("2_2ltm5")
+backgrounds = Array[Object]([ExtResource("2_ll5o7"), ExtResource("3_r450u"), ExtResource("4_h7ncv"), ExtResource("5_n1nxi")])
+
+[node name="CharacterBase" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_42lx1")
+script = ExtResource("2_2ltm5")
+type = 1
+backgrounds = Array[Object]([ExtResource("9_lf17m")])
+
+[node name="Clothes" type="Sprite2D" parent="."]
+texture_filter = 1
+script = ExtResource("2_2ltm5")
+type = 2
+backgrounds = Array[Object]([ExtResource("10_ixfb4"), ExtResource("11_dt5eh")])
+
+[node name="Hat" type="Sprite2D" parent="."]
+texture_filter = 1
+script = ExtResource("2_2ltm5")
+type = 3
+backgrounds = Array[Object]([ExtResource("10_ixfb4"), ExtResource("12_hn6db")])
+
+[node name="Misc" type="Sprite2D" parent="."]
+texture_filter = 1
+script = ExtResource("2_2ltm5")
+type = 4
+backgrounds = Array[Object]([ExtResource("10_ixfb4"), ExtResource("13_wovvc")])
+
+[node name="PortraitBase" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_hl2js")

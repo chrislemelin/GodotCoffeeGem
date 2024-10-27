@@ -157,6 +157,7 @@ theme_override_font_sizes/font_size = 36
 text = "FullScreen"
 
 [node name="Resolutions" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 theme = ExtResource("1_kbkdg")
 theme_override_constants/margin_left = 150
@@ -171,7 +172,7 @@ text = "Resolutions"
 fit_content = true
 
 [node name="OptionButton" type="OptionButton" parent="SettingsMenu/Panel/VBoxContainer/Resolutions/VBoxContainer"]
-texture_filter = 1
+texture_filter = 2
 layout_mode = 2
 
 [node name="QuitButton" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]

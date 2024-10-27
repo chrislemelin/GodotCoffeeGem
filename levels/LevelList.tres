@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelListResource" load_steps=12 format=3 uid="uid://cbno64gc8kxnf"]
+[gd_resource type="Resource" script_class="LevelListResource" load_steps=11 format=3 uid="uid://cbno64gc8kxnf"]
 
 [ext_resource type="Script" path="res://levels/LevelListResource.cs" id="1_b7xni"]
 [ext_resource type="Script" path="res://levels/LevelResource.cs" id="1_uvx8r"]
@@ -19,53 +19,46 @@ blockedTiles = 1
 
 [sub_resource type="Resource" id="Resource_aj5l7"]
 script = ExtResource("1_uvx8r")
-score = 3000
+score = 2500
 makeRandomBossRecipe = false
 generateRandomBossRelic = true
 blockedTiles = 0
 
 [sub_resource type="Resource" id="Resource_2mlyu"]
 script = ExtResource("1_uvx8r")
-score = 4000
+score = 3500
 makeRandomBossRecipe = false
 generateRandomBossRelic = false
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_qvwn2"]
 script = ExtResource("1_uvx8r")
-score = 6000
+score = 5000
 makeRandomBossRecipe = false
 generateRandomBossRelic = false
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_d23x1"]
 script = ExtResource("1_uvx8r")
-score = 8000
+score = 7000
 makeRandomBossRecipe = false
 generateRandomBossRelic = true
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_hw3tv"]
 script = ExtResource("1_uvx8r")
-score = 10000
+score = 9000
 makeRandomBossRecipe = false
 generateRandomBossRelic = false
 blockedTiles = 3
 
 [sub_resource type="Resource" id="Resource_oj2hp"]
 script = ExtResource("1_uvx8r")
-score = 13000
-makeRandomBossRecipe = false
-generateRandomBossRelic = true
-blockedTiles = 3
-
-[sub_resource type="Resource" id="Resource_i1xfv"]
-script = ExtResource("1_uvx8r")
-score = 20000
+score = 12000
 makeRandomBossRecipe = false
 generateRandomBossRelic = false
-blockedTiles = 6
+blockedTiles = 3
 
 [resource]
 script = ExtResource("1_b7xni")
-levelResources = [SubResource("Resource_7jx5j"), SubResource("Resource_en0rj"), SubResource("Resource_aj5l7"), SubResource("Resource_2mlyu"), SubResource("Resource_qvwn2"), SubResource("Resource_d23x1"), SubResource("Resource_hw3tv"), SubResource("Resource_oj2hp"), SubResource("Resource_i1xfv")]
+levelResources = [SubResource("Resource_7jx5j"), SubResource("Resource_en0rj"), SubResource("Resource_aj5l7"), SubResource("Resource_2mlyu"), SubResource("Resource_qvwn2"), SubResource("Resource_d23x1"), SubResource("Resource_hw3tv"), SubResource("Resource_oj2hp")]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dafygxlggdan2"]
+
+[ext_resource type="Script" path="res://particalEffects/Explosion.cs" id="1_4ri67"]
+[ext_resource type="Texture2D" uid="uid://cy4q8r85fkpln" path="res://particalEffects/sparkle-Sheet2.png" id="2_7f6i5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i1ktd"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_rhbpu"]
+offsets = PackedFloat32Array(0, 0.0990991, 0.306306, 0.516432, 0.704955, 0.871622, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0.3, 0.965, 1, 1, 0.0705882, 0.356863, 0.980392, 1, 0.298039, 0.964706, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_877by"]
+gradient = SubResource("Gradient_rhbpu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gnjrs"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 90.0
+spread = 0.0
+gravity = Vector3(0, -25, 0)
+scale_min = 4.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_877by")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_enabled = true
+turbulence_noise_scale = 0.0
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.0
+
+[node name="Explosion" type="Node2D" node_paths=PackedStringArray("particles2D")]
+script = ExtResource("1_4ri67")
+particles2D = NodePath("GPUParticles2D")
+timeEmiting = 0.5
+timeAlive = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_i1ktd")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_gnjrs")
+texture = ExtResource("2_7f6i5")
+lifetime = 0.5
+one_shot = true
+fixed_fps = 60

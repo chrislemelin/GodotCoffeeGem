@@ -9,7 +9,6 @@ public partial class CustomButton : Button
 	[Export] public bool grabFocus = false;
 	[Export] bool isInSettingsMenu = false;
 
-
 	public void setGrabFocus(bool value) {
 		grabFocus = value;
 	}
@@ -31,9 +30,15 @@ public partial class CustomButton : Button
 		MouseEntered += () => {
 			if (!Disabled) {
 				hoverAudioplayer.Play();
-				animationPlayer.Play("Hover");
+				playAnimation("Hover");
 			}
 		};
+	}
+
+	private void playAnimation(String animation) {
+		if (animationPlayer != null) {
+			animationPlayer.Play(animation);
+		}
 	}
 
 	public override void _Process(Double delta)
@@ -41,8 +46,6 @@ public partial class CustomButton : Button
 		base._Process(delta);
 		PivotOffset = new Vector2(Size.X/2, Size.Y);
 	}
-
-
 	
 	public void checkForFocus() {
 		checkForFocus(true);

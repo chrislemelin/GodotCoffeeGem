@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=6 format=3 uid="uid://coe0ag4iijk0p"]
+
+[ext_resource type="Resource" uid="uid://dumbe4o7qxwb1" path="res://cards/cardResources/cardLists/LeadCardList.tres" id="1_51xwp"]
+[ext_resource type="Resource" uid="uid://cwhi76flmsyk2" path="res://cards/cardResources/cardLists/cardPools/CardPoolLead.tres" id="2_t6r6c"]
+[ext_resource type="Texture2D" uid="uid://clv4qx1vnmaph" path="res://sprites/cards/final/CardBackBlack.png" id="3_34j3v"]
+[ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="3_bh0xc"]
+[ext_resource type="Texture2D" uid="uid://cjhdp8tk6acy8" path="res://sprites/cards/final/CardfrontBlack.png" id="4_jo5qv"]
+
+[resource]
+script = ExtResource("3_bh0xc")
+cardList = ExtResource("1_51xwp")
+cardPool = ExtResource("2_t6r6c")
+relics = Array[Object]([])
+title = "Lead Deck"
+description = "An advanced deck where you gain points by cleaning out lead 
+from your coffee machine to protect your valuable customers."
+color = Color(0, 0, 0, 0)
+faceCard = ExtResource("3_34j3v")
+faceCardFront = ExtResource("4_jo5qv")

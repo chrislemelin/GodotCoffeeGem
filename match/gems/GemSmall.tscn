@@ -1,7 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://d27f164r8xqth"]
+[gd_scene load_steps=31 format=3 uid="uid://d27f164r8xqth"]
 
 [ext_resource type="Script" path="res://match/gems/Gem.cs" id="1_aqcj0"]
-[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/fire-updated.png" id="2_7bvwq"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/final/fire-updated.png" id="2_7bvwq"]
 [ext_resource type="Texture2D" uid="uid://dql1c2i3xlnlg" path="res://sprites/cards/icons/card-icon.png" id="3_gnfrm"]
 [ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://sprites/lock.png" id="4_pl8ky"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="5_10fge"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bph8dfon35yv0" path="res://match/gem.png" id="8_ckfjs"]
 [ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="9_81gjp"]
 [ext_resource type="PackedScene" uid="uid://dfcbd3bluulqg" path="res://particalEffects/sparkle.tscn" id="10_6urfw"]
+[ext_resource type="PackedScene" uid="uid://dafygxlggdan2" path="res://particalEffects/sparkle4.tscn" id="11_2yx18"]
 [ext_resource type="Texture2D" uid="uid://dyfuhusnktxnc" path="res://sprites/questionmark.png" id="11_nrnfc"]
+[ext_resource type="PackedScene" uid="uid://dtophscbtu8wc" path="res://particalEffects/sparkle5.tscn" id="12_2teep"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShaderGem.gdshader" id="12_55fw6"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="13_ulnhd"]
 [ext_resource type="AudioStream" uid="uid://berjxlmfkhik0" path="res://sound/MatchBoard/bong_001.ogg" id="14_iu2el"]
@@ -217,6 +219,8 @@ leadLevelText = NodePath("CanvasGroup/LeadLevel")
 animationPlayer = NodePath("AnimationPlayer")
 explosion = ExtResource("9_81gjp")
 shimmer = ExtResource("10_6urfw")
+shimmerUpgraded4 = ExtResource("11_2yx18")
+shimmerUpgraded5 = ExtResource("12_2teep")
 questionMark = ExtResource("11_nrnfc")
 speed = 500.0
 

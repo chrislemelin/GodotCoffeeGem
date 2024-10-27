@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cpvxna7x4w1yh"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardLibrary.cs" id="1_x7xb1"]
-[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_njqsx"]
+[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/cardPools/CardPool.tres" id="2_njqsx"]
 [ext_resource type="Resource" uid="uid://ki4a6y81wwqm" path="res://cards/cardResources/cardLists/unlockableCardPacks/UnlockableCardPacks.tres" id="3_hlaqi"]
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_qqgwt"]
 [ext_resource type="Resource" uid="uid://dm1n28elr0awu" path="res://cards/cardResources/cardLists/TestCardList.tres" id="5_lescg"]

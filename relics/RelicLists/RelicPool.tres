@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=25 format=3 uid="uid://bcelpenpmwhtr"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=27 format=3 uid="uid://bcelpenpmwhtr"]
 
-[ext_resource type="Resource" uid="uid://dyu7r35wo3yq4" path="res://relics/resources/other/AdderallRelic.tres" id="1_3wuvb"]
+[ext_resource type="Resource" uid="uid://dyu7r35wo3yq4" path="res://relics/resources/energy/AdderallRelic.tres" id="1_djo3r"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_scp5n"]
-[ext_resource type="Resource" uid="uid://jq6lw7a54umt" path="res://relics/resources/other/CoffeeRelic.tres" id="2_vs0yd"]
-[ext_resource type="Resource" uid="uid://bvbobrurdd40q" path="res://relics/resources/other/TeaRelic.tres" id="3_ghqtk"]
-[ext_resource type="Resource" uid="uid://ll3jkfgwfmii" path="res://relics/resources/other/GlovesRelic.tres" id="4_tr4y1"]
+[ext_resource type="Resource" uid="uid://jq6lw7a54umt" path="res://relics/resources/energy/CoffeeRelic.tres" id="2_ypevr"]
+[ext_resource type="Resource" uid="uid://bvbobrurdd40q" path="res://relics/resources/energy/TeaRelic.tres" id="3_g8kda"]
+[ext_resource type="Resource" uid="uid://ll3jkfgwfmii" path="res://relics/resources/energy/GlovesRelic.tres" id="4_ndk1r"]
 [ext_resource type="Resource" uid="uid://wa8x0n1ft1f6" path="res://relics/resources/other/AppleRelic.tres" id="5_cxyhd"]
-[ext_resource type="Resource" uid="uid://c4p0e6bhtw00t" path="res://relics/resources/other/ManaGemsRelic.tres" id="6_d4ove"]
+[ext_resource type="Resource" uid="uid://c4p0e6bhtw00t" path="res://relics/resources/energy/ManaGemsRelic.tres" id="6_l4gd4"]
 [ext_resource type="Resource" uid="uid://dhtqi0mvscf8u" path="res://relics/resources/other/CardChoiceRelic.tres" id="7_ks5hc"]
 [ext_resource type="Resource" uid="uid://d1e7k01hhad58" path="res://relics/resources/other/BurntCookieRelic.tres" id="8_bf2h7"]
 [ext_resource type="Resource" uid="uid://m0rit4tghx2m" path="res://relics/resources/other/SprayUpgradeRelic.tres" id="10_cuxxa"]
@@ -24,8 +24,10 @@
 [ext_resource type="Resource" uid="uid://c1v823t46ou70" path="res://relics/resources/generateGems/GainCoinsSugar.tres" id="21_cpybf"]
 [ext_resource type="Resource" uid="uid://bmtsy6m15p7mc" path="res://relics/resources/generateGems/GainManaCoffeeRelic.tres" id="22_6fyfr"]
 [ext_resource type="Resource" uid="uid://c4hfhnjv7nuo2" path="res://relics/resources/generateGems/GainMultVanilla.tres" id="23_w1uoa"]
+[ext_resource type="Resource" uid="uid://rem81l6vu31j" path="res://relics/resources/columns/QuickFix.tres" id="24_5iy1y"]
+[ext_resource type="Resource" uid="uid://bd6ql16571ymt" path="res://relics/resources/other/EnergyBarRelic.tres" id="25_xke8y"]
 
 [resource]
 script = ExtResource("1_scp5n")
 removeDuplicates = true
-allRelics = [ExtResource("1_3wuvb"), ExtResource("2_vs0yd"), ExtResource("3_ghqtk"), ExtResource("4_tr4y1"), ExtResource("5_cxyhd"), ExtResource("6_d4ove"), ExtResource("7_ks5hc"), ExtResource("8_bf2h7"), ExtResource("11_dykg8"), ExtResource("10_cuxxa"), ExtResource("11_udvh7"), ExtResource("14_n2r1g"), ExtResource("13_kk7qt"), ExtResource("18_o80vf"), ExtResource("15_p8b3l"), ExtResource("16_1gkeo"), ExtResource("17_bfjy8"), ExtResource("19_gi3wq"), ExtResource("19_y0686"), ExtResource("20_u12kx"), ExtResource("21_cpybf"), ExtResource("22_6fyfr"), ExtResource("23_w1uoa")]
+allRelics = [ExtResource("1_djo3r"), ExtResource("2_ypevr"), ExtResource("3_g8kda"), ExtResource("4_ndk1r"), ExtResource("5_cxyhd"), ExtResource("6_l4gd4"), ExtResource("7_ks5hc"), ExtResource("8_bf2h7"), ExtResource("11_dykg8"), ExtResource("10_cuxxa"), ExtResource("11_udvh7"), ExtResource("14_n2r1g"), ExtResource("13_kk7qt"), ExtResource("18_o80vf"), ExtResource("15_p8b3l"), ExtResource("16_1gkeo"), ExtResource("17_bfjy8"), ExtResource("19_gi3wq"), ExtResource("19_y0686"), ExtResource("20_u12kx"), ExtResource("21_cpybf"), ExtResource("22_6fyfr"), ExtResource("23_w1uoa"), ExtResource("24_5iy1y"), ExtResource("25_xke8y")]

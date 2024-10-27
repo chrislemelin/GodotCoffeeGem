@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bkqo6c37ee7t7"]
+[gd_scene load_steps=36 format=3 uid="uid://bkqo6c37ee7t7"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_ro6go"]
 [ext_resource type="PackedScene" uid="uid://brvirf84hjie1" path="res://mainScenes/game.tscn" id="2_g2ipy"]
@@ -12,13 +12,114 @@
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="7_vbbet"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="8_e2q8p"]
 [ext_resource type="Texture2D" uid="uid://c3e1dsfm28tlr" path="res://sprites/splashScreens/SmallCapsule_Logo_09-22-2024.png" id="9_82ehf"]
+[ext_resource type="Texture2D" uid="uid://co63k03g0dgsw" path="res://sprites/mainMenu/SteamAnimation.png" id="9_121r4"]
 [ext_resource type="Texture2D" uid="uid://ysm57d5bn0j8" path="res://sprites/splashScreens/Title.png" id="9_omoh0"]
 [ext_resource type="Texture2D" uid="uid://bhd87u8c341yk" path="res://sprites/ingredients/gem-gradient-painted.png" id="10_4r0i4"]
+[ext_resource type="Script" path="res://sprites/mainMenu/PlayOnStart.cs" id="10_5ef2x"]
 [ext_resource type="PackedScene" uid="uid://i5hneqhfej8f" path="res://UI/core/LoadSceneButton.tscn" id="10_cqmeh"]
 [ext_resource type="PackedScene" uid="uid://8kjc1bbjxhb7" path="res://UI/core/OpenBrowserButton.tscn" id="10_kkka7"]
 [ext_resource type="Texture2D" uid="uid://buijri2tdekaf" path="res://sprites/CoffeeShop/board/CoffeeFillTexture_withtop_09-21-2024.png" id="11_hvj1m"]
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="18_q8uys"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="19_0btbp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwmrw"]
+atlas = ExtResource("9_121r4")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuj3e"]
+atlas = ExtResource("9_121r4")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiagd"]
+atlas = ExtResource("9_121r4")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc76f"]
+atlas = ExtResource("9_121r4")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixe7t"]
+atlas = ExtResource("9_121r4")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdc10"]
+atlas = ExtResource("9_121r4")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmtsy"]
+atlas = ExtResource("9_121r4")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng3p3"]
+atlas = ExtResource("9_121r4")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7wgd"]
+atlas = ExtResource("9_121r4")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkgvt"]
+atlas = ExtResource("9_121r4")
+region = Rect2(5760, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm2u6"]
+atlas = ExtResource("9_121r4")
+region = Rect2(6400, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgpaa"]
+atlas = ExtResource("9_121r4")
+region = Rect2(7040, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5w0a"]
+atlas = ExtResource("9_121r4")
+region = Rect2(7680, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkakq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwmrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuj3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiagd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc76f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixe7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdc10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmtsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng3p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7wgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkgvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm2u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgpaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5w0a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("quickPlayButton", "quitButton", "creditsButton", "tryTutorialUI", "settingsMenu", "settingsMenuButton", "beanHolder")]
 script = ExtResource("1_ro6go")
@@ -33,7 +134,7 @@ creditsScene = ExtResource("5_7ewrx")
 settingsMenu = NodePath("SettingsMenu")
 settingsMenuButton = NodePath("VBoxContainer2/Settings/Button")
 beanScene = ExtResource("3_3tqas")
-numberOfBeans = 50
+numberOfBeans = 20
 beanHolder = NodePath("BeanHolder")
 
 [node name="Map2" parent="." instance=ExtResource("7_61k3c")]
@@ -51,6 +152,14 @@ scale = Vector2(2, 2)
 visible = false
 rotation = -0.575959
 rotateSpeed = 20.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(962, 540)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_kkakq")
+frame_progress = 0.0178168
+script = ExtResource("10_5ef2x")
 
 [node name="SmallCapsuleLogo09-22-2024" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -245,4 +354,4 @@ theme_override_constants/margin_left = 20
 [node name="Button" parent="TryTutorial/Panel/HBoxContainer/MarginContainer2" instance=ExtResource("10_cqmeh")]
 layout_mode = 2
 text = "Naw"
-sceneString = "res://mainScenes/game.tscn"
+sceneString = "res://mainScenes/DeckSelectionPicker.tscn"

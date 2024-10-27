@@ -9,6 +9,9 @@ public partial class CardInfoLoader : CustomToolTip
 	[Export] protected RichTextLabel costLabel;
 	[Export] public CardResource cardResource;
 	[Export] protected TextureRect picture;
+	[Export] public TextureRect background;
+	[Export] public TextureRect cardBack;
+
 	[Export] protected TextureRect titleSprite;
 	[Export] protected HighlightOnHover highlightOnHover;
 	[Export] protected Control coinCostControl;
@@ -19,13 +22,17 @@ public partial class CardInfoLoader : CustomToolTip
 	private bool disabled = false;
 	public bool wiggleEnabled { get; private set; } = true;
 	[Export] AnimationPlayer animationPlayer;
-
 	private bool isLocked = false;
 
 
 	public override void _Ready()
 	{
 		base._Ready();
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		if (gameManagerIF.getDeckSelection() != null) {
+			background.Texture = gameManagerIF.getDeckSelection().faceCardFront;
+			cardBack.Texture = gameManagerIF.getDeckSelection().faceCard;
+		}
 		Material = (Material)Material.Duplicate();
 
 		FocusEntered += () => highlightOnHover.setForceHighlight(true);

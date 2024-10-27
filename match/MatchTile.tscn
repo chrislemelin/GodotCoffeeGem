@@ -11,14 +11,15 @@
 size = Vector2(250, 250)
 
 [node name="MatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "disableSprite2D", "control", "gemParent", "goo")]
+position = Vector2(2, 0)
 script = ExtResource("1_3ldum")
 sprite2D = NodePath("tile")
 disableSprite2D = NodePath("DisableSprite")
 control = NodePath("Control")
 gemParent = NodePath("GemParent")
-highlightColor = Color(0.666667, 0, 0, 0.513726)
-hoverColor = Color(1, 1, 0, 0.666667)
-selectColor = Color(0.183333, 0, 1, 0.505882)
+highlightColor = Color(0.435294, 0, 0, 1)
+hoverColor = Color(0.505882, 0.505882, 0, 1)
+selectColor = Color(0.0627451, 0, 0.47451, 1)
 blockedColor = Color(0.341176, 0.00784314, 0.290196, 0.517647)
 tutorialColor = Color(0, 0.988235, 0, 0.619608)
 goo = NodePath("TextureRect2")

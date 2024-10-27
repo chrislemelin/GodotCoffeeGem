@@ -449,7 +449,7 @@ public partial class MatchBoard : MatchBoardTutorial
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
 		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => setUIFocus(false);
 
-		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel() + "/9";
+		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel() + "/8";
 
 		score.scoreChange += (int newScore, int oldScore) => GetTree().CreateTimer(.25f).Timeout += () => scoreChanged(newScore, oldScore);
 		score.multChange += (value) =>  {
@@ -477,7 +477,7 @@ public partial class MatchBoard : MatchBoardTutorial
 		populateBoard();
 		gooIntialTiles();
 		
-		hand.cardPlayed += (card) => clearMatchActions();
+		hand.cardAboutToPlay += (card) => clearMatchActions();
 
 		timer = new Timer();
 		AddChild(timer);
@@ -486,11 +486,20 @@ public partial class MatchBoard : MatchBoardTutorial
 		timer.Start();
 	}
 
-	public void addColumn() {
-		columnUpgrades ++;
-		//sizeX ++;
+	public void addColumns(int value) {
+		columnUpgrades += value;
 		generateTiles();
 		populateBoard();
+	}
+
+	public void redrawBoard() {
+		generateTiles();
+		populateBoard();
+	}
+
+
+	public void addColumn() {
+		addColumns(1);
 	}
 
 	private bool usingSmallSize() {
@@ -602,9 +611,13 @@ public partial class MatchBoard : MatchBoardTutorial
 		{
 			for (int newY = 0; newY < gridSize.Y; newY++)
 			{
+				bool gooTile = false;
 				Vector2 position = new Vector2(newX, newY);
 				if (tileMap.ContainsKey(position) && tileMap[position].Gem != null) {
 					boardResizeGemMap.Add(position, tileMap[position].Gem);
+					if (tileMap[position].getIsBlocked()) {
+						gooTile = true;
+					}
 					//continue;
 				}
 				Tile newTile = tileSceneToUse.Instantiate() as Tile;
@@ -620,6 +633,10 @@ public partial class MatchBoard : MatchBoardTutorial
 				newTile.control.MouseEntered += () => setTileHovered(newTile);
 				newTile.control.MouseExited += () => clearHover(newTile);
 				gridPositions.Add(position);
+
+				if (gooTile) {
+					newTile.setBlocked(true);
+				}
 			}
 		}
 		foreach (Vector2 mapPosition in tileMap.Keys) {
@@ -746,7 +763,7 @@ public partial class MatchBoard : MatchBoardTutorial
 		for (int x = 0; x < gridSize.X; x++) {
 			int y = gridSize.Y -1;
 			Tile tile = getTile(new Vector2(x,y));
-			if(tile.Gem.Type.Equals(GemType.Lead)){
+			if(tile.Gem != null && tile.Gem.Type.Equals(GemType.Lead)){
 				matches.Add(new HashSet<Tile>(){tile});
 			}
 		}
@@ -847,6 +864,7 @@ public partial class MatchBoard : MatchBoardTutorial
 		{
 			List<Tile> tilesToDelete = match.Where(tile => tile.Gem != null).Where(gem => gem != null).ToList();
 			List<Tile> gemsWithCombo = tilesToDelete.Where(tile => tile.Gem.getCombo() != 0).ToList();
+			List<Gem> ingredientsToDelete = match.Where(tile => tile.Gem != null).Where(gem => gem != null).Select(tile => tile.Gem).ToList();
 			if (gemsWithCombo.Count > 0)
 			{
 				Tile survivingGem = gemsWithCombo[0];
@@ -858,7 +876,9 @@ public partial class MatchBoard : MatchBoardTutorial
 					survivingGem.Gem.addCombo(gemWithCombo.Gem.getCombo());
 				}
 			}
-			deleteGemAtPositions(tilesToDelete.Select(tile => tile.getTilePosition()).ToList(), true, false);
+			Match matchObject = new Match();
+			matchObject.ingredients = ingredientsToDelete;
+			deleteGemAtPositions(tilesToDelete.Select(tile => tile.getTilePosition()).ToList(), true, false, matchObject);
 		}
 
 	}
@@ -867,11 +887,11 @@ public partial class MatchBoard : MatchBoardTutorial
 	{
 		return positions.Where(pos => tileMap.ContainsKey(pos)).Where(pos => tileMap[pos].Gem != null).ToList();
 	}
-	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, bool explode) {
-		deleteGemAtPositions(positions, fromMatch, explode, Optional.None<int>());
+	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, bool explode, Match match = null) {
+		deleteGemAtPositions(positions, fromMatch, explode, Optional.None<int>(), match);
 	}
 
-	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, bool explode, Optional<int> scorePointValue)
+	private void deleteGemAtPositions(IEnumerable<Vector2> positions, bool fromMatch, bool explode, Optional<int> scorePointValue, Match match = null)
 	{
 		positions = filterOutInvalidPosition(positions);
 		List<Gem> gemsToDelete = positions.Select(pos => tileMap[pos].Gem).Where(gem => gem != null).ToList();
@@ -898,11 +918,11 @@ public partial class MatchBoard : MatchBoardTutorial
 
 		foreach (Vector2 position in positions)
 		{
-			deleteGemAtPositionInternal(position, fromMatch, explode);
+			deleteGemAtPositionInternal(position, fromMatch, explode, match);
 		}
 	}
 
-	private void deleteGemAtPositionInternal(Vector2 position, bool fromMatch, bool explode)
+	private void deleteGemAtPositionInternal(Vector2 position, bool fromMatch, bool explode, Match match = null)
 	{
 		Optional<Tile> tileMaybe = getTileOptional(position);
 		if (tileMaybe.HasValue)
@@ -912,7 +932,9 @@ public partial class MatchBoard : MatchBoardTutorial
 			{
 				if (fromMatch)
 				{
-					tile.Gem.startDyingMatch();
+
+					tile.Gem.startDyingMatch(match);
+					
 				}
 				else if (explode) {
 					EmitSignal(SignalName.ingredientDestroyed, tile.Gem);
@@ -1098,7 +1120,7 @@ public partial class MatchBoard : MatchBoardTutorial
 			{
 				Vector2 currentPosition = new Vector2(x, y);
 				Tile tile = getTile(currentPosition);
-				if (!tile.getIsBlocked() && tile.Gem == null)
+				if (tile.Gem == null)
 				{
 					if (boardResizeGemMap.ContainsKey(currentPosition)) {
 						generateGemForTile(currentPosition, boardResizeGemMap[currentPosition]);
@@ -1177,12 +1199,13 @@ public partial class MatchBoard : MatchBoardTutorial
 		tile.gemParent.AddChild(gem);
 		tile.Gem = gem;
 		tile.Gem.setAddonType(oldGem.AddonType);
+		tile.Gem.leadLevel = oldGem.leadLevel;
+
 		gem.Position = new Vector2(0, 0);
 		if (hiddenCounter++ % 8 == 0)
 		{
 			//gem.setAddonType(GemAddonType.Lock);
 		}
-		addRandomAddon(gem);
 		return gem;
 	}
 

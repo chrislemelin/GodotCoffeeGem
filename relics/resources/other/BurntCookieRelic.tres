@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_o064v"]
 script = ExtResource("1_mmv8o")
-value = 200
+value = 300
 BurnGems = 0
 EnergyGems = 0
 CardGems = 0
@@ -19,7 +19,7 @@ GainMult = 0.0
 [resource]
 script = ExtResource("3_k74sc")
 title = "Burnt Cookie"
-description = "Gain 200 points whenever you destroy 4 burnt ingredients"
+description = "Gain 300 points whenever you destroy 4 burnt ingredients"
 image = ExtResource("2_gjh1d")
 cost = 100
 hidden = false

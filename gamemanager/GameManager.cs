@@ -10,8 +10,6 @@ public partial class GameManager : GameManagerIF
 	[Export] RelicResource testRelic;
 
 	[Export] public NewCardSelection newCardSelection;
-	[Export] public RecipeUI recipeUI;
-	[Export] Control UICover;
 	[Export] public GameOverScreen gameOverScreen;
 	[Export] public Score score;
 	[Export] public RelicHolderUI relicHolderUI;
@@ -68,9 +66,14 @@ public partial class GameManager : GameManagerIF
 		if (getNumberOfLevelsPlayed() == 0 && startingDialougeResource != null) {
 			hand.forceNotHaveUIFocus = true;
 			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
+			bool hasFired = false;
 			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
-				hand.forceNotHaveUIFocus = false;
-				hand.setUIFocus(true);
+				if (!hasFired) {
+					hand.forceNotHaveUIFocus = false;
+					hand.setUIFocus(true);
+					hasFired = true;
+				}
+				
 			};
 			//DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
 		}
@@ -120,16 +123,17 @@ public partial class GameManager : GameManagerIF
 			bossRelicTutorial.richTextLabel.Text += bossRelic.description;
 			hand.setUIFocus(false);
 			if (!getSeenBossDialouge()) {
+				bool hasFired = false;
 				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(bossLevelDialougeResource);
 				DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
-				if (resource == bossLevelDialougeResource) {
+				if (resource == bossLevelDialougeResource && !hasFired) {
 					bossRelicTutorial.setVisible(true);
+					hasFired = true;
 				}
 				setSeenBossDialouge(true);
 			};
 			} else {
 				bossRelicTutorial.setVisible(true);
-
 			}
 
 		}

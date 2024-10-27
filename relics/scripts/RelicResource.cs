@@ -52,7 +52,11 @@ public partial class RelicResource : Resource
 			counter++;
 			if (counter > counterMax)
 			{
-				counter = 1;
+				if (resetCounterAfterReachingMax) {
+					counter = 1;
+				} else {
+					counter = counterMax;
+				}
 			}
 			EmitSignal(SignalName.CounterChanged, counter);
 		}

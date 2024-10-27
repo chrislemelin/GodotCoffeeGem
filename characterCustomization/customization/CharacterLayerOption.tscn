@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxg55c01rnux7"]
+
+[ext_resource type="Script" path="res://characterCustomization/customization/CharacterLayerOption.cs" id="1_8g5nl"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="2_hljog"]
+
+[node name="CharacterCustomizationOption" type="HBoxContainer" node_paths=PackedStringArray("leftButton", "rightButton", "label", "typeLabel")]
+script = ExtResource("1_8g5nl")
+leftButton = NodePath("Button")
+rightButton = NodePath("Button2")
+label = NodePath("VBoxContainer/RichTextLabel2")
+typeLabel = NodePath("VBoxContainer/RichTextLabel")
+
+[node name="Button" parent="." instance=ExtResource("2_hljog")]
+layout_mode = 2
+text = "🢘"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]None"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[center]None"
+fit_content = true
+
+[node name="Button2" parent="." instance=ExtResource("2_hljog")]
+layout_mode = 2
+text = "🢚"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=61 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://qhphks7awow3" path="res://dialogue/final/bossDialouge/HighScoreWon.dialogue" id="2_ftyi2"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="37_ut3ll"]
 [ext_resource type="PackedScene" uid="uid://dul64fgsaye3s" path="res://camera/camera_2d.tscn" id="39_3yyxa"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="39_btpum"]
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="40_iiasy"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/NewCardSelection.tscn" id="42_3aqt8"]
 [ext_resource type="PackedScene" uid="uid://bt53pbibh6p76" path="res://UI/Selection/Overtime/OvertimeUI.tscn" id="42_osxvy"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="43_mswlb"]
@@ -51,6 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://28twoy1bat4t" path="res://meta/debt/DebtReward.tscn" id="48_2ib3b"]
 [ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="48_ckeue"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="51_n61nv"]
+[ext_resource type="PackedScene" uid="uid://ff2wbvpyhygk" path="res://characterCustomization/CharacterPortrait.tscn" id="53_4rgbs"]
 [ext_resource type="Texture2D" uid="uid://bse40n4t1va72" path="res://sprites/character/Nick1.png" id="54_8tj11"]
 
 [sub_resource type="Resource" id="Resource_qopb2"]
@@ -301,7 +303,7 @@ bossLevelDialougeResource = ExtResource("7_10afs")
 relicList = ExtResource("4_dls5h")
 
 [node name="Background" type="Node2D" parent="."]
-position = Vector2(2, 0)
+position = Vector2(2.5, 0)
 
 [node name="PixelArtShopTest2" type="Sprite2D" parent="Background"]
 texture_filter = 1
@@ -311,7 +313,7 @@ texture = ExtResource("12_cxlr8")
 
 [node name="e" type="Sprite2D" parent="Background"]
 texture_filter = 1
-position = Vector2(1016, 402)
+position = Vector2(1015, 402)
 scale = Vector2(3, 3)
 texture = ExtResource("12_cxlr8")
 
@@ -320,12 +322,6 @@ modulate = Color(0.427451, 0.301961, 0.356863, 1)
 position = Vector2(1032, 1004)
 scale = Vector2(5.165, 1)
 texture = ExtResource("28_ib6gn")
-
-[node name="WoodenCounter" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(960, 717)
-scale = Vector2(1.9405, 0.9182)
-texture = ExtResource("11_0qapd")
 
 [node name="MatchBoard" parent="." node_paths=PackedStringArray("hand", "mana", "score", "gameCamera") groups=["MatchBoard"] instance=ExtResource("5_4m14m")]
 position = Vector2(811, 204)
@@ -350,7 +346,7 @@ scale = Vector2(0.998632, 0.998632)
 texture = ExtResource("15_p0qwc")
 
 [node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager", "deckView") instance=ExtResource("6_tl444")]
-position = Vector2(1809, 902)
+position = Vector2(1812, 910)
 hand = NodePath("../Hand")
 cardList = SubResource("Resource_cyk7j")
 discard = NodePath("../Discard")
@@ -377,7 +373,14 @@ width = 1500
 unique_name_in_owner = true
 position = Vector2(241, 682)
 
+[node name="WoodenCounter" type="Sprite2D" parent="Mana"]
+visible = false
+position = Vector2(719, 35)
+scale = Vector2(1.9405, 0.9182)
+texture = ExtResource("11_0qapd")
+
 [node name="Nick" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(1809, 237)
 scale = Vector2(3, 3)
@@ -404,6 +407,9 @@ offset_top = 569.0
 offset_right = 1888.0
 offset_bottom = 639.0
 playableCardsUI = NodePath("../UIOverLays/PlayableCards")
+
+[node name="CharacterPortrait" parent="." instance=ExtResource("53_4rgbs")]
+position = Vector2(1810, 240)
 
 [node name="Debt" type="Control" parent="." node_paths=PackedStringArray("richTextLabel")]
 visible = false
@@ -461,6 +467,7 @@ offset_left = 447.0
 offset_top = 111.0
 offset_right = 767.0
 offset_bottom = 240.0
+metadata/_edit_use_anchors_ = true
 
 [node name="WelcomeScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens", "textureButton")]
 visible = false
@@ -1083,21 +1090,24 @@ offset_top = 476.0
 offset_right = 1181.0
 offset_bottom = 790.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/GooTutorial/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UIOverLays/GooTutorial/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("18_y5ido")
+theme = ExtResource("40_iiasy")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/GooTutorial/VBoxContainer/PanelContainer"]
+layout_mode = 2
 bbcode_enabled = true
-text = "[fill]Oh no, your trusty coffee machine has started secreting some kind of strange goo. This probabaly wont pass health expection.
+text = "[fill]Oh no, your trusty coffee machine has started secreting some kind of strange goo. This probabaly won't pass health inspection.
 
 Goo tiles cannot be targeted by your cards. You can clear them out by making matches adjacent to goo tiles!"
 fit_content = true
 
 [node name="Button2" parent="UIOverLays/GooTutorial" instance=ExtResource("33_tua3q")]
 layout_mode = 0
-offset_left = 761.0
-offset_top = 814.0
-offset_right = 915.0
-offset_bottom = 866.0
+offset_left = 772.0
+offset_top = 875.0
+offset_right = 926.0
+offset_bottom = 939.892
 text = "Continue"
 grabFocus = true
 
@@ -1112,7 +1122,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("27_67js8")
 button = NodePath("ContinueButton")
-richTextLabel = NodePath("Text")
+richTextLabel = NodePath("PanelContainer/Text")
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/BossRelicDisplay"]
 modulate = Color(0, 0, 0, 0.568627)
@@ -1128,25 +1138,34 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="Text" type="RichTextLabel" parent="UIOverLays/BossRelicDisplay"]
+[node name="PanelContainer" type="PanelContainer" parent="UIOverLays/BossRelicDisplay"]
+layout_mode = 0
+offset_left = 553.0
+offset_top = 244.0
+offset_right = 1339.0
+offset_bottom = 544.491
+theme = ExtResource("40_iiasy")
+
+[node name="Text" type="RichTextLabel" parent="UIOverLays/BossRelicDisplay/PanelContainer"]
 layout_mode = 2
-offset_left = 546.0
-offset_top = 231.0
-offset_right = 1146.0
-offset_bottom = 511.0
-theme = ExtResource("18_y5ido")
 text = "Oh no, you accidently make a drink wrong for a customer and she demands to speak to your manager. You are rattled for the rest of the day
 
 EFFECT FOR THIS LEVEL:
 "
 fit_content = true
 
+[node name="Panel" type="Panel" parent="UIOverLays/BossRelicDisplay"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="ContinueButton" parent="UIOverLays/BossRelicDisplay" instance=ExtResource("33_tua3q")]
 layout_mode = 0
-offset_left = 747.0
-offset_top = 674.0
-offset_right = 901.0
-offset_bottom = 726.0
+offset_left = 863.0
+offset_top = 632.0
+offset_right = 1017.0
+offset_bottom = 696.892
 text = "Continue"
 grabFocus = true
 
@@ -1160,9 +1179,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("40_iiasy")
 script = ExtResource("27_67js8")
 button = NodePath("ContinueButton")
-richTextLabel = NodePath("../BossRelicDisplay/Text")
+richTextLabel = NodePath("../BossRelicDisplay/PanelContainer/Text")
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/OverTimeTutorial"]
 modulate = Color(0, 0, 0, 0.568627)
@@ -1178,22 +1198,24 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="Text" type="RichTextLabel" parent="UIOverLays/OverTimeTutorial"]
+[node name="PanelContainer" type="PanelContainer" parent="UIOverLays/OverTimeTutorial"]
+layout_mode = 0
+offset_left = 793.0
+offset_top = 162.0
+offset_right = 1447.0
+offset_bottom = 609.491
+
+[node name="Text" type="RichTextLabel" parent="UIOverLays/OverTimeTutorial/PanelContainer"]
 layout_mode = 2
-offset_left = 808.0
-offset_top = 184.0
-offset_right = 1408.0
-offset_bottom = 612.0
-theme = ExtResource("18_y5ido")
 text = "Congrats on hitting your first quota! Now technically you can leave work now, but you would be missing out on a huge opportunity! We now allow employees to stay longer than their shift to earn performance bonuses! If you earn 150% or 200% of your quota you will be rewarded with a bonus. You can see markers for these goals next to the coffee pot"
 fit_content = true
 
 [node name="ContinueButton" parent="UIOverLays/OverTimeTutorial" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("33_tua3q")]
 layout_mode = 0
-offset_left = 1007.0
-offset_top = 648.0
-offset_right = 1161.0
-offset_bottom = 716.0
+offset_left = 1062.0
+offset_top = 645.0
+offset_right = 1216.0
+offset_bottom = 713.0
 text = "Continue"
 animationPlayer = NodePath("../../BossRelicDisplay/ContinueButton/AnimationPlayer")
 hoverAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/HoverAudioPlayer")
@@ -1203,10 +1225,10 @@ grabFocus = true
 [node name="Boss" type="TextureRect" parent="UIOverLays/OverTimeTutorial"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1405.0
-offset_top = 237.0
-offset_right = 1725.0
-offset_bottom = 557.0
+offset_left = 1425.0
+offset_top = 224.0
+offset_right = 1745.0
+offset_bottom = 544.0
 texture = ExtResource("30_k7mi1")
 
 [node name="GameBeaten" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "richTextLabel")]
@@ -1221,7 +1243,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("27_67js8")
 button = NodePath("ContinueButton")
-richTextLabel = NodePath("../BossRelicDisplay/Text")
+richTextLabel = NodePath("../BossRelicDisplay/PanelContainer/Text")
 
 [node name="TextureRect" type="TextureRect" parent="UIOverLays/GameBeaten"]
 modulate = Color(0, 0, 0, 0.568627)

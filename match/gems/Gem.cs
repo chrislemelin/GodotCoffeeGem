@@ -23,6 +23,9 @@ public partial class Gem : lerp
 	[Export] AnimationPlayer animationPlayer;
 	[Export] PackedScene explosion;
 	[Export] PackedScene shimmer;
+	[Export] PackedScene shimmerUpgraded4;
+	[Export] PackedScene shimmerUpgraded5;
+
 	public int leadLevel = 1;
 
 
@@ -158,10 +161,18 @@ public partial class Gem : lerp
 		}
 	}
 
-	public void startDyingMatch()
+	public void startDyingMatch(Match match = null)
 	{
 		animationPlayer.Play("PopAnimation");
-		Node2D shimmerNode = (Node2D)shimmer.Instantiate();
+		
+		Node2D shimmerNode;
+		if (match == null || match.ingredients.Count <= 3 ) {
+			shimmerNode = (Node2D)shimmer.Instantiate();
+		} else if (match.ingredients.Count == 4) {
+			shimmerNode = (Node2D)shimmerUpgraded4.Instantiate();
+		} else {
+			shimmerNode = (Node2D)shimmerUpgraded5.Instantiate();
+		}
 		shimmerNode.Scale = new Vector2(.35f, .35f);
 		shimmerNode.Position = new Vector2(0,0);
 		shimmerNode.GetChild<GpuParticles2D>(0,false).Emitting = true;

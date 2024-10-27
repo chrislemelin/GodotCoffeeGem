@@ -9,6 +9,8 @@ public partial class CardIF : lerp
 	[Export] protected RichTextLabel descriptionLabel;
 	[Export] protected RichTextLabel costLabel;
 	[Export] protected TextureRect picture;
+	[Export] protected TextureRect background;
+
 	[Export] public HighlightOnHover highlightOnHover;
 	[Export] protected CardResource cardResource;
 	[Export] protected Color disabledColor;
@@ -16,6 +18,8 @@ public partial class CardIF : lerp
 	[Export] RichTextLabel toolTipText2;
 
 	private bool enabled = true;
+	private bool tutorialDisabled = false;
+	Mana mana;
 
 
 	[Signal]
@@ -26,6 +30,10 @@ public partial class CardIF : lerp
 	public override void _Ready()
 	{
 		base._Ready();
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		if (gameManagerIF.getDeckSelection() != null) {
+			background.Texture = gameManagerIF.getDeckSelection().faceCardFront;
+		}
 	}
 
 	public bool getEnabled()
@@ -33,14 +41,16 @@ public partial class CardIF : lerp
 		return enabled && cardResource.canPlayCard();
 	}
 
-	public void setDisabled()
+	public void setDisabledForTutorial()
 	{
 		enabled = false;
+		tutorialDisabled = true;
 		Modulate = disabledColor;
 	}
 	public void setEnabled()
 	{
 		enabled = true;
+		tutorialDisabled = false;
 		Modulate = new Color(1, 1, 1);
 	}
 
@@ -53,16 +63,30 @@ public partial class CardIF : lerp
 
 	public void setCardResource(CardResource cardResource)
 	{
+		mana = FindObjectHelper.getMana(this);
 		if (this.cardResource != null)
 		{
 			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 		}
 		this.cardResource = cardResource;
 		setUpCard();
+		checkDisabled();
+
 		cardResource.cardEffect.CardPassivesChanged += setUpCard;
 		cardResource.cardEffect.ValueChanged += setUpCard;
 		cardResource.cardEffect.CustomTextChanged += setUpCard;
+		
+		mana.ManaChanged += checkDisabled;
 		cardResource.init();
+	}
+
+	private void checkDisabled() {
+		if (cardResource.getEnergyCost() <= mana.manaValue && cardResource.canPlayCard() && !tutorialDisabled){
+			setEnabled();
+		} else {
+			setDisabledForTutorial();
+		}
+
 	}
 
 	private void setUpCard()
@@ -81,6 +105,7 @@ public partial class CardIF : lerp
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		//highlightOnHover.TooltipText = cardResource.getToolTip();
 		toolTipText2.Text = cardResource.getToolTip();
+		checkDisabled();
 	}
 
 	public void playCard(MatchBoard matchboard, Hand hand, Mana mana, List<Vector2> tiles)
@@ -111,9 +136,9 @@ public partial class CardIF : lerp
 		if (cardResource != null)
 		{
 			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
-			cardResource.cardEffect.CardPassivesChanged -= setUpCard;
 			cardResource.cardEffect.ValueChanged -= setUpCard;
 			cardResource.cardEffect.CustomTextChanged -= setUpCard;
+			mana.ManaChanged -= checkDisabled;
 		}
 		base.Dispose(disposing);
 	}

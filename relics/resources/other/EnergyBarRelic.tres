@@ -11,14 +11,14 @@ EnergyGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 3
-GainEnergy = 0
+GainEnergy = 1
 GainCoins = 0
 GainMult = 0.0
 
 [resource]
 script = ExtResource("2_x4oon")
 title = "Emergency Snack"
-description = "+3 card if  you have 0 energy and 0 cards in hand. Can only trigger once per turn"
+description = "+3 card and +1 energy if  you have 0 energy and 0 cards in hand. Can only trigger once per turn"
 cost = 100
 hidden = false
 lastForOneTurn = false

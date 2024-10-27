@@ -29,9 +29,12 @@ public partial class AudioPlayer : AudioStreamPlayer2D
 				};
 			} else {
 				GD.Print("setting up music control");
-				settingsMenu.musicSlider.ValueChanged += (double value) => {
-					recalculateVolume();
-				};
+				if (settingsMenu.musicSliderSetUp == false) {
+					settingsMenu.musicSlider.ValueChanged += (double value) => {
+						recalculateVolume();
+					};
+					settingsMenu.musicSliderSetUp = true;
+				}
 			}
 		recalculateVolume();
 		}

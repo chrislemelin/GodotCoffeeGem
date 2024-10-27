@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=14 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://addons/dialogue_manager/balloons/DialogueBalloon.cs" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://ch0ppa30uaxtj" path="res://sound/diaoulge/sound (1).wav" id="4_x3pi3"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="5_pr71p"]
 [ext_resource type="Texture2D" uid="uid://dt5iqlf20tvvj" path="res://sprites/character/Nathan.png" id="7_swunq"]
+[ext_resource type="PackedScene" uid="uid://ff2wbvpyhygk" path="res://characterCustomization/CharacterPortrait.tscn" id="7_um058"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -68,11 +69,12 @@ MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
 RichTextLabel/font_sizes/normal_font_size = 56
 
-[node name="ExampleBalloon" type="CanvasLayer" node_paths=PackedStringArray("audioPlayer", "portrait")]
+[node name="ExampleBalloon" type="CanvasLayer" node_paths=PackedStringArray("audioPlayer", "portrait", "customCharacterPortrait")]
 layer = 100
 script = ExtResource("1_36de5")
 audioPlayer = NodePath("Balloon/AudioStreamPlayer2D")
-portrait = NodePath("Balloon/TextureRect")
+portrait = NodePath("Balloon/Control/TextureRect")
+customCharacterPortrait = NodePath("Balloon/Control/CharacterPortrait")
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
@@ -172,7 +174,16 @@ script = ExtResource("5_pr71p")
 soundEffect = true
 minValue = -40.0
 
-[node name="TextureRect" type="TextureRect" parent="Balloon"]
+[node name="Control" type="Control" parent="Balloon"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharacterPortrait" parent="Balloon/Control" instance=ExtResource("7_um058")]
+position = Vector2(120, 584)
+
+[node name="TextureRect" type="TextureRect" parent="Balloon/Control"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 27.0

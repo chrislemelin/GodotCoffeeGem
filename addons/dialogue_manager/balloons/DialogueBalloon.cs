@@ -9,6 +9,7 @@ namespace DialogueManagerRuntime
 	[Export] public string SkipAction = "ui_cancel";
 	[Export] AudioStreamPlayer2D audioPlayer;
 	[Export] TextureRect portrait;
+	[Export] Node2D customCharacterPortrait;
 
 	Control balloon;
 	RichTextLabel characterLabel;
@@ -143,11 +144,18 @@ namespace DialogueManagerRuntime
 	  // Set up the character name
 	  characterLabel.Visible = !string.IsNullOrEmpty(dialogueLine.Character);
 	  characterLabel.Text = Tr(dialogueLine.Character, "dialogue");
-	  	//(Texture2D)GD.Load("res://sprites/ingredients/final/Bean-pixel2.png");
-		string portraitPath = string.Format("res://sprites/character/{0}.png" , dialogueLine.Character);
-		//if(FileAccess.FileExists(portraitPath)) {
-		portrait.Texture = (Texture2D)GD.Load(portraitPath);
-		//}P
+	  //GD.Print(GetScript().);
+		if (dialogueLine.Character == "Nick" && customCharacterPortrait != null) {
+			portrait.Hide();
+			customCharacterPortrait.Visible = true;
+		} else {
+			string portraitPath = string.Format("res://sprites/character/{0}.png" , dialogueLine.Character);
+			portrait.Texture = (Texture2D)GD.Load(portraitPath);
+			portrait.Show();
+			if (customCharacterPortrait != null) {
+				customCharacterPortrait.Visible = false;
+			}
+		}
  
 	  // Set up the dialogue
 	  dialogueLabel.Hide();

@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://b0xo8to6o3t8b"]
 
 [ext_resource type="StyleBox" uid="uid://wlrapel4opio" path="res://UI/Themes/StyleBoxes/UIPanelDark.tres" id="1_225mf"]
+[ext_resource type="StyleBox" uid="uid://bhfn6sc0hvm6" path="res://UI/Themes/StyleBoxes/UIPanelDarkMargin.tres" id="1_u1wa4"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_msejk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
@@ -51,9 +52,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xodmf"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osqdc"]
 border_width_left = 5
 border_width_top = 5
@@ -80,8 +78,8 @@ Button/styles/hover = SubResource("StyleBoxFlat_8sv2r")
 Button/styles/normal = SubResource("StyleBoxFlat_wrlob")
 Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
-Panel/styles/panel = ExtResource("1_225mf")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
+Panel/styles/panel = ExtResource("1_u1wa4")
+PanelContainer/styles/panel = ExtResource("1_225mf")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 RichTextLabel/font_sizes/normal_font_size = 46
 TooltipLabel/colors/font_color = Color(0, 0, 0, 1)

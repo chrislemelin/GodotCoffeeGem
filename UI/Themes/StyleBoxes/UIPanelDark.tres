@@ -4,14 +4,11 @@
 
 [resource]
 texture = ExtResource("1_sb1cp")
-texture_margin_left = 35.6508
+texture_margin_left = 39.0
 texture_margin_top = 36.7804
 texture_margin_right = 36.0994
 texture_margin_bottom = 40.7103
-expand_margin_left = 25.0
-expand_margin_top = 25.0
-expand_margin_right = 25.0
-expand_margin_bottom = 25.0
+expand_margin_right = 5.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(3, 3, 471, 471)

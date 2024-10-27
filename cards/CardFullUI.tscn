@@ -4,19 +4,19 @@
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="1_idfrd"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="1_qnag5"]
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="3_34kys"]
-[ext_resource type="Texture2D" uid="uid://tuioy5u4m22" path="res://placeholders/cards/cardbackblank.png" id="5_jomlt"]
+[ext_resource type="Texture2D" uid="uid://tuioy5u4m22" path="res://sprites/cards/cardbackblank.png" id="5_jomlt"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="5_qjawy"]
-[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://placeholders/cards/card_desc_background.png" id="6_4xx5d"]
+[ext_resource type="Texture2D" uid="uid://dnox2bfhb7cvl" path="res://sprites/cards/card_desc_background.png" id="6_4xx5d"]
 [ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="7_8gbvv"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="7_jrfr0"]
-[ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://placeholders/cards/card_name_background.png" id="8_coj1d"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="7_jrfr0"]
+[ext_resource type="Texture2D" uid="uid://b7sxhsppng06y" path="res://sprites/cards/card_name_background.png" id="8_coj1d"]
 [ext_resource type="FontFile" uid="uid://b702frk6jvrsd" path="res://fonts/PixelOperator-Bold.ttf" id="8_unlcy"]
-[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://placeholders/UI/coin-pixel-300px.png" id="9_w4arf"]
-[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://placeholders/cards/fire1.png" id="11_kkerm"]
+[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="9_w4arf"]
+[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://sprites/cards/fire1.png" id="11_kkerm"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="14_5dyd3"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://placeholders/cards/CardBackRealFinal.png" id="14_xpk7t"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/final/CardBackRealFinal.png" id="14_xpk7t"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="16_2oxoi"]
-[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://placeholders/lock.png" id="16_sfgf4"]
+[ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://sprites/lock.png" id="16_sfgf4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjn8"]
 
@@ -259,7 +259,7 @@ shader_parameter/shine_size = 0.09
 shader_parameter/shine_angle = 37.5
 shader_parameter/shine_on = 1.0
 
-[node name="UI2" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText")]
+[node name="UI2" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText")]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_7pfgj")
 custom_minimum_size = Vector2(635, 800)
@@ -286,6 +286,7 @@ titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
+background = NodePath("Center/Background")
 titleSprite = NodePath("Center/Title/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
 coinCostControl = NodePath("CoinCost")

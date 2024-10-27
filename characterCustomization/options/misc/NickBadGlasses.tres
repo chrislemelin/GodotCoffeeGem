@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterPortraitResource" load_steps=3 format=3 uid="uid://c1gtxuy7fjrvy"]
+
+[ext_resource type="Texture2D" uid="uid://dcdwi0caev3ih" path="res://characterCustomization/sprites/NickGlasses.png" id="1_bv7kr"]
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitResource.cs" id="1_sm4va"]
+
+[resource]
+script = ExtResource("1_sm4va")
+name = "Glasses"
+color = Color(0, 0, 0, 0)
+image = ExtResource("1_bv7kr")

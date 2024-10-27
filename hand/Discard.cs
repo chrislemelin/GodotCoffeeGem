@@ -6,7 +6,9 @@ public partial class Discard : Node
 {	
 	[Export] RichTextLabel countLabel;
 	[Export] DeckViewUI deckView;
-	[Export] Control control; 
+	[Export] Control control;
+	[Export] Sprite2D background;
+ 
 	List<CardResource> cards;
 	public override void _Ready()
 	{
@@ -17,6 +19,10 @@ public partial class Discard : Node
 				deckView.setUp(cards);
 			}	
 		}; 
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		if (gameManagerIF.getDeckSelection() != null) {
+			background.Texture = gameManagerIF.getDeckSelection().faceCard;
+		}
 	}
 
 	public void addCard(CardResource cardResource) {

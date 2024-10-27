@@ -18,9 +18,7 @@ public partial class Global : Node
 	private const String SEEN_BOSS_DIALOUGE_SAVE_NAME = "seenBossDialouge";
 	private const String NUMBER_OF_LEVELS_PLAYED = "numberOfLevelsPlayed";
 	private const String COLLECTION_GAMEPLAY_DATA_SAVE_NAME = "collectGameplayData";
-
 	private const String NUMBER_OF_RUNS_PLAYED = "numberOfRunsPlayed";
-
 	private const String LEADER_BOARD_SCORE = "highscores";
 
 	public CardList deckCardList = null;
@@ -56,7 +54,7 @@ public partial class Global : Node
 	public float musicVolume = .5f;
 	public float sfXvolume = .5f;
 
-	 private int highScoreMax = 8;
+	private int highScoreMax = 8;
 	// private List<Tuple<String,int>> highScores = new List<Tuple<string, int>>() 
 	// {new Tuple<string, int>("Chris L", 10_000_000),
 	//  new Tuple<string, int>("HP", 5_000_000),
@@ -85,11 +83,9 @@ public partial class Global : Node
 
 	public void reset(MetaGlobal metaGlobal)
 	{
-		GD.Print("reset");
 		deckCardList = null;
 		colorUpgrades = new Array<ColorUpgrade>();
 		relics = new List<RelicResource>();
-		deckSelection = null;
 
 		timeStartedRun = 0;
 		zenMode = false;

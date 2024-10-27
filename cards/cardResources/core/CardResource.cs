@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 [GlobalClass, Tool]
 public partial class CardResource : Resource
@@ -130,6 +131,10 @@ public partial class CardResource : Resource
 		{
 			newDescription += " " + TextHelper.toolTip("Matchy.", "If this card destroys 3+ ingredients of the same type count it as a match");
 		}
+		if (cardEffect.innate)
+		{
+			newDescription += " " + TextHelper.toolTip("Innate.", "This card is always drawn in the starting hand");
+		}
 		return newDescription;
 	}
 
@@ -150,8 +155,11 @@ public partial class CardResource : Resource
 		if (cardEffect.nuke) {
 			returnString += "Nuke - This ingredient type is wiped from the board and cannot be spawned in anymore\n";
 		}
+		if (cardEffect.innate) {
+			returnString += "Innate - This card is always drawn in the starting hand\n";
+		}
 		if (Description.Contains("lead")) {
-			returnString += TextHelper.getIngredientImage(GemType.Lead)+" cannot be matched or selected. Scores 200 points plus 100 points for each upgrade level when it reaches the bottom\n";
+			returnString += TextHelper.getIngredientImage(GemType.Lead)+" - cannot be matched or selected. Scores 300 points plus 200 points for each upgrade level when it reaches the bottom\n";
 		}
 		return returnString;
 	}

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterBackgroundResource" load_steps=2 format=3 uid="uid://dsoruv3ko8be3"]
+
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitResource.cs" id="1_bu1ed"]
+
+[resource]
+script = ExtResource("1_bu1ed")
+name = "Purple"
+color = Color(0.576471, 0, 0.678431, 1)

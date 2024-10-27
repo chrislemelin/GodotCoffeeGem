@@ -31,6 +31,7 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = true
 
 [resource]
 script = ExtResource("3_glmh1")

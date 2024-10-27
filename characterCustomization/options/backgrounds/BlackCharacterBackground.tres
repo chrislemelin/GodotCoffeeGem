@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterBackgroundResource" load_steps=2 format=3 uid="uid://l6nlsw58vft"]
+
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitResource.cs" id="1_xy4sa"]
+
+[resource]
+script = ExtResource("1_xy4sa")
+name = "Black"
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)

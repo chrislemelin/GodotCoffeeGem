@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_c7sue"]
 script = ExtResource("1_e084d")
-value = 150
+value = 300
 BurnGems = 0
 EnergyGems = 0
 CardGems = 0
@@ -21,7 +21,7 @@ script = ExtResource("3_lovls")
 minMatchSize = 3
 ingredientType = 1
 title = "Vanilla Double"
-description = "Gain 150 score on every other vanilla match on the same turn"
+description = "Gain 300 score on every other vanilla match on the same turn"
 image = ExtResource("2_hb1mu")
 cost = 100
 hidden = false

@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://coujnmnth3xr5"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://coujnmnth3xr5"]
 
 [ext_resource type="StyleBox" uid="uid://ddaqeo5lmpqsm" path="res://UI/Themes/StyleBoxes/UIPanelWood.tres" id="1_y8cul"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="2_oys7b"]
+[ext_resource type="FontFile" uid="uid://cm2283028j6fv" path="res://fonts/Roboto-Regular.ttf" id="2_uerbw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a2oj"]
 bg_color = Color(0.529412, 0.666667, 0.894118, 1)
@@ -69,6 +70,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_dwdd0")
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
 Panel/styles/panel = ExtResource("1_y8cul")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_xodmf")
+PopupMenu/fonts/font = ExtResource("2_uerbw")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 RichTextLabel/font_sizes/normal_font_size = 46
 TooltipLabel/colors/font_color = Color(0, 0, 0, 1)

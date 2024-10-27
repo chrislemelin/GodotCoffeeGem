@@ -225,9 +225,11 @@ public partial class GameManagerIF : Node2D
 			newCardList.setCards(cardList);
 			getGlobal().deckCardList = newCardList;
 		}
-		
 	}
 
+	protected void setCardPool(CardList cardList) {
+		getCardLibrary().defaultCardPool = cardList;
+	}
 	public void setZenMode(bool value)
 	{
 		getGlobal().zenMode = value;

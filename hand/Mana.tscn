@@ -13,7 +13,7 @@ explosion = ExtResource("2_bvmhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9, -25)
-scale = Vector2(0.434124, 0.434124)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_akfqu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterPortraitResource" load_steps=3 format=3 uid="uid://bdyfndn8rn4gj"]
+
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitResource.cs" id="1_cck0n"]
+[ext_resource type="Texture2D" uid="uid://cch20qmjadcig" path="res://characterCustomization/sprites/CharacterBase.png" id="1_sd544"]
+
+[resource]
+script = ExtResource("1_cck0n")
+name = "Nick"
+color = Color(0, 0, 0, 0)
+image = ExtResource("1_sd544")
+unlockable = false
+unlockCost = 0

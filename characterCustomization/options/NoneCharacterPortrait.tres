@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterPortraitResource" load_steps=2 format=3 uid="uid://dodevxpqm5r2g"]
+
+[ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitResource.cs" id="1_jqtjo"]
+
+[resource]
+script = ExtResource("1_jqtjo")
+name = "None"
+color = Color(0, 0, 0, 0)

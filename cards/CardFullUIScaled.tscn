@@ -4,16 +4,16 @@
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="2_7taos"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="3_6elk7"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="4_ukscn"]
-[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/Cardfront2red.png" id="5_d6w1h"]
+[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/final/Cardfront2red.png" id="5_qioai"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_lxe20"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="8_w01ue"]
 [ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="9_bx1fj"]
-[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/fire-updated.png" id="9_edgwy"]
+[ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/final/fire-updated.png" id="9_edgwy"]
 [ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://sprites/cards/title/TitleCard_4.png" id="9_ppdhl"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="9_wq4eo"]
 [ext_resource type="FontFile" uid="uid://csv4wx1x3e6nd" path="res://fonts/ZX OCR-B.ttf" id="12_dtfe5"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="13_5mymq"]
-[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/CardBackRealFinal.png" id="14_srknr"]
+[ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/final/CardBackRealFinal.png" id="14_j8f1e"]
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="15_k7rma"]
 [ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://sprites/lock.png" id="16_75uip"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="17_fa4uy"]
@@ -259,7 +259,7 @@ shader_parameter/shine_size = 0.09
 shader_parameter/shine_angle = 37.5
 shader_parameter/shine_on = 1.0
 
-[node name="UI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText")]
+[node name="CardFullUI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide", "rightSideVisibleCheck")]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_7pfgj")
 custom_minimum_size = Vector2(280, 368)
@@ -269,10 +269,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -961.0
-offset_top = -539.0
-offset_right = -681.0
-offset_bottom = -139.0
+offset_left = -960.0
+offset_top = -538.0
+offset_right = -680.0
+offset_bottom = -138.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(125, 150)
@@ -286,6 +286,8 @@ titleLabel = NodePath("Center/Title/RichTextLabel")
 descriptionLabel = NodePath("Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
+background = NodePath("Center/Background")
+cardBack = NodePath("CardBack")
 titleSprite = NodePath("Center/Title/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
 coinCostControl = NodePath("CoinCost")
@@ -293,7 +295,10 @@ coinCostText = NodePath("CoinCost/HBoxContainer/RichTextLabel")
 disabledColor = Color(0.501961, 0.501961, 0.501961, 1)
 lockedColor = Color(0.0235294, 0.0235294, 0.0235294, 1)
 animationPlayer = NodePath("AnimationPlayer")
-toolTipText = NodePath("Tooltip")
+toolTipText = NodePath("ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("ToolTipLeft")
+toolTipRightSide = NodePath("ToolTipRight")
+rightSideVisibleCheck = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="Center" type="Control" parent="."]
 use_parent_material = true
@@ -314,7 +319,7 @@ offset_left = -11.0
 offset_top = -28.0
 offset_right = 274.0
 offset_bottom = 352.0
-texture = ExtResource("5_d6w1h")
+texture = ExtResource("5_qioai")
 expand_mode = 1
 script = ExtResource("6_lxe20")
 forceHighlightColor = Color(0, 1, 0, 1)
@@ -353,7 +358,7 @@ alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Description2/VBoxContainer2"]
 z_as_relative = false
-texture_filter = 2
+texture_filter = 1
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
@@ -443,6 +448,7 @@ offset_bottom = 54.0
 mouse_filter = 2
 
 [node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
+modulate = Color(0.85098, 0.85098, 0.85098, 1)
 texture_filter = 1
 material = SubResource("ShaderMaterial_bqyc8")
 use_parent_material = true
@@ -457,7 +463,6 @@ texture = ExtResource("9_edgwy")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
-modulate = Color(0, 0, 0, 1)
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
@@ -472,10 +477,11 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("12_dtfe5")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]0"
+text = "0"
 fit_content = true
 scroll_active = false
 
@@ -519,7 +525,7 @@ offset_right = 257.72
 offset_bottom = 373.0
 scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(125, 150)
-texture = ExtResource("14_srknr")
+texture = ExtResource("14_j8f1e")
 expand_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -549,16 +555,34 @@ offset_bottom = 429.0
 texture = ExtResource("16_75uip")
 expand_mode = 1
 
-[node name="Tooltip" type="RichTextLabel" parent="."]
+[node name="ToolTipRight" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 278.0
+offset_top = 29.0
+offset_right = 278.0
+offset_bottom = 29.0
+
+[node name="Tooltip" type="RichTextLabel" parent="ToolTipRight"]
 visible = false
 layout_mode = 0
-offset_left = 286.0
-offset_top = 25.0
-offset_right = 660.0
-offset_bottom = 86.0
+offset_left = -656.0
+offset_top = -23.0
+offset_right = -282.0
+offset_bottom = 38.0
 theme_override_font_sizes/normal_font_size = 48
 theme_override_styles/normal = ExtResource("17_fa4uy")
 bbcode_enabled = true
 text = "this is a test tooltip
 "
 fit_content = true
+
+[node name="ToolTipLeft" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -378.0
+offset_top = 6.0
+offset_right = -378.0
+offset_bottom = 6.0
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(667, 79)
+scale = Vector2(1, 4.6)

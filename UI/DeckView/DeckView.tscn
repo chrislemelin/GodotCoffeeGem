@@ -99,6 +99,7 @@ layout_mode = 2
 columns = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -109,13 +110,14 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -126,16 +128,16 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -146,16 +148,16 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer5" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer5" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -166,16 +168,16 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="MarginContainer6" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer6" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer6" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -186,16 +188,16 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="MarginContainer7" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer7" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer7" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -206,16 +208,16 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="MarginContainer8" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer8" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer8" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -226,16 +228,16 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="MarginContainer9" type="MarginContainer" parent="ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer9" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("6_yvler")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer9" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
@@ -246,7 +248,6 @@ highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer2/UI/Tooltip")
 
 [node name="CloseButton" parent="." instance=ExtResource("6_l1bhy")]
 layout_mode = 0

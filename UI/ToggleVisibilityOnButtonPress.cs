@@ -14,7 +14,9 @@ public partial class ToggleVisibilityOnButtonPress : Control
 	public override void _Ready()
 	{
 		base._Ready();
-		button.Pressed += () => setVisible(!Visible); 
+		if (button != null) {
+			button.Pressed += () => setVisible(!Visible); 
+		}
 	}
 
 	public void setVisible(bool value) {

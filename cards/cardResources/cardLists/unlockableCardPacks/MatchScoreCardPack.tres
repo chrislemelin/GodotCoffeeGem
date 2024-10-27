@@ -1,13 +1,12 @@
-[gd_resource type="Resource" script_class="UnlockableCardPack" load_steps=6 format=3 uid="uid://chocekvyfot6p"]
+[gd_resource type="Resource" script_class="UnlockableCardPack" load_steps=5 format=3 uid="uid://chocekvyfot6p"]
 
 [ext_resource type="Resource" uid="uid://eegpmkcrcfr5" path="res://cards/cardResources/scoreCards/BurnMasterCard.tres" id="1_m4gbf"]
 [ext_resource type="Resource" uid="uid://0rre4f1w5337" path="res://cards/cardResources/scoreCards/RainbowScoreCard.tres" id="2_1l4ui"]
 [ext_resource type="Resource" uid="uid://doxm35ti3pmap" path="res://cards/cardResources/scoreCards/EnhanceCard.tres" id="3_5rweg"]
-[ext_resource type="Resource" uid="uid://c7wfhr1rr1g4u" path="res://cards/cardResources/grid/AddColumnCard.tres" id="4_6cjnw"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/UnlockableCardPack.cs" id="5_mlbos"]
 
 [resource]
 script = ExtResource("5_mlbos")
 title = "Match Score"
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("1_m4gbf"), ExtResource("2_1l4ui"), ExtResource("3_5rweg"), ExtResource("4_6cjnw")])
+allCards = Array[Object]([ExtResource("1_m4gbf"), ExtResource("2_1l4ui"), ExtResource("3_5rweg")])

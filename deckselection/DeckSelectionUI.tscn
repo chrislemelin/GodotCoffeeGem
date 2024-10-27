@@ -3,24 +3,23 @@
 [ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="1_5gwg4"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_ocb6t"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionUI.cs" id="1_ry7pk"]
-[ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://placeholders/cards/cardback.png" id="3_2e1f7"]
+[ext_resource type="Texture2D" uid="uid://c1t6rtqiqd441" path="res://sprites/cards/CardBack_final.png" id="3_2e1f7"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="3_gx4kr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wyr1"]
 shader = ExtResource("1_5gwg4")
 shader_parameter/line_color = Color(1, 1, 0, 1)
-shader_parameter/line_thickness = 3.4
+shader_parameter/line_thickness = 1.0
 
 [node name="DeckSelectionUi" type="Control" node_paths=PackedStringArray("title", "picture", "highlightOnHover")]
-custom_minimum_size = Vector2(441, 680)
+custom_minimum_size = Vector2(222, 390)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 441.0
-offset_bottom = 680.0
+offset_right = 222.0
+offset_bottom = 390.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 tooltip_text = "test thingy"
-mouse_filter = 1
 theme = ExtResource("1_ocb6t")
 script = ExtResource("1_ry7pk")
 title = NodePath("RichTextLabel")
@@ -28,23 +27,22 @@ picture = NodePath("TextureRect")
 highlightOnHover = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.854902, 0.580392, 0, 1)
+texture_filter = 1
 material = SubResource("ShaderMaterial_7wyr1")
-layout_mode = 0
-offset_left = -1.0
-offset_top = 90.0
-offset_right = 419.0
-offset_bottom = 690.0
+layout_mode = 2
+offset_top = 50.0
+offset_right = 441.0
+offset_bottom = 730.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_2e1f7")
 script = ExtResource("3_gx4kr")
 makeBiggerScale = 1.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 411.0
-offset_bottom = 88.0
-theme_override_font_sizes/normal_font_size = 50
+layout_mode = 2
+offset_left = -23.0
+offset_right = 246.0
+offset_bottom = 51.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
 text = "[center]TEST TITLE"

@@ -19,22 +19,27 @@ public partial class CustomToolTip : Control
 	{
 		base._Ready();
 		Control focus = target;
-		if (focus == null) {
-			focus = this;
-		}
-		FocusEntered += () => {
-			makeToolTip();
-		};
-		focus.MouseEntered += () => { 
-			makeToolTip();
-		};
+		if (toolTipText != null) {
+			if (focus == null) {
+				focus = this;
+			}
+			FocusEntered += () => {
+				makeToolTip();
+			};
+			focus.MouseEntered += () => { 
+				makeToolTip();
+			};
 
-		FocusExited += () => {
-			deleteToolTip();
-		};
-		focus.MouseExited += () => {
-			deleteToolTip();
-		};
+			FocusExited += () => {
+				deleteToolTip();
+			};
+			focus.MouseExited += () => {
+				deleteToolTip();
+			};
+		} else {
+			GD.Print("no tooltip at " + GetPath());
+		}
+
 	}
 
 	public override void _Process(double delta) {

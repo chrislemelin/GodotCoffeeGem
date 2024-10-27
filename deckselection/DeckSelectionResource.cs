@@ -6,11 +6,12 @@ using System;
 public partial class DeckSelectionResource : Resource
 {
 	[Export] public CardList cardList;
+	[Export] public CardList cardPool;
+
 	[Export] public Array<RelicResource> relics;
 	[Export] public String title;
 	[Export(PropertyHint.MultilineText)] public String description;
-
-	[Export(PropertyHint.MultilineText)] public Color color;
-
-
+	[Export] public Color color;
+	[Export] public Texture2D faceCard;
+	[Export] public Texture2D faceCardFront;
 }

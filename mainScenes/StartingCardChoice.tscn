@@ -1,17 +1,17 @@
 [gd_scene load_steps=13 format=3 uid="uid://cnfw3144lcbcg"]
 
 [ext_resource type="Script" path="res://gamemanager/HomeGameManager.cs" id="1_i5u2u"]
-[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/CardPool.tres" id="2_d36ka"]
+[ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/cardPools/CardPool.tres" id="2_d36ka"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_5gnnn"]
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="4_y4qoe"]
 [ext_resource type="Resource" uid="uid://bnq03drhjekx7" path="res://cards/cardResources/handCards/ManaGainCard.tres" id="10_yqm4d"]
 [ext_resource type="Script" path="res://UI/NewCardSelection.cs" id="12_dlut0"]
-[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="13_oo2ug"]
-[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/DrawGemsCard.tres" id="13_wdrgu"]
-[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/ManaGemsCard.tres" id="14_caag0"]
+[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="13_oo2ug"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="13_wdrgu"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="14_caag0"]
 [ext_resource type="Resource" uid="uid://e3lvfo3yth8a" path="res://cards/cardResources/handCards/DrawBurstCard.tres" id="15_yauk2"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://placeholders/cards/square.png" id="17_a2nvl"]
-[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://placeholders/GoldCoin.png" id="18_ij5lf"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="17_a2nvl"]
+[ext_resource type="Texture2D" uid="uid://cig2o3dgerl3v" path="res://sprites/GoldCoin.png" id="18_ij5lf"]
 
 [node name="StartingCardChoice" type="Node2D" node_paths=PackedStringArray("newCardSelection")]
 script = ExtResource("1_i5u2u")

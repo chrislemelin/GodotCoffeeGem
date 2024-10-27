@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_c7sue"]
 script = ExtResource("1_8ooc4")
-value = 150
+value = 300
 BurnGems = 0
 EnergyGems = 0
 CardGems = 0
@@ -21,7 +21,7 @@ script = ExtResource("3_2gfyu")
 minMatchSize = 3
 ingredientType = 0
 title = "Coffee Double"
-description = "Gain 150 score on every other coffee match on the same turn"
+description = "Gain 300 score on every other coffee match on the same turn"
 image = ExtResource("2_oiail")
 cost = 100
 hidden = false
