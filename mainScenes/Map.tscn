@@ -1,28 +1,27 @@
-[gd_scene load_steps=50 format=3 uid="uid://clabt1hecikx2"]
+[gd_scene load_steps=46 format=3 uid="uid://clabt1hecikx2"]
 
 [ext_resource type="Script" path="res://gamemanager/MapGameManager.cs" id="1_sas1p"]
 [ext_resource type="Script" path="res://map/Map.cs" id="1_vwohc"]
-[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="2_g041w"]
 [ext_resource type="Resource" uid="uid://bcelpenpmwhtr" path="res://relics/RelicLists/RelicPool.tres" id="3_mpj51"]
 [ext_resource type="PackedScene" uid="uid://bs0yawupejkyk" path="res://map/MapLocation.tscn" id="4_pfyjt"]
-[ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="7_7gh4s"]
 [ext_resource type="Texture2D" uid="uid://krr6n3n5fh78" path="res://sprites/Map/map-07-08-2024.png" id="7_v8p8x"]
 [ext_resource type="Texture2D" uid="uid://2ko4vy4jrfcu" path="res://cards/cardResources/cardArt/Switch-Vert.png" id="9_c3q5o"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="10_6e71l"]
-[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchVertCardEffect.cs" id="10_ujm25"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/SwitchVertCardEffect.cs" id="10_ujm25"]
 [ext_resource type="Script" path="res://util/lerp.cs" id="11_8ihbg"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="11_fn4xu"]
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/NewCardSelection.tscn" id="11_rx5ww"]
 [ext_resource type="Texture2D" uid="uid://bea2yc8f7rieg" path="res://cards/cardResources/cardArt/Switch-horizontal_real.png" id="12_jbsyq"]
-[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
-[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchCardEffect.cs" id="14_dr0te"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/SwitchHorizCardEffect.cs" id="13_ycwk0"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/upgradedBasicCards/SwitchCardEffect.cs" id="14_dr0te"]
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="16_vds2c"]
+[ext_resource type="PackedScene" uid="uid://bp7p3w0x4w3ae" path="res://map/MapEventUI.tscn" id="17_2kawa"]
 [ext_resource type="Texture2D" uid="uid://bynb4gpprhwg6" path="res://sprites/Map/guy.png" id="17_718sm"]
 [ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="17_tyewm"]
+[ext_resource type="PackedScene" uid="uid://d1af8vwdqlgix" path="res://UI/upgradeCard/upgradeCardUI.tscn" id="22_xgb68"]
 [ext_resource type="PackedScene" uid="uid://bbshug8s4ulor" path="res://UI/Status.tscn" id="23_y5l24"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="24_1i55l"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="24_a84c2"]
-[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="29_8180u"]
 
 [sub_resource type="Resource" id="Resource_lv7q0"]
 script = ExtResource("10_ujm25")
@@ -34,14 +33,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -52,12 +54,14 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_bsuud"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
 Description = "Switch the positions of two vertically adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
@@ -65,6 +69,8 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
 script = ExtResource("13_ycwk0")
@@ -76,14 +82,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -94,12 +103,14 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_cy0ua"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
 Description = "Switch the positions of two horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
@@ -107,10 +118,13 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_tlj12"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
+teleport = false
 Range = 1.0
 Value = 0
 BlackGems = 0
@@ -119,14 +133,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -137,24 +154,29 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_oyaui"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_tlj12")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_lf283"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
 Description = "Switch the positions of two vertically adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
@@ -162,12 +184,15 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_rsqfq"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
 Description = "Switch the positions of two horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
@@ -175,10 +200,13 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_l5j6y"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
+teleport = false
 Range = 1.0
 Value = 0
 BlackGems = 0
@@ -187,14 +215,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -205,24 +236,29 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_t1exg"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_l5j6y")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_32dpp"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
 Description = "Switch the positions of two vertically adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
@@ -230,12 +266,15 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_8tsqs"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
 Description = "Switch the positions of two horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
@@ -243,10 +282,13 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_bimhj"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
+teleport = false
 Range = 1.0
 Value = 0
 BlackGems = 0
@@ -255,14 +297,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -273,24 +318,29 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_vuu47"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_bimhj")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_e3gl4"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
 Description = "Switch the positions of two vertically adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
@@ -298,12 +348,15 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_ahjpb"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
 Description = "Switch the positions of two horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
@@ -311,10 +364,13 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_23mlu"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
+teleport = false
 Range = 1.0
 Value = 0
 BlackGems = 0
@@ -323,14 +379,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -341,24 +400,29 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_imnlm"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_23mlu")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_ilocs"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Vertical"
 Description = "Switch the positions of two vertically adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("9_c3q5o")
@@ -366,12 +430,15 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_lv7q0")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_7a0hk"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch Horiz"
 Description = "Switch the positions of two horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("12_jbsyq")
@@ -379,10 +446,13 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="Resource" id="Resource_smct3"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
+teleport = false
 Range = 1.0
 Value = 0
 BlackGems = 0
@@ -391,14 +461,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -409,82 +482,24 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [sub_resource type="Resource" id="Resource_wb2ak"]
 resource_local_to_scene = true
 script = ExtResource("11_fn4xu")
 Title = "Switch"
 Description = "Switch the positions of two vertically or horizontally adjacent ingredients"
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_smct3")
+cardUpgrades = []
+cardUpgradeTitle = ""
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jqxju"]
-
-[sub_resource type="Animation" id="Animation_hbqvg"]
-resource_name = "FadeIn"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Forground:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(-0.05, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(551, 800), Vector2(551, 263)]
-}
-
-[sub_resource type="Animation" id="Animation_eouyj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Forground:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(551, 1200)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cse58"]
-_data = {
-"FadeIn": SubResource("Animation_hbqvg"),
-"RESET": SubResource("Animation_eouyj")
-}
 
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("newCardSelection", "deckViewUI")]
 script = ExtResource("1_sas1p")
@@ -508,7 +523,7 @@ botlines = [NodePath("Paths/Line2D"), NodePath("Paths/Line2D2"), NodePath("Paths
 [node name="Map2" type="Sprite2D" parent="Map"]
 texture_filter = 1
 position = Vector2(965, 544)
-scale = Vector2(3.7099, 3.7099)
+scale = Vector2(3.71, 3.71)
 texture = ExtResource("7_v8p8x")
 
 [node name="MapLocations" type="Control" parent="Map"]
@@ -706,84 +721,17 @@ text = "Click top or bottom buildings to choose a path to get back home"
 unique_name_in_owner = true
 deckViewUI = NodePath("../DeckViewUI")
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("title", "description", "button", "animationPlayer")]
+[node name="Control" parent="." instance=ExtResource("17_2kawa")]
+
+[node name="RelicSelection" parent="." instance=ExtResource("24_1i55l")]
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme = ExtResource("16_vds2c")
-script = ExtResource("7_7gh4s")
-title = NodePath("Forground/Control/title")
-description = NodePath("Forground/Control/description")
-button = NodePath("Forground/Control/Continue2")
-animationPlayer = NodePath("AnimationPlayer")
 
-[node name="Background" type="TextureRect" parent="Control"]
-modulate = Color(0, 0, 0, 0.498039)
-layout_mode = 0
-offset_right = 1922.0
-offset_bottom = 1079.0
-texture = ExtResource("2_g041w")
+[node name="UpgradeCardUi" parent="." instance=ExtResource("22_xgb68")]
+visible = false
 
-[node name="Forground" type="Panel" parent="Control"]
-modulate = Color(0.831373, 0.933333, 0.921569, 1)
-texture_filter = 1
-use_parent_material = true
-layout_mode = 0
-offset_left = 551.0
-offset_top = 1200.0
-offset_right = 1376.0
-offset_bottom = 1671.0
-
-[node name="Control" type="Control" parent="Control/Forground"]
-use_parent_material = true
-layout_mode = 2
-anchors_preset = 0
-offset_left = -512.0
-offset_top = -1163.22
-offset_right = -512.0
-offset_bottom = -1163.22
-
-[node name="title" type="RichTextLabel" parent="Control/Forground/Control"]
-texture_filter = 1
-use_parent_material = true
-layout_mode = 0
-offset_left = 546.0
-offset_top = 1183.22
-offset_right = 1325.0
-offset_bottom = 1259.22
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "[center]TITLE TEXT"
-
-[node name="description" type="RichTextLabel" parent="Control/Forground/Control"]
-texture_filter = 1
-use_parent_material = true
-layout_mode = 0
-offset_left = 542.0
-offset_top = 1272.22
-offset_right = 1314.0
-offset_bottom = 1525.22
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "Title Description"
-
-[node name="Continue2" parent="Control/Forground/Control" instance=ExtResource("29_8180u")]
-layout_mode = 0
-offset_left = 864.0
-offset_top = 1545.22
-offset_right = 1018.0
-offset_bottom = 1613.22
-text = "Continue"
-grabFocus = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
-libraries = {
-"": SubResource("AnimationLibrary_cse58")
-}
+[node name="DeckViewUI" parent="." groups=["DeckView"] instance=ExtResource("10_6e71l")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Status" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("23_y5l24")]
 offset_left = 172.0
@@ -792,15 +740,8 @@ offset_right = 172.0
 offset_bottom = 76.0
 gameManager = NodePath("..")
 
-[node name="RelicSelection" parent="." instance=ExtResource("24_1i55l")]
-visible = false
-
 [node name="SettingsMenu" parent="." instance=ExtResource("24_a84c2")]
 offset_left = -1.0
 offset_top = -10.0
 offset_right = -1.0
 offset_bottom = -10.0
-
-[node name="DeckViewUI" parent="." groups=["DeckView"] instance=ExtResource("10_6e71l")]
-unique_name_in_owner = true
-visible = false

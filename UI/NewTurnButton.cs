@@ -22,6 +22,8 @@ public partial class NewTurnButton : CustomButton
 		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
 		setVisibilityOnControllerTexture(controllerHelper.isUsingController());
 		controllerHelper.UsingControllerChanged += setVisibilityOnControllerTexture;
+		Score score = FindObjectHelper.getScore(this);
+		score.scoreChange += (scoreValue, maxScore) => checkForDisabled(score);
 		Pressed += () => {
 			Hand hand = FindObjectHelper.getHand(this);
 			if (hand.hasPlayableCards() && shouldShowPlayableCardsUI()) {
@@ -37,21 +39,27 @@ public partial class NewTurnButton : CustomButton
 	private void setVisibilityOnControllerTexture(bool usingController){
 		controllerTexture.Visible = FindObjectHelper.getControllerHelper(this).isUsingController();
 	}
-
-	private void newTurn() {
-		Score score = FindObjectHelper.getScore(this);
+	
+	private void checkForDisabled(Score score) {
 		if (!score.isLevelOver()) {
-			if (goingToLoseHeart()) {
+			if (goingToLoseHeart(score)) {
 				Disabled = true;
 				TooltipText = "You will lose a heart if you end the turn, its time to go home";
 				return;
 			}
+		}
+	}
+
+	private void newTurn() {
+		Score score = FindObjectHelper.getScore(this);
+		checkForDisabled(score);
+		if (!score.isLevelOver()) {
 
 			EmitSignal(SignalName.BeforeTurnCleanUp);
 			EmitSignal(SignalName.TurnCleanUp);
 			EmitSignal(SignalName.AfterTurnCleanUp);
 			EmitSignal(SignalName.StartNewTurn);
-			if (goingToLoseHeart()) {
+			if (goingToLoseHeart(score)) {
 				Disabled = true;
 				TooltipText = "You will lose a heart if you end the turn, its time to go home";
 			}
@@ -60,9 +68,8 @@ public partial class NewTurnButton : CustomButton
 		}
 	}
 
-	private bool goingToLoseHeart() {
-		Score score = FindObjectHelper.getScore(this);
-		return  score.scoreReached() && score.getTurnsRemaining() == 0 && !((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten();
+	private bool goingToLoseHeart(Score score) {
+		return score.scoreReached() && score.getTurnsRemaining() == 0 && !((GameManager)FindObjectHelper.getGameManager(this)).gameBeaten();
 	}
 
 	public override void _Input(InputEvent @event)

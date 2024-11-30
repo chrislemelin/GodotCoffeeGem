@@ -53,6 +53,10 @@ public partial class Hand : ControllerInput
 
 	[Export]
 	int width = 400;
+	[Export]
+	int extraPadding = 10;
+	[Export]
+	float maxCardWidth = 400;
 	[Export] float hoverUpDistance = 90;
 
 	public void modifyNewCardsDrawnOnNewTurn(int value) {
@@ -206,8 +210,12 @@ public partial class Hand : ControllerInput
 			playCardSelectedSound();
 			clearSelectedCard();
 			handLine.turnOn(card.Position);
+			if (cardSelected.HasValue){
+				cardSelected.GetValue().highlightOnHover.setForceHighlightAltColor(false);
+			}
 			cardSelected = Optional.Some<CardIF>(card);
 			card.highlightOnHover.setForceHighlightAltColor(true);
+			
 			return true;
 		}
 		return false;
@@ -224,7 +232,7 @@ public partial class Hand : ControllerInput
 		matchBoard.clearTilesSelected();
 		if (cardSelected.HasValue)
 		{
-			cardSelected.GetValue().highlightOnHover.setForceHighlight(false);
+			cardSelected.GetValue().highlightOnHover.setForceHighlightAltColor(false);
 			cardSelected = Optional.None<CardIF>();
 		}
 	}
@@ -289,21 +297,21 @@ public partial class Hand : ControllerInput
 		{
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()));
 			cardHovered.GetValue().highlightOnHover.setForceHighlight(false);
+			//Callable.From(() => cardContainer.MoveChild(cardHovered.GetValue(), 0)).CallDeferred();
 		}
 		cardHovered = card;
 		if (cardHovered.HasValue)
 		{
-			cardContainer.MoveChild(cardHovered.GetValue(), cards.Count);
+			Callable.From(() => cardContainer.MoveChild(cardHovered.GetValue(), cards.Count)).CallDeferred();
 			cardHovered.GetValue().moveToPostion(getPositionForCard(cardHovered.GetValue()) - Vector2.Down * hoverUpDistance);
 			cardHovered.GetValue().highlightOnHover.setForceHighlight(true);
 		}
 		else
 		{
-			int count = 0;
-			foreach (CardIF currentCard in cards)
-			{
-				Callable.From(() => cardContainer.MoveChild(currentCard, count)).CallDeferred();
-				count++;
+			//int count = 0;
+			for(int count = 0; count < cards.Count; count++) {
+				//Callable.From(() => cardContainer.MoveChild(cards[count], count)).CallDeferred();
+				cardContainer.MoveChild(cards[count], count);
 			}
 		}
 	}
@@ -398,16 +406,35 @@ public partial class Hand : ControllerInput
 
 	private Vector2 getPositionForCard(int index)
 	{
-		float newX = Mathf.Round((float)index * width / handSize * 2.0f - (width * (cards.Count - 1) / handSize));
+		int currentExtraPadding = (handSize - cards.Count) * extraPadding;
+		float newX = Mathf.Round((float)index * width / cards.Count * 2.0f - (width * (cards.Count - 1) / handSize));
+
+		//float newX = Mathf.Round(((float)index * width / handSize + currentExtraPadding) * 2.0f - (width * (cards.Count - 1) / handSize +currentExtraPadding));
+	//	float newX = Mathf.Round(((float)index * width / handSize + currentExtraPadding) * 2.0f - (width * (cards.Count - 1) / handSize +currentExtraPadding));
+
 		return new Vector2(newX, 0);
 	}
 
 	private Vector2 getPositionForCardV2(int index)
 	{
-		float newX = width * -0.5f + width / (cards.Count + 1) * (index + 1);
+		float newX = index * getCardWidthForPositioning() + (getCardWidthForPositioning()*.5f) - (getCenteringForPositioning());
 		return new Vector2(newX, 0);
 	}
 
+	private float getCardWidthForPositioning() {
+		if (cards.Count < 5) {
+			return maxCardWidth;
+		}
+		return width/(float)cards.Count;
+	}
+
+	private float getCenteringForPositioning() {
+		if (cards.Count < 5) {
+			return getCardWidthForPositioning() * cards.Count * .5f;
+		}
+		return width * .5f;
+	}
+  
 	public void drawCards(int count)
 	{
 		drawCards(count, false);
@@ -454,7 +481,7 @@ public partial class Hand : ControllerInput
 					case SelectionType.Single:
 					case SelectionType.Double:
 						bool selected = setSelectedCard(card);
-						if (selected) {
+					if (selected) {
 							GetTree().CreateTimer(.1f).Timeout+= () => matchBoard.setUIFocus(true);
 							hasUIFocus = false;
 						}

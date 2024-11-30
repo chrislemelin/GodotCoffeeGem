@@ -21,6 +21,7 @@ public partial class CardEffectCashIn : CardEffectIF
 	{
 		List<Tile> addonTiles = matchBoard.getTilesWithAddon(GemAddonType.Mana);
 		addonTiles.AddRange(matchBoard.getTilesWithAddon(GemAddonType.Card));
+		addonTiles.AddRange(matchBoard.getTilesWithAddon(GemAddonType.Money));
 		foreach (Tile tile in addonTiles)
 		{
 			tile.Gem.doAddonEffect();

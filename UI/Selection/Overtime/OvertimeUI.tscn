@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bt53pbibh6p76"]
 
-[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_4ppjq"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="1_3icpc"]
 [ext_resource type="Script" path="res://UI/Selection/Overtime/OvertimeUI.cs" id="1_w76rk"]
 
 [sub_resource type="Animation" id="Animation_i8x2e"]
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -300), Vector2(0, 0)]
+"values": [Vector2(0, -600), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_nwmgx"]
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -300)]
+"values": [Vector2(0, -600)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v7ht1"]
@@ -45,22 +45,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_top = -500.0
 offset_bottom = -500.0
-theme = ExtResource("1_4ppjq")
+theme = ExtResource("1_3icpc")
 script = ExtResource("1_w76rk")
 animationPlayer = NodePath("Control/AnimationPlayer")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_top = -300.0
+offset_top = -600.0
 offset_right = 315.0
-offset_bottom = -177.0
+offset_bottom = -477.0
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 15.0
+offset_left = 22.0
+offset_top = 25.0
 offset_right = 268.0
-offset_bottom = 113.0
+offset_bottom = 92.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 0

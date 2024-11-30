@@ -10,18 +10,22 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 	[Export] ScrollContainer scrollContainer;
 	[Export] RichTextLabel title;
 	[Export] float deletingFadeOutDelay = .25f;
+	[Export] Button cancelButton;
+
 
 	private bool deleting = false;
 
 	private List<CardInfoLoader> cardInfoLoaders = new List<CardInfoLoader>();
 
 	private Action<CardResource> cardCallBack;
+	private Action<CardResource> cardClickedCallBack;
 	private CardInfoLoader cardSelected;
 
 	public override void _Ready()
 	{
 		base._Ready();
 		resetAnimation();
+		cancelButton.Pressed += () => cancel();
 		button.Pressed += () => closeWindow();
 		FindObjectHelper.getControllerHelper(this).UsingControllerChanged += checkForFocus;
 	}
@@ -59,14 +63,13 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
 			marginContainer.AddChild(cardInfoLoader);
 			gridContainer.AddChild(marginContainer);
-			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader);
+			cardInfoLoader.hitBox.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader);
 			cardInfoLoader.setForceHighlightOff(true);
 			cardInfoLoader.setUpCard(cardResource);
 			cardInfoLoader.cardScrollContainer = scrollContainer;
 			cardInfoLoaders.Add(cardInfoLoader);
 		}
 
-		GD.Print("showing cards "+ cards.Count);
 		setVisible(true);
 		GetTree().CreateTimer(.25f).Timeout += () => {
 			foreach(CardInfoLoader cardInfoLoader in cardInfoLoaders) {
@@ -102,6 +105,11 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 		setUp(cards, cardCallBack, title, deleting, cardCallBack != null);
 	}
 
+	public void setCardClickedCallBack(Action<CardResource> cardClickedCallBack) {
+		button.Visible = false;
+		this.cardClickedCallBack = cardClickedCallBack;
+	}
+
 
 	public void setUp(List<CardResource> cards, Action<CardResource> cardCallBack, string title, bool deleting, bool needToSelectCard) {
 		
@@ -117,6 +125,7 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 		this.title.Text = title;
 		this.deleting = deleting;
 		if (deleting) {
+			cancelButton.Visible = true;
 			fadeOutDelay = deletingFadeOutDelay;
 		} else {
 			fadeOutDelay = 0;
@@ -143,6 +152,7 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 					}
 				}
 			}
+			cardClickedCallBack?.Invoke(cardResource);
 
 		};
 		if (InputHelper.isControllerAccept(inputEvent))
@@ -152,6 +162,12 @@ public partial class DeckViewUI : ToggleVisibilityOnButtonPress
 				closeWindow();
 			}
 		}
+	}
+
+	private void cancel() {
+		cardCallBack?.Invoke(null);
+		fadeOutDelay = 0;
+		setVisible(false);
 	}
 	public override void _ExitTree()
 	{

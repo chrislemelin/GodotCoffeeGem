@@ -7,6 +7,14 @@
 [sub_resource type="Resource" id="Resource_o3jhy"]
 script = ExtResource("1_ljaj3")
 value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("3_20q4u")
@@ -19,6 +27,7 @@ lastForOneTurn = false
 lastForOneLevel = false
 gameStartEffects = [SubResource("Resource_o3jhy")]
 turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
 levelOverEffects = []
 effects = []

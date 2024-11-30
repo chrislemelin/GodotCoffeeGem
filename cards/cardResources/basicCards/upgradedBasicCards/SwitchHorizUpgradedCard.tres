@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://l7oqt8fi3c2n"]
+
+[ext_resource type="Texture2D" uid="uid://dk0nhkf81f88" path="res://cards/cardResources/cardArt/final/CardArtSwitchHoriz.png" id="1_r777w"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/SwitchHorizCardEffect.cs" id="2_2o3t3"]
+[ext_resource type="Resource" uid="uid://bwow4do4vy5l" path="res://cards/cardResources/basicCards/upgradedBasicCards/SwitchRowCard.tres" id="3_p74il"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_tq63g"]
+
+[sub_resource type="Resource" id="Resource_ym5bx"]
+script = ExtResource("2_2o3t3")
+Range = 2.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusEffects = []
+bonusPassives = []
+matchEffects = []
+extraEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = false
+effectGemType = 0
+cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
+tutorialCard = false
+canOnlySelectTutorial = []
+burntPositionTutorial = Vector2i(0, 0)
+addonPositionTutorial = Vector2i(0, 0)
+consume = false
+retain = false
+matchy = false
+spendX = false
+nuke = false
+innate = false
+cardPassives = []
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("3_tq63g")
+Title = "Swap Horiz +"
+Description = "Swap 2 tiles that are horizontally 2 away from each other."
+UpgradeDescriptions = []
+Cost = 1
+rarity = 0
+Picture = ExtResource("1_r777w")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = [ExtResource("3_p74il")]
+cardUpgradeTitle = ""

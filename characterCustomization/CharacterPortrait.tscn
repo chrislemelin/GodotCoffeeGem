@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ff2wbvpyhygk"]
+[gd_scene load_steps=19 format=3 uid="uid://ff2wbvpyhygk"]
 
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="1_1n87o"]
 [ext_resource type="Script" path="res://characterCustomization/CharacterPortrait.cs" id="1_xyyl1"]
 [ext_resource type="Script" path="res://characterCustomization/options/CharacterPortraitLayer.cs" id="2_2ltm5"]
 [ext_resource type="Texture2D" uid="uid://cch20qmjadcig" path="res://characterCustomization/sprites/CharacterBase.png" id="2_42lx1"]
 [ext_resource type="Resource" uid="uid://l6nlsw58vft" path="res://characterCustomization/options/backgrounds/BlackCharacterBackground.tres" id="2_ll5o7"]
-[ext_resource type="Texture2D" uid="uid://c7kth651mkh1a" path="res://characterCustomization/sprites/PortraitBase.png" id="3_hl2js"]
+[ext_resource type="Texture2D" uid="uid://bbu860b1074in" path="res://characterCustomization/sprites/Nick_Happy_Base.png" id="2_ufn67"]
 [ext_resource type="Resource" uid="uid://di3uyo614wp7g" path="res://characterCustomization/options/backgrounds/GreenCharacterBackground.tres" id="3_r450u"]
 [ext_resource type="Resource" uid="uid://dsoruv3ko8be3" path="res://characterCustomization/options/backgrounds/PurpleCharacterBackground.tres" id="4_h7ncv"]
 [ext_resource type="Resource" uid="uid://wyhcopbfv0ba" path="res://characterCustomization/options/backgrounds/WhiteCharacterBackground.tres" id="5_n1nxi"]
@@ -14,49 +14,97 @@
 [ext_resource type="Resource" uid="uid://d1j3lkw3nyc57" path="res://characterCustomization/options/clothes/NickAltClothesResource.tres" id="11_dt5eh"]
 [ext_resource type="Resource" uid="uid://dle261utkvto" path="res://characterCustomization/options/hats/NickBadHat.tres" id="12_hn6db"]
 [ext_resource type="Resource" uid="uid://c1gtxuy7fjrvy" path="res://characterCustomization/options/misc/NickBadGlasses.tres" id="13_wovvc"]
+[ext_resource type="Texture2D" uid="uid://bolfhudotsa82" path="res://characterCustomization/sprites/PortraitBaseWhite.png" id="15_hruar"]
 
-[node name="CharacterPortrait" type="Node2D" node_paths=PackedStringArray("background", "baseCharacter", "clothes", "hat", "misc")]
-position = Vector2(233, 250)
+[sub_resource type="Animation" id="Animation_uvr3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/PortraitBase:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3gcs8"]
+resource_name = "Shake"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/PortraitBase:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.0003, 0.0004, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0.819608, 0.14902, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhl61"]
+_data = {
+"RESET": SubResource("Animation_uvr3t"),
+"Shake": SubResource("Animation_3gcs8")
+}
+
+[node name="CharacterPortrait" type="Node2D" node_paths=PackedStringArray("background", "baseCharacter", "clothes", "hat", "misc", "playShake") groups=["CharacterPortrait"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_xyyl1")
-background = NodePath("Background")
-baseCharacter = NodePath("CharacterBase")
-clothes = NodePath("Clothes")
-hat = NodePath("Hat")
-misc = NodePath("Misc")
+background = NodePath("Node2D/Background")
+baseCharacter = NodePath("Node2D/CharacterBase")
+clothes = NodePath("Node2D/Clothes")
+hat = NodePath("Node2D/Hat")
+misc = NodePath("Node2D/Misc")
+happyReactionTexture = ExtResource("2_ufn67")
+normalReactionTexture = ExtResource("2_42lx1")
+playShake = NodePath("AnimationPlayer")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hhl61")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Node2D"]
 position = Vector2(7.62939e-06, -0.5)
 scale = Vector2(0.145, 0.2125)
 texture = ExtResource("1_1n87o")
 script = ExtResource("2_2ltm5")
 backgrounds = Array[Object]([ExtResource("2_ll5o7"), ExtResource("3_r450u"), ExtResource("4_h7ncv"), ExtResource("5_n1nxi")])
 
-[node name="CharacterBase" type="Sprite2D" parent="."]
+[node name="CharacterBase" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 texture = ExtResource("2_42lx1")
 script = ExtResource("2_2ltm5")
 type = 1
 backgrounds = Array[Object]([ExtResource("9_lf17m")])
 
-[node name="Clothes" type="Sprite2D" parent="."]
+[node name="Clothes" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 script = ExtResource("2_2ltm5")
 type = 2
 backgrounds = Array[Object]([ExtResource("10_ixfb4"), ExtResource("11_dt5eh")])
 
-[node name="Hat" type="Sprite2D" parent="."]
+[node name="Hat" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 script = ExtResource("2_2ltm5")
 type = 3
 backgrounds = Array[Object]([ExtResource("10_ixfb4"), ExtResource("12_hn6db")])
 
-[node name="Misc" type="Sprite2D" parent="."]
+[node name="Misc" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 script = ExtResource("2_2ltm5")
 type = 4
 backgrounds = Array[Object]([ExtResource("10_ixfb4"), ExtResource("13_wovvc")])
 
-[node name="PortraitBase" type="Sprite2D" parent="."]
+[node name="PortraitBase" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
 texture_filter = 1
-texture = ExtResource("3_hl2js")
+texture = ExtResource("15_hruar")

@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_dnhsy"]
 script = ExtResource("2_2cywm")
+skipEmitSignalOnInfusions = false
 value = 0
 BurnGems = 0
 EnergyGems = 0
@@ -27,14 +28,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = [SubResource("Resource_dnhsy")]
+extraEffects = []
 matchEffectsMin = 4
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 4
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -44,11 +48,14 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
 
 [resource]
 script = ExtResource("2_2hfyw")
 Title = "Espresso Shot"
-Description = "Change selection to $coffee. If this makes a 4+ match, +1$energy."
+Description = "Change tile to $coffee. If this makes a 4+ match, +1$energy."
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_3la3f")
@@ -56,3 +63,5 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_mklkk")
+cardUpgrades = []
+cardUpgradeTitle = ""

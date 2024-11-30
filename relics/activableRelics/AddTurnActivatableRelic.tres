@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ActivableRelicResource" load_steps=6 format=3 uid="uid://brvx75e401xgw"]
+
+[ext_resource type="Script" path="res://relics/effects/AddTurnEffect.cs" id="1_u6vgn"]
+[ext_resource type="Script" path="res://match/recipe/RecipeResource.cs" id="2_or437"]
+[ext_resource type="Script" path="res://relics/activableRelics/ActivatableRelicResource.cs" id="3_plxjn"]
+
+[sub_resource type="Resource" id="Resource_gd6v8"]
+script = ExtResource("1_u6vgn")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_6t1jy"]
+script = ExtResource("2_or437")
+ingredientList = [0, 1]
+
+[resource]
+script = ExtResource("3_plxjn")
+canHoldMultipleCharges = true
+chargesNeededToActivate = 2
+recipe = SubResource("Resource_6t1jy")
+effects = Array[Object]([SubResource("Resource_gd6v8")])
+title = "Card Draw"
+description = "Add 1 turn."

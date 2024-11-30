@@ -1,14 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtbf03ekre5ex"]
+[gd_scene load_steps=32 format=3 uid="uid://dtbf03ekre5ex"]
 
 [ext_resource type="Script" path="res://match/MatchBoard.cs" id="1_4r3i0"]
 [ext_resource type="PackedScene" uid="uid://n47nvuio53df" path="res://match/MatchTile.tscn" id="2_hppa1"]
 [ext_resource type="PackedScene" uid="uid://4kxvrtxnm0yc" path="res://match/MatchTileSmall.tscn" id="3_1bf8q"]
 [ext_resource type="PackedScene" uid="uid://7mu0lj154f2d" path="res://match/gems/Gem.tscn" id="3_xdias"]
+[ext_resource type="PackedScene" uid="uid://daukohkgyf2y5" path="res://match/FutureTileSmall.tscn" id="4_8ncbe"]
 [ext_resource type="PackedScene" uid="uid://c7p7r57evc88c" path="res://particalEffects/sparkleCoffee.tscn" id="4_genem"]
 [ext_resource type="AudioStream" uid="uid://dwqygn7djg1yx" path="res://sound/MatchBoard/fireball-whoosh-1-179125.mp3" id="4_prplw"]
 [ext_resource type="AudioStream" uid="uid://woe62785lit4" path="res://sound/MatchBoard/NewCardSelection.mp3" id="4_xadm7"]
 [ext_resource type="PackedScene" uid="uid://d27f164r8xqth" path="res://match/gems/GemSmall.tscn" id="5_e5h18"]
 [ext_resource type="AudioStream" uid="uid://ccewtbx41nlsg" path="res://sound/MatchBoard/pop.ogg" id="5_wfbn1"]
+[ext_resource type="PackedScene" uid="uid://blyviqhhg0mpn" path="res://match/effects/MatchEffectOrb.tscn" id="6_f0mpv"]
 [ext_resource type="AudioStream" uid="uid://cyuo7sm8rfjv0" path="res://sound/MatchBoard/cardTakeOutPackage1.wav" id="6_iim20"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="7_y00am"]
 [ext_resource type="Texture2D" uid="uid://b74401cboh66g" path="res://sprites/CoffeeShop/final/Board-09-20-2024.png" id="9_hn6v7"]
@@ -18,21 +20,96 @@
 [ext_resource type="AudioStream" uid="uid://b2ps3qbjetreq" path="res://sound/MatchBoard/maximize_008.ogg" id="11_7746k"]
 [ext_resource type="Texture2D" uid="uid://c85u4fjpwcitp" path="res://sprites/bg-square-round-49.png" id="12_g4i3p"]
 [ext_resource type="FontFile" uid="uid://2whem15om637" path="res://fonts/EXEPixelPerfect.ttf" id="14_symjt"]
+[ext_resource type="AudioStream" uid="uid://cxube8mca3bfj" path="res://sound/Score/Jingle_Achievement_00.wav" id="15_6s1de"]
 [ext_resource type="Texture2D" uid="uid://bxug84vvxnu7a" path="res://sprites/cards/icons/coin-icon.png" id="15_l1v61"]
 [ext_resource type="Script" path="res://match/CoffeePot.cs" id="15_r3ujc"]
 [ext_resource type="Texture2D" uid="uid://62g0ea2k1p8t" path="res://sprites/CoffeeShop/board/boardBackground.png" id="17_22l0t"]
+[ext_resource type="AudioStream" uid="uid://bm3tpygttblx3" path="res://sound/MatchBoard/coffeePot/68915__robinhood76__00934-water-drop-one-shot-dry-2.wav" id="17_bxc3h"]
+[ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/coins/money.wav" id="17_yb5j7"]
+[ext_resource type="PackedScene" uid="uid://dkfjme5jf8prf" path="res://match/FutureTile.tscn" id="20_7kdu1"]
+[ext_resource type="Texture2D" uid="uid://ck84axawycam6" path="res://sprites/CoffeeShop/final/CoffeeFillTexture_withtop_white.png" id="24_ehga4"]
 
-[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "audioScoreStreamPlayer2D", "boardHolder", "levelLabel", "scoreLabel", "multLabel")]
+[sub_resource type="Animation" id="Animation_saxev"]
+resource_name = "Flash"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/TextureProgressBarFlash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Control/TextureProgressBarFlash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_8fays"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/TextureProgressBarFlash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/TextureProgressBarFlash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kcwfb"]
+_data = {
+"Flash": SubResource("Animation_saxev"),
+"RESET": SubResource("Animation_8fays")
+}
+
+[node name="MatchBoard" type="Node2D" node_paths=PackedStringArray("audioStreamPlayer2D", "audioScoreStreamPlayer2D", "boardHolder", "futureTileHolder", "matchOrbHolder", "coffeePot", "coffeePotDropAudio", "victoryMatchAudioStream", "levelLabel", "scoreLabel", "multLabel")]
 script = ExtResource("1_4r3i0")
 sizeX = 6
 sizeY = 5
 tileTemplate = ExtResource("2_hppa1")
 tileTemplateSmall = ExtResource("3_1bf8q")
+futureTilesSmallTemplate = ExtResource("4_8ncbe")
+futureTilesTemplate = ExtResource("20_7kdu1")
 gemScene = ExtResource("3_xdias")
 gemSceneSmall = ExtResource("5_e5h18")
 audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
 audioScoreStreamPlayer2D = NodePath("ScoreTrillAudio")
 boardHolder = NodePath("BoardPoint")
+futureTileHolder = NodePath("FutureIngredientsPoint")
+matchOrbPackedScene = ExtResource("6_f0mpv")
+matchOrbHolder = NodePath("CoffeeMug/Node2D")
+coffeePot = NodePath("CoffeeMug/Control/TextureProgressBar")
+coffeePotDropAudio = NodePath("DropSoundPlayer")
+victoryMatchAudioStream = NodePath("LevelPassedAudio")
 matchAudioStream = ExtResource("4_xadm7")
 popAudioStream = ExtResource("5_wfbn1")
 switchAudioStream = ExtResource("6_iim20")
@@ -42,57 +119,23 @@ multLabel = NodePath("MultText/RichTextLabel2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(139, 130)
+position = Vector2(141, 132)
 scale = Vector2(3, 3)
 texture = ExtResource("9_hn6v7")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="LevelPassedAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_6s1de")
+volume_db = -15.321
+script = ExtResource("7_y00am")
+soundEffect = true
+minValue = -25.0
+maxValue = 35.0
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Node2D" node_paths=PackedStringArray("audioPourStreamPlayer2D", "scoreRewards", "progressBar", "sparkleArea")]
-texture_filter = 1
-offset_left = -392.0
-offset_top = 8.0
-offset_right = -279.0
-offset_bottom = 153.0
-scale = Vector2(3, 3)
-max_value = 154.0
-fill_mode = 3
-texture_over = ExtResource("10_gmlox")
-texture_progress = ExtResource("11_5jbtk")
-script = ExtResource("15_r3ujc")
-audioPourStreamPlayer2D = NodePath("../../AudioPourStreamPlayer2D2")
-scoreRewards = NodePath("Node2D2")
-progressBar = NodePath(".")
-progressStep = 1.0
-progressIncreaseStep = 0.25
-sparkleEffect = ExtResource("4_genem")
-sparkleArea = NodePath("ReferenceRect")
-
-[node name="Node2D" type="Node2D" parent="Node2D/TextureProgressBar"]
-position = Vector2(193.333, 350)
-
-[node name="ReferenceRect" type="ReferenceRect" parent="Node2D/TextureProgressBar"]
-layout_mode = 0
-offset_left = 210.0
-offset_top = 312.0
-offset_right = 542.0
-offset_bottom = 840.0
-border_color = Color(1, 0, 0, 0)
-
-[node name="Node2D" type="Node2D" parent="Node2D/TextureProgressBar/ReferenceRect"]
-
-[node name="Node2D2" type="Node2D" parent="Node2D/TextureProgressBar"]
-visible = false
-position = Vector2(-84.3333, -39)
-scale = Vector2(0.3, 0.3)
-
-[node name="Coin-icon" type="Sprite2D" parent="Node2D/TextureProgressBar/Node2D2"]
-position = Vector2(656.667, 445.556)
-texture = ExtResource("15_l1v61")
-
-[node name="Coin-icon2" type="Sprite2D" parent="Node2D/TextureProgressBar/Node2D2"]
-position = Vector2(657.25, 308.5)
-texture = ExtResource("15_l1v61")
+[node name="CoinGainedAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_yb5j7")
+volume_db = -15.321
+script = ExtResource("7_y00am")
+soundEffect = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_prplw")
@@ -116,6 +159,12 @@ soundEffect = true
 minValue = -40.0
 maxValue = 20.0
 
+[node name="DropSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_bxc3h")
+volume_db = -15.0
+script = ExtResource("7_y00am")
+soundEffect = true
+
 [node name="MultText" type="Node2D" parent="."]
 texture_filter = 1
 position = Vector2(-312, -183)
@@ -127,21 +176,19 @@ scale = Vector2(0.508, 0.168)
 texture = ExtResource("12_g4i3p")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MultText"]
-offset_left = 47.0
-offset_top = 1.0
-offset_right = 167.0
-offset_bottom = 42.0
+offset_left = 48.0
+offset_right = 168.0
+offset_bottom = 41.0
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[rainbow freq=.5 sat=0.8 val=0.8]10.25"
+text = "[center][rainbow freq=.5 sat=0.8 val=0.8]10.25"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MultText"]
 modulate = Color(0.701961, 0.701961, 0.701961, 1)
 texture_filter = 1
 offset_left = -46.0
-offset_top = 5.0
 offset_right = 50.0
-offset_bottom = 46.0
+offset_bottom = 41.0
 theme_override_fonts/normal_font = ExtResource("14_symjt")
 theme_override_font_sizes/normal_font_size = 48
 text = "Mult"
@@ -160,20 +207,20 @@ texture = ExtResource("12_g4i3p")
 modulate = Color(0.811765, 0, 0, 1)
 texture_filter = 1
 offset_left = 105.0
-offset_top = -2.0
-offset_right = 470.0
-offset_bottom = 51.0
+offset_top = -4.0
+offset_right = 463.0
+offset_bottom = 36.0
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "100[font_size=18] [/font_size]/[font_size=18] [/font_size]500"
+text = "[center]100[font_size=18] [/font_size]/[font_size=18] [/font_size]500"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScoreText"]
 modulate = Color(0.701961, 0.701961, 0.701961, 1)
 texture_filter = 1
 offset_left = -18.0
-offset_top = 1.0
+offset_top = -3.0
 offset_right = 160.0
-offset_bottom = 52.0
+offset_bottom = 48.0
 theme_override_fonts/normal_font = ExtResource("14_symjt")
 theme_override_font_sizes/normal_font_size = 48
 text = "Score"
@@ -190,25 +237,149 @@ texture = ExtResource("12_g4i3p")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="LevelText"]
 modulate = Color(0.811765, 0, 0, 1)
-offset_left = 58.6
-offset_top = -7.0
-offset_right = 181.6
-offset_bottom = 47.0
+offset_left = 59.0
+offset_top = -9.0
+offset_right = 171.0
+offset_bottom = 31.0
 theme_override_font_sizes/normal_font_size = 48
-text = "10/10"
+bbcode_enabled = true
+text = "[center]10/10"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LevelText"]
 modulate = Color(0.701961, 0.701961, 0.701961, 1)
-offset_left = -60.4
-offset_top = -7.0
-offset_right = 77.6
-offset_bottom = 48.0
+offset_left = -60.0
+offset_top = -9.0
+offset_right = 78.0
+offset_bottom = 46.0
 theme_override_fonts/normal_font = ExtResource("14_symjt")
 theme_override_font_sizes/normal_font_size = 48
 text = "Level"
 
+[node name="FutureIngredientsPoint" type="Node2D" parent="."]
+position = Vector2(-37, -142)
+
+[node name="FutureMatchTile" parent="FutureIngredientsPoint" instance=ExtResource("20_7kdu1")]
+visible = false
+
 [node name="BoardPoint" type="Node2D" parent="."]
 position = Vector2(-37, -124)
+
+[node name="CoffeeMug" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="CoffeeMug"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -166.0
+offset_top = 152.0
+offset_right = -166.0
+offset_bottom = 152.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CoffeeMug/Control" node_paths=PackedStringArray("audioPourStreamPlayer2D", "coinGainedAudioPlayer", "scoreRewards", "progressBar", "progressBarFlash", "flashAnimationPlayer", "sparkleArea")]
+texture_filter = 1
+offset_left = -226.0
+offset_top = -144.0
+offset_right = -113.0
+offset_bottom = 1.0
+scale = Vector2(3, 3)
+min_value = -9.0
+max_value = 162.0
+value = 100.0
+fill_mode = 3
+texture_over = ExtResource("10_gmlox")
+texture_progress = ExtResource("11_5jbtk")
+script = ExtResource("15_r3ujc")
+audioPourStreamPlayer2D = NodePath("../../../AudioPourStreamPlayer2D2")
+coinGainedAudioPlayer = NodePath("../../../CoinGainedAudio")
+scoreRewards = NodePath("Node2D2")
+progressBar = NodePath(".")
+progressBarFlash = NodePath("../TextureProgressBarFlash")
+flashAnimationPlayer = NodePath("../../FlashAnimationPlayer")
+progressStep = 1.0
+progressIncreaseStep = 0.25
+sparkleEffect = ExtResource("4_genem")
+sparkleArea = NodePath("ReferenceRect")
+
+[node name="Node2D" type="Node2D" parent="CoffeeMug/Control/TextureProgressBar"]
+position = Vector2(193.333, 350)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CoffeeMug/Control/TextureProgressBar"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 312.0
+offset_right = 542.0
+offset_bottom = 840.0
+border_color = Color(1, 0, 0, 0)
+
+[node name="Node2D" type="Node2D" parent="CoffeeMug/Control/TextureProgressBar/ReferenceRect"]
+
+[node name="Node2D2" type="Node2D" parent="CoffeeMug/Control/TextureProgressBar"]
+visible = false
+position = Vector2(-84.3333, -39)
+scale = Vector2(0.3, 0.3)
+
+[node name="Coin-icon" type="Sprite2D" parent="CoffeeMug/Control/TextureProgressBar/Node2D2"]
+position = Vector2(656.667, 445.556)
+texture = ExtResource("15_l1v61")
+
+[node name="Coin-icon2" type="Sprite2D" parent="CoffeeMug/Control/TextureProgressBar/Node2D2"]
+position = Vector2(657.25, 308.5)
+texture = ExtResource("15_l1v61")
+
+[node name="TextureProgressBarFlash" type="TextureProgressBar" parent="CoffeeMug/Control"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_right = 113.0
+offset_bottom = 145.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(113, 72)
+min_value = -9.0
+max_value = 162.0
+value = 100.0
+fill_mode = 3
+texture_progress = ExtResource("24_ehga4")
+
+[node name="Node2D" type="Node2D" parent="CoffeeMug/Control/TextureProgressBarFlash"]
+position = Vector2(193.333, 350)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CoffeeMug/Control/TextureProgressBarFlash"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 312.0
+offset_right = 542.0
+offset_bottom = 840.0
+border_color = Color(1, 0, 0, 0)
+
+[node name="Node2D" type="Node2D" parent="CoffeeMug/Control/TextureProgressBarFlash/ReferenceRect"]
+
+[node name="Node2D2" type="Node2D" parent="CoffeeMug/Control/TextureProgressBarFlash"]
+visible = false
+position = Vector2(-84.3333, -39)
+scale = Vector2(0.3, 0.3)
+
+[node name="Coin-icon" type="Sprite2D" parent="CoffeeMug/Control/TextureProgressBarFlash/Node2D2"]
+position = Vector2(656.667, 445.556)
+texture = ExtResource("15_l1v61")
+
+[node name="Coin-icon2" type="Sprite2D" parent="CoffeeMug/Control/TextureProgressBarFlash/Node2D2"]
+position = Vector2(657.25, 308.5)
+texture = ExtResource("15_l1v61")
+
+[node name="Node2D" type="Node2D" parent="CoffeeMug"]
+position = Vector2(-176, 295)
+
+[node name="MatchEffectOrb" parent="CoffeeMug/Node2D" instance=ExtResource("6_f0mpv")]
+visible = false
+
+[node name="MatchEffectOrb2" parent="CoffeeMug/Node2D" instance=ExtResource("6_f0mpv")]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="CoffeeMug/Node2D"]
+position = Vector2(89, -135)
+
+[node name="FlashAnimationPlayer" type="AnimationPlayer" parent="CoffeeMug"]
+libraries = {
+"": SubResource("AnimationLibrary_kcwfb")
+}
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 visible = false

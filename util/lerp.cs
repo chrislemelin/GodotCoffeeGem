@@ -6,7 +6,7 @@ public partial class lerp : Node2D
 {
 	Vector2 startPosition;
 	Vector2 endPosition;
-	[Export] float speed;
+	[Export] protected float speed;
 	float constantTimeSpeed = 0.0f;
 	float timeStartedMovement;
 	float timeAfterMovement;

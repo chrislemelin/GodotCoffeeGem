@@ -61,7 +61,7 @@ public partial class DebtProgressBar : Node
 				if (debtReward != null) {
 					debtReward.setVisible(true);
 					if (currentSegments == 0) {
-						DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(firstLevelUpDialouge);
+						//DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(firstLevelUpDialouge);
 					}
 				}
 			}

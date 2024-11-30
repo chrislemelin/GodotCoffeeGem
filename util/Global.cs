@@ -14,6 +14,7 @@ public partial class Global : Node
 	private const String SFX_VOLUME_SAVE_NAME = "sfxVolume";
 	private const String DEBT_SAVE_NAME = "debt";
 	private const String TUTORIAL_SAVE_NAME = "seenTutorial";
+	private const String GAMEPLAY_RECORDING_TUTORIAL_NAME = "seenGameplayCollectionTutorial";
 	private const String TUTORIAL_OVERTIME_SAVE_NAME = "seenOvertimeTutorial";
 	private const String SEEN_BOSS_DIALOUGE_SAVE_NAME = "seenBossDialouge";
 	private const String NUMBER_OF_LEVELS_PLAYED = "numberOfLevelsPlayed";
@@ -24,6 +25,7 @@ public partial class Global : Node
 	public CardList deckCardList = null;
 	public Array<ColorUpgrade> colorUpgrades = new Array<ColorUpgrade>();
 	public List<RelicResource> relics = new List<RelicResource>();
+	public List<ActivatableRelicResource> activableRelics = new List<ActivatableRelicResource>();
 	public DeckSelectionResource deckSelection = null;
 
 	public Vector2 gridSize = new Vector2(6, 5);
@@ -46,6 +48,7 @@ public partial class Global : Node
 	public bool shownBossTutorial = false;
 	public bool shownBossDialouge = false;
 	public bool shownWelcomeTutorial = false;
+	public bool shownGameplayCollectionTutorial = false;
 	public bool shownOvertimeTutorial = false;
 	public bool shownGooTutorial = false;
 	public bool gooRightRow = false;
@@ -83,9 +86,10 @@ public partial class Global : Node
 
 	public void reset(MetaGlobal metaGlobal)
 	{
-		deckCardList = null;
 		colorUpgrades = new Array<ColorUpgrade>();
 		relics = new List<RelicResource>();
+		activableRelics = new List<ActivatableRelicResource>();
+
 
 		timeStartedRun = 0;
 		zenMode = false;
@@ -132,6 +136,7 @@ public partial class Global : Node
 		saveDict.Add(MUSIC_VOLUME_SAVE_NAME, musicVolume.ToString());
 		saveDict.Add(DEBT_SAVE_NAME, debt.ToString());
 		saveDict.Add(TUTORIAL_SAVE_NAME, shownWelcomeTutorial.ToString());
+		saveDict.Add(GAMEPLAY_RECORDING_TUTORIAL_NAME, shownGameplayCollectionTutorial.ToString());
 		saveDict.Add(NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed.ToString());
 		saveDict.Add(TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial.ToString());
 		saveDict.Add(NUMBER_OF_RUNS_PLAYED, numberOfRunsPlayed.ToString());
@@ -178,6 +183,7 @@ public partial class Global : Node
 		musicVolume = tryLoadFloat(nodeData, MUSIC_VOLUME_SAVE_NAME, musicVolume);
 		debt = tryLoadInt(nodeData, DEBT_SAVE_NAME, debt);
 		shownWelcomeTutorial = tryLoadBool(nodeData, TUTORIAL_SAVE_NAME, shownWelcomeTutorial);
+		shownGameplayCollectionTutorial = tryLoadBool(nodeData, GAMEPLAY_RECORDING_TUTORIAL_NAME, shownGameplayCollectionTutorial);
 		shownOvertimeTutorial = tryLoadBool(nodeData, TUTORIAL_OVERTIME_SAVE_NAME, shownOvertimeTutorial);
 		numberOfLevelsPlayed = tryLoadInt(nodeData, NUMBER_OF_LEVELS_PLAYED, numberOfLevelsPlayed);
 		numberOfRunsPlayed = tryLoadInt(nodeData, NUMBER_OF_RUNS_PLAYED, numberOfRunsPlayed);

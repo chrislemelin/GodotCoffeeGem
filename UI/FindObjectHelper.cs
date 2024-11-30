@@ -9,6 +9,7 @@ public partial class FindObjectHelper
 	private static readonly String SCORE_NAME = "%Score";
 	private static readonly String MATCH_BOARD_NAME = "MatchBoard";
 	private static readonly String DECK_VIEW_NAME = "DeckView";
+	private static readonly String UPGRADE_CARD_UI = "UpgradeCardUI";
 	private static readonly String CARD_SELECTION_NAME = "CardSelectionUI";
 	private static readonly String RELIC_SELECTION_NAME = "RelicSelection";
 	private static readonly String FORM_SUBMITTER_NAME = "FormSubmitter";
@@ -18,16 +19,28 @@ public partial class FindObjectHelper
 	private static readonly String CONTROLLER_HELPER_NAME = "ControllerHelper";
 	private static readonly String CAMERA_NAME = "Camera";
 	private static readonly String HAND_LINE_NAME = "HandLine";
+	private static readonly String CHARACTER_PORTRAIT_NAME = "CharacterPortrait";
+
 
 	public static HandLine getHandLine(Node node)
 	{
 		return (HandLine)node.GetTree().GetFirstNodeInGroup(HAND_LINE_NAME);
 	}
 
+	public static CharacterPortrait GetCharacterPortrait(Node node)
+	{
+		return (CharacterPortrait)node.GetTree().GetFirstNodeInGroup(CHARACTER_PORTRAIT_NAME);
+	}
+
 	
 	public static ControllerHelper getControllerHelper(Node node)
 	{
 		return (ControllerHelper)node.GetTree().GetFirstNodeInGroup(CONTROLLER_HELPER_NAME);
+	}
+
+	public static UpgradeCard getUpgradeCardUI(Node node)
+	{
+		return (UpgradeCard)node.GetTree().GetFirstNodeInGroup(UPGRADE_CARD_UI);
 	}
 
 	public static Hand getHand(Node node)

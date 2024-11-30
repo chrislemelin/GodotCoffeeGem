@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu3n4oo2vkoxy"]
+
+[ext_resource type="Script" path="res://UI/Recipe/RecipeUI.cs" id="1_pcu2t"]
+[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_dubq4"]
+[ext_resource type="PackedScene" uid="uid://bs2tc07dvicfw" path="res://UI/Recipe/RecipeItem.tscn" id="2_m2p4j"]
+[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://sprites/ingredients/bean.png" id="15_1xgnr"]
+
+[node name="HBoxContainer" type="HBoxContainer" node_paths=PackedStringArray("recipeComponentHolder")]
+offset_right = 162.0
+offset_bottom = 50.0
+size_flags_horizontal = 4
+script = ExtResource("1_pcu2t")
+recipeComponentHolder = NodePath(".")
+inactiveColor = Color(0.443137, 0.443137, 0.443137, 1)
+ingredientScene = ExtResource("2_m2p4j")
+
+[node name="Recipe" parent="." instance=ExtResource("2_m2p4j")]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_1xgnr")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_1xgnr")
+expand_mode = 2
+
+[node name="RecipeUI" type="Control" parent="." node_paths=PackedStringArray("recipeComponentHolder")]
+layout_mode = 2
+script = ExtResource("1_pcu2t")
+recipeComponentHolder = NodePath("..")
+inactiveColor = Color(0.443137, 0.443137, 0.443137, 1)
+ingredientScene = ExtResource("2_m2p4j")
+
+[node name="Panel" type="Panel" parent="RecipeUI"]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 325.0
+offset_bottom = 129.0
+theme = ExtResource("2_dubq4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RecipeUI"]
+visible = false
+layout_mode = 0
+offset_left = 39.0
+offset_top = 17.0
+offset_right = 310.0
+offset_bottom = 130.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RecipeUI/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]BOSS RECIPE[/center]"
+fit_content = true

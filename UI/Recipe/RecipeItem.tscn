@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs2tc07dvicfw"]
+
+[ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://sprites/ingredients/bean.png" id="1_rgvow"]
+
+[node name="Recipe" type="TextureRect"]
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+texture = ExtResource("1_rgvow")
+expand_mode = 2

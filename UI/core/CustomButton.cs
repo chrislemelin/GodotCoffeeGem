@@ -3,6 +3,7 @@ using System;
 
 public partial class CustomButton : Button
 {
+	[Export] public TextureRect icon;
 	[Export] AnimationPlayer animationPlayer;
 	[Export] AudioPlayer hoverAudioplayer;
 	[Export] AudioPlayer clickAudioplayer;
@@ -36,6 +37,13 @@ public partial class CustomButton : Button
 	}
 
 	private void playAnimation(String animation) {
+		if (icon != null) {
+			icon.PivotOffset = icon.Size/2;
+			Tween tween = GetTree().CreateTween();
+			tween.SetEase(Tween.EaseType.InOut);
+			tween.TweenProperty(icon, "scale", new Vector2(1.1f,1.1f), .1f);
+			tween.Chain().TweenProperty(icon, "scale",  new Vector2(1,1), .1f);
+		}
 		if (animationPlayer != null) {
 			animationPlayer.Play(animation);
 		}

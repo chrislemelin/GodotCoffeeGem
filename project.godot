@@ -13,7 +13,7 @@ config_version=5
 config/name="BeansOfProduction"
 run/main_scene="res://mainScenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-boot_splash/image="res://sprites/splashScreens/MapNewTitle.png"
+boot_splash/image="res://sprites/splashScreens/MapNewTitle2.png"
 boot_splash/use_filter=false
 config/icon="res://sprites/ingredients/final/Bean-pixel2.png"
 

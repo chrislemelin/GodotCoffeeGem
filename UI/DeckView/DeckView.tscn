@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bktkdd4va45a8"]
 
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_5il0c"]
 [ext_resource type="Script" path="res://UI/DeckView/DeckViewUI.cs" id="1_7cepj"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="2_u2nuu"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="4_jyna6"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="4_lxweo"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="6_l1bhy"]
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="6_yvler"]
 
@@ -45,7 +45,7 @@ _data = {
 "RESET": SubResource("Animation_ycqig")
 }
 
-[node name="DeckView" type="Control" node_paths=PackedStringArray("gridContainer", "scrollContainer", "title", "button", "animationPlayer")]
+[node name="DeckView" type="Control" node_paths=PackedStringArray("gridContainer", "scrollContainer", "title", "cancelButton", "button", "animationPlayer")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -53,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_5il0c")
 script = ExtResource("1_7cepj")
 cardScene = ExtResource("6_yvler")
 marginContainerScene = ExtResource("2_u2nuu")
@@ -60,7 +61,8 @@ gridContainer = NodePath("ScrollContainer/GridContainer")
 scrollContainer = NodePath("ScrollContainer")
 title = NodePath("RichTextLabel")
 deletingFadeOutDelay = 0.5
-button = NodePath("CloseButton")
+cancelButton = NodePath("HBoxContainer/Button")
+button = NodePath("HBoxContainer/CloseButton")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -83,13 +85,12 @@ offset_left = 276.0
 offset_top = 136.0
 offset_right = 1654.0
 offset_bottom = 901.0
-theme = ExtResource("4_lxweo")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." groups=["CardScrollContainer"]]
 layout_mode = 2
 offset_left = 282.0
 offset_top = 145.0
-offset_right = 1595.0
+offset_right = 1653.0
 offset_bottom = 891.0
 follow_focus = true
 
@@ -98,163 +99,22 @@ clip_contents = true
 layout_mode = 2
 columns = 4
 
-[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer2" instance=ExtResource("6_yvler")]
-layout_mode = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer5" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="MarginContainer6" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer6" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="MarginContainer7" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer7" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="MarginContainer8" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer8" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="MarginContainer9" type="MarginContainer" parent="ScrollContainer/GridContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer9" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer") instance=ExtResource("6_yvler")]
-layout_mode = 2
-titleLabel = NodePath("../../MarginContainer2/UI/Center/Title/RichTextLabel")
-descriptionLabel = NodePath("../../MarginContainer2/UI/Center/Description2/VBoxContainer2/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/UI/Center/EnergyCost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/UI/Center/Picture/Sprite2D")
-titleSprite = NodePath("../../MarginContainer2/UI/Center/Title/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/UI/Center/Background")
-coinCostControl = NodePath("../../MarginContainer2/UI/CoinCost")
-coinCostText = NodePath("../../MarginContainer2/UI/CoinCost/HBoxContainer/RichTextLabel")
-animationPlayer = NodePath("../../MarginContainer2/UI/AnimationPlayer")
-
-[node name="CloseButton" parent="." instance=ExtResource("6_l1bhy")]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 801.0
-offset_top = 941.0
-offset_right = 955.0
-offset_bottom = 993.0
+offset_left = 681.0
+offset_top = 940.0
+offset_right = 1204.0
+offset_bottom = 1004.0
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Button" parent="HBoxContainer" instance=ExtResource("6_l1bhy")]
+visible = false
+layout_mode = 2
+text = "Cancel"
+
+[node name="CloseButton" parent="HBoxContainer" instance=ExtResource("6_l1bhy")]
+layout_mode = 2
 text = "Close"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -263,6 +123,7 @@ offset_left = 506.0
 offset_top = 59.0
 offset_right = 1225.0
 offset_bottom = 137.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Test"

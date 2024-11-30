@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfp4ni22x3w6u"]
+[gd_scene load_steps=15 format=3 uid="uid://bfp4ni22x3w6u"]
 
 [ext_resource type="Script" path="res://hand/Hand.cs" id="1_erkbb"]
 [ext_resource type="PackedScene" uid="uid://l8epp33hnkdj" path="res://cards/CardUIScaled.tscn" id="2_oq25s"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://balvwdak4qrgk" path="res://sound/Hand/mouseclick1.ogg" id="5_o7eqj"]
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="7_4em3t"]
 [ext_resource type="Script" path="res://sound/Players/AudioPlayer.cs" id="9_nslao"]
+[ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="10_mtut1"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="12_dvm32"]
 [ext_resource type="AudioStream" uid="uid://bluw6sm0urufj" path="res://sound/Hand/maximize_008.ogg" id="13_4abvi"]
 
@@ -31,13 +32,16 @@ newHandSoundEffect = ExtResource("3_7bv56")
 cardPlayedSoundEffect = ExtResource("4_hbmsc")
 cardSelectedSoundEffect = ExtResource("5_o7eqj")
 windowsInFrontOf = []
-width = 900
+width = 800
+extraPadding = 50
+maxCardWidth = 300.0
 hoverUpDistance = 30.0
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = -419.0
+texture_filter = 1
+offset_left = -431.0
 offset_top = -97.0
-offset_right = 1011.0
+offset_right = 1018.0
 offset_bottom = 246.0
 theme = ExtResource("7_4em3t")
 
@@ -59,7 +63,18 @@ texture_mode = 1
 script = ExtResource("4_lebxv")
 
 [node name="CardContainer" type="Node2D" parent="."]
-position = Vector2(286.234, 69.8828)
+position = Vector2(286, 75)
+
+[node name="CardFullUI" parent="CardContainer" instance=ExtResource("10_mtut1")]
+visible = false
+offset_left = 450.0
+offset_top = 0.0
+offset_right = 760.0
+offset_bottom = 400.0
+
+[node name="card2" parent="CardContainer" instance=ExtResource("2_oq25s")]
+visible = false
+position = Vector2(-450, 0)
 
 [node name="CardSelectedAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_o7eqj")

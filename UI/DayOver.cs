@@ -31,6 +31,8 @@ public partial class DayOver : Control
 	[Export] CardResource horizSwitchCard;
 	[Export] RelicSelection relicSelection;
 	[Export] Control cardShop;
+	[Export] UpgradeCard upgradeCardUI;
+
 	[Export] PackedScene cardScene;
 	[Export] PackedScene marginContainerScene;
 
@@ -56,7 +58,12 @@ public partial class DayOver : Control
 		buttonWithCoinCost.Add(relicButton);
 		buttonWithCoinCost.Add(upgradeCardButton);
 		buttons.AddRange(buttonWithCoinCost);
-
+		
+		gameManager.healthChanged += (health) => {
+			if (gameManager.getHealth() == gameManager.getMaxHealth()) {
+				shoppingTherapyButton.Disabled = true;
+			}
+		};
 		//
 
 		foreach(ButtonWithCoinCost buttonWithCoinCost in buttonWithCoinCost) {
@@ -75,6 +82,7 @@ public partial class DayOver : Control
 		
 		addRelicsToShop();
 		addCardsToShop();
+
 		gameManager.coinsChanged += (int coins, int value) => coinsChanged(coins);
 
 		if (gameManager.getHealth() == gameManager.getMaxHealth()) {
@@ -94,10 +102,13 @@ public partial class DayOver : Control
 		sideHustleButton.Pressed += () => {
 			confirmationText.Text = "Gained 10 Coins";
 		};
+
+		checkToDisableCardUpgradeButton();
 		upgradeCardButton.Pressed += () => {
-			upgradeCard();
-			confirmationText.Text = "upgraded card " + cardToReplace.Title;
+			upgradeCardUI.upgradeCardsFromList(gameManager.getDeckList());
+			//confirmationText.Text = "upgraded card " + cardToReplace.Title;
 		};
+		upgradeCardUI.UpgradeCardDone += checkToDisableCardUpgradeButton;
 
 
 		shoppingTherapyButton.Pressed += () => {
@@ -113,6 +124,12 @@ public partial class DayOver : Control
 		relicButton.Pressed += addRelic;
 		advanceLevelCustomButton.Pressed += () => gameManager.advanceLevel();
 		coinsChanged(gameManager.getCoins());
+	}
+
+	private void checkToDisableCardUpgradeButton() {
+		if (!upgradeCardUI.hasCardsToUpgrade(gameManager.getDeckList())) {
+			upgradeCardButton.Disabled = true;
+		}
 	}
 
 	public void subtractCoins(ButtonWithCoinCost buttonWithCoinCost) {
@@ -204,7 +221,7 @@ public partial class DayOver : Control
 			cardsInShop.Add(cardInfoLoader);
 			cardInfoLoader.setUpCard(cardResource);
 			cardInfoLoader.setShowCoinCost(true);
-			cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader, marginContainer);
+			cardInfoLoader.hitBox.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader, marginContainer);
 		}
 	}
 

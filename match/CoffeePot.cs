@@ -4,8 +4,13 @@ using System;
 public partial class CoffeePot : TextureProgressBar
 {
 	[Export] public AudioPlayer audioPourStreamPlayer2D;
+	[Export] public AudioStreamPlayer2D coinGainedAudioPlayer;
+
 	[Export] public Node2D scoreRewards;
 	[Export] public TextureProgressBar progressBar;
+	[Export] public TextureProgressBar progressBarFlash;
+	[Export] public AnimationPlayer flashAnimationPlayer;
+
 	[Export] private double progressStep = 2;
 	[Export] private double progressIncreaseStep = .5f;
 
@@ -27,9 +32,9 @@ public partial class CoffeePot : TextureProgressBar
 		timer2.Timeout += makeCoffeeSparkle;
 		timer2.Start();
 
-		FindObjectHelper.getScore(this).scoreChange += 
-			(int newScore, int scoreNeeded) => GetTree().CreateTimer(.25f).Timeout += 
-				() => scoreChanged(newScore, scoreNeeded);
+		// FindObjectHelper.getScore(this).scoreChange += 
+		// 	(int newScore, int scoreNeeded) => GetTree().CreateTimer(.25f).Timeout += 
+		// 		() => scoreChanged(newScore, scoreNeeded);
 
 
 		Timer timer = new Timer();
@@ -41,8 +46,11 @@ public partial class CoffeePot : TextureProgressBar
 	}
 
 
-	private void scoreChanged(int score, int scoreNeeded)
+	public void scoreChanged()
 	{
+		Score scoreObject = FindObjectHelper.getScore(this);
+		int score = scoreObject.getScore();
+		int scoreNeeded = scoreObject.getScoreNeeded();
 		double newProgressValue = (int)((double)score / (scoreNeeded) * 100);
 
 		if (newProgressValue > progressValue) {
@@ -64,6 +72,7 @@ public partial class CoffeePot : TextureProgressBar
 		if (Math.Abs(currentProgress - progressValueCalculated) > currentProgressStep)
 		{
 			progressBar.Value = getCoffeeProgressValue(currentProgress + currentProgressStep);
+			progressBarFlash.Value = getCoffeeProgressValue(currentProgress + currentProgressStep);
 			barMoving = true;
 			if (!audioPourStreamPlayer2D.Playing) {
 				audioPourStreamPlayer2D.Play();
@@ -73,9 +82,23 @@ public partial class CoffeePot : TextureProgressBar
 		else
 		{
 			progressBar.Value = getCoffeeProgressValue(progressValue);
+			progressBarFlash.Value = getCoffeeProgressValue(progressValue);
 			barMoving = false;
 			fadeOutPourAudio();
 		}
+		if (refreshedPot) {
+			if (currentProgress < 50 && progressBar.Value>= 50) {
+				coinGainedAudioPlayer.Play();
+			}
+			if (currentProgress < 100 && progressBar.Value >= 100) {
+				coinGainedAudioPlayer.Play();
+			}
+		}
+
+	}
+
+	public void flash() {
+		flashAnimationPlayer.Play("Flash");
 	}
 
 	private double getCoffeeProgressValue (double value) {

@@ -1,11 +1,27 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ct0cmbf354u4s"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=9 format=3 uid="uid://ct0cmbf354u4s"]
 
 [ext_resource type="Texture2D" uid="uid://b2vdud8hw60hv" path="res://cards/cardResources/cardArt/final/CardArtVanilla.png" id="1_k0v3x"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_f4atw"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_ial30"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_dsxvr"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="3_rqkxa"]
+
+[sub_resource type="Resource" id="Resource_1nglq"]
+script = ExtResource("2_ial30")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_u3q4y"]
 script = ExtResource("2_f4atw")
+makeMatchBonus = SubResource("Resource_1nglq")
 Range = 1.0
 Value = 2
 BlackGems = 0
@@ -14,14 +30,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 2
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -31,11 +50,22 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
+
+[sub_resource type="Resource" id="Resource_sij6a"]
+script = ExtResource("3_rqkxa")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = 0
+valueModification = 1
 
 [resource]
 script = ExtResource("3_dsxvr")
 Title = "Vanilla Spray"
 Description = "Generate $value$vanilla. If this creates a match, +1$draw."
+UpgradeDescriptions = []
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_k0v3x")
@@ -43,3 +73,6 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_u3q4y")
+cardUpgrades = []
+cardUpgradeFromPassive = SubResource("Resource_sij6a")
+cardUpgradeTitle = ""

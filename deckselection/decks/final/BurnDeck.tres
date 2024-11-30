@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_obrq4"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/cardPools/CardPool.tres" id="2_y6mt1"]
 [ext_resource type="Texture2D" uid="uid://4yt33ijnws48" path="res://sprites/cards/final/CardBackBlue.png" id="3_vasbm"]
-[ext_resource type="Texture2D" uid="uid://co57od6yiq8pt" path="res://sprites/cards/final/CardfrontBlue.png" id="4_kw4wb"]
+[ext_resource type="Texture2D" uid="uid://b4ctf2thiuecf" path="res://sprites/cards/final/TestBackground2-Blue.png" id="4_22vma"]
 
 [resource]
 script = ExtResource("2_obrq4")
@@ -15,4 +15,4 @@ title = "Advanced Deck"
 description = "An advanced deck that burns ingredient for big bonuses."
 color = Color(0, 0, 0, 0)
 faceCard = ExtResource("3_vasbm")
-faceCardFront = ExtResource("4_kw4wb")
+faceCardFront = ExtResource("4_22vma")

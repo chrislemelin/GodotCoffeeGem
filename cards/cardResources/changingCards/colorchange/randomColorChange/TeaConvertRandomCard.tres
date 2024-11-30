@@ -1,27 +1,46 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b5qti3iu5mmlf"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=9 format=3 uid="uid://b5qti3iu5mmlf"]
 
 [ext_resource type="Texture2D" uid="uid://cobvl40uaorkx" path="res://cards/cardResources/cardArt/final/CardArtTea.png" id="1_n0w4t"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_p3w6v"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_rxqb3"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_ms3if"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="3_xhbqr"]
+
+[sub_resource type="Resource" id="Resource_gfmuq"]
+script = ExtResource("2_rxqb3")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_58thy"]
 script = ExtResource("2_p3w6v")
+makeMatchBonus = SubResource("Resource_gfmuq")
 Range = 1.0
-Value = 1
+Value = 2
 BlackGems = 0
 ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 3
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -31,11 +50,22 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
+
+[sub_resource type="Resource" id="Resource_jucg1"]
+script = ExtResource("3_xhbqr")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = 0
+valueModification = 1
 
 [resource]
 script = ExtResource("3_ms3if")
 Title = "Tea Spray"
 Description = "Generate $value$tea. If this creates a match, +1$draw."
+UpgradeDescriptions = []
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_n0w4t")
@@ -43,3 +73,6 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_58thy")
+cardUpgrades = []
+cardUpgradeFromPassive = SubResource("Resource_jucg1")
+cardUpgradeTitle = ""

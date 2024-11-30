@@ -26,7 +26,7 @@ public partial class GameManagerIF : Node2D
 
 	public bool isIntialized()
 	{
-		return getGlobal().totalScore > 0 && getGlobal().deckCardList != null;
+		return getGlobal().deckCardList != null;
 	}
 	public List<CardResource> getDeckList()
 	{
@@ -65,6 +65,14 @@ public partial class GameManagerIF : Node2D
 		List<CardResource> cards = cardLibrary.defaultCardPool.getCards();
 		cards.RemoveAll(card => allUnlockableCards.Contains(card.Title));
 		return cards;
+	}
+
+	public List<ActivatableRelicResource> getActivatableRelics() {
+		return getGlobal().activableRelics;
+	}
+
+	public void addActivatableRelics(ActivatableRelicResource activableRelicResource) {
+		getGlobal().activableRelics.Add((ActivatableRelicResource)activableRelicResource.Duplicate());
 	}
 
 	private HashSet<CardResource> getCardsUnlocked() {
@@ -256,8 +264,8 @@ public partial class GameManagerIF : Node2D
 
 	public List<RelicResource> getRelicPool()
 	{
-		List<RelicResource> currentRelics = getRelics();
-		return relicList.getRelics().ToList().Except(currentRelics).ToList();
+		HashSet<string> currentRelics = getRelics().Select(relic => relic.title).ToHashSet();
+		return relicList.getRelics().ToList().Where((relic) => !currentRelics.Contains(relic.title)).ToList();
 	}
 
 	public virtual void advanceLevel()
@@ -267,6 +275,7 @@ public partial class GameManagerIF : Node2D
 	public void setCollectData(bool value)
 	{
 		getGlobal().collectData = value;
+		getGlobal().save();
 	}
 
 	public int getDebtMax()
@@ -337,7 +346,11 @@ public partial class GameManagerIF : Node2D
 	public void setDeckSelection(DeckSelectionResource deckSelectionResource)
 	{
 		getGlobal().deckSelection = deckSelectionResource;
-	}
+		Godot.Collections.Array<CardResource> cardList = new Godot.Collections.Array<CardResource>(deckSelectionResource.cardList.getCards());
+		CardList newCardList = new CardList();
+		newCardList.setCards(cardList);
+		getGlobal().deckCardList = newCardList;
+}
 
 	public void setNumberOfCardToChoose(int value)
 	{
@@ -368,6 +381,16 @@ public partial class GameManagerIF : Node2D
 	{
 		getGlobal().shownWelcomeTutorial = value;
 		getGlobal().save();
+	}
+
+	public void setShownGameplayCollectionTutorial(bool value)
+	{
+		getGlobal().shownGameplayCollectionTutorial = value;
+		getGlobal().save();
+	}
+	public bool getShownGameplayCollectionTutorial()
+	{
+		return getGlobal().shownGameplayCollectionTutorial;
 	}
 
 

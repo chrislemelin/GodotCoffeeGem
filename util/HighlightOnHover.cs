@@ -3,13 +3,16 @@ using System;
 
 public partial class HighlightOnHover : TextureRect
 {
+	[Export] public bool makeBiggerBool;
 	[Export] Control area2D;
 	[Export] bool forceHighlightOn = false;
 	[Export] bool forceHighlightOff = false;
+	bool forceHighlightOnAltColor= false;
+
 	[Export] bool highlightOnSelf = true;
 	[Export] Color forceHighlightColor;
 	private Color normalHighlightColor;
-
+	[Export] AudioPlayer hoverAudioPlayer;
 	[Export] Node2D makeBigger;
 	[Export] Control makeBiggerControl;
 
@@ -25,6 +28,7 @@ public partial class HighlightOnHover : TextureRect
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		Material = (Material)Material.Duplicate();
 		normalHighlightColor = (Color)Material.Get("shader_parameter/line_color");
 		if (highlightOnSelf) {
@@ -39,8 +43,31 @@ public partial class HighlightOnHover : TextureRect
 
 	private void setHighlightFromMouse(bool value) {
 		isHovered = value;
-		renderEnlarge();
+		//renderEnlarge();
 		renderHighlight();
+		if(value) {
+			if (hoverAudioPlayer != null) {
+				hoverAudioPlayer.Play();
+			}
+		}
+		if (makeBiggerBool) {
+			if (value) {
+				enlargeTween();
+			} else {
+				shrinkTween();
+			}
+		}
+
+	}
+
+	private void enlargeTween() {
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(makeBiggerControl, "scale", new Vector2(1.05f, 1.05f), .1f);
+	}
+
+	private void shrinkTween() {
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(makeBiggerControl, "scale", new Vector2(1f, 1f), .1f);
 	}
 	private void renderEnlarge() {
 		if (startingSize == null) {
@@ -78,14 +105,7 @@ public partial class HighlightOnHover : TextureRect
 
 	public void setForceHighlightAltColor(bool forceHighlightValue)
 	{
-		forceHighlightOn = forceHighlightValue;
-		if (forceHighlightValue) {
-			if (forceHighlightColor.A != 0.0f) {
-				Material.Set("shader_parameter/line_color", forceHighlightColor);
-			}
-		} else {
-			Material.Set("shader_parameter/line_color", normalHighlightColor);
-		}
+		forceHighlightOnAltColor = forceHighlightValue;
 		renderHighlight();
 	}
 
@@ -100,11 +120,15 @@ public partial class HighlightOnHover : TextureRect
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		base._Process(delta);
 		renderHighlight();
-		renderEnlarge();
+		//renderEnlarge();
 	}
 
 	private bool isHighlighted() {
+		if (forceHighlightOnAltColor) {
+			return true;
+		}
 		if(forceHighlightOn) {
 			return true;
 		} else if (forceHighlightOff) {
@@ -128,15 +152,23 @@ public partial class HighlightOnHover : TextureRect
 
 	private void setHighlightOn()
 	{
-		Color color = (Color)Material.Get("shader_parameter/line_color");
+		Color color = getColor();
 		Color newColor = new Color(color.R, color.G, color.B, 1.0f);
 		Material.Set("shader_parameter/line_color", newColor);
 
 	}
 	private void setHighlightOff()
 	{
-		Color color = (Color)Material.Get("shader_parameter/line_color");
+		Color color = getColor();
 		Color newColor = new Color(color.R, color.G, color.B, 0.0f);
 		Material.Set("shader_parameter/line_color", newColor);
+	}
+
+	private Color getColor() {
+		if(forceHighlightOnAltColor) {
+			return forceHighlightColor;
+		} else {
+			return normalHighlightColor;
+		}
 	}
 }

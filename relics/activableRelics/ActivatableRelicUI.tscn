@@ -1,0 +1,177 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3rhwnt70jga4"]
+
+[ext_resource type="Script" path="res://relics/activableRelics/ActivatableRelicUI.cs" id="1_qv605"]
+[ext_resource type="Texture2D" uid="uid://di0saajd1dtqq" path="res://relics/sprites/hammer.png" id="2_8m8yo"]
+[ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="3_s3f7f"]
+[ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/RecipeUI.tscn" id="3_v2ha7"]
+[ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="4_wh1nk"]
+[ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://sprites/inner3.png" id="6_a7rpi"]
+[ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://sprites/outter2.png" id="7_fcoph"]
+
+[sub_resource type="Animation" id="Animation_ofbi0"]
+resource_name = "activated"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.22, 0.22), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_ubxjk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qml51"]
+_data = {
+"RESET": SubResource("Animation_ubxjk"),
+"activated": SubResource("Animation_ofbi0")
+}
+
+[node name="ActivatableRelicUi" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "textureRect", "chargesLabel", "recipeUI", "textureProgressBar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qv605")
+titleLabel = NodePath("Title")
+descriptionLabel = NodePath("ToolTipControl/Control/PanelContainer/MarginContainer/VBoxContainer/RichTextLabel")
+textureRect = NodePath("TextureRect")
+disabledColor = Color(0.196078, 0.196078, 0.196078, 1)
+chargesLabel = NodePath("Charges")
+recipeUI = NodePath("ToolTipControl/Control/PanelContainer/MarginContainer/VBoxContainer/BossRecipeUI")
+textureProgressBar = NodePath("TextureProgressBar")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -179.0
+offset_top = -178.0
+offset_right = 271.0
+offset_bottom = 272.0
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(250, 250)
+texture = ExtResource("2_8m8yo")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 3.0
+offset_right = 106.0
+offset_bottom = 17.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "test"
+
+[node name="Charges" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 65.0
+offset_top = 80.0
+offset_right = 103.0
+offset_bottom = 106.0
+pivot_offset = Vector2(14, 20)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[right]1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ToolTipControl" type="Control" parent="." node_paths=PackedStringArray("toolTipControl", "target")]
+visible = false
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 26.0
+offset_right = 27.0
+offset_bottom = 26.0
+script = ExtResource("3_s3f7f")
+toolTipControl = NodePath("Control")
+target = NodePath("..")
+
+[node name="Control" type="Control" parent="ToolTipControl"]
+anchors_preset = 0
+offset_left = 92.0
+offset_top = -4.0
+offset_right = 92.0
+offset_bottom = -4.0
+
+[node name="PanelContainer" type="PanelContainer" parent="ToolTipControl/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 353.0
+offset_bottom = 141.0
+theme = ExtResource("4_wh1nk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ToolTipControl/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ToolTipControl/Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ToolTipControl/Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Draw 1 card
+"
+fit_content = true
+
+[node name="BossRecipeUI" parent="ToolTipControl/Control/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_v2ha7")]
+layout_mode = 2
+size_flags_horizontal = 1
+alignment = 1
+
+[node name="Panel" type="Panel" parent="ToolTipControl/Control"]
+visible = false
+layout_mode = 0
+offset_top = 1.0
+offset_right = 169.0
+offset_bottom = 79.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 27.0
+offset_top = 111.0
+offset_right = 106.0
+offset_bottom = 123.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("6_a7rpi")
+texture_over = ExtResource("7_fcoph")
+texture_progress = ExtResource("6_a7rpi")
+tint_under = Color(0.321569, 0.321569, 0.321569, 1)
+tint_over = Color(1, 1, 1, 0.270588)
+tint_progress = Color(0.419608, 1, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qml51")
+}

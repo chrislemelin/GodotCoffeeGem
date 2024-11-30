@@ -29,7 +29,7 @@ public partial class MetaGlobal : Node
 	private const String STARTING_COINS_STRING = "startingCoins";	
 	public int startingCoins = 0;
 	public int startingCoinsMult = 10;
-	public int startingCoinsMax = 5;
+	public int startingCoinsMax = 10;
 
 	private string saveFileName = "user://metaData.save";
 

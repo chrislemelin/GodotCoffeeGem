@@ -14,9 +14,7 @@ public partial class Score : Node2D
 	[Export] RichTextLabel levelLabel;
 	[Export] RichTextLabel coinsLabel;
 	[Export] RichTextLabel metaCoinsLabel;
-	
 	[Export] PackedScene explosion;
-
 	[Export] HBoxContainer colorUpgradePreviewBox;
 	[Export] Node2D progressBarLocation;
 	[Export] Mult multUI;
@@ -33,6 +31,7 @@ public partial class Score : Node2D
 	[Export] HBoxContainer heartsContainer;
 	[Export] GameManager gameManager;
 	[Export] PackedScene colorUpgradeUI;
+	//[Export] PackedScene turnUI;
 
 	[Export] PackedScene heartUI;
 	[Export] Texture2D heartFull;
@@ -57,7 +56,7 @@ public partial class Score : Node2D
 	private int turnsRemaining = 3;
 	private int heartsRemaining = 2;
 	private int maxHearts = 2;
-
+	private bool halfTurnAdded = false;
 	private int level = 1;
 	private int scoreNeeded = 500;
 	private int coins;
@@ -145,11 +144,6 @@ public partial class Score : Node2D
 		return scoreNeeded;
 	}
 
-	public void addToTurnsRemaining(int value)
-	{
-
-	}
-
 	public void modifyTurnsRemaining(int modifyValue)
 	{
 		if (modifyValue > 0)
@@ -164,13 +158,24 @@ public partial class Score : Node2D
 			}
 			else
 			{
-				setHeartsRemaining(heartsRemaining - 1);
-				playOofSound();
+				gameManager.setHealth(gameManager.getHealth() -1);
+				//playOofSound();
 			}
 			if (turnsRemaining == 0 && heartsRemaining == 0)
 			{
-				gameManager.evaluateLevel();
+				//gameManager.evaluateLevel();
 			}
+		}
+	}
+
+	public void addHalfTurn() {
+		if (halfTurnAdded) {
+			halfTurnAdded = false;
+			modifyTurnsRemaining(1);
+		}
+		else {
+			halfTurnAdded = true;
+			//redrawTurns
 		}
 	}
 
@@ -419,15 +424,16 @@ public partial class Score : Node2D
 
 	public void addScoreFromNode(int scoreValue, Node node)
 	{
+		bool scoreReachedBeforeMatch = scoreReached();
 		int pointValue = (int)(scoreValue * mult);
 		MatchBoard board = FindObjectHelper.getMatchBoard(this);
-		board.playMatchSound();
 		if (node is Control control) {
 			makeMatchText(control.GetScreenPosition(), scoreValue, pointValue);
 		} else if (node is Node2D node2D) {
 			makeMatchText(node2D.GlobalPosition, scoreValue, pointValue);
 		}
 		setScore(score + pointValue);
+		board.playMatchSound(scoreReachedBeforeMatch);
 	}
 
 	// public void addScoreFromNode(int scoreValue, Node2D card)
@@ -553,7 +559,7 @@ public partial class Score : Node2D
 		}
 		else
 		{
-			return (int)((400  + (Math.Max(match.Count - 5 , 0)  * 200) + pointUpgrade + (combo * 50)) * finalMult);
+			return (int)((400  + (Math.Max(match.Count - 5 , 0)  * 100) + pointUpgrade + (combo * 50)) * finalMult);
 		}
 	}
 
@@ -585,7 +591,7 @@ public partial class Score : Node2D
 		{
 			//addMult(.25f);
 			//GetTree().Paused = true;
-		}
+	}
 	}
 
 	public String getMultText(float mult)

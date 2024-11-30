@@ -33,8 +33,7 @@ public partial class Deck : DeckTutorial
 			{
 				foreach (CardResource cardResource in deckCardList)
 				{
-					CardResource cardResourceToAdd = (CardResource)cardResource.Duplicate();
-					cardResourceToAdd.cardEffect = (CardEffectIF)cardResource.cardEffect.Duplicate();
+					CardResource cardResourceToAdd = cardResource.duplicate();
 					allCards.Add(cardResourceToAdd);
 				}
 			}

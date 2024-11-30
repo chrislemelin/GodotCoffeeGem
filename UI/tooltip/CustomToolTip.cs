@@ -4,6 +4,7 @@ using System;
 public partial class CustomToolTip : Control
 {
 	[Export] protected RichTextLabel toolTipText;
+	[Export] protected Control toolTipControl;
 	[Export] protected Control target;
 	private Vector2 globalPositionToolTip;
 	private Vector2 toolTipOffset;
@@ -19,7 +20,7 @@ public partial class CustomToolTip : Control
 	{
 		base._Ready();
 		Control focus = target;
-		if (toolTipText != null) {
+		if (getToolTip() != null) {
 			if (focus == null) {
 				focus = this;
 			}
@@ -43,50 +44,69 @@ public partial class CustomToolTip : Control
 	}
 
 	public override void _Process(double delta) {
-		
+		base._Process(delta);
 		if(toolTipOn && followBase) {
-			toolTipText.GlobalPosition = GlobalPosition - toolTipOffset;
+			getToolTip().GlobalPosition = GlobalPosition - toolTipOffset;
 		}
-	
+	}
+
+	private Control getToolTip() {
+		if (toolTipControl!= null) {
+			return toolTipControl;
+		}
+		if (toolTipText != null) {
+			return toolTipText;
+		}
+		return null;
 	}
 
 	private void checkForLeftOrRight() {
 		if (rightSideVisibleCheck == null) {
 			return;
 		}
-		toolTipText.GetParent().RemoveChild(toolTipText);
+		Control toolTip = getToolTip();
+		toolTip.GetParent().RemoveChild(toolTip);
 		if (rightSideVisibleCheck.IsOnScreen()) {
-			toolTipRightSide.AddChild(toolTipText);
+			toolTipRightSide.AddChild(toolTip);
 		} else{
-			toolTipLeftSide.AddChild(toolTipText);
+			toolTipLeftSide.AddChild(toolTip);
 		}
-		toolTipText.Position = new Vector2(0,0);
+		toolTip.Position = new Vector2(0,0);
 	}
 
 	private void makeToolTip() {
 		checkForLeftOrRight();
-		if (toolTipText.Text.Length > 0 && !GetTree().Root.GetChildren().Contains(toolTipText)) {
+		Control toolTip = getToolTip();
+		if (checkForText() && !GetTree().Root.GetChildren().Contains(toolTip)) {
 			toolTipOn = true;
-			toolTipOffset = GlobalPosition + (PivotOffset * (Scale - Vector2.One)) - toolTipText.GlobalPosition;
+			toolTipOffset = GlobalPosition + (PivotOffset * (Scale - Vector2.One)) - toolTip.GlobalPosition;
 			
-			Vector2 position = toolTipText.GlobalPosition;
-			toolTipText.GetParent().RemoveChild(toolTipText);
-			GetTree().Root.AddChild(toolTipText);
-			GetTree().Root.MoveChild(toolTipText, GetTree().Root.GetChildCount()-1);
-			toolTipText.GlobalPosition = position;
-			toolTipText.Visible = true;
+			Vector2 position = toolTip.GlobalPosition;
+			toolTip.GetParent().RemoveChild(toolTip);
+			GetTree().Root.AddChild(toolTip);
+			GetTree().Root.MoveChild(toolTip, GetTree().Root.GetChildCount()-1);
+			toolTip.GlobalPosition = position;
+			toolTip.Visible = true;
 		}
 	}
 
+	private bool checkForText() {
+		if(getToolTip() is RichTextLabel label){
+			return label.Text.Length > 0;
+		}
+		return true;
+	}
+
 	private void deleteToolTip() {
-		if (toolTipText.Text.Length > 0 && GetTree().Root.GetChildren().Contains(toolTipText)) {
-			toolTipText.Visible = false;
+		Control toolTip = getToolTip();
+		if (checkForText() && GetTree().Root.GetChildren().Contains(toolTip)) {
+			toolTip.Visible = false;
 			toolTipOn = false;
 			
-			Vector2 position = toolTipText.GlobalPosition;
-			GetTree().Root.RemoveChild(toolTipText);
-			AddChild(toolTipText);
-			toolTipText.GlobalPosition = position;
+			Vector2 position = toolTip.GlobalPosition;
+			GetTree().Root.RemoveChild(toolTip);
+			AddChild(toolTip);
+			toolTip.GlobalPosition = position;
 		}
 	}
 

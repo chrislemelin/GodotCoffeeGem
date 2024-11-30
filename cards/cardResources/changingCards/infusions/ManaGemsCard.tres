@@ -1,28 +1,32 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cdhhpfh27s7pj"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://cdhhpfh27s7pj"]
 
 [ext_resource type="Texture2D" uid="uid://ds87yedysf6hg" path="res://cards/cardResources/cardArt/final/CardArtEnergyInfusion.png" id="1_0yjft"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/CardEffectAddAddonGems.cs" id="1_jfsnc"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="1_ybbs8"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="3_cwgdx"]
 
 [sub_resource type="Resource" id="Resource_m0v28"]
 script = ExtResource("1_jfsnc")
 gemAddonType = 1
 Range = 1.0
-Value = 0
+Value = 3
 BlackGems = 0
-ManaGems = 1
+ManaGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -32,15 +36,29 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
+
+[sub_resource type="Resource" id="Resource_btafg"]
+script = ExtResource("3_cwgdx")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = -1
+valueModification = -1
 
 [resource]
 script = ExtResource("1_ybbs8")
-Title = "Energy Infusion"
-Description = "Generate $manaGems$energy infusion."
-Cost = 0
+Title = "Energy Infuse"
+Description = "Generate $value$energy infusion."
+UpgradeDescriptions = []
+Cost = 1
 rarity = 0
 Picture = ExtResource("1_0yjft")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_m0v28")
+cardUpgrades = []
+cardUpgradeFromPassive = SubResource("Resource_btafg")
+cardUpgradeTitle = "Energy Inf. +"

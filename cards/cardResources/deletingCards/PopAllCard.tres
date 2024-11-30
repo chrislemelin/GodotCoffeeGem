@@ -1,11 +1,27 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b7wroy2v1oil"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b7wroy2v1oil"]
 
-[ext_resource type="Texture2D" uid="uid://d36hrdiyq8xik" path="res://cards/cardResources/cardArt/final/CardArtPopRandom.png" id="1_icycn"]
 [ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRandom.cs" id="1_tneas"]
+[ext_resource type="Script" path="res://relics/effects/CreateRandomGemsEffects.cs" id="2_fqnyj"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_tikbk"]
+
+[sub_resource type="Resource" id="Resource_6gy4d"]
+script = ExtResource("2_fqnyj")
+type = 2
+skipEmitSignalOnInfusions = false
+value = 3
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_i6k8f"]
 script = ExtResource("1_tneas")
+bonusEffectsThree = Array[Object]([])
+bonusEffectsSixPlus = Array[Object]([SubResource("Resource_6gy4d")])
 Range = 1.0
 Value = 99
 BlackGems = 0
@@ -14,14 +30,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -31,15 +50,19 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
 
 [resource]
 script = ExtResource("2_tikbk")
 Title = "86'd"
-Description = "Destroy all ingredients of a selected type. If this destroys 6+ ingredients generate 3$milk."
+Description = "Pop all tiles of selected type. If this pops 6+, generate 3$milk."
+UpgradeDescriptions = []
 Cost = 2
 rarity = 0
-Picture = ExtResource("1_icycn")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_i6k8f")
+cardUpgrades = []
+cardUpgradeTitle = ""

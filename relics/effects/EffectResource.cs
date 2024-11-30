@@ -7,16 +7,19 @@ using System.Linq;
 [GlobalClass, Tool]
 public partial class EffectResource : Resource
 {
+
+	[Export]
+	protected bool skipEmitSignalOnInfusions = false;
 	[Export]
 	protected int value;
 	[Export] public int BurnGems { get; private set; } = 0;
 	[Export] public int EnergyGems { get; private set; } = 0;
+
 	[Export] public int CardGems { get; private set; } = 0;
 	[Export] public int CoinGems { get; private set; } = 0;
 	[Export] public int DrawCards { get; private set; } = 0;
 	[Export] public int GainEnergy { get; private set; } = 0;
 	[Export] public int GainCoins { get; private set; } = 0;
-
 	[Export] public float GainMult { get; private set; } = 0;
 	public void execute(Node node) {
 		executeEffect(node);
@@ -48,7 +51,12 @@ public partial class EffectResource : Resource
 	private void createAddonGems(MatchBoard matchBoard, GemAddonType type, int count)
 	{
 		List<Tile> tiles = matchBoard.getRandomNonSpecialNonAddonTiles(count);
-		matchBoard.addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), type);
+		if (skipEmitSignalOnInfusions) {
+			matchBoard.addGemAddonsDontFireEvent(tiles.Select(x => x.getTilePosition()).ToList(), type);
+		} else {
+			matchBoard.addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), type);
+		}
+
 	}
 	private void createBlackGems(MatchBoard matchBoard, List<Vector2> selectedTiles, int value)
 	{
@@ -58,5 +66,32 @@ public partial class EffectResource : Resource
 			tiles = matchBoard.getRandomNonSpecialNonAddonTiles(value, selectedTiles.ToHashSet());
 		}
 		matchBoard.changeGemsColorAtPosition(tiles.Select(x => x.getTilePosition()).ToList(), GemType.Black);
+	}
+
+	public virtual String getDescription() {
+		String description = "";
+		if (BurnGems > 0) {
+			description += " +"+BurnGems+TextHelper.getIngredientIconString(GemType.Black)+".";
+		}
+		if (EnergyGems > 0) {
+			description += " +"+EnergyGems+TextHelper.getEnergyIconString()+" infusion(s).";
+		}
+		if (CardGems > 0) {
+			description += " +"+CardGems+TextHelper.getCardIconString()+" infusion(s).";
+		}
+		if (CoinGems > 0) {
+			description += " +"+CoinGems+TextHelper.getCoinIconString()+" infusion(s).";
+		}
+
+		if (GainEnergy > 0) {
+			description += " +"+GainEnergy+TextHelper.getEnergyIconString()+".";
+		}
+		if (DrawCards > 0) {
+			description += " +"+DrawCards+TextHelper.getCardIconString()+".";
+		}
+		if (GainCoins > 0) {
+			description += " +"+GainCoins+TextHelper.getCoinIconString()+".";
+		}
+		return description;
 	}
 }

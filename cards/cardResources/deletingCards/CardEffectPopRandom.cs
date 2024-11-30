@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Bridge;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,9 @@ using System.Linq;
 [GlobalClass, Tool]
 public partial class CardEffectPopRandom : CardEffectIF
 {
+	[Export] private Array<EffectResource> bonusEffectsThree;
+	[Export] private Array<EffectResource> bonusEffectsSixPlus;
+
 	public CardEffectPopRandom() {
 	}
 
@@ -23,8 +27,9 @@ public partial class CardEffectPopRandom : CardEffectIF
 		RandomHelper.Shuffle(positions);
 		if(positions.Count == getValue()) {
 			matchBoard.GetTree().CreateTimer(.6).Timeout += () => {
-				hand.drawCards(1);
-				mana.modifyMana(1);
+				foreach(EffectResource effectResource in bonusEffectsThree) {
+					effectResource.execute(matchBoard);
+				}
 			};
 		}
 		if(positions.Count > getValue()) {
@@ -33,7 +38,9 @@ public partial class CardEffectPopRandom : CardEffectIF
 		//this should only be for the pop-call card, should move into its own card at some point
 		matchBoard.deleteGemAtPositions(positions, true);
 		if (positions.Count >= 6) {
-			matchBoard.changeGemsColorAtRandomPositions(GemType.Milk,3);
+			foreach(EffectResource effectResource in bonusEffectsSixPlus) {
+					effectResource.execute(node);
+				}
 		}
 	}
 

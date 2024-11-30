@@ -3,10 +3,10 @@
 [ext_resource type="Resource" uid="uid://ilwedgxbjrlf" path="res://cards/cardResources/changingCards/infusions/ManaGemsPlusCard.tres" id="1_bpka1"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_i6hjb"]
 [ext_resource type="Resource" uid="uid://rdwavk835p20" path="res://cards/cardResources/changingCards/infusions/DrawGemsPlusCard.tres" id="2_4phpl"]
-[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="4_1idt1"]
-[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/deletingCards/PopCard.tres" id="6_1l0xu"]
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="7_wubij"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="8_k4nfe"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/basicCards/PopRandomCard.tres" id="4_1idt1"]
+[ext_resource type="Resource" uid="uid://dtt0h7sooi356" path="res://cards/cardResources/basicCards/PopCard.tres" id="6_1l0xu"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/basicCards/SwitchHorizCard.tres" id="7_wubij"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/basicCards/SwitchVertCard.tres" id="8_k4nfe"]
 
 [resource]
 script = ExtResource("1_i6hjb")

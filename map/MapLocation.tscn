@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://map/MapLocation.cs" id="1_3kcgv"]
 [ext_resource type="Texture2D" uid="uid://biete8vjgr8f7" path="res://sprites/Map/buildings/Park_standard.png" id="2_d8f8a"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="2_t53kr"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/basicCards/SwitchVertCard.tres" id="2_t53kr"]
 [ext_resource type="Texture2D" uid="uid://cncvaqjwe5iev" path="res://sprites/Map/buildings/PlantHouse_standard.png" id="3_aiu7u"]
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="3_os8q3"]
-[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_celhv"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/basicCards/SwitchHorizCard.tres" id="3_os8q3"]
+[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/basicCards/upgradedBasicCards/SwitchCard.tres" id="4_celhv"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="4_edqu2"]
 [ext_resource type="Texture2D" uid="uid://cqijgyupcn7ia" path="res://sprites/Map/buildings/SignBuilding_standard.png" id="4_scnsq"]
 [ext_resource type="Shader" path="res://cards/shaders/outlineShader.gdshader" id="5_lg18n"]

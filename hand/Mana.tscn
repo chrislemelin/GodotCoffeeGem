@@ -1,45 +1,52 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm6smnkgl28wr"]
+[gd_scene load_steps=7 format=3 uid="uid://bm6smnkgl28wr"]
 
 [ext_resource type="Script" path="res://hand/Mana.cs" id="1_x7nhu"]
-[ext_resource type="Texture2D" uid="uid://c7ih0bxaidnsq" path="res://sprites/cards/fire1.png" id="2_akfqu"]
 [ext_resource type="PackedScene" uid="uid://d1ml5spk7n2vm" path="res://particalEffects/explosion.tscn" id="2_bvmhr"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="3_hwwxg"]
+[ext_resource type="Texture2D" uid="uid://bmpw47gbnjor8" path="res://hand/energy4_52px.png" id="3_q86hv"]
 [ext_resource type="AudioStream" uid="uid://2v0ksk6rso4g" path="res://sound/mana/magical_1.ogg" id="3_xufqt"]
+[ext_resource type="FontFile" uid="uid://qp3yu4ggmy8h" path="res://fonts/m5x7/OpenType-TT/m5x7.ttf" id="4_lsup5"]
 
 [node name="Mana" type="Node2D" node_paths=PackedStringArray("costText", "audioStreamPlayer2D")]
 script = ExtResource("1_x7nhu")
 costText = NodePath("RichTextLabel")
-audioStreamPlayer2D = NodePath("AudioStreamPlayer2D")
+audioStreamPlayer2D = NodePath("AudioStreamPlayer2D2")
 explosion = ExtResource("2_bvmhr")
 
+[node name="AudioStreamPlayer2D2" parent="." instance=ExtResource("3_hwwxg")]
+stream = ExtResource("3_xufqt")
+minValue = -30.0
+maxValue = 30.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9, -25)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_akfqu")
+texture_filter = 1
+position = Vector2(9, -22)
+scale = Vector2(3, 3)
+texture = ExtResource("3_q86hv")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 modulate = Color(0, 0, 0, 1)
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -29.0
-offset_right = 56.0
-offset_bottom = 71.0
+offset_left = -41.0
+offset_top = -43.0
+offset_right = 59.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/normal_font_size = 80
+theme_override_fonts/normal_font = ExtResource("4_lsup5")
+theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
 text = "[center]3
 [/center]"
 scroll_active = false
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_xufqt")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

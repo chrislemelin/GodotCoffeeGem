@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://rdwavk835p20"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://rdwavk835p20"]
 
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/CardEffectAddAddonGems.cs" id="1_f672i"]
 [ext_resource type="Texture2D" uid="uid://d3sb80c3770q4" path="res://cards/cardResources/cardArt/final/CardArtCardInfusion.png" id="1_x0pyq"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_dpaf4"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="3_ru368"]
 
 [sub_resource type="Resource" id="Resource_m0v28"]
 script = ExtResource("1_f672i")
@@ -15,14 +16,17 @@ CardGems = 3
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -32,15 +36,34 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
+
+[sub_resource type="Resource" id="Resource_gm6k4"]
+script = ExtResource("3_ru368")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [resource]
 script = ExtResource("2_dpaf4")
-Title = "Draw Infusion +"
+Title = "Draw Imbue"
 Description = "Generate $cardGems$draw infusions and +1$burnt."
+UpgradeDescriptions = []
 Cost = 0
-rarity = 1
+rarity = 0
 Picture = ExtResource("1_x0pyq")
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_m0v28")
+cardUpgrades = []
+cardUpgradeFromExtraEffect = SubResource("Resource_gm6k4")
+cardUpgradeTitle = ""

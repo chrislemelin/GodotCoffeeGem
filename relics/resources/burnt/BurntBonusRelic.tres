@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="RelicResource" load_steps=8 format=3 uid="uid://d2vumrw72d6ei"]
+
+[ext_resource type="Script" path="res://relics/scripts/RelicResource.cs" id="1_fptpd"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_dit87"]
+[ext_resource type="Script" path="res://relics/effects/BurntIngredientConditionalEffect.cs" id="3_h3fpr"]
+
+[sub_resource type="Resource" id="Resource_jmmm1"]
+script = ExtResource("2_dit87")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_w5x62"]
+script = ExtResource("3_h3fpr")
+effect = SubResource("Resource_jmmm1")
+burntRequirement = 2
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_okk7i"]
+script = ExtResource("2_dit87")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 1
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_gmhiv"]
+script = ExtResource("3_h3fpr")
+effect = SubResource("Resource_okk7i")
+burntRequirement = 5
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("1_fptpd")
+title = "Burnt Synergy"
+description = "At turn start +1 card if there are 2+ burnt ingredients on the board.
++1 energy if there are 5+ burnt ingredients on the board."
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = [SubResource("Resource_w5x62"), SubResource("Resource_gmhiv")]
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = []
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

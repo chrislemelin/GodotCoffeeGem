@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://bjrce8sjj2fos"]
+
+[ext_resource type="Texture2D" uid="uid://d36hrdiyq8xik" path="res://cards/cardResources/cardArt/final/CardArtPopRandom.png" id="1_35yfk"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_gf36r"]
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRandom.cs" id="3_3d3gr"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="4_gots5"]
+
+[sub_resource type="Resource" id="Resource_8y0pv"]
+script = ExtResource("2_gf36r")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 2
+GainEnergy = 2
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_i6k8f"]
+script = ExtResource("3_3d3gr")
+bonusEffectsThree = Array[Object]([SubResource("Resource_8y0pv")])
+bonusEffectsSixPlus = Array[Object]([])
+Range = 1.0
+Value = 3
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusEffects = []
+bonusPassives = []
+matchEffects = []
+extraEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
+tutorialCard = false
+canOnlySelectTutorial = []
+burntPositionTutorial = Vector2i(0, 0)
+addonPositionTutorial = Vector2i(0, 0)
+consume = false
+retain = false
+matchy = false
+spendX = false
+nuke = false
+innate = false
+cardPassives = []
+
+[resource]
+script = ExtResource("4_gots5")
+Title = "Pop Random +"
+Description = "Pop $value tiles of selected type. If there are exactly $value, +2$draw and +2$energy "
+UpgradeDescriptions = ["2$draw", "2$energy"]
+Cost = 1
+rarity = 1
+Picture = ExtResource("1_35yfk")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_i6k8f")
+cardUpgrades = []
+cardUpgradeTitle = ""

@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://daukohkgyf2y5"]
+
+[ext_resource type="Script" path="res://match/FutureTile.cs" id="1_vix5j"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="2_d0jyp"]
+[ext_resource type="Texture2D" uid="uid://qgpnxmyp2ogk" path="res://match/goo2.png" id="3_lsk6p"]
+[ext_resource type="Texture2D" uid="uid://dpud1f3hee7ou" path="res://sprites/x.png" id="4_6x0jy"]
+[ext_resource type="Texture2D" uid="uid://coyg6wggt0id1" path="res://sprites/CoffeeShop/board/futureTileBorder.png" id="5_padxb"]
+[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://sprites/ingredients/final/Bean-pixel2.png" id="6_odfwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v70ys"]
+size = Vector2(250, 250)
+
+[node name="FutureMatchTile" type="Node2D" node_paths=PackedStringArray("sprite2D", "control", "gem")]
+position = Vector2(2, 0)
+script = ExtResource("1_vix5j")
+sprite2D = NodePath("tile")
+control = NodePath("Control")
+gem = NodePath("Gem")
+hoverColor = Color(0.505882, 0.505882, 0, 1)
+metadata/_edit_group_ = true
+
+[node name="tile" type="Sprite2D" parent="."]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+scale = Vector2(0.187, 0.0475)
+texture = ExtResource("2_d0jyp")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(125, 125)
+shape = SubResource("RectangleShape2D_v70ys")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(0.129412, 0.129412, 0.129412, 0.235294)
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 112.0
+offset_bottom = 112.0
+texture = ExtResource("2_d0jyp")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 114.0
+offset_bottom = 114.0
+mouse_filter = 2
+texture = ExtResource("3_lsk6p")
+expand_mode = 1
+
+[node name="DisableSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(56.5, 56.5)
+scale = Vector2(0.14125, 0.14125)
+texture = ExtResource("4_6x0jy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_right = 75.0
+offset_bottom = 19.0
+
+[node name="Tileborder" type="Sprite2D" parent="."]
+modulate = Color(0.270588, 0.270588, 0.270588, 1)
+texture_filter = 1
+position = Vector2(37.5, 10)
+scale = Vector2(0.657895, 1)
+texture = ExtResource("5_padxb")
+
+[node name="Gem" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(37, 10)
+scale = Vector2(0.544118, 0.544118)
+texture = ExtResource("6_odfwq")

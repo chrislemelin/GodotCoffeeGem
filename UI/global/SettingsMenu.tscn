@@ -50,8 +50,6 @@ texture = ExtResource("6_i4wfn")
 [node name="SettingsMenu" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Background" type="Panel" parent="SettingsMenu"]
 modulate = Color(1, 1, 1, 0.337255)
@@ -64,18 +62,18 @@ theme = ExtResource("1_kbkdg")
 
 [node name="Panel" type="Panel" parent="SettingsMenu"]
 layout_mode = 0
-offset_left = 622.0
-offset_top = 274.0
-offset_right = 1252.0
-offset_bottom = 868.0
+offset_left = 676.0
+offset_top = 266.0
+offset_right = 1304.0
+offset_bottom = 905.0
 theme = ExtResource("5_t1gxu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/Panel"]
 layout_mode = 0
-offset_left = -48.0
-offset_top = 32.0
-offset_right = 681.0
-offset_bottom = 522.0
+offset_left = -102.0
+offset_top = 38.0
+offset_right = 727.0
+offset_bottom = 560.0
 
 [node name="Settings Title" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
@@ -91,7 +89,6 @@ theme_override_constants/margin_top = 30
 
 [node name="Music Title" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]Music Slider"
 fit_content = true
@@ -110,7 +107,6 @@ value = 0.5
 
 [node name="SFX Slider2" type="RichTextLabel" parent="SettingsMenu/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]SFX Slider"
 fit_content = true
@@ -139,7 +135,7 @@ layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_6wc46")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 46
 text = "Enable game play data collection"
 
 [node name="FullScreen" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]
@@ -153,7 +149,7 @@ layout_mode = 2
 theme = ExtResource("2_nhw1p")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_6wc46")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 46
 text = "FullScreen"
 
 [node name="Resolutions" type="MarginContainer" parent="SettingsMenu/Panel/VBoxContainer"]

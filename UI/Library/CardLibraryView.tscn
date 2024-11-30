@@ -31,9 +31,8 @@ theme = ExtResource("1_wernx")
 layout_mode = 0
 offset_left = 378.0
 offset_top = 174.0
-offset_right = 1600.0
+offset_right = 1637.0
 offset_bottom = 958.0
-follow_focus = true
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 clip_contents = true
@@ -49,114 +48,142 @@ layout_mode = 2
 [node name="MarginContainer2" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer2" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer2" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="MarginContainer3" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="MarginContainer4" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="MarginContainer5" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer5" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer5" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="MarginContainer6" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer6" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer6" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="MarginContainer7" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer7" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer7" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="MarginContainer8" parent="ScrollContainer/GridContainer" instance=ExtResource("3_a8jev")]
 layout_mode = 2
 
-[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer8" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText") instance=ExtResource("3_vg3tw")]
+[node name="UI" parent="ScrollContainer/GridContainer/MarginContainer8" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("3_vg3tw")]
 layout_mode = 2
 titleLabel = NodePath("../../MarginContainer/UI/Center/Title/RichTextLabel")
 descriptionLabel = NodePath("../../MarginContainer/UI/Center/Description2/VBoxContainer2/RichTextLabel")
 costLabel = NodePath("../../MarginContainer/UI/Center/EnergyCost/RichTextLabel")
 picture = NodePath("../../MarginContainer/UI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/UI/Center/Background")
+cardBack = NodePath("../../MarginContainer/UI/CardBack")
 titleSprite = NodePath("../../MarginContainer/UI/Center/Title/Sprite2D")
 highlightOnHover = NodePath("../../MarginContainer/UI/Center/Background")
 coinCostControl = NodePath("../../MarginContainer/UI/CoinCost")
 coinCostText = NodePath("../../MarginContainer/UI/CoinCost/HBoxContainer/RichTextLabel")
 animationPlayer = NodePath("../../MarginContainer/UI/AnimationPlayer")
-toolTipText = NodePath("../../MarginContainer/UI/Tooltip")
+toolTipText = NodePath("../../MarginContainer/UI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/UI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/UI/ToolTipRight")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0

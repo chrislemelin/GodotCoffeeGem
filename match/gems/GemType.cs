@@ -33,15 +33,15 @@ static class GemTypeHelper
 		switch (gemType)
 		{
 			case GemType.Coffee:
-				return new Color("#633700");
+				return new Color("#5b2811");
 			case GemType.Sugar:
-				return new Color("#008692");
+				return new Color("#e6d5c5");
 			case GemType.Leaf:
-				return new Color("#2b9434");
+				return new Color("#415c2b");
 			case GemType.Vanilla:
-				return new Color("#ba951a");
+				return new Color("#e3cc85");
 			case GemType.Milk:
-				return new Color("#8943a1");
+				return new Color("#5447aa");
 			case GemType.Rainbow:
 				return newColor(0, 0, 0);
 			case GemType.Black:

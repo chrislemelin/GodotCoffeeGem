@@ -1,25 +1,33 @@
-[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=5 format=3 uid="uid://brurieaqruacc"]
+[gd_resource type="Resource" script_class="RelicResourceBurntDestroyCount" load_steps=7 format=3 uid="uid://brurieaqruacc"]
 
-[ext_resource type="Script" path="res://relics/effects/AddCoinsEffect.cs" id="2_d1p0k"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_i156m"]
 [ext_resource type="Texture2D" uid="uid://tv86kojie0uj" path="res://relics/sprites/Icons8_80.png" id="2_ppin2"]
 [ext_resource type="Script" path="res://relics/scripts/RelicResourceBurntDestroyCount.cs" id="3_3t5l4"]
+[ext_resource type="Script" path="res://relics/effects/MatchEffectResource.cs" id="3_m18a7"]
 
-[sub_resource type="Resource" id="Resource_f846d"]
-script = ExtResource("2_d1p0k")
-value = 10
+[sub_resource type="Resource" id="Resource_5g1cb"]
+script = ExtResource("2_i156m")
+skipEmitSignalOnInfusions = false
+value = 0
 BurnGems = 0
 EnergyGems = 0
 CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainEnergy = 0
-GainCoins = 0
+GainCoins = 10
 GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_s3xvh"]
+script = ExtResource("3_m18a7")
+matchNumber = 0
+gemType = 3
+effect = SubResource("Resource_5g1cb")
 
 [resource]
 script = ExtResource("3_3t5l4")
 title = "Lucky coin"
-description = "Gain 10 coins at the end of each level"
+description = "Gain 10 coins for each sugar match you make"
 image = ExtResource("2_ppin2")
 cost = 100
 hidden = false
@@ -29,9 +37,9 @@ gameStartEffects = []
 turnStartEffects = []
 turnStartEffectsAfterCleanUp = []
 addToInvEffects = []
-levelOverEffects = [SubResource("Resource_f846d")]
+levelOverEffects = []
 effects = []
-matchEffects = []
+matchEffects = [SubResource("Resource_s3xvh")]
 counterMax = 0
 customCounter = false
 counterResetOnLevelStart = false

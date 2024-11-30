@@ -1,11 +1,14 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
 [GlobalClass, Tool]
 public partial class CardResource : Resource
 {
 	[Export] public string Title { get; set; }
 	[Export(PropertyHint.MultilineText)] public string Description { private get; set; }
+	[Export] public Array<String> UpgradeDescriptions { private get; set; } = new Array<String>();
+
 	[Export] private int Cost { get; set; }
 	[Export] public CardRarity rarity = CardRarity.Common;
 	[Export] public Texture2D Picture { get; private set; }
@@ -17,6 +20,13 @@ public partial class CardResource : Resource
 
 	[Export] public CardEffectIF cardEffect { get; set; }
 
+	[Export] private Array<CardResource> cardUpgrades { get; set; } = new Array<CardResource>();
+	[Export] private CardPassive cardUpgradeFromPassive = null;
+	[Export] private EffectResource cardUpgradeFromExtraEffect = null;
+	[Export] private String cardUpgradeTitle { get; set; } = "";
+
+
+
 	public CardResource() : this(null, null, 0, null) { }
 
 	public CardResource(string title, string description, int cost, CardEffectIF cardEffect)
@@ -25,6 +35,33 @@ public partial class CardResource : Resource
 		this.Description = description;
 		this.Cost = cost;
 		this.cardEffect = cardEffect;
+	}
+
+	public List<CardResource> getCardUpgrades() {
+		List<CardResource> cards = new List<CardResource>();
+		cards.AddRange(cardUpgrades);
+		if(cardUpgradeFromPassive != null) {
+			CardResource newCard = (CardResource)Duplicate();
+			newCard.cardUpgradeFromPassive = null;
+			newCard.cardEffect = (CardEffectIF)newCard.cardEffect.Duplicate();
+			newCard.cardEffect.addPassive(cardUpgradeFromPassive);
+			if (String.IsNullOrEmpty(cardUpgradeTitle)){
+				newCard.Title = newCard.Title + " +";
+			} else {
+				newCard.Title = cardUpgradeTitle;
+			}
+			cards.Add(newCard);
+		}
+		if(cardUpgradeFromExtraEffect != null) {
+			CardResource newCard = (CardResource)Duplicate();
+			newCard.cardUpgradeFromExtraEffect = null;
+			newCard.cardEffect = (CardEffectIF)newCard.cardEffect.Duplicate();
+			newCard.cardEffect.extraEffects.Add(cardUpgradeFromExtraEffect);
+			newCard.Title = newCard.Title + " +";
+			cards.Add(newCard);
+		}
+
+		return cards;
 	}
 
 	public SelectionType getSelectionType()
@@ -91,7 +128,21 @@ public partial class CardResource : Resource
 
 	public String getDescription()
 	{
-		String newDescription = Description.Replace("$value", cardEffect.getValueString());
+		String newDescription = Description;
+		if (UpgradeDescriptions != null) {
+			foreach (String upgradeDesription in UpgradeDescriptions) {
+				newDescription = newDescription.Replace(upgradeDesription, "[color=#2c8518]" + upgradeDesription + "[/color]");
+			}
+		}
+		foreach(EffectResource effectResource in cardEffect.extraEffects) {
+			newDescription += "[color=#2c8518]" + effectResource.getDescription() + "[/color]";
+		}
+		
+		return getDescriptionWithReplacements(newDescription);
+	}
+
+	private String getDescriptionWithReplacements(String description) {
+		String newDescription = description.Replace("$value", cardEffect.getValueString());
 		newDescription = newDescription.Replace("$manaGems", cardEffect.getManaGems().ToString());
 		newDescription = newDescription.Replace("$cardGems", cardEffect.getCardGems().ToString());
 		newDescription = newDescription.Replace("$moneyGems", cardEffect.getCoinGems().ToString());
@@ -103,21 +154,10 @@ public partial class CardResource : Resource
 		}
 		newDescription = newDescription.Replace("$energy", TextHelper.getEnergyImage());
 		newDescription = newDescription.Replace("$draw", TextHelper.getCardImage());
-		//newDescription = newDescription.Replace("card", TextHelper.getCardImage());
-
 		newDescription = newDescription.Replace("$coin", TextHelper.getCoinImage());
 
-
-		// newDescription = newDescription.Replace("coffee", TextHelper.colorText("coffee", "brown"));
-		// newDescription = newDescription.Replace("leaf", TextHelper.colorText("leaf", "green"));
-		// newDescription = newDescription.Replace("tea", TextHelper.colorText("tea", "green"));
-		// newDescription = newDescription.Replace("vanilla", TextHelper.colorText("vanilla", "yellow"));
-		// newDescription = newDescription.Replace("sugar", TextHelper.colorText("sugar", "white"));
-		// newDescription = newDescription.Replace("milk", TextHelper.colorText("milk", "purple"));
-		// newDescription = newDescription.Replace("burnt", TextHelper.colorText("burnt", "grey"));
-
-
-
+		newDescription = newDescription.Replace("nuke", TextHelper.toolTip("nuke", ""));
+		newDescription = newDescription.Replace("Nuke", TextHelper.toolTip("Nuke", ""));
 
 		if (cardEffect.consume)
 		{
@@ -138,6 +178,7 @@ public partial class CardResource : Resource
 		return newDescription;
 	}
 
+			
 	public String getToolTip() {
 		String returnString = "";
 		if (cardEffect.consume)
@@ -172,6 +213,11 @@ public partial class CardResource : Resource
 	public void init()
 	{
 		cardEffect.init();
+	}
+
+	public CardResource duplicate() {
+		CardResource cardResourceReturn = (CardResource)Duplicate(true);
+	 	return cardResourceReturn;
 	}
 
 }

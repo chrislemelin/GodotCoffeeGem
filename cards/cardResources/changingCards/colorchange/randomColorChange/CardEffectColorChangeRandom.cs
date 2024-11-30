@@ -6,7 +6,7 @@ using System.Linq;
 [GlobalClass, Tool]
 public partial class CardEffectColorChangeRandom : CardEffectIF
 {
-
+	[Export] EffectResource makeMatchBonus;
 	public CardEffectColorChangeRandom() {
 		 
 	}
@@ -23,8 +23,8 @@ public partial class CardEffectColorChangeRandom : CardEffectIF
 		matchBoard.changeGemsColorAtPosition(tilePositions, effectGemType.GetGemType());
 		bool hasDrawnCard = false;
 		matchBoard.addMatchActionsOnPositions(tilePositions, (list) =>  {
-			if (hasDrawnCard == false){
-				hand.drawCards(1);
+			if (hasDrawnCard == false) {
+				makeMatchBonus.execute(matchBoard);
 				hasDrawnCard = true;
 			}
 		});

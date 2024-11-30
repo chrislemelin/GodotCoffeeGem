@@ -11,6 +11,8 @@ public partial class CardInfoLoader : CustomToolTip
 	[Export] protected TextureRect picture;
 	[Export] public TextureRect background;
 	[Export] public TextureRect cardBack;
+	[Export] public Control hitBox;
+
 
 	[Export] protected TextureRect titleSprite;
 	[Export] protected HighlightOnHover highlightOnHover;
@@ -31,7 +33,10 @@ public partial class CardInfoLoader : CustomToolTip
 		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 		if (gameManagerIF.getDeckSelection() != null) {
 			background.Texture = gameManagerIF.getDeckSelection().faceCardFront;
-			cardBack.Texture = gameManagerIF.getDeckSelection().faceCard;
+			if (cardBack != null) {
+				cardBack.Texture = gameManagerIF.getDeckSelection().faceCard;
+
+			}
 		}
 		Material = (Material)Material.Duplicate();
 
@@ -47,7 +52,7 @@ public partial class CardInfoLoader : CustomToolTip
 
 		GrowHorizontal = GrowDirection.Both;
 		GrowVertical = GrowDirection.Both;
-		MouseEntered += () => wiggleCard();
+		hitBox.MouseEntered += () => wiggleCard();
 		setShowCoinCost(false);
 	}
 
@@ -64,7 +69,10 @@ public partial class CardInfoLoader : CustomToolTip
 		animationPlayer.Play("CardFlip");
 		wiggleEnabled = false;
 		GetTree().CreateTimer(.6f).Timeout += () => animationPlayer.Play("Shine");
-		GetTree().CreateTimer(1f).Timeout += () => wiggleEnabled = true;
+		GetTree().CreateTimer(1f).Timeout += () =>  {
+			wiggleEnabled = true;
+			highlightOnHover.makeBiggerBool = true;
+		};
 	}
 
 	public void destroyCard()
@@ -128,7 +136,7 @@ public partial class CardInfoLoader : CustomToolTip
 
 		titleLabel.Text = TextHelper.centered(cardResource.Title);
 		descriptionLabel.Text = TextHelper.centered(cardResource.getDescription());
-		costLabel.Text = TextHelper.centered(cardResource.getEnergyCost().ToString());
+		costLabel.Text = TextHelper.centered(cardResource.getEnergyCostString());
 		titleSprite.Modulate = cardResource.rarity.getColor();
 		coinCostText.Text = cardResource.getCoinCost().ToString();
 		//highlightOnHover.TooltipText = cardResource.getToolTip();

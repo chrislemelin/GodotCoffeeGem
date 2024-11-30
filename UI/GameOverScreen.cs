@@ -34,9 +34,10 @@ public partial class GameOverScreen : Control
 	}
 
 	public int setDebt(int startingDebtProgress, int debtValue) {
-		debtProgressBar.currentDebtPaid = startingDebtProgress;
-		GetTree().CreateTimer(.5f).Timeout += ()=> debtProgressBar.addDebtProgress(debtValue);
-		debtLabel.Text = "Gained "+ debtValue + " barista exp";
-		return debtProgressBar.segmentsPassed(startingDebtProgress, debtValue);
+		// debtProgressBar.currentDebtPaid = startingDebtProgress;
+		// GetTree().CreateTimer(.5f).Timeout += ()=> debtProgressBar.addDebtProgress(debtValue);
+		// debtLabel.Text = "Gained "+ debtValue + " barista exp";
+		//return debtProgressBar.segmentsPassed(startingDebtProgress, debtValue);
+		return 0;
 	}
 }

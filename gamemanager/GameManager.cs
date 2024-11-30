@@ -38,7 +38,6 @@ public partial class GameManager : GameManagerIF
 	[Export] Resource startingDialougeResource;
 	[Export] Resource bossLevelDialougeResource;
 
-
 	private int currentLevel;
 	private LevelResource currentLevelResource;
 
@@ -59,7 +58,6 @@ public partial class GameManager : GameManagerIF
 		currentLevelResource = levelList.levelResources[currentLevel - 1];
 		if (currentLevel == 1)
 		{
-			resetGlobals();
 			setStartTime();
 		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
@@ -120,7 +118,8 @@ public partial class GameManager : GameManagerIF
 			RelicResource bossRelic = getRandomBossRelic();
 			addRelic(bossRelic);
 			bossRelicTutorial.WindowClosedSignal += () => hand.setUIFocus(true);
-			bossRelicTutorial.richTextLabel.Text += bossRelic.description;
+			bossRelicTutorial.richTextLabel.Text += TextHelper.centered(bossRelic.description + 
+				"\n(This effect can be checked under the relics section to the left of the match board)");
 			hand.setUIFocus(false);
 			if (!getSeenBossDialouge()) {
 				bool hasFired = false;
@@ -193,8 +192,10 @@ public partial class GameManager : GameManagerIF
 	public void evaluateLevel()
 	{
 		getGlobal().totalScore += score.getScore();
-
-		if (score.getScore() < scoreNeededToPass)
+		if (score.getScore() >= scoreNeededToPass && gameBeaten()) {
+			showGameOverScreen(true);
+		}
+		else if (score.getScore() < scoreNeededToPass || getHealth() == 0)
 		{
 			showGameOverScreen(false);
 		}
@@ -323,11 +324,11 @@ public partial class GameManager : GameManagerIF
 		levelCompleteAudioPlayer.Play();
 		EmitSignal(SignalName.levelOver);
 		setRelics(getRelics().Where(relic => !relic.lastForOneLevel).ToList());
-
-		if (gameBeaten())
-		{
-			showGameOverScreen(true);
-		}
+		// if (gameBeaten())
+		// {
+		// 	showGameOverScreen(true);
+		// 	return;
+		// }
 
 		if (currentLevelResource.getBossRecipe() != null || currentLevelResource.makeRandomBossRecipe)
 		{
@@ -338,7 +339,7 @@ public partial class GameManager : GameManagerIF
 			levelComplete.WindowClosedSignal += () => advanceLevel();
 		}
 		int coinsGained = score.calculateCoinsGained();
-		levelComplete.setCoinsGained(coinsGained);
+		levelComplete.setCoinsGained(30, coinsGained - 30);
 		addCoins(coinsGained);
 	}
 

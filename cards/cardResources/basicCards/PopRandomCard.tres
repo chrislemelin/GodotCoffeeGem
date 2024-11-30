@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=8 format=3 uid="uid://ck7bf50t0c1t7"]
+
+[ext_resource type="Texture2D" uid="uid://d36hrdiyq8xik" path="res://cards/cardResources/cardArt/final/CardArtPopRandom.png" id="1_0j22k"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_gdvvq"]
+[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPopRandom.cs" id="3_jtxak"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="4_axvre"]
+[ext_resource type="Resource" uid="uid://bjrce8sjj2fos" path="res://cards/cardResources/basicCards/upgradedBasicCards/PopRandomPlusCard.tres" id="4_sfnju"]
+
+[sub_resource type="Resource" id="Resource_8y0pv"]
+script = ExtResource("2_gdvvq")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 1
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_i6k8f"]
+script = ExtResource("3_jtxak")
+bonusEffectsThree = Array[Object]([SubResource("Resource_8y0pv")])
+bonusEffectsSixPlus = Array[Object]([])
+Range = 1.0
+Value = 3
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusEffects = []
+bonusPassives = []
+matchEffects = []
+extraEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
+tutorialCard = false
+canOnlySelectTutorial = []
+burntPositionTutorial = Vector2i(0, 0)
+addonPositionTutorial = Vector2i(0, 0)
+consume = false
+retain = false
+matchy = false
+spendX = false
+nuke = false
+innate = false
+cardPassives = []
+
+[resource]
+script = ExtResource("4_axvre")
+Title = "Pop Random"
+Description = "Pop $value tiles of selected type. If there are exactly $value, +1$draw and +1$energy "
+UpgradeDescriptions = []
+Cost = 1
+rarity = 1
+Picture = ExtResource("1_0j22k")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_i6k8f")
+cardUpgrades = [ExtResource("4_sfnju")]
+cardUpgradeTitle = ""

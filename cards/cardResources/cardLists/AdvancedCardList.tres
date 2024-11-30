@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="CardList" load_steps=5 format=3 uid="uid://b10m4yin3co4p"]
 
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="1_hu3o0"]
-[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="2_amgpi"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/basicCards/SwitchHorizCard.tres" id="1_hu3o0"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/basicCards/PopRandomCard.tres" id="2_amgpi"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="2_trqdd"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="3_6evkd"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/basicCards/SwitchVertCard.tres" id="3_6evkd"]
 
 [resource]
 script = ExtResource("2_trqdd")

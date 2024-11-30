@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [GlobalClass, Tool]
 public partial class CardEffectTeleport : CardEffectIF
@@ -23,16 +24,13 @@ public partial class CardEffectTeleport : CardEffectIF
 
 
 	public override List<Vector2> getAllTilesSelectableAfterFirstSelection(MatchBoard matchBoard, Tile tile){
-		List<Vector2> allSelectablePositions = new List<Vector2>();
-		int sizeX = matchBoard.sizeX;
-		int sizeY = matchBoard.sizeY;
-		for (int x = 0; x < sizeX; x++) {
-			allSelectablePositions.Add(new Vector2(x, tile.y));
-		}
-		  for (int y = 0; y < sizeY; y++) {
-			allSelectablePositions.Add(new Vector2(tile.x, y));
-		}
-		return allSelectablePositions;
+		List<Tile> allSelectablePositions = new List<Tile>();
+		allSelectablePositions.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Right));
+		allSelectablePositions.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Left));
+		allSelectablePositions.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Up));
+		allSelectablePositions.AddRange(matchBoard.getTilesInDirection(tile.getTilePosition(), Vector2.Down));
+
+		return allSelectablePositions.Select(x => x.getTilePosition()).ToList();
 	}
 
 

@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="CardList" load_steps=6 format=3 uid="uid://dm1n28elr0awu"]
+[gd_resource type="Resource" script_class="CardList" load_steps=12 format=3 uid="uid://dm1n28elr0awu"]
 
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="1_va40e"]
-[ext_resource type="Resource" uid="uid://cyx0whk3fiin6" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/EspressoConvertRandomCard.tres" id="4_xtii3"]
-[ext_resource type="Resource" uid="uid://chyr8eld8n0jm" path="res://cards/cardResources/changingCards/colorchange/lead/LeadGenerateCard.tres" id="5_yl327"]
-[ext_resource type="Resource" uid="uid://dha7jg80nudyy" path="res://cards/cardResources/movementCards/SwitchCardDiag.tres" id="6_w2y1u"]
-[ext_resource type="Resource" uid="uid://b2d728mvrn35w" path="res://cards/cardResources/grid/RemoveColumnCard.tres" id="9_ip3rx"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="4_7t2qt"]
+[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="5_obc41"]
+[ext_resource type="Resource" uid="uid://w7rxllo6v8v1" path="res://cards/cardResources/deletingCards/CoffeePuristCard.tres" id="7_7ds6l"]
+[ext_resource type="Resource" uid="uid://cmaeddlco4ix0" path="res://cards/cardResources/movementCards/TeleportCard.tres" id="7_51gk4"]
+[ext_resource type="Resource" uid="uid://b8nqlwbtu4tcd" path="res://cards/cardResources/scoreCards/GainCoinsCard.tres" id="8_2aq6w"]
+[ext_resource type="Resource" uid="uid://bfn60jdh2miwr" path="res://cards/cardResources/changingCards/infusions/MoneyGemsCard.tres" id="8_86g0h"]
+[ext_resource type="Resource" uid="uid://cx0s863scj7n6" path="res://cards/cardResources/changingCards/infusions/DrawGemTargetCard.tres" id="8_vi2tu"]
+[ext_resource type="Resource" uid="uid://cevggnl70tydo" path="res://cards/cardResources/changingCards/infusions/ManaGemTargetCard.tres" id="9_ne4em"]
+[ext_resource type="Resource" uid="uid://cf1jqna4be6ek" path="res://cards/cardResources/scoreCards/GainCoinsGreedCard.tres" id="9_u0kxx"]
+[ext_resource type="Resource" uid="uid://bs6s20l3sbdia" path="res://cards/cardResources/turnCards/DealWithTheDevilCard.tres" id="10_w3o74"]
 
 [resource]
 script = ExtResource("1_va40e")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("5_yl327"), ExtResource("6_w2y1u"), ExtResource("6_w2y1u"), ExtResource("9_ip3rx"), ExtResource("4_xtii3"), ExtResource("4_xtii3"), ExtResource("4_xtii3"), ExtResource("4_xtii3"), ExtResource("4_xtii3")])
+allCards = Array[Object]([ExtResource("7_51gk4"), ExtResource("8_2aq6w"), ExtResource("9_u0kxx"), ExtResource("7_51gk4"), ExtResource("7_51gk4"), ExtResource("7_51gk4"), ExtResource("7_51gk4"), ExtResource("7_51gk4"), ExtResource("7_51gk4"), ExtResource("4_7t2qt"), ExtResource("5_obc41"), ExtResource("8_86g0h"), ExtResource("7_7ds6l"), ExtResource("8_vi2tu"), ExtResource("9_ne4em"), ExtResource("10_w3o74")])

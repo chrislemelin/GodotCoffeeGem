@@ -20,12 +20,12 @@ public partial class GainCoinsCardEffect : CardEffectIF
 	{
 		Score score = FindObjectHelper.getScore(matchBoard);
 		score.addCoins(getValue());
-		if (bonusActive()) {
-			score.addCoins(bonusCoins);
-		}
 	}
 	
 	protected override bool bonusActive() {
+		if (bonusEffects.Count == 0) {
+			return false;
+		}
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
 		if (matchBoard == null)
 		{

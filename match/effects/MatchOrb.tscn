@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd7cd0kp8pnn6"]
+
+[ext_resource type="Texture2D" uid="uid://22671e24p2wq" path="res://sprites/UI/turn-orb-empty-pixel-300px.png" id="1_40qly"]
+[ext_resource type="Script" path="res://match/effects/MatchOrb.cs" id="1_vf6pm"]
+[ext_resource type="PackedScene" uid="uid://b0udlrus2amgj" path="res://match/effects/MatchOrbParticalEffect.tscn" id="2_k0p65"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("particalEffect", "sprite")]
+script = ExtResource("1_vf6pm")
+particalEffect = NodePath("MatchOrbParticalEffect")
+sprite = NodePath("Sprite2D")
+
+[node name="MatchOrbParticalEffect" parent="." instance=ExtResource("2_k0p65")]
+position = Vector2(-5, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_40qly")

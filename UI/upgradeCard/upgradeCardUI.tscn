@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1af8vwdqlgix"]
+
+[ext_resource type="Script" path="res://UI/upgradeCard/UpgradeCard.cs" id="1_7ko76"]
+[ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="1_a7u04"]
+[ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="2_hliss"]
+[ext_resource type="PackedScene" uid="uid://v0n0kroujc4s" path="res://UI/upgradeCard/upgradeCardChoice.tscn" id="2_t2jk5"]
+
+[node name="UpgradeCardUi" type="Control" node_paths=PackedStringArray("deckViewUI", "upgradeCardChoiceUI") groups=["UpgradeCardUI"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ko76")
+cardList = ExtResource("2_hliss")
+deckViewUI = NodePath("DeckView")
+upgradeCardChoiceUI = NodePath("UpgradeChoice")
+
+[node name="DeckView" parent="." instance=ExtResource("1_a7u04")]
+layout_mode = 1
+offset_left = -2.0
+offset_right = -2.0
+
+[node name="UpgradeChoice" parent="." instance=ExtResource("2_t2jk5")]
+visible = false
+offset_left = 56.0
+offset_top = 7.0
+offset_right = 56.0
+offset_bottom = 7.0

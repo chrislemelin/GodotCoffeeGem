@@ -112,7 +112,7 @@ public partial class NewCardSelection : Control
 	{
 		cards = new Array<CardResource>(cardResources);
 		cards.AddRange(cardsToTest);
-		GetTree().CreateTimer(.40f).Timeout += () =>
+		GetTree().CreateTimer(.55f).Timeout += () =>
 		{
 			audioPlayer.Play();
 		};
@@ -121,7 +121,7 @@ public partial class NewCardSelection : Control
 	}
 
 	private void setUIFocus() {
-		setUIFocus(true);
+		setUIFocus(true); 
 	}
 
 	private void setUIFocus(bool focused) {
@@ -158,7 +158,7 @@ public partial class NewCardSelection : Control
 				cardInfoLoader.flipCard();
 				cardInfoLoader.setForceHighlightOff(true);
 				GetTree().CreateTimer(.25).Timeout += () => cardInfoLoader.setForceHighlightOff(false);
-				cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardInfoLoader);
+				cardInfoLoader.hitBox.GuiInput += (inputEvent) => cardClicked(inputEvent, cardInfoLoader);
 			}
 			//setUIFocus();
 		}

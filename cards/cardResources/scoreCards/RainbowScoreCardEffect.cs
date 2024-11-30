@@ -20,7 +20,7 @@ public partial class RainbowScoreCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		Score score = FindObjectHelper.getScore(matchBoard);
-		score.addScoreFromNode(100 * getValue(), node);
+		score.addScoreFromNode(150 * getValue(), node);
 	}
 	public override int getValue()
 	{
@@ -41,7 +41,7 @@ public partial class RainbowScoreCardEffect : CardEffectIF
 		HashSet<GemType> gemTypes = matchBoard.matchesThisTurn.Select(match => match.GetGemType()).ToHashSet();
 		if (gemTypes.Count > 0)
 		{
-			return "Have matched " + string.Join(", ", gemTypes) + " (" + gemTypes.Count * 100 + ")";
+			return "Have matched " + string.Join(", ", gemTypes) + " (" + gemTypes.Count * 150 + ")";
 		}
 		return "";
 	}

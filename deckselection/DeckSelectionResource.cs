@@ -9,6 +9,8 @@ public partial class DeckSelectionResource : Resource
 	[Export] public CardList cardPool;
 
 	[Export] public Array<RelicResource> relics;
+	[Export] public Array<ActivatableRelicResource> activatableRelics;
+
 	[Export] public String title;
 	[Export(PropertyHint.MultilineText)] public String description;
 	[Export] public Color color;

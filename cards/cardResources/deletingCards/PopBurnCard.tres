@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bndjvymr0xra3"]
 
 [ext_resource type="Texture2D" uid="uid://b48mql4d5w6eb" path="res://cards/cardResources/cardArt/final/CardArtPop.png" id="1_3qlbj"]
-[ext_resource type="Script" path="res://cards/cardResources/deletingCards/CardEffectPop.cs" id="2_vd6er"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/CardEffectPop.cs" id="2_eymu6"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_8m17l"]
 
 [sub_resource type="Resource" id="Resource_yu3xx"]
-script = ExtResource("2_vd6er")
+script = ExtResource("2_eymu6")
 Range = 1.0
 Value = 0
 BlackGems = 1
@@ -14,14 +14,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 1
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -31,11 +34,14 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
 
 [resource]
 script = ExtResource("3_8m17l")
 Title = "Pop Burn"
-Description = "Destroy selected ingredient. +1$draw and +1burnt."
+Description = "Pop selected tile. +1$draw and +1$burnt."
+UpgradeDescriptions = []
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_3qlbj")
@@ -43,3 +49,5 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_yu3xx")
+cardUpgrades = []
+cardUpgradeTitle = ""

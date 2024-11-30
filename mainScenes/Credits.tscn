@@ -62,6 +62,21 @@ offset_bottom = 808.0
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="GameDesign" type="VBoxContainer" parent="ScrollContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/GameDesign"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 75
+text = "Game Design"
+fit_content = true
+
+[node name="Background Music" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/GameDesign"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Game Design and Programming .............................. Chris Lemelin"
+fit_content = true
+
 [node name="Art Container" type="VBoxContainer" parent="ScrollContainer/VBoxContainer2"]
 layout_mode = 2
 
@@ -78,12 +93,14 @@ text = "Original Pixel Art .....................................................
 fit_content = true
 
 [node name="CardBack" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
 text = "Card Back .................................................................................... yuidust"
 fit_content = true
 
 [node name="Backgrounds" type="RichTextLabel" parent="ScrollContainer/VBoxContainer2/Art Container"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
 text = "Painted Backgrounds ...................................................... lornn"
@@ -137,7 +154,8 @@ offset_left = 799.0
 offset_top = 842.0
 offset_right = 1047.0
 offset_bottom = 912.0
-text = "Main Menu"
+text = "Back"
+sceneString = "res://mainScenes/BreakRoom.tscn"
 grabFocus = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource("10_nt2jr")]

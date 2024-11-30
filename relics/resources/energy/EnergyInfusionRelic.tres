@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="InfusionCreatedRelic" load_steps=4 format=3 uid="uid://dwudow2fykjcl"]
+
+[ext_resource type="Script" path="res://relics/scripts/InfusionCreatedRelic.cs" id="1_n5kdq"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="1_nvme5"]
+
+[sub_resource type="Resource" id="Resource_ftib6"]
+script = ExtResource("1_nvme5")
+skipEmitSignalOnInfusions = true
+value = 0
+BurnGems = 0
+EnergyGems = 1
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
+
+[resource]
+script = ExtResource("1_n5kdq")
+infusionType = 1
+title = "Energy Infusion +"
+description = "When energy infusions are created, create one more."
+cost = 100
+hidden = false
+lastForOneTurn = false
+lastForOneLevel = false
+gameStartEffects = []
+turnStartEffects = []
+turnStartEffectsAfterCleanUp = []
+addToInvEffects = []
+levelOverEffects = []
+effects = [SubResource("Resource_ftib6")]
+matchEffects = []
+counterMax = 0
+customCounter = false
+counterResetOnLevelStart = false
+counterResetOnTurnStart = false
+resetCounterAfterReachingMax = true
+doEffectsOnTurnStartIfCounterAtMax = false

@@ -75,6 +75,7 @@ layout_mode = 2
 columns = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/UpgradesContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -117,6 +118,8 @@ alignment = 1
 [node name="CoinUpgradeButton" parent="VBoxContainer/MarginContainer2/UpgradesContainer/MarginContainer3/HBoxContainer" instance=ExtResource("13_p20jg")]
 layout_mode = 2
 size_flags_horizontal = 1
+costBase = 25
+costIncrement = 25
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/MarginContainer2/UpgradesContainer"]
 layout_mode = 2
@@ -131,6 +134,8 @@ alignment = 1
 [node name="CoinUpgradeButton" parent="VBoxContainer/MarginContainer2/UpgradesContainer/MarginContainer4/HBoxContainer" instance=ExtResource("14_yrn6e")]
 layout_mode = 2
 size_flags_horizontal = 1
+costBase = 25
+costIncrement = 25
 
 [node name="Menu" type="Control" parent="."]
 visible = false

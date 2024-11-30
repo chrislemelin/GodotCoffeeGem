@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_icnpl"]
 script = ExtResource("1_fbxa6")
+skipEmitSignalOnInfusions = false
 value = 0
 BurnGems = 0
 EnergyGems = 0

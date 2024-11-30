@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_qsy1m"]
 script = ExtResource("1_s0alk")
 type = 2
+skipEmitSignalOnInfusions = false
 value = 1
 BurnGems = 0
 EnergyGems = 0
@@ -28,14 +29,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = [SubResource("Resource_qsy1m")]
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -45,11 +49,14 @@ retain = false
 matchy = true
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
 
 [resource]
 script = ExtResource("4_xo08d")
 Title = "Pop Square"
-Description = "Destroy ingredients in a 2x2 grid. Generate 1 $milk if this makes a match."
+Description = "Pop tiles in a 2x2 grid. Generate 1$milk if this makes a match."
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_vlvti")
@@ -57,3 +64,5 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_e3t03")
+cardUpgrades = []
+cardUpgradeTitle = ""

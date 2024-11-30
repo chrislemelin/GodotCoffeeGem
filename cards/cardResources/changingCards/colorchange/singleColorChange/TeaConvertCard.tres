@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_psgfn"]
 script = ExtResource("2_k0r8f")
+skipEmitSignalOnInfusions = false
 value = 0
 BurnGems = 0
 EnergyGems = 0
@@ -27,14 +28,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = [SubResource("Resource_psgfn")]
+extraEffects = []
 matchEffectsMin = 4
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 3
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -44,11 +48,14 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
 
 [resource]
 script = ExtResource("2_1klox")
 Title = "Tea Blend"
-Description = "Change selection to $tea. If this makes a 4+ match, +1$draw."
+Description = "Change tile to $tea. If this makes a 4+ match, +1$draw."
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_yx221")
@@ -56,3 +63,5 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_mklkk")
+cardUpgrades = []
+cardUpgradeTitle = ""

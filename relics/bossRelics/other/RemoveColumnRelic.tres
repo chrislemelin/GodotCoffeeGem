@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_72hna"]
 script = ExtResource("1_al36r")
+skipEmitSignalOnInfusions = false
 value = 0
 BurnGems = 0
 EnergyGems = 0

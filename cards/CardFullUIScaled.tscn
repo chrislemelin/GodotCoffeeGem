@@ -1,12 +1,12 @@
-[gd_scene load_steps=33 format=3 uid="uid://leg736b6h2y8"]
+[gd_scene load_steps=35 format=3 uid="uid://leg736b6h2y8"]
 
 [ext_resource type="Shader" path="res://cards/shaders/dissolve.gdshader" id="1_xhiom"]
 [ext_resource type="Theme" uid="uid://b2rap6o5ptq7f" path="res://UI/Themes/TooltipTheme.tres" id="2_7taos"]
 [ext_resource type="Script" path="res://cards/CardInfoLoader.cs" id="3_6elk7"]
 [ext_resource type="Shader" path="res://cards/shaders/dissolveWithHighlight.gdshader" id="4_ukscn"]
-[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/final/Cardfront2red.png" id="5_qioai"]
+[ext_resource type="Texture2D" uid="uid://d006248sckcyp" path="res://sprites/cards/final/TestBackground2.png" id="5_msc57"]
 [ext_resource type="Script" path="res://util/HighlightOnHover.cs" id="6_lxe20"]
-[ext_resource type="FontFile" uid="uid://diyncttob2488" path="res://fonts/DePixelKlein.ttf" id="8_w01ue"]
+[ext_resource type="FontFile" uid="uid://qp3yu4ggmy8h" path="res://fonts/m5x7/OpenType-TT/m5x7.ttf" id="8_7dskl"]
 [ext_resource type="Texture2D" uid="uid://bn7heau5cww2w" path="res://cards/cardResources/cardArt/final/CardArtBlank.png" id="9_bx1fj"]
 [ext_resource type="Texture2D" uid="uid://bcd0vfwf8j2jd" path="res://sprites/cards/final/fire-updated.png" id="9_edgwy"]
 [ext_resource type="Texture2D" uid="uid://bbtmcdxpsg78p" path="res://sprites/cards/title/TitleCard_4.png" id="9_ppdhl"]
@@ -17,6 +17,8 @@
 [ext_resource type="Shader" path="res://cards/shaders/ShineShader.gdshader" id="15_k7rma"]
 [ext_resource type="Texture2D" uid="uid://dp2ew61qp2bpn" path="res://sprites/lock.png" id="16_75uip"]
 [ext_resource type="StyleBox" uid="uid://5wri3mkyn7co" path="res://UI/Themes/StyleBoxes/ToolTipStyleBox.tres" id="17_fa4uy"]
+[ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="18_pg4ko"]
+[ext_resource type="AudioStream" uid="uid://i4hbljontvta" path="res://sound/UI/drop_002.ogg" id="19_2axgu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nfjn8"]
 
@@ -32,24 +34,24 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_4b35t")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_emh0e"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lyich"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qg2ss"]
 noise = SubResource("FastNoiseLite_emh0e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyxp0"]
 shader = ExtResource("4_ukscn")
 shader_parameter/dissolve_value = 1.0
 shader_parameter/line_color = Color(0.945098, 0.945098, 0.239216, 0)
-shader_parameter/line_thickness = 5.0
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_lyich")
+shader_parameter/line_thickness = 1.0
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_qg2ss")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a0hml"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p3d4j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqyc8"]
 shader = ExtResource("4_ukscn")
 shader_parameter/dissolve_value = 0.623
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = null
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_a0hml")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_p3d4j")
 
 [sub_resource type="Animation" id="Animation_jdv37"]
 resource_name = "CardFlip"
@@ -168,7 +170,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Center:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -226,6 +228,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("hoverAudioPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_f65lf"]
 resource_name = "Shine"
@@ -240,6 +254,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("hoverAudioPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hjwwm"]
@@ -259,10 +285,11 @@ shader_parameter/shine_size = 0.09
 shader_parameter/shine_angle = 37.5
 shader_parameter/shine_on = 1.0
 
-[node name="CardFullUI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide", "rightSideVisibleCheck")]
+[node name="CardFullUI" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "hitBox", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "target", "toolTipLeftSide", "toolTipRightSide", "rightSideVisibleCheck")]
+modulate = Color(1, 1, 1, 0.992157)
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_7pfgj")
-custom_minimum_size = Vector2(280, 368)
+custom_minimum_size = Vector2(310, 400)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -270,14 +297,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -960.0
-offset_top = -538.0
-offset_right = -680.0
-offset_bottom = -138.0
+offset_top = -539.0
+offset_right = -650.0
+offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(125, 150)
-size_flags_horizontal = 3
-size_flags_vertical = 3
 focus_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_7taos")
@@ -288,6 +313,7 @@ costLabel = NodePath("Center/EnergyCost/RichTextLabel")
 picture = NodePath("Center/Picture/Sprite2D")
 background = NodePath("Center/Background")
 cardBack = NodePath("CardBack")
+hitBox = NodePath("Center/HitBox")
 titleSprite = NodePath("Center/Title/Sprite2D")
 highlightOnHover = NodePath("Center/Background")
 coinCostControl = NodePath("CoinCost")
@@ -296,33 +322,37 @@ disabledColor = Color(0.501961, 0.501961, 0.501961, 1)
 lockedColor = Color(0.0235294, 0.0235294, 0.0235294, 1)
 animationPlayer = NodePath("AnimationPlayer")
 toolTipText = NodePath("ToolTipRight/Tooltip")
+target = NodePath("Center/HitBox")
 toolTipLeftSide = NodePath("ToolTipLeft")
 toolTipRightSide = NodePath("ToolTipRight")
-rightSideVisibleCheck = NodePath("VisibleOnScreenEnabler2D")
+rightSideVisibleCheck = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="Center" type="Control" parent="."]
 use_parent_material = true
 custom_minimum_size = Vector2(235, 296)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 6.0
-offset_top = 37.0
-offset_right = 282.0
-offset_bottom = 394.0
+offset_left = 22.0
+offset_top = 44.0
+offset_right = 298.0
+offset_bottom = 401.0
 pivot_offset = Vector2(125, 150)
 mouse_filter = 2
 
-[node name="Background" type="TextureRect" parent="Center"]
+[node name="Background" type="TextureRect" parent="Center" node_paths=PackedStringArray("area2D", "hoverAudioPlayer", "makeBiggerControl")]
+texture_filter = 1
 material = SubResource("ShaderMaterial_pyxp0")
 layout_mode = 2
-offset_left = -11.0
-offset_top = -28.0
-offset_right = 274.0
-offset_bottom = 352.0
-texture = ExtResource("5_qioai")
-expand_mode = 1
+offset_left = -3.0
+offset_top = -16.0
+offset_right = 267.0
+offset_bottom = 347.0
+texture = ExtResource("5_msc57")
 script = ExtResource("6_lxe20")
+area2D = NodePath("../HitBox")
 forceHighlightColor = Color(0, 1, 0, 1)
+hoverAudioPlayer = NodePath("../../hoverAudioPlayer")
+makeBiggerControl = NodePath("..")
 makeBiggerScale = 1.0
 
 [node name="Description2" type="Control" parent="Center"]
@@ -332,27 +362,69 @@ offset_left = 34.0
 offset_top = -307.0
 offset_right = 34.0
 offset_bottom = -307.0
-mouse_filter = 1
+mouse_filter = 2
 
-[node name="Sprite2D" type="TextureRect" parent="Center/Description2"]
+[node name="Background" type="Control" parent="Center/Description2"]
+use_parent_material = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="backgroundMain" type="TextureRect" parent="Center/Description2/Background"]
 modulate = Color(0.858824, 0.788235, 0.737255, 1)
 use_parent_material = true
 layout_mode = 0
-offset_left = -14.0
-offset_top = 475.0
-offset_right = 209.0
+offset_left = -22.0
+offset_top = 478.0
+offset_right = 221.0
+offset_bottom = 624.0
+texture = ExtResource("9_wq4eo")
+expand_mode = 3
+
+[node name="Sprite2D" type="TextureRect" parent="Center/Description2/Background"]
+visible = false
+modulate = Color(0.858824, 0.788235, 0.737255, 1)
+use_parent_material = true
+layout_mode = 0
+offset_left = -22.0
+offset_top = 622.0
+offset_right = 218.0
 offset_bottom = 633.0
-mouse_filter = 2
+texture = ExtResource("9_wq4eo")
+expand_mode = 2
+
+[node name="Sprite2D2" type="TextureRect" parent="Center/Description2/Background"]
+visible = false
+modulate = Color(0.858824, 0.788235, 0.737255, 1)
+use_parent_material = true
+layout_mode = 0
+offset_left = -16.0
+offset_top = 622.0
+offset_right = 212.0
+offset_bottom = 636.0
+texture = ExtResource("9_wq4eo")
+expand_mode = 2
+
+[node name="Sprite2D3" type="TextureRect" parent="Center/Description2/Background"]
+visible = false
+modulate = Color(0.858824, 0.788235, 0.737255, 1)
+use_parent_material = true
+layout_mode = 0
+offset_left = -7.0
+offset_top = 622.0
+offset_right = 203.0
+offset_bottom = 642.0
 texture = ExtResource("9_wq4eo")
 expand_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Center/Description2"]
 use_parent_material = true
 layout_mode = 0
-offset_left = -11.0
-offset_top = 479.0
-offset_right = 209.0
-offset_bottom = 629.0
+offset_left = -22.0
+offset_top = 453.0
+offset_right = 218.0
+offset_bottom = 660.0
+pivot_offset = Vector2(116.265, 81.83)
 mouse_filter = 2
 alignment = 1
 
@@ -363,11 +435,13 @@ use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("8_w01ue")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_constants/line_separation = -16
+theme_override_fonts/normal_font = ExtResource("8_7dskl")
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "+$valueenergy and +2burnt . \\nIf you have made at least 1 coffee match this turn, +1energy $customText"
+text = "[center]Change tile to [img with=30 height=30]res://sprites/cards/icons/milk-icon.png[/img]. If this makes a 4+ match, +1[img with=30 height=30]res://sprites/cards/icons/burn-icon.png[/img], +1[img with=30 height=30]res://sprites/cards/icons/energy-icon.png[/img]\", +1[img with=30 height=30]res://sprites/cards/icons/card-icon.png[/img]."
 fit_content = true
+scroll_active = false
 
 [node name="Picture" type="Control" parent="Center"]
 use_parent_material = true
@@ -404,10 +478,10 @@ mouse_filter = 2
 modulate = Color(0.756863, 0.607843, 0.105882, 1)
 use_parent_material = true
 layout_mode = 0
-offset_left = -45.0
-offset_top = 12.0
-offset_right = 164.0
-offset_bottom = 37.0
+offset_left = -52.0
+offset_top = 9.0
+offset_right = 171.0
+offset_bottom = 36.0
 mouse_filter = 2
 texture = ExtResource("9_wq4eo")
 expand_mode = 1
@@ -416,35 +490,37 @@ expand_mode = 1
 texture_filter = 1
 use_parent_material = true
 layout_mode = 0
-offset_left = -48.0
-offset_top = 9.0
-offset_right = 167.0
+offset_left = -55.0
+offset_top = 6.0
+offset_right = 173.0
 offset_bottom = 39.0
 texture = ExtResource("9_ppdhl")
+expand_mode = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/Title"]
 texture_filter = 1
 use_parent_material = true
 layout_mode = 0
-offset_left = -34.0
-offset_top = 9.0
-offset_right = 158.0
-offset_bottom = 39.0
+offset_left = -81.0
+offset_top = -3.0
+offset_right = 203.0
+offset_bottom = 40.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("8_7dskl")
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[center]Energy Infusion +[/center]"
+text = "[center]Energy Infuse+[/center]"
 scroll_active = false
 
 [node name="EnergyCost" type="Control" parent="Center"]
 use_parent_material = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = 62.0
-offset_top = 54.0
-offset_right = 62.0
-offset_bottom = 54.0
+offset_left = 52.0
+offset_top = 48.0
+offset_right = 52.0
+offset_bottom = 48.0
 mouse_filter = 2
 
 [node name="Sprite2D2" type="TextureRect" parent="Center/EnergyCost"]
@@ -463,6 +539,7 @@ texture = ExtResource("9_edgwy")
 expand_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Center/EnergyCost"]
+texture_filter = 1
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
@@ -470,10 +547,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.4
+offset_left = -56.0
 offset_top = -64.0
-offset_right = -21.4
-offset_bottom = -16.0
+offset_right = -21.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -481,21 +558,27 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("12_dtfe5")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "0"
+text = "[center]0"
 fit_content = true
 scroll_active = false
 
+[node name="HitBox" type="Control" parent="Center"]
+anchors_preset = 0
+offset_top = -13.0
+offset_right = 266.0
+offset_bottom = 346.0
+
 [node name="CoinCost" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 18.0
-offset_top = 385.0
-offset_right = 290.0
-offset_bottom = 484.0
+offset_left = 24.0
+offset_top = 388.0
+offset_right = 296.0
+offset_bottom = 431.0
 mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CoinCost"]
 layout_mode = 0
-offset_right = 288.0
+offset_right = 248.0
 offset_bottom = 40.0
 alignment = 1
 
@@ -505,7 +588,7 @@ layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 6.48
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 120
+theme_override_font_sizes/normal_font_size = 48
 text = "50"
 fit_content = true
 scroll_active = false
@@ -536,10 +619,10 @@ libraries = {
 [node name="ShineTexture" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_muung")
 layout_mode = 0
-offset_left = 14.0
-offset_top = 17.0
-offset_right = 276.0
-offset_bottom = 365.0
+offset_left = 23.0
+offset_top = 31.0
+offset_right = 286.0
+offset_bottom = 388.0
 mouse_filter = 2
 texture = ExtResource("9_wq4eo")
 expand_mode = 1
@@ -583,6 +666,11 @@ offset_top = 6.0
 offset_right = -378.0
 offset_bottom = 6.0
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(667, 79)
-scale = Vector2(1, 4.6)
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(668, 42)
+
+[node name="hoverAudioPlayer" parent="." instance=ExtResource("18_pg4ko")]
+position = Vector2(152, -1547)
+stream = ExtResource("19_2axgu")
+minValue = -40.0
+maxValue = 10.0

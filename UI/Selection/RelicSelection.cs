@@ -9,6 +9,8 @@ public partial class RelicSelection : Control
 	[Export] CustomButton skipButton;
 	[Export] public bool purchasable;
 	[Signal] public delegate void WindowClosedEventHandler();
+	[Signal] public delegate void PurchasedItemEventHandler(RelicResource relic);
+
 	public bool hasSetUpRelics = false;
 
 	HashSet<RelicUI> relicUIs= new HashSet<RelicUI>();
@@ -28,7 +30,6 @@ public partial class RelicSelection : Control
 	}
 
 	public void setRelics(List<RelicResource> relicResources, bool free) {
-		Visible = true;
 		hasSetUpRelics = true;
 		foreach (Node child in relicHolder.GetChildren())
 		{
@@ -70,6 +71,7 @@ public partial class RelicSelection : Control
 			relicHolder.AddChild(marginContainer);
 		}
 		skipButton.checkForFocus();
+		Visible = true;
 	}
 
 	private void updateRelicDisabled() {
@@ -87,6 +89,7 @@ public partial class RelicSelection : Control
 			FindObjectHelper.getGameManager(this).addRelic(relicUI.relicResource);
 			Visible = false;
 			EmitSignal(SignalName.WindowClosed);
+			EmitSignal(SignalName.PurchasedItem, relicUI.relicResource);
 		};
 	}
 	private void relicBoughtClicked(InputEvent inputEvent, MarginContainer marginContainer, RelicUI relicUI)

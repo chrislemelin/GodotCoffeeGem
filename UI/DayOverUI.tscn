@@ -1,17 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://2av55t0yxy4e"]
+[gd_scene load_steps=15 format=3 uid="uid://2av55t0yxy4e"]
 
 [ext_resource type="Script" path="res://UI/DayOver.cs" id="1_ibp0t"]
 [ext_resource type="Script" path="res://match/score/ColorUpgrade.cs" id="2_ahm5c"]
 [ext_resource type="Script" path="res://UI/core/ButtonWithCoinCost.cs" id="2_x4g5w"]
-[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/movementCards/SwitchCard.tres" id="4_yvkph"]
+[ext_resource type="Resource" uid="uid://sqvx2ep1kiug" path="res://cards/cardResources/basicCards/upgradedBasicCards/SwitchCard.tres" id="4_yvkph"]
 [ext_resource type="PackedScene" uid="uid://day2feovup55o" path="res://relics/RelicUI.tscn" id="5_6xr0x"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="5_by2ub"]
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="6_fr8b3"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/basicCards/SwitchVertCard.tres" id="5_by2ub"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/basicCards/SwitchHorizCard.tres" id="6_fr8b3"]
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="7_s7rm1"]
 [ext_resource type="PackedScene" uid="uid://ckd4g4dpds1jx" path="res://UI/DeckView/CardMarginContainer.tscn" id="8_8qiu1"]
-[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="8_jclpp"]
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="9_t8a86"]
-[ext_resource type="PackedScene" uid="uid://bxshhmv8s75ky" path="res://cards/CardUI.tscn" id="10_6qdhe"]
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="11_37gdu"]
 [ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="13_60jrt"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="13_x8pug"]
@@ -42,7 +40,7 @@ shoppingTherapyButton = NodePath("VBoxContainer/HealButton")
 gemUpgradeButton = NodePath("VBoxContainer/Gem upgrade")
 moreCardsButton = NodePath("VBoxContainer/Moare cards")
 relicButton = NodePath("VBoxContainer/RelicButton")
-upgradeCardButton = NodePath("VBoxContainer/CardUpgrade")
+upgradeCardButton = NodePath("VBoxContainer/UpgradeCardButton")
 removeCardFromDeckButton = NodePath("VBoxContainer/RemoveCard")
 relicShop = NodePath("PassiveShop")
 relicUIPackedScene = ExtResource("5_6xr0x")
@@ -58,18 +56,18 @@ marginContainerScene = ExtResource("8_8qiu1")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 564.0
-offset_top = 492.0
-offset_right = 1366.0
+offset_left = 414.0
+offset_top = 270.0
+offset_right = 1675.0
 offset_bottom = 1110.0
 theme = ExtResource("9_t8a86")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-offset_left = 644.0
-offset_top = 516.0
-offset_right = 1302.0
-offset_bottom = 566.0
+offset_left = 708.0
+offset_top = 289.0
+offset_right = 1366.0
+offset_bottom = 339.0
 size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
@@ -83,171 +81,91 @@ scroll_active = false
 
 [node name="CardShop" type="HBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 571.0
-offset_top = 574.0
-offset_right = 2103.0
-offset_bottom = 1102.0
-scale = Vector2(0.5, 0.5)
+offset_left = 417.0
+offset_top = 336.0
+offset_right = 1669.0
+offset_bottom = 771.0
 alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="CardShop"]
-visible = false
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="card2" parent="CardShop/MarginContainer2" instance=ExtResource("10_6qdhe")]
-position = Vector2(313, 448)
-scale = Vector2(1.25, 1.25)
-
-[node name="MarginContainer3" type="MarginContainer" parent="CardShop"]
+[node name="MarginContainer" parent="CardShop" instance=ExtResource("8_8qiu1")]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="CardShop/MarginContainer3" instance=ExtResource("8_jclpp")]
+[node name="CardFullUI" parent="CardShop/MarginContainer" instance=ExtResource("7_s7rm1")]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="CardShop"]
+[node name="MarginContainer2" parent="CardShop" instance=ExtResource("8_8qiu1")]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="CardShop/MarginContainer4" instance=ExtResource("8_jclpp")]
+[node name="CardFullUI" parent="CardShop/MarginContainer2" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("7_s7rm1")]
 layout_mode = 2
+titleLabel = NodePath("../../MarginContainer/CardFullUI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer/CardFullUI/Center/Description2/VBoxContainer2/RichTextLabel")
+costLabel = NodePath("../../MarginContainer/CardFullUI/Center/EnergyCost/RichTextLabel")
+picture = NodePath("../../MarginContainer/CardFullUI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/CardFullUI/Center/Background")
+cardBack = NodePath("../../MarginContainer/CardFullUI/CardBack")
+titleSprite = NodePath("../../MarginContainer/CardFullUI/Center/Title/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer/CardFullUI/Center/Background")
+coinCostControl = NodePath("../../MarginContainer/CardFullUI/CoinCost")
+coinCostText = NodePath("../../MarginContainer/CardFullUI/CoinCost/HBoxContainer/RichTextLabel")
+animationPlayer = NodePath("../../MarginContainer/CardFullUI/AnimationPlayer")
+toolTipText = NodePath("../../MarginContainer/CardFullUI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/CardFullUI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/CardFullUI/ToolTipRight")
 
-[node name="MarginContainer5" type="MarginContainer" parent="CardShop"]
+[node name="MarginContainer3" parent="CardShop" instance=ExtResource("8_8qiu1")]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="CardShop/MarginContainer5" instance=ExtResource("8_jclpp")]
+[node name="CardFullUI" parent="CardShop/MarginContainer3" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "toolTipLeftSide", "toolTipRightSide") instance=ExtResource("7_s7rm1")]
 layout_mode = 2
+titleLabel = NodePath("../../MarginContainer/CardFullUI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer/CardFullUI/Center/Description2/VBoxContainer2/RichTextLabel")
+costLabel = NodePath("../../MarginContainer/CardFullUI/Center/EnergyCost/RichTextLabel")
+picture = NodePath("../../MarginContainer/CardFullUI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/CardFullUI/Center/Background")
+cardBack = NodePath("../../MarginContainer/CardFullUI/CardBack")
+titleSprite = NodePath("../../MarginContainer/CardFullUI/Center/Title/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer/CardFullUI/Center/Background")
+coinCostControl = NodePath("../../MarginContainer/CardFullUI/CoinCost")
+coinCostText = NodePath("../../MarginContainer/CardFullUI/CoinCost/HBoxContainer/RichTextLabel")
+animationPlayer = NodePath("../../MarginContainer/CardFullUI/AnimationPlayer")
+toolTipText = NodePath("../../MarginContainer/CardFullUI/ToolTipRight/Tooltip")
+toolTipLeftSide = NodePath("../../MarginContainer/CardFullUI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/CardFullUI/ToolTipRight")
 
-[node name="MarginContainer6" type="MarginContainer" parent="CardShop"]
+[node name="MarginContainer4" parent="CardShop" instance=ExtResource("8_8qiu1")]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="UI" parent="CardShop/MarginContainer6" instance=ExtResource("8_jclpp")]
+[node name="CardFullUI" parent="CardShop/MarginContainer4" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "costLabel", "picture", "background", "cardBack", "hitBox", "titleSprite", "highlightOnHover", "coinCostControl", "coinCostText", "animationPlayer", "toolTipText", "target", "toolTipLeftSide", "toolTipRightSide", "rightSideVisibleCheck") instance=ExtResource("7_s7rm1")]
 layout_mode = 2
-
-[node name="MarginContainer7" type="MarginContainer" parent="CardShop"]
-visible = false
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="card2" parent="CardShop/MarginContainer7" node_paths=PackedStringArray("control", "titleLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
-position = Vector2(313, 448)
-scale = Vector2(1.25, 1.25)
-control = NodePath("../../MarginContainer2/card2/UI")
-titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
-titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
-
-[node name="MarginContainer8" type="MarginContainer" parent="CardShop"]
-visible = false
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="card2" parent="CardShop/MarginContainer8" node_paths=PackedStringArray("control", "titleLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
-position = Vector2(313, 448)
-scale = Vector2(1.25, 1.25)
-control = NodePath("../../MarginContainer2/card2/UI")
-titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
-titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
-
-[node name="MarginContainer9" type="MarginContainer" parent="CardShop"]
-visible = false
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="card2" parent="CardShop/MarginContainer9" node_paths=PackedStringArray("control", "titleLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
-position = Vector2(313, 448)
-scale = Vector2(1.25, 1.25)
-control = NodePath("../../MarginContainer2/card2/UI")
-titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
-titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
-
-[node name="MarginContainer10" type="MarginContainer" parent="CardShop"]
-visible = false
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="card2" parent="CardShop/MarginContainer10" node_paths=PackedStringArray("control", "titleLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
-position = Vector2(313, 448)
-scale = Vector2(1.25, 1.25)
-control = NodePath("../../MarginContainer2/card2/UI")
-titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
-titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
-
-[node name="MarginContainer11" type="MarginContainer" parent="CardShop"]
-visible = false
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="card2" parent="CardShop/MarginContainer11" node_paths=PackedStringArray("control", "titleLabel", "costLabel", "picture", "highlightOnHover", "titleSprite") instance=ExtResource("10_6qdhe")]
-position = Vector2(313, 448)
-scale = Vector2(1.25, 1.25)
-control = NodePath("../../MarginContainer2/card2/UI")
-titleLabel = NodePath("../../MarginContainer2/card2/UI/Title/RichTextLabel")
-costLabel = NodePath("../../MarginContainer2/card2/UI/Cost/RichTextLabel")
-picture = NodePath("../../MarginContainer2/card2/UI/Picture/Sprite2D")
-highlightOnHover = NodePath("../../MarginContainer2/card2/UI/Background")
-titleSprite = NodePath("../../MarginContainer2/card2/UI/Title/Sprite2D")
+titleLabel = NodePath("../../MarginContainer/CardFullUI/Center/Title/RichTextLabel")
+descriptionLabel = NodePath("../../MarginContainer/CardFullUI/Center/Description2/VBoxContainer2/RichTextLabel")
+costLabel = NodePath("../../MarginContainer/CardFullUI/Center/EnergyCost/RichTextLabel")
+picture = NodePath("../../MarginContainer/CardFullUI/Center/Picture/Sprite2D")
+background = NodePath("../../MarginContainer/CardFullUI/Center/Background")
+cardBack = NodePath("../../MarginContainer/CardFullUI/CardBack")
+hitBox = NodePath("../../MarginContainer/CardFullUI/Center/HitBox")
+titleSprite = NodePath("../../MarginContainer/CardFullUI/Center/Title/Sprite2D")
+highlightOnHover = NodePath("../../MarginContainer/CardFullUI/Center/Background")
+coinCostControl = NodePath("../../MarginContainer/CardFullUI/CoinCost")
+coinCostText = NodePath("../../MarginContainer/CardFullUI/CoinCost/HBoxContainer/RichTextLabel")
+animationPlayer = NodePath("../../MarginContainer/CardFullUI/AnimationPlayer")
+toolTipText = NodePath("../../MarginContainer/CardFullUI/ToolTipRight/Tooltip")
+target = NodePath("../../MarginContainer/CardFullUI/Center/HitBox")
+toolTipLeftSide = NodePath("../../MarginContainer/CardFullUI/ToolTipLeft")
+toolTipRightSide = NodePath("../../MarginContainer/CardFullUI/ToolTipRight")
+rightSideVisibleCheck = NodePath("../../MarginContainer/CardFullUI/VisibleOnScreenNotifier2D")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 641.0
-offset_top = 847.0
-offset_right = 1299.0
-offset_bottom = 1045.0
+offset_top = 796.0
+offset_right = 1438.0
+offset_bottom = 1100.0
 
 [node name="Passives To Purchase" type="RichTextLabel" parent="VBoxContainer"]
 visible = false
@@ -281,6 +199,11 @@ cost = 20
 hoverAudioplayer = NodePath("../RelicButton/HoverAudioPlayer")
 clickAudioplayer = NodePath("../RelicButton/ClickAudioPlayer")
 
+[node name="UpgradeCardButton" parent="VBoxContainer" instance=ExtResource("13_60jrt")]
+layout_mode = 2
+text = " Upgrade a card (40 coins)"
+cost = 40
+
 [node name="Gem upgrade" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -297,15 +220,6 @@ text = "Remove a card from your deck (Costs 40 coins)"
 script = ExtResource("2_x4g5w")
 cost = 40
 
-[node name="CardUpgrade" type="Button" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Turn one of your switch vert or switch horiz into a switch that can go in either direction"
-text = "Upgrade one of your switch cards (Costs 30 coins)"
-script = ExtResource("2_x4g5w")
-cost = 30
-
 [node name="RelicButton" parent="VBoxContainer" instance=ExtResource("13_60jrt")]
 layout_mode = 2
 text = "Browse Relic Shop"
@@ -320,6 +234,7 @@ text = "Advance"
 grabFocus = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 fit_content = true
 

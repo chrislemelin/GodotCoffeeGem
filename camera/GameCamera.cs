@@ -8,9 +8,6 @@ public partial class GameCamera : Camera2D
 	[Export] float shakeIntensity;
 	[Export] float shakeDecay;
 	[Export] float shakeSpeed;
-	[Export] float shakeIntensityRiseDividor;
-	[Export] float shakeIntensityMult;
-	[Export] float shakeIntensityMax;
 
 	private float shakeIntensityCurrent;
 
@@ -33,6 +30,7 @@ public partial class GameCamera : Camera2D
 	{
 		base._Ready();
 		startPosition = Position;
+		//noise = OpenSimplexNoise.new()
 		//playDistort();
 	}
 	

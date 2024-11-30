@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_i155s"]
 script = ExtResource("1_q1id2")
+skipEmitSignalOnInfusions = false
 value = 0
 BurnGems = 0
 EnergyGems = 0
@@ -18,7 +19,7 @@ GainMult = 0.0
 [resource]
 script = ExtResource("2_cgyfq")
 title = "Burnt Toast"
-description = "Burnt ingredient are randomly spawned and are now matchable, but give no points."
+description = "Burnt ingredients are randomly spawned and are now matchable, but give no points."
 cost = 0
 hidden = false
 lastForOneTurn = false

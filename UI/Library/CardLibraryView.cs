@@ -32,11 +32,11 @@ public partial class CardLibraryView : Control
 
 		foreach(CardResource cardResource in cards) {
 			CardInfoLoader cardInfoLoader = (CardInfoLoader)cardScene.Instantiate();
-			MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
-			marginContainer.AddChild(cardInfoLoader);
-			gridContainer.AddChild(marginContainer);
+			//MarginContainer marginContainer = (MarginContainer)marginContainerScene.Instantiate();
+			//marginContainer.AddChild(cardInfoLoader);
+			gridContainer.AddChild(cardInfoLoader);
 			//cardInfoLoader.GuiInput += (inputEvent) => cardClicked(inputEvent, cardResource, cardInfoLoader);
-			cardInfoLoader.setForceHighlightOff(true);
+			//cardInfoLoader.setForceHighlightOff(true);
 			cardInfoLoader.setUpCard(cardResource);
 			cardInfoLoader.cardScrollContainer = scrollContainer;
 			cardInfoLoaders.Add(cardInfoLoader);

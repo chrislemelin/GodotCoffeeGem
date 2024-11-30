@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_tw3de"]
 script = ExtResource("1_vxi3s")
 type = 0
+skipEmitSignalOnInfusions = false
 value = 0
 BurnGems = 0
 EnergyGems = 0

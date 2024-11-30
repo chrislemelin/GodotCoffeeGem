@@ -95,10 +95,14 @@ public partial class MapLocation : Control
 		else if (type == MapEventType.UpgradeCard)
 		{
 			mapEventResolveUI.setUp("Upgrade a Card", "You walk through a park on your way back home. Reconnecting with nature relieves some stress of the workday. " +
-			"A random horizontal or vertical switch card has been upgraded!");
-			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
-				upgradeCard()
-			,callback);
+			"Upgrade a starter card!");
+			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => {
+				GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
+				UpgradeCard upgradeCardUI = FindObjectHelper.getUpgradeCardUI(this);
+				upgradeCardUI.upgradeCardsFromList(gameManager.getDeckList());
+				upgradeCardUI.UpgradeCardDone += () => addCallBackAction(callback);
+			}
+			,null);
 		}
 		else if (type == MapEventType.GainCard)
 		{
@@ -113,12 +117,14 @@ public partial class MapLocation : Control
 		}
 		else if (type == MapEventType.RemoveCard)
 		{
-			mapEventResolveUI.setUp("Remove a Card", "You decide to stop at the bar on the way home for a quick drink." +
-			"You drank a bit too much and end up losing something, although you can't remember what it was. Remove a card from your Deck!");
+			mapEventResolveUI.setUp("Remove a Card", "You decide to stop at the bar on the way home for a quick drink. " +
+			"You drank a bit too much and end up losing something, although you can't remember what it was. Remove a card from your deck!");
 			mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				FindObjectHelper.getDeckView(this).setUp(FindObjectHelper.getGameManager(this).getDeckList(),
 				 (CardResource cardResource) =>  {
-					FindObjectHelper.getGameManager(this).removeCardFromDeckList(cardResource);
+					if (cardResource != null){
+						FindObjectHelper.getGameManager(this).removeCardFromDeckList(cardResource);
+					}
 					callback.Invoke();
 				 },
 				 TextHelper.centered("Remove Card From Deck"), true
@@ -136,13 +142,41 @@ public partial class MapLocation : Control
 		else if (type == MapEventType.Mechanic)
 		{
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-			if (gameManagerIF.getCoins() >= 50)
-			{
-				bool currentBoardGooed = gameManagerIF.getGooRightRow();
-				gameManagerIF.addCoins(-50);
+			bool currentBoardGooed = gameManagerIF.getGooRightRow();
+			bool canAfford = gameManagerIF.getCoins() > 50;
+
+			if(!currentBoardGooed) {
+				mapEventResolveUI.setUp("Upgrade Coffee Machine", 
+					"The mechanic takes a look at your coffee machine. "+
+					"He can add a new column to the match board that will start off with Goo for 50"+TextHelper.getCoinImage() + ".",
+					true, canAfford);
+				mapEventResolveUI.Acceptable += (accepted) => addActionToContinueButton(() => {
+					if(accepted) {
+						gameManagerIF.addGridUpgrade();
+						gameManagerIF.setGooRightRow(true);
+						gameManagerIF.addCoins(-50);
+
+					}
+				}
+					,callback);
+			}
+			else {
+				mapEventResolveUI.setUp("Upgrade Coffee Machine", 
+					"The mechanic takes a look at your coffee machine. "+
+					"He can remove the starting Goo from your new column for 50" +TextHelper.getCoinImage(),
+					true, canAfford);
+				mapEventResolveUI.Acceptable += (accepted) => addActionToContinueButton(() =>
+				{
+					if(accepted) {
+						gameManagerIF.setGooRightRow(false);
+						gameManagerIF.addCoins(-50);
+					}
+				},callback);
+			}
+
+			/*
 				if (currentBoardGooed)
 				{
-					mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine and tweaks a few things. Goo has been removed from the new column of the machine");
 					mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 						gameManagerIF.setGooRightRow(false)
 					,callback);
@@ -157,20 +191,39 @@ public partial class MapLocation : Control
 						gameManagerIF.setGooRightRow(true);
 					},callback);
 				}
-			}
-			else
-			{
-				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() => { }, callback);
-				mapEventResolveUI.setUp("You Broke", "You are too broke to visit the mechanic.");
-			}
+			*/
+
+
+
+			// if (gameManagerIF.getCoins() >= 50)
+			// {
+			// 	bool currentBoardGooed = gameManagerIF.getGooRightRow();
+			// 	gameManagerIF.addCoins(-50);
+			// 	if (currentBoardGooed)
+			// 	{
+			// 		mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine and tweaks a few things. Goo has been removed from the new column of the machine");
+			// 		mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
+			// 			gameManagerIF.setGooRightRow(false)
+			// 		,callback);
+			// 	}
+			// 	else
+			// 	{
+			// 		mapEventResolveUI.setUp("Upgrade Coffee Machine", "The mechanic takes a look at your coffee machine."" He adds an additional column to the machine, " +
+			// 			"but that column will start with Goo");
+			// 		mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
+			// 		{
+			// 			gameManagerIF.addGridUpgrade();
+			// 			gameManagerIF.setGooRightRow(true);
+			// 		},callback);
+			// 	}
+			// }
 		}
 		else if (type == MapEventType.RelicShop)
 		{
 			GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
 			if (gameManagerIF.getCoins() >= 40)
 			{
-				gameManagerIF.addCoins(-40);
-				mapEventResolveUI.setUp("Relic shop", "You stumble into the relic shop to see what mysterious new artifacts they've gathered");
+				mapEventResolveUI.setUp("Relic shop", "You stumble into the relic shop to see what mysterious new artifacts they've gathered. It looks like every relic costs 40"+TextHelper.getCoinImage());
 				mapEventResolveUI.WindowClosedSignal += () => addActionToContinueButton(() =>
 				{
 					List<RelicResource> relicResources = gameManagerIF.getRelicPool();
@@ -178,10 +231,13 @@ public partial class MapLocation : Control
 					List<RelicResource> relicsInSelection = relicResources.GetRange(0, Math.Min(3, relicResources.Count));
 					RelicSelection relicSelection = FindObjectHelper.getRelicSelection(this);
 					relicSelection.setRelics(relicsInSelection, true);
-					relicSelection.WindowClosed += () => addCallBackAction(callback);
+					relicSelection.PurchasedItem += (relic) => {
+						addCallBackAction(callback);
+						if (relic!= null) {
+							gameManagerIF.addCoins(-40);
+						}
+					};
 				},null);
-
-
 			}
 			else
 			{
@@ -229,7 +285,4 @@ public partial class MapLocation : Control
 			gameManager.addCardToDeckList(upgradedSwitchCard);
 		}
 	}
-
-
-
 }

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0udlrus2amgj"]
+
+[ext_resource type="Texture2D" uid="uid://dl14n1g6vsd5y" path="res://sprites/cards/square_64.png" id="1_82cp4"]
+
+[sub_resource type="Gradient" id="Gradient_5y4rs"]
+offsets = PackedFloat32Array(0, 0.481013, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.977215, 1, 1, 1, 0)
+
+[node name="MatchOrbParticalEffect" type="CPUParticles2D"]
+position = Vector2(9, 0)
+emitting = false
+amount = 200
+lifetime = 0.8
+randomness = 0.5
+texture = ExtResource("1_82cp4")
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color_ramp = SubResource("Gradient_5y4rs")

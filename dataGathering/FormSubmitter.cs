@@ -73,7 +73,7 @@ public partial class FormSubmitter : HttpRequest
 			data = appendData(data, "entry.1443935098", gameManager.getAllCoinsGained().ToString());
 
 			data = appendData(data, "entry.537817310", "grid upgrades: " + gameManager.getGridUpgrades().ToString());
-		data = appendData(data, "entry.1063162396", gameManager.getTotalScore().ToString());
+			data = appendData(data, "entry.1063162396", gameManager.getTotalScore().ToString());
 
 			DeckSelectionResource deckSelection = gameManager.getDeckSelection();
 			if (deckSelection != null)
@@ -137,5 +137,4 @@ public partial class FormSubmitter : HttpRequest
 	entry.537817310: board size
 	entry.1194317277: deck list
 	*/
-
 }

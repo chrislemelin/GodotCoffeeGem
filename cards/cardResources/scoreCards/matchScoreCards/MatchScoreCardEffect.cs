@@ -20,7 +20,7 @@ public partial class MatchScoreCardEffect : CardEffectIF
 	public override void effect(MatchBoard matchBoard, Hand hand, Mana mana, List<Vector2> selectedTiles)
 	{
 		Score score = FindObjectHelper.getScore(matchBoard);
-		score.addScoreFromNode(75 * getValue(), node);
+		score.addScoreFromNode(150 * getValue(), node);
 	}
 	public override int getValue()
 	{
@@ -39,7 +39,7 @@ public partial class MatchScoreCardEffect : CardEffectIF
 		{
 			return "";
 		}
-		return getValue() * 75 + "";
+		return getValue() * 150 + "";
 	}
 	public override void init()
 	{

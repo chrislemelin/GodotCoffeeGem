@@ -1,0 +1,17 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://p1d2yivtybqy"]
+
+[ext_resource type="Texture2D" uid="uid://dhyxxpuu2mbtf" path="res://UI/Themes/textures/Woodborder_3X.png" id="1_ef10w"]
+
+[resource]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_ef10w")
+texture_margin_left = 20.0
+texture_margin_top = 21.0
+texture_margin_right = 21.0
+texture_margin_bottom = 21.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(1, 0, 599, 600)

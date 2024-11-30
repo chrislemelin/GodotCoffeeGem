@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://7p7poxj5vmgm"]
+
+[ext_resource type="Texture2D" uid="uid://w5b7rnqpx8ec" path="res://sprites/tutorial/arrow_right.png" id="1_6oegs"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(100, 400)
+offset_right = 129.0
+offset_bottom = 464.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_6oegs")
+expand_mode = 5

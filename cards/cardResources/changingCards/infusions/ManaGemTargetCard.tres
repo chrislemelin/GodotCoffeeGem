@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=7 format=3 uid="uid://cevggnl70tydo"]
+
+[ext_resource type="Texture2D" uid="uid://ds87yedysf6hg" path="res://cards/cardResources/cardArt/final/CardArtEnergyInfusion.png" id="1_8r6ar"]
+[ext_resource type="Script" path="res://cards/cardResources/changingCards/infusions/AddAddonTargetCardEffect.cs" id="2_i17lf"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="3_dy7vt"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="4_0sj2y"]
+
+[sub_resource type="Resource" id="Resource_ygqyj"]
+script = ExtResource("2_i17lf")
+gemAddonType = 1
+Range = 1.0
+Value = -1
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusEffects = []
+bonusPassives = []
+matchEffects = []
+extraEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
+tutorialCard = false
+canOnlySelectTutorial = []
+burntPositionTutorial = Vector2i(0, 0)
+addonPositionTutorial = Vector2i(0, 0)
+consume = false
+retain = false
+matchy = false
+spendX = false
+nuke = false
+innate = false
+cardPassives = []
+
+[sub_resource type="Resource" id="Resource_btafg"]
+script = ExtResource("3_dy7vt")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = -1
+valueModification = -1
+
+[resource]
+script = ExtResource("4_0sj2y")
+Title = "Energy Target"
+Description = "Add a $energy infusion on selected tile."
+UpgradeDescriptions = []
+Cost = 0
+rarity = 0
+Picture = ExtResource("1_8r6ar")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_ygqyj")
+cardUpgrades = []
+cardUpgradeFromPassive = SubResource("Resource_btafg")
+cardUpgradeTitle = "Energy Inf. +"

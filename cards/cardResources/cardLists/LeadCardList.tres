@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="CardList" load_steps=8 format=3 uid="uid://dumbe4o7qxwb1"]
 
 [ext_resource type="Resource" uid="uid://chyr8eld8n0jm" path="res://cards/cardResources/changingCards/colorchange/lead/LeadGenerateCard.tres" id="1_wh8y3"]
+[ext_resource type="Resource" uid="uid://cdhhpfh27s7pj" path="res://cards/cardResources/changingCards/infusions/ManaGemsCard.tres" id="2_08jw6"]
 [ext_resource type="Resource" uid="uid://70eixspe4ypk" path="res://cards/cardResources/deletingCards/PopSquareCard.tres" id="2_erdhf"]
-[ext_resource type="Resource" uid="uid://bjsuryep3kbde" path="res://cards/cardResources/changingCards/infusions/DrawGemsCard.tres" id="2_jh6ej"]
-[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/deletingCards/PopRandomCard.tres" id="3_0gxjg"]
-[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/movementCards/SwitchVertCard.tres" id="4_gbv75"]
-[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/movementCards/SwitchHorizCard.tres" id="5_q4b6w"]
+[ext_resource type="Resource" uid="uid://ck7bf50t0c1t7" path="res://cards/cardResources/basicCards/PopRandomCard.tres" id="3_0gxjg"]
+[ext_resource type="Resource" uid="uid://bbvys5qb3cqbf" path="res://cards/cardResources/basicCards/SwitchVertCard.tres" id="4_gbv75"]
+[ext_resource type="Resource" uid="uid://cudpl1ed1iroy" path="res://cards/cardResources/basicCards/SwitchHorizCard.tres" id="5_q4b6w"]
 [ext_resource type="Script" path="res://cards/cardResources/core/library/CardList.cs" id="6_d8b55"]
 
 [resource]
 script = ExtResource("6_d8b55")
 removeDuplicates = false
-allCards = Array[Object]([ExtResource("1_wh8y3"), ExtResource("2_jh6ej"), ExtResource("2_erdhf"), ExtResource("3_0gxjg"), ExtResource("4_gbv75"), ExtResource("4_gbv75"), ExtResource("4_gbv75"), ExtResource("5_q4b6w"), ExtResource("5_q4b6w"), ExtResource("5_q4b6w")])
+allCards = Array[Object]([ExtResource("1_wh8y3"), ExtResource("2_08jw6"), ExtResource("2_erdhf"), ExtResource("3_0gxjg"), ExtResource("4_gbv75"), ExtResource("4_gbv75"), ExtResource("4_gbv75"), ExtResource("5_q4b6w"), ExtResource("5_q4b6w"), ExtResource("5_q4b6w")])

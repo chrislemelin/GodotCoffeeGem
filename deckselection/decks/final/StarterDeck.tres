@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="1_pjjsm"]
 [ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/final/CardBackRealFinal.png" id="2_64ccs"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/cardPools/CardPool.tres" id="2_bomm1"]
-[ext_resource type="Texture2D" uid="uid://fkdlho8xi7li" path="res://sprites/cards/final/Cardfront2red.png" id="4_tr2nh"]
+[ext_resource type="Texture2D" uid="uid://d006248sckcyp" path="res://sprites/cards/final/TestBackground2.png" id="4_dj35x"]
 
 [resource]
 script = ExtResource("1_pjjsm")
@@ -15,4 +15,4 @@ title = "Starter Deck"
 description = "This is the starter deck, recommended for first time players."
 color = Color(0, 0, 0, 0)
 faceCard = ExtResource("2_64ccs")
-faceCardFront = ExtResource("4_tr2nh")
+faceCardFront = ExtResource("4_dj35x")

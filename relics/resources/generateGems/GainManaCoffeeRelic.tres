@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_12q1m"]
 script = ExtResource("1_dhjo2")
 type = 0
+skipEmitSignalOnInfusions = false
 value = 1
 BurnGems = 0
 EnergyGems = 0

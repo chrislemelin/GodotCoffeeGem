@@ -36,7 +36,6 @@ public static class TextHelper
 		return 	"[pulse freq=1.0 color=#ffffff40 ease=-2.0]"+text+"[/pulse]";
 	}
 
-
 	public static string colorText(string text, Color color) {
 		return "[color=" + color.ToHtml() + "]" + text + "[/color]";
 	}
@@ -70,7 +69,7 @@ public static class TextHelper
 	}
 
 	public static string imgStarter(){
-		return "[img with=22 height=22]";
+		return "[img with=30 height=30]";
 	}
 
 	public static string getEnergyImage() {
@@ -82,6 +81,23 @@ public static class TextHelper
 	}
 	public static string getCoinImage() {
 		return imgStarter()+"res://sprites/cards/icons/coin-icon.png[/img]";
+	}
+
+
+	public static string getEnergyIconString() {
+		return "$energy";
+	}
+
+	public static string getCardIconString() {
+		return "$draw";
+	}
+
+	public static string getCoinIconString() {
+		return "$coin";
+	}
+
+	public static string getIngredientIconString(GemType gemType) {
+		return "$"+gemType.getString();
 	}
 
 }

@@ -8,6 +8,9 @@ public partial class DeckSelectionGameManager : GameManagerIF
 {
 	[Export] DeckViewUI deckViewUI;
 	[Export] Array<DeckSelectionResource> deckSelections;
+	[Export] DeckSelectionResource testDeck;
+	[Export] bool includeTestDeck = false;
+
 	[Export] PackedScene deckSelectionUIPackedScene;
 	[Export] Control deckSelectionUIParent;
 	[Export] Button continueButton;
@@ -30,6 +33,10 @@ public partial class DeckSelectionGameManager : GameManagerIF
 
 	private void setUpDeckSelections() {
 		bool firstDeckSelected = false;
+		if (includeTestDeck) {
+			deckSelections.Add(testDeck);
+		}
+
 		foreach(DeckSelectionResource deckSelectionResource in deckSelections) {
 			DeckSelectionUI deckSelectionUI = (DeckSelectionUI)deckSelectionUIPackedScene.Instantiate();
 			deckSelectionUI.setDeckSelection(deckSelectionResource);
@@ -66,6 +73,7 @@ public partial class DeckSelectionGameManager : GameManagerIF
 	}
 
 	public void continueButtonClicked() {
+		resetGlobals();
 		List<CardResource> cards = deckSelectionResource.cardList.getCards();
 		setCardList(deckSelectionResource.cardList.getCards());
 		if (deckSelectionResource.cardPool != null) {
@@ -74,6 +82,7 @@ public partial class DeckSelectionGameManager : GameManagerIF
 		foreach(RelicResource relicResource in deckSelectionResource.relics) {
 			addRelic(relicResource);
 		}
+		
 		setDeckSelection(deckSelectionResource);
 		advanceLevel();
 	}

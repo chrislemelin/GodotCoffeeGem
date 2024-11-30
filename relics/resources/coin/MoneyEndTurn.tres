@@ -7,6 +7,7 @@
 [sub_resource type="Resource" id="Resource_yti5y"]
 script = ExtResource("1_mklpc")
 type = 7
+skipEmitSignalOnInfusions = false
 value = 4
 BurnGems = 0
 EnergyGems = 0

@@ -6,6 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_hsknt"]
 script = ExtResource("3_fr1o1")
+skipEmitSignalOnInfusions = false
 value = -5
 BurnGems = 0
 EnergyGems = 0
@@ -25,7 +26,7 @@ effect = SubResource("Resource_hsknt")
 [resource]
 script = ExtResource("5_cj27w")
 title = "Coffee Money Lost"
-description = "Lose 5 coins everytime a coffee match is made."
+description = "Lose 5 coins every time a coffee match is made."
 cost = 0
 hidden = false
 lastForOneTurn = false

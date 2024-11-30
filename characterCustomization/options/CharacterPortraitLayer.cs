@@ -9,7 +9,7 @@ public partial class CharacterPortraitLayer : Sprite2D
 	int valueIndex = 0;
 
 
-   public override void _Ready()
+	public override void _Ready()
 	{
 		base._Ready();
 	}
@@ -24,6 +24,15 @@ public partial class CharacterPortraitLayer : Sprite2D
 			Modulate = color;
 			//Texture = null;
 		}
+	}
+
+	public void setImage(Texture2D image) {
+		Modulate = new Color(1,1,1);
+		Texture = image;
+	}
+
+	public Texture2D getImage() {
+		return Texture;
 	}
 
 	public void setValueToResource(String name) {

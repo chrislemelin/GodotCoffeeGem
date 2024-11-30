@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class SettingsMenu : Node
+public partial class SettingsMenu : Control
 {
 	[Export] public HSlider sfxSlider;
 	[Export] public HSlider musicSlider;
@@ -97,6 +97,9 @@ public partial class SettingsMenu : Node
 	}
 
 	public void openWindow() {
+		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+		dataCollectionCheckBox.ButtonPressed = gameManagerIF.getCollectData();
+
 		panel.Visible = true;
 		EmitSignal(SignalName.windowOpened);
 		FindObjectHelper.getControllerHelper(this).forceDeselection();

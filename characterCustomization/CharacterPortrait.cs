@@ -9,6 +9,11 @@ public partial class CharacterPortrait : CharacterPortraitSave
 	[Export] CharacterPortraitLayer clothes;
 	[Export] CharacterPortraitLayer hat;
 	[Export] CharacterPortraitLayer misc;
+
+	[Export] Texture2D happyReactionTexture;
+	[Export] Texture2D normalReactionTexture;
+	[Export] AnimationPlayer playShake;
+
 	
 	Dictionary<CharacterLayerType, CharacterPortraitLayer> characterLayers = new Dictionary<CharacterLayerType, CharacterPortraitLayer>();
 
@@ -24,6 +29,12 @@ public partial class CharacterPortrait : CharacterPortraitSave
 		foreach (CharacterPortraitLayer layer in characterLayers.Values) {
 			setPortraitResource(layer);
 		}
+	}
+
+	public void happyReaction(){
+		baseCharacter.setImage(happyReactionTexture);
+		playShake.Play("Shake");
+		GetTree().CreateTimer(1f).Timeout += () => baseCharacter.setImage(normalReactionTexture);
 	}
 
 	private void addToDict(CharacterPortraitLayer layer) {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://1mkauieyg1gv"]
+[gd_scene load_steps=58 format=3 uid="uid://1mkauieyg1gv"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_hbgts"]
 [ext_resource type="Resource" uid="uid://qhphks7awow3" path="res://dialogue/final/bossDialouge/HighScoreWon.dialogue" id="2_c46cg"]
@@ -38,10 +38,9 @@
 [ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/NewCardSelection.tscn" id="40_llfcu"]
 [ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="41_s18v1"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="42_lbo55"]
-[ext_resource type="Script" path="res://UI/LevelCompleteUI.cs" id="43_bekot"]
+[ext_resource type="Script" path="res://UI/Game/LevelCompleteUI.cs" id="43_bekot"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="44_0gd7q"]
 [ext_resource type="Script" path="res://UI/Game/PlayableCardsUI.cs" id="45_cyhnn"]
-[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="46_5b582"]
 [ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="46_5urnm"]
 [ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="47_m3cob"]
 [ext_resource type="PackedScene" uid="uid://28twoy1bat4t" path="res://meta/debt/DebtReward.tscn" id="48_lbafv"]
@@ -1239,12 +1238,11 @@ debtReward = NodePath("../DebtProgressBar")
 visible = false
 layout_mode = 1
 
-[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("richTextLabel", "button", "animationPlayer", "richTextLabel")]
+[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "animationPlayer", "richTextLabel")]
 visible = false
 texture_filter = 1
 anchors_preset = 0
 script = ExtResource("43_bekot")
-richTextLabel = NodePath("Panel/VBoxContainer/HBoxContainer2/RichTextLabel")
 button = NodePath("Panel/Button2")
 animationPlayer = NodePath("AnimationPlayer")
 richTextLabel = NodePath("Panel/VBoxContainer/HBoxContainer2/RichTextLabel")
@@ -1427,7 +1425,7 @@ texture_filter = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme = ExtResource("46_5b582")
+theme = ExtResource("39_ojs4i")
 
 [node name="Tutorial1" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
 visible = false
@@ -1455,55 +1453,59 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="Screen1" type="VBoxContainer" parent="TutorialManager/TutorialUIs/Tutorial1"]
-layout_mode = 0
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial1"]
+layout_mode = 2
 offset_left = 522.0
 offset_top = 145.0
 offset_right = 1620.0
-offset_bottom = 689.0
+offset_bottom = 234.0
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial1/Screen1"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial1/Panel"]
 layout_mode = 2
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial1/Screen1/PanelContainer"]
-layout_mode = 2
+offset_left = 78.0
+offset_top = 20.0
+offset_right = 1036.0
+offset_bottom = 77.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "[center]Welcome to Beans of Production!"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="TutorialManager/TutorialUIs/Tutorial1/Screen1"]
+[node name="Panel2" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial1"]
 layout_mode = 2
-theme_override_constants/margin_top = 20
-
-[node name="PanelContainer2" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial1/Screen1"]
-layout_mode = 2
+offset_left = 522.0
+offset_top = 320.0
+offset_right = 1620.0
+offset_bottom = 591.0
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial1/Screen1/PanelContainer2"]
-layout_mode = 2
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial1/Panel2"]
+layout_mode = 0
+offset_right = 1099.0
+offset_bottom = 283.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[fill]Hello! My name is Bob, but you can call me Boss. I'll be your AI supervisor here at BeanTown coffee shop #357, a subsidiary of Conglomerate Incorporated. We here at Conglomerate Inc. offer a generous and fulfilling barista program for our team. You'll gain valuable experience while working off your debt at the same time!
 With that, we have concluded our standard 3-minute allotment for small talk. It's time to start your training."
+fit_content = true
 
 [node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial1"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 236.0
-offset_top = 303.0
-offset_right = 556.0
-offset_bottom = 623.0
+offset_left = 118.0
+offset_top = 250.0
+offset_right = 438.0
+offset_bottom = 570.0
 texture = ExtResource("31_6imdm")
 
 [node name="Button" parent="TutorialManager/TutorialUIs/Tutorial1" instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 761.0
-offset_right = 1201.0
-offset_bottom = 829.0
+offset_left = 892.0
+offset_top = 663.0
+offset_right = 1228.0
+offset_bottom = 731.0
 text = "Continue"
 grabFocus = true
 
@@ -1544,21 +1546,6 @@ rotation = 1.5708
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial2"]
-layout_mode = 0
-offset_left = 243.0
-offset_top = 243.0
-offset_right = 1052.0
-offset_bottom = 481.0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial2/PanelContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "Play cards from your hand to make 3-of-a-kind matches. Each card has a [img]res://sprites/cards/icons/energy-icon.png[/img] cost in the top left corner. You can see how much [img]res://sprites/cards/icons/energy-icon.png[/img] you have right here."
-fit_content = true
-
 [node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial2"]
 texture_filter = 1
 layout_mode = 0
@@ -1580,12 +1567,31 @@ rotation = 1.5708
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial2"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 269.0
+offset_right = 840.0
+offset_bottom = 461.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial2/Panel"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 586.0
+offset_bottom = 185.0
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Play cards from your hand to make 3-of-a-kind matches. Each card has a [img]res://sprites/cards/icons/energy-icon.png[/img] cost in the top left corner. You can see how much [img]res://sprites/cards/icons/energy-icon.png[/img] you have right here."
+fit_content = true
+
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial2" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 761.0
-offset_right = 1201.0
-offset_bottom = 829.0
+offset_left = 376.0
+offset_top = 518.0
+offset_right = 712.0
+offset_bottom = 586.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
@@ -1663,20 +1669,32 @@ animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial8"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial8"]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 290.0
-offset_right = 745.0
-offset_bottom = 492.0
+offset_left = 287.0
+offset_top = 388.0
+offset_right = 590.0
+offset_bottom = 547.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial8/PanelContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial8/Panel"]
 layout_mode = 2
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 344.0
+offset_bottom = 148.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Try playing the switch horizontal card to make the match of 4 vanilla!"
 fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial8"]
+visible = false
+layout_mode = 0
+offset_left = 242.0
+offset_top = 290.0
+offset_right = 745.0
+offset_bottom = 492.0
 
 [node name="Tutorial5" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
 visible = false
@@ -1726,15 +1744,19 @@ scale = Vector2(2, 2)
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial5"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial5"]
 layout_mode = 0
-offset_left = 356.0
-offset_top = 172.0
-offset_right = 930.0
-offset_bottom = 410.0
+offset_left = 441.0
+offset_top = 192.0
+offset_right = 829.0
+offset_bottom = 376.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial5/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial5/Panel"]
 layout_mode = 2
+offset_left = -3.0
+offset_top = -6.0
+offset_right = 431.0
+offset_bottom = 184.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -1752,10 +1774,10 @@ texture = ExtResource("31_6imdm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TutorialManager/TutorialUIs/Tutorial5"]
 layout_mode = 0
-offset_left = 852.0
-offset_top = 702.0
-offset_right = 1142.0
-offset_bottom = 766.0
+offset_left = 487.0
+offset_top = 440.0
+offset_right = 777.0
+offset_bottom = 504.0
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial5/VBoxContainer" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 2
@@ -1816,37 +1838,41 @@ expand_mode = 3
 [node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial6"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1126.0
-offset_top = 160.0
-offset_right = 1446.0
-offset_bottom = 480.0
+offset_left = 1253.0
+offset_top = 140.0
+offset_right = 1573.0
+offset_bottom = 460.0
 texture = ExtResource("31_6imdm")
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial6" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 761.0
-offset_right = 1201.0
-offset_bottom = 829.0
+offset_left = 731.0
+offset_top = 430.0
+offset_right = 1067.0
+offset_bottom = 498.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 grabFocus = true
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial6"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial6"]
 layout_mode = 0
-offset_left = 610.0
-offset_top = 173.0
-offset_right = 1184.0
-offset_bottom = 375.0
+offset_left = 646.0
+offset_top = 198.0
+offset_right = 1150.0
+offset_bottom = 378.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial6/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial6/Panel"]
 layout_mode = 2
+offset_left = -3.0
+offset_top = -6.0
+offset_right = 519.0
+offset_bottom = 191.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "You must reach the score quota in order to pass the level."
+text = "You must reach the score quota in order to pass the level. The coffee pot to the left of the board will fill up as you get closer to your quota."
 fit_content = true
 
 [node name="Tutorial3" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
@@ -1905,19 +1931,23 @@ animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial3"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial3"]
 layout_mode = 0
-offset_left = 1073.0
-offset_top = 444.0
-offset_right = 1612.0
-offset_bottom = 719.0
+offset_left = 1225.0
+offset_top = 495.0
+offset_right = 1592.0
+offset_bottom = 713.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial3/PanelContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial3/Panel"]
 layout_mode = 2
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 385.0
+offset_bottom = 222.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "Now you are now out of cards to play. Ending your turn will draw 5 new cards, reset your [img]res://sprites/cards/icons/energy-icon.png[/img] to 3, and set your multiplier back to 1."
+text = "You are now out of cards to play. Ending your turn will draw 5 new cards, reset your [img]res://sprites/cards/icons/energy-icon.png[/img] to 3, and set your multiplier back to 1."
 fit_content = true
 
 [node name="Tutorial4" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
@@ -1969,25 +1999,28 @@ expand_mode = 3
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial4" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 761.0
-offset_right = 1201.0
-offset_bottom = 829.0
+offset_left = 666.0
+offset_top = 475.0
+offset_right = 1002.0
+offset_bottom = 543.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 grabFocus = true
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial4"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial4"]
 layout_mode = 0
-offset_left = 567.0
-offset_top = 28.0
-offset_right = 1141.0
-offset_bottom = 419.491
+offset_left = 602.0
+offset_top = 95.0
+offset_right = 1044.0
+offset_bottom = 417.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial4/PanelContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial4/Panel"]
 layout_mode = 2
+offset_top = -4.0
+offset_right = 455.0
+offset_bottom = 348.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2051,15 +2084,19 @@ animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial9"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial9"]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 231.0
-offset_right = 755.0
-offset_bottom = 469.0
+offset_left = 293.0
+offset_top = 305.0
+offset_right = 633.0
+offset_bottom = 492.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial9/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial9/Panel"]
 layout_mode = 2
+offset_left = -1.0
+offset_top = -8.0
+offset_right = 379.0
+offset_bottom = 182.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2101,15 +2138,19 @@ rotation = 4.71239
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial10"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial10"]
 layout_mode = 0
-offset_left = 610.0
-offset_top = 265.0
-offset_right = 1004.0
-offset_bottom = 467.0
+offset_left = 627.0
+offset_top = 292.0
+offset_right = 901.0
+offset_bottom = 400.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial10/PanelContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial10/Panel"]
 layout_mode = 2
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 277.0
+offset_bottom = 113.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2138,29 +2179,33 @@ expand_mode = 3
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial10" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 761.0
-offset_right = 1201.0
-offset_bottom = 829.0
+offset_left = 930.0
+offset_top = 706.0
+offset_right = 1266.0
+offset_bottom = 774.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 grabFocus = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial10"]
+[node name="Panel2" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial10"]
 layout_mode = 0
-offset_left = 799.0
-offset_top = 507.0
-offset_right = 1318.0
-offset_bottom = 709.0
+offset_left = 925.0
+offset_top = 542.0
+offset_right = 1276.0
+offset_bottom = 650.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial10/PanelContainer2"]
+[node name="q" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial10/Panel2"]
 layout_mode = 2
+offset_left = -2.0
+offset_top = -8.0
+offset_right = 377.0
+offset_bottom = 118.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "This is an energy-infused ingredient. Matching it will grant one[img]res://sprites/cards/icons/energy-icon.png[/img] "
+text = "This is an [img]res://sprites/cards/icons/energy-icon.png[/img]-infused ingredient. Matching it will grant one[img]res://sprites/cards/icons/energy-icon.png[/img] "
 fit_content = true
 
 [node name="Tutorial11" type="Control" parent="TutorialManager/TutorialUIs"]
@@ -2186,15 +2231,19 @@ expand_mode = 2
 flip_h = true
 flip_v = true
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial11"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial11"]
 layout_mode = 0
-offset_left = 238.0
-offset_top = 240.0
-offset_right = 739.0
-offset_bottom = 513.0
+offset_left = 314.0
+offset_top = 305.0
+offset_right = 649.0
+offset_bottom = 525.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial11/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial11/Panel"]
 layout_mode = 2
+offset_left = -1.0
+offset_top = -10.0
+offset_right = 360.0
+offset_bottom = 218.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2279,15 +2328,19 @@ rotation = 4.71239
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial12"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial12"]
 layout_mode = 0
-offset_left = 909.0
-offset_top = 520.0
-offset_right = 1483.0
-offset_bottom = 722.0
+offset_left = 952.0
+offset_top = 544.0
+offset_right = 1360.0
+offset_bottom = 691.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial12/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial12/Panel"]
 layout_mode = 2
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 429.0
+offset_bottom = 144.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2296,10 +2349,10 @@ fit_content = true
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial12" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 753.0
-offset_right = 1374.0
-offset_bottom = 821.0
+offset_left = 1004.0
+offset_top = 739.0
+offset_right = 1340.0
+offset_bottom = 807.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
@@ -2362,15 +2415,19 @@ animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial13"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial13"]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 231.0
-offset_right = 755.0
-offset_bottom = 469.0
+offset_left = 285.0
+offset_top = 312.0
+offset_right = 628.0
+offset_bottom = 498.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial13/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial13/Panel"]
 layout_mode = 2
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 375.0
+offset_bottom = 180.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2422,15 +2479,19 @@ scale = Vector2(2, 2)
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial14"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial14"]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 231.0
-offset_right = 755.0
-offset_bottom = 536.491
+offset_left = 269.0
+offset_top = 281.0
+offset_right = 619.0
+offset_bottom = 546.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial14/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial14/Panel"]
 layout_mode = 2
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 375.0
+offset_bottom = 261.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2495,15 +2556,19 @@ scale = Vector2(2, 2)
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="TutorialManager/TutorialUIs/Tutorial15"]
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial15"]
 layout_mode = 0
-offset_left = 365.0
-offset_top = 238.0
-offset_right = 1407.0
-offset_bottom = 530.0
+offset_left = 440.0
+offset_top = 292.0
+offset_right = 1312.0
+offset_bottom = 476.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial15/PanelContainer"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial15/Panel"]
 layout_mode = 2
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 899.0
+offset_bottom = 182.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
@@ -2513,17 +2578,17 @@ fit_content = true
 [node name="MainMenu" parent="TutorialManager/TutorialUIs/Tutorial15" instance=ExtResource("53_8xrvk")]
 layout_mode = 0
 offset_left = 739.0
-offset_top = 658.0
+offset_top = 603.0
 offset_right = 1083.0
-offset_bottom = 723.0
+offset_bottom = 668.0
 text = "Main Menu"
 
 [node name="StartGame" parent="TutorialManager/TutorialUIs/Tutorial15" instance=ExtResource("53_8xrvk")]
 layout_mode = 0
 offset_left = 738.0
-offset_top = 576.0
+offset_top = 521.0
 offset_right = 1082.0
-offset_bottom = 641.0
+offset_bottom = 586.0
 text = "Start Game"
 sceneString = "res://mainScenes/DeckSelectionPicker.tscn"
 

@@ -1,11 +1,27 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://oov7pb8y5mml"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=9 format=3 uid="uid://oov7pb8y5mml"]
 
 [ext_resource type="Texture2D" uid="uid://bh5oqf0o5616l" path="res://cards/cardResources/cardArt/final/CardArtSugar.png" id="1_05cvs"]
 [ext_resource type="Script" path="res://cards/cardResources/changingCards/colorchange/randomColorChange/CardEffectColorChangeRandom.cs" id="2_4km1i"]
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="2_7mxjw"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardPassive.cs" id="3_8otrb"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_vkrsl"]
+
+[sub_resource type="Resource" id="Resource_agpnh"]
+script = ExtResource("2_7mxjw")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 1
+GainEnergy = 0
+GainCoins = 0
+GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_dplym"]
 script = ExtResource("2_4km1i")
+makeMatchBonus = SubResource("Resource_agpnh")
 Range = 1.0
 Value = 2
 BlackGems = 0
@@ -14,14 +30,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = true
 effectGemType = 5
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = false
 canOnlySelectTutorial = []
 burntPositionTutorial = Vector2i(0, 0)
@@ -31,11 +50,22 @@ retain = false
 matchy = false
 spendX = false
 nuke = false
+innate = false
+cardPassives = []
+
+[sub_resource type="Resource" id="Resource_tts8t"]
+script = ExtResource("3_8otrb")
+expireAfterTurnEnd = false
+expireAfterNextCardPlayed = false
+rangeModification = 0.0
+costModification = 0
+valueModification = 1
 
 [resource]
 script = ExtResource("3_vkrsl")
 Title = "Sugar Spray"
 Description = "Generate $value$sugar. If this creates a match, +1$draw."
+UpgradeDescriptions = []
 Cost = 0
 rarity = 0
 Picture = ExtResource("1_05cvs")
@@ -43,3 +73,6 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_dplym")
+cardUpgrades = []
+cardUpgradeFromPassive = SubResource("Resource_tts8t")
+cardUpgradeTitle = ""

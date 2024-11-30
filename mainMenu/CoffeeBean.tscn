@@ -1,13 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5lhdf87xxt55"]
+[gd_scene load_steps=5 format=3 uid="uid://c5lhdf87xxt55"]
 
 [ext_resource type="Script" path="res://mainMenu/Rotate.cs" id="1_tc6sp"]
-[ext_resource type="Texture2D" uid="uid://m47nbu2y8teo" path="res://sprites/ingredients/bean-pixel-300px.png" id="2_rsimq"]
+[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://sprites/ingredients/final/Bean-pixel2.png" id="2_tdlrd"]
 
-[node name="CoffeeBean" type="Node2D"]
-scale = Vector2(0.5, 0.5)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_aqt2j"]
+bounce = 0.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uqw6h"]
+radius = 32.8805
+height = 110.073
+
+[node name="CoffeeBean" type="Node2D" node_paths=PackedStringArray("visibleOnScreen")]
+position = Vector2(-7, 6)
 script = ExtResource("1_tc6sp")
-rotateSpeed = 5.0
+visibleOnScreen = NodePath("RigidBody2D/Bean/VisibleOnScreenNotifier2D")
 
-[node name="Bean" type="Sprite2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_aqt2j")
+gravity_scale = 0.07
+
+[node name="Bean" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
 position = Vector2(8, 13)
-texture = ExtResource("2_rsimq")
+scale = Vector2(3, 3)
+texture = ExtResource("2_tdlrd")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="RigidBody2D/Bean"]
+position = Vector2(-0.333333, 0.5)
+scale = Vector2(1.63333, 1.68333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(8.66667, 13.8333)
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_uqw6h")

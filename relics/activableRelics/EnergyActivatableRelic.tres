@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ActivableRelicResource" load_steps=6 format=3 uid="uid://dat3q3duiibxn"]
+
+[ext_resource type="Script" path="res://relics/effects/EffectResource.cs" id="1_mjnx2"]
+[ext_resource type="Script" path="res://match/recipe/RecipeResource.cs" id="2_6ven7"]
+[ext_resource type="Script" path="res://relics/activableRelics/ActivatableRelicResource.cs" id="3_p1dcu"]
+
+[sub_resource type="Resource" id="Resource_civug"]
+script = ExtResource("1_mjnx2")
+skipEmitSignalOnInfusions = false
+value = 0
+BurnGems = 0
+EnergyGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainEnergy = 1
+GainCoins = 0
+GainMult = 0.0
+
+[sub_resource type="Resource" id="Resource_y73ho"]
+script = ExtResource("2_6ven7")
+ingredientList = [0, 0, 0, 4, 3]
+
+[resource]
+script = ExtResource("3_p1dcu")
+canHoldMultipleCharges = true
+recipe = SubResource("Resource_y73ho")
+effects = Array[Object]([SubResource("Resource_civug")])
+title = "Card Draw"
+description = "Draw 1 card"

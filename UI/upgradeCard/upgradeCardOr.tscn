@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://clsuu2lfujpi"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(100, 400)
+offset_right = 129.0
+offset_bottom = 464.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]OR"
+fit_content = true

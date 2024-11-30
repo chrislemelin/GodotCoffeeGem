@@ -47,6 +47,12 @@ public partial class CardIF : lerp
 		tutorialDisabled = true;
 		Modulate = disabledColor;
 	}
+
+	public void setDisabled()
+	{
+		enabled = false;
+		Modulate = disabledColor;
+	}
 	public void setEnabled()
 	{
 		enabled = true;
@@ -84,7 +90,7 @@ public partial class CardIF : lerp
 		if (cardResource.getEnergyCost() <= mana.manaValue && cardResource.canPlayCard() && !tutorialDisabled){
 			setEnabled();
 		} else {
-			setDisabledForTutorial();
+			setDisabled();
 		}
 
 	}

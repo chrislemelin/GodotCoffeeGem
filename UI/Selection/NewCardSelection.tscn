@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxavdfi52bnxv"]
+[gd_scene load_steps=9 format=3 uid="uid://cxavdfi52bnxv"]
 
 [ext_resource type="Script" path="res://UI/Selection/NewCardSelection.cs" id="1_ey31r"]
-[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="2_wj53c"]
 [ext_resource type="PackedScene" uid="uid://leg736b6h2y8" path="res://cards/CardFullUIScaled.tscn" id="2_ymanv"]
 [ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="3_hkya8"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_tow0o"]
 [ext_resource type="PackedScene" uid="uid://ro1oen6ok0tv" path="res://UI/core/ButtonWithCost.tscn" id="5_65464"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="6_33su1"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="7_6nsr1"]
-[ext_resource type="AudioStream" uid="uid://cgis8ellwbe3d" path="res://sound/rewards/Rise01.mp3" id="8_p82pv"]
+[ext_resource type="AudioStream" uid="uid://ddjbx8poteyfd" path="res://sound/Rise03.mp3" id="8_dqt7s"]
 
 [node name="CardSelectionUI" type="Control" node_paths=PackedStringArray("cardContainer", "skipButton", "coinsGainedLabel", "levelPassedText", "viewDeckButton", "audioPlayer", "refreshSelectionButton")]
 visible = false
@@ -103,18 +102,6 @@ offset_bottom = 833.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="UI" parent="Control/HBoxContainer" instance=ExtResource("2_wj53c")]
-visible = false
-layout_mode = 2
-
-[node name="UI2" parent="Control/HBoxContainer" instance=ExtResource("2_wj53c")]
-visible = false
-layout_mode = 2
-
-[node name="UI3" parent="Control/HBoxContainer" instance=ExtResource("2_wj53c")]
-visible = false
-layout_mode = 2
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
 layout_mode = 0
 offset_left = 341.0
@@ -152,4 +139,4 @@ text = "View Deck"
 
 [node name="AudioStreamPlayer2D" parent="Control" instance=ExtResource("7_6nsr1")]
 position = Vector2(-42, 69)
-stream = ExtResource("8_p82pv")
+stream = ExtResource("8_dqt7s")

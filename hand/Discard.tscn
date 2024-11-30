@@ -18,9 +18,9 @@ texture = ExtResource("2_v7buu")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 texture_filter = 1
 offset_left = -75.0
-offset_top = -209.0
+offset_top = -208.0
 offset_right = 80.0
-offset_bottom = -167.0
+offset_bottom = -166.0
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[center]1"

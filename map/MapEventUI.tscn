@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp7p3w0x4w3ae"]
+
+[ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_p8b7s"]
+[ext_resource type="Script" path="res://UI/MapEventResolveUI.cs" id="2_hiwwo"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="3_3hyxa"]
+[ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="4_c0876"]
+
+[sub_resource type="Animation" id="Animation_hbqvg"]
+resource_name = "FadeIn"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Forground:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(551, 800), Vector2(551, 263)]
+}
+
+[sub_resource type="Animation" id="Animation_eouyj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Forground:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(551, 1200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cse58"]
+_data = {
+"FadeIn": SubResource("Animation_hbqvg"),
+"RESET": SubResource("Animation_eouyj")
+}
+
+[node name="MapEventUI" type="Control" node_paths=PackedStringArray("title", "description", "continueButton", "declineButton", "button", "animationPlayer")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_p8b7s")
+script = ExtResource("2_hiwwo")
+title = NodePath("Forground/Control/title")
+description = NodePath("Forground/Control/description")
+continueButton = NodePath("Forground/Control/HBoxContainer/Continue2")
+declineButton = NodePath("Forground/Control/HBoxContainer/Button")
+button = NodePath("Forground/Control/HBoxContainer/Continue2")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.498039)
+layout_mode = 0
+offset_right = 1922.0
+offset_bottom = 1079.0
+texture = ExtResource("3_3hyxa")
+
+[node name="Forground" type="Panel" parent="."]
+modulate = Color(0.831373, 0.933333, 0.921569, 1)
+texture_filter = 1
+use_parent_material = true
+layout_mode = 0
+offset_left = 551.0
+offset_top = 1200.0
+offset_right = 1376.0
+offset_bottom = 1671.0
+
+[node name="Control" type="Control" parent="Forground"]
+use_parent_material = true
+layout_mode = 2
+anchors_preset = 0
+offset_left = -512.0
+offset_top = -1163.22
+offset_right = -512.0
+offset_bottom = -1163.22
+
+[node name="title" type="RichTextLabel" parent="Forground/Control"]
+texture_filter = 1
+use_parent_material = true
+layout_mode = 0
+offset_left = 546.0
+offset_top = 1183.22
+offset_right = 1325.0
+offset_bottom = 1259.22
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]TITLE TEXT"
+
+[node name="description" type="RichTextLabel" parent="Forground/Control"]
+texture_filter = 1
+use_parent_material = true
+layout_mode = 0
+offset_left = 542.0
+offset_top = 1272.22
+offset_right = 1314.0
+offset_bottom = 1525.22
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Title Description"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Forground/Control"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 1547.0
+offset_right = 1153.0
+offset_bottom = 1611.0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Continue2" parent="Forground/Control/HBoxContainer" instance=ExtResource("4_c0876")]
+layout_mode = 2
+text = "Continue"
+grabFocus = true
+
+[node name="Button" parent="Forground/Control/HBoxContainer" instance=ExtResource("4_c0876")]
+modulate = Color(1, 0.270588, 0.278431, 1)
+layout_mode = 2
+text = "Decline"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cse58")
+}

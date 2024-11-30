@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dha7jg80nudyy"]
+
+[ext_resource type="Texture2D" uid="uid://bwqf3tovc4743" path="res://cards/cardResources/cardArt/final/CardArtSwitchAll.png" id="1_5864w"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/upgradedBasicCards/SwitchCardEffect.cs" id="1_sd14e"]
+[ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="2_ljjbh"]
+
+[sub_resource type="Resource" id="Resource_n6fnt"]
+script = ExtResource("1_sd14e")
+teleport = false
+Range = 1.8
+Value = 0
+BlackGems = 0
+ManaGems = 0
+CardGems = 0
+CoinGems = 0
+DrawCards = 0
+GainMana = 0
+bonusEffects = []
+bonusPassives = []
+matchEffects = []
+extraEffects = []
+matchEffectsMin = 3
+selectionType = 0
+CardsToDiscard = 0
+canTargetBlackGems = true
+effectGemType = 0
+cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
+tutorialCard = false
+canOnlySelectTutorial = []
+burntPositionTutorial = Vector2i(0, 0)
+addonPositionTutorial = Vector2i(0, 0)
+consume = false
+retain = false
+matchy = false
+spendX = false
+nuke = false
+innate = false
+cardPassives = []
+
+[resource]
+script = ExtResource("2_ljjbh")
+Title = "Swap +"
+Description = "Swap 2 adjacent tiles in any direction."
+UpgradeDescriptions = []
+Cost = 1
+rarity = 1
+Picture = ExtResource("1_5864w")
+coinCost = 0
+coinPlayRequirement = 0
+coinPlayCost = 0
+cardEffect = SubResource("Resource_n6fnt")
+cardUpgrades = []
+cardUpgradeTitle = ""

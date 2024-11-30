@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cp3pe46jfulny"]
 
 [ext_resource type="Texture2D" uid="uid://dk0nhkf81f88" path="res://cards/cardResources/cardArt/final/CardArtSwitchHoriz.png" id="1_rp1rp"]
-[ext_resource type="Script" path="res://cards/cardResources/movementCards/SwitchHorizCardEffect.cs" id="2_uncha"]
+[ext_resource type="Script" path="res://cards/cardResources/basicCards/SwitchHorizCardEffect.cs" id="2_uncha"]
 [ext_resource type="Script" path="res://cards/cardResources/core/CardResource.cs" id="3_ar30d"]
 
 [sub_resource type="Resource" id="Resource_ym5bx"]
@@ -14,14 +14,17 @@ CardGems = 0
 CoinGems = 0
 DrawCards = 0
 GainMana = 0
+bonusEffects = []
 bonusPassives = []
 matchEffects = []
+extraEffects = []
 matchEffectsMin = 3
 selectionType = 0
 CardsToDiscard = 0
 canTargetBlackGems = false
 effectGemType = 0
 cannotSelectGemTypes = []
+selectableGemTyleFirstSelection = []
 tutorialCard = true
 canOnlySelectTutorial = Array[Vector2i]([Vector2i(4, 1), Vector2i(5, 1)])
 burntPositionTutorial = Vector2i(0, 0)
@@ -32,12 +35,14 @@ matchy = false
 spendX = false
 nuke = false
 innate = false
+cardPassives = []
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("3_ar30d")
 Title = "Switch Horiz"
 Description = "Swap two horizontally adjacent ingredients."
+UpgradeDescriptions = []
 Cost = 1
 rarity = 0
 Picture = ExtResource("1_rp1rp")
@@ -45,3 +50,5 @@ coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
 cardEffect = SubResource("Resource_ym5bx")
+cardUpgrades = []
+cardUpgradeTitle = ""

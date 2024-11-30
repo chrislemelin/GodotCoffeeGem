@@ -14,6 +14,8 @@ public partial class MatchBoard : MatchBoardTutorial
 	[Export] public int sizeY;
 	[Export] PackedScene tileTemplate;
 	[Export] PackedScene tileTemplateSmall;
+	[Export] PackedScene futureTilesSmallTemplate;
+	[Export] PackedScene futureTilesTemplate;
 	[Export] public PackedScene gemScene;
 	[Export] public PackedScene gemSceneSmall;
 	[Export] public Hand hand;
@@ -22,7 +24,12 @@ public partial class MatchBoard : MatchBoardTutorial
 	[Export] public AudioPlayer audioStreamPlayer2D;
 	[Export] public AudioPlayer audioScoreStreamPlayer2D;
 	[Export] public Node2D boardHolder;
+	[Export] public Node2D futureTileHolder;
+	[Export] public PackedScene matchOrbPackedScene;
+	[Export] public Node2D matchOrbHolder;
+
 	private int columnUpgrades = 0;
+	private bool showFutureTiles = false;
 
 	// score stats
 	private int scoreValue = 0;
@@ -33,7 +40,9 @@ public partial class MatchBoard : MatchBoardTutorial
 	private int scoreNeeded = 0;
 	[Export] int shakeLevel = 10;
 	[Export] int shakeFreq = 20;
-
+	[Export] public CoffeePot coffeePot;
+	[Export] public AudioStreamPlayer2D coffeePotDropAudio;
+	[Export] public AudioStreamPlayer2D victoryMatchAudioStream;
 	[Export] public AudioStream matchAudioStream;
 	[Export] public AudioStream popAudioStream;
 	[Export] public AudioStream switchAudioStream;
@@ -41,24 +50,29 @@ public partial class MatchBoard : MatchBoardTutorial
 	[Export] public RichTextLabel levelLabel;
 	[Export] public RichTextLabel scoreLabel;
 	[Export] public RichTextLabel multLabel;
-
 	[Export] private float scorePitchMult = .1f;
 	[Export] private float scorePitchMax =.3f;
- 
-
 	[Signal]
 	public delegate void ingredientDestroyedEventHandler(Gem gem);
 	[Signal]
 	public delegate void doneMatchingEventHandler();
 	[Signal]
 	public delegate void ingredientMatchedEventHandler(Match match);
+	 [Signal]
+	public delegate void ingredientAllMatchesEventHandler(Godot.Collections.Array<Match> matches);
 	[Signal]
 	public delegate void boardSizeChangedEventHandler();
+	[Signal]
+	public delegate void blackGemsCreatedThisTurnChangedEventHandler();
+	[Signal]
+	public delegate void addonsAddedToGemsEventHandler(int gemAdddonType);
+
 
 	private int hiddenCounter = 0;
 	private Timer timer;
 	private bool thingsAreMoving = true;
 
+	List<FutureTile> futureTiles = new List<FutureTile>();
 	HashSet<Tile> tileSet = new HashSet<Tile>();
 	List<Tile> tilesSelected = new List<Tile>();
 	HashSet<Tile> tilesAvailibleToBeSelected = new HashSet<Tile>();
@@ -88,8 +102,6 @@ public partial class MatchBoard : MatchBoardTutorial
 	public HashSet<Match> matchesThisLevel = new HashSet<Match>();
 
 	public int blackGemsCreatedThisTurn = 0;
-	[Signal]
-	public delegate void blackGemsCreatedThisTurnChangedEventHandler();
 
 	private void tileClicked(Tile tile, InputEvent inputEvent) {
 		if (InputHelper.isSelectedAction(inputEvent))
@@ -163,6 +175,37 @@ public partial class MatchBoard : MatchBoardTutorial
 		setUIFocus(false);
 	}
 
+	public void generateMatchOrbs(HashSet<Match> matches) {
+		foreach(Match match in matches) {
+			if (match.ingredients.Count > 0) {
+				Vector2 startingPosition = match.ingredients[0].GlobalPosition + new Vector2(40,40);
+				MatchEffectOrb matchOrb = (MatchEffectOrb)matchOrbPackedScene.Instantiate();
+				matchOrbHolder.AddChild(matchOrb);
+				float length = matchOrb.generatePathToCenter(startingPosition);
+				//matchOrb.GlobalPosition = startingPosition;
+				
+				Tween tweenMovement = GetTree().CreateTween();
+				tweenMovement.TweenProperty(matchOrb.pathFollow2D, "progress_ratio", 1.0f, Math.Clamp(length /500.0f, 1.0f, 2.0f));
+				tweenMovement.SetEase(Tween.EaseType.InOut);
+				tweenMovement.TweenCallback(Callable.From(matchOrb.destroy));
+				tweenMovement.TweenCallback(Callable.From(coffeePot.flash));
+				tweenMovement.TweenCallback(Callable.From(coffeePot.scoreChanged));
+				tweenMovement.TweenCallback(Callable.From(() => coffeePotDropAudio.Play()));
+				
+				
+				Tween tweenVisible = GetTree().CreateTween();
+				Color color = match.GetGemType().GetColor();
+				color.A = 0.0f;
+				matchOrb.orb.Modulate = color;
+				Color colorEnd = match.GetGemType().GetColor();
+				colorEnd.A = 1.0f;
+				tweenVisible.TweenProperty(matchOrb.orb, "modulate", colorEnd, .2f);
+
+				//flash
+			}
+		}
+	}
+
 	public void setUIFocus(bool value) {
 		if(FindObjectHelper.getControllerHelper(this).isUsingController()) {
 			hasUIFocus = value;
@@ -172,7 +215,7 @@ public partial class MatchBoard : MatchBoardTutorial
 				clearTilesHovered();
 
 			}
-			//clear
+			//cle ar
 		}
 	}
 
@@ -331,7 +374,6 @@ public partial class MatchBoard : MatchBoardTutorial
 		if (!thingsAreMoving) {
 			EmitSignal(SignalName.doneMatching);
 		}
-	
 	}
 
 	private bool checkIfThingsAreDoneMoving()
@@ -407,13 +449,13 @@ public partial class MatchBoard : MatchBoardTutorial
 
 			scoreProgressStep = startingScoreProgressStep;
 			scoreCurrent = scoreValue;
-			scoreLabel.Text = scoreCurrent + "/" + scoreNeeded;
+			scoreLabel.Text = TextHelper.centered(scoreCurrent + "/" + scoreNeeded);
 		} else {
 			audioScoreStreamPlayer2D.PitchScale +=.2f;
 			audioScoreStreamPlayer2D.setBaseVolumeMult(audioScoreStreamPlayer2D.baseVolumeMult + .05f);
 			//audioScoreStreamPlayer2D.Play();
 			scoreProgressStep += scoreProgressStepIncrease;
-			scoreLabel.Text = scoreCurrent.ToString()+ "/" + scoreNeeded;
+			scoreLabel.Text = TextHelper.centered(scoreCurrent.ToString()+ "/" + scoreNeeded);
 		}
 		
 	}
@@ -426,9 +468,16 @@ public partial class MatchBoard : MatchBoardTutorial
 		blackGemsCreatedThisTurn = 0;
 	}
 
+	public void setShowFutureTiles(bool showFutureTiles) {
+		this.showFutureTiles = showFutureTiles;
+		futureTileHolder.Visible = showFutureTiles;
+
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		setShowFutureTiles(false);
 		//GetNode<Button>("%NewTurnButton").Pressed += () => checkForMatches();
 		ControllerHelper controllerHelper = FindObjectHelper.getControllerHelper(this);
 		controllerHelper.UsingControllerChanged += clearUIFocus;
@@ -449,11 +498,11 @@ public partial class MatchBoard : MatchBoardTutorial
 		FindObjectHelper.getNewTurnButton(this).TurnCleanUp += resetTurnStats;
 		FindObjectHelper.getNewTurnButton(this).StartNewTurn += () => setUIFocus(false);
 
-		levelLabel.Text = "" + FindObjectHelper.getGameManager(this).getLevel() + "/8";
+		levelLabel.Text = TextHelper.centered(FindObjectHelper.getGameManager(this).getLevel() + "/8");
 
 		score.scoreChange += (int newScore, int oldScore) => GetTree().CreateTimer(.25f).Timeout += () => scoreChanged(newScore, oldScore);
 		score.multChange += (value) =>  {
-			multLabel.Text = Mult.getMultString(value);
+			multLabel.Text = "[center]"+Mult.getMultString(value);
 			multLabel.Modulate = Mult.getMultColor(value);
 		};
 		timer = new Timer();
@@ -488,11 +537,11 @@ public partial class MatchBoard : MatchBoardTutorial
 
 	public void addColumns(int value) {
 		columnUpgrades += value;
-		generateTiles();
-		populateBoard();
+		redrawBoard();
 	}
 
 	public void redrawBoard() {
+		gemsToBeDeleted.Clear();
 		generateTiles();
 		populateBoard();
 	}
@@ -573,8 +622,7 @@ public partial class MatchBoard : MatchBoardTutorial
 		// }
 		// sizeX --;
 		columnsRemoved++;
-		generateTiles();
-		populateBoard();
+		redrawBoard();
 		EmitSignal(SignalName.boardSizeChanged);
 	}
 
@@ -644,6 +692,25 @@ public partial class MatchBoard : MatchBoardTutorial
 				tileMap.Remove(mapPosition);
 			}
 		}
+		generateFutureTiles();
+		
+	}
+
+	private void generateFutureTiles() {
+		PackedScene futureTileSceneToUse = usingSmallSize() ? futureTilesSmallTemplate: futureTilesTemplate;
+
+		foreach (Node node in futureTileHolder.GetChildren()){
+			node.QueueFree();
+		}
+		futureTiles.Clear();
+		Vector2 gridSize = getGridSize();
+		for (int newX = 0; newX < gridSize.X; newX++)
+		{
+			FutureTile futureTile = futureTileSceneToUse.Instantiate() as FutureTile;
+			futureTileHolder.AddChild(futureTile);
+			futureTile.Position = new Vector2(getTileSize().X * newX,0);
+			futureTiles.Add(futureTile);
+		}
 	}
 	private void setTileHovered(Tile tile)
 	{
@@ -701,7 +768,7 @@ public partial class MatchBoard : MatchBoardTutorial
 		if (!tile.Gem.Type.selectable()) {
 			return false;
 		}
-		if (!card.getCardResource().cardEffect.canTargetTile(tile)) {
+		if (!card.getCardResource().cardEffect.canTargetTile(tile, tilesSelected.Count == 0)) {
 			return false;
 		}
 		// letting all cards target burnt ingredients
@@ -768,7 +835,25 @@ public partial class MatchBoard : MatchBoardTutorial
 			}
 		}
 
-		return matches;
+		//check for combining matches
+		Dictionary<Tile,HashSet<Tile>> gemToMatchDictionary = new Dictionary<Tile, HashSet<Tile>>();
+		foreach(HashSet<Tile> tiles in matches){
+			foreach(Tile tile in tiles) {
+				if (gemToMatchDictionary.ContainsKey(tile)){
+					HashSet<Tile> combination = new HashSet<Tile>(tiles);
+					combination.UnionWith(gemToMatchDictionary[tile]);
+					foreach(Tile comboTile in combination){
+						gemToMatchDictionary[comboTile] = combination;
+					}
+				} else {
+					gemToMatchDictionary[tile] = tiles;
+				}
+			}
+		}
+		return new HashSet<HashSet<Tile>>(gemToMatchDictionary.Values);
+
+
+		//return matches;
 	}
 
 	private bool checkForMatches()
@@ -806,13 +891,15 @@ public partial class MatchBoard : MatchBoardTutorial
 		{
 			tile.setBlocked(false);
 		}
+		bool levelPassedBeforeMatch = score.scoreReached();	
+		score.scoreMatches(matches);
 
 		if (tilesToDeleteGem.Count > 0)
 		{
 			gameCamera.shake();
-			playMatchSound();
+			playMatchSound(levelPassedBeforeMatch);
 		}
-		score.scoreMatches(matches);
+		HashSet<Match> matchObjects = new HashSet<Match>();
 		foreach (HashSet<Tile> match in matches)
 		{
 			Match currentMatch = new Match();
@@ -820,19 +907,48 @@ public partial class MatchBoard : MatchBoardTutorial
 			matchesThisLevel.Add(currentMatch);
 			matchesThisTurn.Add(currentMatch);
 			EmitSignal(SignalName.ingredientMatched, currentMatch);
-
+			matchObjects.Add(currentMatch);
 		}
+
+		EmitSignal(SignalName.ingredientAllMatches, new Godot.Collections.Array<Match>(matchObjects));
+		GD.Print("send signal for "+ new Godot.Collections.Array<Match>(matchObjects));
+
+
+		generateMatchOrbs(matchObjects);
+
 		// if (matches.Count > 0) {
 		// }
 		deleteGemAtPositionsFromMatches(matches);
 		return matches.Count > 0;
 	}
 
-	public void playMatchSound() {
+	public void playMatchSound(bool levelPassedBeforeMatch = true) {
+		if (!levelPassedBeforeMatch && score.scoreReached()) {
+			playMatchVictorySound();
+		} else {
+			playNormalMatchSound();
+		}
+	}
+
+
+	public void playNormalMatchSound() {
 		audioStreamPlayer2D.Stream = matchAudioStream;
 		audioStreamPlayer2D.PitchScale = 1.0f + Math.Min(score.getMult() * scorePitchMult, scorePitchMax);
 		audioStreamPlayer2D.setBaseVolumeMult(1f);
 		audioStreamPlayer2D.Play();
+
+		//FindObjectHelper.GetCharacterPortrait(this).happyReaction();
+	}
+
+	public void playMatchVictorySound() {
+		playNormalMatchSound();
+
+		timer = new Timer();
+		AddChild(timer);
+		timer.WaitTime = .45;
+		timer.OneShot = true;
+		timer.Timeout += () => victoryMatchAudioStream.Play();
+		timer.Start();
 	}
 
 	private void playPopSound() {
@@ -1024,11 +1140,16 @@ public partial class MatchBoard : MatchBoardTutorial
 					}
 					else
 					{
-						upperGem = generateRandomGemForTile(currentPosition, true);
+						upperGem = generateGemForTile(currentPosition, null, true);
+						if (newGemCountInRow == 0 && !tutorial) {
+							upperGem.setType(futureTiles[x].getGemType());
+							futureTiles[x].setGemType(generateGemType());
+						}
 						upperGem.Position = new Vector2(0, (y + 1 + newGemCountInRow) * getTileSizeUnscaled().Y * -1);
 						upperGem.moveToPostion(Vector2.Zero);
 						newGemCountInRow++;
 					}
+
 				}
 			}
 		}
@@ -1127,23 +1248,17 @@ public partial class MatchBoard : MatchBoardTutorial
 						boardResizeGemMap.Remove(currentPosition);
 
 					} else {
-						generateRandomGemForTile(currentPosition);
+						generateGemForTile(currentPosition);
 
 					}
 				}
 			}
 		}
-		// if (FindObjectHelper.getGameManager(this).getGooRightRow())
-		// {
-		// 	List<Tile> tilesToBlock = new List<Tile>();
-		// 	for (int y = 0; y < sizeY; y++)
-		// 	{
-		// 		Vector2 currentPosition = new Vector2(sizeX - 1, y);
-		// 		tilesToBlock.Add(getTile(currentPosition));
-
-		// 	}
-		// 	blockTiles(tilesToBlock);
-		// }
+		for (int x = 0; x < gridSize.X; x++)
+		{
+			FutureTile futureTile = futureTiles[x];
+			futureTile.setGemType(generateGemType());
+		}
 		HashSet<HashSet<Tile>> matches = getMatches();
 		while (matches.Count != 0)
 		{
@@ -1154,13 +1269,22 @@ public partial class MatchBoard : MatchBoardTutorial
 			matches = getMatches();
 		}
 	}
-	private Gem generateRandomGemForTile(Vector2 position, bool drop = false)
+
+	private GemType generateGemType() {
+		return spawnBlacks ? GemTypeHelper.getRandomColorIncludeBlack() : GemTypeHelper.getRandomColor();
+	}
+
+	private Gem generateGemForTile(Vector2 position, Gem? oldGem = null, bool drop = false)
 	{
 		PackedScene gemSceneToUse = usingSmallSize() ? gemSceneSmall : gemScene;
 		Gem gem = gemSceneToUse.Instantiate() as Gem;
 		Tile tile = getTileOptional(position).GetValue();
 		
-		GemType gemType = spawnBlacks ? GemTypeHelper.getRandomColorIncludeBlack() : GemTypeHelper.getRandomColor();
+		GemType gemType = generateGemType();
+		if (oldGem != null) {
+			gemType = oldGem.Type;
+			gem.setAddonType(oldGem.AddonType);
+		}
 		while (gemTypesCannotBeSpawned.Contains(gemType)) {
 			gemType = GemTypeHelper.getRandomColor();
 		}
@@ -1178,54 +1302,56 @@ public partial class MatchBoard : MatchBoardTutorial
 		tile.gemParent.AddChild(gem);
 		tile.Gem = gem;
 		gem.Position = new Vector2(0, 0);
-		if (hiddenCounter++ % 8 == 0)
-		{
-			//gem.setAddonType(GemAddonType.Lock);
-		}
-		addRandomAddon(gem);
+		// if (hiddenCounter++ % 8 == 0)
+		// {
+		// 	//gem.setAddonType(GemAddonType.Lock);
+		// }
+		//addRandomAddon(gem);
 		return gem;
 	}
-	private Gem generateGemForTile(Vector2 position, Gem oldGem)
-	{
-		PackedScene gemSceneToUse = usingSmallSize() ? gemSceneSmall : gemScene;
-		Gem gem = gemSceneToUse.Instantiate() as Gem;
-		Tile tile = getTileOptional(position).GetValue();
+
+
+	// private Gem generateGemForTile(Vector2 position, Gem oldGem)
+	// {
+	// 	PackedScene gemSceneToUse = usingSmallSize() ? gemSceneSmall : gemScene;
+	// 	Gem gem = gemSceneToUse.Instantiate() as Gem;
+	// 	Tile tile = getTileOptional(position).GetValue();
 		
-		GemType gemType = oldGem.Type;
-		while (gemTypesCannotBeSpawned.Contains(gemType)) {
-			gemType = GemTypeHelper.getRandomColor();
-		}
-		gem.setType(gemType);
-		tile.gemParent.AddChild(gem);
-		tile.Gem = gem;
-		tile.Gem.setAddonType(oldGem.AddonType);
-		tile.Gem.leadLevel = oldGem.leadLevel;
+	// 	GemType gemType = oldGem.Type;
+	// 	while (gemTypesCannotBeSpawned.Contains(gemType)) {
+	// 		gemType = GemTypeHelper.getRandomColor();
+	// 	}
+	// 	gem.setType(gemType);
+	// 	tile.gemParent.AddChild(gem);
+	// 	tile.Gem = gem;
+	// 	tile.Gem.setAddonType(oldGem.AddonType);
+	// 	tile.Gem.leadLevel = oldGem.leadLevel;
 
-		gem.Position = new Vector2(0, 0);
-		if (hiddenCounter++ % 8 == 0)
-		{
-			//gem.setAddonType(GemAddonType.Lock);
-		}
-		return gem;
-	}
+	// 	gem.Position = new Vector2(0, 0);
+	// 	if (hiddenCounter++ % 8 == 0)
+	// 	{
+	// 		//gem.setAddonType(GemAddonType.Lock);
+	// 	}
+	// 	return gem;
+	// }
 
-	private void addRandomAddon(Gem gem)
-	{
-		int randomPercentage = GD.RandRange(0, 99);
-		GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
-		if (randomPercentage < gameManagerIF.getCoinDropRate())
-		{
-			gem.setAddonType(GemAddonType.Money);
-			return;
-		}
+	// private void addRandomAddon(Gem gem)
+	// {
+	// 	int randomPercentage = GD.RandRange(0, 99);
+	// 	GameManagerIF gameManagerIF = FindObjectHelper.getGameManager(this);
+	// 	if (randomPercentage < gameManagerIF.getCoinDropRate())
+	// 	{
+	// 		gem.setAddonType(GemAddonType.Money);
+	// 		return;
+	// 	}
 
-		randomPercentage = GD.RandRange(0, 99);
-		if (randomPercentage < gameManagerIF.getMetaCoinDropRate())
-		{
-			gem.setAddonType(GemAddonType.MetaCoin);
-			return;
-		}
-	}
+	// 	randomPercentage = GD.RandRange(0, 99);
+	// 	if (randomPercentage < gameManagerIF.getMetaCoinDropRate())
+	// 	{
+	// 		gem.setAddonType(GemAddonType.MetaCoin);
+	// 		return;
+	// 	}
+	// }
 
 	public List<Tile> getRandomTilesWithCondition(int count, Func<Tile, bool> condition)
 	{
@@ -1467,6 +1593,14 @@ public partial class MatchBoard : MatchBoardTutorial
 
 	public void addGemAddons(List<Vector2> positions, GemAddonType gemAddonType)
 	{
+		addGemAddonsDontFireEvent(positions, gemAddonType);
+		if (positions.Count > 0) {
+			EmitSignal(SignalName.addonsAddedToGems, (int)gemAddonType);
+		}
+	}
+
+	public void addGemAddonsDontFireEvent(List<Vector2> positions, GemAddonType gemAddonType)
+	{
 		foreach (Vector2 position in positions)
 		{
 			Tile tile = getTile(position);
@@ -1476,6 +1610,11 @@ public partial class MatchBoard : MatchBoardTutorial
 				tile.Gem.explode();
 			}
 		}
+	}
+
+	public void addGemAddonsToRandomTiles(int count, GemAddonType gemAddonType) {
+		List<Tile> tiles = getRandomNonSpecialNonAddonTiles(count);
+		addGemAddons(tiles.Select(x => x.getTilePosition()).ToList(), gemAddonType);
 	}
 
 	public void clearMatchActions() {

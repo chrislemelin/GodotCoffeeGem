@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dtgdglkofxjtt"]
 
-[ext_resource type="PackedScene" uid="uid://dicb3wwg7ecmd" path="res://cards/CardFullUI.tscn" id="1_5gya4"]
+[ext_resource type="PackedScene" uid="uid://xqowqlr2ls21" path="res://cards/CardFullUI.tscn" id="1_5gya4"]
 
 [node name="Example" type="GridContainer"]
 visible = false

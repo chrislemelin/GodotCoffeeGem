@@ -16,8 +16,11 @@ public partial class CardEffectIF : Resource
 	[Export] public int DrawCards { get; private set; } = 0;
 	[Export] public int GainMana { get; private set; } = 0;
 
+	[Export] public Array<EffectResource> bonusEffects = new Array<EffectResource>();
 	[Export] public Array<CardPassive> bonusPassives = new Array<CardPassive>();
 	[Export] public Array<EffectResource> matchEffects = new Array<EffectResource>();
+	[Export] public Array<EffectResource> extraEffects = new Array<EffectResource>();
+
 	[Export] public int matchEffectsMin = 3;
 
 	[Export] public RelicResource relicResource = null;
@@ -29,6 +32,8 @@ public partial class CardEffectIF : Resource
 	[Export] public CardEffectGemType effectGemType { get; set; }
 	[Export] public CardPassive cardPassiveToApplyToHand;
 	[Export] public Array<GemType> cannotSelectGemTypes = new Array<GemType>();
+	[Export] public Array<GemType> selectableGemTyleFirstSelection = new Array<GemType>();
+
 	[Export] public bool tutorialCard;
 	// [Export] public Vector2I firstPositionTutorial;
 	// [Export] public Vector2I secondPositionTutorial;
@@ -55,7 +60,7 @@ public partial class CardEffectIF : Resource
 
 	public Node node;
 
-	private List<CardPassive> cardPassives = new List<CardPassive>();
+	[Export] public Array<CardPassive> cardPassives = new Array<CardPassive>();
 
 
 	public CardEffectIF()
@@ -73,13 +78,16 @@ public partial class CardEffectIF : Resource
 
 	public void turnOver()
 	{
-		cardPassives.RemoveAll(passive => passive.expireAfterTurnEnd);
+		cardPassives = new Array<CardPassive>(cardPassives.Where(passive => !passive.expireAfterTurnEnd).ToList());
 	}
 
-	public virtual bool canTargetTile(Tile tile) {
+	public virtual bool canTargetTile(Tile tile, bool firstSelection) {
 		if (tile.Gem == null) {
 			return true;
 		} if (cannotSelectGemTypes.Contains(tile.Gem.Type)) {
+			return false;
+		}
+		if (firstSelection && selectableGemTyleFirstSelection.Count > 0 && !selectableGemTyleFirstSelection.Contains(tile.Gem.Type)) {
 			return false;
 		}
 		if (tutorialCard) {
@@ -107,6 +115,14 @@ public partial class CardEffectIF : Resource
 		if (relicResource != null)
 		{
 			FindObjectHelper.getRelicHolderUI(node).addRelic(relicResource);
+		}
+		foreach(EffectResource effectResource in extraEffects) {
+			effectResource.execute(node);
+		}
+		if (bonusActive()) {
+			foreach(EffectResource bonusEffect in bonusEffects) {
+				bonusEffect.execute(node);
+			}
 		}
 	}
 	
@@ -154,7 +170,7 @@ public partial class CardEffectIF : Resource
 			}
 			return cardPassives.Concat(bonusCardPassives).ToList();
 		} else {
-			return cardPassives;
+			return cardPassives.ToList();
 		}
 	}
 
@@ -254,16 +270,19 @@ public partial class CardEffectIF : Resource
 
 	public virtual String getValueString()
 	{
-		int value = Value;
+		int updatedValue = Value;
 		foreach (CardPassive cardPassive in cardPassives)
 		{
-			value += cardPassive.valueModification;
+			updatedValue += cardPassive.valueModification;
 		}
-		if (value != Value)
+		if (Value < updatedValue)
 		{
-			return "[color=#2c8518]" + value.ToString() + "[/color]";
+			return "[color=#2c8518]" + updatedValue.ToString() + "[/color]";
 		}
-		return value.ToString();
+		if (updatedValue < Value) {
+			return "[color=#eb4034]" + updatedValue.ToString() + "[/color]";
+		}
+		return updatedValue.ToString();
 	}
 
 	/// <summary>

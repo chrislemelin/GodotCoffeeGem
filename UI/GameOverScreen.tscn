@@ -18,7 +18,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_tdww2")
 script = ExtResource("4_dub5d")
-restartButton = NodePath("Restart")
+restartButton = NodePath("VBoxContainer/MarginContainer2/Restart")
 label = NodePath("VBoxContainer/RichTextLabel")
 metaCoinLabel = NodePath("VBoxContainer/MetaCoinDisplay/RichTextLabel")
 debtLabel = NodePath("VBoxContainer/DebtDisplay/RichTextLabel")
@@ -41,15 +41,16 @@ layout_mode = 0
 offset_left = 612.0
 offset_top = 305.0
 offset_right = 1388.0
-offset_bottom = 773.0
+offset_bottom = 621.0
 theme = ExtResource("1_tdww2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 566.0
+offset_left = 711.0
 offset_top = 315.0
-offset_right = 1423.0
+offset_right = 1312.0
 offset_bottom = 568.0
+theme_override_constants/separation = 30
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 texture_filter = 2
@@ -83,6 +84,7 @@ texture = ExtResource("4_ijhti")
 expand_mode = 1
 
 [node name="DebtDisplay" type="Control" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
@@ -98,6 +100,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 90
@@ -107,40 +110,38 @@ theme_override_constants/margin_top = 10
 layout_mode = 2
 segmented = true
 
-[node name="Restart" parent="." instance=ExtResource("5_wh5ve")]
-layout_mode = 0
-offset_left = 782.0
-offset_top = 680.0
-offset_right = 1211.0
-offset_bottom = 732.0
-text = "Main Menu
-"
-grabFocus = true
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
 
-[node name="MarginContainer6" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_left = 653.0
-offset_top = 592.0
-offset_right = 992.0
-offset_bottom = 646.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 
-[node name="Button" parent="MarginContainer6" instance=ExtResource("6_fg1ur")]
+[node name="Button" parent="VBoxContainer/HBoxContainer/MarginContainer6" instance=ExtResource("6_fg1ur")]
 layout_mode = 2
 text = "Join the Discord!"
 
-[node name="MarginContainer8" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_left = 1013.0
-offset_top = 593.0
-offset_right = 1352.0
-offset_bottom = 647.0
+[node name="MarginContainer8" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="Button" parent="MarginContainer8" instance=ExtResource("6_fg1ur")]
+[node name="Button" parent="VBoxContainer/HBoxContainer/MarginContainer8" instance=ExtResource("6_fg1ur")]
 layout_mode = 2
 text = "Wishlist the game!"
 url = "https://store.steampowered.com/app/2944280/Beans_Of_Production/"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -20
+
+[node name="Restart" parent="VBoxContainer/MarginContainer2" instance=ExtResource("5_wh5ve")]
+layout_mode = 2
+text = "Main Menu
+"
+grabFocus = true

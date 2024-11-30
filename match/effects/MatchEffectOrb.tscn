@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://blyviqhhg0mpn"]
+
+[ext_resource type="Script" path="res://match/effects/MatchEffectOrb.cs" id="1_fe5po"]
+[ext_resource type="PackedScene" uid="uid://bd7cd0kp8pnn6" path="res://match/effects/MatchOrb.tscn" id="2_k03j3"]
+
+[sub_resource type="Curve2D" id="Curve2D_yl6ms"]
+
+[node name="MatchEffectOrb" type="Node2D" node_paths=PackedStringArray("pathFollow2D", "path", "orb", "placementTracker")]
+script = ExtResource("1_fe5po")
+pathFollow2D = NodePath("Path2D/PathFollow2D")
+path = NodePath("Path2D")
+orb = NodePath("Path2D/PathFollow2D/Node2D")
+placementTracker = NodePath("TrackerNode")
+randomOffsetRange = Vector2(80, 100)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_yl6ms")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(206, -77)
+rotation = 2.78389
+
+[node name="Node2D" parent="Path2D/PathFollow2D" instance=ExtResource("2_k03j3")]
+
+[node name="TrackerNode" type="Node2D" parent="."]
