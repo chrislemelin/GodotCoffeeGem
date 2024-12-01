@@ -21,65 +21,92 @@ public partial class ActivatableRelicUI : Control
 	public override void _Ready()
 	{
 		normalColor = textureRect.Modulate;
-		if (relicResource != null) {
+		if (relicResource != null)
+		{
 			setUp(relicResource);
-		} else {
+		}
+		else
+		{
 			GameManagerIF gameManager = FindObjectHelper.getGameManager(this);
-			List<ActivatableRelicResource> relics =gameManager.getActivatableRelics();
-			if (relics.Count > 0) {
+			List<ActivatableRelicResource> relics = gameManager.getActivatableRelics();
+			if (relics.Count > 0)
+			{
 				setUp(relics[0]);
 			}
 		}
-	
+
 	}
 
-	public void setUp(ActivatableRelicResource relicResource) {
+	public ActivatableRelicResource getActivatableRelic()
+	{
+		return relicResource;
+	}
+
+	public void setUp(ActivatableRelicResource relicResource)
+	{
 		this.relicResource = relicResource;
 		relicResource.setUp(this);
 
-		titleLabel.Text = TextHelper.centered(relicResource.title); 
+		titleLabel.Text = TextHelper.centered(relicResource.title);
 		descriptionLabel.Text = relicResource.getDescription();
-		if (relicResource.picture!= null) {
+		if (relicResource.picture != null)
+		{
 			textureRect.Texture = relicResource.picture;
 		}
 		updateCharges();
 		relicResource.ChargesChanged += updateCharges;
 		recipeUI.loadRecipe(relicResource.recipe);
-		GuiInput += (inputEvent) => {
-			if (inputEvent.IsActionPressed("click")) {
+		GuiInput += (inputEvent) =>
+		{
+			if (inputEvent.IsActionPressed("click"))
+			{
 				tryDoAction();
-		}};
+			}
+		};
 		relicResource.recipe.statusChanged += updateProgressBar;
 		setImageColor();
 	}
 
-	private void setImageColor(){
-		if (relicResource.canExecute()) {
+	private void setImageColor()
+	{
+		if (relicResource.canExecute())
+		{
 			textureRect.Modulate = normalColor;
-		} else {
+		}
+		else
+		{
 			textureRect.Modulate = disabledColor;
 		}
 	}
 
-	private void updateProgressBar() {
-		
-		List<Tuple<GemType,bool>> list = relicResource.recipe.getCompletionStatus();
+	private void updateProgressBar()
+	{
+		if (relicResource.atMaxCapacity())
+		{
+			textureProgressBar.Value = 100;
+			return;
+		}
+		List<Tuple<GemType, bool>> list = relicResource.recipe.getCompletionStatus();
 		int numberOfThingsCompleted = list.Where(item => item.Item2).Count();
 		int totalNumber = list.Count();
-		textureProgressBar.Value = (float)numberOfThingsCompleted/totalNumber * 100.0;
+		textureProgressBar.Value = (float)numberOfThingsCompleted / totalNumber * 100.0;
 	}
 
-	private void tryDoAction() {
-		if (relicResource.canExecute()) {
+	private void tryDoAction()
+	{
+		if (relicResource.canExecute())
+		{
 			animationPlayer.Play("activated");
 			relicResource.doEffects(this);
+			updateProgressBar();
 		}
 		setImageColor();
 	}
 
-	private void updateCharges() {
+	private void updateCharges()
+	{
 		chargesLabel.Text = TextHelper.right(relicResource.getCharges() + "");
 		setImageColor();
 	}
 }
- 
+

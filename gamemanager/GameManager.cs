@@ -45,11 +45,12 @@ public partial class GameManager : GameManagerIF
 	{
 		base._Ready();
 
-		GetViewport().GuiFocusChanged += (thing) => {
+		GetViewport().GuiFocusChanged += (thing) =>
+		{
 			GD.Print(thing.GetPath());
 		};
 
-		
+
 		MatchBoard matchboard = FindObjectHelper.getMatchBoard(this);
 		Hand hand = FindObjectHelper.getHand(this);
 
@@ -61,17 +62,20 @@ public partial class GameManager : GameManagerIF
 			setStartTime();
 		}
 		RecipeResource bossRecipe = currentLevelResource.getBossRecipe();
-		if (getNumberOfLevelsPlayed() == 0 && startingDialougeResource != null) {
+		if (getNumberOfLevelsPlayed() == 0 && startingDialougeResource != null)
+		{
 			hand.forceNotHaveUIFocus = true;
 			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
 			bool hasFired = false;
-			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
-				if (!hasFired) {
+			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) =>
+			{
+				if (!hasFired)
+				{
 					hand.forceNotHaveUIFocus = false;
 					hand.setUIFocus(true);
 					hasFired = true;
 				}
-				
+
 			};
 			//DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(startingDialougeResource);
 		}
@@ -91,8 +95,8 @@ public partial class GameManager : GameManagerIF
 		}
 		if (endlessMode || getGlobal().zenMode)
 		{
-			scoreNeededToPass = 9999999;
-			score.setTurnsRemaining(999999999);
+			scoreNeededToPass = 10_000;
+			score.setTurnsRemaining(3);
 		}
 		if (skipFirstLevel && currentLevel == 1)
 		{
@@ -118,20 +122,25 @@ public partial class GameManager : GameManagerIF
 			RelicResource bossRelic = getRandomBossRelic();
 			addRelic(bossRelic);
 			bossRelicTutorial.WindowClosedSignal += () => hand.setUIFocus(true);
-			bossRelicTutorial.richTextLabel.Text += TextHelper.centered(bossRelic.description + 
+			bossRelicTutorial.richTextLabel.Text += TextHelper.centered(bossRelic.description +
 				"\n(This effect can be checked under the relics section to the left of the match board)");
 			hand.setUIFocus(false);
-			if (!getSeenBossDialouge()) {
+			if (!getSeenBossDialouge())
+			{
 				bool hasFired = false;
 				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(bossLevelDialougeResource);
-				DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
-				if (resource == bossLevelDialougeResource && !hasFired) {
-					bossRelicTutorial.setVisible(true);
-					hasFired = true;
-				}
-				setSeenBossDialouge(true);
-			};
-			} else {
+				DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) =>
+				{
+					if (resource == bossLevelDialougeResource && !hasFired)
+					{
+						bossRelicTutorial.setVisible(true);
+						hasFired = true;
+					}
+					setSeenBossDialouge(true);
+				};
+			}
+			else
+			{
 				bossRelicTutorial.setVisible(true);
 			}
 
@@ -146,10 +155,12 @@ public partial class GameManager : GameManagerIF
 
 
 		//EmitSignal(SignalName.levelStart);
-		if (dialougeResource!= null) {
+		if (dialougeResource != null)
+		{
 			hand.forceNotHaveUIFocus = true;
 			DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(dialougeResource);
-			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) => {
+			DialogueManagerRuntime.DialogueManager.DialogueEnded += (resource) =>
+			{
 				hand.forceNotHaveUIFocus = true;
 				hand.setUIFocus(true);
 			};
@@ -157,16 +168,20 @@ public partial class GameManager : GameManagerIF
 
 	}
 
-	private void checkForOverTimeTutorial () {
-		if (currentLevel == 1 && !getGlobal().shownOvertimeTutorial) {
+	private void checkForOverTimeTutorial()
+	{
+		if (currentLevel == 1 && !getGlobal().shownOvertimeTutorial)
+		{
 			overTimeTutorial.setVisible(true);
 			getGlobal().shownOvertimeTutorial = true;
 			getGlobal().save();
 		}
 	}
 
-	private void checkForGameOver () {
-		if (gameBeaten()) {
+	private void checkForGameOver()
+	{
+		if (gameBeaten())
+		{
 			gameBeatenTutorial.setVisible(true);
 		}
 	}
@@ -184,7 +199,8 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 
-	public bool gameBeaten() {
+	public bool gameBeaten()
+	{
 		//return true;
 		return currentLevel == levelList.levelResources.Count;
 	}
@@ -192,7 +208,12 @@ public partial class GameManager : GameManagerIF
 	public void evaluateLevel()
 	{
 		getGlobal().totalScore += score.getScore();
-		if (score.getScore() >= scoreNeededToPass && gameBeaten()) {
+		if (endlessMode)
+		{
+			return;
+		}
+		if (score.getScore() >= scoreNeededToPass && gameBeaten())
+		{
 			showGameOverScreen(true);
 		}
 		else if (score.getScore() < scoreNeededToPass || getHealth() == 0)
@@ -205,11 +226,16 @@ public partial class GameManager : GameManagerIF
 		}
 	}
 
-	private bool checkForHighScore(bool gameCompleted) {
-		if (getGlobal().isScoreAHighScore(getGlobal().totalScore)) {
-			if (gameCompleted) {
+	private bool checkForHighScore(bool gameCompleted)
+	{
+		if (getGlobal().isScoreAHighScore(getGlobal().totalScore))
+		{
+			if (gameCompleted)
+			{
 				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(gameBeatenBossDialouge);
-			} else {
+			}
+			else
+			{
 				DialogueManagerRuntime.DialogueManager.ShowDialogueBalloon(gameLostBossDialouge);
 			}
 
@@ -219,8 +245,9 @@ public partial class GameManager : GameManagerIF
 		}
 		return false;
 	}
-	
-	private Optional<UnlockableCardPack> getNewCardPack() {
+
+	private Optional<UnlockableCardPack> getNewCardPack()
+	{
 		return Optional.None<UnlockableCardPack>();
 		// List<UnlockableCardPack> lockedPacks = getLockedCardPacks().ToList();
 		// if (lockedPacks.Count > 0) {
@@ -250,21 +277,27 @@ public partial class GameManager : GameManagerIF
 		return currentLevel * 25 + Math.Max(0, currentLevel - 5) * 25;
 	}
 
-	private void showGameOverScreen(bool gameBeaten) {
-		string formSubmitterText = gameBeaten?"win":"lose";
+	private void showGameOverScreen(bool gameBeaten)
+	{
+		string formSubmitterText = gameBeaten ? "win" : "lose";
 		FindObjectHelper.getFormSubmitter(this).submitData(formSubmitterText, this);
 
-		if (gameBeaten) {
+		if (gameBeaten)
+		{
 			gameOverScreen.label.Text = TextHelper.centered("You win!!!");
 		}
-		
+
 		Optional<UnlockableCardPack> unlockableCardPack = getNewCardPack();
-		if (unlockableCardPack.HasValue) {
-			gameOverScreen.restartButton.Pressed+= () => {
-			FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
-			unlockCardPack(unlockableCardPack.GetValue());
-		};
-		} else {
+		if (unlockableCardPack.HasValue)
+		{
+			gameOverScreen.restartButton.Pressed += () =>
+			{
+				FindObjectHelper.getDeckView(this).setUp(unlockableCardPack.GetValue().getCards(), (card) => GetTree().ChangeSceneToFile("res://mainScenes/MainMenu.tscn"), TextHelper.centered("New Cards Unlocked"), false, false);
+				unlockCardPack(unlockableCardPack.GetValue());
+			};
+		}
+		else
+		{
 			gameOverScreen.setUpMainMenu();
 		}
 
@@ -276,12 +309,16 @@ public partial class GameManager : GameManagerIF
 
 		int debtProgress = evaluateDebtProgress();
 		int currentDebtProgress = getDebtProgress();
-		if (highScore) {
-			highScoreDisplay.WindowClosedSignal += () => {
+		if (highScore)
+		{
+			highScoreDisplay.WindowClosedSignal += () =>
+			{
 				int segementsPassed = gameOverScreen.setDebt(currentDebtProgress, debtProgress);
 				addMetaCoins(segementsPassed * 50);
 			};
-		} else {
+		}
+		else
+		{
 			int segementsPassed = gameOverScreen.setDebt(currentDebtProgress, debtProgress);
 			addMetaCoins(segementsPassed * 50);
 		}

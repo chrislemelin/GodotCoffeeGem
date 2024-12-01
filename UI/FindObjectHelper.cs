@@ -32,7 +32,7 @@ public partial class FindObjectHelper
 		return (CharacterPortrait)node.GetTree().GetFirstNodeInGroup(CHARACTER_PORTRAIT_NAME);
 	}
 
-	
+
 	public static ControllerHelper getControllerHelper(Node node)
 	{
 		return (ControllerHelper)node.GetTree().GetFirstNodeInGroup(CONTROLLER_HELPER_NAME);
@@ -41,6 +41,11 @@ public partial class FindObjectHelper
 	public static UpgradeCard getUpgradeCardUI(Node node)
 	{
 		return (UpgradeCard)node.GetTree().GetFirstNodeInGroup(UPGRADE_CARD_UI);
+	}
+
+	public static ActivatableRelicUI getActivatableRelicUI(Node node)
+	{
+		return (ActivatableRelicUI)node.GetTree().GetFirstNodeInGroup("ActivatableRelicUI");
 	}
 
 	public static Hand getHand(Node node)

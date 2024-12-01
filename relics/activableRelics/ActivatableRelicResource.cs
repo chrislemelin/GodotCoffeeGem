@@ -17,48 +17,82 @@ public partial class ActivatableRelicResource : Resource
 	private int charges;
 	[Signal] public delegate void ChargesChangedEventHandler();
 
+	[Signal] public delegate void ActivatedEventHandler();
 
-	public void setUp(Node node) {
-		recipe.setUp(node);
+	public void setUp(Node node)
+	{
+		recipe.setUp(node, this);
 		recipe.finishedRecipe += addCharge;
 	}
 
-	public bool canExecute() {
+	public bool canExecute()
+	{
 		return charges >= chargesNeededToActivate;
 	}
 
-	public void addCharge() {
+	public void addCharge()
+	{
+		if (atMaxCapacity())
+		{
+			return;
+		}
 		charges++;
-		if(!canHoldMultipleCharges) {
+		if (!canHoldMultipleCharges)
+		{
 			charges = 1;
 		}
 		EmitSignal(SignalName.ChargesChanged);
 	}
 
-	public int getCharges() {
+	public int getCharges()
+	{
 		return charges;
 	}
 
-	public void doEffects(Node node) {
-		if (canExecute()) {
-			foreach(EffectResource effect in effects) {
+	public void doEffects(Node node)
+	{
+		if (canExecute())
+		{
+			foreach (EffectResource effect in effects)
+			{
 				effect.execute(node);
 			}
 			charges -= chargesNeededToActivate;
 			EmitSignal(SignalName.ChargesChanged);
+			EmitSignal(SignalName.Activated);
 		}
 	}
 
-	public string getDescription() {
+	public string getDescription()
+	{
 		String returnString = TextHelper.centered(description);
-		if (chargesNeededToActivate > 1) {
-			returnString += "\n"+TextHelper.centered("Requires "+chargesNeededToActivate + " charges to activate.");
+		if (chargesNeededToActivate > 1)
+		{
+			returnString += "\n" + TextHelper.centered("Requires " + chargesNeededToActivate + " charges to activate.");
+		}
+		if (canHoldMultipleCharges)
+		{
+			returnString += "\n" + TextHelper.centered("Can hold multiple charges.");
 		}
 		return returnString;
 	}
+
+	public bool atMaxCapacity()
+	{
+		if (canHoldMultipleCharges)
+		{
+			return false;
+		}
+		if (charges >= chargesNeededToActivate)
+		{
+			return true;
+		}
+		return false;
+	}
 }
 
-public enum SelectionMode {
+public enum SelectionMode
+{
 	None,
 	SingleTile,
 	SingleFutureTile

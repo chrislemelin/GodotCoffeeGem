@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActivableRelicResource" load_steps=6 format=3 uid="uid://brvx75e401xgw"]
+[gd_resource type="Resource" script_class="ActivatableRelicResource" load_steps=6 format=3 uid="uid://brvx75e401xgw"]
 
 [ext_resource type="Script" path="res://relics/effects/AddTurnEffect.cs" id="1_u6vgn"]
 [ext_resource type="Script" path="res://match/recipe/RecipeResource.cs" id="2_or437"]

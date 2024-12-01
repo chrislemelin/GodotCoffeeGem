@@ -8,6 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://sprites/inner3.png" id="6_a7rpi"]
 [ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://sprites/outter2.png" id="7_fcoph"]
 
+[sub_resource type="Animation" id="Animation_ubxjk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
 [sub_resource type="Animation" id="Animation_ofbi0"]
 resource_name = "activated"
 length = 0.25
@@ -25,28 +40,13 @@ tracks/0/keys = {
 "values": [Vector2(0.2, 0.2), Vector2(0.22, 0.22), Vector2(0.2, 0.2)]
 }
 
-[sub_resource type="Animation" id="Animation_ubxjk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.2, 0.2)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qml51"]
 _data = {
 "RESET": SubResource("Animation_ubxjk"),
 "activated": SubResource("Animation_ofbi0")
 }
 
-[node name="ActivatableRelicUi" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "textureRect", "chargesLabel", "recipeUI", "textureProgressBar")]
+[node name="ActivatableRelicUi" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "textureRect", "chargesLabel", "recipeUI", "textureProgressBar", "animationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +61,7 @@ disabledColor = Color(0.196078, 0.196078, 0.196078, 1)
 chargesLabel = NodePath("Charges")
 recipeUI = NodePath("ToolTipControl/Control/PanelContainer/MarginContainer/VBoxContainer/BossRecipeUI")
 textureProgressBar = NodePath("TextureProgressBar")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -72,15 +73,21 @@ scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(250, 250)
 texture = ExtResource("2_8m8yo")
 
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="." groups=["ActivatableRelicUI"]]
+texture_filter = 1
 layout_mode = 0
-offset_left = 25.0
-offset_top = 3.0
-offset_right = 106.0
-offset_bottom = 17.0
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 119.0
+offset_bottom = 27.0
+pivot_offset = Vector2(50, 50)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "test"
+text = "Energy gain"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Charges" type="RichTextLabel" parent="."]
 texture_filter = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://1mkauieyg1gv"]
+[gd_scene load_steps=39 format=3 uid="uid://1mkauieyg1gv"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_hbgts"]
 [ext_resource type="Resource" uid="uid://qhphks7awow3" path="res://dialogue/final/bossDialouge/HighScoreWon.dialogue" id="2_c46cg"]
@@ -20,31 +20,15 @@
 [ext_resource type="PackedScene" uid="uid://1l7l6f7wv6gr" path="res://match/score/Score.tscn" id="21_ch0r1"]
 [ext_resource type="PackedScene" uid="uid://df73hn4mndwnd" path="res://UI/EndDayButton.tscn" id="22_cpjjq"]
 [ext_resource type="PackedScene" uid="uid://bil345m4mcmmj" path="res://UI/NewTurnButton.tscn" id="23_pa7rm"]
-[ext_resource type="Script" path="res://UI/ToggleVisibilityOnButtonPress.cs" id="24_76j0y"]
-[ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="25_3hrvt"]
-[ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="26_ci313"]
 [ext_resource type="PackedScene" uid="uid://bt53pbibh6p76" path="res://UI/Selection/Overtime/OvertimeUI.tscn" id="28_bkf8t"]
-[ext_resource type="Script" path="res://UI/WelcomeScreen.cs" id="29_wg803"]
 [ext_resource type="PackedScene" uid="uid://dd2x7ropd5ole" path="res://UI/core/CustomButton.tscn" id="30_na3e0"]
 [ext_resource type="Texture2D" uid="uid://kxohujo46a7y" path="res://sprites/character/Boss.png" id="31_6imdm"]
 [ext_resource type="Texture2D" uid="uid://w5b7rnqpx8ec" path="res://sprites/tutorial/arrow_right.png" id="32_em4ah"]
-[ext_resource type="Texture2D" uid="uid://bwuceu7gqp8u6" path="res://sprites/red-arrow-png-36953.png" id="33_4yvg5"]
-[ext_resource type="Texture2D" uid="uid://0vi6ni124fyf" path="res://sprites/tutorial/Ingredients/BeanEnergy.png" id="34_y8a7a"]
-[ext_resource type="Texture2D" uid="uid://b4mmyv3a6qfv" path="res://sprites/tutorial/Ingredients/TutorialCard.png" id="35_ctgw1"]
-[ext_resource type="Texture2D" uid="uid://br4ldam3vc7v3" path="res://sprites/tutorial/Screenshot 2024-01-02 153911.png" id="36_skwh6"]
-[ext_resource type="Texture2D" uid="uid://bppsnfxhbqf6k" path="res://sprites/tutorial/Ingredients/TutorialBurnt.png" id="37_hpawd"]
-[ext_resource type="Texture2D" uid="uid://uxonil2hwpfc" path="res://sprites/tutorial/Screenshot 2024-08-29 182519.png" id="38_6jma2"]
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="39_ojs4i"]
-[ext_resource type="PackedScene" uid="uid://cxavdfi52bnxv" path="res://UI/Selection/NewCardSelection.tscn" id="40_llfcu"]
-[ext_resource type="PackedScene" uid="uid://mplh7y2efw3m" path="res://UI/GameOverScreen.tscn" id="41_s18v1"]
 [ext_resource type="PackedScene" uid="uid://bktkdd4va45a8" path="res://UI/DeckView/DeckView.tscn" id="42_lbo55"]
-[ext_resource type="Script" path="res://UI/Game/LevelCompleteUI.cs" id="43_bekot"]
-[ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="44_0gd7q"]
-[ext_resource type="Script" path="res://UI/Game/PlayableCardsUI.cs" id="45_cyhnn"]
-[ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="46_5urnm"]
-[ext_resource type="PackedScene" uid="uid://ts55nghwgqu3" path="res://UI/Selection/RelicSelection.tscn" id="47_m3cob"]
-[ext_resource type="PackedScene" uid="uid://28twoy1bat4t" path="res://meta/debt/DebtReward.tscn" id="48_lbafv"]
+[ext_resource type="PackedScene" uid="uid://d3rhwnt70jga4" path="res://relics/activableRelics/ActivatableRelicUI.tscn" id="48_fmyr8"]
 [ext_resource type="PackedScene" uid="uid://bk057h7ksmnub" path="res://UI/global/SettingsMenu.tscn" id="49_ldqat"]
+[ext_resource type="Resource" uid="uid://vd3hruskw227" path="res://relics/activableRelics/TutorialEnergyActivatableRelic.tres" id="49_ma0ug"]
 [ext_resource type="PackedScene" uid="uid://dul64fgsaye3s" path="res://camera/camera_2d.tscn" id="50_ee3q3"]
 [ext_resource type="Script" path="res://tutorial/TutorialManager.cs" id="51_263bq"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="51_cdndm"]
@@ -233,62 +217,15 @@ metadata/dialogue_manager_version = "2.39.0"
 
 [sub_resource type="Resource" id="Resource_cyk7j"]
 
-[sub_resource type="Animation" id="Animation_n7a6h"]
-resource_name = "FadeIn"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(457, 1100), Vector2(457, 367)]
-}
-
-[sub_resource type="Animation" id="Animation_rp5ce"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(457, 1300)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1386"]
-_data = {
-"FadeIn": SubResource("Animation_n7a6h"),
-"RESET": SubResource("Animation_rp5ce")
-}
-
-[node name="game" type="Node2D" node_paths=PackedStringArray("gameOverScreen", "score", "relicHolderUI", "highScoreDisplay", "bossRelicTutorial", "overTimeTutorial", "gooTutorial", "gameBeatenTutorial", "welcomeTutorial", "relicSelection", "levelComplete", "levelCompleteAudioPlayer")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("score", "relicHolderUI", "levelCompleteAudioPlayer")]
 position = Vector2(0, 1)
 script = ExtResource("1_hbgts")
-gameOverScreen = NodePath("UIOverLays/GameOverScreen")
 score = NodePath("Score")
-relicHolderUI = NodePath("RelicHolder")
-highScoreDisplay = NodePath("UIOverLays/HighScoreDisplay")
-bossRelicTutorial = NodePath("UIOverLays/BossRelicDisplay")
-overTimeTutorial = NodePath("UIOverLays/OverTimeTutorial")
-gooTutorial = NodePath("UIOverLays/GooTutorial")
-gameBeatenTutorial = NodePath("UIOverLays/GameBeaten")
+relicHolderUI = NodePath("UIOverLays/RelicHolder")
 gameBeatenBossDialouge = ExtResource("2_c46cg")
 gameLostBossDialouge = ExtResource("3_ncap0")
-welcomeTutorial = NodePath("UIOverLays/WelcomeScreen")
-relicSelection = NodePath("UIOverLays/RelicSelection")
 levelList = ExtResource("4_dpxcl")
 bossRelics = ExtResource("5_kperk")
-levelComplete = NodePath("UIOverLays/LevelComplete")
 levelCompleteAudioPlayer = NodePath("JingleAchievementAudioPlayer")
 endlessMode = true
 dialougeDict = {
@@ -328,26 +265,17 @@ shakeLevel = 40
 gameCamera = NodePath("../Camera2D")
 tutorial = true
 
-[node name="RelicHolder" parent="." groups=["RelicHolder"] instance=ExtResource("14_jrqgk")]
-offset_left = 7.0
-offset_top = 373.0
-offset_right = 7.0
-offset_bottom = 373.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager", "deckView") instance=ExtResource("16_vyvwo")]
+[node name="Deck" parent="." node_paths=PackedStringArray("hand", "discard", "gameManager") instance=ExtResource("16_vyvwo")]
 position = Vector2(1809, 902)
 hand = NodePath("../Hand")
 cardList = SubResource("Resource_cyk7j")
 discard = NodePath("../Discard")
 loadDeckFromGlobal = true
 gameManager = NodePath("..")
-deckView = NodePath("../UIOverLays/DeckView")
 tutorial = true
 
-[node name="Discard" parent="." node_paths=PackedStringArray("deckView") instance=ExtResource("17_ld7ko")]
+[node name="Discard" parent="." instance=ExtResource("17_ld7ko")]
 position = Vector2(110, 911)
-deckView = NodePath("../UIOverLays/DeckView")
 
 [node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager", "windowsInFrontOf") groups=["Hand"] instance=ExtResource("18_l0n6b")]
 unique_name_in_owner = true
@@ -357,12 +285,12 @@ matchBoard = NodePath("../MatchBoard")
 deck = NodePath("../Deck")
 mana = NodePath("../Mana")
 gameManager = NodePath("..")
-windowsInFrontOf = [NodePath("../UIOverLays/WelcomeScreen"), NodePath("../UIOverLays/GooTutorial"), NodePath("../UIOverLays/BossRelicDisplay"), NodePath("../UIOverLays/LevelComplete"), NodePath("../UIOverLays/GameOverScreen")]
+windowsInFrontOf = [null, null, null, null, null]
 width = 1500
 
 [node name="Mana" parent="." groups=["Mana"] instance=ExtResource("19_xkva2")]
 unique_name_in_owner = true
-position = Vector2(241, 682)
+position = Vector2(154, 675)
 
 [node name="Nick" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -372,7 +300,7 @@ texture = ExtResource("20_2alpw")
 
 [node name="Score" parent="." node_paths=PackedStringArray("gameManager") groups=["Score"] instance=ExtResource("21_ch0r1")]
 unique_name_in_owner = true
-position = Vector2(200, 109)
+position = Vector2(185, 84)
 gameManager = NodePath("..")
 
 [node name="EndDayButton" parent="." instance=ExtResource("22_cpjjq")]
@@ -384,1033 +312,40 @@ offset_bottom = 568.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="NewTurnButton" parent="." node_paths=PackedStringArray("playableCardsUI") groups=["NewTurnButton"] instance=ExtResource("23_pa7rm")]
+[node name="NewTurnButton" parent="." groups=["NewTurnButton"] instance=ExtResource("23_pa7rm")]
 unique_name_in_owner = true
 offset_left = 1728.0
 offset_top = 569.0
 offset_right = 1888.0
 offset_bottom = 639.0
-playableCardsUI = NodePath("../UIOverLays/PlayableCards")
 
 [node name="UIOverLays" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="OvertimeUI" parent="UIOverLays" instance=ExtResource("28_bkf8t")]
-offset_left = 447.0
-offset_top = 111.0
-offset_right = 767.0
-offset_bottom = 240.0
-
-[node name="WelcomeScreen" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button2", "screens")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -2.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("29_wg803")
-button2 = NodePath("AdvanceButton")
-screens = NodePath("WelcomeScreens")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen"]
-modulate = Color(0, 0, 0, 0.470588)
-layout_mode = 2
-offset_left = 3.0
-offset_top = -1.0
-offset_right = 1935.0
-offset_bottom = 1079.0
-rotation = -0.000391196
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="AdvanceButton" parent="UIOverLays/WelcomeScreen" instance=ExtResource("30_na3e0")]
-layout_mode = 0
-offset_left = 976.0
-offset_top = 850.0
-offset_right = 1130.0
-offset_bottom = 918.0
-text = "Continue"
-grabFocus = true
-
-[node name="WelcomeScreens" type="Control" parent="UIOverLays/WelcomeScreen"]
-anchors_preset = 0
-
-[node name="Screen1" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Screen1" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
-layout_mode = 0
-offset_left = 518.0
-offset_top = 299.0
-offset_right = 1620.0
-offset_bottom = 686.0
-
-[node name="MarginContainer2" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 25
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1/MarginContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("25_3hrvt")
-theme_override_font_sizes/normal_font_size = 72
-bbcode_enabled = true
-text = "[center]Welcome to Beans of Production!"
-fit_content = true
-
-[node name="MarginContainer1" type="MarginContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1/Screen1/MarginContainer1"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("25_3hrvt")
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "[fill]Hello! My name is Bob, but you can call me Boss. I'll be your AI supervisor here at BeanTown coffee shop #357, a subsidiary of Conglomerate Incorporated. We here at Conglomerate Inc. offer a generous and fulfilling barista program for our team. You'll gain valuable experience while working off your debt at the same time!
-With that, we have concluded our standard 3-minute allotment for small talk. It's time to start your training."
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen1"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 236.0
-offset_top = 303.0
-offset_right = 556.0
-offset_bottom = 623.0
-texture = ExtResource("31_6imdm")
-
-[node name="Screen2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
-anchors_preset = 0
-
-[node name="Match Tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 762.0
-offset_top = 389.0
-offset_right = 762.0
-offset_bottom = 389.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Match Tutorial"]
-texture_filter = 3
-layout_mode = 0
-offset_left = 58.0
-offset_top = -94.0
-offset_right = 158.0
-offset_bottom = 6.0
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Match Tutorial"]
-layout_mode = 0
-offset_left = -461.0
-offset_top = -102.0
-offset_right = 67.0
-offset_bottom = 140.0
-theme = ExtResource("25_3hrvt")
-bbcode_enabled = true
-text = "This is your standard-issue coffee machine. You will be making 3-of-a-kind matches to generate points. Make enough points to stave off the thirsty masses and clear your shift."
-
-[node name="Card Tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 394.0
-offset_top = 838.0
-offset_right = 394.0
-offset_bottom = 838.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Card Tutorial"]
-texture_filter = 3
-layout_mode = 0
-offset_left = 60.0
-offset_top = -41.0
-offset_right = 160.0
-offset_bottom = 59.0
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Card Tutorial"]
-layout_mode = 0
-offset_left = -346.0
-offset_top = -65.0
-offset_right = 46.0
-offset_bottom = 212.0
-theme = ExtResource("25_3hrvt")
-bbcode_enabled = true
-text = "These are the cards you will use to make matches. Each card has an energy cost, shown in the upper left, that will be spent when you play the card."
-
-[node name="Deck" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-offset_left = 1548.0
-offset_top = 833.0
-offset_right = 1548.0
-offset_bottom = 833.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/Deck"]
-layout_mode = 0
-offset_left = -284.0
-offset_top = -31.0
-offset_right = 19.0
-offset_bottom = 182.0
-theme = ExtResource("25_3hrvt")
-text = "This is your deck of cards. At the start of each turn, you will draw 5 cards from this stack. Over time, you can upgrade your deck."
-
-[node name="EnergyTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 626.0
-offset_top = 669.0
-offset_right = 626.0
-offset_bottom = 669.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/EnergyTutorial"]
-texture_filter = 3
-layout_mode = 0
-offset_left = -353.0
-offset_top = -86.0
-offset_right = -253.0
-offset_bottom = 14.0
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-flip_h = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/EnergyTutorial"]
-layout_mode = 0
-offset_left = -156.0
-offset_top = -97.0
-offset_right = 212.0
-offset_bottom = 111.0
-theme = ExtResource("25_3hrvt")
-text = "This is your current energy. You will get 3 each turn and each card you play will consume some energy"
-
-[node name="PassivesTutorials" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 716.0
-offset_top = 537.0
-offset_right = 716.0
-offset_bottom = 537.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/PassivesTutorials"]
-layout_mode = 0
-offset_left = -256.0
-offset_top = -75.0
-offset_right = 144.0
-offset_bottom = 298.0
-rotation = -11.7117
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("33_4yvg5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2/PassivesTutorials"]
-layout_mode = 0
-offset_left = -216.0
-offset_top = -62.0
-offset_right = 40.0
-offset_bottom = 65.0
-theme = ExtResource("25_3hrvt")
-text = "This is where your relics go that will give you passive abilities"
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen2"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 784.0
-offset_top = 406.0
-offset_right = 1104.0
-offset_bottom = 726.0
-texture = ExtResource("31_6imdm")
-
-[node name="Screen4" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
-anchors_preset = 0
-
-[node name="turns remaining" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 412.0
-offset_top = 279.0
-offset_right = 412.0
-offset_bottom = 279.0
-
-[node name="RedArrow2" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/turns remaining"]
-texture_filter = 3
-layout_mode = 0
-offset_left = -91.0
-offset_top = -116.0
-offset_right = 9.0
-offset_bottom = -16.0
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-flip_h = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/turns remaining"]
-layout_mode = 0
-offset_left = -384.0
-offset_top = 91.0
-offset_right = 76.0
-offset_bottom = 406.0
-theme = ExtResource("25_3hrvt")
-text = "These are the turns you have remaning to complete the level. When you run out of turns, your exhaustion takes its toll and you lose hearts instead. When you run out of hearts, the game is over."
-
-[node name="Mult tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 811.0
-offset_top = 154.0
-offset_right = 811.0
-offset_bottom = 154.0
-rotation = -0.00465528
-
-[node name="RedArrow2" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/Mult tutorial"]
-texture_filter = 3
-layout_mode = 0
-offset_left = -89.594
-offset_top = -87.418
-offset_right = 10.406
-offset_bottom = 12.582
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-flip_h = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/Mult tutorial"]
-layout_direction = 2
-layout_mode = 0
-offset_left = -301.0
-offset_top = 119.0
-offset_right = 118.0
-offset_bottom = 441.0
-theme = ExtResource("25_3hrvt")
-text = "This is your score multiplier, which increases the value of your  matches. Each match you make will increases the multiplier, but resets to 1 when you end your turn."
-
-[node name="Score tutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 1271.0
-offset_top = 174.0
-offset_right = 1271.0
-offset_bottom = 174.0
-
-[node name="RedArrow2" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/Score tutorial"]
-texture_filter = 3
-layout_mode = 0
-offset_left = -161.0
-offset_top = -108.0
-offset_right = -61.0
-offset_bottom = -8.0
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-flip_h = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/Score tutorial"]
-layout_mode = 0
-offset_left = -328.0
-offset_top = 85.0
-offset_right = 59.0
-offset_bottom = 179.0
-theme = ExtResource("25_3hrvt")
-text = "This is your progress for the current level."
-
-[node name="End Turn" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 1519.0
-offset_top = 624.0
-offset_right = 1519.0
-offset_bottom = 624.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/End Turn"]
-layout_mode = 0
-offset_left = -346.0
-offset_top = -97.0
-offset_right = 46.0
-offset_bottom = 103.0
-theme = ExtResource("25_3hrvt")
-text = "End your turn to draw a new hand and reset your energy to 3. Turns are a limited resource."
-
-[node name="RedArrow2" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/End Turn"]
-texture_filter = 3
-layout_mode = 0
-offset_left = 43.0
-offset_top = -129.0
-offset_right = 143.0
-offset_bottom = -29.0
-scale = Vector2(2, 2)
-texture = ExtResource("32_em4ah")
-expand_mode = 3
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 522.0
-offset_top = 595.0
-offset_right = 842.0
-offset_bottom = 915.0
-texture = ExtResource("31_6imdm")
-
-[node name="Money" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-offset_left = 481.0
-offset_top = 282.0
-offset_right = 481.0
-offset_bottom = 282.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/Money"]
-layout_mode = 0
-offset_left = -164.0
-offset_top = -56.0
-offset_right = 236.0
-offset_bottom = 317.0
-rotation = -4.96616
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("33_4yvg5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/Money"]
-layout_mode = 0
-offset_left = -166.0
-offset_top = -1.0
-offset_right = 89.0
-offset_bottom = 100.0
-theme = ExtResource("25_3hrvt")
-text = "Use E-Bucks to buy upgrades between levels."
-
-[node name="MetaCoins" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4"]
-visible = false
-layout_mode = 2
-anchors_preset = 0
-offset_left = 218.0
-offset_top = 382.0
-offset_right = 218.0
-offset_bottom = 382.0
-
-[node name="RedArrow" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/MetaCoins"]
-layout_mode = 0
-offset_left = -13.0
-offset_top = 18.0
-offset_right = 387.0
-offset_bottom = 391.0
-rotation = -3.80257
-scale = Vector2(0.282487, 0.282487)
-texture = ExtResource("33_4yvg5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/Screen4/MetaCoins"]
-layout_mode = 0
-offset_left = -167.0
-offset_top = 24.0
-offset_right = 174.0
-offset_bottom = 146.0
-theme = ExtResource("25_3hrvt")
-text = "You will earn E-Corp loyalty points after each run. These can be spent on permanent upgrades"
-
-[node name="GemsTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 810.0
-offset_top = 147.0
-offset_right = 810.0
-offset_bottom = 147.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial"]
-layout_mode = 0
-offset_left = -76.0
-offset_top = -62.0
-offset_right = 480.0
-offset_bottom = 631.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 80
-bbcode_enabled = true
-text = "[center]Types of ingredients"
-fit_content = true
-
-[node name="ManaGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
-custom_minimum_size = Vector2(300, 210)
-layout_mode = 2
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ManaGemTutorial"]
-layout_mode = 0
-offset_left = -63.0
-offset_top = 26.0
-offset_right = 375.0
-offset_bottom = 199.0
-theme = ExtResource("25_3hrvt")
-text = "Energy-infused ingredients give you a point of energy when matched."
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ManaGemTutorial"]
-layout_mode = 0
-offset_left = 410.0
-offset_top = 35.0
-offset_right = 513.0
-offset_bottom = 134.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("34_y8a7a")
-
-[node name="CardGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
-custom_minimum_size = Vector2(300, 210)
-layout_mode = 2
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/CardGemTutorial"]
-layout_mode = 0
-offset_left = -64.0
-offset_top = 20.0
-offset_right = 375.0
-offset_bottom = 160.0
-theme = ExtResource("25_3hrvt")
-text = "Card-infused ingredients draw a card into your hand when matched.
-"
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/CardGemTutorial"]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 19.0
-offset_right = 517.0
-offset_bottom = 117.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("35_ctgw1")
-
-[node name="ComboGemTutorial2" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(300, 140)
-layout_mode = 2
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 171.0
-offset_bottom = 132.695
-theme = ExtResource("25_3hrvt")
-text = "Combo infused ingredients will give increasing points with each match
-"
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/ComboGemTutorial2"]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 10.0
-offset_right = 283.0
-offset_bottom = 108.0
-texture = ExtResource("36_skwh6")
-
-[node name="BlackGemTutorial" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer"]
-custom_minimum_size = Vector2(300, 210)
-layout_mode = 2
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/BlackGemTutorial"]
-layout_mode = 0
-offset_left = -61.0
-offset_top = -22.0
-offset_right = 374.0
-offset_bottom = 223.0
-theme = ExtResource("25_3hrvt")
-text = "Burnt ingredients cannot be matched. Don't be afraid to make a few burnt ingredients, cards that do so are usually worth it."
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial/VBoxContainer/BlackGemTutorial"]
-layout_mode = 0
-offset_left = 412.0
-offset_top = 11.0
-offset_right = 529.566
-offset_bottom = 124.0
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("37_hpawd")
-expand_mode = 3
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GemsTutorial"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -588.0
-offset_top = 225.0
-offset_right = -268.0
-offset_bottom = 545.0
-texture = ExtResource("31_6imdm")
-
-[node name="GoodLuck" type="Control" parent="UIOverLays/WelcomeScreen/WelcomeScreens"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 810.0
-offset_top = 147.0
-offset_right = 810.0
-offset_bottom = 147.0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GoodLuck"]
-layout_mode = 0
-offset_left = -70.0
-offset_top = 317.0
-offset_right = 609.0
-offset_bottom = 562.0
-theme = ExtResource("25_3hrvt")
-bbcode_enabled = true
-text = "[fill]That concludes your training. I will be checking up on you to make sure you hit your quotas. As per your performance plan we will have to let you go if they are not met. But no pressure--I'm sure you'll do fine."
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/WelcomeScreen/WelcomeScreens/GoodLuck"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -377.0
-offset_top = 231.0
-offset_right = -57.0
-offset_bottom = 551.0
-texture = ExtResource("31_6imdm")
-
-[node name="GooTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("24_76j0y")
-button = NodePath("Button2")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/GooTutorial"]
-modulate = Color(0, 0, 0, 0.568627)
-texture_filter = 1
-layout_mode = 2
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="Goo" type="TextureRect" parent="UIOverLays/GooTutorial"]
-texture_filter = 1
-layout_mode = 2
-offset_left = 708.0
-offset_top = 169.0
-offset_right = 987.0
-offset_bottom = 448.0
-texture = ExtResource("38_6jma2")
-expand_mode = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/GooTutorial"]
-layout_mode = 0
-offset_left = 505.0
-offset_top = 476.0
-offset_right = 1181.0
-offset_bottom = 790.0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UIOverLays/GooTutorial/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("25_3hrvt")
-bbcode_enabled = true
-text = "[fill]Oh no, your trusty coffee machine has started secreting some kind of strange goo. This probabaly wont pass health expection.
-
-Goo tiles cannot be targeted by your cards. You can clear them out by making matches adjacent to goo tiles!"
-fit_content = true
-
-[node name="Button2" parent="UIOverLays/GooTutorial" instance=ExtResource("30_na3e0")]
-layout_mode = 0
-offset_left = 761.0
-offset_top = 814.0
-offset_right = 915.0
-offset_bottom = 866.0
-text = "Continue"
-grabFocus = true
-
-[node name="BossRelicDisplay" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "richTextLabel")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("24_76j0y")
-button = NodePath("ContinueButton")
-richTextLabel = NodePath("Text")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/BossRelicDisplay"]
-modulate = Color(0, 0, 0, 0.568627)
-layout_mode = 2
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="Text" type="RichTextLabel" parent="UIOverLays/BossRelicDisplay"]
-layout_mode = 2
-offset_left = 546.0
-offset_top = 231.0
-offset_right = 1146.0
-offset_bottom = 511.0
-theme = ExtResource("25_3hrvt")
-text = "Oh no, you accidently make a drink wrong for a customer and she demands to speak to your manager. You are rattled for the rest of the day
-
-EFFECT FOR THIS LEVEL:
-"
-fit_content = true
-
-[node name="ContinueButton" parent="UIOverLays/BossRelicDisplay" instance=ExtResource("30_na3e0")]
-layout_mode = 0
-offset_left = 747.0
-offset_top = 674.0
-offset_right = 901.0
-offset_bottom = 726.0
-text = "Continue"
-grabFocus = true
-
-[node name="OverTimeTutorial" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "richTextLabel")]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("24_76j0y")
-button = NodePath("ContinueButton")
-richTextLabel = NodePath("../BossRelicDisplay/Text")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/OverTimeTutorial"]
-modulate = Color(0, 0, 0, 0.568627)
-layout_mode = 2
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="Text" type="RichTextLabel" parent="UIOverLays/OverTimeTutorial"]
-layout_mode = 2
-offset_left = 808.0
-offset_top = 184.0
-offset_right = 1408.0
-offset_bottom = 612.0
-theme = ExtResource("25_3hrvt")
-text = "Congrats on hitting your first quota! Now technically you can leave work now, but you would be missing out on a huge opportunity! We now allow employees to stay longer than their shift to earn performance bonuses! If you earn 150% or 200% of your quota you will be rewarded with a bonus. You can see markers for these goals next to the coffee pot"
-fit_content = true
-
-[node name="ContinueButton" parent="UIOverLays/OverTimeTutorial" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
-layout_mode = 0
-offset_left = 1007.0
-offset_top = 648.0
-offset_right = 1161.0
-offset_bottom = 716.0
-text = "Continue"
-animationPlayer = NodePath("../../BossRelicDisplay/ContinueButton/AnimationPlayer")
-hoverAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/HoverAudioPlayer")
-clickAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/ClickAudioPlayer")
-grabFocus = true
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/OverTimeTutorial"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 1405.0
-offset_top = 237.0
-offset_right = 1725.0
-offset_bottom = 557.0
-texture = ExtResource("31_6imdm")
-
-[node name="GameBeaten" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "richTextLabel")]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("24_76j0y")
-button = NodePath("ContinueButton")
-richTextLabel = NodePath("../BossRelicDisplay/Text")
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/GameBeaten"]
-modulate = Color(0, 0, 0, 0.568627)
-layout_mode = 2
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="Boss" type="TextureRect" parent="UIOverLays/GameBeaten"]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 543.0
-offset_top = 241.0
-offset_right = 863.0
-offset_bottom = 561.0
-texture = ExtResource("31_6imdm")
-
-[node name="Text2" type="Panel" parent="UIOverLays/GameBeaten"]
-layout_mode = 0
-offset_left = 865.0
-offset_top = 283.0
-offset_right = 1273.0
-offset_bottom = 513.0
-theme = ExtResource("39_ojs4i")
-
-[node name="Text" type="RichTextLabel" parent="UIOverLays/GameBeaten/Text2"]
-layout_mode = 2
-offset_left = 4.0
-offset_right = 408.0
-offset_bottom = 259.0
-text = "Congrats beating the game! You can keep on playing to hit a highscore for the leader board. Thanks for playing the demo!"
-fit_content = true
-
-[node name="ContinueButton" parent="UIOverLays/GameBeaten" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
-layout_mode = 0
-offset_left = 1004.0
-offset_top = 571.0
-offset_right = 1158.0
-offset_bottom = 623.0
-text = "Continue"
-animationPlayer = NodePath("../../BossRelicDisplay/ContinueButton/AnimationPlayer")
-hoverAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/HoverAudioPlayer")
-clickAudioplayer = NodePath("../../BossRelicDisplay/ContinueButton/ClickAudioPlayer")
-grabFocus = true
-
-[node name="CardSelectionUI" parent="UIOverLays" node_paths=PackedStringArray("deckViewUI") instance=ExtResource("40_llfcu")]
-layout_mode = 1
-offset_left = -5.0
-offset_top = -4.0
-offset_right = -5.0
-offset_bottom = -4.0
-scale = Vector2(1.01, 1.01)
-deckViewUI = NodePath("../DeckView")
-cards = []
-
-[node name="GameOverScreen" parent="UIOverLays" node_paths=PackedStringArray("debtReward") instance=ExtResource("41_s18v1")]
-visible = false
-layout_mode = 1
-offset_left = -3.0
-offset_top = 2.0
-offset_right = -3.0
-offset_bottom = 2.0
-debtReward = NodePath("../DebtProgressBar")
+offset_left = 65.0
+offset_top = 452.0
+offset_right = 65.0
+offset_bottom = 452.0
 
 [node name="DeckView" parent="UIOverLays" groups=["DeckView"] instance=ExtResource("42_lbo55")]
 visible = false
 layout_mode = 1
 
-[node name="LevelComplete" type="Control" parent="UIOverLays" node_paths=PackedStringArray("button", "animationPlayer", "richTextLabel")]
-visible = false
-texture_filter = 1
-anchors_preset = 0
-script = ExtResource("43_bekot")
-button = NodePath("Panel/Button2")
-animationPlayer = NodePath("AnimationPlayer")
-richTextLabel = NodePath("Panel/VBoxContainer/HBoxContainer2/RichTextLabel")
-
-[node name="Background" type="TextureRect" parent="UIOverLays/LevelComplete"]
-modulate = Color(0, 0, 0, 0.568627)
-layout_mode = 0
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="Panel" type="Panel" parent="UIOverLays/LevelComplete"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 1300.0
-offset_right = 1316.0
-offset_bottom = 1571.0
-theme = ExtResource("26_ci313")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/LevelComplete/Panel"]
-layout_mode = 0
-offset_left = 283.0
-offset_top = 31.0
-offset_right = 635.0
-offset_bottom = 149.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/Panel/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "Level Passed!"
-fit_content = true
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UIOverLays/LevelComplete/Panel/VBoxContainer"]
-layout_mode = 2
-size_flags_stretch_ratio = 7.9
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/LevelComplete/Panel/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(230, 0)
-layout_mode = 2
-text = "You gained"
-fit_content = true
-scroll_active = false
-
-[node name="TextureRect" type="TextureRect" parent="UIOverLays/LevelComplete/Panel/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("44_0gd7q")
-expand_mode = 1
-
-[node name="Button2" parent="UIOverLays/LevelComplete/Panel" instance=ExtResource("30_na3e0")]
-layout_mode = 0
-offset_left = 354.0
-offset_top = 162.0
-offset_right = 544.0
-offset_bottom = 214.0
-text = "Continue"
-grabFocus = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UIOverLays/LevelComplete"]
-libraries = {
-"": SubResource("AnimationLibrary_d1386")
-}
-
-[node name="PlayableCards" type="Control" parent="UIOverLays" node_paths=PackedStringArray("showUI", "button")]
-visible = false
-anchors_preset = 0
-script = ExtResource("45_cyhnn")
-showUI = NodePath("CheckBox")
-button = NodePath("Button")
-fadeOutDelay = 0.25
-
-[node name="Background" type="TextureRect" parent="UIOverLays/PlayableCards"]
-modulate = Color(0, 0, 0, 0.568627)
-layout_mode = 0
-offset_left = -10.0
-offset_right = 1922.0
-offset_bottom = 1080.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="Panel" type="Panel" parent="UIOverLays/PlayableCards"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 367.0
-offset_right = 1481.0
-offset_bottom = 698.0
-theme = ExtResource("25_3hrvt")
-
-[node name="Foreground" type="TextureRect" parent="UIOverLays/PlayableCards"]
-visible = false
-modulate = Color(0.560784, 0.560784, 0.560784, 1)
-layout_mode = 0
-offset_left = 460.0
-offset_top = 367.0
-offset_right = 1483.0
-offset_bottom = 696.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 0
-texture = ExtResource("11_psaqn")
-expand_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverLays/PlayableCards"]
-layout_mode = 0
-offset_left = 511.0
-offset_top = 408.0
-offset_right = 1411.0
-offset_bottom = 566.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UIOverLays/PlayableCards/VBoxContainer"]
-custom_minimum_size = Vector2(845, 50)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "You still have cards you can play. Are you sure you want to end your turn? Most 0 cost cards are worth playing"
-fit_content = true
-
-[node name="Button" type="Button" parent="UIOverLays/PlayableCards"]
-layout_mode = 0
-offset_left = 762.0
-offset_top = 619.0
-offset_right = 1035.0
-offset_bottom = 678.0
-theme = ExtResource("26_ci313")
-text = "Continue"
-
-[node name="CheckBox" type="CheckBox" parent="UIOverLays/PlayableCards"]
-layout_mode = 0
-offset_left = 768.0
-offset_top = 574.0
-offset_right = 1029.0
-offset_bottom = 606.0
-theme_override_font_sizes/font_size = 30
-text = "Dont show me this again"
-
-[node name="HighScoreDisplay" parent="UIOverLays" instance=ExtResource("46_5urnm")]
-visible = false
-texture_filter = 1
+[node name="ActivatableRelicUi" parent="UIOverLays" groups=["ActivatableRelicUI"] instance=ExtResource("48_fmyr8")]
 layout_mode = 1
-offset_left = -21.0
-offset_top = 12.0
-offset_right = -21.0
-offset_bottom = 12.0
+offset_top = 152.0
+offset_bottom = 152.0
+relicResource = ExtResource("49_ma0ug")
 
-[node name="RelicSelection" parent="UIOverLays" instance=ExtResource("47_m3cob")]
-visible = false
-
-[node name="DebtProgressBar" parent="UIOverLays" instance=ExtResource("48_lbafv")]
-visible = false
-offset_left = -1.0
-offset_top = 3.0
-offset_right = -1.0
-offset_bottom = 3.0
+[node name="RelicHolder" parent="UIOverLays" groups=["RelicHolder"] instance=ExtResource("14_jrqgk")]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 94.0
+offset_right = 106.0
+offset_bottom = 94.0
 
 [node name="TutorialManager" type="Control" parent="." node_paths=PackedStringArray("tutorialUIs")]
 layout_mode = 3
@@ -1538,9 +473,9 @@ flip_v = true
 [node name="RedArrow" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial2"]
 texture_filter = 3
 layout_mode = 0
-offset_left = 307.0
+offset_left = 217.0
 offset_top = 485.0
-offset_right = 407.0
+offset_right = 317.0
 offset_bottom = 585.0
 rotation = 1.5708
 texture = ExtResource("32_em4ah")
@@ -1549,10 +484,10 @@ expand_mode = 3
 [node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial2"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -44.0
-offset_top = 150.0
-offset_right = 276.0
-offset_bottom = 470.0
+offset_left = 762.0
+offset_top = 190.0
+offset_right = 1082.0
+offset_bottom = 510.0
 texture = ExtResource("31_6imdm")
 
 [node name="RedArrow2" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial2"]
@@ -1569,9 +504,9 @@ expand_mode = 3
 
 [node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial2"]
 layout_mode = 0
-offset_left = 252.0
+offset_left = 135.0
 offset_top = 269.0
-offset_right = 840.0
+offset_right = 723.0
 offset_bottom = 461.0
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial2/Panel"]
@@ -1588,10 +523,10 @@ fit_content = true
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial2" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 376.0
-offset_top = 518.0
-offset_right = 712.0
-offset_bottom = 586.0
+offset_left = 286.0
+offset_top = 510.0
+offset_right = 622.0
+offset_bottom = 578.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
@@ -1951,7 +886,6 @@ text = "You are now out of cards to play. Ending your turn will draw 5 new cards
 fit_content = true
 
 [node name="Tutorial4" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
-visible = false
 anchors_preset = 0
 offset_left = -1.0
 offset_right = -1.0
@@ -1979,30 +913,29 @@ flip_v = true
 [node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial4"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 1099.0
-offset_top = 8.0
-offset_right = 1419.0
-offset_bottom = 328.0
+offset_left = 997.0
+offset_top = -19.0
+offset_right = 1317.0
+offset_bottom = 301.0
 texture = ExtResource("31_6imdm")
 
 [node name="RedArrow" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial4"]
 texture_filter = 3
 layout_mode = 0
-offset_left = 556.0
-offset_top = 222.0
-offset_right = 656.0
-offset_bottom = 322.0
+offset_left = 468.0
+offset_top = 135.0
+offset_right = 568.0
+offset_bottom = 235.0
 rotation = 3.14159
-scale = Vector2(2, 2)
 texture = ExtResource("32_em4ah")
 expand_mode = 3
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial4" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 layout_mode = 0
-offset_left = 666.0
-offset_top = 475.0
-offset_right = 1002.0
-offset_bottom = 543.0
+offset_left = 564.0
+offset_top = 448.0
+offset_right = 900.0
+offset_bottom = 516.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
@@ -2011,10 +944,10 @@ grabFocus = true
 
 [node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial4"]
 layout_mode = 0
-offset_left = 602.0
-offset_top = 95.0
-offset_right = 1044.0
-offset_bottom = 417.0
+offset_left = 500.0
+offset_top = 68.0
+offset_right = 942.0
+offset_bottom = 390.0
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial4/Panel"]
 layout_mode = 2
@@ -2434,15 +1367,15 @@ bbcode_enabled = true
 text = "Now use the switch vertical card to match the infused ingredients and claim the rewards."
 fit_content = true
 
-[node name="Tutorial14" type="Control" parent="TutorialManager/TutorialUIs"]
+[node name="Tutorial14" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
 visible = false
 anchors_preset = 0
 script = ExtResource("52_a62bi")
+showAdvanceButton = true
+advanceButton = NodePath("Button2")
 tutorialTiles = []
-highLightCard = 2
 
 [node name="TextureRect" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial14"]
-visible = false
 modulate = Color(0, 0, 0, 0.470588)
 layout_mode = 0
 offset_top = -1.0
@@ -2461,9 +1394,9 @@ flip_v = true
 texture_filter = 1
 layout_mode = 0
 offset_left = -36.0
-offset_top = 201.0
+offset_top = 212.0
 offset_right = 284.0
-offset_bottom = 521.0
+offset_bottom = 532.0
 texture = ExtResource("31_6imdm")
 
 [node name="RedArrow2" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial14"]
@@ -2482,29 +1415,178 @@ expand_mode = 3
 [node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial14"]
 layout_mode = 0
 offset_left = 269.0
-offset_top = 281.0
-offset_right = 619.0
-offset_bottom = 546.0
+offset_top = 292.0
+offset_right = 635.0
+offset_bottom = 536.0
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial14/Panel"]
 layout_mode = 2
 offset_left = -5.0
 offset_top = -5.0
 offset_right = 375.0
-offset_bottom = 261.0
+offset_bottom = 241.0
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "You gained an energy and drew the Big Bean Blast card! Now play the card, which will consume all of your energy for a big payout."
+text = "You gained an energy and drew the Big Bean Blast card! This card will consume all of your energy for a big payout!"
 fit_content = true
 
 [node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial14" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 608.0
+offset_right = 618.0
+offset_bottom = 676.0
+text = "Continue"
+animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
+hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
+clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
+
+[node name="Tutorial16" type="Control" parent="TutorialManager/TutorialUIs"]
+visible = false
+anchors_preset = 0
+script = ExtResource("52_a62bi")
+advanceAfterRelicActivated = true
+tutorialTiles = []
+
+[node name="TextureRect" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial16"]
+visible = false
+modulate = Color(0, 0, 0, 0.470588)
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1932.0
+offset_bottom = 1079.0
+rotation = -0.000391196
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("11_psaqn")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial16"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 799.0
+offset_top = 156.0
+offset_right = 1119.0
+offset_bottom = 476.0
+texture = ExtResource("31_6imdm")
+
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial16"]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 200.0
+offset_right = 768.0
+offset_bottom = 444.0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial16/Panel"]
+layout_mode = 2
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 540.0
+offset_bottom = 241.0
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Making matches whith specific ingredient will charge up your activatable relic, you can check on the status of a relic by mousing over it. Activate this relic to gain one more energy. "
+fit_content = true
+
+[node name="RedArrow2" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial16"]
+texture_filter = 3
+layout_mode = 0
+offset_left = 198.0
+offset_top = 272.0
+offset_right = 298.0
+offset_bottom = 372.0
+rotation = 3.14159
+texture = ExtResource("32_em4ah")
+expand_mode = 3
+
+[node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial16" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
 visible = false
 layout_mode = 0
-offset_left = 865.0
-offset_top = 761.0
-offset_right = 1201.0
-offset_bottom = 829.0
+offset_left = 282.0
+offset_top = 608.0
+offset_right = 618.0
+offset_bottom = 676.0
+text = "Continue"
+animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
+hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")
+clickAudioplayer = NodePath("../../Tutorial1/Button/ClickAudioPlayer")
+
+[node name="Tutorial17" type="Control" parent="TutorialManager/TutorialUIs"]
+visible = false
+anchors_preset = 0
+script = ExtResource("52_a62bi")
+tutorialTiles = []
+highLightCard = 2
+
+[node name="TextureRect" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial17"]
+visible = false
+modulate = Color(0, 0, 0, 0.470588)
+layout_mode = 0
+offset_top = -1.0
+offset_right = 1932.0
+offset_bottom = 1079.0
+rotation = -0.000391196
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("11_psaqn")
+expand_mode = 2
+flip_h = true
+flip_v = true
+
+[node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial17"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -36.0
+offset_top = 212.0
+offset_right = 284.0
+offset_bottom = 532.0
+texture = ExtResource("31_6imdm")
+
+[node name="RedArrow2" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial17"]
+visible = false
+texture_filter = 3
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 597.0
+offset_right = 1180.0
+offset_bottom = 697.0
+rotation = 4.71239
+scale = Vector2(2, 2)
+texture = ExtResource("32_em4ah")
+expand_mode = 3
+
+[node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial17"]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 292.0
+offset_right = 635.0
+offset_bottom = 380.0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial17/Panel"]
+layout_mode = 2
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 375.0
+offset_bottom = 241.0
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Now play the Big Bean Blast card!"
+fit_content = true
+
+[node name="Button2" parent="TutorialManager/TutorialUIs/Tutorial17" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer") instance=ExtResource("30_na3e0")]
+visible = false
+layout_mode = 0
+offset_left = 282.0
+offset_top = 608.0
+offset_right = 618.0
+offset_bottom = 676.0
 text = "Continue"
 animationPlayer = NodePath("../../Tutorial1/Button/AnimationPlayer")
 hoverAudioplayer = NodePath("../../Tutorial1/Button/HoverAudioPlayer")

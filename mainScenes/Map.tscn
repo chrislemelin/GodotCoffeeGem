@@ -121,7 +121,7 @@ cardEffect = SubResource("Resource_ym5bx")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
-[sub_resource type="Resource" id="Resource_tlj12"]
+[sub_resource type="Resource" id="Resource_r5oxa"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
 teleport = false
@@ -167,7 +167,7 @@ rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
-cardEffect = SubResource("Resource_tlj12")
+cardEffect = SubResource("Resource_r5oxa")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
@@ -203,7 +203,7 @@ cardEffect = SubResource("Resource_ym5bx")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
-[sub_resource type="Resource" id="Resource_l5j6y"]
+[sub_resource type="Resource" id="Resource_umxt8"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
 teleport = false
@@ -249,7 +249,7 @@ rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
-cardEffect = SubResource("Resource_l5j6y")
+cardEffect = SubResource("Resource_umxt8")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
@@ -285,7 +285,7 @@ cardEffect = SubResource("Resource_ym5bx")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
-[sub_resource type="Resource" id="Resource_bimhj"]
+[sub_resource type="Resource" id="Resource_4tate"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
 teleport = false
@@ -331,7 +331,7 @@ rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
-cardEffect = SubResource("Resource_bimhj")
+cardEffect = SubResource("Resource_4tate")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
@@ -367,7 +367,7 @@ cardEffect = SubResource("Resource_ym5bx")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
-[sub_resource type="Resource" id="Resource_23mlu"]
+[sub_resource type="Resource" id="Resource_a0d3t"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
 teleport = false
@@ -413,7 +413,7 @@ rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
-cardEffect = SubResource("Resource_23mlu")
+cardEffect = SubResource("Resource_a0d3t")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
@@ -449,7 +449,7 @@ cardEffect = SubResource("Resource_ym5bx")
 cardUpgrades = []
 cardUpgradeTitle = ""
 
-[sub_resource type="Resource" id="Resource_smct3"]
+[sub_resource type="Resource" id="Resource_rpltx"]
 resource_local_to_scene = true
 script = ExtResource("14_dr0te")
 teleport = false
@@ -495,7 +495,7 @@ rarity = 0
 coinCost = 0
 coinPlayRequirement = 0
 coinPlayCost = 0
-cardEffect = SubResource("Resource_smct3")
+cardEffect = SubResource("Resource_rpltx")
 cardUpgrades = []
 cardUpgradeTitle = ""
 

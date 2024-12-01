@@ -50,7 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://df73hn4mndwnd" path="res://UI/EndDayButton.tscn" id="47_oc5ta"]
 [ext_resource type="PackedScene" uid="uid://28twoy1bat4t" path="res://meta/debt/DebtReward.tscn" id="48_2ib3b"]
 [ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="48_ckeue"]
-[ext_resource type="Resource" uid="uid://brvx75e401xgw" path="res://relics/activableRelics/AddTurnActivatableRelic.tres" id="50_3mq61"]
+[ext_resource type="Resource" uid="uid://dat3q3duiibxn" path="res://relics/activableRelics/EnergyActivatableRelic.tres" id="50_5hos7"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="51_n61nv"]
 [ext_resource type="PackedScene" uid="uid://ff2wbvpyhygk" path="res://characterCustomization/CharacterPortrait.tscn" id="53_4rgbs"]
 [ext_resource type="Texture2D" uid="uid://bse40n4t1va72" path="res://sprites/character/Nick1.png" id="54_8tj11"]
@@ -415,6 +415,20 @@ stretch_mode = 4
 [node name="UIOverLays" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ActivatableRelicUi" parent="UIOverLays" groups=["ActivatableRelicUI"] instance=ExtResource("54_tmomu")]
+layout_mode = 1
+offset_top = 152.0
+offset_bottom = 152.0
+relicResource = ExtResource("50_5hos7")
+
+[node name="RelicHolder" parent="UIOverLays" groups=["RelicHolder"] instance=ExtResource("16_qkjnw")]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 94.0
+offset_right = 106.0
+offset_bottom = 94.0
 metadata/_edit_use_anchors_ = true
 
 [node name="OvertimeUI" parent="UIOverLays" instance=ExtResource("42_osxvy")]
@@ -1385,22 +1399,6 @@ offset_bottom = 40.0
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="ActivatableRelicUi" parent="UIOverLays" instance=ExtResource("54_tmomu")]
-layout_mode = 1
-offset_left = -15.0
-offset_top = 152.0
-offset_right = -15.0
-offset_bottom = 152.0
-relicResource = ExtResource("50_3mq61")
-
-[node name="RelicHolder" parent="UIOverLays" groups=["RelicHolder"] instance=ExtResource("16_qkjnw")]
-layout_mode = 1
-offset_left = 91.0
-offset_top = 94.0
-offset_right = 91.0
-offset_bottom = 94.0
-metadata/_edit_use_anchors_ = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource("39_btpum")]
 metadata/_edit_use_anchors_ = true

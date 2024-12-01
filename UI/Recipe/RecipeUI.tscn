@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu3n4oo2vkoxy"]
+[gd_scene load_steps=6 format=3 uid="uid://cu3n4oo2vkoxy"]
 
 [ext_resource type="Script" path="res://UI/Recipe/RecipeUI.cs" id="1_pcu2t"]
 [ext_resource type="Theme" uid="uid://cb56mr55sbqyi" path="res://UI/Themes/UITheme.tres" id="2_dubq4"]
 [ext_resource type="PackedScene" uid="uid://bs2tc07dvicfw" path="res://UI/Recipe/RecipeItem.tscn" id="2_m2p4j"]
+[ext_resource type="Texture2D" uid="uid://cxdl40q2megp5" path="res://sprites/ingredients/final/Bean-pixel2.png" id="3_0q5bw"]
 [ext_resource type="Texture2D" uid="uid://bygs1sktc8rsc" path="res://sprites/ingredients/bean.png" id="15_1xgnr"]
 
 [node name="HBoxContainer" type="HBoxContainer" node_paths=PackedStringArray("recipeComponentHolder")]
@@ -11,11 +12,13 @@ offset_bottom = 50.0
 size_flags_horizontal = 4
 script = ExtResource("1_pcu2t")
 recipeComponentHolder = NodePath(".")
-inactiveColor = Color(0.443137, 0.443137, 0.443137, 1)
+inactiveColor = Color(0.254902, 0.254902, 0.254902, 1)
 ingredientScene = ExtResource("2_m2p4j")
 
 [node name="Recipe" parent="." instance=ExtResource("2_m2p4j")]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
 layout_mode = 2
+texture = ExtResource("3_0q5bw")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(50, 50)

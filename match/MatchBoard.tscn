@@ -276,6 +276,7 @@ offset_bottom = 152.0
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CoffeeMug/Control" node_paths=PackedStringArray("audioPourStreamPlayer2D", "coinGainedAudioPlayer", "scoreRewards", "progressBar", "progressBarFlash", "flashAnimationPlayer", "sparkleArea")]
 texture_filter = 1
+layout_mode = 0
 offset_left = -226.0
 offset_top = -144.0
 offset_right = -113.0
@@ -328,6 +329,7 @@ texture = ExtResource("15_l1v61")
 [node name="TextureProgressBarFlash" type="TextureProgressBar" parent="CoffeeMug/Control"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
+layout_mode = 0
 offset_right = 113.0
 offset_bottom = 145.0
 scale = Vector2(3, 3)
