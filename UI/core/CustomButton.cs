@@ -38,7 +38,7 @@ public partial class CustomButton : Button
 	}
 
 	public void setUp() {
-		PivotOffset = Size/2;  
+		PivotOffset = Size/2;
 		if (playStartUpAnimation) {
 			Callable.From(() => startUpAnimation()).CallDeferred();
 		}
@@ -63,7 +63,9 @@ public partial class CustomButton : Button
 		Tween tween = GetTree().CreateTween();
 		tween.SetEase(Tween.EaseType.InOut);
 		tween.TweenProperty(this, "scale",  new Vector2(0.25f,0.25f), 0f);
-		tween.TweenProperty(this, "scale", new Vector2(1.0f,1.0f), .25f);
+		tween.TweenProperty(this, "scale", new Vector2(1.1f,1.1f), .25f);
+		tween.Chain().TweenProperty(this, "scale",  new Vector2(1,1), .1f);
+
 		if (icon != null) {
 			Tween iconTween = GetTree().CreateTween();
 			tween.SetEase(Tween.EaseType.InOut);
