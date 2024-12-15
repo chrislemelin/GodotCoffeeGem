@@ -97,7 +97,7 @@ public partial class CustomToolTip : Control
 		return true;
 	}
 
-	private void deleteToolTip() {
+	public void deleteToolTip() {
 		Control toolTip = getToolTip();
 		if (checkForText() && GetTree().Root.GetChildren().Contains(toolTip)) {
 			toolTip.Visible = false;

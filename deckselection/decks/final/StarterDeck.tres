@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=6 format=3 uid="uid://b2vcn6wnju7y3"]
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=7 format=3 uid="uid://b2vcn6wnju7y3"]
 
 [ext_resource type="Resource" uid="uid://cuupjsry3idhf" path="res://cards/cardResources/cardLists/StarterCardList.tres" id="1_5g5we"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="1_pjjsm"]
+[ext_resource type="Resource" uid="uid://cxn35q7oscdxf" path="res://relics/activableRelics/StarterMoneyActivatableRelic.tres" id="1_u1jdk"]
 [ext_resource type="Texture2D" uid="uid://cx4nw6xljgax2" path="res://sprites/cards/final/CardBackRealFinal.png" id="2_64ccs"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/cardPools/CardPool.tres" id="2_bomm1"]
 [ext_resource type="Texture2D" uid="uid://d006248sckcyp" path="res://sprites/cards/final/TestBackground2.png" id="4_dj35x"]
@@ -11,6 +12,7 @@ script = ExtResource("1_pjjsm")
 cardList = ExtResource("1_5g5we")
 cardPool = ExtResource("2_bomm1")
 relics = Array[Object]([])
+activatableRelics = [ExtResource("1_u1jdk")]
 title = "Starter Deck"
 description = "This is the starter deck, recommended for first time players."
 color = Color(0, 0, 0, 0)

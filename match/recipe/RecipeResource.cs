@@ -17,7 +17,9 @@ public partial class RecipeResource : Resource
 	private ActivatableRelicResource activatableRelicResource;
 	public void setUp(Node node, ActivatableRelicResource activatableRelicResource)
 	{
-		reset();
+		if (completedComponents.Count == 0) {
+			reset();
+		}
 		this.activatableRelicResource = activatableRelicResource;
 		MatchBoard matchBoard = FindObjectHelper.getMatchBoard(node);
 		if (matchBoard != null)

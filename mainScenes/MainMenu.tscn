@@ -111,14 +111,20 @@ hoverAudioplayer = NodePath("../../MarginContainer6/Button/HoverAudioPlayer")
 clickAudioplayer = NodePath("../../MarginContainer6/Button/ClickAudioPlayer")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-offset_left = 789.0
-offset_top = 429.0
-offset_right = 1233.0
-offset_bottom = 859.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 728.0
+offset_top = 431.0
+offset_right = 1287.0
+offset_bottom = 850.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 1
 
 [node name="Play" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/Play"]
 custom_minimum_size = Vector2(104, 104)
@@ -130,6 +136,10 @@ texture_filter = 1
 layout_mode = 2
 texture = ExtResource("12_2iis4")
 expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer2/Play"]
+visible = false
+layout_mode = 2
 
 [node name="play" parent="VBoxContainer2/Play" node_paths=PackedStringArray("icon") instance=ExtResource("7_bodv0")]
 layout_mode = 2

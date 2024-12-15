@@ -47,6 +47,10 @@ public partial class EffectResource : Resource
 		
 	}
 
+	public virtual bool canRunNotInLevel() {
+		return false;
+	}
+
 
 	private void createAddonGems(MatchBoard matchBoard, GemAddonType type, int count)
 	{

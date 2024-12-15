@@ -95,7 +95,7 @@ public partial class GameManager : GameManagerIF
 		}
 		if (endlessMode || getGlobal().zenMode)
 		{
-			scoreNeededToPass = 10_000;
+			scoreNeededToPass = 20_000;
 			score.setTurnsRemaining(3);
 		}
 		if (skipFirstLevel && currentLevel == 1)

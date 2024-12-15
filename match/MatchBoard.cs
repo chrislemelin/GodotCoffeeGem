@@ -185,7 +185,7 @@ public partial class MatchBoard : MatchBoardTutorial
 				//matchOrb.GlobalPosition = startingPosition;
 				
 				Tween tweenMovement = GetTree().CreateTween();
-				tweenMovement.TweenProperty(matchOrb.pathFollow2D, "progress_ratio", 1.0f, Math.Clamp(length /500.0f, 1.0f, 2.0f));
+				tweenMovement.TweenProperty(matchOrb.pathFollow2D, "progress_ratio", 1.0f, Math.Clamp(length /500.0f, 0.5f, 1.5f));
 				tweenMovement.SetEase(Tween.EaseType.InOut);
 				tweenMovement.TweenCallback(Callable.From(matchOrb.destroy));
 				tweenMovement.TweenCallback(Callable.From(coffeePot.flash));
@@ -911,8 +911,6 @@ public partial class MatchBoard : MatchBoardTutorial
 		}
 
 		EmitSignal(SignalName.ingredientAllMatches, new Godot.Collections.Array<Match>(matchObjects));
-		GD.Print("send signal for "+ new Godot.Collections.Array<Match>(matchObjects));
-
 
 		generateMatchOrbs(matchObjects);
 

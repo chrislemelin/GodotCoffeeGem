@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3rhwnt70jga4"]
+[gd_scene load_steps=13 format=3 uid="uid://d3rhwnt70jga4"]
 
 [ext_resource type="Script" path="res://relics/activableRelics/ActivatableRelicUI.cs" id="1_qv605"]
 [ext_resource type="Texture2D" uid="uid://di0saajd1dtqq" path="res://relics/sprites/hammer.png" id="2_8m8yo"]
+[ext_resource type="Texture2D" uid="uid://bdhybcy6tcg12" path="res://sprites/cards/square.png" id="2_ohvg0"]
 [ext_resource type="Script" path="res://UI/tooltip/CustomToolTip.cs" id="3_s3f7f"]
 [ext_resource type="PackedScene" uid="uid://cu3n4oo2vkoxy" path="res://UI/Recipe/RecipeUI.tscn" id="3_v2ha7"]
 [ext_resource type="Theme" uid="uid://coujnmnth3xr5" path="res://UI/Themes/WoodBoardTheme.tres" id="4_wh1nk"]
 [ext_resource type="Texture2D" uid="uid://dbo13o8m3fqkx" path="res://sprites/inner3.png" id="6_a7rpi"]
 [ext_resource type="Texture2D" uid="uid://b3rm8ukgnqyyt" path="res://sprites/outter2.png" id="7_fcoph"]
+[ext_resource type="Texture2D" uid="uid://bxug84vvxnu7a" path="res://sprites/cards/icons/coin-icon.png" id="8_qi8qc"]
 
 [sub_resource type="Animation" id="Animation_ubxjk"]
 length = 0.001
@@ -46,11 +48,15 @@ _data = {
 "activated": SubResource("Animation_ofbi0")
 }
 
-[node name="ActivatableRelicUi" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "textureRect", "chargesLabel", "recipeUI", "textureProgressBar", "animationPlayer")]
+[node name="ActivatableRelicUi" type="Control" node_paths=PackedStringArray("titleLabel", "descriptionLabel", "textureRect", "chargesLabel", "recipeUI", "textureProgressBar", "animationPlayer", "costLabel", "costControl", "customToolTip", "hitBox")]
+custom_minimum_size = Vector2(231, 155)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = -1689.0
+offset_bottom = -924.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qv605")
@@ -62,13 +68,27 @@ chargesLabel = NodePath("Charges")
 recipeUI = NodePath("ToolTipControl/Control/PanelContainer/MarginContainer/VBoxContainer/BossRecipeUI")
 textureProgressBar = NodePath("TextureProgressBar")
 animationPlayer = NodePath("AnimationPlayer")
+costLabel = NodePath("Cost/RichTextLabel")
+costControl = NodePath("Cost")
+customToolTip = NodePath("ToolTipControl")
+hitBox = NodePath("HitBox")
+
+[node name="TitleBackground" type="TextureRect" parent="."]
+modulate = Color(0.411765, 0.411765, 0.411765, 0.490196)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 42.0
+texture = ExtResource("2_ohvg0")
+expand_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -179.0
-offset_top = -178.0
-offset_right = 271.0
-offset_bottom = 272.0
+offset_left = -131.5
+offset_top = -159.0
+offset_right = 318.5
+offset_bottom = 291.0
 scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(250, 250)
 texture = ExtResource("2_8m8yo")
@@ -76,15 +96,13 @@ texture = ExtResource("2_8m8yo")
 [node name="Title" type="RichTextLabel" parent="." groups=["ActivatableRelicUI"]]
 texture_filter = 1
 layout_mode = 0
-offset_left = 11.0
-offset_top = 5.0
-offset_right = 119.0
-offset_bottom = 27.0
+offset_left = 18.0
+offset_right = 207.0
+offset_bottom = 42.0
 pivot_offset = Vector2(50, 50)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "Energy gain"
+text = "[center]Energy gain"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
@@ -92,12 +110,13 @@ autowrap_mode = 2
 [node name="Charges" type="RichTextLabel" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 65.0
-offset_top = 80.0
-offset_right = 103.0
-offset_bottom = 106.0
+offset_left = 112.5
+offset_top = 100.0
+offset_right = 150.5
+offset_bottom = 126.0
 pivot_offset = Vector2(14, 20)
 mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[right]1"
@@ -108,13 +127,13 @@ autowrap_mode = 0
 [node name="ToolTipControl" type="Control" parent="." node_paths=PackedStringArray("toolTipControl", "target")]
 visible = false
 anchors_preset = 0
-offset_left = 27.0
-offset_top = 26.0
-offset_right = 27.0
-offset_bottom = 26.0
+offset_left = 92.0
+offset_top = 46.0
+offset_right = 92.0
+offset_bottom = 46.0
 script = ExtResource("3_s3f7f")
 toolTipControl = NodePath("Control")
-target = NodePath("..")
+target = NodePath("../HitBox")
 
 [node name="Control" type="Control" parent="ToolTipControl"]
 anchors_preset = 0
@@ -162,10 +181,10 @@ offset_bottom = 79.0
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 27.0
-offset_top = 111.0
-offset_right = 106.0
-offset_bottom = 123.0
+offset_left = 73.5
+offset_top = 130.0
+offset_right = 153.5
+offset_bottom = 142.0
 nine_patch_stretch = true
 stretch_margin_left = 5
 stretch_margin_top = 5
@@ -182,3 +201,39 @@ tint_progress = Color(0.419608, 1, 1, 1)
 libraries = {
 "": SubResource("AnimationLibrary_qml51")
 }
+
+[node name="Cost" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 43.0
+offset_top = 21.0
+offset_right = 43.0
+offset_bottom = 21.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Cost"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 112.0
+offset_right = 71.0
+offset_bottom = 131.0
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[right]100"
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="Cost"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 73.0
+offset_top = 107.0
+offset_right = 105.0
+offset_bottom = 139.0
+texture = ExtResource("8_qi8qc")
+
+[node name="HitBox" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 74.5
+offset_top = 47.0
+offset_right = 151.5
+offset_bottom = 125.0

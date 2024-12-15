@@ -11,6 +11,9 @@ public partial class RelicList : Resource
 
 	[Export] public Array<RelicResource> allRelics = new Array<RelicResource>();
 
+	[Export] public Array<ActivatableRelicResource> allActivatableRelics = new Array<ActivatableRelicResource>();
+
+
 	public RelicList () {
 	
 	}
@@ -34,5 +37,27 @@ public partial class RelicList : Resource
 			returnCards = returnCardsNoDups;
 		}
 		return returnCards;
+	}
+
+	public List<ActivatableRelicResource> getActivatableRelics() {
+		List<ActivatableRelicResource> returnRelics = allActivatableRelics.ToList().Where(card => card != null).ToList();
+		if (removeDuplicates) {
+			List<ActivatableRelicResource> dups = returnRelics.GroupBy(x => x.title)
+			.Where(g => g.Count() > 1)
+			.Select(y => y.First())
+			.ToList();
+			List<ActivatableRelicResource> returnRelicsNoDups = returnRelics.GroupBy(x => x.title).Select(
+				y => {
+					return y.First();
+			}).ToList();
+			if (dups.Count > 0) {
+				GD.Print("found dups: ");
+				foreach(ActivatableRelicResource cardResource in dups) {
+					GD.Print(cardResource.title);
+				}
+			}
+			returnRelics = returnRelicsNoDups;
+		}
+		return returnRelics;
 	}
 }

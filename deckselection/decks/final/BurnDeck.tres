@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=6 format=3 uid="uid://wb0sejxfci1g"]
+[gd_resource type="Resource" script_class="DeckSelectionResource" load_steps=7 format=3 uid="uid://wb0sejxfci1g"]
 
+[ext_resource type="Resource" uid="uid://cxn35q7oscdxf" path="res://relics/activableRelics/StarterMoneyActivatableRelic.tres" id="1_fyqoq"]
 [ext_resource type="Resource" uid="uid://bqm1enm1moeal" path="res://cards/cardResources/cardLists/BurnCardList.tres" id="1_p2qh0"]
 [ext_resource type="Script" path="res://deckselection/DeckSelectionResource.cs" id="2_obrq4"]
 [ext_resource type="Resource" uid="uid://b3grjg3l83q21" path="res://cards/cardResources/cardLists/cardPools/CardPool.tres" id="2_y6mt1"]
@@ -11,6 +12,7 @@ script = ExtResource("2_obrq4")
 cardList = ExtResource("1_p2qh0")
 cardPool = ExtResource("2_y6mt1")
 relics = Array[Object]([])
+activatableRelics = [ExtResource("1_fyqoq")]
 title = "Advanced Deck"
 description = "An advanced deck that burns ingredient for big bonuses."
 color = Color(0, 0, 0, 0)

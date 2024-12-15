@@ -7,22 +7,27 @@ public partial class ActivatableRelicResource : Resource
 {
 	[Export] private bool canHoldMultipleCharges = true;
 	[Export] private int chargesNeededToActivate = 1;
-
 	[Export] public RecipeResource recipe;
 	[Export] Array<EffectResource> effects;
 	[Export] public string title;
 	[Export(PropertyHint.MultilineText)] public string description;
 	[Export] public Texture2D picture;
-
+	[Export] public int cost;
 	private int charges;
 	[Signal] public delegate void ChargesChangedEventHandler();
 
 	[Signal] public delegate void ActivatedEventHandler();
+	Node node;
 
 	public void setUp(Node node)
 	{
+		this.node = node;
 		recipe.setUp(node, this);
 		recipe.finishedRecipe += addCharge;
+	}
+
+	public void showCost() {
+
 	}
 
 	public bool canExecute()
@@ -61,6 +66,16 @@ public partial class ActivatableRelicResource : Resource
 			EmitSignal(SignalName.ChargesChanged);
 			EmitSignal(SignalName.Activated);
 		}
+	}
+
+	public bool canRunNotInLevel() {
+		foreach (EffectResource effect in effects)
+		{
+			if (!effect.canRunNotInLevel()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public string getDescription()

@@ -82,6 +82,9 @@ public partial class DeckSelectionGameManager : GameManagerIF
 		foreach(RelicResource relicResource in deckSelectionResource.relics) {
 			addRelic(relicResource);
 		}
+		foreach(ActivatableRelicResource relicResource in deckSelectionResource.activatableRelics) {
+			addActivatableRelics(relicResource);
+		}
 		
 		setDeckSelection(deckSelectionResource);
 		advanceLevel();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd2x7ropd5ole"]
+[gd_scene load_steps=10 format=3 uid="uid://dd2x7ropd5ole"]
 
 [ext_resource type="Theme" uid="uid://3d6t3ubetydb" path="res://UI/Themes/ButtonTheme.tres" id="1_hnyfj"]
 [ext_resource type="Script" path="res://UI/core/CustomButton.cs" id="2_bbinw"]
@@ -50,10 +50,26 @@ tracks/0/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_h6qvg"]
+resource_name = "StartUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jw2s4"]
 _data = {
 "Hover": SubResource("Animation_si3mj"),
-"RESET": SubResource("Animation_3nkhp")
+"RESET": SubResource("Animation_3nkhp"),
+"StartUp": SubResource("Animation_h6qvg")
 }
 
 [node name="Button" type="Button" node_paths=PackedStringArray("animationPlayer", "hoverAudioplayer", "clickAudioplayer")]
@@ -61,7 +77,7 @@ texture_filter = 1
 offset_left = 1.0
 offset_right = 424.0
 offset_bottom = 68.0
-pivot_offset = Vector2(76, 52)
+pivot_offset = Vector2(211.115, 35.98)
 focus_mode = 0
 theme = ExtResource("1_hnyfj")
 text = "Button"

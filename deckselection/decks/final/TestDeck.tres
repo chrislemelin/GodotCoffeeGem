@@ -11,6 +11,7 @@ script = ExtResource("5_knqnf")
 cardList = ExtResource("1_u7cin")
 cardPool = ExtResource("2_o8t7m")
 relics = Array[Object]([])
+activatableRelics = []
 title = "Test Deck"
 description = "This is the test deck."
 color = Color(0, 0, 0, 0)

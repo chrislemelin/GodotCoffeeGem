@@ -35,7 +35,7 @@ public partial class DayOver : Control
 
 	[Export] PackedScene cardScene;
 	[Export] PackedScene marginContainerScene;
-
+	[Export] ActivatableRelicUI activatableRelicUI;
 
 	private List<Button> buttons = new List<Button>();
 	private List<ButtonWithCoinCost> buttonWithCoinCost = new List<ButtonWithCoinCost>();
@@ -64,7 +64,7 @@ public partial class DayOver : Control
 				shoppingTherapyButton.Disabled = true;
 			}
 		};
-		//
+		activatableRelicUI.setUp(gameManager.getActivatableRelicPool()[0]);
 
 		foreach(ButtonWithCoinCost buttonWithCoinCost in buttonWithCoinCost) {
 			buttonWithCoinCost.setCurrentCoin(gameManager.getCoins());
@@ -119,7 +119,7 @@ public partial class DayOver : Control
 			addColorUpgrade();
 		};
 		moreCardsButton.Pressed += () => {
-			((HomeGameManager)gameManager).selectNewCard();
+			gameManager.selectNewCard();
 		};
 		relicButton.Pressed += addRelic;
 		advanceLevelCustomButton.Pressed += () => gameManager.advanceLevel();

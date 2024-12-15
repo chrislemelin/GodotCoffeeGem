@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbshug8s4ulor"]
+[gd_scene load_steps=9 format=3 uid="uid://bbshug8s4ulor"]
 
 [ext_resource type="Theme" uid="uid://b0xo8to6o3t8b" path="res://UI/Themes/DarkTheme.tres" id="1_ew5vq"]
 [ext_resource type="Script" path="res://UI/Status.cs" id="1_py4bf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cu3imsx0afn2p" path="res://sprites/UI/heart-empty-pixel-300px.png" id="4_8mf6w"]
 [ext_resource type="Texture2D" uid="uid://bl5qiuud05msc" path="res://sprites/UI/coin-pixel-300px.png" id="5_topv7"]
 [ext_resource type="AudioStream" uid="uid://rlnsv2x6na5v" path="res://sound/Score/coins/money.wav" id="7_v6prk"]
+[ext_resource type="PackedScene" uid="uid://d3rhwnt70jga4" path="res://relics/activableRelics/ActivatableRelicUI.tscn" id="8_iaxdr"]
 
 [node name="Status" type="Control" node_paths=PackedStringArray("coinsLabel", "levelLabel", "heartsContainer")]
 texture_filter = 1
@@ -94,3 +95,11 @@ theme_override_font_sizes/normal_font_size = 48
 text = "100"
 fit_content = true
 scroll_active = false
+
+[node name="ActivatableRelicUi" parent="." instance=ExtResource("8_iaxdr")]
+layout_mode = 1
+offset_left = -150.0
+offset_top = 119.0
+offset_right = 81.0
+offset_bottom = 274.0
+titleBlack = false

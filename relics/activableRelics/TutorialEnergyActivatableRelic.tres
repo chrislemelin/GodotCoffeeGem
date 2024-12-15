@@ -29,3 +29,4 @@ recipe = SubResource("Resource_y73ho")
 effects = Array[Object]([SubResource("Resource_civug")])
 title = "Energy Gain"
 description = "Gain one energy."
+cost = 0

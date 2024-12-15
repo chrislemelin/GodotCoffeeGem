@@ -336,16 +336,18 @@ layout_mode = 1
 
 [node name="ActivatableRelicUi" parent="UIOverLays" groups=["ActivatableRelicUI"] instance=ExtResource("48_fmyr8")]
 layout_mode = 1
-offset_top = 152.0
-offset_bottom = 152.0
+offset_left = 14.0
+offset_top = 147.0
+offset_right = 245.0
+offset_bottom = 302.0
 relicResource = ExtResource("49_ma0ug")
 
 [node name="RelicHolder" parent="UIOverLays" groups=["RelicHolder"] instance=ExtResource("14_jrqgk")]
 layout_mode = 1
-offset_left = 106.0
-offset_top = 94.0
-offset_right = 106.0
-offset_bottom = 94.0
+offset_left = 213.0
+offset_top = 136.0
+offset_right = 213.0
+offset_bottom = 136.0
 
 [node name="TutorialManager" type="Control" parent="." node_paths=PackedStringArray("tutorialUIs")]
 layout_mode = 3
@@ -375,9 +377,8 @@ tutorialTiles = []
 [node name="TextureRect" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial1"]
 modulate = Color(0, 0, 0, 0.470588)
 layout_mode = 0
-offset_left = 3.0
 offset_top = -1.0
-offset_right = 1935.0
+offset_right = 1932.0
 offset_bottom = 1079.0
 rotation = -0.000391196
 size_flags_horizontal = 3
@@ -886,6 +887,7 @@ text = "You are now out of cards to play. Ending your turn will draw 5 new cards
 fit_content = true
 
 [node name="Tutorial4" type="Control" parent="TutorialManager/TutorialUIs" node_paths=PackedStringArray("advanceButton")]
+visible = false
 anchors_preset = 0
 offset_left = -1.0
 offset_right = -1.0
@@ -1468,18 +1470,18 @@ flip_v = true
 [node name="Boss" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial16"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 799.0
-offset_top = 156.0
-offset_right = 1119.0
-offset_bottom = 476.0
+offset_left = 829.0
+offset_top = 164.0
+offset_right = 1149.0
+offset_bottom = 484.0
 texture = ExtResource("31_6imdm")
 
 [node name="Panel" type="Panel" parent="TutorialManager/TutorialUIs/Tutorial16"]
 layout_mode = 0
-offset_left = 236.0
-offset_top = 200.0
-offset_right = 768.0
-offset_bottom = 444.0
+offset_left = 304.0
+offset_top = 207.0
+offset_right = 836.0
+offset_bottom = 451.0
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="TutorialManager/TutorialUIs/Tutorial16/Panel"]
 layout_mode = 2
@@ -1496,10 +1498,10 @@ fit_content = true
 [node name="RedArrow2" type="TextureRect" parent="TutorialManager/TutorialUIs/Tutorial16"]
 texture_filter = 3
 layout_mode = 0
-offset_left = 198.0
-offset_top = 272.0
-offset_right = 298.0
-offset_bottom = 372.0
+offset_left = 266.0
+offset_top = 279.0
+offset_right = 366.0
+offset_bottom = 379.0
 rotation = 3.14159
 texture = ExtResource("32_em4ah")
 expand_mode = 3
@@ -1678,7 +1680,7 @@ sceneString = "res://mainScenes/DeckSelectionPicker.tscn"
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" parent="." instance=ExtResource("50_ee3q3")]
-position = Vector2(967, 540)
+position = Vector2(960, 540)
 
 [node name="JingleAchievementAudioPlayer" parent="." instance=ExtResource("51_cdndm")]
 stream = ExtResource("52_gfs16")

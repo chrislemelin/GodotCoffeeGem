@@ -673,4 +673,4 @@ position = Vector2(668, 42)
 position = Vector2(152, -1547)
 stream = ExtResource("19_2axgu")
 minValue = -40.0
-maxValue = 10.0
+maxValue = 20.0

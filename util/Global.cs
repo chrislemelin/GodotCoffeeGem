@@ -90,7 +90,6 @@ public partial class Global : Node
 		relics = new List<RelicResource>();
 		activableRelics = new List<ActivatableRelicResource>();
 
-
 		timeStartedRun = 0;
 		zenMode = false;
 

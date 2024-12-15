@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://brvirf84hjie1"]
+[gd_scene load_steps=58 format=3 uid="uid://brvirf84hjie1"]
 
 [ext_resource type="Script" path="res://gamemanager/GameManager.cs" id="1_5jnm2"]
 [ext_resource type="Resource" uid="uid://qhphks7awow3" path="res://dialogue/final/bossDialouge/HighScoreWon.dialogue" id="2_ftyi2"]
@@ -50,7 +50,6 @@
 [ext_resource type="PackedScene" uid="uid://df73hn4mndwnd" path="res://UI/EndDayButton.tscn" id="47_oc5ta"]
 [ext_resource type="PackedScene" uid="uid://28twoy1bat4t" path="res://meta/debt/DebtReward.tscn" id="48_2ib3b"]
 [ext_resource type="PackedScene" uid="uid://dhuk7vbcn1umj" path="res://UI/highscore/HighScoreDisplay.tscn" id="48_ckeue"]
-[ext_resource type="Resource" uid="uid://dat3q3duiibxn" path="res://relics/activableRelics/EnergyActivatableRelic.tres" id="50_5hos7"]
 [ext_resource type="PackedScene" uid="uid://b62fbck1s7la" path="res://sound/Players/AudioPlayer.tscn" id="51_n61nv"]
 [ext_resource type="PackedScene" uid="uid://ff2wbvpyhygk" path="res://characterCustomization/CharacterPortrait.tscn" id="53_4rgbs"]
 [ext_resource type="Texture2D" uid="uid://bse40n4t1va72" path="res://sprites/character/Nick1.png" id="54_8tj11"]
@@ -313,6 +312,9 @@ deckView = NodePath("../UIOverLays/DeckView")
 position = Vector2(104, 911)
 deckView = NodePath("../UIOverLays/DeckView")
 
+[node name="CharacterPortrait" parent="." instance=ExtResource("53_4rgbs")]
+position = Vector2(1810, 240)
+
 [node name="Hand" parent="." node_paths=PackedStringArray("discard", "matchBoard", "deck", "mana", "gameManager", "windowsInFrontOf") groups=["Hand"] instance=ExtResource("8_m8idd")]
 unique_name_in_owner = true
 position = Vector2(666, 798)
@@ -362,9 +364,6 @@ offset_top = 569.0
 offset_right = 1888.0
 offset_bottom = 639.0
 playableCardsUI = NodePath("../UIOverLays/PlayableCards")
-
-[node name="CharacterPortrait" parent="." instance=ExtResource("53_4rgbs")]
-position = Vector2(1810, 240)
 
 [node name="Debt" type="Control" parent="." node_paths=PackedStringArray("richTextLabel")]
 visible = false
@@ -419,17 +418,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ActivatableRelicUi" parent="UIOverLays" groups=["ActivatableRelicUI"] instance=ExtResource("54_tmomu")]
 layout_mode = 1
-offset_top = 152.0
-offset_bottom = 152.0
-relicResource = ExtResource("50_5hos7")
+offset_left = -10.0
+offset_top = 150.0
+offset_right = 221.0
+offset_bottom = 305.0
 
 [node name="RelicHolder" parent="UIOverLays" groups=["RelicHolder"] instance=ExtResource("16_qkjnw")]
 layout_mode = 1
-offset_left = 106.0
-offset_top = 94.0
-offset_right = 106.0
-offset_bottom = 94.0
-metadata/_edit_use_anchors_ = true
+offset_left = 194.0
+offset_top = 135.0
+offset_right = 194.0
+offset_bottom = 135.0
 
 [node name="OvertimeUI" parent="UIOverLays" instance=ExtResource("42_osxvy")]
 offset_left = 65.0

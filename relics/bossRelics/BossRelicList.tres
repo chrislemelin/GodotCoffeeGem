@@ -11,3 +11,4 @@
 script = ExtResource("1_m8nvf")
 removeDuplicates = true
 allRelics = [ExtResource("5_7ndsu"), ExtResource("6_jejv2"), ExtResource("7_l5jel"), ExtResource("8_qogck"), ExtResource("9_pryc3")]
+allActivatableRelics = []

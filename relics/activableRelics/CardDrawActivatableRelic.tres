@@ -19,7 +19,7 @@ GainMult = 0.0
 
 [sub_resource type="Resource" id="Resource_0jmcw"]
 script = ExtResource("1_wr02t")
-ingredientList = [4]
+ingredientList = [4, 4, 0, 1]
 
 [resource]
 script = ExtResource("1_sltc3")
@@ -29,3 +29,4 @@ recipe = SubResource("Resource_0jmcw")
 effects = Array[Object]([SubResource("Resource_civug")])
 title = "Card Draw"
 description = "Draw 1 card"
+cost = 10

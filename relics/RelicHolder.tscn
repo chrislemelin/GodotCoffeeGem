@@ -41,19 +41,21 @@ expand_mode = 1
 
 [node name="Control7" type="GridContainer" parent="Control"]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 53.0
-offset_right = 554.0
-offset_bottom = 217.0
-columns = 5
+offset_left = 165.0
+offset_top = 3.0
+offset_right = 426.0
+offset_bottom = 191.0
+columns = 4
 
 [node name="RelicMarginContainer" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer" instance=ExtResource("2_2scfp")]
 layout_mode = 2
 
 [node name="RelicMarginContainer2" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer2" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -72,6 +74,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer3" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer3" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -90,6 +93,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer4" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer4" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -108,6 +112,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer5" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer5" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -126,6 +131,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer6" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer6" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -144,6 +150,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer7" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer7" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -162,6 +169,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer8" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer8" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -180,6 +188,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer9" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer9" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]
@@ -198,6 +207,7 @@ toolTipText = NodePath("../../RelicMarginContainer/Control/Tooltip")
 target = NodePath("../../RelicMarginContainer/Control/HoverHitBox")
 
 [node name="RelicMarginContainer10" parent="Control/Control7" instance=ExtResource("5_4eg2t")]
+visible = false
 layout_mode = 2
 
 [node name="Control" parent="Control/Control7/RelicMarginContainer10" node_paths=PackedStringArray("picture", "titleLabel", "counterLabel", "costValueLabel", "highlightOnHover", "hitBox", "costControl", "buyButton", "animationPlayer", "audio", "toolTipText", "target") instance=ExtResource("2_2scfp")]

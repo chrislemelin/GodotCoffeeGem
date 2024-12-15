@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="RelicList" load_steps=25 format=3 uid="uid://bcelpenpmwhtr"]
+[gd_resource type="Resource" script_class="RelicList" load_steps=28 format=3 uid="uid://bcelpenpmwhtr"]
 
+[ext_resource type="Resource" uid="uid://brvx75e401xgw" path="res://relics/activableRelics/AddTurnActivatableRelic.tres" id="1_1s4jp"]
 [ext_resource type="Script" path="res://relics/RelicLists/RelicList.cs" id="1_scp5n"]
+[ext_resource type="Resource" uid="uid://dej1pw72eowmu" path="res://relics/activableRelics/CardDrawActivatableRelic.tres" id="2_g84qg"]
+[ext_resource type="Resource" uid="uid://dat3q3duiibxn" path="res://relics/activableRelics/EnergyActivatableRelic.tres" id="3_vx1t7"]
 [ext_resource type="Resource" uid="uid://c4p0e6bhtw00t" path="res://relics/resources/generateGems/ManaGemsRelic.tres" id="6_4i8u4"]
 [ext_resource type="Resource" uid="uid://dhtqi0mvscf8u" path="res://relics/resources/other/CardChoiceRelic.tres" id="7_ks5hc"]
 [ext_resource type="Resource" uid="uid://m0rit4tghx2m" path="res://relics/resources/other/SprayUpgradeRelic.tres" id="10_cuxxa"]
@@ -29,3 +32,4 @@
 script = ExtResource("1_scp5n")
 removeDuplicates = true
 allRelics = [ExtResource("6_4i8u4"), ExtResource("7_ks5hc"), ExtResource("11_dykg8"), ExtResource("10_cuxxa"), ExtResource("10_e2lqx"), ExtResource("14_n2r1g"), ExtResource("13_kk7qt"), ExtResource("19_gi3wq"), ExtResource("19_y0686"), ExtResource("20_u12kx"), ExtResource("21_cpybf"), ExtResource("22_6fyfr"), ExtResource("23_w1uoa"), ExtResource("24_5iy1y"), ExtResource("25_xke8y"), ExtResource("26_terd5"), ExtResource("22_nqrg0"), ExtResource("23_el0tr"), ExtResource("24_1310u"), ExtResource("25_3ngry"), ExtResource("26_0cr44"), ExtResource("27_8ug13"), ExtResource("23_jb1t7")]
+allActivatableRelics = [ExtResource("1_1s4jp"), ExtResource("2_g84qg"), ExtResource("3_vx1t7")]

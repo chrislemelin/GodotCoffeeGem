@@ -140,3 +140,5 @@ text = "View Deck"
 [node name="AudioStreamPlayer2D" parent="Control" instance=ExtResource("7_6nsr1")]
 position = Vector2(-42, 69)
 stream = ExtResource("8_dqt7s")
+minValue = -30.0
+maxValue = 30.0

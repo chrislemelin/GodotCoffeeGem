@@ -23,6 +23,8 @@ public partial class GameManagerIF : Node2D
 	public delegate void coinsChangedEventHandler(int newCoins, int valueChanged);
 	[Signal]
 	public delegate void coinsGainedEventHandler(int newCoins);
+	[Signal]
+	public delegate void activableRelicResourceChangedEventHandler();
 
 	public bool isIntialized()
 	{
@@ -73,7 +75,15 @@ public partial class GameManagerIF : Node2D
 
 	public void addActivatableRelics(ActivatableRelicResource activableRelicResource) {
 		getGlobal().activableRelics.Add((ActivatableRelicResource)activableRelicResource.Duplicate());
+		EmitSignal(SignalName.activableRelicResourceChanged);
 	}
+
+	public void replaceActivatableRelics(ActivatableRelicResource activableRelicResource) {
+		getGlobal().activableRelics.Clear();
+		getGlobal().activableRelics.Add((ActivatableRelicResource)activableRelicResource.Duplicate());
+		EmitSignal(SignalName.activableRelicResourceChanged);
+	}
+
 
 	private HashSet<CardResource> getCardsUnlocked() {
 		HashSet<string> cardPacksUnlocked = getMetaGlobal().cardPacksUnlocked;
@@ -266,6 +276,12 @@ public partial class GameManagerIF : Node2D
 	{
 		HashSet<string> currentRelics = getRelics().Select(relic => relic.title).ToHashSet();
 		return relicList.getRelics().ToList().Where((relic) => !currentRelics.Contains(relic.title)).ToList();
+	}
+
+	public List<ActivatableRelicResource> getActivatableRelicPool()
+	{
+		HashSet<string> currentRelics = getActivatableRelics().Select(relic => relic.title).ToHashSet();
+		return relicList.getActivatableRelics().ToList().Where((relic) => !currentRelics.Contains(relic.title)).ToList();
 	}
 
 	public virtual void advanceLevel()
